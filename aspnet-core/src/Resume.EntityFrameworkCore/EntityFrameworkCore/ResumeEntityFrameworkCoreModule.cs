@@ -69,6 +69,7 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Chat.EntityFrameworkCore;
 using Volo.FileManagement.EntityFrameworkCore;
 using Volo.Payment.EntityFrameworkCore;
+using Volo.Abp.Auditing;
 
 namespace Resume.EntityFrameworkCore;
 
@@ -214,5 +215,12 @@ namespace Resume.EntityFrameworkCore;
             options.UseSqlServer();
         });
 
+        //AbpEntityChanges
+        Configure<AbpAuditingOptions>(options =>
+        {
+            /* The main point to change your DBMS.
+             * See also HRMDbContextFactory for EF Core tooling. */
+            options.EntityHistorySelectors.AddAllEntities();
+        });
     }
 }
