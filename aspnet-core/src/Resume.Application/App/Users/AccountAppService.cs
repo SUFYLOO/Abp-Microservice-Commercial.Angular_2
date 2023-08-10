@@ -1,34 +1,18 @@
-﻿using AutoMapper.Internal.Mappers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Resume.App.Shares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Volo.Abp.Account;
-using Volo.Abp.Identity;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
-using Resume.App.Shares;
-using Microsoft.Extensions.DependencyInjection;
-using IdentityModel;
-using Newtonsoft.Json.Linq;
-using System.Net;
-using Microsoft.AspNetCore.Http;
-using static Volo.Abp.Identity.Settings.IdentitySettingNames;
-using Polly;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 using Volo.Abp.Security.Claims;
 using Volo.Abp.Users;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Cryptography;
-using Iyzipay.Model;
-using Resume.ShareUploads;
-using PayPalCheckoutSdk.Core;
 
 namespace Resume.App.Users
 {
@@ -286,9 +270,9 @@ namespace Resume.App.Users
 
             var roles = await _appService._identityUserManager.GetRolesAsync(user);
 
-            var principal = new ClaimsPrincipal(
-                new ClaimsIdentity(CreateClaims(user, roles), IdentityConstants.ApplicationScheme)
-            );
+            //var principal = new ClaimsPrincipal(
+            //    new ClaimsIdentity(CreateClaims(user, roles), IdentityConstants.ApplicationScheme)
+            //);
 
             //var _httpContext = new HttpContext();
             //await _httpContext.SignInAsync(IdentityConstants.ApplicationScheme, principal);

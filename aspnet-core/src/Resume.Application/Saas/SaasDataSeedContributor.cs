@@ -37,7 +37,7 @@ namespace Resume.Saas
         {
             if (context.TenantId.HasValue)
             {
-                var input = context.Properties.ContainsKey("input") ? (RegisterInput)context.Properties["input"] : null;
+                var input = context.Properties.ContainsKey("input") ? (RegisterInput)context.Properties["input"] : new RegisterInput();
                 var AdminEmail = context.Properties.ContainsKey("AdminEmail") ? Convert.ToString(context.Properties["AdminEmail"]) : "";
                 var AdminPassword = context.Properties.ContainsKey("AdminPassword") ? Convert.ToString(context.Properties["AdminPassword"]) : "";
 
@@ -110,6 +110,7 @@ namespace Resume.Saas
                 var itemUser = await _appService._identityUserRepository.FindByTenantIdAndUserNameAsync("admin", context.TenantId.Value);
                 if (itemOrgAllGuid != null)
                     itemUser.AddOrganizationUnit(itemOrgAllGuid.Value);  //加入組織
+                input.MobilePhone = input.MobilePhone ?? "";
                 itemUser.SetPhoneNumber(input.MobilePhone, input.MobilePhone.Length > 0);    //設定電話
                 itemUser.Surname = input.IdentityNo ?? "";  //暫存身份證
                 await _appService._identityUserRepository.UpdateAsync(itemUser);
@@ -127,9 +128,9 @@ namespace Resume.Saas
                 inputInsertUserMain.Name = Name;
                 inputInsertUserMain.UserName = itemUser.UserName; //登入帳號
                 inputInsertUserMain.MobilePhone = input.MobilePhone ?? "";
-                inputInsertUserMain.Email = AdminEmail;
+                inputInsertUserMain.Email = AdminEmail??"";
                 inputInsertUserMain.IdentityNo = input.IdentityNo ?? "";
-                inputInsertUserMain.Password = AdminPassword;//改到方法裡面再加密
+                inputInsertUserMain.Password = AdminPassword??"";//改到方法裡面再加密
                 await _appService._serviceProvider.GetService<UsersAppService>().InsertUserMainAsync(inputInsertUserMain);
 
                 var UserData = input.UserData;

@@ -295,8 +295,10 @@ namespace Resume.App.Users
             rUserMain.Name = Name;
             rUserMain.AnonymousName = Name;
             rUserMain.LoginAccountCode = UserName.ToUpper();
+            rUserMain.LoginMobilePhoneUpdate = MobilePhone;
             rUserMain.LoginMobilePhone = MobilePhone;
             rUserMain.LoginEmail = Email;
+            rUserMain.LoginEmailUpdate = Email;
             rUserMain.LoginIdentityNo = IdentityNo.ToUpper();
             rUserMain.Password = Security.Encrypt(Password);  //需要加密
             rUserMain.SystemUserRoleKeys = SystemUserRoleKeys;
@@ -335,22 +337,22 @@ namespace Resume.App.Users
             rResumeMain.TenantId = TenantId;
             rResumeMain.UserMainId = UserMainId;
             rResumeMain.ResumeName = "我的第一份履歷";
-            rResumeMain.NameC = Name;
-            rResumeMain.NameE = "";
-            rResumeMain.IdentityNo = IdentityNo.ToUpper();
-            rResumeMain.BirthDate = new DateTime(1900, 1, 1).Date;
-            rResumeMain.SexCode = "";
-            rResumeMain.BloodCode = "";
+            //rResumeMain.NameC = Name;
+            //rResumeMain.NameE = "";
+            //rResumeMain.IdentityNo = IdentityNo.ToUpper();
+            //rResumeMain.BirthDate = new DateTime(1900, 1, 1).Date;
+            //rResumeMain.SexCode = "";
+            //rResumeMain.BloodCode = "";
             rResumeMain.MarriageCode = "";
-            rResumeMain.PlaceOfBirthCode = "";
+            //rResumeMain.PlaceOfBirthCode = "";
             rResumeMain.MilitaryCode = "";
-            rResumeMain.PassportNo = "";
+            //rResumeMain.PassportNo = "";
             rResumeMain.DisabilityCategoryCode = "";
-            rResumeMain.NationalityCode = "";
+            //rResumeMain.NationalityCode = "";
             rResumeMain.SpecialIdentityCode = "";
             rResumeMain.Main = true;
             rResumeMain.Autobiography1 = "";
-            rResumeMain.ResidenceNo = "";
+            //rResumeMain.ResidenceNo = "";
             rResumeMain.Autobiography2 = "";
             rResumeMain.ExtendedInformation = "";
             rResumeMain.DateA = new DateTime(1900, 1, 1);
@@ -957,7 +959,7 @@ namespace Resume.App.Users
                     {
                         await _appService._userManager.UpdateSecurityStampAsync(itemUser);
                         var roles = await _appService._userManager.GetRolesAsync(itemUser);
-                        Result = new ClaimsPrincipal(new ClaimsIdentity(CreateClaims(itemUser, roles), IdentityConstants.ApplicationScheme));
+                        //Result = new ClaimsPrincipal(new ClaimsIdentity(CreateClaims(itemUser, roles), IdentityConstants.ApplicationScheme));
                     }
                 }
 
@@ -1167,11 +1169,11 @@ namespace Resume.App.Users
                 Result.Data.Password = "";  //把密碼清除
 
                 //取回履歷主檔其中一筆 把生日寫回
-                UserMainId = item.Id;
-                var itemsResumeMainAll = await _appService._resumeMainRepository.GetQueryableAsync();
-                var itemResumeMain = itemsResumeMainAll.FirstOrDefault(p => p.UserMainId == UserMainId);
-                if (itemResumeMain != null)
-                    Result.Data.Birthday = itemResumeMain.BirthDate;
+                //UserMainId = item.Id;
+                //var itemsResumeMainAll = await _appService._resumeMainRepository.GetQueryableAsync();
+                //var itemResumeMain = itemsResumeMainAll.FirstOrDefault(p => p.UserMainId == UserMainId);
+                //if (itemResumeMain != null)
+                //    Result.Data.Birthday = itemResumeMain.BirthDate;
 
                 Result.Save = true;
             }
@@ -1318,20 +1320,20 @@ namespace Resume.App.Users
                 _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<UserInfosDto>(inputSetShareCode);
 
                 //為每一份履歷改成相同的值 每一次
-                var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
-                var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
-                foreach (var itemResumeMain in itemsResumeMain)
-                {
-                    itemResumeMain.NameE = input.NameE ?? "";
-                    itemResumeMain.SexCode = input.SexCode ?? "";
-                    itemResumeMain.BloodCode = input.BloodCode ?? "";
-                    itemResumeMain.PlaceOfBirthCode = input.PlaceOfBirthCode ?? "";
-                    itemResumeMain.PassportNo = input.PassportNo ?? "";
-                    itemResumeMain.NationalityCode = input.NationalityCode ?? "";
-                    itemResumeMain.ResidenceNo = input.ResidenceNo ?? "";
-                }
+                //var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+                //var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
+                //foreach (var itemResumeMain in itemsResumeMain)
+                //{
+                //    itemResumeMain.NameE = input.NameE ?? "";
+                //    itemResumeMain.SexCode = input.SexCode ?? "";
+                //    itemResumeMain.BloodCode = input.BloodCode ?? "";
+                //    itemResumeMain.PlaceOfBirthCode = input.PlaceOfBirthCode ?? "";
+                //    itemResumeMain.PassportNo = input.PassportNo ?? "";
+                //    itemResumeMain.NationalityCode = input.NationalityCode ?? "";
+                //    itemResumeMain.ResidenceNo = input.ResidenceNo ?? "";
+                //}
 
-                await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
+                //await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
 
                 Result.Data = Data;
                 Result.Save = true;
@@ -1636,30 +1638,30 @@ namespace Resume.App.Users
                 }
 
                 //履歷主檔               
-                if (dcAllowColumns.Any(p => p.Key == ColumnName && p.Value.Contains("AppResumeMains")))
-                {
-                    var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
-                    var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
+                //if (dcAllowColumns.Any(p => p.Key == ColumnName && p.Value.Contains("AppResumeMains")))
+                //{
+                //    var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+                //    var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
 
-                    if (Result.Messages.Count == 0)
-                    {
-                        foreach (var itemResumeMain in itemsResumeMain)
-                            switch (ColumnName)
-                            {
-                                case "Name":
-                                    itemResumeMain.NameC = Value;
-                                    break;
-                                case "LoginIdentityNo":
-                                    itemResumeMain.IdentityNo = Value.ToUpper();
-                                    break;
-                                case "BirthDate":
-                                    itemResumeMain.BirthDate = Convert.ToDateTime(Value);
-                                    break;
-                            }
+                //    if (Result.Messages.Count == 0)
+                //    {
+                //        foreach (var itemResumeMain in itemsResumeMain)
+                //            switch (ColumnName)
+                //            {
+                //                case "Name":
+                //                    itemResumeMain.NameC = Value;
+                //                    break;
+                //                case "LoginIdentityNo":
+                //                    itemResumeMain.IdentityNo = Value.ToUpper();
+                //                    break;
+                //                case "BirthDate":
+                //                    itemResumeMain.BirthDate = Convert.ToDateTime(Value);
+                //                    break;
+                //            }
 
-                        await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
-                    }
-                }
+                //        await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
+                //    }
+                //}
             }
 
             if (Result.Messages.Count == 0)

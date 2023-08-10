@@ -745,13 +745,13 @@ namespace Resume.App.Resumes
             var SaveIntent = SaveIntentType.Update;
             var Id = input.Id;
             var ResumeName = input.ResumeName ?? "我的履歷";
-            var SexCode = input.SexCode;
-            var BloodCode = input.BloodCode;
+            //var SexCode = input.SexCode;
+            //var BloodCode = input.BloodCode;
             var MarriageCode = input.MarriageCode;
-            var PlaceOfBirthCode = input.PlaceOfBirthCode;
+            //var PlaceOfBirthCode = input.PlaceOfBirthCode;
             var MilitaryCode = input.MilitaryCode;
             var DisabilityCategoryCode = input.DisabilityCategoryCode;
-            var NationalityCode = input.NationalityCode;
+            //var NationalityCode = input.NationalityCode;
             var SpecialIdentityCode = input.SpecialIdentityCode;
 
             //必要代碼檢核
@@ -776,17 +776,17 @@ namespace Resume.App.Resumes
             SaveIntent = (item == null) ? SaveIntentType.Insert : SaveIntentType.Update;
             if (SaveIntent == SaveIntentType.Update)
             {
-                if (!itemsShareCode.Any(p => p.GroupCode == "Sex" && p.Code == SexCode))
-                    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "性別代碼錯誤" });
+                //if (!itemsShareCode.Any(p => p.GroupCode == "Sex" && p.Code == SexCode))
+                //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "性別代碼錯誤" });
 
-                if (!itemsShareCode.Any(p => p.GroupCode == "Blood" && p.Code == BloodCode))
-                    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "血型代碼錯誤" });
+                //if (!itemsShareCode.Any(p => p.GroupCode == "Blood" && p.Code == BloodCode))
+                //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "血型代碼錯誤" });
 
                 if (!itemsShareCode.Any(p => p.GroupCode == "Marriage" && p.Code == MarriageCode))
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "婚姻代碼錯誤" });
 
-                if (!itemsShareCode.Any(p => p.GroupCode == "PlaceOfBirth" && p.Code == PlaceOfBirthCode))
-                    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "出生地代碼錯誤" });
+                //if (!itemsShareCode.Any(p => p.GroupCode == "PlaceOfBirth" && p.Code == PlaceOfBirthCode))
+                //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "出生地代碼錯誤" });
 
                 if (!itemsShareCode.Any(p => p.GroupCode == "Military" && p.Code == MilitaryCode))
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "兵役代碼錯誤" });
@@ -794,8 +794,8 @@ namespace Resume.App.Resumes
                 if (!itemsShareCode.Any(p => p.GroupCode == "DisabilityCategory" && p.Code == DisabilityCategoryCode))
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "殘障類別代碼錯誤" });
 
-                if (!itemsShareCode.Any(p => p.GroupCode == "Nationality" && p.Code == NationalityCode))
-                    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "國藉代碼錯誤" });
+                //if (!itemsShareCode.Any(p => p.GroupCode == "Nationality" && p.Code == NationalityCode))
+                //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "國藉代碼錯誤" });
 
                 if (!itemsShareCode.Any(p => p.GroupCode == "SpecialIdentity" && p.Code == SpecialIdentityCode))
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "特殊身份代碼錯誤" });
@@ -815,8 +815,8 @@ namespace Resume.App.Resumes
                     item.Autobiography1 = "";
                     item.Autobiography2 = "";
                     item.Status = "1";
-                    item.IdentityNo = UserMains.LoginIdentityNo;
-                    item.NameC = UserMains.Name;
+                    //item.IdentityNo = UserMains.LoginIdentityNo;
+                    //item.NameC = UserMains.Name;
 
                     //交通工具初始化
                     var inputInsertResumeDrvingLicense = new InsertResumeDrvingLicenseInput();
@@ -827,17 +827,17 @@ namespace Resume.App.Resumes
                 else
                     await _appService._resumeMainRepository.UpdateAsync(item);
 
-                item.NameE = input.NameE ?? "";
-                item.SexCode = input.SexCode ?? "";
-                item.BloodCode = input.BloodCode ?? "";
+                //item.NameE = input.NameE ?? "";
+                //item.SexCode = input.SexCode ?? "";
+                //item.BloodCode = input.BloodCode ?? "";
                 item.MarriageCode = input.MarriageCode ?? "";
-                item.PlaceOfBirthCode = input.PlaceOfBirthCode ?? "";
+                //item.PlaceOfBirthCode = input.PlaceOfBirthCode ?? "";
                 item.MilitaryCode = input.MilitaryCode ?? "";
-                item.PassportNo = input.PassportNo ?? "";
+                //item.PassportNo = input.PassportNo ?? "";
                 item.DisabilityCategoryCode = input.DisabilityCategoryCode ?? "";
-                item.NationalityCode = input.NationalityCode ?? "";
+                //item.NationalityCode = input.NationalityCode ?? "";
                 item.SpecialIdentityCode = input.SpecialIdentityCode ?? "";
-                item.ResidenceNo = input.ResidenceNo ?? "";
+                //item.ResidenceNo = input.ResidenceNo ?? "";
                 item.ExtendedInformation = input.ExtendedInformation ?? "";
                 item.DateA = input.DateA;
                 item.DateD = input.DateD;

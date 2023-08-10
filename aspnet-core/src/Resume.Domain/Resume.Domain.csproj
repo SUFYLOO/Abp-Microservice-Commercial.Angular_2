@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="App\Users\**" />
+    <EmbeddedResource Remove="App\Users\**" />
+    <None Remove="App\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Resume.Domain.Shared\Resume.Domain.Shared.csproj" />
   </ItemGroup>
 

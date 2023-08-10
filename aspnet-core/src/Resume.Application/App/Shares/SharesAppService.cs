@@ -933,7 +933,7 @@ namespace Resume.App.Shares
                 item.Key3 = Key3;
                 item.UploadName = Content.File.FileName;
                 item.ServerName = ServerName;
-                item.Blob = new byte();
+                //item.Blob = new byte();
                 item.Type = Content.File.ContentType;
                 item.Size = Convert.ToInt32(Content.File.ContentLength);
                 item.SystemUse = false;

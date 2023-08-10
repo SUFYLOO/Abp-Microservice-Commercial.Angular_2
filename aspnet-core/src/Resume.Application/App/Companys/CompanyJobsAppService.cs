@@ -125,8 +125,8 @@ namespace Resume.App.Companys
                 item.Name = input.Name ?? "";
                 item.JobTypeCode = input.JobTypeCode ?? "";
                 item.JobOpen = input.JobOpen;
-                item.MailTplCode = input.MailTplCode ?? "";
-                item.SMSTplCode = input.SMSTplCode ?? "";
+                item.MailTplId = input.MailTplId ?? "";
+                item.SMSTplId = input.SMSTplId ?? "";
                 item.ExtendedInformation = input.ExtendedInformation;
                 item.DateA = input.DateA;
                 item.DateD = input.DateD;

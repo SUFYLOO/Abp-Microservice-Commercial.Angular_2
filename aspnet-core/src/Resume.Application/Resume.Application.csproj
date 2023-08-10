@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="App\JwtHelpers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Resume.Domain\Resume.Domain.csproj" />
     <ProjectReference Include="..\Resume.Application.Contracts\Resume.Application.Contracts.csproj" />
   </ItemGroup>

@@ -548,18 +548,18 @@ namespace Resume.App.Companys
                             }
                         }
 
-                        //履歷主檔     
-                        {
-                            var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
-                            var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
-                            foreach (var itemResumeMain in itemsResumeMain)
-                            {
-                                itemResumeMain.NameC = Name;
-                                itemResumeMain.IdentityNo = LoginIdentityNo.ToUpper();
-                                itemResumeMain.BirthDate = BirthDate;
-                            }
-                            await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
-                        }
+                        ////履歷主檔     
+                        //{
+                        //    var itemsAllResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+                        //    var itemsResumeMain = itemsAllResumeMain.Where(p => p.UserMainId == UserMainId).ToList();
+                        //    foreach (var itemResumeMain in itemsResumeMain)
+                        //    {
+                        //        itemResumeMain.NameC = Name;
+                        //        itemResumeMain.IdentityNo = LoginIdentityNo.ToUpper();
+                        //        itemResumeMain.BirthDate = BirthDate;
+                        //    }
+                        //    await _appService._resumeMainRepository.UpdateManyAsync(itemsResumeMain);
+                        //}
 
                         await _appService._companyUserRepository.UpdateAsync(item);
 
