@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Resume</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resume.Domain\Resume.Domain.csproj" />
+    <ProjectReference Include="..\Resume.Application.Contracts\Resume.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Saas.Host.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.Identity.Pro.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.OpenIddict.Pro.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.Account.Pro.Public.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.Account.Pro.Admin.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.LanguageManagement.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.TextTemplateManagement.Application" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.Gdpr.Application" Version="7.3.2" />
+  </ItemGroup>
+
+</Project>
