@@ -42,6 +42,7 @@ using Volo.Abp.LeptonX.Shared;
 using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
 using Volo.Saas.Host;
+using Volo.Chat;
 
 namespace Resume;
 
@@ -57,7 +58,8 @@ namespace Resume;
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
-public class ResumeHttpApiHostModule : AbpModule
+[DependsOn(typeof(ChatSignalRModule))]
+    public class ResumeHttpApiHostModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

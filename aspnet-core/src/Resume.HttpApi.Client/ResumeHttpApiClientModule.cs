@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;
@@ -12,6 +12,10 @@ using Volo.Abp.SettingManagement;
 using Volo.Saas.Host;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Gdpr;
+using Volo.Chat;
+using Volo.FileManagement;
+using Volo.Payment;
+using Volo.Payment.Admin;
 
 namespace Resume;
 
@@ -30,7 +34,11 @@ namespace Resume;
     typeof(AbpGdprHttpApiClientModule),
     typeof(TextTemplateManagementHttpApiClientModule)
 )]
-public class ResumeHttpApiClientModule : AbpModule
+[DependsOn(typeof(ChatHttpApiClientModule))]
+    [DependsOn(typeof(FileManagementHttpApiClientModule))]
+    [DependsOn(typeof(AbpPaymentHttpApiClientModule))]
+    [DependsOn(typeof(AbpPaymentAdminHttpApiClientModule))]
+    public class ResumeHttpApiClientModule : AbpModule
 {
     public const string RemoteServiceName = "Default";
 

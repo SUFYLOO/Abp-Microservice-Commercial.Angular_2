@@ -68,6 +68,9 @@ using Volo.Saas.Editions;
 using Volo.Saas.Tenants;
 using Volo.Abp.Gdpr;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
+using Volo.Chat.EntityFrameworkCore;
+using Volo.FileManagement.EntityFrameworkCore;
+using Volo.Payment.EntityFrameworkCore;
 
 namespace Resume.EntityFrameworkCore;
 
@@ -1165,5 +1168,8 @@ public class ResumeDbContext :
         b.Property(x => x.Note).HasColumnName(nameof(UserVerify.Note)).HasMaxLength(UserVerifyConsts.NoteMaxLength);
         b.Property(x => x.Status).HasColumnName(nameof(UserVerify.Status)).IsRequired().HasMaxLength(UserVerifyConsts.StatusMaxLength);
     });
-    }
+        builder.ConfigureChat();
+            builder.ConfigureFileManagement();
+            builder.ConfigurePayment();
+        }
 }

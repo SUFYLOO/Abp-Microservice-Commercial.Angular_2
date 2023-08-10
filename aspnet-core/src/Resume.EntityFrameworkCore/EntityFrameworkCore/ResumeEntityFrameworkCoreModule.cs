@@ -66,6 +66,9 @@ using Volo.Saas.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Gdpr;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
+using Volo.Chat.EntityFrameworkCore;
+using Volo.FileManagement.EntityFrameworkCore;
+using Volo.Payment.EntityFrameworkCore;
 
 namespace Resume.EntityFrameworkCore;
 
@@ -85,7 +88,10 @@ namespace Resume.EntityFrameworkCore;
     typeof(AbpGdprEntityFrameworkCoreModule),
     typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
     )]
-public class ResumeEntityFrameworkCoreModule : AbpModule
+[DependsOn(typeof(ChatEntityFrameworkCoreModule))]
+    [DependsOn(typeof(FileManagementEntityFrameworkCoreModule))]
+    [DependsOn(typeof(AbpPaymentEntityFrameworkCoreModule))]
+    public class ResumeEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
