@@ -9,7 +9,7 @@
     <RootNamespace>Resume</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <AssemblyVersion>21.2023.0810.01</AssemblyVersion>
-    <FileVersion>21.2023.0810.01</FileVersion>
+    <FileVersion>21.2023.0810.02</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.HttpApi.Host' " />
@@ -28,6 +28,7 @@
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Account.Pro.Public.Web.OpenIddict" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Account.Pro.Public.Web.Impersonation" Version="7.3.2" />
+    <PackageReference Include="Volo.Chat.SignalR" Version="7.3.2" />
   </ItemGroup>
 
   <ItemGroup>

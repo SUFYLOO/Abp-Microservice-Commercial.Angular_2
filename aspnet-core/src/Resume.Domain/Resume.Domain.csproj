@@ -25,6 +25,14 @@
     <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Identity.Pro.Domain" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.LanguageManagement.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Chat.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.FileManagement.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.Iyzico.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.PayPal.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.Payu.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.Stripe.Domain" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.TwoCheckout.Domain" Version="7.3.2" />
     <PackageReference Include="Volo.Saas.Domain" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.TextTemplateManagement.Domain" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Commercial.SuiteTemplates" Version="7.3.2" />

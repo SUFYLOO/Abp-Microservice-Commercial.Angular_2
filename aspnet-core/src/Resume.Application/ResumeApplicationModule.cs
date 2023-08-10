@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Account;
+using Volo.Abp.Account;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
@@ -11,6 +11,10 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TextTemplateManagement;
 using Volo.Saas.Host;
+using Volo.Chat;
+using Volo.FileManagement;
+using Volo.Payment;
+using Volo.Payment.Admin;
 
 namespace Resume;
 
@@ -30,7 +34,11 @@ namespace Resume;
     typeof(AbpGdprApplicationModule),
     typeof(TextTemplateManagementApplicationModule)
     )]
-public class ResumeApplicationModule : AbpModule
+[DependsOn(typeof(ChatApplicationModule))]
+    [DependsOn(typeof(FileManagementApplicationModule))]
+    [DependsOn(typeof(AbpPaymentApplicationModule))]
+    [DependsOn(typeof(AbpPaymentAdminApplicationModule))]
+    public class ResumeApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Volo.Chat.EntityFrameworkCore" Version="7.3.2" />
+    <PackageReference Include="Volo.FileManagement.EntityFrameworkCore" Version="7.3.2" />
+    <PackageReference Include="Volo.Payment.EntityFrameworkCore" Version="7.3.2" />
     <ProjectReference Include="..\Resume.Domain\Resume.Domain.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="7.3.2" />
