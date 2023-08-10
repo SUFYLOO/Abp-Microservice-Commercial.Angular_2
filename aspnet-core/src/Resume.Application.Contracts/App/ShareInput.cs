@@ -72,7 +72,7 @@ namespace Resume.App
         new public string AdminEmailAddress { get; set; }
         [Required]
         public string CompanyMainName { get; set; }
-        public string AccountCode { get; set; }
+        public string AccountCode { get; set; } = "";
         //public string Email { get; set; }
         public string MobilePhone { get; set; }
         public string IdentityNo { get; set; }
