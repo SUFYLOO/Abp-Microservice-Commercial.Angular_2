@@ -8,6 +8,8 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>Resume</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <AssemblyVersion>21.2023.0810.01</AssemblyVersion>
+    <FileVersion>21.2023.0810.01</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.HttpApi.Host' " />

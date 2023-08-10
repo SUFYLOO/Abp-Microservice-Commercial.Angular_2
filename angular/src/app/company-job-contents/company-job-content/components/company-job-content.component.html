@@ -1,0 +1,1404 @@
+<abp-page [title]="'::CompanyJobContents' | abpLocalization">
+  <abp-page-toolbar-container class="col">
+    <div class="text-lg-end pt-2">
+      <button
+        class="btn btn-primary btn-sm mx-2"
+        type="button"
+        [disabled]="isExportToExcelBusy"
+        (click)="exportToExcel()"
+      >
+        {{ '::ExportToExcel' | abpLocalization }}
+      </button>
+
+      <button
+        *abpPermission="'Resume.CompanyJobContents.Create'"
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="create()"
+      >
+        <i class="fa fa-plus me-1" aria-hidden="true"></i>
+        {{ '::NewCompanyJobContent' | abpLocalization }}
+      </button>
+    </div>
+  </abp-page-toolbar-container>
+
+  <abp-advanced-entity-filters localizationSourceName="" [list]="list">
+    <abp-advanced-entity-filters-form>
+      <form #filterForm (keyup.enter)="list.get()">
+        <div class="row">
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="companyMainIdFilter">
+                {{ '::CompanyMainId' | abpLocalization }}
+              </label>
+
+              <input
+                id="companyMainIdFilter"
+                class="form-control"
+                [(ngModel)]="filters.companyMainId"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="companyJobIdFilter">
+                {{ '::CompanyJobId' | abpLocalization }}
+              </label>
+
+              <input
+                id="companyJobIdFilter"
+                class="form-control"
+                [(ngModel)]="filters.companyJobId"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="nameFilter">
+                {{ '::Name' | abpLocalization }}
+              </label>
+
+              <input
+                id="nameFilter"
+                class="form-control"
+                [(ngModel)]="filters.name"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="jobTypeCodeFilter">
+                {{ '::JobTypeCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="jobTypeCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.jobTypeCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minPeopleRequiredNumber">
+                {{ '::MinPeopleRequiredNumber' | abpLocalization }}
+              </label>
+
+              <input
+                id="minPeopleRequiredNumber"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.peopleRequiredNumberMin"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxPeopleRequiredNumber">
+                {{ '::MaxPeopleRequiredNumber' | abpLocalization }}
+              </label>
+
+              <input
+                id="maxPeopleRequiredNumber"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.peopleRequiredNumberMax"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="peopleRequiredNumberUnlimitedFilter">
+                {{ '::PeopleRequiredNumberUnlimited' | abpLocalization }}
+              </label>
+
+              <select
+                name="peopleRequiredNumberUnlimited"
+                id="peopleRequiredNumberUnlimitedFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.peopleRequiredNumberUnlimited"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="jobTypeFilter">
+                {{ '::JobType' | abpLocalization }}
+              </label>
+
+              <input
+                id="jobTypeFilter"
+                class="form-control"
+                [(ngModel)]="filters.jobType"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="jobTypeContentFilter">
+                {{ '::JobTypeContent' | abpLocalization }}
+              </label>
+
+              <input
+                id="jobTypeContentFilter"
+                class="form-control"
+                [(ngModel)]="filters.jobTypeContent"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="salaryPayTypeCodeFilter">
+                {{ '::SalaryPayTypeCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="salaryPayTypeCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.salaryPayTypeCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minSalaryMin">
+                {{ '::MinSalaryMin' | abpLocalization }}
+              </label>
+
+              <input
+                id="minSalaryMin"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.salaryMinMin"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxSalaryMin">
+                {{ '::MaxSalaryMin' | abpLocalization }}
+              </label>
+
+              <input
+                id="maxSalaryMin"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.salaryMinMax"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minSalaryMax">
+                {{ '::MinSalaryMax' | abpLocalization }}
+              </label>
+
+              <input
+                id="minSalaryMax"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.salaryMaxMin"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxSalaryMax">
+                {{ '::MaxSalaryMax' | abpLocalization }}
+              </label>
+
+              <input
+                id="maxSalaryMax"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.salaryMaxMax"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="salaryUpFilter">
+                {{ '::SalaryUp' | abpLocalization }}
+              </label>
+
+              <select
+                name="salaryUp"
+                id="salaryUpFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.salaryUp"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workPlaceFilter">
+                {{ '::WorkPlace' | abpLocalization }}
+              </label>
+
+              <input
+                id="workPlaceFilter"
+                class="form-control"
+                [(ngModel)]="filters.workPlace"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workHoursFilter">
+                {{ '::WorkHours' | abpLocalization }}
+              </label>
+
+              <input
+                id="workHoursFilter"
+                class="form-control"
+                [(ngModel)]="filters.workHours"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workHourFilter">
+                {{ '::WorkHour' | abpLocalization }}
+              </label>
+
+              <input
+                id="workHourFilter"
+                class="form-control"
+                [(ngModel)]="filters.workHour"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workShiftFilter">
+                {{ '::WorkShift' | abpLocalization }}
+              </label>
+
+              <select
+                name="workShift"
+                id="workShiftFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.workShift"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workRemoteAllowFilter">
+                {{ '::WorkRemoteAllow' | abpLocalization }}
+              </label>
+
+              <select
+                name="workRemoteAllow"
+                id="workRemoteAllowFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.workRemoteAllow"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workRemoteTypeCodeFilter">
+                {{ '::WorkRemoteTypeCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="workRemoteTypeCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.workRemoteTypeCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workRemoteFilter">
+                {{ '::WorkRemote' | abpLocalization }}
+              </label>
+
+              <input
+                id="workRemoteFilter"
+                class="form-control"
+                [(ngModel)]="filters.workRemote"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workDifferentPlacesFilter">
+                {{ '::WorkDifferentPlaces' | abpLocalization }}
+              </label>
+
+              <input
+                id="workDifferentPlacesFilter"
+                class="form-control"
+                [(ngModel)]="filters.workDifferentPlaces"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="holidaySystemCodeFilter">
+                {{ '::HolidaySystemCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="holidaySystemCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.holidaySystemCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workDayCodeFilter">
+                {{ '::WorkDayCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="workDayCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.workDayCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workIdentityCodeFilter">
+                {{ '::WorkIdentityCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="workIdentityCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.workIdentityCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="disabilityCategoryFilter">
+                {{ '::DisabilityCategory' | abpLocalization }}
+              </label>
+
+              <input
+                id="disabilityCategoryFilter"
+                class="form-control"
+                [(ngModel)]="filters.disabilityCategory"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="extendedInformationFilter">
+                {{ '::ExtendedInformation' | abpLocalization }}
+              </label>
+
+              <input
+                id="extendedInformationFilter"
+                class="form-control"
+                [(ngModel)]="filters.extendedInformation"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minDateA">
+                {{ '::MinDateA' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="minDateA"
+                  class="form-control"
+                  #minDateAInput
+                  #minDateADatepicker="ngbDatepicker"
+                  name="minDateA"
+                  ngbDatepicker
+                  container="body"
+                  readonly
+                  (click)="minDateADatepicker.toggle()"
+                  (keyup.space)="minDateADatepicker.toggle()"
+                  [(ngModel)]="filters.dateAMin"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="minDateAInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      minDateADatepicker.writeValue(null);
+                      minDateADatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxDateA">
+                {{ '::MaxDateA' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="maxDateA"
+                  class="form-control"
+                  #maxDateAInput
+                  #maxDateADatepicker="ngbDatepicker"
+                  name="maxDateA"
+                  ngbDatepicker
+                  readonly
+                  (click)="maxDateADatepicker.toggle()"
+                  (keyup.space)="maxDateADatepicker.toggle()"
+                  [(ngModel)]="filters.dateAMax"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="maxDateAInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      maxDateADatepicker.writeValue(null);
+                      maxDateADatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minDateD">
+                {{ '::MinDateD' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="minDateD"
+                  class="form-control"
+                  #minDateDInput
+                  #minDateDDatepicker="ngbDatepicker"
+                  name="minDateD"
+                  ngbDatepicker
+                  container="body"
+                  readonly
+                  (click)="minDateDDatepicker.toggle()"
+                  (keyup.space)="minDateDDatepicker.toggle()"
+                  [(ngModel)]="filters.dateDMin"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="minDateDInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      minDateDDatepicker.writeValue(null);
+                      minDateDDatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxDateD">
+                {{ '::MaxDateD' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="maxDateD"
+                  class="form-control"
+                  #maxDateDInput
+                  #maxDateDDatepicker="ngbDatepicker"
+                  name="maxDateD"
+                  ngbDatepicker
+                  readonly
+                  (click)="maxDateDDatepicker.toggle()"
+                  (keyup.space)="maxDateDDatepicker.toggle()"
+                  [(ngModel)]="filters.dateDMax"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="maxDateDInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      maxDateDDatepicker.writeValue(null);
+                      maxDateDDatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minSort">
+                {{ '::MinSort' | abpLocalization }}
+              </label>
+
+              <input
+                id="minSort"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.sortMin"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxSort">
+                {{ '::MaxSort' | abpLocalization }}
+              </label>
+
+              <input
+                id="maxSort"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.sortMax"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="noteFilter">
+                {{ '::Note' | abpLocalization }}
+              </label>
+
+              <input
+                id="noteFilter"
+                class="form-control"
+                [(ngModel)]="filters.note"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="statusFilter">
+                {{ '::Status' | abpLocalization }}
+              </label>
+
+              <input
+                id="statusFilter"
+                class="form-control"
+                [(ngModel)]="filters.status"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto align-self-end mb-3">
+            <div class="row">
+              <div class="col-6 col-sm-auto d-grid">
+                <button type="button" class="btn btn-outline-primary" (click)="clearFilters()">
+                  <span>{{ 'AbpUi::Clear' | abpLocalization }}</span>
+                </button>
+              </div>
+              <div class="col-6 col-sm-auto d-grid">
+                <button type="button" class="btn btn-primary" (click)="list.get()">
+                  <span>{{ 'AbpUi::Refresh' | abpLocalization }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </abp-advanced-entity-filters-form>
+  </abp-advanced-entity-filters>
+
+  <div class="card">
+    <div class="card-body">
+      <ngx-datatable [rows]="data.items" [count]="data.totalCount" [list]="list" default>
+        <ngx-datatable-column
+          [name]="'AbpUi::Actions' | abpLocalization"
+          [maxWidth]="150"
+          [width]="150"
+          [sortable]="false"
+        >
+          <ng-template let-row="row" let-i="rowIndex" ngx-datatable-cell-template>
+            <div ngbDropdown container="body" class="d-inline-block">
+              <button
+                class="btn btn-primary btn-sm dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                ngbDropdownToggle
+              >
+                <i class="fa fa-cog me-1" aria-hidden="true"></i>
+                {{ 'AbpUi::Actions' | abpLocalization }}
+              </button>
+
+              <div ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  *abpPermission="'Resume.CompanyJobContents.Edit'"
+                  (click)="update(row)"
+                >
+                  {{ 'AbpUi::Edit' | abpLocalization }}
+                </button>
+
+                <button
+                  ngbDropdownItem
+                  *abpPermission="'Resume.CompanyJobContents.Delete'"
+                  (click)="delete(row)"
+                >
+                  {{ 'AbpUi::Delete' | abpLocalization }}
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::CompanyMainId' | abpLocalization }}" prop="companyMainId">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.companyMainId }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::CompanyJobId' | abpLocalization }}" prop="companyJobId">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.companyJobId }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Name' | abpLocalization }}" prop="name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.name }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::JobTypeCode' | abpLocalization }}" prop="jobTypeCode">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.jobTypeCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::PeopleRequiredNumber' | abpLocalization }}"
+          prop="peopleRequiredNumber"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.peopleRequiredNumber }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::PeopleRequiredNumberUnlimited' | abpLocalization }}"
+          prop="peopleRequiredNumberUnlimited"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template
+              [ngIf]="row.peopleRequiredNumberUnlimited"
+              [ngIfThen]="yes"
+              [ngIfElse]="no"
+            ></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::JobType' | abpLocalization }}" prop="jobType">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.jobType }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::JobTypeContent' | abpLocalization }}"
+          prop="jobTypeContent"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.jobTypeContent }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::SalaryPayTypeCode' | abpLocalization }}"
+          prop="salaryPayTypeCode"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.salaryPayTypeCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::SalaryMin' | abpLocalization }}" prop="salaryMin">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.salaryMin }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::SalaryMax' | abpLocalization }}" prop="salaryMax">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.salaryMax }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::SalaryUp' | abpLocalization }}" prop="salaryUp">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template [ngIf]="row.salaryUp" [ngIfThen]="yes" [ngIfElse]="no"></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkPlace' | abpLocalization }}" prop="workPlace">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workPlace }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkHours' | abpLocalization }}" prop="workHours">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workHours }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkHour' | abpLocalization }}" prop="workHour">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workHour }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkShift' | abpLocalization }}" prop="workShift">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template [ngIf]="row.workShift" [ngIfThen]="yes" [ngIfElse]="no"></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::WorkRemoteAllow' | abpLocalization }}"
+          prop="workRemoteAllow"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template
+              [ngIf]="row.workRemoteAllow"
+              [ngIfThen]="yes"
+              [ngIfElse]="no"
+            ></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::WorkRemoteTypeCode' | abpLocalization }}"
+          prop="workRemoteTypeCode"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workRemoteTypeCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkRemote' | abpLocalization }}" prop="workRemote">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workRemote }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::WorkDifferentPlaces' | abpLocalization }}"
+          prop="workDifferentPlaces"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workDifferentPlaces }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::HolidaySystemCode' | abpLocalization }}"
+          prop="holidaySystemCode"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.holidaySystemCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkDayCode' | abpLocalization }}" prop="workDayCode">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workDayCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::WorkIdentityCode' | abpLocalization }}"
+          prop="workIdentityCode"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workIdentityCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::DisabilityCategory' | abpLocalization }}"
+          prop="disabilityCategory"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.disabilityCategory }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::ExtendedInformation' | abpLocalization }}"
+          prop="extendedInformation"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.extendedInformation }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::DateA' | abpLocalization }}" prop="dateA">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.dateA | date }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::DateD' | abpLocalization }}" prop="dateD">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.dateD | date }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Sort' | abpLocalization }}" prop="sort">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.sort }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Note' | abpLocalization }}" prop="note">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.note }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Status' | abpLocalization }}" prop="status">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.status }}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</abp-page>
+
+<abp-modal [busy]="isModalBusy" [(visible)]="isModalOpen">
+  <ng-template #abpHeader>
+    <h3>
+      {{ (selected ? 'AbpUi::Edit' : '::NewCompanyJobContent') | abpLocalization }}
+    </h3>
+  </ng-template>
+
+  <ng-template #abpBody>
+    <form [formGroup]="form" id="company-job-content" (ngSubmit)="submitForm()" validateOnSubmit>
+      <div class="mt-2 fade-in-top">
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-company-main-id">
+            {{ '::CompanyMainId' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-company-main-id"
+            formControlName="companyMainId"
+            class="form-control"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-company-job-id">
+            {{ '::CompanyJobId' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-company-job-id"
+            formControlName="companyJobId"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-name">
+            {{ '::Name' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-name"
+            formControlName="name"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-job-type-code">
+            {{ '::JobTypeCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-job-type-code"
+            formControlName="jobTypeCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-people-required-number">
+            {{ '::PeopleRequiredNumber' | abpLocalization }}
+          </label>
+
+          <input
+            type="number"
+            id="company-job-content-people-required-number"
+            formControlName="peopleRequiredNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="company-job-content-people-required-number-unlimited"
+            formControlName="peopleRequiredNumberUnlimited"
+            class="form-check-input"
+          />
+
+          <label
+            for="company-job-content-people-required-number-unlimited"
+            class="form-check-label"
+          >
+            {{ '::PeopleRequiredNumberUnlimited' | abpLocalization }}
+          </label>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-job-type">
+            {{ '::JobType' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-job-type"
+            formControlName="jobType"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-job-type-content">
+            {{ '::JobTypeContent' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-job-type-content"
+            formControlName="jobTypeContent"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-salary-pay-type-code">
+            {{ '::SalaryPayTypeCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-salary-pay-type-code"
+            formControlName="salaryPayTypeCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-salary-min">
+            {{ '::SalaryMin' | abpLocalization }}
+          </label>
+
+          <input
+            type="number"
+            id="company-job-content-salary-min"
+            formControlName="salaryMin"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-salary-max">
+            {{ '::SalaryMax' | abpLocalization }}
+          </label>
+
+          <input
+            type="number"
+            id="company-job-content-salary-max"
+            formControlName="salaryMax"
+            class="form-control"
+          />
+        </div>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="company-job-content-salary-up"
+            formControlName="salaryUp"
+            class="form-check-input"
+          />
+
+          <label for="company-job-content-salary-up" class="form-check-label">
+            {{ '::SalaryUp' | abpLocalization }}
+          </label>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-place">
+            {{ '::WorkPlace' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-place"
+            formControlName="workPlace"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-hours">
+            {{ '::WorkHours' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-hours"
+            formControlName="workHours"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-hour">
+            {{ '::WorkHour' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-hour"
+            formControlName="workHour"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="company-job-content-work-shift"
+            formControlName="workShift"
+            class="form-check-input"
+          />
+
+          <label for="company-job-content-work-shift" class="form-check-label">
+            {{ '::WorkShift' | abpLocalization }}
+          </label>
+        </div>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="company-job-content-work-remote-allow"
+            formControlName="workRemoteAllow"
+            class="form-check-input"
+          />
+
+          <label for="company-job-content-work-remote-allow" class="form-check-label">
+            {{ '::WorkRemoteAllow' | abpLocalization }}
+          </label>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-remote-type-code">
+            {{ '::WorkRemoteTypeCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-work-remote-type-code"
+            formControlName="workRemoteTypeCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-remote">
+            {{ '::WorkRemote' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-remote"
+            formControlName="workRemote"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-different-places">
+            {{ '::WorkDifferentPlaces' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-different-places"
+            formControlName="workDifferentPlaces"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-holiday-system-code">
+            {{ '::HolidaySystemCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-holiday-system-code"
+            formControlName="holidaySystemCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-day-code">
+            {{ '::WorkDayCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-work-day-code"
+            formControlName="workDayCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-work-identity-code">
+            {{ '::WorkIdentityCode' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-work-identity-code"
+            formControlName="workIdentityCode"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-disability-category">
+            {{ '::DisabilityCategory' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-disability-category"
+            formControlName="disabilityCategory"
+            class="form-control"
+            maxlength="200"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-extended-information">
+            {{ '::ExtendedInformation' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-extended-information"
+            formControlName="extendedInformation"
+            class="form-control"
+            maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-date-a">
+            {{ '::DateA' | abpLocalization }}
+          </label>
+
+          <div class="input-group" validationTarget>
+            <input
+              readonly
+              id="company-job-content-date-a"
+              formControlName="dateA"
+              class="form-control"
+              ngbDatepicker
+              #dateAInput
+              #dateADatepicker="ngbDatepicker"
+              (click)="dateADatepicker.open()"
+              (keyup.space)="dateADatepicker.open()"
+            />
+            <div *ngIf="dateAInput.value" class="input-group-append">
+              <button
+                class="btn btn-link px-2"
+                type="button"
+                [title]="'AbpUi::Clear' | abpLocalization"
+                (click)="
+                  dateADatepicker.writeValue(null); dateADatepicker.manualDateChange(null, true)
+                "
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-date-d">
+            {{ '::DateD' | abpLocalization }}
+          </label>
+
+          <div class="input-group" validationTarget>
+            <input
+              readonly
+              id="company-job-content-date-d"
+              formControlName="dateD"
+              class="form-control"
+              ngbDatepicker
+              #dateDInput
+              #dateDDatepicker="ngbDatepicker"
+              (click)="dateDDatepicker.open()"
+              (keyup.space)="dateDDatepicker.open()"
+            />
+            <div *ngIf="dateDInput.value" class="input-group-append">
+              <button
+                class="btn btn-link px-2"
+                type="button"
+                [title]="'AbpUi::Clear' | abpLocalization"
+                (click)="
+                  dateDDatepicker.writeValue(null); dateDDatepicker.manualDateChange(null, true)
+                "
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-sort">
+            {{ '::Sort' | abpLocalization }}
+          </label>
+
+          <input
+            type="number"
+            id="company-job-content-sort"
+            formControlName="sort"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-note">
+            {{ '::Note' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-content-note"
+            formControlName="note"
+            class="form-control"
+            maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-content-status">
+            {{ '::Status' | abpLocalization }} *
+          </label>
+
+          <input
+            id="company-job-content-status"
+            formControlName="status"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <button type="button" class="btn btn-secondary" abpClose>
+      {{ 'AbpUi::Cancel' | abpLocalization }}
+    </button>
+
+    <abp-button iconClass="fa fa-check" buttonType="submit" formName="company-job-content">
+      {{ 'AbpUi::Save' | abpLocalization }}
+    </abp-button>
+  </ng-template>
+</abp-modal>
