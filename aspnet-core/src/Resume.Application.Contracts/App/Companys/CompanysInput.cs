@@ -134,19 +134,17 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobContentInput : CompanyJobContentDto
     {
-        [Required]
-        new public Guid Id { get; set; }
-        public Guid CompanyJobContentId { get; set; }
-        [Required]
-        new public string Name { get; set; }
-        [Required]
-        new public string JobTypeCode { get; set; }
-        [Required]
-        new public string WorkPlace { get; set; }
-        [Required]
-        new public string WorkHours { get; set; }
-        [Required]
-        new public string SalaryPayTypeCode { get; set; }
+        public Guid Id { get; set; }
+        //[Required]
+        //public string Name { get; set; }
+        //[Required]
+        //public string JobTypeCode { get; set; }
+        //[Required]
+        //public string WorkPlace { get; set; }
+        //[Required]
+        //public string WorkHours { get; set; }
+        //[Required]
+        //public string SalaryPayTypeCode { get; set; }
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto

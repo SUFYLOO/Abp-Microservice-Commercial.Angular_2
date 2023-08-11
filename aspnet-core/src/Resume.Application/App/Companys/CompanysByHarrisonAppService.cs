@@ -28,7 +28,7 @@ namespace Resume.App.Companys
         public virtual async Task<SaveCompanyJobContentDto> SaveCompanyJobContentAsync(SaveCompanyJobContentInput input)
         {
             var Result = new SaveCompanyJobContentDto();
-
+            //新增的話可以不用id, update要輸入id
             var CompanyJobContentId = input.Id;
 
 
@@ -43,7 +43,8 @@ namespace Resume.App.Companys
             {
                 var itemCompanyJobContentDto = ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContentDto>(input);
 
-                itemCompanyJobContentDto.Id = _appService._guidGenerator.Create();
+                itemCompanyJobContentDto.CompanyJobId = _appService._guidGenerator.Create();
+                itemCompanyJobContentDto.CompanyMainId = _appService._guidGenerator.Create();
 
                 itemCompanyJobContent = ObjectMapper.Map<CompanyJobContentDto, CompanyJobContent>(itemCompanyJobContentDto);
                 await _appService._companyJobContentRepository.InsertAsync(itemCompanyJobContent);
