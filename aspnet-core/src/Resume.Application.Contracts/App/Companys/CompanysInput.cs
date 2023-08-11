@@ -22,7 +22,7 @@ namespace Resume.App.Companys
     }
     public class CompanyUserListInput
     {
-        public string CompanyMainCode { get; set; }
+        public string CompanyMainId { get; set; }
     }
 
     public class CompanyUserInput : StdInput
@@ -149,26 +149,25 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
     {
-        [Required]
         public Guid Id { get; set; }
         public Guid CompanyJobConditionId { get; set; }
-        [Required]
-        new public string EducationLevel { get; set; }
+        //[Required]
+        //new public string EducationLevel { get; set; }
     }
 
     public class SaveCompanyJobApplicationMethodInput : CompanyJobApplicationMethodDto
     {
-        [Required]
+      
         new public Guid Id { get; set; }
-        public Guid CompanyJobApplicationMethodId { get; set; }
-        [Required]
-        new public string OrgDept { get; set; }
-        [Required]
-        new public string OrgContactPerson { get; set; }
-        [Required]
-        new public string OrgContactMail { get; set; }
-        [Required]
-        new public bool ToRespond { get; set; }
+        //public Guid CompanyJobApplicationMethodId { get; set; }
+        //[Required]
+        //new public string OrgDept { get; set; }
+        //[Required]
+        //new public string OrgContactPerson { get; set; }
+        //[Required]
+        //new public string OrgContactMail { get; set; }
+        //[Required]
+        //new public bool ToRespond { get; set; }
 
     }
 

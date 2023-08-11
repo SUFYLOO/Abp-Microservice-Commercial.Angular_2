@@ -162,10 +162,7 @@ namespace Resume.App.Companys
             }
             else
             {
-                var item = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobCondition>(input);
-                await _appService._companyJobConditionRepository.UpdateAsync(item);
-
-                Result = ObjectMapper.Map<CompanyJobCondition, SaveCompanyJobConditionDto>(item);
+                var item = ObjectMapper. = GuidGenerator.Create();
             }
 
             return Result;
@@ -227,7 +224,8 @@ namespace Resume.App.Companys
             {
                 var itemCompanyJobApplicationMethodDto = ObjectMapper.Map<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethodDto>(input);
 
-                itemCompanyJobApplicationMethodDto.Id = GuidGenerator.Create();
+                itemCompanyJobApplicationMethodDto.CompanyMainId = GuidGenerator.Create();
+                itemCompanyJobApplicationMethodDto.CompanyJobId = GuidGenerator.Create();
 
                 itemCompanyJobApplicationMethod = ObjectMapper.Map<CompanyJobApplicationMethodDto, CompanyJobApplicationMethod>(itemCompanyJobApplicationMethodDto);
                 await _appService._companyJobApplicationMethodRepository.InsertAsync(itemCompanyJobApplicationMethod);

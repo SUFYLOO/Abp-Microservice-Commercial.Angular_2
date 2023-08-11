@@ -36,6 +36,7 @@ using System.Threading.Tasks;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.ObjectMapping;
 using static Resume.Permissions.ResumePermissions;
+using Volo.Abp.Guids;
 
 namespace Resume.App
 {
@@ -114,7 +115,6 @@ namespace Resume.App
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentDto>();
             CreateMap<CompanyJobContentDto, CompanyJobContent>();
             CreateMap<CompanyJobContent, SaveCompanyJobContentDto>();
-
 
 
             CreateMap<CompanyJobDto, CompanysJobDto>();
