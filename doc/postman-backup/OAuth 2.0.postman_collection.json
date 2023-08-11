@@ -1,0 +1,993 @@
+{
+	"info": {
+		"_postman_id": "bb806af6-3628-48c6-9a93-ee4becf86dea",
+		"name": "OAuth 2.0",
+		"description": "Follow along in this blog post: https://blog.postman.com/pkce-oauth-how-to/\n\n![[roles for OAuth](https://i.imgur.com/u59bK3B.png)](https://i.imgur.com/u59bK3B.png)\n\n### OAuth 2.0 in Postman\n\nThis collection will walk through a few OAuth 2.0 authorization flows with the [Spotify API](https://developer.spotify.com/documentation/general/guides/authorization-guide/) and the [PagerDuty API](https://developer.pagerduty.com/docs/app-integration-development/oauth-2-functionality/). \n- the **Client Credentials** flow\n- the **Authorization Code** flow\n- the **Implicit Grant** flow\n- the **Authentication (with token in header)** flow \n- the **Authorization Code (with PKCE)** flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6154068",
+		"_collection_link": "https://jbitteam.postman.co/workspace/JBResume~5c1cd101-caf1-4a62-9aa9-f43102ee2ae1/collection/26564828-bb806af6-3628-48c6-9a93-ee4becf86dea?action=share&creator=6154068&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Spotify - Client Credentials flow (via helper)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{spotify_client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{spotify_client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "Required. Set it to `client_credentials`.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://accounts.spotify.com/api/token",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				},
+				"description": "From the [Spotify Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/), follow one of 3 optional flows to obtain app authorization.\n\n### Refreshable app authorization: [Client Credentials](https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow)\n\n> The Client Credentials flow is used in server-to-server authentication. Only endpoints that do not access user information can be accessed. \n\n> You do: Login with your **Client ID** and **Secret Key**\n\n> You get: **Access token**\n\nThis method uses `https://accounts.spotify.com/api/token`.\n\n### In Postman\n\nUnder the **Authorization** tab, select `Basic Auth`. You'll need to input `spotify_client_id` as the username and `spotify_client_secret` as the password. You can update these credentials under the **Authorization** tab, or better yet, update these [environment variables](https://learning.postman.com/docs/postman/variables-and-environments/managing-environments/). \n\n![[Auth tab](https://i.imgur.com/lWEZ80e.png)](https://i.imgur.com/lWEZ80e.png)\n\nOnce you do this, Postman adds an `Authorization` header with your credentials encoded to Base64 under the **Headers** tab.\n\n![[Headers tab](https://i.imgur.com/07BHrU8.png)](https://i.imgur.com/07BHrU8.png)\n\nThis request is an example of using the Authorization helper in Postman. The following request shows an example of how to do this by manually adding a header, instead."
+			},
+			"response": [
+				{
+					"name": "Client Credentials flow - helper",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"description": "Required. Set it to `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://accounts.spotify.com/api/token",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Mon, 08 Jun 2020 20:54:49 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "HTTP/2 edgeproxy, 1.1 google"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "clear"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"BQAh79cpxN-h-IbYhKsfYbMaVoliuit9K0TsjbdyjYts9l2_NQzprD0hZz0sh85eXButvkYx-FFLVaKb-xo\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 3600,\n    \"scope\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Spotify - Client Credentials flow (via manual header)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Base 64 encode client ID and client secret key to include in Auth Header",
+							"let client_id = pm.environment.get(\"spotify_client_id\")",
+							"let client_secret = pm.environment.get(\"spotify_client_secret\")",
+							"let stringToEncode = `${client_id}:${client_secret}`",
+							"",
+							"let rawStr = CryptoJS.enc.Utf8.parse(stringToEncode)",
+							"let base64 = CryptoJS.enc.Base64.stringify(rawStr)",
+							"// console.log(`Encrypted value: ${base64}`)",
+							"",
+							"// set local variable to be used in Auth Header",
+							"pm.variables.set(\"encodedIdAndKey\", base64)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic {{encodedIdAndKey}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "Required. Set it to `client_credentials`.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://accounts.spotify.com/api/token",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				},
+				"description": "From the [Spotify Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/), follow one of 3 optional flows to obtain app authorization.\n\n### Refreshable app authorization: [Client Credentials](https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow)\n\n> The Client Credentials flow is used in server-to-server authentication. Only endpoints that do not access user information can be accessed. \n\n> You do: Login with your **Client ID** and **Secret Key**\n\n> You get: **Access token**\n\nThis method uses `https://accounts.spotify.com/api/token`.\n\n### In Postman\n\nUnder the **Headers** tab, add an `Authorization` header with a placeholder for a value of `Basic {{encodedIdAndKey}}`. The variable `encodedIdAndKey` is currently unresolved. Let's define this variable in the next step.\n\n![[Headers tab](https://i.imgur.com/W6OYi94.png)](https://i.imgur.com/W6OYi94.png)\n\nUnder the **Pre-request Script** tab, encode your `spotify_client_id` and `spotify_client_secret` to Base64, and then set a local variable called `encodedIdAndKey` so you can use it in the Header. When you **Send** the request, Postman will attach the encoded header.\n\n![[pre-request script](https://i.imgur.com/t9fqNeK.png)](https://i.imgur.com/t9fqNeK.png)\n\nThis request shows how to manually add a header in Postman. The previous request was an example of how to do this by using the Authorization helper."
+			},
+			"response": [
+				{
+					"name": "Client Credentials flow - manual header",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic {{encodedIdAndKey}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"description": "Required. Set it to `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://accounts.spotify.com/api/token",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Mon, 08 Jun 2020 23:00:07 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "HTTP/2 edgeproxy, 1.1 google"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "clear"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"BQAHVkZFKuMbhSYNA6wYqAwnOv9lIAQXMGyh2C2Upj7H5o6RpafUa30fqoR2w5ssOu9bq6DhQnL0fGjJfss\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 3600,\n    \"scope\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Spotify - Authorization Code flow (via helper)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{spotify_access_token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?q=classical&type=track&market=US",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "classical"
+						},
+						{
+							"key": "type",
+							"value": "track"
+						},
+						{
+							"key": "market",
+							"value": "US"
+						}
+					]
+				},
+				"description": "From the [Spotify Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/), follow one of 3 optional flows to obtain app authorization.\n\n### Refreshable user authorization: [Authorization Code](https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow)\n\n> This flow is suitable for long-running applications in which the user grants permission only once. It provides an **access token** that can be _refreshed_. \n\n> You do: Prompt your user to a webpage where they can choose to grant you access to their data.\n\n> You get: **access token** and **refresh token**\n\n### In Postman\n\nLet's use the Authorization Code flow helper for this request from the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).\n\nUnder the **Authorization** tab, select `OAuth 2.0`. Input the required information.\n- **Grant Type** is `Authorization Code`\n- **Callback URL** is the exact `Redirect URI` you entered when creating your Spotify app\n- **Auth URL** is `https://accounts.spotify.com/authorize`\n- **Access Token URL** is `https://accounts.spotify.com/api/token`\n- **Client ID** is your Spotify `Client ID`\n- **Client Secret** is your Spotify `Client Secret`\n\n![[Get new access token modal](https://i.imgur.com/mc6YUxZ.png)](https://i.imgur.com/mc6YUxZ.png)\n\nClick **Request Token** and walk through the process to authorize access. Click **Use Token** to populate the **Access Token** field in Postman. When you hit **Send**, Postman will attach an Authorization header formatted like `Bearer <your-token>` substituting in your access token for `<your-token>`.\n\n![[authorization gif](https://i.imgur.com/L5aTx3x.gif)](https://i.imgur.com/L5aTx3x.gif)\n\nThis request shows how to use the Authorization Code helper in Postman to get a token and add it in an Authorization header automatically formatted like `Bearer <your-token>`. The next request will walk through using the Implicit Grant helper to add an Authorization header."
+			},
+			"response": [
+				{
+					"name": "Client Credentials flow - manual header",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic {{encodedIdAndKey}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"description": "Required. Set it to `client_credentials`.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://accounts.spotify.com/api/token",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Mon, 08 Jun 2020 23:00:07 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "HTTP/2 edgeproxy, 1.1 google"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "clear"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"BQAHVkZFKuMbhSYNA6wYqAwnOv9lIAQXMGyh2C2Upj7H5o6RpafUa30fqoR2w5ssOu9bq6DhQnL0fGjJfss\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 3600,\n    \"scope\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Spotify - Implicit flow (via helper)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{spotify_implicit_token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?q=classical&type=track&market=US",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "classical"
+						},
+						{
+							"key": "type",
+							"value": "track"
+						},
+						{
+							"key": "market",
+							"value": "US"
+						}
+					]
+				},
+				"description": "From the [Spotify Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/), follow one of 3 optional flows to obtain app authorization.\n\n### Temporary user authorization: [Implicit Grant](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow)\n\n> Implicit grant flow is for clients that are implemented entirely using JavaScript and running in the resource owner’s browser. You do not need any server-side code to use it. \n\n> You do: You direct user to Spotify Accounts Service.\n\n> You get: **access token**\n\n### In Postman\n\nLet's use the Authorization Code flow helper for this request from the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).\n\nUnder the **Authorization** tab, select `OAuth 2.0`. Input the required information.\n- **Grant Type** is `Implicit`\n- **Callback URL** is the exact `Redirect URI` you entered when creating your Spotify app\n- **Auth URL** is `https://accounts.spotify.com/authorize`\n- **Client ID** is your Spotify `Client ID`\n\n![[Request modal](https://i.imgur.com/WPjxgoK.png)](https://i.imgur.com/WPjxgoK.png)\n\nClick **Request Token** and walk through the process to authorize access. Click **Use Token** to populate the **Access Token** field in Postman. When you hit **Send**, Postman will attach an Authorization header formatted like `Bearer <your-token>` substituting in your access token for `<your-token>`.\n\nThis request shows how to use the Authorization Code helper in Postman to get a token and add it in an Authorization header automatically formatted like `Bearer <your-token>`. The next request will walk through how to get a token and then use it in a custom Authorization header."
+			},
+			"response": [
+				{
+					"name": "Spotify - Implicit flow (via helper)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/search?q=classical&type=track&market=US",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "classical"
+								},
+								{
+									"key": "type",
+									"value": "track"
+								},
+								{
+									"key": "market",
+									"value": "US"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "public, max-age=7200"
+						},
+						{
+							"key": "x-robots-tag",
+							"value": "noindex, nofollow"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "access-control-allow-headers",
+							"value": "Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version, X-Cloud-Trace-Context"
+						},
+						{
+							"key": "access-control-allow-methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE, PATCH"
+						},
+						{
+							"key": "access-control-allow-credentials",
+							"value": "true"
+						},
+						{
+							"key": "access-control-max-age",
+							"value": "604800"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "date",
+							"value": "Mon, 15 Jun 2020 19:24:52 GMT"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "Via",
+							"value": "HTTP/2 edgeproxy, 1.1 google"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "clear"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tracks\": {\n        \"href\": \"https://api.spotify.com/v1/search?query=classical&type=track&market=US&offset=0&limit=20\",\n        \"items\": [\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/43o04CDdvE4DJHndPfo6GO\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/43o04CDdvE4DJHndPfo6GO\",\n                            \"id\": \"43o04CDdvE4DJHndPfo6GO\",\n                            \"name\": \"Mr. Eric & Mr. Michael\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:43o04CDdvE4DJHndPfo6GO\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0d1RPTNnRhs2TGaPpTP7jX\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0d1RPTNnRhs2TGaPpTP7jX\",\n                    \"id\": \"0d1RPTNnRhs2TGaPpTP7jX\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273940fb7dff92a95a0d8509b3c\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02940fb7dff92a95a0d8509b3c\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851940fb7dff92a95a0d8509b3c\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Groovy Green from The Learning Groove\",\n                    \"release_date\": \"2011-02-15\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 25,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0d1RPTNnRhs2TGaPpTP7jX\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/43o04CDdvE4DJHndPfo6GO\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/43o04CDdvE4DJHndPfo6GO\",\n                        \"id\": \"43o04CDdvE4DJHndPfo6GO\",\n                        \"name\": \"Mr. Eric & Mr. Michael\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:43o04CDdvE4DJHndPfo6GO\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 107333,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"uscgh1165221\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3IEznIuCYNDRUaIWuALmDT\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3IEznIuCYNDRUaIWuALmDT\",\n                \"id\": \"3IEznIuCYNDRUaIWuALmDT\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Cafe (Skit) (feat. Eric Litwin & Michael Levine)\",\n                \"popularity\": 57,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/c3b1775f17bfe7d34661abac1de8e6e3f14e9f10?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 20,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3IEznIuCYNDRUaIWuALmDT\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"name\": \"Baby Lullaby Academy\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3mhj07LztP90qqKz37X1YG\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3mhj07LztP90qqKz37X1YG\",\n                    \"id\": \"3mhj07LztP90qqKz37X1YG\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2733bfdddc8c0522c4983e340f5\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e023bfdddc8c0522c4983e340f5\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048513bfdddc8c0522c4983e340f5\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Baby Lullaby: Relaxing Piano Lullabies and Natural Sleep Aid for Baby Sleep Music\",\n                    \"release_date\": \"2015-11-24\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 40,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3mhj07LztP90qqKz37X1YG\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"name\": \"Baby Lullaby Academy\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 84062,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"TCACK1527380\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/2JxS3A9SqhMz1N48u08mEu\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/2JxS3A9SqhMz1N48u08mEu\",\n                \"id\": \"2JxS3A9SqhMz1N48u08mEu\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Piano Music for Baby Sleep\",\n                \"popularity\": 55,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/c75023c134c77fc651d7d2678785bd7f708ace2e?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 5,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:2JxS3A9SqhMz1N48u08mEu\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"name\": \"Baby Lullaby Academy\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3mhj07LztP90qqKz37X1YG\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3mhj07LztP90qqKz37X1YG\",\n                    \"id\": \"3mhj07LztP90qqKz37X1YG\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2733bfdddc8c0522c4983e340f5\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e023bfdddc8c0522c4983e340f5\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048513bfdddc8c0522c4983e340f5\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Baby Lullaby: Relaxing Piano Lullabies and Natural Sleep Aid for Baby Sleep Music\",\n                    \"release_date\": \"2015-11-24\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 40,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3mhj07LztP90qqKz37X1YG\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"name\": \"Baby Lullaby Academy\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 96052,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"TCACK1527395\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/0G7sG61Xp7vTTQHr7sBqOj\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/0G7sG61Xp7vTTQHr7sBqOj\",\n                \"id\": \"0G7sG61Xp7vTTQHr7sBqOj\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Piano for Sleeping Music\",\n                \"popularity\": 51,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/7ee5bafbff537df88e4d48f173a7a88e1174010a?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 19,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:0G7sG61Xp7vTTQHr7sBqOj\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"single\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/1XgVoPT2Va5L64LFzskVBW\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/1XgVoPT2Va5L64LFzskVBW\",\n                            \"id\": \"1XgVoPT2Va5L64LFzskVBW\",\n                            \"name\": \"Mason Williams\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:1XgVoPT2Va5L64LFzskVBW\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/6ZQGfFKq01ui5TFhdWLi07\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/6ZQGfFKq01ui5TFhdWLi07\",\n                    \"id\": \"6ZQGfFKq01ui5TFhdWLi07\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27360a1688a1dfd131f2a90f47b\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0260a1688a1dfd131f2a90f47b\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485160a1688a1dfd131f2a90f47b\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Rhino Hi-Five: Mason Williams\",\n                    \"release_date\": \"2005-10-18\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 5,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:6ZQGfFKq01ui5TFhdWLi07\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/1XgVoPT2Va5L64LFzskVBW\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/1XgVoPT2Va5L64LFzskVBW\",\n                        \"id\": \"1XgVoPT2Va5L64LFzskVBW\",\n                        \"name\": \"Mason Williams\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:1XgVoPT2Va5L64LFzskVBW\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 184066,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USWB10100645\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/48oT10cTda4pZUlYfqxlPR\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/48oT10cTda4pZUlYfqxlPR\",\n                \"id\": \"48oT10cTda4pZUlYfqxlPR\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Gas\",\n                \"popularity\": 44,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/2abe7277bf5f6cd45de2b10e72bb485b72ee6c89?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:48oT10cTda4pZUlYfqxlPR\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/2wOqMjp9TyABvtHdOSOTUS\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/2wOqMjp9TyABvtHdOSOTUS\",\n                            \"id\": \"2wOqMjp9TyABvtHdOSOTUS\",\n                            \"name\": \"Ludwig van Beethoven\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:2wOqMjp9TyABvtHdOSOTUS\"\n                        },\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/4LYCuV8d6rylb6zjv2k03l\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/4LYCuV8d6rylb6zjv2k03l\",\n                            \"id\": \"4LYCuV8d6rylb6zjv2k03l\",\n                            \"name\": \"Paul Lewis\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:4LYCuV8d6rylb6zjv2k03l\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/4bNwPPpk01D8pVV9IFSBde\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/4bNwPPpk01D8pVV9IFSBde\",\n                    \"id\": \"4bNwPPpk01D8pVV9IFSBde\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2735fbde95caaf1018f9af50f71\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e025fbde95caaf1018f9af50f71\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048515fbde95caaf1018f9af50f71\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Beethoven: Piano Sonatas, Vol.3\",\n                    \"release_date\": \"2007-09-25\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 32,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:4bNwPPpk01D8pVV9IFSBde\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/2wOqMjp9TyABvtHdOSOTUS\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/2wOqMjp9TyABvtHdOSOTUS\",\n                        \"id\": \"2wOqMjp9TyABvtHdOSOTUS\",\n                        \"name\": \"Ludwig van Beethoven\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:2wOqMjp9TyABvtHdOSOTUS\"\n                    },\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/4LYCuV8d6rylb6zjv2k03l\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/4LYCuV8d6rylb6zjv2k03l\",\n                        \"id\": \"4LYCuV8d6rylb6zjv2k03l\",\n                        \"name\": \"Paul Lewis\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:4LYCuV8d6rylb6zjv2k03l\"\n                    }\n                ],\n                \"disc_number\": 3,\n                \"duration_ms\": 315426,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"FRZ140632090\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3DNRdudZ2SstnDCVKFdXxG\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3DNRdudZ2SstnDCVKFdXxG\",\n                \"id\": \"3DNRdudZ2SstnDCVKFdXxG\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Sonata No. 14 \\\"Moonlight\\\" in C-Sharp Minor\\\", Op. 27 No. 2: I. Adagio sostenuto\",\n                \"popularity\": 67,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/7c2b7bbe98f908c395f2c7517760707a20bac794?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 9,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3DNRdudZ2SstnDCVKFdXxG\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/44GRDa3ltpkRtKgwoi8m3u\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/44GRDa3ltpkRtKgwoi8m3u\",\n                            \"id\": \"44GRDa3ltpkRtKgwoi8m3u\",\n                            \"name\": \"Baby Bedtime Lullaby\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:44GRDa3ltpkRtKgwoi8m3u\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/2idHabZxuAaovcquIxoluC\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/2idHabZxuAaovcquIxoluC\",\n                    \"id\": \"2idHabZxuAaovcquIxoluC\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27355e9a395e0b53bf8d75091fe\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0255e9a395e0b53bf8d75091fe\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485155e9a395e0b53bf8d75091fe\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Baby Lullabies\",\n                    \"release_date\": \"2020-02-22\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 35,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:2idHabZxuAaovcquIxoluC\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/44GRDa3ltpkRtKgwoi8m3u\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/44GRDa3ltpkRtKgwoi8m3u\",\n                        \"id\": \"44GRDa3ltpkRtKgwoi8m3u\",\n                        \"name\": \"Baby Bedtime Lullaby\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:44GRDa3ltpkRtKgwoi8m3u\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 100231,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"QZFZ42061366\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/6D8T4cA9QIWXvF4FUjvljv\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/6D8T4cA9QIWXvF4FUjvljv\",\n                \"id\": \"6D8T4cA9QIWXvF4FUjvljv\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Lullaby\",\n                \"popularity\": 50,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/cda42617eabd90eaee55349f5851d82e5b2a0c54?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 9,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:6D8T4cA9QIWXvF4FUjvljv\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/7vgJnbva49FV9p5EkNlKq7\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/7vgJnbva49FV9p5EkNlKq7\",\n                            \"id\": \"7vgJnbva49FV9p5EkNlKq7\",\n                            \"name\": \"Baby Lullaby\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:7vgJnbva49FV9p5EkNlKq7\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/1Et9DRDW4HkOoXQ64rfwzw\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/1Et9DRDW4HkOoXQ64rfwzw\",\n                    \"id\": \"1Et9DRDW4HkOoXQ64rfwzw\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273e003ec57417999c1fd8522d2\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02e003ec57417999c1fd8522d2\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851e003ec57417999c1fd8522d2\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Relaxing Piano Baby Lullabies Baby Songs and Nursery Rhymes for Baby Sleep and Newborn Natural Sleep Aid\",\n                    \"release_date\": \"2014-10-23\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 35,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:1Et9DRDW4HkOoXQ64rfwzw\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/7vgJnbva49FV9p5EkNlKq7\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/7vgJnbva49FV9p5EkNlKq7\",\n                        \"id\": \"7vgJnbva49FV9p5EkNlKq7\",\n                        \"name\": \"Baby Lullaby\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:7vgJnbva49FV9p5EkNlKq7\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 142053,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USA2P1472416\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/4SVrXZckXz6EbNPxvqW4CI\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/4SVrXZckXz6EbNPxvqW4CI\",\n                \"id\": \"4SVrXZckXz6EbNPxvqW4CI\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Piano\",\n                \"popularity\": 42,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/c752ae4572ba17304cd4656a1e17a449882ab681?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 28,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:4SVrXZckXz6EbNPxvqW4CI\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/13y7CgLHjMVRMDqxdx0Xdo\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/13y7CgLHjMVRMDqxdx0Xdo\",\n                            \"id\": \"13y7CgLHjMVRMDqxdx0Xdo\",\n                            \"name\": \"Gucci Mane\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:13y7CgLHjMVRMDqxdx0Xdo\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0VeraxKSlJGusnOHYGOtWq\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0VeraxKSlJGusnOHYGOtWq\",\n                    \"id\": \"0VeraxKSlJGusnOHYGOtWq\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2737306cc70e6fd7464e59a0d20\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e027306cc70e6fd7464e59a0d20\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048517306cc70e6fd7464e59a0d20\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"The State vs. Radric Davis (Deluxe)\",\n                    \"release_date\": \"2009-12-04\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 26,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0VeraxKSlJGusnOHYGOtWq\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/13y7CgLHjMVRMDqxdx0Xdo\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/13y7CgLHjMVRMDqxdx0Xdo\",\n                        \"id\": \"13y7CgLHjMVRMDqxdx0Xdo\",\n                        \"name\": \"Gucci Mane\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:13y7CgLHjMVRMDqxdx0Xdo\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 213960,\n                \"explicit\": true,\n                \"external_ids\": {\n                    \"isrc\": \"USWB10904737\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/6XzyCjS2Z2zgGIAk1p5nKB\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/6XzyCjS2Z2zgGIAk1p5nKB\",\n                \"id\": \"6XzyCjS2Z2zgGIAk1p5nKB\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical - Intro\",\n                \"popularity\": 34,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/cb3ec95b5d666b71808efce2aaf813a61d8c7c0f?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:6XzyCjS2Z2zgGIAk1p5nKB\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                            \"name\": \"Baby Lullaby Academy\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0QGQGZLkf4A6ppLipB9Kh0\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0QGQGZLkf4A6ppLipB9Kh0\",\n                    \"id\": \"0QGQGZLkf4A6ppLipB9Kh0\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273146d2c76b4a24a4db9479a7f\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02146d2c76b4a24a4db9479a7f\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851146d2c76b4a24a4db9479a7f\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Baby Lullaby: Relaxing Piano Lullabies and Natural Sleep Aid for Baby Sleep Music, Vol. 2\",\n                    \"release_date\": \"2016-02-24\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 34,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0QGQGZLkf4A6ppLipB9Kh0\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/5E9Xn7QuCD3VYCuBqLxBdY\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"id\": \"5E9Xn7QuCD3VYCuBqLxBdY\",\n                        \"name\": \"Baby Lullaby Academy\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:5E9Xn7QuCD3VYCuBqLxBdY\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 100571,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"TCACM1648402\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/0RyaUv49RciHTNKXve9Zqe\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/0RyaUv49RciHTNKXve9Zqe\",\n                \"id\": \"0RyaUv49RciHTNKXve9Zqe\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Piano (Baby Music)\",\n                \"popularity\": 41,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/21cdd542004daa2b5779b28f8809c851a5fc1c42?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 10,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:0RyaUv49RciHTNKXve9Zqe\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/7vgJnbva49FV9p5EkNlKq7\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/7vgJnbva49FV9p5EkNlKq7\",\n                            \"id\": \"7vgJnbva49FV9p5EkNlKq7\",\n                            \"name\": \"Baby Lullaby\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:7vgJnbva49FV9p5EkNlKq7\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3QJSBQJm46awurUmXX7PkS\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3QJSBQJm46awurUmXX7PkS\",\n                    \"id\": \"3QJSBQJm46awurUmXX7PkS\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2730bc95f68fd2d398ffb2ee8bc\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e020bc95f68fd2d398ffb2ee8bc\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048510bc95f68fd2d398ffb2ee8bc\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Baby Lullaby: 100% Natural Relaxing Guitar Songs and Nursery Melodies as Sleep Aid for Happy Newborn Babies and Kids\",\n                    \"release_date\": \"2014-07-19\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 25,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3QJSBQJm46awurUmXX7PkS\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/7vgJnbva49FV9p5EkNlKq7\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/7vgJnbva49FV9p5EkNlKq7\",\n                        \"id\": \"7vgJnbva49FV9p5EkNlKq7\",\n                        \"name\": \"Baby Lullaby\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:7vgJnbva49FV9p5EkNlKq7\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 253500,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USA2P1427814\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/1V1zIvPRHo89h4WzYfYe8A\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/1V1zIvPRHo89h4WzYfYe8A\",\n                \"id\": \"1V1zIvPRHo89h4WzYfYe8A\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Baby Music\",\n                \"popularity\": 36,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/261954035da31ce6f81ededbe61b9cf6c435d720?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 6,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:1V1zIvPRHo89h4WzYfYe8A\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/6ppQ1vjjme5Jtz2ceBFcWY\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/6ppQ1vjjme5Jtz2ceBFcWY\",\n                            \"id\": \"6ppQ1vjjme5Jtz2ceBFcWY\",\n                            \"name\": \"Yoga Music\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:6ppQ1vjjme5Jtz2ceBFcWY\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/1508kSLULYbyHDzGbTahVv\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/1508kSLULYbyHDzGbTahVv\",\n                    \"id\": \"1508kSLULYbyHDzGbTahVv\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273661072a74ee1d82c0c428077\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02661072a74ee1d82c0c428077\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851661072a74ee1d82c0c428077\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Instrumental Piano and Relaxing Piano Music for Yoga Spa Meditation Relaxation and Music for Spa\",\n                    \"release_date\": \"2014-11-05\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 31,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:1508kSLULYbyHDzGbTahVv\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/6ppQ1vjjme5Jtz2ceBFcWY\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/6ppQ1vjjme5Jtz2ceBFcWY\",\n                        \"id\": \"6ppQ1vjjme5Jtz2ceBFcWY\",\n                        \"name\": \"Yoga Music\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:6ppQ1vjjme5Jtz2ceBFcWY\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 186044,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USA2P1477977\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/5bQD2EoaVK2dZMfIouQGgK\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/5bQD2EoaVK2dZMfIouQGgK\",\n                \"id\": \"5bQD2EoaVK2dZMfIouQGgK\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical New Age Piano Music\",\n                \"popularity\": 39,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/52bd52ad7b2688956160928f2805d146ff577d84?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 16,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:5bQD2EoaVK2dZMfIouQGgK\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/3sf89JYi09tHKw7qPU4WiW\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/3sf89JYi09tHKw7qPU4WiW\",\n                            \"id\": \"3sf89JYi09tHKw7qPU4WiW\",\n                            \"name\": \"Arthur Byron\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:3sf89JYi09tHKw7qPU4WiW\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/6RQBheMtwJAJQzkun8qnQs\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/6RQBheMtwJAJQzkun8qnQs\",\n                    \"id\": \"6RQBheMtwJAJQzkun8qnQs\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27398e83e742be052e1c6ca8136\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0298e83e742be052e1c6ca8136\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485198e83e742be052e1c6ca8136\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Study Music & Deep Focus\",\n                    \"release_date\": \"2017-01-27\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 10,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:6RQBheMtwJAJQzkun8qnQs\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/3sf89JYi09tHKw7qPU4WiW\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/3sf89JYi09tHKw7qPU4WiW\",\n                        \"id\": \"3sf89JYi09tHKw7qPU4WiW\",\n                        \"name\": \"Arthur Byron\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:3sf89JYi09tHKw7qPU4WiW\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 42940,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"ITS781700241\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/0RJ772DmUc5axmzP6gzGdG\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/0RJ772DmUc5axmzP6gzGdG\",\n                \"id\": \"0RJ772DmUc5axmzP6gzGdG\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Music for Study\",\n                \"popularity\": 33,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/885f9d799051ac879a23471812519ba0012afc9f?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 6,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:0RJ772DmUc5axmzP6gzGdG\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/1XpDYCrUJnvCo9Ez6yeMWh\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/1XpDYCrUJnvCo9Ez6yeMWh\",\n                            \"id\": \"1XpDYCrUJnvCo9Ez6yeMWh\",\n                            \"name\": \"Tenacious D\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:1XpDYCrUJnvCo9Ez6yeMWh\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0H6G98SKzREy6AJBAi9srx\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0H6G98SKzREy6AJBAi9srx\",\n                    \"id\": \"0H6G98SKzREy6AJBAi9srx\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273e13e80911c0b4d96f73694a6\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02e13e80911c0b4d96f73694a6\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851e13e80911c0b4d96f73694a6\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Rize Of The Fenix\",\n                    \"release_date\": \"2012-05-14\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 13,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0H6G98SKzREy6AJBAi9srx\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/1XpDYCrUJnvCo9Ez6yeMWh\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/1XpDYCrUJnvCo9Ez6yeMWh\",\n                        \"id\": \"1XpDYCrUJnvCo9Ez6yeMWh\",\n                        \"name\": \"Tenacious D\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:1XpDYCrUJnvCo9Ez6yeMWh\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 203200,\n                \"explicit\": true,\n                \"external_ids\": {\n                    \"isrc\": \"USSM11200057\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/6OKSnpoImX8CzhrzADerZg\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/6OKSnpoImX8CzhrzADerZg\",\n                \"id\": \"6OKSnpoImX8CzhrzADerZg\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Teacher\",\n                \"popularity\": 36,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/d3046af47af0c37916fdfeb99622c7469cad2bd1?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 3,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:6OKSnpoImX8CzhrzADerZg\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/1XgVoPT2Va5L64LFzskVBW\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/1XgVoPT2Va5L64LFzskVBW\",\n                            \"id\": \"1XgVoPT2Va5L64LFzskVBW\",\n                            \"name\": \"Mason Williams\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:1XgVoPT2Va5L64LFzskVBW\"\n                        },\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0EeHVtSdrYibpGDVHjWEpe\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0EeHVtSdrYibpGDVHjWEpe\",\n                            \"id\": \"0EeHVtSdrYibpGDVHjWEpe\",\n                            \"name\": \"Mannheim Steamroller\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0EeHVtSdrYibpGDVHjWEpe\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/1eYaipKPsjdAZBuIyZgy6c\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/1eYaipKPsjdAZBuIyZgy6c\",\n                    \"id\": \"1eYaipKPsjdAZBuIyZgy6c\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273211298a3b7132a44b080a731\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02211298a3b7132a44b080a731\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851211298a3b7132a44b080a731\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Classical Gas\",\n                    \"release_date\": \"1987\",\n                    \"release_date_precision\": \"year\",\n                    \"total_tracks\": 13,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:1eYaipKPsjdAZBuIyZgy6c\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/1XgVoPT2Va5L64LFzskVBW\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/1XgVoPT2Va5L64LFzskVBW\",\n                        \"id\": \"1XgVoPT2Va5L64LFzskVBW\",\n                        \"name\": \"Mason Williams\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:1XgVoPT2Va5L64LFzskVBW\"\n                    },\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0EeHVtSdrYibpGDVHjWEpe\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0EeHVtSdrYibpGDVHjWEpe\",\n                        \"id\": \"0EeHVtSdrYibpGDVHjWEpe\",\n                        \"name\": \"Mannheim Steamroller\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0EeHVtSdrYibpGDVHjWEpe\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 211200,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USAG20580001\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/2RI11rvIfVXubyOTuOTwXE\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/2RI11rvIfVXubyOTuOTwXE\",\n                \"id\": \"2RI11rvIfVXubyOTuOTwXE\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Gas\",\n                \"popularity\": 31,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/4f58dbefc159f6caeb0be55676efed6b37c8a6a6?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:2RI11rvIfVXubyOTuOTwXE\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/54pERFIX38yh6A6PkvMNtS\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/54pERFIX38yh6A6PkvMNtS\",\n                            \"id\": \"54pERFIX38yh6A6PkvMNtS\",\n                            \"name\": \"Spocktopus\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:54pERFIX38yh6A6PkvMNtS\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/26muev2Pc16i8b44WN8Y7h\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/26muev2Pc16i8b44WN8Y7h\",\n                    \"id\": \"26muev2Pc16i8b44WN8Y7h\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27394a666426fa5921b307f816a\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0294a666426fa5921b307f816a\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485194a666426fa5921b307f816a\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"The Warm Embrace of Love and Hate\",\n                    \"release_date\": \"2018-04-02\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 13,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:26muev2Pc16i8b44WN8Y7h\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/54pERFIX38yh6A6PkvMNtS\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/54pERFIX38yh6A6PkvMNtS\",\n                        \"id\": \"54pERFIX38yh6A6PkvMNtS\",\n                        \"name\": \"Spocktopus\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:54pERFIX38yh6A6PkvMNtS\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 127033,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"TCADO1868087\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3Bk8nCGeq9R8hquKpPfHF8\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3Bk8nCGeq9R8hquKpPfHF8\",\n                \"id\": \"3Bk8nCGeq9R8hquKpPfHF8\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Conditioning\",\n                \"popularity\": 27,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/3474bc27623dad0409d48fed9ae7e18fb70df88a?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 4,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3Bk8nCGeq9R8hquKpPfHF8\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/5Nvm1iKunHdEz5i0DKZYKl\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/5Nvm1iKunHdEz5i0DKZYKl\",\n                            \"id\": \"5Nvm1iKunHdEz5i0DKZYKl\",\n                            \"name\": \"Gundam FIght\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:5Nvm1iKunHdEz5i0DKZYKl\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/2CfDlAFDa81WzRYeNKGlP1\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/2CfDlAFDa81WzRYeNKGlP1\",\n                    \"id\": \"2CfDlAFDa81WzRYeNKGlP1\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2733112a79e7066f83b219e77ad\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e023112a79e7066f83b219e77ad\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048513112a79e7066f83b219e77ad\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Sheep Pen\",\n                    \"release_date\": \"2018-04-05\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 13,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:2CfDlAFDa81WzRYeNKGlP1\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/5Nvm1iKunHdEz5i0DKZYKl\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/5Nvm1iKunHdEz5i0DKZYKl\",\n                        \"id\": \"5Nvm1iKunHdEz5i0DKZYKl\",\n                        \"name\": \"Gundam FIght\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:5Nvm1iKunHdEz5i0DKZYKl\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 127033,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"NLS6R1837008\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/1Gr1eBXY2qVmYkgHTbbZ41\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/1Gr1eBXY2qVmYkgHTbbZ41\",\n                \"id\": \"1Gr1eBXY2qVmYkgHTbbZ41\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Conditioning\",\n                \"popularity\": 27,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/3474bc27623dad0409d48fed9ae7e18fb70df88a?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 13,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:1Gr1eBXY2qVmYkgHTbbZ41\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/6ppQ1vjjme5Jtz2ceBFcWY\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/6ppQ1vjjme5Jtz2ceBFcWY\",\n                            \"id\": \"6ppQ1vjjme5Jtz2ceBFcWY\",\n                            \"name\": \"Yoga Music\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:6ppQ1vjjme5Jtz2ceBFcWY\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/1508kSLULYbyHDzGbTahVv\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/1508kSLULYbyHDzGbTahVv\",\n                    \"id\": \"1508kSLULYbyHDzGbTahVv\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273661072a74ee1d82c0c428077\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02661072a74ee1d82c0c428077\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851661072a74ee1d82c0c428077\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Instrumental Piano and Relaxing Piano Music for Yoga Spa Meditation Relaxation and Music for Spa\",\n                    \"release_date\": \"2014-11-05\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 31,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:1508kSLULYbyHDzGbTahVv\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/6ppQ1vjjme5Jtz2ceBFcWY\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/6ppQ1vjjme5Jtz2ceBFcWY\",\n                        \"id\": \"6ppQ1vjjme5Jtz2ceBFcWY\",\n                        \"name\": \"Yoga Music\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:6ppQ1vjjme5Jtz2ceBFcWY\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 142053,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USA2P1477980\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/0eTIZwNrgU5qzDEb4Q9iUr\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/0eTIZwNrgU5qzDEb4Q9iUr\",\n                \"id\": \"0eTIZwNrgU5qzDEb4Q9iUr\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Piano\",\n                \"popularity\": 35,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/a54425c4f06eca76ce923fa3fa42e7a73f16c328?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 19,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:0eTIZwNrgU5qzDEb4Q9iUr\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/2STVYmc2T02GlvvWZl7umj\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/2STVYmc2T02GlvvWZl7umj\",\n                            \"id\": \"2STVYmc2T02GlvvWZl7umj\",\n                            \"name\": \"Victor Wooten\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:2STVYmc2T02GlvvWZl7umj\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3TUlnfqz2PyHIzKdAjPwz2\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3TUlnfqz2PyHIzKdAjPwz2\",\n                    \"id\": \"3TUlnfqz2PyHIzKdAjPwz2\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2730d63544aa2bb995fdfa6e0ba\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e020d63544aa2bb995fdfa6e0ba\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048510d63544aa2bb995fdfa6e0ba\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"A Show of Hands 15\",\n                    \"release_date\": \"2016-01-13\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 19,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3TUlnfqz2PyHIzKdAjPwz2\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/2STVYmc2T02GlvvWZl7umj\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/2STVYmc2T02GlvvWZl7umj\",\n                        \"id\": \"2STVYmc2T02GlvvWZl7umj\",\n                        \"name\": \"Victor Wooten\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:2STVYmc2T02GlvvWZl7umj\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 279693,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USAPX1100013\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3l3lCbzWLXi9FS4tQ3HSzZ\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3l3lCbzWLXi9FS4tQ3HSzZ\",\n                \"id\": \"3l3lCbzWLXi9FS4tQ3HSzZ\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Thump\",\n                \"popularity\": 34,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/7981265ca7d114350ee3597adda44dcfda9a0c69?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 13,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3l3lCbzWLXi9FS4tQ3HSzZ\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"single\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/3RuVmW5IZjRfxYHFzDkfjJ\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/3RuVmW5IZjRfxYHFzDkfjJ\",\n                            \"id\": \"3RuVmW5IZjRfxYHFzDkfjJ\",\n                            \"name\": \"MR. OBNX\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:3RuVmW5IZjRfxYHFzDkfjJ\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0XqLtIXivR8iXuDo04xCLE\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0XqLtIXivR8iXuDo04xCLE\",\n                    \"id\": \"0XqLtIXivR8iXuDo04xCLE\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273773056bf45b4fd8f23cf1d0d\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02773056bf45b4fd8f23cf1d0d\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851773056bf45b4fd8f23cf1d0d\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Classical Gas\",\n                    \"release_date\": \"2020-02-14\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 1,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0XqLtIXivR8iXuDo04xCLE\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/3RuVmW5IZjRfxYHFzDkfjJ\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/3RuVmW5IZjRfxYHFzDkfjJ\",\n                        \"id\": \"3RuVmW5IZjRfxYHFzDkfjJ\",\n                        \"name\": \"MR. OBNX\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:3RuVmW5IZjRfxYHFzDkfjJ\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 163636,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"GBSMU7551629\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/632YKR2bJ4U6pY9FYbKUX4\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/632YKR2bJ4U6pY9FYbKUX4\",\n                \"id\": \"632YKR2bJ4U6pY9FYbKUX4\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Gas\",\n                \"popularity\": 27,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/44c4aa0b11c9744293e79c506c12fcb8377be197?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:632YKR2bJ4U6pY9FYbKUX4\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/7qKxhFTGcJ7w7JEFGqqWwK\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/7qKxhFTGcJ7w7JEFGqqWwK\",\n                            \"id\": \"7qKxhFTGcJ7w7JEFGqqWwK\",\n                            \"name\": \"Piano Peace\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:7qKxhFTGcJ7w7JEFGqqWwK\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0QQvOpAflQyVHlqxCqneuv\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0QQvOpAflQyVHlqxCqneuv\",\n                    \"id\": \"0QQvOpAflQyVHlqxCqneuv\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273086cfcb95959efa9f495585c\",\n                            \"width\": 640\n                        },\n                        {\n                            \"height\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02086cfcb95959efa9f495585c\",\n                            \"width\": 300\n                        },\n                        {\n                            \"height\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851086cfcb95959efa9f495585c\",\n                            \"width\": 64\n                        }\n                    ],\n                    \"name\": \"Jazz Piano Rain Sounds\",\n                    \"release_date\": \"2018-11-06\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 12,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0QQvOpAflQyVHlqxCqneuv\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/7qKxhFTGcJ7w7JEFGqqWwK\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/7qKxhFTGcJ7w7JEFGqqWwK\",\n                        \"id\": \"7qKxhFTGcJ7w7JEFGqqWwK\",\n                        \"name\": \"Piano Peace\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:7qKxhFTGcJ7w7JEFGqqWwK\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 156000,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USDHM1820376\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/7tiZ2UCMpKhedz6rZBQNgk\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/7tiZ2UCMpKhedz6rZBQNgk\",\n                \"id\": \"7tiZ2UCMpKhedz6rZBQNgk\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Classical Lullaby Jazz (With Rain)\",\n                \"popularity\": 32,\n                \"preview_url\": \"https://p.scdn.co/mp3-preview/c01da1d26d20de9556e607551b3c7482e8530889?cid=48fb2a3c68ea439c8b4a6cf6d4c164c1\",\n                \"track_number\": 6,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:7tiZ2UCMpKhedz6rZBQNgk\"\n            }\n        ],\n        \"limit\": 20,\n        \"next\": \"https://api.spotify.com/v1/search?query=classical&type=track&market=US&offset=20&limit=20\",\n        \"offset\": 0,\n        \"previous\": null,\n        \"total\": 100020\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "PagerDuty - Authentication (via manual header)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.pagerduty+json;version=2",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token token={{pagerduty_api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.pagerduty.com/incidents",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pagerduty",
+						"com"
+					],
+					"path": [
+						"incidents"
+					]
+				},
+				"description": "From the PagerDuty Developer Platform, read the documentation for [Creating incidents using the REST API](https://community.pagerduty.com/forum/t/creating-incidents-using-our-rest-api/548), and [Authentication of REST API calls](https://developer.pagerduty.com/docs/rest-api-v2/authentication/).\n\n### In PagerDuty\n\nGenerate a General Access REST API key as described in the [PagerDuty docs](https://support.pagerduty.com/docs/generating-api-keys#section-generating-a-general-access-rest-api-key).\n\n### In Postman\n\nIn the previous example, we used the OAuth 2.0 authorization helper to automatically add a header formatted like `Bearer <your-token>`. The PagerDuty REST API accepts an Authorization header formatted differently.\n\nCopy the PagerDuty API key to your clipboard, or better yet, save it as an [environment variable](https://learning.postman.com/docs/postman/variables-and-environments/managing-environments/). Once again, we won't use the Auth helper to automatically add the Header. Now that you have your API token saved somewhere, manually add the Authorization header formatted like `Token token=<the-token>`.\n\n![[pagerduty header](https://i.imgur.com/XalXCqj.png)](https://i.imgur.com/XalXCqj.png)"
+			},
+			"response": [
+				{
+					"name": "PagerDuty incidents",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.pagerduty+json;version=2",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token token={{pagerduty_api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.pagerduty.com/incidents",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pagerduty",
+								"com"
+							],
+							"path": [
+								"incidents"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Jun 2020 20:59:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1728000"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Authorization, Content-Type, AuthorizationOauth, From"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "X-UA-Compatible",
+							"value": "IE=Edge,chrome=1"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"dbea1af090b8b8eff55732bde83d58f2\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "f15a85de-d07e-4198-9fe6-ba6a31adf244"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"incidents\": [],\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": null,\n    \"more\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "PagerDuty - PKCE flow (via helper)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{pagerduty_pkce_token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/vnd.pagerduty+json;version=2"
+					}
+				],
+				"url": {
+					"raw": "https://api.pagerduty.com/incidents",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pagerduty",
+						"com"
+					],
+					"path": [
+						"incidents"
+					]
+				},
+				"description": "From the PagerDuty Developer Platform, read the [documentation for OAuth 2.0: PKCE Flow](https://developer.pagerduty.com/docs/app-integration-development/oauth-2-pkce/) for mobile and browser apps.\n\n### In Postman\n\nUnder the **Authorization** tab of any request, select `OAuth 2.0`. Click **Get New Access Token**. From there, select a **Grant Type** of `Authorization Code (With PKCE)`. Input your data like in the previous request. The **Code Challenge Method** can be either `SHA-256` or `Plain`. You can also optionally provide a custom **Code Verifier**.\n\n![[get new access token modal](https://i.imgur.com/sYQeJ1c.png)](https://i.imgur.com/sYQeJ1c.png)\n\nClick **Request Token** and walk through the authorization process to generate a new token. The access token can then be used according to your specific API’s documentation. \n\n![[pagerduty gif](https://i.imgur.com/xZdnp43.gif)](https://i.imgur.com/xZdnp43.gif)\n\nCopy the access token to your clipboard, or better yet, save it as an [environment variable](https://learning.postman.com/docs/postman/variables-and-environments/managing-environments/). At this time, we can either manually add a header as we did in the previous example. Or we can continue using the Auth helper for OAuth 2.0. \n\n![[pagerduty header](https://i.imgur.com/bMKXd4e.png)](https://i.imgur.com/bMKXd4e.png)\n\nRemember if you're working with a bunch of different Auth tokens, you can **MANAGE TOKENS** next to where you created them.\n\n![[pagerduty header](https://i.imgur.com/yGKytZl.png)](https://i.imgur.com/yGKytZl.png)"
+			},
+			"response": [
+				{
+					"name": "PagerDuty - PKCE flow (via helper)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.pagerduty+json;version=2"
+							}
+						],
+						"url": {
+							"raw": "https://api.pagerduty.com/incidents",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pagerduty",
+								"com"
+							],
+							"path": [
+								"incidents"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Jun 2020 21:16:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1728000"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Authorization, Content-Type, AuthorizationOauth, From"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "X-UA-Compatible",
+							"value": "IE=Edge,chrome=1"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"dbea1af090b8b8eff55732bde83d58f2\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "643bd015-3e34-4b4b-951a-fe61bae71a6e"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"incidents\": [],\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": null,\n    \"more\": false\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
