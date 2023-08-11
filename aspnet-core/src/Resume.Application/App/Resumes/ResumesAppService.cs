@@ -30,7 +30,7 @@ namespace Resume.App.Resumes
 {
     [RemoteService(IsEnabled = false)]
 
-    public class ResumesAppService : ApplicationService, IResumesAppService
+    public partial class ResumesAppService : ApplicationService, IResumesAppService
     {
         private readonly AppService _appService;
 

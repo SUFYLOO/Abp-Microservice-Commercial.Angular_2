@@ -15,6 +15,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Validation;
+using PayPalCheckoutSdk.Orders;
 
 namespace Resume.App.Companys
 {
@@ -31,13 +32,12 @@ namespace Resume.App.Companys
             //新增的話可以不用id, update要輸入id
             var CompanyJobContentId = input.Id;
 
-
             await SaveCompanyJobContentCheckAsync(input);
 
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
             var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
 
-            //var itemsCompanyJobContents = await _appService._companyJobContentsAppService.GetAsync(CompanyJobContentId)
+
             //如果CompanyJobContentRepository沒有這個Id就新增資料，已存在就update
             if (itemCompanyJobContent == null)
             {
@@ -153,7 +153,8 @@ namespace Resume.App.Companys
             {
                 var CompanyJobConditionDto = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobConditionDto>(input);
 
-                CompanyJobConditionDto.Id = GuidGenerator.Create();
+                CompanyJobConditionDto.CompanyJobId = _appService._guidGenerator.Create();
+                CompanyJobConditionDto.CompanyMainId = _appService._guidGenerator.Create();
 
                 itemCompanyJobCondition = ObjectMapper.Map<CompanyJobConditionDto, CompanyJobCondition>(input);
                 await _appService._companyJobConditionRepository.InsertAsync(itemCompanyJobCondition);
@@ -218,7 +219,7 @@ namespace Resume.App.Companys
 
             var CompanyJobApplicationMethodId = input.Id;
 
-            await SaveCompanyJobApplicationMethodCheckAsync(input);
+            //await SaveCompanyJobApplicationMethodCheckAsync(input);
 
             var qbrCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
             var itemCompanyJobApplicationMethod = qbrCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
@@ -285,20 +286,17 @@ namespace Resume.App.Companys
 
             var CompanyJobContentId = input.Id;
 
-            if (CompanyJobContentId == null)
+            if (CompanyJobContentId.ToString() == " ")
             {
                 var ex = new AbpValidationException("代碼不能空白");
                 throw ex;
             }
 
-            var inputGetCompanyJobContents = new GetCompanyJobContentsInput();
-            //inputGetCompanyJobContents.Id = CompanyJobContentId;
-            var itemsCompanyJobContents = await _appService._companyJobContentsAppService.GetListAsync(inputGetCompanyJobContents);
-
-            //var CompanyJobContentId = input.Id ?? input.CompanyJobContentId ?? _appService._guidGenerator.Create();
-            //var itemCompanyJobContents = await _appService._companyJobContentsAppService.GetAsync(CompanyJobContentId);
-
-            var itemCompanyJobContents = itemsCompanyJobContents.Items.FirstOrDefault();
+            //var inputGetCompanyJobContents = new GetCompanyJobContentsInput();
+            //var itemsCompanyJobContents = await _appService._companyJobContentsAppService.GetListAsync(inputGetCompanyJobContents);
+            //var itemCompanyJobContents = itemsCompanyJobContents.Items.FirstOrDefault();
+            var itemCompanyJobContents = await _appService._companyJobContentsAppService.GetAsync(CompanyJobContentId);
+            
             if (itemCompanyJobContents == null)
             {
                 var ex = new EntityNotFoundException("沒有資料");
@@ -316,17 +314,18 @@ namespace Resume.App.Companys
 
             var CompanyJobConditionId = input.Id;
 
-            if (CompanyJobConditionId == null)
+            if (CompanyJobConditionId.ToString() == " ")
             {
                 var ex = new AbpValidationException("代碼不能空白");
                 throw ex;
             }
 
-            var inputGetCompanyJobConditions = new GetCompanyJobConditionsInput();
-            //inputGetCompanyJobConditions.Id = CompanyJobConditionId;
-            var itemsCompanyJobConditions = await _appService._companyJobConditionAppService.GetListAsync(inputGetCompanyJobConditions);
+            //var inputGetCompanyJobConditions = new GetCompanyJobConditionsInput();
+            //var itemsCompanyJobConditions = await _appService._companyJobConditionAppService.GetListAsync(inputGetCompanyJobConditions);
+            //var itemCompanyJobConditions = itemsCompanyJobConditions.Items.FirstOrDefault();
 
-            var itemCompanyJobConditions = itemsCompanyJobConditions.Items.FirstOrDefault();
+            var itemCompanyJobConditions = await _appService._companyJobConditionAppService.GetAsync(CompanyJobConditionId);
+
             if (itemCompanyJobConditions == null)
             {
                 var ex = new EntityNotFoundException("沒有資料");
@@ -343,23 +342,25 @@ namespace Resume.App.Companys
             var Result = new CompanyJobApplicationMethodsDto();
 
             var CompanyJobApplicationMethodId = input.Id;
-            if (CompanyJobApplicationMethodId == null)
+
+            if (CompanyJobApplicationMethodId.ToString() == " ")
             {
                 var ex = new AbpValidationException("代碼不能空白");
                 throw ex;
             }
 
-            var inputCompanyJobApplicationMethod = new GetCompanyJobApplicationMethodsInput();
-            //inputCompanyJobApplicationMethod.Id = CompanyJobApplicationMethodId;
-            var itemsCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodsAppService.GetListAsync(inputCompanyJobApplicationMethod);
+            //var inputCompanyJobApplicationMethod = new GetCompanyJobApplicationMethodsInput();
+            //var itemsCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodsAppService.GetListAsync(inputCompanyJobApplicationMethod);
+            //var itemCompanyJobApplicationMethod = itemsCompanyJobApplicationMethod.Items.FirstOrDefault();
 
-            var itemCompanyJobApplicationMethod = itemsCompanyJobApplicationMethod.Items.FirstOrDefault();
-            if (itemCompanyJobApplicationMethod == null)
+            var itemCompanyJobApplicationMethods = await _appService._companyJobApplicationMethodsAppService.GetAsync(CompanyJobApplicationMethodId);
+
+            if (itemCompanyJobApplicationMethods == null)
             {
                 var ex = new EntityNotFoundException("沒有資料");
                 throw ex;
             }
-            Result = ObjectMapper.Map<CompanyJobApplicationMethodDto, CompanyJobApplicationMethodsDto>(itemCompanyJobApplicationMethod);
+            Result = ObjectMapper.Map<CompanyJobApplicationMethodDto, CompanyJobApplicationMethodsDto>(itemCompanyJobApplicationMethods);
 
             return Result;
         }
@@ -379,15 +380,13 @@ namespace Resume.App.Companys
             var qrbitemCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
             var itemCompanyJob = qrbitemCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            if (itemCompanyJob == null)
-            {
-                var item = ObjectMapper.Map<UpdateCompanyJobDateInput, CompanyJob>(input);
-                item.DateA = input.DateA;
-                item.DateD = input.DateD;
-                await _appService._companyJobRepository.UpdateAsync(item);
+            var itemCompanyJobDate = ObjectMapper.Map<UpdateCompanyJobDateInput, CompanyJob>(input);
+            itemCompanyJobDate.DateA = input.DateA;
+            itemCompanyJobDate.DateD = input.DateD;
+            await _appService._companyJobRepository.UpdateAsync(itemCompanyJobDate);
 
-                Result = ObjectMapper.Map<CompanyJob, UpdateCompanyJobDateDto>(item);
-            }
+            Result = ObjectMapper.Map<CompanyJob, UpdateCompanyJobDateDto>(itemCompanyJobDate);
+
             return Result;
         }
 
@@ -396,28 +395,30 @@ namespace Resume.App.Companys
             var Result = new SaveCompanyJobPayDto();
 
             var CompanyJobPayId = input.Id;
-            await SaveCompanyJobPayCheckAsync(input);
+            //await SaveCompanyJobPayCheckAsync(input);
 
             var qrbCompanyJobPay = await _appService._companyJobPayRepository.GetQueryableAsync();
             var itemCompanyJobPay = qrbCompanyJobPay.FirstOrDefault(p => p.Id == CompanyJobPayId);
 
-          
-                if (itemCompanyJobPay == null)
-                {
-                  var itemCompanyJobPayDto = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPayDto>(input);
-                      itemCompanyJobPayDto.Id = GuidGenerator.Create();
+            
+            if (itemCompanyJobPay == null)
+            {
+                var itemCompanyJobPayDto = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPayDto>(input);
 
-                      itemCompanyJobPay = ObjectMapper.Map<CompanyJobPayDto, CompanyJobPay>(itemCompanyJobPayDto);
- 
+                itemCompanyJobPayDto.CompanyMainId = _appService._guidGenerator.Create();
+                itemCompanyJobPayDto.CompanyJobId = _appService._guidGenerator.Create();
+
+                itemCompanyJobPay = ObjectMapper.Map<CompanyJobPayDto, CompanyJobPay>(itemCompanyJobPayDto);
+                await _appService._companyJobPayRepository.InsertAsync(itemCompanyJobPay);
                 Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(itemCompanyJobPay);
-                }
-                else
-                {
-                    var item = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPay>(input);
-                    await _appService._companyJobPayRepository.UpdateAsync(item);
+            }
+            else
+            {
+                var item = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPay>(input);
+                await _appService._companyJobPayRepository.UpdateAsync(item);
 
-                    Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(item);
-                }
+                Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(item);
+            }
             return Result;
         }
 
@@ -425,12 +426,9 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-
             var CompanyMainId = input.CompanyMainId;
             var JobPayTypeCode = input.JobPayTypeCode ?? "";
             var DateReal = input.DateReal;
-
-
 
             if (JobPayTypeCode.IsNullOrEmpty())
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費代碼不能空白", Pass = false });
@@ -521,7 +519,6 @@ namespace Resume.App.Companys
             var itemsCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
             var item = itemsCompanyJob.FirstOrDefault(p => p.Id == CompanyMainId);
 
-
             item.JobOpen = input.JobOpen;
             await _appService._companyJobRepository.UpdateAsync(item);
 
@@ -529,9 +526,6 @@ namespace Resume.App.Companys
 
             return Result;
         }
-
-
-
 
         public virtual async Task<ResultDto> UpdateCompanyJobOpenCheckAsync(UpdateCompanyJobOpenInput input)
         {

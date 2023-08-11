@@ -148,12 +148,12 @@ namespace Resume.App.Companys
 
     }
 
-    public class UpdateCompanyJobDateDto : CompanyJobUpdateDto
+    public class UpdateCompanyJobDateDto : CompanyJobDto
     {
 
     }
 
-    public class SaveCompanyJobPayDto : CompanyJobPayUpdateDto 
+    public class SaveCompanyJobPayDto : CompanyJobPayDto 
     {
 
     }
@@ -167,7 +167,7 @@ namespace Resume.App.Companys
     {
         public string JobOpen { get; set; }
     }
-    public class CompanyJobOpenDto: CompanyJobUpdateDto
+    public class CompanyJobOpenDto: CompanyJobDto
     {
 
     }

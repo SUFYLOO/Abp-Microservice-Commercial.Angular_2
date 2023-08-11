@@ -115,14 +115,32 @@ namespace Resume.App
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentDto>();
             CreateMap<CompanyJobContentDto, CompanyJobContent>();
             CreateMap<CompanyJobContent, SaveCompanyJobContentDto>();
+            
+            CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
+            CreateMap<CompanyJobConditionDto, CompanyJobCondition>();
+            CreateMap<CompanyJobCondition, SaveCompanyJobConditionDto>();
 
+            CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethodDto>();
+            CreateMap<CompanyJobApplicationMethodDto, CompanyJobApplicationMethod>();
+            CreateMap<CompanyJobApplicationMethod, SaveCompanyJobApplicationMethodDto>();
 
-            CreateMap<CompanyJobDto, CompanysJobDto>();
-            CreateMap<CompanyJob, UpdateCompanyJobOpenDto>();
+            CreateMap<CompanyJobContentDto, CompanyJobContentsDto>();
+            CreateMap<CompanyJobConditionDto, CompanyJobConditionsDto>();
+            CreateMap<CompanyJobApplicationMethodDto, CompanyJobApplicationMethodsDto>();
+
+            CreateMap<SaveCompanyJobPayInput, CompanyJobPayDto>();
+            CreateMap<CompanyJobPayDto, CompanyJobPay>();
+            CreateMap<CompanyJobPay, SaveCompanyJobPayDto>();
+
+            CreateMap<UpdateCompanyJobDateInput, CompanyJob>();
+            CreateMap<CompanyJob, UpdateCompanyJobDateDto>();
 
             CreateMap<CompanyJob,CompanysJobDto>();
+            CreateMap<CompanyJob, UpdateCompanyJobOpenDto>();
 
-
+            CreateMap<SaveResumeMainInput, ResumeMainDto>();
+            CreateMap<ResumeMainDto, ResumeMain>();
+            CreateMap<ResumeMain, SaveResumeMainDto>();
         }
     }
 }

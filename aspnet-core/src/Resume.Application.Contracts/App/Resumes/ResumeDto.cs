@@ -54,7 +54,7 @@ namespace Resume.App.Resumes
         public string CommunicationCategoryName { get; set; } = "";
     }
 
-    public class ResumeMainMainDto 
+    public class ResumeMainMainDto
     {
         public Dictionary<Guid, bool> dcResumeMain { get; set; } = new Dictionary<Guid, bool>();
     }
@@ -160,7 +160,7 @@ namespace Resume.App.Resumes
         public string SalaryPayTypeName { get; set; } = "";
         public string CompanyScaleName { get; set; } = "";
         public string CompanyManagementNumberName { get; set; } = "";
-        public string CurrencyTypeName { get; set; } = "";        
+        public string CurrencyTypeName { get; set; } = "";
     }
 
     public class ResumeExperiencesJobType
@@ -197,5 +197,9 @@ namespace Resume.App.Resumes
         public List<ResumeEducationssDto> ListResumeEducationss { get; set; }
         public List<ResumeExperiencessDto> ListResumeExperiencess { get; set; }
         public List<ResumeWorkssDto> ListResumeWorkss { get; set; }
+    }
+    public class SaveResumeMainDto : ResumeMainDto
+    { 
+
     }
 }

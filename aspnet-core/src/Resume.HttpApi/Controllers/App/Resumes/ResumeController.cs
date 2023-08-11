@@ -381,5 +381,14 @@ namespace Resume.App.Controllers.App.Resumes
         {
             return _resumesAppService.GetResumeWorkssListAsync(input);
         }
+
+        [HttpPost]
+        [Route("SaveResumeMains")]
+        [ProducesResponseType(typeof(ResumeWorkssDto), StatusCodes.Status200OK)]
+
+        public virtual Task<SaveResumeMainDto> SaveResumeMainsAsync(SaveResumeMainInput input)
+        {
+            return _resumesAppService.SaveResumeMainsAsync(input);
+        }
     }
 }
