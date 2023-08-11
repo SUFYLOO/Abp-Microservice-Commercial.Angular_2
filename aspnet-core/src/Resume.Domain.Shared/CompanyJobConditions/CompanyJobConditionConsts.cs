@@ -2,15 +2,13 @@ namespace Resume.CompanyJobConditions
 {
     public static class CompanyJobConditionConsts
     {
-        private const string DefaultSorting = "{0}CompanyMainCode asc";
+        private const string DefaultSorting = "{0}CompanyMainId asc";
 
         public static string GetDefaultSorting(bool withEntityName)
         {
             return string.Format(DefaultSorting, withEntityName ? "CompanyJobCondition." : string.Empty);
         }
 
-        public const int CompanyMainCodeMaxLength = 50;
-        public const int CompanyJobCodeMaxLength = 50;
         public const int WorkExperienceYearCodeMaxLength = 50;
         public const int EducationLevelMaxLength = 200;
         public const int MajorDepartmentCategoryMaxLength = 200;

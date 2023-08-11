@@ -20,12 +20,8 @@ namespace Resume.CompanyJobConditions
         }
 
         public async Task<CompanyJobCondition> CreateAsync(
-        string companyMainCode, string companyJobCode, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
         {
-            Check.NotNullOrWhiteSpace(companyMainCode, nameof(companyMainCode));
-            Check.Length(companyMainCode, nameof(companyMainCode), CompanyJobConditionConsts.CompanyMainCodeMaxLength);
-            Check.NotNullOrWhiteSpace(companyJobCode, nameof(companyJobCode));
-            Check.Length(companyJobCode, nameof(companyJobCode), CompanyJobConditionConsts.CompanyJobCodeMaxLength);
             Check.NotNullOrWhiteSpace(workExperienceYearCode, nameof(workExperienceYearCode));
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength);
@@ -44,7 +40,7 @@ namespace Resume.CompanyJobConditions
 
             var companyJobCondition = new CompanyJobCondition(
              GuidGenerator.Create(),
-             companyMainCode, companyJobCode, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCategory, computerExpertise, professionalLicense, drvingLicense, etcCondition, extendedInformation, dateA, dateD, sort, note, status
+             companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCategory, computerExpertise, professionalLicense, drvingLicense, etcCondition, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyJobConditionRepository.InsertAsync(companyJobCondition);
@@ -52,13 +48,9 @@ namespace Resume.CompanyJobConditions
 
         public async Task<CompanyJobCondition> UpdateAsync(
             Guid id,
-            string companyMainCode, string companyJobCode, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
         )
         {
-            Check.NotNullOrWhiteSpace(companyMainCode, nameof(companyMainCode));
-            Check.Length(companyMainCode, nameof(companyMainCode), CompanyJobConditionConsts.CompanyMainCodeMaxLength);
-            Check.NotNullOrWhiteSpace(companyJobCode, nameof(companyJobCode));
-            Check.Length(companyJobCode, nameof(companyJobCode), CompanyJobConditionConsts.CompanyJobCodeMaxLength);
             Check.NotNullOrWhiteSpace(workExperienceYearCode, nameof(workExperienceYearCode));
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength);
@@ -77,8 +69,8 @@ namespace Resume.CompanyJobConditions
 
             var companyJobCondition = await _companyJobConditionRepository.GetAsync(id);
 
-            companyJobCondition.CompanyMainCode = companyMainCode;
-            companyJobCondition.CompanyJobCode = companyJobCode;
+            companyJobCondition.CompanyMainId = companyMainId;
+            companyJobCondition.CompanyJobId = companyJobId;
             companyJobCondition.WorkExperienceYearCode = workExperienceYearCode;
             companyJobCondition.EducationLevel = educationLevel;
             companyJobCondition.MajorDepartmentCategory = majorDepartmentCategory;

@@ -64,8 +64,8 @@ export class CompanyJobConditionComponent implements OnInit {
 
   buildForm() {
     const {
-      companyMainCode,
-      companyJobCode,
+      companyMainId,
+      companyJobId,
       workExperienceYearCode,
       educationLevel,
       majorDepartmentCategory,
@@ -83,8 +83,8 @@ export class CompanyJobConditionComponent implements OnInit {
     } = this.selected || {};
 
     this.form = this.fb.group({
-      companyMainCode: [companyMainCode ?? null, [Validators.required, Validators.maxLength(50)]],
-      companyJobCode: [companyJobCode ?? null, [Validators.required, Validators.maxLength(50)]],
+      companyMainId: [companyMainId ?? null, [Validators.required]],
+      companyJobId: [companyJobId ?? null, []],
       workExperienceYearCode: [
         workExperienceYearCode ?? null,
         [Validators.required, Validators.maxLength(50)],

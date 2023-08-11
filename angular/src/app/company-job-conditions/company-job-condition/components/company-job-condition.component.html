@@ -28,28 +28,28 @@
         <div class="row">
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="companyMainCodeFilter">
-                {{ '::CompanyMainCode' | abpLocalization }}
+              <label class="form-label" for="companyMainIdFilter">
+                {{ '::CompanyMainId' | abpLocalization }}
               </label>
 
               <input
-                id="companyMainCodeFilter"
+                id="companyMainIdFilter"
                 class="form-control"
-                [(ngModel)]="filters.companyMainCode"
+                [(ngModel)]="filters.companyMainId"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="companyJobCodeFilter">
-                {{ '::CompanyJobCode' | abpLocalization }}
+              <label class="form-label" for="companyJobIdFilter">
+                {{ '::CompanyJobId' | abpLocalization }}
               </label>
 
               <input
-                id="companyJobCodeFilter"
+                id="companyJobIdFilter"
                 class="form-control"
-                [(ngModel)]="filters.companyJobCode"
+                [(ngModel)]="filters.companyJobId"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -448,20 +448,14 @@
             </div>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column
-          name="{{ '::CompanyMainCode' | abpLocalization }}"
-          prop="companyMainCode"
-        >
+        <ngx-datatable-column name="{{ '::CompanyMainId' | abpLocalization }}" prop="companyMainId">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.companyMainCode }}
+            {{ row.companyMainId }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column
-          name="{{ '::CompanyJobCode' | abpLocalization }}"
-          prop="companyJobCode"
-        >
+        <ngx-datatable-column name="{{ '::CompanyJobId' | abpLocalization }}" prop="companyJobId">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.companyJobCode }}
+            {{ row.companyJobId }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -571,28 +565,26 @@
     <form [formGroup]="form" id="company-job-condition" (ngSubmit)="submitForm()" validateOnSubmit>
       <div class="mt-2 fade-in-top">
         <div class="mb-3">
-          <label class="form-label" for="company-job-condition-company-main-code">
-            {{ '::CompanyMainCode' | abpLocalization }} *
+          <label class="form-label" for="company-job-condition-company-main-id">
+            {{ '::CompanyMainId' | abpLocalization }} *
           </label>
 
           <input
-            id="company-job-condition-company-main-code"
-            formControlName="companyMainCode"
+            id="company-job-condition-company-main-id"
+            formControlName="companyMainId"
             class="form-control"
-            maxlength="50"
             autofocus
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="company-job-condition-company-job-code">
-            {{ '::CompanyJobCode' | abpLocalization }} *
+          <label class="form-label" for="company-job-condition-company-job-id">
+            {{ '::CompanyJobId' | abpLocalization }}
           </label>
 
           <input
-            id="company-job-condition-company-job-code"
-            formControlName="companyJobCode"
+            id="company-job-condition-company-job-id"
+            formControlName="companyJobId"
             class="form-control"
-            maxlength="50"
           />
         </div>
         <div class="mb-3">

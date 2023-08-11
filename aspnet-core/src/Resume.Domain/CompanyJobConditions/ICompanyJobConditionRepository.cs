@@ -10,8 +10,8 @@ namespace Resume.CompanyJobConditions
     {
         Task<List<CompanyJobCondition>> GetListAsync(
             string filterText = null,
-            string companyMainCode = null,
-            string companyJobCode = null,
+            Guid? companyMainId = null,
+            Guid? companyJobId = null,
             string workExperienceYearCode = null,
             string educationLevel = null,
             string majorDepartmentCategory = null,
@@ -37,8 +37,8 @@ namespace Resume.CompanyJobConditions
 
         Task<long> GetCountAsync(
             string filterText = null,
-            string companyMainCode = null,
-            string companyJobCode = null,
+            Guid? companyMainId = null,
+            Guid? companyJobId = null,
             string workExperienceYearCode = null,
             string educationLevel = null,
             string majorDepartmentCategory = null,

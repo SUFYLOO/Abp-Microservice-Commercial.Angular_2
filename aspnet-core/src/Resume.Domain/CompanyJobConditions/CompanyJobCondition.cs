@@ -15,11 +15,9 @@ namespace Resume.CompanyJobConditions
     {
         public virtual Guid? TenantId { get; set; }
 
-        [NotNull]
-        public virtual string CompanyMainCode { get; set; }
+        public virtual Guid CompanyMainId { get; set; }
 
-        [NotNull]
-        public virtual string CompanyJobCode { get; set; }
+        public virtual Guid CompanyJobId { get; set; }
 
         [NotNull]
         public virtual string WorkExperienceYearCode { get; set; }
@@ -65,14 +63,10 @@ namespace Resume.CompanyJobConditions
 
         }
 
-        public CompanyJobCondition(Guid id, string companyMainCode, string companyJobCode, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public CompanyJobCondition(Guid id, Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
         {
 
             Id = id;
-            Check.NotNull(companyMainCode, nameof(companyMainCode));
-            Check.Length(companyMainCode, nameof(companyMainCode), CompanyJobConditionConsts.CompanyMainCodeMaxLength, 0);
-            Check.NotNull(companyJobCode, nameof(companyJobCode));
-            Check.Length(companyJobCode, nameof(companyJobCode), CompanyJobConditionConsts.CompanyJobCodeMaxLength, 0);
             Check.NotNull(workExperienceYearCode, nameof(workExperienceYearCode));
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength, 0);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength, 0);
@@ -86,8 +80,8 @@ namespace Resume.CompanyJobConditions
             Check.Length(note, nameof(note), CompanyJobConditionConsts.NoteMaxLength, 0);
             Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), CompanyJobConditionConsts.StatusMaxLength, 0);
-            CompanyMainCode = companyMainCode;
-            CompanyJobCode = companyJobCode;
+            CompanyMainId = companyMainId;
+            CompanyJobId = companyJobId;
             WorkExperienceYearCode = workExperienceYearCode;
             EducationLevel = educationLevel;
             MajorDepartmentCategory = majorDepartmentCategory;

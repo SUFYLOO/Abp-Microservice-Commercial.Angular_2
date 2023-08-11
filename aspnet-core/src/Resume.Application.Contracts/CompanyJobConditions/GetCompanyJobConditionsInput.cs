@@ -7,8 +7,8 @@ namespace Resume.CompanyJobConditions
     {
         public string? FilterText { get; set; }
 
-        public string? CompanyMainCode { get; set; }
-        public string? CompanyJobCode { get; set; }
+        public Guid? CompanyMainId { get; set; }
+        public Guid? CompanyJobId { get; set; }
         public string? WorkExperienceYearCode { get; set; }
         public string? EducationLevel { get; set; }
         public string? MajorDepartmentCategory { get; set; }

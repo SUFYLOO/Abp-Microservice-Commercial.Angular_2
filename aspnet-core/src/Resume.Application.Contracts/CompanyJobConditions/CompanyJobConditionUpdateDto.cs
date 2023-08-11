@@ -8,11 +8,8 @@ namespace Resume.CompanyJobConditions
     public class CompanyJobConditionUpdateDto : IHasConcurrencyStamp
     {
         [Required]
-        [StringLength(CompanyJobConditionConsts.CompanyMainCodeMaxLength)]
-        public string CompanyMainCode { get; set; }
-        [Required]
-        [StringLength(CompanyJobConditionConsts.CompanyJobCodeMaxLength)]
-        public string CompanyJobCode { get; set; }
+        public Guid CompanyMainId { get; set; }
+        public Guid CompanyJobId { get; set; }
         [Required]
         [StringLength(CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength)]
         public string WorkExperienceYearCode { get; set; }

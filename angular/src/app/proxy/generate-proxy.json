@@ -2741,9 +2741,9 @@
                 },
                 {
                   "nameOnMethod": "input",
-                  "name": "CompanyMainCode",
+                  "name": "CompanyMainId",
                   "jsonName": null,
-                  "type": "System.String?",
+                  "type": "System.Guid?",
                   "typeSimple": "string?",
                   "isOptional": false,
                   "defaultValue": null,
@@ -2753,9 +2753,9 @@
                 },
                 {
                   "nameOnMethod": "input",
-                  "name": "CompanyJobCode",
+                  "name": "CompanyJobId",
                   "jsonName": null,
-                  "type": "System.String?",
+                  "type": "System.Guid?",
                   "typeSimple": "string?",
                   "isOptional": false,
                   "defaultValue": null,
@@ -29547,18 +29547,18 @@
           "isRequired": false
         },
         {
-          "name": "CompanyMainCode",
+          "name": "CompanyMainId",
           "jsonName": null,
-          "type": "System.String?",
+          "type": "System.Guid?",
           "typeSimple": "string?",
           "isRequired": true
         },
         {
-          "name": "CompanyJobCode",
+          "name": "CompanyJobId",
           "jsonName": null,
-          "type": "System.String?",
+          "type": "System.Guid?",
           "typeSimple": "string?",
-          "isRequired": true
+          "isRequired": false
         },
         {
           "name": "WorkExperienceYearCode",
@@ -29689,20 +29689,20 @@
       "genericArguments": null,
       "properties": [
         {
-          "name": "CompanyMainCode",
+          "name": "CompanyMainId",
           "jsonName": null,
-          "type": "System.String",
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRef": false,
           "isRequired": true
         },
         {
-          "name": "CompanyJobCode",
+          "name": "CompanyJobId",
           "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
+          "type": "System.Guid?",
+          "typeSimple": "string?",
           "isRef": false,
-          "isRequired": true
+          "isRequired": false
         },
         {
           "name": "WorkExperienceYearCode",
@@ -29833,20 +29833,20 @@
       "genericArguments": null,
       "properties": [
         {
-          "name": "CompanyMainCode",
+          "name": "CompanyMainId",
           "jsonName": null,
-          "type": "System.String",
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRef": false,
           "isRequired": true
         },
         {
-          "name": "CompanyJobCode",
+          "name": "CompanyJobId",
           "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
+          "type": "System.Guid?",
+          "typeSimple": "string?",
           "isRef": false,
-          "isRequired": true
+          "isRequired": false
         },
         {
           "name": "WorkExperienceYearCode",
@@ -29970,20 +29970,20 @@
       "genericArguments": null,
       "properties": [
         {
-          "name": "CompanyMainCode",
+          "name": "CompanyMainId",
           "jsonName": null,
-          "type": "System.String",
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRef": false,
           "isRequired": true
         },
         {
-          "name": "CompanyJobCode",
+          "name": "CompanyJobId",
           "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
+          "type": "System.Guid?",
+          "typeSimple": "string?",
           "isRef": false,
-          "isRequired": true
+          "isRequired": false
         },
         {
           "name": "WorkExperienceYearCode",

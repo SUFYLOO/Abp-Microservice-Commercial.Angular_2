@@ -1,8 +1,8 @@
 import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 
 export interface CompanyJobConditionCreateDto {
-  companyMainCode: string;
-  companyJobCode: string;
+  companyMainId: string;
+  companyJobId?: string;
   workExperienceYearCode: string;
   educationLevel?: string;
   majorDepartmentCategory?: string;
@@ -20,8 +20,8 @@ export interface CompanyJobConditionCreateDto {
 }
 
 export interface CompanyJobConditionDto extends FullAuditedEntityDto<string> {
-  companyMainCode: string;
-  companyJobCode: string;
+  companyMainId: string;
+  companyJobId?: string;
   workExperienceYearCode: string;
   educationLevel?: string;
   majorDepartmentCategory?: string;
@@ -46,8 +46,8 @@ export interface CompanyJobConditionExcelDownloadDto {
 }
 
 export interface CompanyJobConditionUpdateDto {
-  companyMainCode: string;
-  companyJobCode: string;
+  companyMainId: string;
+  companyJobId?: string;
   workExperienceYearCode: string;
   educationLevel?: string;
   majorDepartmentCategory?: string;
@@ -67,8 +67,8 @@ export interface CompanyJobConditionUpdateDto {
 
 export interface GetCompanyJobConditionsInput extends PagedAndSortedResultRequestDto {
   filterText?: string;
-  companyMainCode?: string;
-  companyJobCode?: string;
+  companyMainId?: string;
+  companyJobId?: string;
   workExperienceYearCode?: string;
   educationLevel?: string;
   majorDepartmentCategory?: string;
