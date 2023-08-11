@@ -8,6 +8,9 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>Resume</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <AssemblyVersion>21.2023.0810.01</AssemblyVersion>
+    <FileVersion>21.2023.0810.02</FileVersion>
+    <UserSecretsId>fbced45b-3fd5-43ac-a21e-e4cd4def4cf1</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.HttpApi.Host' " />
@@ -26,6 +29,7 @@
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Account.Pro.Public.Web.OpenIddict" Version="7.3.2" />
     <PackageReference Include="Volo.Abp.Account.Pro.Public.Web.Impersonation" Version="7.3.2" />
+    <PackageReference Include="Volo.Chat.SignalR" Version="7.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +47,15 @@
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="certificate-encryption.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="certificate-signing.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

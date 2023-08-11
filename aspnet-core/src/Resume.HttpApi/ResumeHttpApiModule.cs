@@ -1,4 +1,4 @@
-﻿using Localization.Resources.AbpUi;
+using Localization.Resources.AbpUi;
 using Resume.Localization;
 using Volo.Abp.Account;
 using Volo.Abp.AuditLogging;
@@ -13,6 +13,10 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TextTemplateManagement;
 using Volo.Abp.Gdpr;
 using Volo.Abp.OpenIddict;
+using Volo.Chat;
+using Volo.FileManagement;
+using Volo.Payment;
+using Volo.Payment.Admin;
 
 namespace Resume;
 
@@ -31,7 +35,11 @@ namespace Resume;
     typeof(AbpAccountPublicHttpApiModule),
     typeof(TextTemplateManagementHttpApiModule)
     )]
-public class ResumeHttpApiModule : AbpModule
+[DependsOn(typeof(ChatHttpApiModule))]
+    [DependsOn(typeof(FileManagementHttpApiModule))]
+    [DependsOn(typeof(AbpPaymentHttpApiModule))]
+    [DependsOn(typeof(AbpPaymentAdminHttpApiModule))]
+    public class ResumeHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

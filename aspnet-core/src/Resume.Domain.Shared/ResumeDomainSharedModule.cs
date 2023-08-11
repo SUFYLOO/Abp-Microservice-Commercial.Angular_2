@@ -17,6 +17,9 @@ using Volo.Abp.OpenIddict;
 using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.Gdpr;
 using Volo.Abp.GlobalFeatures;
+using Volo.Chat;
+using Volo.FileManagement;
+using Volo.Payment;
 
 namespace Resume;
 
@@ -35,7 +38,10 @@ namespace Resume;
     typeof(AbpGlobalFeaturesModule),
     typeof(BlobStoringDatabaseDomainSharedModule)
     )]
-public class ResumeDomainSharedModule : AbpModule
+[DependsOn(typeof(ChatDomainSharedModule))]
+    [DependsOn(typeof(FileManagementDomainSharedModule))]
+    [DependsOn(typeof(AbpPaymentDomainSharedModule))]
+    public class ResumeDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

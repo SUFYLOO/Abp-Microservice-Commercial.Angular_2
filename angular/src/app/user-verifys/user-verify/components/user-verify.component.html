@@ -1,0 +1,540 @@
+<abp-page [title]="'::UserVerifys' | abpLocalization">
+  <abp-page-toolbar-container class="col">
+    <div class="text-lg-end pt-2">
+      <button
+        class="btn btn-primary btn-sm mx-2"
+        type="button"
+        [disabled]="isExportToExcelBusy"
+        (click)="exportToExcel()"
+      >
+        {{ '::ExportToExcel' | abpLocalization }}
+      </button>
+
+      <button
+        *abpPermission="'Resume.UserVerifys.Create'"
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="create()"
+      >
+        <i class="fa fa-plus me-1" aria-hidden="true"></i>
+        {{ '::NewUserVerify' | abpLocalization }}
+      </button>
+    </div>
+  </abp-page-toolbar-container>
+
+  <abp-advanced-entity-filters localizationSourceName="" [list]="list">
+    <abp-advanced-entity-filters-form>
+      <form #filterForm (keyup.enter)="list.get()">
+        <div class="row">
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="verifyIdFilter">
+                {{ '::VerifyId' | abpLocalization }}
+              </label>
+
+              <input
+                id="verifyIdFilter"
+                class="form-control"
+                [(ngModel)]="filters.verifyId"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="verifyCodeFilter">
+                {{ '::VerifyCode' | abpLocalization }}
+              </label>
+
+              <input
+                id="verifyCodeFilter"
+                class="form-control"
+                [(ngModel)]="filters.verifyCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="extendedInformationFilter">
+                {{ '::ExtendedInformation' | abpLocalization }}
+              </label>
+
+              <input
+                id="extendedInformationFilter"
+                class="form-control"
+                [(ngModel)]="filters.extendedInformation"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minDateA">
+                {{ '::MinDateA' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="minDateA"
+                  class="form-control"
+                  #minDateAInput
+                  #minDateADatepicker="ngbDatepicker"
+                  name="minDateA"
+                  ngbDatepicker
+                  container="body"
+                  readonly
+                  (click)="minDateADatepicker.toggle()"
+                  (keyup.space)="minDateADatepicker.toggle()"
+                  [(ngModel)]="filters.dateAMin"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="minDateAInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      minDateADatepicker.writeValue(null);
+                      minDateADatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxDateA">
+                {{ '::MaxDateA' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="maxDateA"
+                  class="form-control"
+                  #maxDateAInput
+                  #maxDateADatepicker="ngbDatepicker"
+                  name="maxDateA"
+                  ngbDatepicker
+                  readonly
+                  (click)="maxDateADatepicker.toggle()"
+                  (keyup.space)="maxDateADatepicker.toggle()"
+                  [(ngModel)]="filters.dateAMax"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="maxDateAInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      maxDateADatepicker.writeValue(null);
+                      maxDateADatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minDateD">
+                {{ '::MinDateD' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="minDateD"
+                  class="form-control"
+                  #minDateDInput
+                  #minDateDDatepicker="ngbDatepicker"
+                  name="minDateD"
+                  ngbDatepicker
+                  container="body"
+                  readonly
+                  (click)="minDateDDatepicker.toggle()"
+                  (keyup.space)="minDateDDatepicker.toggle()"
+                  [(ngModel)]="filters.dateDMin"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="minDateDInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      minDateDDatepicker.writeValue(null);
+                      minDateDDatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxDateD">
+                {{ '::MaxDateD' | abpLocalization }}
+              </label>
+
+              <div class="input-group" validationTarget>
+                <input
+                  id="maxDateD"
+                  class="form-control"
+                  #maxDateDInput
+                  #maxDateDDatepicker="ngbDatepicker"
+                  name="maxDateD"
+                  ngbDatepicker
+                  readonly
+                  (click)="maxDateDDatepicker.toggle()"
+                  (keyup.space)="maxDateDDatepicker.toggle()"
+                  [(ngModel)]="filters.dateDMax"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="maxDateDInput.value" class="input-group-append">
+                  <button
+                    class="btn btn-link px-2"
+                    type="button"
+                    [title]="'AbpUi::Clear' | abpLocalization"
+                    (click)="
+                      maxDateDDatepicker.writeValue(null);
+                      maxDateDDatepicker.manualDateChange(null, true)
+                    "
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="minSort">
+                {{ '::MinSort' | abpLocalization }}
+              </label>
+
+              <input
+                id="minSort"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.sortMin"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="maxSort">
+                {{ '::MaxSort' | abpLocalization }}
+              </label>
+
+              <input
+                id="maxSort"
+                type="number"
+                class="form-control"
+                [(ngModel)]="filters.sortMax"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="noteFilter">
+                {{ '::Note' | abpLocalization }}
+              </label>
+
+              <input
+                id="noteFilter"
+                class="form-control"
+                [(ngModel)]="filters.note"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="statusFilter">
+                {{ '::Status' | abpLocalization }}
+              </label>
+
+              <input
+                id="statusFilter"
+                class="form-control"
+                [(ngModel)]="filters.status"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-auto align-self-end mb-3">
+            <div class="row">
+              <div class="col-6 col-sm-auto d-grid">
+                <button type="button" class="btn btn-outline-primary" (click)="clearFilters()">
+                  <span>{{ 'AbpUi::Clear' | abpLocalization }}</span>
+                </button>
+              </div>
+              <div class="col-6 col-sm-auto d-grid">
+                <button type="button" class="btn btn-primary" (click)="list.get()">
+                  <span>{{ 'AbpUi::Refresh' | abpLocalization }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </abp-advanced-entity-filters-form>
+  </abp-advanced-entity-filters>
+
+  <div class="card">
+    <div class="card-body">
+      <ngx-datatable [rows]="data.items" [count]="data.totalCount" [list]="list" default>
+        <ngx-datatable-column
+          [name]="'AbpUi::Actions' | abpLocalization"
+          [maxWidth]="150"
+          [width]="150"
+          [sortable]="false"
+        >
+          <ng-template let-row="row" let-i="rowIndex" ngx-datatable-cell-template>
+            <div ngbDropdown container="body" class="d-inline-block">
+              <button
+                class="btn btn-primary btn-sm dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                ngbDropdownToggle
+              >
+                <i class="fa fa-cog me-1" aria-hidden="true"></i>
+                {{ 'AbpUi::Actions' | abpLocalization }}
+              </button>
+
+              <div ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  *abpPermission="'Resume.UserVerifys.Edit'"
+                  (click)="update(row)"
+                >
+                  {{ 'AbpUi::Edit' | abpLocalization }}
+                </button>
+
+                <button
+                  ngbDropdownItem
+                  *abpPermission="'Resume.UserVerifys.Delete'"
+                  (click)="delete(row)"
+                >
+                  {{ 'AbpUi::Delete' | abpLocalization }}
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::VerifyId' | abpLocalization }}" prop="verifyId">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.verifyId }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::VerifyCode' | abpLocalization }}" prop="verifyCode">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.verifyCode }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::ExtendedInformation' | abpLocalization }}"
+          prop="extendedInformation"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.extendedInformation }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::DateA' | abpLocalization }}" prop="dateA">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.dateA | date }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::DateD' | abpLocalization }}" prop="dateD">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.dateD | date }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Sort' | abpLocalization }}" prop="sort">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.sort }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Note' | abpLocalization }}" prop="note">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.note }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Status' | abpLocalization }}" prop="status">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.status }}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</abp-page>
+
+<abp-modal [busy]="isModalBusy" [(visible)]="isModalOpen">
+  <ng-template #abpHeader>
+    <h3>
+      {{ (selected ? 'AbpUi::Edit' : '::NewUserVerify') | abpLocalization }}
+    </h3>
+  </ng-template>
+
+  <ng-template #abpBody>
+    <form [formGroup]="form" id="user-verify" (ngSubmit)="submitForm()" validateOnSubmit>
+      <div class="mt-2 fade-in-top">
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-verify-id">
+            {{ '::VerifyId' | abpLocalization }} *
+          </label>
+
+          <input
+            id="user-verify-verify-id"
+            formControlName="verifyId"
+            class="form-control"
+            maxlength="500"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-verify-code">
+            {{ '::VerifyCode' | abpLocalization }} *
+          </label>
+
+          <input
+            id="user-verify-verify-code"
+            formControlName="verifyCode"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-extended-information">
+            {{ '::ExtendedInformation' | abpLocalization }}
+          </label>
+
+          <input
+            id="user-verify-extended-information"
+            formControlName="extendedInformation"
+            class="form-control"
+            maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-date-a">
+            {{ '::DateA' | abpLocalization }} *
+          </label>
+
+          <div class="input-group" validationTarget>
+            <input
+              readonly
+              id="user-verify-date-a"
+              formControlName="dateA"
+              class="form-control"
+              ngbDatepicker
+              #dateAInput
+              #dateADatepicker="ngbDatepicker"
+              (click)="dateADatepicker.open()"
+              (keyup.space)="dateADatepicker.open()"
+            />
+            <div *ngIf="dateAInput.value" class="input-group-append">
+              <button
+                class="btn btn-link px-2"
+                type="button"
+                [title]="'AbpUi::Clear' | abpLocalization"
+                (click)="
+                  dateADatepicker.writeValue(null); dateADatepicker.manualDateChange(null, true)
+                "
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-date-d">
+            {{ '::DateD' | abpLocalization }} *
+          </label>
+
+          <div class="input-group" validationTarget>
+            <input
+              readonly
+              id="user-verify-date-d"
+              formControlName="dateD"
+              class="form-control"
+              ngbDatepicker
+              #dateDInput
+              #dateDDatepicker="ngbDatepicker"
+              (click)="dateDDatepicker.open()"
+              (keyup.space)="dateDDatepicker.open()"
+            />
+            <div *ngIf="dateDInput.value" class="input-group-append">
+              <button
+                class="btn btn-link px-2"
+                type="button"
+                [title]="'AbpUi::Clear' | abpLocalization"
+                (click)="
+                  dateDDatepicker.writeValue(null); dateDDatepicker.manualDateChange(null, true)
+                "
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-sort">
+            {{ '::Sort' | abpLocalization }} *
+          </label>
+
+          <input type="number" id="user-verify-sort" formControlName="sort" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-note">
+            {{ '::Note' | abpLocalization }}
+          </label>
+
+          <input
+            id="user-verify-note"
+            formControlName="note"
+            class="form-control"
+            maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user-verify-status">
+            {{ '::Status' | abpLocalization }} *
+          </label>
+
+          <input
+            id="user-verify-status"
+            formControlName="status"
+            class="form-control"
+            maxlength="50"
+          />
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <button type="button" class="btn btn-secondary" abpClose>
+      {{ 'AbpUi::Cancel' | abpLocalization }}
+    </button>
+
+    <abp-button iconClass="fa fa-check" buttonType="submit" formName="user-verify">
+      {{ 'AbpUi::Save' | abpLocalization }}
+    </abp-button>
+  </ng-template>
+</abp-modal>

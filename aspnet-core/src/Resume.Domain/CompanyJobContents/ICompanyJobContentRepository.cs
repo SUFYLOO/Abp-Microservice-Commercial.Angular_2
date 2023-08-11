@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Volo.Abp.Domain.Repositories;
+
+namespace Resume.CompanyJobContents
+{
+    public interface ICompanyJobContentRepository : IRepository<CompanyJobContent, Guid>
+    {
+        Task<List<CompanyJobContent>> GetListAsync(
+            string filterText = null,
+            Guid? companyMainId = null,
+            Guid? companyJobId = null,
+            string name = null,
+            string jobTypeCode = null,
+            int? peopleRequiredNumberMin = null,
+            int? peopleRequiredNumberMax = null,
+            bool? peopleRequiredNumberUnlimited = null,
+            string jobType = null,
+            string jobTypeContent = null,
+            string salaryPayTypeCode = null,
+            int? salaryMinMin = null,
+            int? salaryMinMax = null,
+            int? salaryMaxMin = null,
+            int? salaryMaxMax = null,
+            bool? salaryUp = null,
+            string workPlace = null,
+            string workHours = null,
+            string workHour = null,
+            bool? workShift = null,
+            bool? workRemoteAllow = null,
+            string workRemoteTypeCode = null,
+            string workRemote = null,
+            string workDifferentPlaces = null,
+            string holidaySystemCode = null,
+            string workDayCode = null,
+            string workIdentityCode = null,
+            string disabilityCategory = null,
+            string extendedInformation = null,
+            DateTime? dateAMin = null,
+            DateTime? dateAMax = null,
+            DateTime? dateDMin = null,
+            DateTime? dateDMax = null,
+            int? sortMin = null,
+            int? sortMax = null,
+            string note = null,
+            string status = null,
+            string sorting = null,
+            int maxResultCount = int.MaxValue,
+            int skipCount = 0,
+            CancellationToken cancellationToken = default
+        );
+
+        Task<long> GetCountAsync(
+            string filterText = null,
+            Guid? companyMainId = null,
+            Guid? companyJobId = null,
+            string name = null,
+            string jobTypeCode = null,
+            int? peopleRequiredNumberMin = null,
+            int? peopleRequiredNumberMax = null,
+            bool? peopleRequiredNumberUnlimited = null,
+            string jobType = null,
+            string jobTypeContent = null,
+            string salaryPayTypeCode = null,
+            int? salaryMinMin = null,
+            int? salaryMinMax = null,
+            int? salaryMaxMin = null,
+            int? salaryMaxMax = null,
+            bool? salaryUp = null,
+            string workPlace = null,
+            string workHours = null,
+            string workHour = null,
+            bool? workShift = null,
+            bool? workRemoteAllow = null,
+            string workRemoteTypeCode = null,
+            string workRemote = null,
+            string workDifferentPlaces = null,
+            string holidaySystemCode = null,
+            string workDayCode = null,
+            string workIdentityCode = null,
+            string disabilityCategory = null,
+            string extendedInformation = null,
+            DateTime? dateAMin = null,
+            DateTime? dateAMax = null,
+            DateTime? dateDMin = null,
+            DateTime? dateDMax = null,
+            int? sortMin = null,
+            int? sortMax = null,
+            string note = null,
+            string status = null,
+            CancellationToken cancellationToken = default);
+    }
+}

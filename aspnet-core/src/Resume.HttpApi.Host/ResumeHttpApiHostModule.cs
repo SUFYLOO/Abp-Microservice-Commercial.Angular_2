@@ -42,6 +42,7 @@ using Volo.Abp.LeptonX.Shared;
 using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
 using Volo.Saas.Host;
+using Volo.Chat;
 
 namespace Resume;
 
@@ -57,7 +58,8 @@ namespace Resume;
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
-public class ResumeHttpApiHostModule : AbpModule
+[DependsOn(typeof(ChatSignalRModule))]
+    public class ResumeHttpApiHostModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -83,8 +85,10 @@ public class ResumeHttpApiHostModule : AbpModule
 
             PreConfigure<OpenIddictServerBuilder>(builder =>
             {
+                //builder.AddSigningCertificate(GetSigningCertificate(hostingEnvironment, configuration));
+                //builder.AddEncryptionCertificate(GetSigningCertificate(hostingEnvironment, configuration));
                 builder.AddSigningCertificate(GetSigningCertificate(hostingEnvironment, configuration));
-                builder.AddEncryptionCertificate(GetSigningCertificate(hostingEnvironment, configuration));
+                builder.AddEncryptionCertificate(GetEncryptionCertificate(hostingEnvironment, configuration));
                 builder.SetIssuer(new Uri(configuration["AuthServer:Authority"]));
             });
         }
@@ -310,7 +314,7 @@ public class ResumeHttpApiHostModule : AbpModule
         app.UseSwagger();
         app.UseAbpSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Resume API");
+            options.SwaggerEndpoint("../swagger/v1/swagger.json", "Resume API");
 
             var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
             options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
@@ -320,15 +324,43 @@ public class ResumeHttpApiHostModule : AbpModule
         app.UseConfiguredEndpoints();
     }
 
+    //private X509Certificate2 GetSigningCertificate(IWebHostEnvironment hostingEnv, IConfiguration configuration)
+    //{
+    //    var fileName = "authserver.pfx";
+    //    var passPhrase = "2D7AA457-5D33-48D6-936F-C48E5EF468ED";
+    //    var file = Path.Combine(hostingEnv.ContentRootPath, fileName);
+
+    //    if (!File.Exists(file))
+    //    {
+    //        throw new FileNotFoundException($"Signing Certificate couldn't found: {file}");
+    //    }
+
+    //    return new X509Certificate2(file, passPhrase);
+    //}
+
     private X509Certificate2 GetSigningCertificate(IWebHostEnvironment hostingEnv, IConfiguration configuration)
     {
-        var fileName = "authserver.pfx";
-        var passPhrase = "2D7AA457-5D33-48D6-936F-C48E5EF468ED";
+        var fileName = "certificate-signing.pfx";
+        var passPhrase = "Aa!00000000";
         var file = Path.Combine(hostingEnv.ContentRootPath, fileName);
 
-        if (!File.Exists(file))
+        if (!System.IO.File.Exists(file))
         {
             throw new FileNotFoundException($"Signing Certificate couldn't found: {file}");
+        }
+
+        return new X509Certificate2(file, passPhrase);
+    }
+
+    private X509Certificate2 GetEncryptionCertificate(IWebHostEnvironment hostingEnv, IConfiguration configuration)
+    {
+        var fileName = "certificate-encryption.pfx";
+        var passPhrase = "Aa!00000000";
+        var file = Path.Combine(hostingEnv.ContentRootPath, fileName);
+
+        if (!System.IO.File.Exists(file))
+        {
+            throw new FileNotFoundException($"encryption Certificate couldn't found: {file}");
         }
 
         return new X509Certificate2(file, passPhrase);
