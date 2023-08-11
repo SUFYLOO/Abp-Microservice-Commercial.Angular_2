@@ -162,7 +162,10 @@ namespace Resume.App.Companys
             }
             else
             {
-                var item = ObjectMapper. = GuidGenerator.Create();
+                var item = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobCondition>(input);
+                await _appService._companyJobConditionRepository.UpdateAsync(item);
+
+                Result = ObjectMapper.Map<CompanyJobCondition, SaveCompanyJobConditionDto>(item);
             }
 
             return Result;
