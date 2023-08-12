@@ -39,6 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Resume.Application\Resume.Application.csproj" />
     <ProjectReference Include="..\Resume.EntityFrameworkCore\Resume.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Resume.HttpApi.Client\Resume.HttpApi.Client.csproj" />
     <ProjectReference Include="..\Resume.HttpApi\Resume.HttpApi.csproj" />
   </ItemGroup>
 
