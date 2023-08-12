@@ -63,7 +63,7 @@ namespace Resume.ResumeWorkss
         {
 
             var resumeWorks = await _resumeWorksManager.CreateAsync(
-            input.ResumeMainId, input.Name, input.Link, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.Link, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeWorks, ResumeWorksDto>(resumeWorks);
@@ -75,7 +75,7 @@ namespace Resume.ResumeWorkss
 
             var resumeWorks = await _resumeWorksManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.Name, input.Link, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.Link, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeWorks, ResumeWorksDto>(resumeWorks);

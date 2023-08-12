@@ -33,11 +33,11 @@ export interface ResumeMainCreateDto {
   autobiography1?: string;
   autobiography2?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeMainDto extends FullAuditedEntityDto<string> {
@@ -51,11 +51,11 @@ export interface ResumeMainDto extends FullAuditedEntityDto<string> {
   autobiography1?: string;
   autobiography2?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeMainExcelDownloadDto {
@@ -75,9 +75,9 @@ export interface ResumeMainUpdateDto {
   autobiography1?: string;
   autobiography2?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

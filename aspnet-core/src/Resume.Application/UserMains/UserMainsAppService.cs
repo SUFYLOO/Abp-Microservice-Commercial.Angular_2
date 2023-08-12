@@ -63,7 +63,7 @@ namespace Resume.UserMains
         {
 
             var userMain = await _userMainManager.CreateAsync(
-            input.UserId, input.Name, input.LoginAccountCode, input.LoginMobilePhoneUpdate, input.LoginMobilePhone, input.LoginEmailUpdate, input.LoginEmail, input.LoginIdentityNo, input.Password, input.SystemUserRoleKeys, input.AllowSearch, input.DateA, input.DateD, input.Sort, input.Status, input.Matching, input.AnonymousName, input.ExtendedInformation, input.Note
+            input.UserId, input.Name, input.LoginAccountCode, input.LoginMobilePhoneUpdate, input.LoginMobilePhone, input.LoginEmailUpdate, input.LoginEmail, input.LoginIdentityNo, input.Password, input.SystemUserRoleKeys, input.AllowSearch, input.DateA, input.Matching, input.AnonymousName, input.ExtendedInformation, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserMain, UserMainDto>(userMain);
@@ -75,7 +75,7 @@ namespace Resume.UserMains
 
             var userMain = await _userMainManager.UpdateAsync(
             id,
-            input.UserId, input.Name, input.LoginAccountCode, input.LoginMobilePhoneUpdate, input.LoginMobilePhone, input.LoginEmailUpdate, input.LoginEmail, input.LoginIdentityNo, input.Password, input.SystemUserRoleKeys, input.AllowSearch, input.DateA, input.DateD, input.Sort, input.Status, input.Matching, input.AnonymousName, input.ExtendedInformation, input.Note
+            input.UserId, input.Name, input.LoginAccountCode, input.LoginMobilePhoneUpdate, input.LoginMobilePhone, input.LoginEmailUpdate, input.LoginEmail, input.LoginIdentityNo, input.Password, input.SystemUserRoleKeys, input.AllowSearch, input.DateA, input.Matching, input.AnonymousName, input.ExtendedInformation, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserMain, UserMainDto>(userMain);

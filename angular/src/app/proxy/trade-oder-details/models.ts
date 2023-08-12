@@ -31,7 +31,7 @@ export interface TradeOderDetailCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface TradeOderDetailDto extends FullAuditedEntityDto<string> {
@@ -45,7 +45,7 @@ export interface TradeOderDetailDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -66,6 +66,6 @@ export interface TradeOderDetailUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

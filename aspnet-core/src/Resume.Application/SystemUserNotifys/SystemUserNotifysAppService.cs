@@ -63,7 +63,7 @@ namespace Resume.SystemUserNotifys
         {
 
             var systemUserNotify = await _systemUserNotifyManager.CreateAsync(
-            input.UserMainId, input.KeyId, input.KeyName, input.NotifyTypeCode, input.AppName, input.AppCode, input.TitleContents, input.Contents, input.IsRead, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.UserMainId, input.KeyId, input.KeyName, input.NotifyTypeCode, input.AppName, input.AppCode, input.TitleContents, input.Contents, input.IsRead, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemUserNotify, SystemUserNotifyDto>(systemUserNotify);
@@ -75,7 +75,7 @@ namespace Resume.SystemUserNotifys
 
             var systemUserNotify = await _systemUserNotifyManager.UpdateAsync(
             id,
-            input.UserMainId, input.KeyId, input.KeyName, input.NotifyTypeCode, input.AppName, input.AppCode, input.TitleContents, input.Contents, input.IsRead, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.UserMainId, input.KeyId, input.KeyName, input.NotifyTypeCode, input.AppName, input.AppCode, input.TitleContents, input.Contents, input.IsRead, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemUserNotify, SystemUserNotifyDto>(systemUserNotify);

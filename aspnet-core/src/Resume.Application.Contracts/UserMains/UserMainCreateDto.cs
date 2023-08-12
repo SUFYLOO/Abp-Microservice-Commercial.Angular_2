@@ -36,15 +36,12 @@ namespace Resume.UserMains
         public DateTime DateA { get; set; }
         [StringLength(UserMainConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(UserMainConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(UserMainConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public bool Matching { get; set; }
     }
 }

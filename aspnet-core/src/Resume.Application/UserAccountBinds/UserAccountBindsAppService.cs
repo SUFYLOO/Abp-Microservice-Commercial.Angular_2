@@ -63,7 +63,7 @@ namespace Resume.UserAccountBinds
         {
 
             var userAccountBind = await _userAccountBindManager.CreateAsync(
-            input.UserMainId, input.ThirdPartyTypeCode, input.ThirdPartyAccountId, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ThirdPartyTypeCode, input.ThirdPartyAccountId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserAccountBind, UserAccountBindDto>(userAccountBind);
@@ -75,7 +75,7 @@ namespace Resume.UserAccountBinds
 
             var userAccountBind = await _userAccountBindManager.UpdateAsync(
             id,
-            input.UserMainId, input.ThirdPartyTypeCode, input.ThirdPartyAccountId, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ThirdPartyTypeCode, input.ThirdPartyAccountId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserAccountBind, UserAccountBindDto>(userAccountBind);

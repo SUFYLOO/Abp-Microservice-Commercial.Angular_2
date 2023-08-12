@@ -24,13 +24,12 @@ namespace Resume.TradeProducts
         public int QuantitySafetyStock { get; set; }
         [StringLength(TradeProductConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(TradeProductConsts.OrderStateCodeMaxLength)]
         public string? OrderStateCode { get; set; }
-        [Required]
         [StringLength(TradeProductConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

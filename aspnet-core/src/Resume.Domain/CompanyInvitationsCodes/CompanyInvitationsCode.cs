@@ -31,24 +31,24 @@ namespace Resume.CompanyInvitationsCodes
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public CompanyInvitationsCode()
         {
 
         }
 
-        public CompanyInvitationsCode(Guid id, Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public CompanyInvitationsCode(Guid id, Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -60,7 +60,6 @@ namespace Resume.CompanyInvitationsCodes
             Check.Length(verifyCode, nameof(verifyCode), CompanyInvitationsCodeConsts.VerifyCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsCodeConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyInvitationsCodeConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), CompanyInvitationsCodeConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             CompanyJobId = companyJobId;

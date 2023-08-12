@@ -21,11 +21,11 @@ export interface UserAccountBindCreateDto {
   thirdPartyTypeCode: string;
   thirdPartyAccountId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserAccountBindDto extends FullAuditedEntityDto<string> {
@@ -33,11 +33,11 @@ export interface UserAccountBindDto extends FullAuditedEntityDto<string> {
   thirdPartyTypeCode: string;
   thirdPartyAccountId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserAccountBindExcelDownloadDto {
@@ -51,9 +51,9 @@ export interface UserAccountBindUpdateDto {
   thirdPartyTypeCode: string;
   thirdPartyAccountId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

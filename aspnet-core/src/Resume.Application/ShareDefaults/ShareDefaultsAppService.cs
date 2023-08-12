@@ -63,7 +63,7 @@ namespace Resume.ShareDefaults
         {
 
             var shareDefault = await _shareDefaultManager.CreateAsync(
-            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.FieldKey, input.FieldValue, input.ColumnTypeCode, input.FormTypeCode, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.FieldKey, input.FieldValue, input.ColumnTypeCode, input.FormTypeCode, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareDefault, ShareDefaultDto>(shareDefault);
@@ -75,7 +75,7 @@ namespace Resume.ShareDefaults
 
             var shareDefault = await _shareDefaultManager.UpdateAsync(
             id,
-            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.FieldKey, input.FieldValue, input.ColumnTypeCode, input.FormTypeCode, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.FieldKey, input.FieldValue, input.ColumnTypeCode, input.FormTypeCode, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareDefault, ShareDefaultDto>(shareDefault);

@@ -27,19 +27,19 @@ namespace Resume.ResumeEducationss
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("10c3cc5f-1a8f-40fe-81ad-58270ce868ab")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("7a2736d3-b8bb-47b1-b3ca-905699c617c0")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _resumeEducationssAppService.GetAsync(Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7"));
+            var result = await _resumeEducationssAppService.GetAsync(Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7"));
+            result.Id.ShouldBe(Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da"));
         }
 
         [Fact]
@@ -48,25 +48,25 @@ namespace Resume.ResumeEducationss
             // Arrange
             var input = new ResumeEducationsCreateDto
             {
-                ResumeMainId = Guid.Parse("09349c51-8b8d-42b9-b547-64317e6320ef"),
-                EducationLevelCode = "a02eb419d1c14e30919d0cd37bcf153600f0761d5fc14ad4a9",
-                SchoolCode = "42fad1af0a2c4c569c96ef4e9e67f4ece649eafb1d53426dab",
-                SchoolName = "de6aa403c2ea457594ddf3425f3f70a7bba329e4b81b4e14be2b8c9e321603379d624e1366eb4d97ac7d8bb7068504a96b6a1c1017844d5687b018015a11d1db9736a4e78dbf4b909fce71e375a343159eabb8ee2ad94b9cb8a6dbd4025cf77bedfe89f4",
+                ResumeMainId = Guid.Parse("1b99f8c1-3d8e-4756-b03d-055abef8d35f"),
+                EducationLevelCode = "0be224e027b945d6a6bd228a53ca03af0676820ee5c745dc83",
+                SchoolCode = "05a8705ccd3a40389a43f5dbab041a30b28aabd9c0094b6eb7",
+                SchoolName = "acc863d24b654e89bbbf4b7c673dc189212dc009b91c44ff89df40ee2a254ce5d33544100f6c48b8be4e4721f692333be22d6c3e939242b8b2fa88a08da0a5d8cf3552392cad461bac501ff0606372c9ab2b190242ad4c15bcaf7207cfd1aeca5460d7af",
                 Night = true,
                 Working = true,
-                MajorDepartmentName = "d97879f7063f4f40be790de83135cd8fc413be494e7c4e0b8c",
-                MajorDepartmentCategoryCode = "90936b8b2e4f4b9b8ecdcbdb769db902138b313efb914b83a53c8f680349e22aaaf5f83882714af6a3d57b7e0ed75030395cec7636df4b8e8cfe93c5fe5c1a81afd43c5308114a629312f532e9177ce5c23cc2d3004243399b16126cb061de12cf2181fad92e4c4bac9caef622a15da6d5d4cf6c25ee417691af36269915755d12f6493b085948998518878fa848ac585c57e99da0bf4c35b389232d91fa4c7d88b74935e883489995aca8f71b4937a6809d089d152b40c980e5773b2781ecc993b23420186349f3a86c475926513d8923afc4dcde4641aca869ac173c3efcf1536e4bb8c2b84eb3bdaf6c7ab74bdf91164231ee545c4026b516",
-                MinorDepartmentName = "54d09b2fbc75446a894b7dc4f7e545e9e0919601745642f6b1",
-                MinorDepartmentCategoryCode = "2f8b78c595ab42c0b7797ea51555af8cca0bad0c517a40c29a20503f1dfb45c9419933eee4004b8593b437d63df02146d25ae84bf65f419a8693c98b9247e246ddff9b0b5aef41d8b963bb55fcfc50bdbde068003ed74c1f95586f8f203bb7d33ead249095c4496b96283d451ba30ee3cd9c7d09d8d040f6a86f7bb87b12bc7c964b9a0380584ec5bdd712b52c573c4ac8a08f4c94424df38c00be66261abd0f967b094800a9485b9a2608af1c9a1f69c2144523d924424bab88a0027316d1df208c9b1fa5534c6c9b907487673a145acf284884f5dc48e8b21f5b06545526ec4ebf62293f2d4d88bdedb2e7dcfc848def99c5bce426465c8374",
-                GraduationCode = "91461a1fd3d54cefba5530bf5b8dd2f244e0c09ad1ee4787ab",
+                MajorDepartmentName = "0978e93d1bbb4091a5bff176bd6e8aed563c09c196624dd493",
+                MajorDepartmentCategoryCode = "19f4976ad379480ea49bcb29e5183a910f462b1a034742f0ad71b6e5044d68b66630c8279c104d50b9b469a19bf2ee62df0c54ec3f80426cb88c7da5f8125fb588e11a4d97a74a5f8ed1a383849535bf9b571af7475b4feba11211ce336bc3e928cd6de2200547fd947b2bfef63d7b563de337031b6845f299de9199378daddeb7976421b69e40cbab41ee4a00988747f9c26ee324624abba5b574ed8549df1533c66b2275ba4ac58b7cf43b4f51bc2fffce4dd790df484fb5050e032ff254b1d5f8c4639c284d9cb855c65bb9be0c08df7876d1873c489c9eb299a4acb43a4a161544ca45f843eba9f5a984a5e275726040b6013926479a8fa9",
+                MinorDepartmentName = "cb2d94f4dea646d7b6f2b966f0c5ce8bd2e8a0dc7d554b0b9c",
+                MinorDepartmentCategoryCode = "351ec237c87843f4bba2408ff2d4514f068d99133ea541feac75f99bf3bf9727f609c9cf84de454080580237045402a3aeaf5e0dbeca44409fa6f126c10335d5a0304412b9794b7fa6df4eab4ea8bd4736f29cf711f3406887fbdfee763a4637ca20765c4a754f8bbd95fca9866e1b67f19dcd1f1f564a0d96ea3133dd4f3c9f6bc5210f3c7b47319432a8a781cf5f3054906b90959f41a0bcfb33ae60559127fd7abc1c89aa4dd4b22713becbd90e9e2a1d2a93e9744a8e923f95a94ddc7c87038d3765b0f34b7fbb2a0436762382db729cb3065cf4401a84933edaeec6800986a53e938d1042a983d0cdfca35b56328311d56d478e4f9d9d5c",
+                GraduationCode = "f3ef965712de4a49ab00faaee22cbbce18e77a45ff1e4668aa",
                 Domestic = true,
-                CountryCode = "29dda6f795224ab9b19de622bd02be6f0fc2c29b50614e3a8c",
-                ExtendedInformation = "2ab2ac118f0d45b8af84de85251e2dfa070b4e8e6bfe41b1ab7aa604d8722938345adb07d39e42ffa5913a5edd431becf6a378e2c2c74b9d9118233e403c380a96ab051dbda242bebfec0fdaf19302b2834c04d24d3d46fd8bcac087d61ce9915ac5532595ef4ff5b8f7d724ef2e7c344e9b58d3647d4f9aa1472b3296476e2b237bf79f365a4c5db67865370c1663baf78ea9ed2d09489fae036ad08ae442a9d4ac9e7d1db44124878cdaa3e54504a8d7a4cc0ceded43f795230f5738f420d249a42b7f3ba4479baf8aa21040e21d5fb88539cd84ee41a4be909a003fb866421935287093c249b194ca4624bc7636affae26046894b48b9862c",
-                DateA = new DateTime(2000, 2, 7),
-                DateD = new DateTime(2011, 8, 16),
-                Sort = 2141984302,
-                Note = "5a680971917a4333840e48c928f70de012788a3be1854d8f895dc2dc092e560ba8eb07e628b14f919ecf7042c4e556e79fd78296b5a342dcb1e9eeace77bfe8ddfa0dbd87de140dd8fae0fda22e6f58513bc2af5359440f491e431c362808ccba5763abe3fff49088e5c17617ed839b0edb2a177c7b046af9a66537ced4ecd3cabbc8ad7829c4beba94e27e3429b3c5add16320f71df46d5ab08cce98ddba9fd8fa333e4c1f74e11846e9a8e34875208470a8256fdbe4da58e8c0708bb273b38dd335bf946b2498e973a91759213a6685e31d278c947440b9f811535214a3b0c5738b20aa1a4414a8de69cf96aa8646e62817f601a4a4df692ca",
-                Status = "794dfb6b38e0433bac6c67eb00311bf4baa3de54c88d414e80"
+                CountryCode = "6f08dfe23b7a48b28659d78353d2c1ed379eed3f9a5d4310a9",
+                ExtendedInformation = "243404a19a61456cb0d51432dc13705dd460d5682f0747ad9b28157176bd82c6d1ee2b7bc4d4462f82c831c0f14be12a5950a95608594d0396d3dd7b155ebfe59ae2345d8cc54bd5997960cf331b25b9cb7c75bca6ad4ab688e3bf143df71f313366ad68c9d7454ba333e318fc020c236dbdef482504472795c380834874ee30ddd07a9e5200436fbec9d3019e6d41d95dcfefac43ff4337b7a72cad3636e64010a26f8fa3a94daaacc3d07121930e1a6fa60caaff95432cb2512e218d5d1ecefb45cc0da3714c0ea07de34df39ed04bcc2836c98661474d984143147f23607534d6cb38963e4718b1c9e079d69e6434ac25f3ac9b3a43cebd41",
+                DateA = new DateTime(2020, 4, 7),
+                DateD = new DateTime(2000, 5, 14),
+                Sort = 1777536209,
+                Note = "75429e868e7040fd93039c295f012d3b74ff6f21cd4b49d896990421e3761adc1547eb3931424e8682cc887922c5827e9269d2464bbf4d75b252f3565e6f2fec95b346a3fa4e470e9d6988007951522908ca9b3a14f44d9aa149a9e249878e56501794288d394fe797e2a90ac6f4f857e06f5582c2954ccabf42bd2a7c9c2a4aae2e1be01539453f92647d06ffa73aa220b8b5992fb046a1905b112acc31b66acd093d680e0148a99f62e2f023c0eb095f3bb9eb402d4f17a92b76222c19c2f0e315eafd9d654a6693053d1185f64fb6b17677aa4c41403593dd7d8ff51cfe5f3fe69eadc9c34c66af6b1b1c35e6b27704bc765a7c3344eaa864",
+                Status = "65fcc78f03354ea9bcaee2d8b0eb3ccb6c4be990a82349eda4"
             };
 
             // Act
@@ -76,25 +76,25 @@ namespace Resume.ResumeEducationss
             var result = await _resumeEducationsRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("09349c51-8b8d-42b9-b547-64317e6320ef"));
-            result.EducationLevelCode.ShouldBe("a02eb419d1c14e30919d0cd37bcf153600f0761d5fc14ad4a9");
-            result.SchoolCode.ShouldBe("42fad1af0a2c4c569c96ef4e9e67f4ece649eafb1d53426dab");
-            result.SchoolName.ShouldBe("de6aa403c2ea457594ddf3425f3f70a7bba329e4b81b4e14be2b8c9e321603379d624e1366eb4d97ac7d8bb7068504a96b6a1c1017844d5687b018015a11d1db9736a4e78dbf4b909fce71e375a343159eabb8ee2ad94b9cb8a6dbd4025cf77bedfe89f4");
+            result.ResumeMainId.ShouldBe(Guid.Parse("1b99f8c1-3d8e-4756-b03d-055abef8d35f"));
+            result.EducationLevelCode.ShouldBe("0be224e027b945d6a6bd228a53ca03af0676820ee5c745dc83");
+            result.SchoolCode.ShouldBe("05a8705ccd3a40389a43f5dbab041a30b28aabd9c0094b6eb7");
+            result.SchoolName.ShouldBe("acc863d24b654e89bbbf4b7c673dc189212dc009b91c44ff89df40ee2a254ce5d33544100f6c48b8be4e4721f692333be22d6c3e939242b8b2fa88a08da0a5d8cf3552392cad461bac501ff0606372c9ab2b190242ad4c15bcaf7207cfd1aeca5460d7af");
             result.Night.ShouldBe(true);
             result.Working.ShouldBe(true);
-            result.MajorDepartmentName.ShouldBe("d97879f7063f4f40be790de83135cd8fc413be494e7c4e0b8c");
-            result.MajorDepartmentCategoryCode.ShouldBe("90936b8b2e4f4b9b8ecdcbdb769db902138b313efb914b83a53c8f680349e22aaaf5f83882714af6a3d57b7e0ed75030395cec7636df4b8e8cfe93c5fe5c1a81afd43c5308114a629312f532e9177ce5c23cc2d3004243399b16126cb061de12cf2181fad92e4c4bac9caef622a15da6d5d4cf6c25ee417691af36269915755d12f6493b085948998518878fa848ac585c57e99da0bf4c35b389232d91fa4c7d88b74935e883489995aca8f71b4937a6809d089d152b40c980e5773b2781ecc993b23420186349f3a86c475926513d8923afc4dcde4641aca869ac173c3efcf1536e4bb8c2b84eb3bdaf6c7ab74bdf91164231ee545c4026b516");
-            result.MinorDepartmentName.ShouldBe("54d09b2fbc75446a894b7dc4f7e545e9e0919601745642f6b1");
-            result.MinorDepartmentCategoryCode.ShouldBe("2f8b78c595ab42c0b7797ea51555af8cca0bad0c517a40c29a20503f1dfb45c9419933eee4004b8593b437d63df02146d25ae84bf65f419a8693c98b9247e246ddff9b0b5aef41d8b963bb55fcfc50bdbde068003ed74c1f95586f8f203bb7d33ead249095c4496b96283d451ba30ee3cd9c7d09d8d040f6a86f7bb87b12bc7c964b9a0380584ec5bdd712b52c573c4ac8a08f4c94424df38c00be66261abd0f967b094800a9485b9a2608af1c9a1f69c2144523d924424bab88a0027316d1df208c9b1fa5534c6c9b907487673a145acf284884f5dc48e8b21f5b06545526ec4ebf62293f2d4d88bdedb2e7dcfc848def99c5bce426465c8374");
-            result.GraduationCode.ShouldBe("91461a1fd3d54cefba5530bf5b8dd2f244e0c09ad1ee4787ab");
+            result.MajorDepartmentName.ShouldBe("0978e93d1bbb4091a5bff176bd6e8aed563c09c196624dd493");
+            result.MajorDepartmentCategoryCode.ShouldBe("19f4976ad379480ea49bcb29e5183a910f462b1a034742f0ad71b6e5044d68b66630c8279c104d50b9b469a19bf2ee62df0c54ec3f80426cb88c7da5f8125fb588e11a4d97a74a5f8ed1a383849535bf9b571af7475b4feba11211ce336bc3e928cd6de2200547fd947b2bfef63d7b563de337031b6845f299de9199378daddeb7976421b69e40cbab41ee4a00988747f9c26ee324624abba5b574ed8549df1533c66b2275ba4ac58b7cf43b4f51bc2fffce4dd790df484fb5050e032ff254b1d5f8c4639c284d9cb855c65bb9be0c08df7876d1873c489c9eb299a4acb43a4a161544ca45f843eba9f5a984a5e275726040b6013926479a8fa9");
+            result.MinorDepartmentName.ShouldBe("cb2d94f4dea646d7b6f2b966f0c5ce8bd2e8a0dc7d554b0b9c");
+            result.MinorDepartmentCategoryCode.ShouldBe("351ec237c87843f4bba2408ff2d4514f068d99133ea541feac75f99bf3bf9727f609c9cf84de454080580237045402a3aeaf5e0dbeca44409fa6f126c10335d5a0304412b9794b7fa6df4eab4ea8bd4736f29cf711f3406887fbdfee763a4637ca20765c4a754f8bbd95fca9866e1b67f19dcd1f1f564a0d96ea3133dd4f3c9f6bc5210f3c7b47319432a8a781cf5f3054906b90959f41a0bcfb33ae60559127fd7abc1c89aa4dd4b22713becbd90e9e2a1d2a93e9744a8e923f95a94ddc7c87038d3765b0f34b7fbb2a0436762382db729cb3065cf4401a84933edaeec6800986a53e938d1042a983d0cdfca35b56328311d56d478e4f9d9d5c");
+            result.GraduationCode.ShouldBe("f3ef965712de4a49ab00faaee22cbbce18e77a45ff1e4668aa");
             result.Domestic.ShouldBe(true);
-            result.CountryCode.ShouldBe("29dda6f795224ab9b19de622bd02be6f0fc2c29b50614e3a8c");
-            result.ExtendedInformation.ShouldBe("2ab2ac118f0d45b8af84de85251e2dfa070b4e8e6bfe41b1ab7aa604d8722938345adb07d39e42ffa5913a5edd431becf6a378e2c2c74b9d9118233e403c380a96ab051dbda242bebfec0fdaf19302b2834c04d24d3d46fd8bcac087d61ce9915ac5532595ef4ff5b8f7d724ef2e7c344e9b58d3647d4f9aa1472b3296476e2b237bf79f365a4c5db67865370c1663baf78ea9ed2d09489fae036ad08ae442a9d4ac9e7d1db44124878cdaa3e54504a8d7a4cc0ceded43f795230f5738f420d249a42b7f3ba4479baf8aa21040e21d5fb88539cd84ee41a4be909a003fb866421935287093c249b194ca4624bc7636affae26046894b48b9862c");
-            result.DateA.ShouldBe(new DateTime(2000, 2, 7));
-            result.DateD.ShouldBe(new DateTime(2011, 8, 16));
-            result.Sort.ShouldBe(2141984302);
-            result.Note.ShouldBe("5a680971917a4333840e48c928f70de012788a3be1854d8f895dc2dc092e560ba8eb07e628b14f919ecf7042c4e556e79fd78296b5a342dcb1e9eeace77bfe8ddfa0dbd87de140dd8fae0fda22e6f58513bc2af5359440f491e431c362808ccba5763abe3fff49088e5c17617ed839b0edb2a177c7b046af9a66537ced4ecd3cabbc8ad7829c4beba94e27e3429b3c5add16320f71df46d5ab08cce98ddba9fd8fa333e4c1f74e11846e9a8e34875208470a8256fdbe4da58e8c0708bb273b38dd335bf946b2498e973a91759213a6685e31d278c947440b9f811535214a3b0c5738b20aa1a4414a8de69cf96aa8646e62817f601a4a4df692ca");
-            result.Status.ShouldBe("794dfb6b38e0433bac6c67eb00311bf4baa3de54c88d414e80");
+            result.CountryCode.ShouldBe("6f08dfe23b7a48b28659d78353d2c1ed379eed3f9a5d4310a9");
+            result.ExtendedInformation.ShouldBe("243404a19a61456cb0d51432dc13705dd460d5682f0747ad9b28157176bd82c6d1ee2b7bc4d4462f82c831c0f14be12a5950a95608594d0396d3dd7b155ebfe59ae2345d8cc54bd5997960cf331b25b9cb7c75bca6ad4ab688e3bf143df71f313366ad68c9d7454ba333e318fc020c236dbdef482504472795c380834874ee30ddd07a9e5200436fbec9d3019e6d41d95dcfefac43ff4337b7a72cad3636e64010a26f8fa3a94daaacc3d07121930e1a6fa60caaff95432cb2512e218d5d1ecefb45cc0da3714c0ea07de34df39ed04bcc2836c98661474d984143147f23607534d6cb38963e4718b1c9e079d69e6434ac25f3ac9b3a43cebd41");
+            result.DateA.ShouldBe(new DateTime(2020, 4, 7));
+            result.DateD.ShouldBe(new DateTime(2000, 5, 14));
+            result.Sort.ShouldBe(1777536209);
+            result.Note.ShouldBe("75429e868e7040fd93039c295f012d3b74ff6f21cd4b49d896990421e3761adc1547eb3931424e8682cc887922c5827e9269d2464bbf4d75b252f3565e6f2fec95b346a3fa4e470e9d6988007951522908ca9b3a14f44d9aa149a9e249878e56501794288d394fe797e2a90ac6f4f857e06f5582c2954ccabf42bd2a7c9c2a4aae2e1be01539453f92647d06ffa73aa220b8b5992fb046a1905b112acc31b66acd093d680e0148a99f62e2f023c0eb095f3bb9eb402d4f17a92b76222c19c2f0e315eafd9d654a6693053d1185f64fb6b17677aa4c41403593dd7d8ff51cfe5f3fe69eadc9c34c66af6b1b1c35e6b27704bc765a7c3344eaa864");
+            result.Status.ShouldBe("65fcc78f03354ea9bcaee2d8b0eb3ccb6c4be990a82349eda4");
         }
 
         [Fact]
@@ -103,63 +103,63 @@ namespace Resume.ResumeEducationss
             // Arrange
             var input = new ResumeEducationsUpdateDto()
             {
-                ResumeMainId = Guid.Parse("2db381a8-e60f-4254-8038-a758a120d54b"),
-                EducationLevelCode = "19465c5c979746b6a5162a62b77792cadfbfa108e39d42128a",
-                SchoolCode = "b5984ea64c6942b9a9e08d7049fd7bc196ddcdaf880441dd91",
-                SchoolName = "c734f2451f04416fb24a2259c528f8f05fc1f4e9d84c4e6087b9eec2d18b71e43f89175c1d094366801e831e8f54ed017595fadae1404c888b7bb348b3c7f2910fa91ce863264e1b8369a0191acc765d413a87a5f7754c84bb7fcf3dbbd3e35eb7e998d6",
+                ResumeMainId = Guid.Parse("f2b57a6f-fcdd-4958-a291-1d616c69825d"),
+                EducationLevelCode = "7900cbd8762c4f8b99d06623f768166ccfbab02e2ccd4bfca5",
+                SchoolCode = "7c13bd02567444e7b7a4f054cc1da6b54ec0d07202d54f9a9e",
+                SchoolName = "6c2fc90b2dcc4fceb65c93e4f8fd0a106c1385552f8a4b1481d097dd2854782cf25e079b9a8c4a13874bbdd1caae3ca70d69745dbb0446099befea58c13ab1dff20fe742816b4c2ba524c90e15aeed9a17a6dda2ac64437ea758e35729c429d12b259d52",
                 Night = true,
                 Working = true,
-                MajorDepartmentName = "821a765267fe4fd29f4e39d8662a06c7f9640b205a79498a8c",
-                MajorDepartmentCategoryCode = "c1407defb5a84947a301dbf665a96caccdc95e8824534d49a0c96017b965f85793deec9a582b4e1eb97f6eb9b67fa0b3a1772b1fb8524d44aa859563c45a4c2adce024a837774c37b8ac99289ecebb8bc1daa0f801b7408ab4102ef05a27a1cfe2367e0a2f824d7dada227ad6ebf97b9e41b6cfc9db94e3393cc8b0d5d46602abc89a660c97849daaba81de244d9ae5bee0427e7a5ad4a91ad81bc52ff1d08bb1f4361576d184f96b7ad0543ace98f450d1b5f29a5e749108352a47d2b374945414f85e114db46ddadd37dadb4fc3510ee4359ba4ad84ff6bf64565ba96ec0c1dccaeb2718b14754a74667f00a7ad7cf59773cdccce248f7b621",
-                MinorDepartmentName = "cee48e9765b44872965658773690467696f18387f7f24225a1",
-                MinorDepartmentCategoryCode = "b1dffa46195141d09637e63a8e5c8fbfd694f057ec344f61bb92d1f96ceca5f044d6a8c3032d40bd807c5ca8ad34f372832700c2688b423e85c2a65796b9fcd6f1f80936479b4152a1a9510a24b3d2a2a92aeb6c638c434d8bbafe50a82b57728aebd1593cd74ce483dbcb857a4b45af1cf29fbb400e498f8c9cc8918b7c27646ae3ca03ba374d4ca4bc0fafba1ca7767dbc289ebbab496f9b1cd3f3df858b7743e5f94d2b2d4a43affd92b7b6e3d0a3440c783aeede40018c9c9b7adb02f2d4d49352bdbe244f9eb2f41ae2d1ba966f2378048205c4499ba35c24bccb788d25889fe1c764ab4c9592bc7029b7d581b92453a76d08fd4c798b15",
-                GraduationCode = "b0ac3a5047454a40b67639b04fec4de4321f3f0c3cd646eea6",
+                MajorDepartmentName = "8d27ac9ea3ed4dfda39b91498d036132f853feaae2da4906a9",
+                MajorDepartmentCategoryCode = "a2bf6eb8bbc0431ea045147cae188655692c7a10cc1540a6aa7e7e79db6556bc3e0f03d09bfc4aadb069209b16a74b3adee1ff0c3702477cb8ad1ab9e7e2148d9260bdc41f2d4733af96eb0f8e8729c606e9337851804fc69c81e6fcb4edfc9cec1d63053b6b48d688a84c7bba7271d4d9ecc8fa42054bb69e70834d1e75cd106d99163cb9a54c99af3b46a06cce774490ce796b3fec4ce1b5e6ba9fd5755e75967185b928e64addbf164731e6894b3ad5b8caa560284d8c8318435e14570656434b6bb52ae3462b913e6f41e1e36b8feeebab0d1ecb420183a23f12d7643efb812ce62f9a8f48d691da93182584d3ab8c6ae683acdc4b0093b9",
+                MinorDepartmentName = "c3a75ffd9bdb4eaab0e194dea6e53cd803f07e5db0024aac80",
+                MinorDepartmentCategoryCode = "7eabc34447454d009bec8289a10a54426d31c170a95b4b36ae552668114ddee2a149a476894d4f2d8e9459ef37e34c00d211dfe5e4974e57979b657bb558069768c7cc2b1ca7404e811403e8ecf5eb1919073f9bcfd64c1c92d55005c429ad36b0a931226372401faf091dcf42dc30df48551e96d14e42ed8ef28e5b8d796a6455d7e995559d4e2dbc818ef5040747e9731488eff2314826b2da352bc70a6bab4040d282d653479185f604532cf40e6df55d1ef2b67a415daf8a295df8feffbf906776ce8014485997500e57b951bc5fd3d7799ef00140b1ba42f9c381e6facbe7d86b78abee430d8ef732e43109f2de2ca09fe8b8554ca1b40e",
+                GraduationCode = "3bcac2d97f1b4afb8996b671efc6a16efcea7422f1c84ca5ba",
                 Domestic = true,
-                CountryCode = "68f547e81e794d60807e2af7822f62e585481b5dcf5641a0a0",
-                ExtendedInformation = "726a18638240485cb43d55fd092a0db27b15fbf07697428ebedd047f12f344ba1fa0112d484a4b0d83ca0933f6f6182a8173aa9395bf49fa8d5b3c025555115bab302bc766b940c19f74379e3b1716e06a2154fbd1b44c4c9437686b8769db088cba2d2ae2d4459d880fda26874956f3cf6d4baf2b63476e964d0e4af6eaf6ad14ab1ac039694e60a687dc7407c23f5e0d6922d2918242c38efe9fee55c941645b44e31550874bc38a5ae4cae96eaf5d062d778b8bd049998d40b1ccf3a74082c1523528cd844f22b1e4e2eac807230759b590455b5f49d7ba8d81919609b42e115126f7d1764361bdc61861b3cd872820ee2249cd204bdaba80",
-                DateA = new DateTime(2006, 9, 9),
-                DateD = new DateTime(2011, 7, 7),
-                Sort = 634520534,
-                Note = "4c1540e8d9e04a6db3fae7958533ee18b7d11921aaba428b8efd29b6f844dc1e062b9b5f640d4492b91e7543b61ded335afe143bbe3d4972b8ff53532c5ca6f6dcddf8d2cc1640ea872421bdab563d3b673e597d448d47b18621e7e0223e19d0b3b8078b621e45a4a855e5af901669b224b51f6c74ae4335a94d08985359240266e7733795ba4a98a663e70ac5dd2e5133702a95afe449c4b6489246e23e4875c9e7bc411b0f47308c5301bd0e4d12c4cf7395ec003a40c0b7a777e277e548e3476cb0e581c341489558ba0c874bd7d383207363581041fda07e7b739a99605c8c15fa7a3cee40cb95d6d5d7131b985a8dd0d287f3e14f568811",
-                Status = "6b9a375795494d34aa55c10a58aa35c3f64f97dd7a194444a7"
+                CountryCode = "8860c6276621449d922108b6722e98513c58056e04d74ad2a2",
+                ExtendedInformation = "93e9178741c04676bd61763be52c955d45b04314cf664515a6dc867273320706c417190d33ba4380addf8c23805dd06a1a227d0fb4b34afda5d46cb76db6d0d057d025f1abd3465a93949760715b476d451c83322ea444a180af51a560fa4e6b35fe3bd5b7d64e11b42c7ebc625440f1010a201688414f0a9182b34e764207b0e533b1c43c014f449ea39e64ce828e5b1fdceedba2494c65b70f8506f998b26befc26ac1c1dc445b9c9e2b0462c2bc81edb864859b1c49e4b3dfcfa56b860636cabc07667c9a44b880737a2b76a9b5357993070b19b748a7895df7302a4458da80727ae3a0334c259a96662467a169e25fabb6424d284f30aa79",
+                DateA = new DateTime(2009, 6, 20),
+                DateD = new DateTime(2004, 9, 4),
+                Sort = 957265143,
+                Note = "f8f2ff8a83404ec599df61c1078da5aecaa1585c902a41b498606832874ff03be27f4f9b9a9849e08e782074460dad17cb646a8a520846aab888e3b8f32f5ce0bddf01e2996e43639e6af76e6df8cb612154f0952a474c76b126218e1df23a7767d57cbaf3534c11957f0fa16dd42fc3a458d8705e7642cb8e98223ee640129a84a0359f43d84f44b8b9bc1db9e4142ec67625bcbbb345c080a5c46126304511551741556f4f4747b9f12f59567bed25ba2675371ce04f3f8c57035d8e95ddcf516a3832640940e1a52f092bf2960db7ce752e1192644be8bbc9f82a6b56552650165b25bd9d4e9c9b9a15ac677dc14fb57b58b4575946f08732",
+                Status = "14023fc5ffe845f1afe0741fc4dd7eff69a0d49a05ac41d492"
             };
 
             // Act
-            var serviceResult = await _resumeEducationssAppService.UpdateAsync(Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7"), input);
+            var serviceResult = await _resumeEducationssAppService.UpdateAsync(Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da"), input);
 
             // Assert
             var result = await _resumeEducationsRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("2db381a8-e60f-4254-8038-a758a120d54b"));
-            result.EducationLevelCode.ShouldBe("19465c5c979746b6a5162a62b77792cadfbfa108e39d42128a");
-            result.SchoolCode.ShouldBe("b5984ea64c6942b9a9e08d7049fd7bc196ddcdaf880441dd91");
-            result.SchoolName.ShouldBe("c734f2451f04416fb24a2259c528f8f05fc1f4e9d84c4e6087b9eec2d18b71e43f89175c1d094366801e831e8f54ed017595fadae1404c888b7bb348b3c7f2910fa91ce863264e1b8369a0191acc765d413a87a5f7754c84bb7fcf3dbbd3e35eb7e998d6");
+            result.ResumeMainId.ShouldBe(Guid.Parse("f2b57a6f-fcdd-4958-a291-1d616c69825d"));
+            result.EducationLevelCode.ShouldBe("7900cbd8762c4f8b99d06623f768166ccfbab02e2ccd4bfca5");
+            result.SchoolCode.ShouldBe("7c13bd02567444e7b7a4f054cc1da6b54ec0d07202d54f9a9e");
+            result.SchoolName.ShouldBe("6c2fc90b2dcc4fceb65c93e4f8fd0a106c1385552f8a4b1481d097dd2854782cf25e079b9a8c4a13874bbdd1caae3ca70d69745dbb0446099befea58c13ab1dff20fe742816b4c2ba524c90e15aeed9a17a6dda2ac64437ea758e35729c429d12b259d52");
             result.Night.ShouldBe(true);
             result.Working.ShouldBe(true);
-            result.MajorDepartmentName.ShouldBe("821a765267fe4fd29f4e39d8662a06c7f9640b205a79498a8c");
-            result.MajorDepartmentCategoryCode.ShouldBe("c1407defb5a84947a301dbf665a96caccdc95e8824534d49a0c96017b965f85793deec9a582b4e1eb97f6eb9b67fa0b3a1772b1fb8524d44aa859563c45a4c2adce024a837774c37b8ac99289ecebb8bc1daa0f801b7408ab4102ef05a27a1cfe2367e0a2f824d7dada227ad6ebf97b9e41b6cfc9db94e3393cc8b0d5d46602abc89a660c97849daaba81de244d9ae5bee0427e7a5ad4a91ad81bc52ff1d08bb1f4361576d184f96b7ad0543ace98f450d1b5f29a5e749108352a47d2b374945414f85e114db46ddadd37dadb4fc3510ee4359ba4ad84ff6bf64565ba96ec0c1dccaeb2718b14754a74667f00a7ad7cf59773cdccce248f7b621");
-            result.MinorDepartmentName.ShouldBe("cee48e9765b44872965658773690467696f18387f7f24225a1");
-            result.MinorDepartmentCategoryCode.ShouldBe("b1dffa46195141d09637e63a8e5c8fbfd694f057ec344f61bb92d1f96ceca5f044d6a8c3032d40bd807c5ca8ad34f372832700c2688b423e85c2a65796b9fcd6f1f80936479b4152a1a9510a24b3d2a2a92aeb6c638c434d8bbafe50a82b57728aebd1593cd74ce483dbcb857a4b45af1cf29fbb400e498f8c9cc8918b7c27646ae3ca03ba374d4ca4bc0fafba1ca7767dbc289ebbab496f9b1cd3f3df858b7743e5f94d2b2d4a43affd92b7b6e3d0a3440c783aeede40018c9c9b7adb02f2d4d49352bdbe244f9eb2f41ae2d1ba966f2378048205c4499ba35c24bccb788d25889fe1c764ab4c9592bc7029b7d581b92453a76d08fd4c798b15");
-            result.GraduationCode.ShouldBe("b0ac3a5047454a40b67639b04fec4de4321f3f0c3cd646eea6");
+            result.MajorDepartmentName.ShouldBe("8d27ac9ea3ed4dfda39b91498d036132f853feaae2da4906a9");
+            result.MajorDepartmentCategoryCode.ShouldBe("a2bf6eb8bbc0431ea045147cae188655692c7a10cc1540a6aa7e7e79db6556bc3e0f03d09bfc4aadb069209b16a74b3adee1ff0c3702477cb8ad1ab9e7e2148d9260bdc41f2d4733af96eb0f8e8729c606e9337851804fc69c81e6fcb4edfc9cec1d63053b6b48d688a84c7bba7271d4d9ecc8fa42054bb69e70834d1e75cd106d99163cb9a54c99af3b46a06cce774490ce796b3fec4ce1b5e6ba9fd5755e75967185b928e64addbf164731e6894b3ad5b8caa560284d8c8318435e14570656434b6bb52ae3462b913e6f41e1e36b8feeebab0d1ecb420183a23f12d7643efb812ce62f9a8f48d691da93182584d3ab8c6ae683acdc4b0093b9");
+            result.MinorDepartmentName.ShouldBe("c3a75ffd9bdb4eaab0e194dea6e53cd803f07e5db0024aac80");
+            result.MinorDepartmentCategoryCode.ShouldBe("7eabc34447454d009bec8289a10a54426d31c170a95b4b36ae552668114ddee2a149a476894d4f2d8e9459ef37e34c00d211dfe5e4974e57979b657bb558069768c7cc2b1ca7404e811403e8ecf5eb1919073f9bcfd64c1c92d55005c429ad36b0a931226372401faf091dcf42dc30df48551e96d14e42ed8ef28e5b8d796a6455d7e995559d4e2dbc818ef5040747e9731488eff2314826b2da352bc70a6bab4040d282d653479185f604532cf40e6df55d1ef2b67a415daf8a295df8feffbf906776ce8014485997500e57b951bc5fd3d7799ef00140b1ba42f9c381e6facbe7d86b78abee430d8ef732e43109f2de2ca09fe8b8554ca1b40e");
+            result.GraduationCode.ShouldBe("3bcac2d97f1b4afb8996b671efc6a16efcea7422f1c84ca5ba");
             result.Domestic.ShouldBe(true);
-            result.CountryCode.ShouldBe("68f547e81e794d60807e2af7822f62e585481b5dcf5641a0a0");
-            result.ExtendedInformation.ShouldBe("726a18638240485cb43d55fd092a0db27b15fbf07697428ebedd047f12f344ba1fa0112d484a4b0d83ca0933f6f6182a8173aa9395bf49fa8d5b3c025555115bab302bc766b940c19f74379e3b1716e06a2154fbd1b44c4c9437686b8769db088cba2d2ae2d4459d880fda26874956f3cf6d4baf2b63476e964d0e4af6eaf6ad14ab1ac039694e60a687dc7407c23f5e0d6922d2918242c38efe9fee55c941645b44e31550874bc38a5ae4cae96eaf5d062d778b8bd049998d40b1ccf3a74082c1523528cd844f22b1e4e2eac807230759b590455b5f49d7ba8d81919609b42e115126f7d1764361bdc61861b3cd872820ee2249cd204bdaba80");
-            result.DateA.ShouldBe(new DateTime(2006, 9, 9));
-            result.DateD.ShouldBe(new DateTime(2011, 7, 7));
-            result.Sort.ShouldBe(634520534);
-            result.Note.ShouldBe("4c1540e8d9e04a6db3fae7958533ee18b7d11921aaba428b8efd29b6f844dc1e062b9b5f640d4492b91e7543b61ded335afe143bbe3d4972b8ff53532c5ca6f6dcddf8d2cc1640ea872421bdab563d3b673e597d448d47b18621e7e0223e19d0b3b8078b621e45a4a855e5af901669b224b51f6c74ae4335a94d08985359240266e7733795ba4a98a663e70ac5dd2e5133702a95afe449c4b6489246e23e4875c9e7bc411b0f47308c5301bd0e4d12c4cf7395ec003a40c0b7a777e277e548e3476cb0e581c341489558ba0c874bd7d383207363581041fda07e7b739a99605c8c15fa7a3cee40cb95d6d5d7131b985a8dd0d287f3e14f568811");
-            result.Status.ShouldBe("6b9a375795494d34aa55c10a58aa35c3f64f97dd7a194444a7");
+            result.CountryCode.ShouldBe("8860c6276621449d922108b6722e98513c58056e04d74ad2a2");
+            result.ExtendedInformation.ShouldBe("93e9178741c04676bd61763be52c955d45b04314cf664515a6dc867273320706c417190d33ba4380addf8c23805dd06a1a227d0fb4b34afda5d46cb76db6d0d057d025f1abd3465a93949760715b476d451c83322ea444a180af51a560fa4e6b35fe3bd5b7d64e11b42c7ebc625440f1010a201688414f0a9182b34e764207b0e533b1c43c014f449ea39e64ce828e5b1fdceedba2494c65b70f8506f998b26befc26ac1c1dc445b9c9e2b0462c2bc81edb864859b1c49e4b3dfcfa56b860636cabc07667c9a44b880737a2b76a9b5357993070b19b748a7895df7302a4458da80727ae3a0334c259a96662467a169e25fabb6424d284f30aa79");
+            result.DateA.ShouldBe(new DateTime(2009, 6, 20));
+            result.DateD.ShouldBe(new DateTime(2004, 9, 4));
+            result.Sort.ShouldBe(957265143);
+            result.Note.ShouldBe("f8f2ff8a83404ec599df61c1078da5aecaa1585c902a41b498606832874ff03be27f4f9b9a9849e08e782074460dad17cb646a8a520846aab888e3b8f32f5ce0bddf01e2996e43639e6af76e6df8cb612154f0952a474c76b126218e1df23a7767d57cbaf3534c11957f0fa16dd42fc3a458d8705e7642cb8e98223ee640129a84a0359f43d84f44b8b9bc1db9e4142ec67625bcbbb345c080a5c46126304511551741556f4f4747b9f12f59567bed25ba2675371ce04f3f8c57035d8e95ddcf516a3832640940e1a52f092bf2960db7ce752e1192644be8bbc9f82a6b56552650165b25bd9d4e9c9b9a15ac677dc14fb57b58b4575946f08732");
+            result.Status.ShouldBe("14023fc5ffe845f1afe0741fc4dd7eff69a0d49a05ac41d492");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _resumeEducationssAppService.DeleteAsync(Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7"));
+            await _resumeEducationssAppService.DeleteAsync(Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da"));
 
             // Assert
-            var result = await _resumeEducationsRepository.FindAsync(c => c.Id == Guid.Parse("cdd31f4b-34d9-44ea-a30b-02d8be5022c7"));
+            var result = await _resumeEducationsRepository.FindAsync(c => c.Id == Guid.Parse("9e5bebf5-eb42-4978-94f7-ed1ecbde07da"));
 
             result.ShouldBeNull();
         }

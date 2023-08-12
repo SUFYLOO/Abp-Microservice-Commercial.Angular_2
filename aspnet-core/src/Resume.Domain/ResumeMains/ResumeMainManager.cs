@@ -19,7 +19,7 @@ namespace Resume.ResumeMains
         }
 
         public async Task<ResumeMain> CreateAsync(
-        Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, DateTime dateA, DateTime dateD, int sort, string status, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, string note = null)
+        Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(resumeName, nameof(resumeName));
             Check.Length(resumeName, nameof(resumeName), ResumeMainConsts.ResumeNameMaxLength);
@@ -27,16 +27,13 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);
 
             var resumeMain = new ResumeMain(
              GuidGenerator.Create(),
-             userMainId, resumeName, marriageCode, militaryCode, disabilityCategoryCode, specialIdentityCode, main, dateA, dateD, sort, status, autobiography1, autobiography2, extendedInformation, note
+             userMainId, resumeName, marriageCode, militaryCode, disabilityCategoryCode, specialIdentityCode, main, autobiography1, autobiography2, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeMainRepository.InsertAsync(resumeMain);
@@ -44,7 +41,7 @@ namespace Resume.ResumeMains
 
         public async Task<ResumeMain> UpdateAsync(
             Guid id,
-            Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, DateTime dateA, DateTime dateD, int sort, string status, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, string note = null
+            Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(resumeName, nameof(resumeName));
@@ -53,12 +50,9 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);
 
             var resumeMain = await _resumeMainRepository.GetAsync(id);
 
@@ -69,14 +63,14 @@ namespace Resume.ResumeMains
             resumeMain.DisabilityCategoryCode = disabilityCategoryCode;
             resumeMain.SpecialIdentityCode = specialIdentityCode;
             resumeMain.Main = main;
-            resumeMain.DateA = dateA;
-            resumeMain.DateD = dateD;
-            resumeMain.Sort = sort;
-            resumeMain.Status = status;
             resumeMain.Autobiography1 = autobiography1;
             resumeMain.Autobiography2 = autobiography2;
             resumeMain.ExtendedInformation = extendedInformation;
+            resumeMain.DateA = dateA;
+            resumeMain.DateD = dateD;
+            resumeMain.Sort = sort;
             resumeMain.Note = note;
+            resumeMain.Status = status;
 
             return await _resumeMainRepository.UpdateAsync(resumeMain);
         }

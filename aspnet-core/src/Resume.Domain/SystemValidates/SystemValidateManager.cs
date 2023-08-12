@@ -19,21 +19,18 @@ namespace Resume.SystemValidates
         }
 
         public async Task<SystemValidate> CreateAsync(
-        string param, DateTime dateOpen, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string param, DateTime dateOpen, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(param, nameof(param));
             Check.Length(param, nameof(param), SystemValidateConsts.ParamMaxLength);
             Check.NotNull(dateOpen, nameof(dateOpen));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemValidateConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemValidateConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemValidateConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemValidateConsts.StatusMaxLength);
 
             var systemValidate = new SystemValidate(
              GuidGenerator.Create(),
-             param, dateOpen, dateA, dateD, sort, status, extendedInformation, note
+             param, dateOpen, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemValidateRepository.InsertAsync(systemValidate);
@@ -41,29 +38,26 @@ namespace Resume.SystemValidates
 
         public async Task<SystemValidate> UpdateAsync(
             Guid id,
-            string param, DateTime dateOpen, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string param, DateTime dateOpen, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(param, nameof(param));
             Check.Length(param, nameof(param), SystemValidateConsts.ParamMaxLength);
             Check.NotNull(dateOpen, nameof(dateOpen));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemValidateConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemValidateConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemValidateConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemValidateConsts.StatusMaxLength);
 
             var systemValidate = await _systemValidateRepository.GetAsync(id);
 
             systemValidate.Param = param;
             systemValidate.DateOpen = dateOpen;
+            systemValidate.ExtendedInformation = extendedInformation;
             systemValidate.DateA = dateA;
             systemValidate.DateD = dateD;
             systemValidate.Sort = sort;
-            systemValidate.Status = status;
-            systemValidate.ExtendedInformation = extendedInformation;
             systemValidate.Note = note;
+            systemValidate.Status = status;
 
             return await _systemValidateRepository.UpdateAsync(systemValidate);
         }

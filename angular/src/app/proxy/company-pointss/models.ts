@@ -9,7 +9,7 @@ export interface CompanyPointsCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyPointsDto extends FullAuditedEntityDto<string> {
@@ -21,7 +21,7 @@ export interface CompanyPointsDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -40,7 +40,7 @@ export interface CompanyPointsUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

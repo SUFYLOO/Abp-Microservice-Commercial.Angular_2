@@ -20,7 +20,7 @@ namespace Resume.TradeOrders
         }
 
         public async Task<TradeOrder> CreateAsync(
-        Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? dateNeed = null, DateTime? dateDelivery = null)
+        Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, DateTime? dateNeed = null, DateTime? dateDelivery = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(orderNumber, nameof(orderNumber));
             Check.Length(orderNumber, nameof(orderNumber), TradeOrderConsts.OrderNumberMaxLength);
@@ -34,15 +34,12 @@ namespace Resume.TradeOrders
             Check.NotNullOrWhiteSpace(orderStateCode, nameof(orderStateCode));
             Check.Length(orderStateCode, nameof(orderStateCode), TradeOrderConsts.OrderStateCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), TradeOrderConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), TradeOrderConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), TradeOrderConsts.StatusMaxLength);
 
             var tradeOrder = new TradeOrder(
              GuidGenerator.Create(),
-             keyId, orderNumber, dateOrder, deliveryMethodCode, deliveryZipCode, deliveryCityCode, deliveryAreaCode, deliveryAddress, deliveryFee, userName, orderStateCode, extendedInformation, dateA, dateD, sort, note, status, dateNeed, dateDelivery
+             keyId, orderNumber, dateOrder, deliveryMethodCode, deliveryZipCode, deliveryCityCode, deliveryAreaCode, deliveryAddress, deliveryFee, userName, orderStateCode, dateNeed, dateDelivery, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _tradeOrderRepository.InsertAsync(tradeOrder);
@@ -50,7 +47,7 @@ namespace Resume.TradeOrders
 
         public async Task<TradeOrder> UpdateAsync(
             Guid id,
-            Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? dateNeed = null, DateTime? dateDelivery = null, [CanBeNull] string concurrencyStamp = null
+            Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, DateTime? dateNeed = null, DateTime? dateDelivery = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(orderNumber, nameof(orderNumber));
@@ -65,10 +62,7 @@ namespace Resume.TradeOrders
             Check.NotNullOrWhiteSpace(orderStateCode, nameof(orderStateCode));
             Check.Length(orderStateCode, nameof(orderStateCode), TradeOrderConsts.OrderStateCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), TradeOrderConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), TradeOrderConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), TradeOrderConsts.StatusMaxLength);
 
             var tradeOrder = await _tradeOrderRepository.GetAsync(id);
@@ -84,14 +78,14 @@ namespace Resume.TradeOrders
             tradeOrder.DeliveryFee = deliveryFee;
             tradeOrder.UserName = userName;
             tradeOrder.OrderStateCode = orderStateCode;
+            tradeOrder.DateNeed = dateNeed;
+            tradeOrder.DateDelivery = dateDelivery;
             tradeOrder.ExtendedInformation = extendedInformation;
             tradeOrder.DateA = dateA;
             tradeOrder.DateD = dateD;
             tradeOrder.Sort = sort;
             tradeOrder.Note = note;
             tradeOrder.Status = status;
-            tradeOrder.DateNeed = dateNeed;
-            tradeOrder.DateDelivery = dateDelivery;
 
             tradeOrder.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _tradeOrderRepository.UpdateAsync(tradeOrder);

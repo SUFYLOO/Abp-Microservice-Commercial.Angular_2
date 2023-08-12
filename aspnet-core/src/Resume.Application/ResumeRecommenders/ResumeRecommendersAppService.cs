@@ -63,7 +63,7 @@ namespace Resume.ResumeRecommenders
         {
 
             var resumeRecommender = await _resumeRecommenderManager.CreateAsync(
-            input.ResumeMainId, input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyName, input.JobName, input.MobilePhone, input.OfficePhone, input.Email, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.CompanyName, input.JobName, input.MobilePhone, input.OfficePhone, input.Email, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeRecommender, ResumeRecommenderDto>(resumeRecommender);
@@ -75,7 +75,7 @@ namespace Resume.ResumeRecommenders
 
             var resumeRecommender = await _resumeRecommenderManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyName, input.JobName, input.MobilePhone, input.OfficePhone, input.Email, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.CompanyName, input.JobName, input.MobilePhone, input.OfficePhone, input.Email, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeRecommender, ResumeRecommenderDto>(resumeRecommender);

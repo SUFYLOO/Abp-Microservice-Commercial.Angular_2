@@ -14,18 +14,14 @@ namespace Resume.CompanyUsers
         public string? OfficePhone { get; set; }
         [StringLength(CompanyUserConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(CompanyUserConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyUserConsts.StatusMaxLength)]
-        public string Status { get; set; }
-        public bool MatchingReceive { get; set; }
+        public string? Status { get; set; }
+        public bool? MatchingReceive { get; set; }
 
     }
 }

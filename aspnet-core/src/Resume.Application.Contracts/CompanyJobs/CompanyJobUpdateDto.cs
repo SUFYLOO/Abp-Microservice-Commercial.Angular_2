@@ -23,17 +23,13 @@ namespace Resume.CompanyJobs
         public string SMSTplId { get; set; }
         [StringLength(CompanyJobConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(CompanyJobConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyJobConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
     }
 }

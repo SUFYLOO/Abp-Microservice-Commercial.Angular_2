@@ -43,24 +43,24 @@ namespace Resume.SystemUserNotifys
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public SystemUserNotify()
         {
 
         }
 
-        public SystemUserNotify(Guid id, Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public SystemUserNotify(Guid id, Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -76,10 +76,9 @@ namespace Resume.SystemUserNotifys
             Check.Length(titleContents, nameof(titleContents), SystemUserNotifyConsts.TitleContentsMaxLength, 0);
             Check.NotNull(contents, nameof(contents));
             Check.Length(contents, nameof(contents), SystemUserNotifyConsts.ContentsMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemUserNotifyConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), SystemUserNotifyConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             KeyId = keyId;
             KeyName = keyName;
@@ -89,12 +88,12 @@ namespace Resume.SystemUserNotifys
             TitleContents = titleContents;
             Contents = contents;
             IsRead = isRead;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

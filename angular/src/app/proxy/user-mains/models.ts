@@ -42,10 +42,10 @@ export interface UserMainCreateDto {
   allowSearch: boolean;
   dateA: string;
   extendedInformation?: string;
-  dateD: string;
-  sort: number;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matching?: boolean;
 }
 
@@ -64,10 +64,10 @@ export interface UserMainDto extends FullAuditedEntityDto<string> {
   allowSearch: boolean;
   dateA: string;
   extendedInformation?: string;
-  dateD: string;
-  sort: number;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matching?: boolean;
 }
 
@@ -92,9 +92,9 @@ export interface UserMainUpdateDto {
   allowSearch: boolean;
   dateA: string;
   extendedInformation?: string;
-  dateD: string;
-  sort: number;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matching?: boolean;
 }

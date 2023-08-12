@@ -42,7 +42,7 @@ export interface TradeProductCreateDto {
   dateD?: string;
   sort?: number;
   orderStateCode?: string;
-  status: string;
+  status?: string;
 }
 
 export interface TradeProductDto extends FullAuditedEntityDto<string> {
@@ -60,7 +60,7 @@ export interface TradeProductDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   orderStateCode?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -85,6 +85,6 @@ export interface TradeProductUpdateDto {
   dateD?: string;
   sort?: number;
   orderStateCode?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

@@ -27,19 +27,19 @@ namespace Resume.ResumeMains
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("f4d7ae49-5c98-43b1-b6ef-6673b53ab6e3")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("b5451f90-2130-4d42-a75c-ab93074096c3")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _resumeMainsAppService.GetAsync(Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"));
+            var result = await _resumeMainsAppService.GetAsync(Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"));
+            result.Id.ShouldBe(Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"));
         }
 
         [Fact]
@@ -48,21 +48,21 @@ namespace Resume.ResumeMains
             // Arrange
             var input = new ResumeMainCreateDto
             {
-                UserMainId = Guid.Parse("8a885d00-0e7a-4961-bb19-25d296f773ef"),
-                ResumeName = "b00f942f159b42a1aa69f00c9b265ce51942d376bd294c33bc",
-                MarriageCode = "f77568cf88294cceb445aa4c5e63236d0794b184df8746eb9c",
-                MilitaryCode = "95b0d298ad9741369399220fde595357c0e886b816bd410a97",
-                DisabilityCategoryCode = "303fa138471e4297b8d83caafa1a2f21fdbeacfef52c481380",
-                SpecialIdentityCode = "679f8959ade84a96a58c4643120884a18274fd82ae024be195",
+                UserMainId = Guid.Parse("0c28e3a3-9dbd-41d0-8196-257bb7f32842"),
+                ResumeName = "103cef9c6ea8402c8f422ecfa5a4fe476547bde659544d2486",
+                MarriageCode = "436f388e38b64fc9bef256693b2c410aa15e13fe99c3484e9d",
+                MilitaryCode = "e0ac58041d5e41fdb0b7a0c1845c0e7a72b883ffc6324fb08a",
+                DisabilityCategoryCode = "ce326d9e8536466493e849e47077d70f86212287d4614e288a",
+                SpecialIdentityCode = "95c2888c33d24b9a8ee1ff2ebc131580a16a798d1ba54227a3",
                 Main = true,
-                Autobiography1 = "a519df789d534f9d93cf38424c2ef41ecacf7613b0714f3bad5e28b55b2e431948fc0ea6e",
-                Autobiography2 = "a3c56be9daf24a4485953cb0c197e255ce8c40d684a948db9c144ee6e56e2703",
-                ExtendedInformation = "bbd96c58e5374d80849224eabffa86c072ca2a3e1bec432389d8bcedfa583b69bb6f5735227c41409601f0e6e0c56961487c596d6d714f6abe375c282b5753bd5de95e7a020e419f9f46d485f34c02f46062d70aac7b4f0889de02e5e963d10c9360baa7f1d94b4baf716e49ae8bd55b677e686452e6499ab2bad427ef6816563cf0cbf59de84f1da666ca855856509aca3421baa51d4129a9b489450357ad5d8798610ad3ed4348b37073d11c9df81dfcdb64b9d1fe4cc5824d8deeebb51351b4d8cc3cfee64070b928044aebeba7e798cf8447e52c4d9eadb5aa38c88e79b9baa6bec8f1d04acbafe98f610ded503d48db1912f2b641d68604",
-                DateA = new DateTime(2012, 9, 25),
-                DateD = new DateTime(2009, 8, 22),
-                Sort = 1421465549,
-                Note = "0ee6bd76c8c7489ea016705bb54cb92183f4a48df0ea4f01b38c3be34717c0075b388e09094641f481f17e1dc4632fe8485833a43acf439fbb85e6838548e4830c77c80c60a345279f644908bac05e31189bb0ee09be4f5dafa8ab4fff228249b2dc4296b37a4cb69366207c3a6b5b86fc8d56db24504b5aa5512e037ba161804588beac3e284ea3a86b1cb01c82e60b739732e6424d4f83a12a516fa11382af9181c83519cf45d1a4dbf8dc5852dc90d4e5c061f39d465083e530f3570d48831a7982ba4ccf46899b436f27042c3b55bd1f7de499d34d78b982b9e19764680edd99fb38578745d9878f75245ad3cc7d17c240ca547b49058b7e",
-                Status = "38b6fb6bb9ab49a3a2ed5872fce768ed6ceb09ac30874ad6bd"
+                Autobiography1 = "a6f4b72ee89e4d22a49415fd47e",
+                Autobiography2 = "7ecebd01d62f436faf4bfb05636b79b7c692c2b9f60f4aae98f9d27301ff8fdf4",
+                ExtendedInformation = "302693277592408291c22a0cfe0903277edcbce6f9df47da94e38fc62670252b19d2cbd91dcf45edb3ff55f45c1d9802e6e412cb5bb849bab4aa3a5d8d8a9482c83bed389b0d426d9a5aa2895e538d99c6e0720b538748b3a0ea192bee69cc87b71455e8b5fc45ef860e54b0c101492fcfc7fbf7f4ee482ca5d636f12c36a613799316edaa094ea5a06a610805675accd4c209e00a6a4ebeb0a16e49b7b4700f838d0e40e2cb45d59e3aef5afced8b8a0ce69b1db0aa439eaeff241aff59734502ff6868385e4559b45a729fb51704afe4731b0c88b2441d85b13cd53919355e248f622d26244ec985dc863a205d7e59b8278dc6c9b04fe0b45b",
+                DateA = new DateTime(2019, 3, 12),
+                DateD = new DateTime(2016, 10, 26),
+                Sort = 1575782995,
+                Note = "d66a4bc837fa4faba52b79863332b11a0ff7e4355ee849219705910b34d12003c6b278d683f341ef97c827997d4f00671ec599e0c89e4459991e975a6d558f63cd456af25bfe447b8e37eb3d3fba7f3a3ebff4aa178549b788dce7d3c252372c7293d4a2b182428b9d91bcb92a8adea8051308137f8c48b682e57285623b9c70de6417b80cb34b809c9bb98e9cca6b5d312dd3f3df9e4469a962f3aeb44c7c366791b700fc24416797d37d3fcbdf0a89201190c87f094eee99c690d7c7ec4600488a3316839e41dab2016579338c4d342c3d7c78da3a4cf2a84e32d759d7a7d2bdf68bd654f14da1b33b70d1d7e4d87b44dea814272441988408",
+                Status = "c3cf5acdf82241d39bcd21af667f8fb82858e2d7c4b8419382"
             };
 
             // Act
@@ -72,21 +72,21 @@ namespace Resume.ResumeMains
             var result = await _resumeMainRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.UserMainId.ShouldBe(Guid.Parse("8a885d00-0e7a-4961-bb19-25d296f773ef"));
-            result.ResumeName.ShouldBe("b00f942f159b42a1aa69f00c9b265ce51942d376bd294c33bc");
-            result.MarriageCode.ShouldBe("f77568cf88294cceb445aa4c5e63236d0794b184df8746eb9c");
-            result.MilitaryCode.ShouldBe("95b0d298ad9741369399220fde595357c0e886b816bd410a97");
-            result.DisabilityCategoryCode.ShouldBe("303fa138471e4297b8d83caafa1a2f21fdbeacfef52c481380");
-            result.SpecialIdentityCode.ShouldBe("679f8959ade84a96a58c4643120884a18274fd82ae024be195");
+            result.UserMainId.ShouldBe(Guid.Parse("0c28e3a3-9dbd-41d0-8196-257bb7f32842"));
+            result.ResumeName.ShouldBe("103cef9c6ea8402c8f422ecfa5a4fe476547bde659544d2486");
+            result.MarriageCode.ShouldBe("436f388e38b64fc9bef256693b2c410aa15e13fe99c3484e9d");
+            result.MilitaryCode.ShouldBe("e0ac58041d5e41fdb0b7a0c1845c0e7a72b883ffc6324fb08a");
+            result.DisabilityCategoryCode.ShouldBe("ce326d9e8536466493e849e47077d70f86212287d4614e288a");
+            result.SpecialIdentityCode.ShouldBe("95c2888c33d24b9a8ee1ff2ebc131580a16a798d1ba54227a3");
             result.Main.ShouldBe(true);
-            result.Autobiography1.ShouldBe("a519df789d534f9d93cf38424c2ef41ecacf7613b0714f3bad5e28b55b2e431948fc0ea6e");
-            result.Autobiography2.ShouldBe("a3c56be9daf24a4485953cb0c197e255ce8c40d684a948db9c144ee6e56e2703");
-            result.ExtendedInformation.ShouldBe("bbd96c58e5374d80849224eabffa86c072ca2a3e1bec432389d8bcedfa583b69bb6f5735227c41409601f0e6e0c56961487c596d6d714f6abe375c282b5753bd5de95e7a020e419f9f46d485f34c02f46062d70aac7b4f0889de02e5e963d10c9360baa7f1d94b4baf716e49ae8bd55b677e686452e6499ab2bad427ef6816563cf0cbf59de84f1da666ca855856509aca3421baa51d4129a9b489450357ad5d8798610ad3ed4348b37073d11c9df81dfcdb64b9d1fe4cc5824d8deeebb51351b4d8cc3cfee64070b928044aebeba7e798cf8447e52c4d9eadb5aa38c88e79b9baa6bec8f1d04acbafe98f610ded503d48db1912f2b641d68604");
-            result.DateA.ShouldBe(new DateTime(2012, 9, 25));
-            result.DateD.ShouldBe(new DateTime(2009, 8, 22));
-            result.Sort.ShouldBe(1421465549);
-            result.Note.ShouldBe("0ee6bd76c8c7489ea016705bb54cb92183f4a48df0ea4f01b38c3be34717c0075b388e09094641f481f17e1dc4632fe8485833a43acf439fbb85e6838548e4830c77c80c60a345279f644908bac05e31189bb0ee09be4f5dafa8ab4fff228249b2dc4296b37a4cb69366207c3a6b5b86fc8d56db24504b5aa5512e037ba161804588beac3e284ea3a86b1cb01c82e60b739732e6424d4f83a12a516fa11382af9181c83519cf45d1a4dbf8dc5852dc90d4e5c061f39d465083e530f3570d48831a7982ba4ccf46899b436f27042c3b55bd1f7de499d34d78b982b9e19764680edd99fb38578745d9878f75245ad3cc7d17c240ca547b49058b7e");
-            result.Status.ShouldBe("38b6fb6bb9ab49a3a2ed5872fce768ed6ceb09ac30874ad6bd");
+            result.Autobiography1.ShouldBe("a6f4b72ee89e4d22a49415fd47e");
+            result.Autobiography2.ShouldBe("7ecebd01d62f436faf4bfb05636b79b7c692c2b9f60f4aae98f9d27301ff8fdf4");
+            result.ExtendedInformation.ShouldBe("302693277592408291c22a0cfe0903277edcbce6f9df47da94e38fc62670252b19d2cbd91dcf45edb3ff55f45c1d9802e6e412cb5bb849bab4aa3a5d8d8a9482c83bed389b0d426d9a5aa2895e538d99c6e0720b538748b3a0ea192bee69cc87b71455e8b5fc45ef860e54b0c101492fcfc7fbf7f4ee482ca5d636f12c36a613799316edaa094ea5a06a610805675accd4c209e00a6a4ebeb0a16e49b7b4700f838d0e40e2cb45d59e3aef5afced8b8a0ce69b1db0aa439eaeff241aff59734502ff6868385e4559b45a729fb51704afe4731b0c88b2441d85b13cd53919355e248f622d26244ec985dc863a205d7e59b8278dc6c9b04fe0b45b");
+            result.DateA.ShouldBe(new DateTime(2019, 3, 12));
+            result.DateD.ShouldBe(new DateTime(2016, 10, 26));
+            result.Sort.ShouldBe(1575782995);
+            result.Note.ShouldBe("d66a4bc837fa4faba52b79863332b11a0ff7e4355ee849219705910b34d12003c6b278d683f341ef97c827997d4f00671ec599e0c89e4459991e975a6d558f63cd456af25bfe447b8e37eb3d3fba7f3a3ebff4aa178549b788dce7d3c252372c7293d4a2b182428b9d91bcb92a8adea8051308137f8c48b682e57285623b9c70de6417b80cb34b809c9bb98e9cca6b5d312dd3f3df9e4469a962f3aeb44c7c366791b700fc24416797d37d3fcbdf0a89201190c87f094eee99c690d7c7ec4600488a3316839e41dab2016579338c4d342c3d7c78da3a4cf2a84e32d759d7a7d2bdf68bd654f14da1b33b70d1d7e4d87b44dea814272441988408");
+            result.Status.ShouldBe("c3cf5acdf82241d39bcd21af667f8fb82858e2d7c4b8419382");
         }
 
         [Fact]
@@ -95,55 +95,55 @@ namespace Resume.ResumeMains
             // Arrange
             var input = new ResumeMainUpdateDto()
             {
-                UserMainId = Guid.Parse("f4ffc2d6-c0d9-49b4-88da-148a314320a4"),
-                ResumeName = "8e03d67d91594441a7fd4bd73251c78bee7b82b01142444bac",
-                MarriageCode = "8eb5c307e0b94b5992ea20a65a538e9777f0f2737c204cb8b0",
-                MilitaryCode = "22b037f19b4643d89edde46c667d64955910c8d980f740ec87",
-                DisabilityCategoryCode = "0a0020b658ab473e908df3c4a0c835d9476d8859851a4663a7",
-                SpecialIdentityCode = "72955e2e56134d6586455e37286029320a2c638f45104da6bb",
+                UserMainId = Guid.Parse("87679cc0-4db4-4fbd-b40e-1878df574ddc"),
+                ResumeName = "4df3d9142d664ccb9721e8d8ff8da303e75691b4ce74445a85",
+                MarriageCode = "b0027e78aecb461b84c02766fc770518a6d58b811e6d48c489",
+                MilitaryCode = "8173e22f7f4843b6af9422a709fccc8ff282abcb2afa4b0689",
+                DisabilityCategoryCode = "6dfc465bd2604d2ba7528f9827c8f2a4d5cd32a03e5447fd93",
+                SpecialIdentityCode = "d818a1313d054cc98acb98ae1690c9be65d6f6f2f1ca4df89c",
                 Main = true,
-                Autobiography1 = "5dfd9f2c037c41748cff39",
-                Autobiography2 = "b53e3466d379471ab77d64536e5963a4d9b2b3218ec34e8b9747ba88fbbff8f4104ec26c71444528",
-                ExtendedInformation = "7a16a15d653a4158a5363c478cca89375cec67f1cbe64e6eb9d273accf9c765a6873371fa01748279e8bea911c85be38d58165ae8dbf47c6aa69d1d510c8f27d7f06f179b6fe4335ae343e29eefd6fccf19c6267cea34effaab9e30bc418e7505631cba1bdc44c4c8ec680f9ec5c1331d7ccc68a51464487a2723735bd20fb0559a3ed970558472398b64f0a2457555bd4572462a64a4329960833bd6bedec56f6cecb32ee2d49d3a9b30aecdce200dbe180f81ac4504e318aa71e6ff478180d039c1cd19a32452396d4a655ca4cff2bbf0d8aa43823478c88b0577c9d0d88b948aef91318e84272af606d8eb60c4b4e222042e0314b49fc8162",
-                DateA = new DateTime(2004, 10, 13),
-                DateD = new DateTime(2005, 9, 27),
-                Sort = 804852368,
-                Note = "e35249756a7e4387af26a7ace44ca2d7038de2eee3874ed2bcb880a93bc5cc8390ae307313db41d0b877b94fcbb3caeb35299a539a2f4dcd8e5d3903e39ef2fd992a1e2689d6414abd856bbe04d89c7a2f538cae5d0a49c98b459563a8334ad148fece5001694821900933b016baafe7f864523894f34ce2969a19a0ebbbcbfa9868b575bbd2435b89737b70b32b022e0e6f9c1d41f74c128a27c4410d842f6166582b6ad5c2451b8d07d49f699da9064b692eaccb1e4e18887ab4d18ebd4851b10c10d0a7104e82b7a110cb442eff3d7fce83d169fa4b899b52351342372851298b707aac284bab8a0cc61ca1f135f09fa83dfeb19545dea721",
-                Status = "d0dac4b9a00248578491ebd78bfdbdc3a373a443baea4b0eb5"
+                Autobiography1 = "cc024487cef",
+                Autobiography2 = "262905579bf44df68d25376df7f4035a4d88548ab92f41129c8e980262",
+                ExtendedInformation = "dce7de258925472dbc3c091f2436be8f8b0caa252249497d893a031700faae4ebb5790e74b7b4488b4cfe56f7a75880c292d7871310d4d1281af644c8fec943485ea6627aaf145ce96e40d65889c7ff801cff1634fbc48d89d1f6ab3b7e9cf554a25fbea81bd471c81298050ef3e111bc04d8a0a421f427b868aa26cdf5b7408c717c77ed94640c69fc9494d617c9a475f6d8d044ef641bb8404fd1ec971814f5653052df6b54c639b4479841d704003215feeb263a74217b9bec7a2c98fbc88de43c842b27c4800bb14af1a7952690e15afa1af803d43e8b897fdf4efeff9e87ce7cb1104644ccf9f17edf3d33bff18f062efd1f9df4ba48c83",
+                DateA = new DateTime(2008, 11, 3),
+                DateD = new DateTime(2009, 9, 20),
+                Sort = 1211740679,
+                Note = "0ee005125c7d4c8ba2eeef0ab0ab4dbf746d74fe26e444eb8db6bf33a50a44d556ea87af4c924810a2af238c4e7348a8b0ba96be090e44c8ac5bc27c2d3895c2676486c1405f468b88b548b0de68bad608c472ed9b3c4e67b7b2838412a05f0db4ff433bb4a547ffa4598501a5b99f53e6ae3f55494e4aaf8f71f4e301a645ff5cd3a342132f48d79d345b22916484aa61f318bf997a4835a32473e2c4c9bb1ff418e136602c411d8f70da6670f632e21c576dfb8a7d419ab4013026d605c9607c3242efb109404bb797e7358a9bc22ceee20fc671244b00b0503450b25c436e7d2a54de9ef54b23a946df765aa447a4c3421c823d764ced8f66",
+                Status = "76bb7632c0c44fdc9a026d63758f62809e88bee14e2c4d9591"
             };
 
             // Act
-            var serviceResult = await _resumeMainsAppService.UpdateAsync(Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"), input);
+            var serviceResult = await _resumeMainsAppService.UpdateAsync(Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"), input);
 
             // Assert
             var result = await _resumeMainRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.UserMainId.ShouldBe(Guid.Parse("f4ffc2d6-c0d9-49b4-88da-148a314320a4"));
-            result.ResumeName.ShouldBe("8e03d67d91594441a7fd4bd73251c78bee7b82b01142444bac");
-            result.MarriageCode.ShouldBe("8eb5c307e0b94b5992ea20a65a538e9777f0f2737c204cb8b0");
-            result.MilitaryCode.ShouldBe("22b037f19b4643d89edde46c667d64955910c8d980f740ec87");
-            result.DisabilityCategoryCode.ShouldBe("0a0020b658ab473e908df3c4a0c835d9476d8859851a4663a7");
-            result.SpecialIdentityCode.ShouldBe("72955e2e56134d6586455e37286029320a2c638f45104da6bb");
+            result.UserMainId.ShouldBe(Guid.Parse("87679cc0-4db4-4fbd-b40e-1878df574ddc"));
+            result.ResumeName.ShouldBe("4df3d9142d664ccb9721e8d8ff8da303e75691b4ce74445a85");
+            result.MarriageCode.ShouldBe("b0027e78aecb461b84c02766fc770518a6d58b811e6d48c489");
+            result.MilitaryCode.ShouldBe("8173e22f7f4843b6af9422a709fccc8ff282abcb2afa4b0689");
+            result.DisabilityCategoryCode.ShouldBe("6dfc465bd2604d2ba7528f9827c8f2a4d5cd32a03e5447fd93");
+            result.SpecialIdentityCode.ShouldBe("d818a1313d054cc98acb98ae1690c9be65d6f6f2f1ca4df89c");
             result.Main.ShouldBe(true);
-            result.Autobiography1.ShouldBe("5dfd9f2c037c41748cff39");
-            result.Autobiography2.ShouldBe("b53e3466d379471ab77d64536e5963a4d9b2b3218ec34e8b9747ba88fbbff8f4104ec26c71444528");
-            result.ExtendedInformation.ShouldBe("7a16a15d653a4158a5363c478cca89375cec67f1cbe64e6eb9d273accf9c765a6873371fa01748279e8bea911c85be38d58165ae8dbf47c6aa69d1d510c8f27d7f06f179b6fe4335ae343e29eefd6fccf19c6267cea34effaab9e30bc418e7505631cba1bdc44c4c8ec680f9ec5c1331d7ccc68a51464487a2723735bd20fb0559a3ed970558472398b64f0a2457555bd4572462a64a4329960833bd6bedec56f6cecb32ee2d49d3a9b30aecdce200dbe180f81ac4504e318aa71e6ff478180d039c1cd19a32452396d4a655ca4cff2bbf0d8aa43823478c88b0577c9d0d88b948aef91318e84272af606d8eb60c4b4e222042e0314b49fc8162");
-            result.DateA.ShouldBe(new DateTime(2004, 10, 13));
-            result.DateD.ShouldBe(new DateTime(2005, 9, 27));
-            result.Sort.ShouldBe(804852368);
-            result.Note.ShouldBe("e35249756a7e4387af26a7ace44ca2d7038de2eee3874ed2bcb880a93bc5cc8390ae307313db41d0b877b94fcbb3caeb35299a539a2f4dcd8e5d3903e39ef2fd992a1e2689d6414abd856bbe04d89c7a2f538cae5d0a49c98b459563a8334ad148fece5001694821900933b016baafe7f864523894f34ce2969a19a0ebbbcbfa9868b575bbd2435b89737b70b32b022e0e6f9c1d41f74c128a27c4410d842f6166582b6ad5c2451b8d07d49f699da9064b692eaccb1e4e18887ab4d18ebd4851b10c10d0a7104e82b7a110cb442eff3d7fce83d169fa4b899b52351342372851298b707aac284bab8a0cc61ca1f135f09fa83dfeb19545dea721");
-            result.Status.ShouldBe("d0dac4b9a00248578491ebd78bfdbdc3a373a443baea4b0eb5");
+            result.Autobiography1.ShouldBe("cc024487cef");
+            result.Autobiography2.ShouldBe("262905579bf44df68d25376df7f4035a4d88548ab92f41129c8e980262");
+            result.ExtendedInformation.ShouldBe("dce7de258925472dbc3c091f2436be8f8b0caa252249497d893a031700faae4ebb5790e74b7b4488b4cfe56f7a75880c292d7871310d4d1281af644c8fec943485ea6627aaf145ce96e40d65889c7ff801cff1634fbc48d89d1f6ab3b7e9cf554a25fbea81bd471c81298050ef3e111bc04d8a0a421f427b868aa26cdf5b7408c717c77ed94640c69fc9494d617c9a475f6d8d044ef641bb8404fd1ec971814f5653052df6b54c639b4479841d704003215feeb263a74217b9bec7a2c98fbc88de43c842b27c4800bb14af1a7952690e15afa1af803d43e8b897fdf4efeff9e87ce7cb1104644ccf9f17edf3d33bff18f062efd1f9df4ba48c83");
+            result.DateA.ShouldBe(new DateTime(2008, 11, 3));
+            result.DateD.ShouldBe(new DateTime(2009, 9, 20));
+            result.Sort.ShouldBe(1211740679);
+            result.Note.ShouldBe("0ee005125c7d4c8ba2eeef0ab0ab4dbf746d74fe26e444eb8db6bf33a50a44d556ea87af4c924810a2af238c4e7348a8b0ba96be090e44c8ac5bc27c2d3895c2676486c1405f468b88b548b0de68bad608c472ed9b3c4e67b7b2838412a05f0db4ff433bb4a547ffa4598501a5b99f53e6ae3f55494e4aaf8f71f4e301a645ff5cd3a342132f48d79d345b22916484aa61f318bf997a4835a32473e2c4c9bb1ff418e136602c411d8f70da6670f632e21c576dfb8a7d419ab4013026d605c9607c3242efb109404bb797e7358a9bc22ceee20fc671244b00b0503450b25c436e7d2a54de9ef54b23a946df765aa447a4c3421c823d764ced8f66");
+            result.Status.ShouldBe("76bb7632c0c44fdc9a026d63758f62809e88bee14e2c4d9591");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _resumeMainsAppService.DeleteAsync(Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"));
+            await _resumeMainsAppService.DeleteAsync(Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"));
 
             // Assert
-            var result = await _resumeMainRepository.FindAsync(c => c.Id == Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"));
+            var result = await _resumeMainRepository.FindAsync(c => c.Id == Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"));
 
             result.ShouldBeNull();
         }

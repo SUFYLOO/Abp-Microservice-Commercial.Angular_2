@@ -27,19 +27,19 @@ namespace Resume.ResumeRecommenders
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("e9c5fbc1-d435-4244-8d0c-afda706874d2")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("d47dfa62-37c5-4ee0-8736-d17ec9511995")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _resumeRecommendersAppService.GetAsync(Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c"));
+            var result = await _resumeRecommendersAppService.GetAsync(Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c"));
+            result.Id.ShouldBe(Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff"));
         }
 
         [Fact]
@@ -48,19 +48,19 @@ namespace Resume.ResumeRecommenders
             // Arrange
             var input = new ResumeRecommenderCreateDto
             {
-                ResumeMainId = Guid.Parse("3e733421-a5f9-46d4-9961-e359dfba4dac"),
-                Name = "0244774a8c204a3d9429d131d5a762388db0311722314b38a1",
-                CompanyName = "a29f11826b814176a14934e4853d70b7199244478fde4c8fad",
-                JobName = "e9cb2738c04045a79205a06a3ccd9610fb931908d1bf40e7a0",
-                MobilePhone = "322fb0a8e9604b67bc5e60028bf3dcdb0e42688f868f4b0382",
-                OfficePhone = "0c0a4e954fc341f393c55b3ee566207064562c7b7a1c464997",
-                Email = "e32d56dff8a14e0e97646a9869a2d67006eb6d4232244ac0b3997309582963239f84fdd65c71423287fc752455887da4e166b86d3ec04083a72717414409f367c32f5a80bc8c4e7cb0ad7781c18d511da67a07cce26e4edf8a2a9e653ede9b4c5d0e7259",
-                ExtendedInformation = "89f9d498b41a43bca08d7f501b6e03190c0afaa541db488dbfdb1c360b4ff9f978c9bc2fafbc4a48b27e9d23ab2e62fca4fe28ea28c74ae3be112bcf5b3ab3ebacee752121234ae68992856aad081f2dabd0c464841843eaaa35464609cd7c436f96105a8bfb488a81a5e1c529eb8466df50138c0efb419a86640de5b4b7df565156ec24e10e496db0b2b95f1a6cf3143287abca83cd41a390b94f5e05574c5aeebad5c8c1074bb49967472d057e75f23d1eea9330da4d63a4d46df5a51d6a4a73a5f0edbe7b4a0397cbf32ef9c38980d3e29d9e21f341a1958264fd1f5f2a5d76ec7db940954b7783c83a3e1706246a81063b4819e94c88a3eb",
-                DateA = new DateTime(2015, 3, 16),
-                DateD = new DateTime(2011, 3, 1),
-                Sort = 715808275,
-                Note = "4657e6b7caab4060b2deabc694e589b0e410a76cfa304c198864430bfcc6d9549cf01f8661674e018506d60ff0e7252974a4971cd06046468e53174a3214d11e181c32efe79b42eda3ecd8628ee7424b26bbd04650c04568a3e57d0f5122989d01ca8d7b2ad5452197a6c05b8024fd28f33e0de3fbd84f2a95f76da9890010e98f5fc454c80a42ccbb095745ec82a7abb206f7bfe1b244dbb5857821afa340dc461bcd680daa431b8bf831671b2dbd263a32a2814be343caba4f95a96514f3f847384f22141e40ce8cae94156c911e8a914a6ee410c842d4aeb6da4bd666c7a59e98529a31ab40d0a93c663f03f4c65a9c9c726633eb41e0bfda",
-                Status = "13224b561c844633ae1f12a8a28518f7e247855cde41475495"
+                ResumeMainId = Guid.Parse("6981e05d-ffb9-4258-9eb6-10b3d5e1d7d9"),
+                Name = "5e5617db68964f479860f7fb16c707575e2d9623337742a1b9",
+                CompanyName = "9cb33514c1f54614b8c643fc9622a102c1cfb11b4a2749fb8b",
+                JobName = "ce1d30090e2148708f874f24c7fe00b4d7a999ecc48d4ed494",
+                MobilePhone = "ed5db1552c1f45fe88c8b7ef17690120188457084b424b249d",
+                OfficePhone = "32eb644d68de4db98650dba33266292a567fceddaa06401fb8",
+                Email = "48347f0137f4492e852da8776e73a9aee35517680d0448eb9d72c852873483be0d1b472218e143b2b9159009e6508e39aafbcbfd7c044299b9060ebcf3bea1da2ccf55d90de64bc88858452a482ed75bda0a4502581f426a8be1a9284b0a5aedb364997f",
+                ExtendedInformation = "900320cef68a466c82ec20afa7271dec7eb412fd9f0542b4a6f90c945609f94416e50669a6c146f6a44d8524245360a01675eae85b9f4746b7beeac7e65175842a1df2be97d14271a28c3cf483773736144f0232f9f94bfcac8cdd932600f8f9a714ea2407be4150a68dd54cbe43a6e72770d8ef83fc41febb8f88b89c8528720340dd0579184a63b5a3efea5fac7b3a0a25044492cc489ab10b24818444f6abae8e546546c24e8f8941b2acacc8816b31f8f499206b42b29c9ee1e35b3904c67aab94c23b054571ae3df8616a6b5851c0395506773148abb46a1935ec9b7b78d396d882c34b43088c904407532124451d5f85f2cb2a46528ec7",
+                DateA = new DateTime(2000, 10, 13),
+                DateD = new DateTime(2003, 7, 10),
+                Sort = 1598869004,
+                Note = "7889b2796c594358ae96ab96da8b25ee550036be0b0046879d122a89d60f6fbd9be88babde4f452a81f1e3aef348791bc8ec1906676447479dc5a7387d2b8264bce5692d45bb462db83ddd8999d687999194e103400742a396c90f9ca9c19bc2eb229d8444e4441eac4c08d9b73b45115976de35bf364fa4ab35338e59679b2cc9f34c2e89a34f8f96c2dafd7b4fdc006984ccc709f24ea0b731976dff5414ff1092d407b9a543379bbd0fe351da1ccf79ed0a48bcc14230b8ca8110e09e354b5b90f843888143129cb8b4dc72e4cded562a4808cb614df8bded94fca9b8b608c61bca6566674959971ab9f853af8add5237d7af8f2a4b19bf00",
+                Status = "22f20548559a440a88bcf1454aa15e4b978e9d154c354757b7"
             };
 
             // Act
@@ -70,19 +70,19 @@ namespace Resume.ResumeRecommenders
             var result = await _resumeRecommenderRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("3e733421-a5f9-46d4-9961-e359dfba4dac"));
-            result.Name.ShouldBe("0244774a8c204a3d9429d131d5a762388db0311722314b38a1");
-            result.CompanyName.ShouldBe("a29f11826b814176a14934e4853d70b7199244478fde4c8fad");
-            result.JobName.ShouldBe("e9cb2738c04045a79205a06a3ccd9610fb931908d1bf40e7a0");
-            result.MobilePhone.ShouldBe("322fb0a8e9604b67bc5e60028bf3dcdb0e42688f868f4b0382");
-            result.OfficePhone.ShouldBe("0c0a4e954fc341f393c55b3ee566207064562c7b7a1c464997");
-            result.Email.ShouldBe("e32d56dff8a14e0e97646a9869a2d67006eb6d4232244ac0b3997309582963239f84fdd65c71423287fc752455887da4e166b86d3ec04083a72717414409f367c32f5a80bc8c4e7cb0ad7781c18d511da67a07cce26e4edf8a2a9e653ede9b4c5d0e7259");
-            result.ExtendedInformation.ShouldBe("89f9d498b41a43bca08d7f501b6e03190c0afaa541db488dbfdb1c360b4ff9f978c9bc2fafbc4a48b27e9d23ab2e62fca4fe28ea28c74ae3be112bcf5b3ab3ebacee752121234ae68992856aad081f2dabd0c464841843eaaa35464609cd7c436f96105a8bfb488a81a5e1c529eb8466df50138c0efb419a86640de5b4b7df565156ec24e10e496db0b2b95f1a6cf3143287abca83cd41a390b94f5e05574c5aeebad5c8c1074bb49967472d057e75f23d1eea9330da4d63a4d46df5a51d6a4a73a5f0edbe7b4a0397cbf32ef9c38980d3e29d9e21f341a1958264fd1f5f2a5d76ec7db940954b7783c83a3e1706246a81063b4819e94c88a3eb");
-            result.DateA.ShouldBe(new DateTime(2015, 3, 16));
-            result.DateD.ShouldBe(new DateTime(2011, 3, 1));
-            result.Sort.ShouldBe(715808275);
-            result.Note.ShouldBe("4657e6b7caab4060b2deabc694e589b0e410a76cfa304c198864430bfcc6d9549cf01f8661674e018506d60ff0e7252974a4971cd06046468e53174a3214d11e181c32efe79b42eda3ecd8628ee7424b26bbd04650c04568a3e57d0f5122989d01ca8d7b2ad5452197a6c05b8024fd28f33e0de3fbd84f2a95f76da9890010e98f5fc454c80a42ccbb095745ec82a7abb206f7bfe1b244dbb5857821afa340dc461bcd680daa431b8bf831671b2dbd263a32a2814be343caba4f95a96514f3f847384f22141e40ce8cae94156c911e8a914a6ee410c842d4aeb6da4bd666c7a59e98529a31ab40d0a93c663f03f4c65a9c9c726633eb41e0bfda");
-            result.Status.ShouldBe("13224b561c844633ae1f12a8a28518f7e247855cde41475495");
+            result.ResumeMainId.ShouldBe(Guid.Parse("6981e05d-ffb9-4258-9eb6-10b3d5e1d7d9"));
+            result.Name.ShouldBe("5e5617db68964f479860f7fb16c707575e2d9623337742a1b9");
+            result.CompanyName.ShouldBe("9cb33514c1f54614b8c643fc9622a102c1cfb11b4a2749fb8b");
+            result.JobName.ShouldBe("ce1d30090e2148708f874f24c7fe00b4d7a999ecc48d4ed494");
+            result.MobilePhone.ShouldBe("ed5db1552c1f45fe88c8b7ef17690120188457084b424b249d");
+            result.OfficePhone.ShouldBe("32eb644d68de4db98650dba33266292a567fceddaa06401fb8");
+            result.Email.ShouldBe("48347f0137f4492e852da8776e73a9aee35517680d0448eb9d72c852873483be0d1b472218e143b2b9159009e6508e39aafbcbfd7c044299b9060ebcf3bea1da2ccf55d90de64bc88858452a482ed75bda0a4502581f426a8be1a9284b0a5aedb364997f");
+            result.ExtendedInformation.ShouldBe("900320cef68a466c82ec20afa7271dec7eb412fd9f0542b4a6f90c945609f94416e50669a6c146f6a44d8524245360a01675eae85b9f4746b7beeac7e65175842a1df2be97d14271a28c3cf483773736144f0232f9f94bfcac8cdd932600f8f9a714ea2407be4150a68dd54cbe43a6e72770d8ef83fc41febb8f88b89c8528720340dd0579184a63b5a3efea5fac7b3a0a25044492cc489ab10b24818444f6abae8e546546c24e8f8941b2acacc8816b31f8f499206b42b29c9ee1e35b3904c67aab94c23b054571ae3df8616a6b5851c0395506773148abb46a1935ec9b7b78d396d882c34b43088c904407532124451d5f85f2cb2a46528ec7");
+            result.DateA.ShouldBe(new DateTime(2000, 10, 13));
+            result.DateD.ShouldBe(new DateTime(2003, 7, 10));
+            result.Sort.ShouldBe(1598869004);
+            result.Note.ShouldBe("7889b2796c594358ae96ab96da8b25ee550036be0b0046879d122a89d60f6fbd9be88babde4f452a81f1e3aef348791bc8ec1906676447479dc5a7387d2b8264bce5692d45bb462db83ddd8999d687999194e103400742a396c90f9ca9c19bc2eb229d8444e4441eac4c08d9b73b45115976de35bf364fa4ab35338e59679b2cc9f34c2e89a34f8f96c2dafd7b4fdc006984ccc709f24ea0b731976dff5414ff1092d407b9a543379bbd0fe351da1ccf79ed0a48bcc14230b8ca8110e09e354b5b90f843888143129cb8b4dc72e4cded562a4808cb614df8bded94fca9b8b608c61bca6566674959971ab9f853af8add5237d7af8f2a4b19bf00");
+            result.Status.ShouldBe("22f20548559a440a88bcf1454aa15e4b978e9d154c354757b7");
         }
 
         [Fact]
@@ -91,51 +91,51 @@ namespace Resume.ResumeRecommenders
             // Arrange
             var input = new ResumeRecommenderUpdateDto()
             {
-                ResumeMainId = Guid.Parse("1f2787a3-d05a-470a-a716-cb19b07adc25"),
-                Name = "5ea51efd5e274da7b33bb77fec268c0ab74391cb341b4c689f",
-                CompanyName = "e82a25f0ed70440183084f5db1a0d164e575559e70344400a6",
-                JobName = "141a1177593a42b885fc1df04dc53f82b34592b7b019425cac",
-                MobilePhone = "6d8182646806416ebbe2272c055888c7d740313c55a84967bd",
-                OfficePhone = "a0f7f8048fdb429bac532acd16cee006dd20cc0afa3e4154b9",
-                Email = "cfa0c165e1d24ee1ab884571f3eae91e4289151e8de44c6bbc96391c722e592765c8cf56adee464ea9fa3ace10995365935fbad204614f45b716f47d13578a1dc071dad9e478453fb09fa6006229bb9c018718e08d4f48b49a3f7141c1d3bbda77c01bb2",
-                ExtendedInformation = "b560285878a54dc6a3fbf9b8118c2c2589aa31e6328b461eb9124ff073fc899d9cb998ad67b64515841bbaaa529bc0f86909a7e208d1474399b906547bbbc0ed90e90bc2bbbd44aa95c3b358ac4b22eb2c94702958024e999ac558086dc6331cf687ad21ee3940eb917a368038aaf7413ac65fc9e6594fcda03485ed612287cb047b3c21acdb483dae4b8cffbc50cb8de47927bb80b24901a9d6825a4312b5eac6b0190cf5dd424b83be7ffff8ae0856d71d48fb45f6479b83de1f51e2793f89313edfa36bc94443aace0135d21734c6ba79c554614145a3a9e47971956f5aa812b861aff83846568888e901014ae04d91e7ff512fdf4263b4e4",
-                DateA = new DateTime(2014, 1, 23),
-                DateD = new DateTime(2018, 10, 21),
-                Sort = 969582267,
-                Note = "d40a85aeb5cf41db8bb35ce7a018d212c6a8e328f5724498bfeac2d786085ddc616315246abd43f08c5f9e000d0a5ae5e9e0bda013544bf3858315ee4adb765a2b950372723a47e0ac4f4f9d079f43902d2f827ea1ac44f3aa5e1c1b819c0c8d127b59cba14340a4a5272cff5010ccdc5de6cc0382da405ebbb930fd6deeae629817600964ba4034ab070828304f263a3a7de15e03204d7ea8fa3513bae8a70933be393f29374c51ae5208e3d2524f2f189e8b02b112401497693e70395d7b52d03151200a924273b2c1c7c0dcf05278af5e5a74edd64edf8c20f3b905ce4ebe0b635ddc705f4263b982d9ad3607cd26899d01b92d8547a9a806",
-                Status = "1bdb3ca54a7041c9936b716b46c5ae81d2f159e50bda4201b2"
+                ResumeMainId = Guid.Parse("10bee86c-34e4-4768-a436-4ec99c2036c8"),
+                Name = "e12d4ff9e3ad4c9b9f1d69c2ef6e94a1ad41c8e48307492c84",
+                CompanyName = "9f5fb2750b304b1eb46bd6e7fba0644858512c5fffe240c4bb",
+                JobName = "27454920d3804d559da4c9b5eb059e647dcde472fc3948b286",
+                MobilePhone = "a0f2366ce74542e0a1f4bf93086e9d518f84425f800944a294",
+                OfficePhone = "f421645f7ea040b9ba04b36527bedc21b51559cad62b402baf",
+                Email = "07446dbe81464b68a3b1bf16f336b349ace6d9b622e6497aac1af7f6c069714083eb600283414773aa9d686263e6cf3fc17bb7b8fda34b74b3a17a186628da24d98d46bfcc9745feb53e6f1150926c0c8e26f84a28354a88b5153f6a7a3f2f8f916f1473",
+                ExtendedInformation = "a6949d7323d54ddcbfbe753431981bfd24d3f5ddbaee4c35a7d507a150caed936e164907f0014932b6d01e8ba293caa522d2c175766043498ac76be2a280dc1449905f0dee2049d78878a54e2257b321233bfba7685c46b9a0eaa9b78f29459256f38a886f49426988a34a15c73dd62997c51c98857f45d0a5da25efc8469418167d4b7474d6432f94ff29cdf66530c380ba90f03d9c43aaae7a31b23754c6735acb74d230d645deb77e72d7892d4ba4e35070075fac423085aae95eb51f537b8449c70a0abd46c3a7c11f282e169dcfb364d4cd9ddc45ec9c03425058ec5030da2132b413004a4f8470bfb2a5c68eb2b7f0243f3b2a4425b176",
+                DateA = new DateTime(2018, 3, 27),
+                DateD = new DateTime(2019, 9, 26),
+                Sort = 73230522,
+                Note = "4eeb6202ad5942428c8ef1b7a0249c057140233e445b4a8fa758eb95867ea448712b25c01a8e46d59aeeb22dc900702cc716eb9a9d6645e6b5cd54d3070aeee700230a63c06844cba160a86abfdb55153040f06f450d4dec9efe511096e877e446d98d36bf37445595f73f1ae65e520a26bf1a64a1914e2cbc95d00c969f9f6f7fb40a7545864cfcbf07b5b2a4907603e47a0000bfbb426895f2ad12e228939c1560b8244db1442383fed0df27e2d5d7a6d5f7e675ba49ad8b619fa4d4c8f91247d76ce2c73644598e7b878202c27b24146398c1bbd0437885924f989bf761a58f6dd55b0896414daa90314f82a32c8fcea8ea0cb2ca4f9cb854",
+                Status = "4dd8f1efac4f4085ac2b3db4333ccc00341fa490a66244f6ab"
             };
 
             // Act
-            var serviceResult = await _resumeRecommendersAppService.UpdateAsync(Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c"), input);
+            var serviceResult = await _resumeRecommendersAppService.UpdateAsync(Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff"), input);
 
             // Assert
             var result = await _resumeRecommenderRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("1f2787a3-d05a-470a-a716-cb19b07adc25"));
-            result.Name.ShouldBe("5ea51efd5e274da7b33bb77fec268c0ab74391cb341b4c689f");
-            result.CompanyName.ShouldBe("e82a25f0ed70440183084f5db1a0d164e575559e70344400a6");
-            result.JobName.ShouldBe("141a1177593a42b885fc1df04dc53f82b34592b7b019425cac");
-            result.MobilePhone.ShouldBe("6d8182646806416ebbe2272c055888c7d740313c55a84967bd");
-            result.OfficePhone.ShouldBe("a0f7f8048fdb429bac532acd16cee006dd20cc0afa3e4154b9");
-            result.Email.ShouldBe("cfa0c165e1d24ee1ab884571f3eae91e4289151e8de44c6bbc96391c722e592765c8cf56adee464ea9fa3ace10995365935fbad204614f45b716f47d13578a1dc071dad9e478453fb09fa6006229bb9c018718e08d4f48b49a3f7141c1d3bbda77c01bb2");
-            result.ExtendedInformation.ShouldBe("b560285878a54dc6a3fbf9b8118c2c2589aa31e6328b461eb9124ff073fc899d9cb998ad67b64515841bbaaa529bc0f86909a7e208d1474399b906547bbbc0ed90e90bc2bbbd44aa95c3b358ac4b22eb2c94702958024e999ac558086dc6331cf687ad21ee3940eb917a368038aaf7413ac65fc9e6594fcda03485ed612287cb047b3c21acdb483dae4b8cffbc50cb8de47927bb80b24901a9d6825a4312b5eac6b0190cf5dd424b83be7ffff8ae0856d71d48fb45f6479b83de1f51e2793f89313edfa36bc94443aace0135d21734c6ba79c554614145a3a9e47971956f5aa812b861aff83846568888e901014ae04d91e7ff512fdf4263b4e4");
-            result.DateA.ShouldBe(new DateTime(2014, 1, 23));
-            result.DateD.ShouldBe(new DateTime(2018, 10, 21));
-            result.Sort.ShouldBe(969582267);
-            result.Note.ShouldBe("d40a85aeb5cf41db8bb35ce7a018d212c6a8e328f5724498bfeac2d786085ddc616315246abd43f08c5f9e000d0a5ae5e9e0bda013544bf3858315ee4adb765a2b950372723a47e0ac4f4f9d079f43902d2f827ea1ac44f3aa5e1c1b819c0c8d127b59cba14340a4a5272cff5010ccdc5de6cc0382da405ebbb930fd6deeae629817600964ba4034ab070828304f263a3a7de15e03204d7ea8fa3513bae8a70933be393f29374c51ae5208e3d2524f2f189e8b02b112401497693e70395d7b52d03151200a924273b2c1c7c0dcf05278af5e5a74edd64edf8c20f3b905ce4ebe0b635ddc705f4263b982d9ad3607cd26899d01b92d8547a9a806");
-            result.Status.ShouldBe("1bdb3ca54a7041c9936b716b46c5ae81d2f159e50bda4201b2");
+            result.ResumeMainId.ShouldBe(Guid.Parse("10bee86c-34e4-4768-a436-4ec99c2036c8"));
+            result.Name.ShouldBe("e12d4ff9e3ad4c9b9f1d69c2ef6e94a1ad41c8e48307492c84");
+            result.CompanyName.ShouldBe("9f5fb2750b304b1eb46bd6e7fba0644858512c5fffe240c4bb");
+            result.JobName.ShouldBe("27454920d3804d559da4c9b5eb059e647dcde472fc3948b286");
+            result.MobilePhone.ShouldBe("a0f2366ce74542e0a1f4bf93086e9d518f84425f800944a294");
+            result.OfficePhone.ShouldBe("f421645f7ea040b9ba04b36527bedc21b51559cad62b402baf");
+            result.Email.ShouldBe("07446dbe81464b68a3b1bf16f336b349ace6d9b622e6497aac1af7f6c069714083eb600283414773aa9d686263e6cf3fc17bb7b8fda34b74b3a17a186628da24d98d46bfcc9745feb53e6f1150926c0c8e26f84a28354a88b5153f6a7a3f2f8f916f1473");
+            result.ExtendedInformation.ShouldBe("a6949d7323d54ddcbfbe753431981bfd24d3f5ddbaee4c35a7d507a150caed936e164907f0014932b6d01e8ba293caa522d2c175766043498ac76be2a280dc1449905f0dee2049d78878a54e2257b321233bfba7685c46b9a0eaa9b78f29459256f38a886f49426988a34a15c73dd62997c51c98857f45d0a5da25efc8469418167d4b7474d6432f94ff29cdf66530c380ba90f03d9c43aaae7a31b23754c6735acb74d230d645deb77e72d7892d4ba4e35070075fac423085aae95eb51f537b8449c70a0abd46c3a7c11f282e169dcfb364d4cd9ddc45ec9c03425058ec5030da2132b413004a4f8470bfb2a5c68eb2b7f0243f3b2a4425b176");
+            result.DateA.ShouldBe(new DateTime(2018, 3, 27));
+            result.DateD.ShouldBe(new DateTime(2019, 9, 26));
+            result.Sort.ShouldBe(73230522);
+            result.Note.ShouldBe("4eeb6202ad5942428c8ef1b7a0249c057140233e445b4a8fa758eb95867ea448712b25c01a8e46d59aeeb22dc900702cc716eb9a9d6645e6b5cd54d3070aeee700230a63c06844cba160a86abfdb55153040f06f450d4dec9efe511096e877e446d98d36bf37445595f73f1ae65e520a26bf1a64a1914e2cbc95d00c969f9f6f7fb40a7545864cfcbf07b5b2a4907603e47a0000bfbb426895f2ad12e228939c1560b8244db1442383fed0df27e2d5d7a6d5f7e675ba49ad8b619fa4d4c8f91247d76ce2c73644598e7b878202c27b24146398c1bbd0437885924f989bf761a58f6dd55b0896414daa90314f82a32c8fcea8ea0cb2ca4f9cb854");
+            result.Status.ShouldBe("4dd8f1efac4f4085ac2b3db4333ccc00341fa490a66244f6ab");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _resumeRecommendersAppService.DeleteAsync(Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c"));
+            await _resumeRecommendersAppService.DeleteAsync(Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff"));
 
             // Assert
-            var result = await _resumeRecommenderRepository.FindAsync(c => c.Id == Guid.Parse("16d6a365-f3bd-4137-84a1-e1faac07ca4c"));
+            var result = await _resumeRecommenderRepository.FindAsync(c => c.Id == Guid.Parse("836e302d-01b0-4f94-8624-38c6d0f0aeff"));
 
             result.ShouldBeNull();
         }

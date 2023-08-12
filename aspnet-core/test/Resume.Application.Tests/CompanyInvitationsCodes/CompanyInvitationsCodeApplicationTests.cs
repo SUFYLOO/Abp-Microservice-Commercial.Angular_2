@@ -27,19 +27,19 @@ namespace Resume.CompanyInvitationsCodes
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("d748a59c-81e7-45c6-925a-c290fbe552ff")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("2885aed5-3c12-4038-b214-c471394decce")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("b9d59bc0-ae27-47a0-a0c8-45165c9bdd23")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _companyInvitationsCodesAppService.GetAsync(Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c"));
+            var result = await _companyInvitationsCodesAppService.GetAsync(Guid.Parse("2885aed5-3c12-4038-b214-c471394decce"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c"));
+            result.Id.ShouldBe(Guid.Parse("2885aed5-3c12-4038-b214-c471394decce"));
         }
 
         [Fact]
@@ -48,17 +48,17 @@ namespace Resume.CompanyInvitationsCodes
             // Arrange
             var input = new CompanyInvitationsCodeCreateDto
             {
-                CompanyMainId = Guid.Parse("10cb19a3-7ce7-462b-8b9a-3ed1ccb52fb6"),
-                CompanyJobId = Guid.Parse("ed4fd594-3692-49b8-bbcf-ee84b9163bd9"),
-                CompanyInvitationId = "e7c7771d38084bbd9f8ef19038a8a29a205f87bc559e4243b6",
-                VerifyId = "49801eaa19ad429484f97ef39189226ac68080aa6a7b41558e88436c2266e3ab5ef2c822c18c4c19a5f14e3af37dccf5fa6f9e7e4aab4a28848997d3126d6c05525c2742207f46368f23c7017f0319b88b429c5d0a07436e8a78dbec56123bbc5c8b270347814b13bdac904b34e90d452049c284a8cd415fa34a1c3d6fa10147e6e906ab6b2a4463a5ebccf129f00dc4626468935acd4aa8a6d55a3f9467ccde15761e31d41a4faaab46825284fadcbec0739f1162bd42d0997dff0a0b1da122162c144ef8ed43e2b9373c3f0e73663fdb602cc60f6146f2ab77052ee729f87c87f9d568fe6f4c3985fde7bfc6dade2ae1f3b38b0ee548a0b180",
-                VerifyCode = "f5789404537f43dfb0a1b2b11e8177c1476681f357d8458291",
-                ExtendedInformation = "0bd857d63af24d3c89a58fa3032de1d936b5c76ca601452f9317ae0a03c0e170b83e6a46a31246048e618ed66fd2980ffc3dba67a53f4f5ebef7bc0d4c64dab3d1c8f235a26744599bdea86643f6df40a224e7ca5a0e418985fd28f052166c1e8a83135bd32e423da7fdcaca17d5953f06af00ccf3c945f595ca9984a7241c92837961cd2f9341479e5586bc96cfba24e88815b25cea4fe78392c11918716ba8e81cea4421cf4bef8785cdb602f88f51b4d7f670de7f44c399dfafd230fb3c1db4306db709a643d1bc69d701309d8d88dc772e2ca3cd4df490bb56920bd61b27c942bde8e905408c8c3cb5157ed940fa81c0a251eb1d4b8cbfd2",
-                DateA = new DateTime(2007, 10, 2),
-                DateD = new DateTime(2005, 3, 24),
-                Sort = 1468908591,
-                Note = "a751b322ae7e419e8d98f95330fdaec41bcc1fd01a0a4af6aa0d4b998bb79b884ad08f8bb29148f5b8f184838a0d3490a6cab9511ff04f80b741c9efc7f43fc451238fd9616e4cc588953a469cc60e889de4c7b52f634430b2df06df7af9b905c60d245407424c218f7abea6a93de9cafa69cee92e2b4f419d7bd21835d3c9ac5312242eb201476e87d74f14a07a120267c83eccafc6462a9988070fc86bdc4bcdd64d8d59144ea6bada700dc3c2e2d54738b6e9cb704d4fbb78dbd72166a3611f46dd6a6ac14f279ea0208bf02a42a9f9a40d07f6d449c29e334f13430e9d346fd9602d9af940a7bb1f52c85460d1cd5655cfb94f3c477b947e",
-                Status = "58970e1d67174917be640795e0efaecea67aac06b0184c7180"
+                CompanyMainId = Guid.Parse("875079b3-3614-46cf-9706-ec3213d4bba2"),
+                CompanyJobId = Guid.Parse("52a536f8-a924-4d43-ae09-32fcbedd1308"),
+                CompanyInvitationId = "39268ecb10fe4928a99c7ea8f1cf9bd67571ccfc1ad24bd79c",
+                VerifyId = "79bdb07bb82e451e99b614cf9e8153873ef70bd0b7c14a7fbb44fdf02b83ca94e5633412dbf3461d816782c06b88a55c6c0c1377a55943a0884260e0e67a7a2e38e598a733124b888c48b9afe5b56f2e6f3c500b0a79490d84c9c34d9c7d56867f5e07f626e34858b7d0663848e2bd93126c9a4290b84958a6b59fe449ca8e4d08c51307cf1a42a2ae49fc4c3d458abab5ceb9cf9bbf48a5ab53962630373ce33cb108d6bde44f5db4d3d42ffb718ac7cfc59726b452461a94ba193c408e88e03ad687cc181544aeb956d7c530714719f32692039bb64f3cb75a8a594ece11c8bde10269cea94f0cb8e68cefd39cf24dc3d595a96f7c4db697c7",
+                VerifyCode = "e8c02f768f9444e0ac899735f774f4fc797448455fcf466f93",
+                ExtendedInformation = "f2ee3e067823472d9730af5c7c0bf538a5ef124d48ae416992849c5ec636bc2168d16ccc4b2b49d29bdffe6fd18c9f4769ff7f3d3d844d07a138a1b89df0e154163590b0c1f8491094073a8a6d433038fcf4c1ca736d4502ab6d286696eafcb71a6636d99bba45ab840ea257f4d3891f62812771d2bf461a8da821d9a4d2b4461848d03ae2294d36b51a340b11c4352e04f08cc639bb458288fd9768595e452bcdbe926c13e14650a50a7f749e8c6add6ae9548be82246ceb9b03ae2809da63c4f4b2539dba04c588260a2939fc87affd2fac11f213c4bc7a4ad98c5deab94d55173981e97ee4b91a9862d7f570272f6beac339c7e6a43ec82d1",
+                DateA = new DateTime(2006, 1, 24),
+                DateD = new DateTime(2022, 8, 1),
+                Sort = 1809614826,
+                Note = "18cbc8e84afb4523892f5a32d16d22cc7130e048149b4f52922f0172deafe6e68959f2d75d744b999bc5d02919fccd1fc80d69cfb4fb47d28fd22ac613e3d14bc0ebe240733745b18d5a9665e415f815a8c2c03ec42442d297f5d6d5a0577f85e5cfccdf5f374a74964bc039b9c9667f1f23bd718aa8475584bba9dee5a708e038c862d62dea4700b55b208f7a92feff487aee6279344e5383c59e129d0603e6a3ff3e56cb3a4bdfb48a089531fa982cbd47addb93b14ff08e7557c4b8a8ed0d083d72a95542447f8fb2991fa66ee8bf065655107ddc4f7992f253d951920bc602a9dbf58a4740c59fab5b8757f6edb20375f1cb27a9480d84f3",
+                Status = "b839299ec9d541298303785fa821c527c606311fe33e4f91ac"
             };
 
             // Act
@@ -68,17 +68,17 @@ namespace Resume.CompanyInvitationsCodes
             var result = await _companyInvitationsCodeRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("10cb19a3-7ce7-462b-8b9a-3ed1ccb52fb6"));
-            result.CompanyJobId.ShouldBe(Guid.Parse("ed4fd594-3692-49b8-bbcf-ee84b9163bd9"));
-            result.CompanyInvitationId.ShouldBe("e7c7771d38084bbd9f8ef19038a8a29a205f87bc559e4243b6");
-            result.VerifyId.ShouldBe("49801eaa19ad429484f97ef39189226ac68080aa6a7b41558e88436c2266e3ab5ef2c822c18c4c19a5f14e3af37dccf5fa6f9e7e4aab4a28848997d3126d6c05525c2742207f46368f23c7017f0319b88b429c5d0a07436e8a78dbec56123bbc5c8b270347814b13bdac904b34e90d452049c284a8cd415fa34a1c3d6fa10147e6e906ab6b2a4463a5ebccf129f00dc4626468935acd4aa8a6d55a3f9467ccde15761e31d41a4faaab46825284fadcbec0739f1162bd42d0997dff0a0b1da122162c144ef8ed43e2b9373c3f0e73663fdb602cc60f6146f2ab77052ee729f87c87f9d568fe6f4c3985fde7bfc6dade2ae1f3b38b0ee548a0b180");
-            result.VerifyCode.ShouldBe("f5789404537f43dfb0a1b2b11e8177c1476681f357d8458291");
-            result.ExtendedInformation.ShouldBe("0bd857d63af24d3c89a58fa3032de1d936b5c76ca601452f9317ae0a03c0e170b83e6a46a31246048e618ed66fd2980ffc3dba67a53f4f5ebef7bc0d4c64dab3d1c8f235a26744599bdea86643f6df40a224e7ca5a0e418985fd28f052166c1e8a83135bd32e423da7fdcaca17d5953f06af00ccf3c945f595ca9984a7241c92837961cd2f9341479e5586bc96cfba24e88815b25cea4fe78392c11918716ba8e81cea4421cf4bef8785cdb602f88f51b4d7f670de7f44c399dfafd230fb3c1db4306db709a643d1bc69d701309d8d88dc772e2ca3cd4df490bb56920bd61b27c942bde8e905408c8c3cb5157ed940fa81c0a251eb1d4b8cbfd2");
-            result.DateA.ShouldBe(new DateTime(2007, 10, 2));
-            result.DateD.ShouldBe(new DateTime(2005, 3, 24));
-            result.Sort.ShouldBe(1468908591);
-            result.Note.ShouldBe("a751b322ae7e419e8d98f95330fdaec41bcc1fd01a0a4af6aa0d4b998bb79b884ad08f8bb29148f5b8f184838a0d3490a6cab9511ff04f80b741c9efc7f43fc451238fd9616e4cc588953a469cc60e889de4c7b52f634430b2df06df7af9b905c60d245407424c218f7abea6a93de9cafa69cee92e2b4f419d7bd21835d3c9ac5312242eb201476e87d74f14a07a120267c83eccafc6462a9988070fc86bdc4bcdd64d8d59144ea6bada700dc3c2e2d54738b6e9cb704d4fbb78dbd72166a3611f46dd6a6ac14f279ea0208bf02a42a9f9a40d07f6d449c29e334f13430e9d346fd9602d9af940a7bb1f52c85460d1cd5655cfb94f3c477b947e");
-            result.Status.ShouldBe("58970e1d67174917be640795e0efaecea67aac06b0184c7180");
+            result.CompanyMainId.ShouldBe(Guid.Parse("875079b3-3614-46cf-9706-ec3213d4bba2"));
+            result.CompanyJobId.ShouldBe(Guid.Parse("52a536f8-a924-4d43-ae09-32fcbedd1308"));
+            result.CompanyInvitationId.ShouldBe("39268ecb10fe4928a99c7ea8f1cf9bd67571ccfc1ad24bd79c");
+            result.VerifyId.ShouldBe("79bdb07bb82e451e99b614cf9e8153873ef70bd0b7c14a7fbb44fdf02b83ca94e5633412dbf3461d816782c06b88a55c6c0c1377a55943a0884260e0e67a7a2e38e598a733124b888c48b9afe5b56f2e6f3c500b0a79490d84c9c34d9c7d56867f5e07f626e34858b7d0663848e2bd93126c9a4290b84958a6b59fe449ca8e4d08c51307cf1a42a2ae49fc4c3d458abab5ceb9cf9bbf48a5ab53962630373ce33cb108d6bde44f5db4d3d42ffb718ac7cfc59726b452461a94ba193c408e88e03ad687cc181544aeb956d7c530714719f32692039bb64f3cb75a8a594ece11c8bde10269cea94f0cb8e68cefd39cf24dc3d595a96f7c4db697c7");
+            result.VerifyCode.ShouldBe("e8c02f768f9444e0ac899735f774f4fc797448455fcf466f93");
+            result.ExtendedInformation.ShouldBe("f2ee3e067823472d9730af5c7c0bf538a5ef124d48ae416992849c5ec636bc2168d16ccc4b2b49d29bdffe6fd18c9f4769ff7f3d3d844d07a138a1b89df0e154163590b0c1f8491094073a8a6d433038fcf4c1ca736d4502ab6d286696eafcb71a6636d99bba45ab840ea257f4d3891f62812771d2bf461a8da821d9a4d2b4461848d03ae2294d36b51a340b11c4352e04f08cc639bb458288fd9768595e452bcdbe926c13e14650a50a7f749e8c6add6ae9548be82246ceb9b03ae2809da63c4f4b2539dba04c588260a2939fc87affd2fac11f213c4bc7a4ad98c5deab94d55173981e97ee4b91a9862d7f570272f6beac339c7e6a43ec82d1");
+            result.DateA.ShouldBe(new DateTime(2006, 1, 24));
+            result.DateD.ShouldBe(new DateTime(2022, 8, 1));
+            result.Sort.ShouldBe(1809614826);
+            result.Note.ShouldBe("18cbc8e84afb4523892f5a32d16d22cc7130e048149b4f52922f0172deafe6e68959f2d75d744b999bc5d02919fccd1fc80d69cfb4fb47d28fd22ac613e3d14bc0ebe240733745b18d5a9665e415f815a8c2c03ec42442d297f5d6d5a0577f85e5cfccdf5f374a74964bc039b9c9667f1f23bd718aa8475584bba9dee5a708e038c862d62dea4700b55b208f7a92feff487aee6279344e5383c59e129d0603e6a3ff3e56cb3a4bdfb48a089531fa982cbd47addb93b14ff08e7557c4b8a8ed0d083d72a95542447f8fb2991fa66ee8bf065655107ddc4f7992f253d951920bc602a9dbf58a4740c59fab5b8757f6edb20375f1cb27a9480d84f3");
+            result.Status.ShouldBe("b839299ec9d541298303785fa821c527c606311fe33e4f91ac");
         }
 
         [Fact]
@@ -87,47 +87,47 @@ namespace Resume.CompanyInvitationsCodes
             // Arrange
             var input = new CompanyInvitationsCodeUpdateDto()
             {
-                CompanyMainId = Guid.Parse("4a89518b-c4f9-4145-85eb-65d7e46247e4"),
-                CompanyJobId = Guid.Parse("3dd9270f-3dc7-416b-b66e-04c9f04d8fd6"),
-                CompanyInvitationId = "c2d2a26edc0f4923a943de5f38486026457ba51adeb4405faa",
-                VerifyId = "81a5f346474c4bd6a5e29133c9a607dd69838965aa674e83af16d2a8dd93bfdab4d43010834042e8b15170b61b5478f667a78b2d24944a258dc1e3251a50c4c8e66746ac4d78441589be5646af7a56b0b9bba746c0ce4fe78bf4a1a402784ddf45d459ff258d4bc28ea996092a7c5b015c7648fb46a24f46b94450138e9a02efcd1e3d35e02a4a4d82da3bebac4dd03a7523490c0fd644d0bc40f9719b22cd1fbf08121c77f646d9afe124fe7dcfb83dc1eba407e3464d3f9933d97710a71a9efe05fc19cd254b77acbe7979e6b1c9a21d210111e394407685081963d300fb9efb1df6f9a16b467fa9aa87fcbc43a678e353fa2c643844119bd4",
-                VerifyCode = "bbb96d7135cd4d5cafcefa0120620878841bd20ea42945c3a7",
-                ExtendedInformation = "fdf70da0b4474b6eafd4c5c73a50598954a496e74ca64c65b4af7c8552ec6dbb5bf047ff3a6c46b7b005062319309260f607527557154e2daf2b0428bbc34592b9c7357bf0bc4c0f8e0e6d97b2a763a28cc25807d3d144419f583cd818106ca70a0bcf94043f4e4a930dd02e1eed7ff8acb01e5f8cdb4924b3d6df9bb00b47345011fb4dea674e74bd9b1d6138ab7aec1bfd9e60e218414aa2d6a9074885d8f9e944efce348a4273ba21d6d604148530948c596cfcfd4e7282112db139ef4fa8f226ad2bc3894e3c90edce272d5af6561f94d28967b24e28a778027ceb33127d3c1d862e0f814ed688197c1a62f51329091e06894c004fbda32b",
-                DateA = new DateTime(2007, 1, 9),
-                DateD = new DateTime(2009, 10, 9),
-                Sort = 1419878680,
-                Note = "81725980655b49db8d23f560b81e8a66a6ba2a23ed114d5086b0cade0ebfd7f5df5b18b332da4ae1b6bba68e06036a67f9c63fd1cd9c42a89195e083790026abdd12ff7cecd14ccfafa0bb353f7bb8a1feb8176b38f64dea98076af0b2a301bc26376a36a73e4064b8ea523a9a8735d4d6bc799344c84e16bfa487a44ae61bb50ac0930210514b7b828763f69bd86d3cd4fabf99371d422080ea30c087d286718276ca284f9a4c9090c1e2263d4f8ecdd5fdafdbce954f059c339703726fdeae1a43a260324449309e07d0cefd5915fa504187a7cada4bac99ccda49495ac58df47d5354cd734b91965064bba552548e7da5b9a66fe345769d8c",
-                Status = "d011e50ca59d440c965d03fad4b430dd4219e220fc574b6fb8"
+                CompanyMainId = Guid.Parse("18fc025e-aec8-4e13-8e1d-f2750b7433dd"),
+                CompanyJobId = Guid.Parse("0f79b23d-9e92-44fe-acb3-7b294a45e498"),
+                CompanyInvitationId = "f6d7186919dd4f35a62ea47346101504a50219713d2440e8b8",
+                VerifyId = "0ccdb7cbc029478cbbe2179e21c8b346877b7b3e1d26478eaba30ae02020c24cb9c305fe684a453fadfff6930796803d90b85601095e47518a69874d76a5a674f3803a042b51480496c40f5999bc7dbcb1972216a3984ebf8e2e2dea271cfe92d1dece455e854ec785cfe10b3103fe7ead3d4a6b012e4ccaaad9d556314d305f88d0f1c3a63946e08c315de94a33ac4e36bc3bb343144d7394d4d43733b6272f5bf20c0dc4a945aca8d1357385c9c7b47ddda2f809184f01b102a85507b73c4afcf460360e134c069cee20281bd76d40bccd6933073a46b8941e3933acdf77c823c3518ea5ae48e19d9dc6b4f745ca5d680642e754fb4a929d52",
+                VerifyCode = "288cc8fec872450092ec056566c0cd9e82b06f118a5e44ef9d",
+                ExtendedInformation = "f50f4388330c4d0084b7ddbedf319412285b70c1e5d84c9c85918008b4b65ef9f10699bdca3a4048a7e1aea0da3b8cc82ecd10cb9e5447e39002921e84f05fc7d0a9740ad10a4847b707d9805e83e0a7a0cc63d33fd84351926205cecbd27b032283760399f84f5fa223267daef5bd77d082d18c94e44553b2d2449c70126948992d26f155834eb8ab44e9839d67adc9ddd9df622ed84e70889deb33cfb0f92d8bcb486f80ae42b695c1cf08d89d3b23b212742727814554b0bcdee66d779bebba450e32565f4c4a894677a1cbade1634bec2a0e5d514db2a34ddeef9d18f0f0ecf75734ca5a4424b9995fac7b33bc5b9222924709dc4267a924",
+                DateA = new DateTime(2022, 7, 17),
+                DateD = new DateTime(2002, 7, 18),
+                Sort = 1358578772,
+                Note = "774c88fd821844b893f700663a95df78197209034d104057974bd6f98011a8b5e662013e28184fae9902927018d022c9e62bccaf1e884a67ba6fd704908c91e957f3497a65e44ebea49d38c08c53a03ae3315a2bd86b4821bd9feda1beef287fbaa059bae6de41e2940fdaabd4a348bbcd4b447367a54339a02304c2e5749ae17088548695114c60974719e85131cc40362f9980a69a44f7bb2410bb89d83c0946d82c1963c84417869e83091f525dde2e0422314e304e8f94db9020780ebbaeda0ae09ee06b4a88a9bf18d84235b2332d5139a6c2bd4cc5bb36e30569ee19e02585202ad55c468489d7cd807a530e6b0f5e992ec1a44e32821e",
+                Status = "61a47245044b4d21bd8a016d1546b15c1f69cf7b7f154a2799"
             };
 
             // Act
-            var serviceResult = await _companyInvitationsCodesAppService.UpdateAsync(Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c"), input);
+            var serviceResult = await _companyInvitationsCodesAppService.UpdateAsync(Guid.Parse("2885aed5-3c12-4038-b214-c471394decce"), input);
 
             // Assert
             var result = await _companyInvitationsCodeRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("4a89518b-c4f9-4145-85eb-65d7e46247e4"));
-            result.CompanyJobId.ShouldBe(Guid.Parse("3dd9270f-3dc7-416b-b66e-04c9f04d8fd6"));
-            result.CompanyInvitationId.ShouldBe("c2d2a26edc0f4923a943de5f38486026457ba51adeb4405faa");
-            result.VerifyId.ShouldBe("81a5f346474c4bd6a5e29133c9a607dd69838965aa674e83af16d2a8dd93bfdab4d43010834042e8b15170b61b5478f667a78b2d24944a258dc1e3251a50c4c8e66746ac4d78441589be5646af7a56b0b9bba746c0ce4fe78bf4a1a402784ddf45d459ff258d4bc28ea996092a7c5b015c7648fb46a24f46b94450138e9a02efcd1e3d35e02a4a4d82da3bebac4dd03a7523490c0fd644d0bc40f9719b22cd1fbf08121c77f646d9afe124fe7dcfb83dc1eba407e3464d3f9933d97710a71a9efe05fc19cd254b77acbe7979e6b1c9a21d210111e394407685081963d300fb9efb1df6f9a16b467fa9aa87fcbc43a678e353fa2c643844119bd4");
-            result.VerifyCode.ShouldBe("bbb96d7135cd4d5cafcefa0120620878841bd20ea42945c3a7");
-            result.ExtendedInformation.ShouldBe("fdf70da0b4474b6eafd4c5c73a50598954a496e74ca64c65b4af7c8552ec6dbb5bf047ff3a6c46b7b005062319309260f607527557154e2daf2b0428bbc34592b9c7357bf0bc4c0f8e0e6d97b2a763a28cc25807d3d144419f583cd818106ca70a0bcf94043f4e4a930dd02e1eed7ff8acb01e5f8cdb4924b3d6df9bb00b47345011fb4dea674e74bd9b1d6138ab7aec1bfd9e60e218414aa2d6a9074885d8f9e944efce348a4273ba21d6d604148530948c596cfcfd4e7282112db139ef4fa8f226ad2bc3894e3c90edce272d5af6561f94d28967b24e28a778027ceb33127d3c1d862e0f814ed688197c1a62f51329091e06894c004fbda32b");
-            result.DateA.ShouldBe(new DateTime(2007, 1, 9));
-            result.DateD.ShouldBe(new DateTime(2009, 10, 9));
-            result.Sort.ShouldBe(1419878680);
-            result.Note.ShouldBe("81725980655b49db8d23f560b81e8a66a6ba2a23ed114d5086b0cade0ebfd7f5df5b18b332da4ae1b6bba68e06036a67f9c63fd1cd9c42a89195e083790026abdd12ff7cecd14ccfafa0bb353f7bb8a1feb8176b38f64dea98076af0b2a301bc26376a36a73e4064b8ea523a9a8735d4d6bc799344c84e16bfa487a44ae61bb50ac0930210514b7b828763f69bd86d3cd4fabf99371d422080ea30c087d286718276ca284f9a4c9090c1e2263d4f8ecdd5fdafdbce954f059c339703726fdeae1a43a260324449309e07d0cefd5915fa504187a7cada4bac99ccda49495ac58df47d5354cd734b91965064bba552548e7da5b9a66fe345769d8c");
-            result.Status.ShouldBe("d011e50ca59d440c965d03fad4b430dd4219e220fc574b6fb8");
+            result.CompanyMainId.ShouldBe(Guid.Parse("18fc025e-aec8-4e13-8e1d-f2750b7433dd"));
+            result.CompanyJobId.ShouldBe(Guid.Parse("0f79b23d-9e92-44fe-acb3-7b294a45e498"));
+            result.CompanyInvitationId.ShouldBe("f6d7186919dd4f35a62ea47346101504a50219713d2440e8b8");
+            result.VerifyId.ShouldBe("0ccdb7cbc029478cbbe2179e21c8b346877b7b3e1d26478eaba30ae02020c24cb9c305fe684a453fadfff6930796803d90b85601095e47518a69874d76a5a674f3803a042b51480496c40f5999bc7dbcb1972216a3984ebf8e2e2dea271cfe92d1dece455e854ec785cfe10b3103fe7ead3d4a6b012e4ccaaad9d556314d305f88d0f1c3a63946e08c315de94a33ac4e36bc3bb343144d7394d4d43733b6272f5bf20c0dc4a945aca8d1357385c9c7b47ddda2f809184f01b102a85507b73c4afcf460360e134c069cee20281bd76d40bccd6933073a46b8941e3933acdf77c823c3518ea5ae48e19d9dc6b4f745ca5d680642e754fb4a929d52");
+            result.VerifyCode.ShouldBe("288cc8fec872450092ec056566c0cd9e82b06f118a5e44ef9d");
+            result.ExtendedInformation.ShouldBe("f50f4388330c4d0084b7ddbedf319412285b70c1e5d84c9c85918008b4b65ef9f10699bdca3a4048a7e1aea0da3b8cc82ecd10cb9e5447e39002921e84f05fc7d0a9740ad10a4847b707d9805e83e0a7a0cc63d33fd84351926205cecbd27b032283760399f84f5fa223267daef5bd77d082d18c94e44553b2d2449c70126948992d26f155834eb8ab44e9839d67adc9ddd9df622ed84e70889deb33cfb0f92d8bcb486f80ae42b695c1cf08d89d3b23b212742727814554b0bcdee66d779bebba450e32565f4c4a894677a1cbade1634bec2a0e5d514db2a34ddeef9d18f0f0ecf75734ca5a4424b9995fac7b33bc5b9222924709dc4267a924");
+            result.DateA.ShouldBe(new DateTime(2022, 7, 17));
+            result.DateD.ShouldBe(new DateTime(2002, 7, 18));
+            result.Sort.ShouldBe(1358578772);
+            result.Note.ShouldBe("774c88fd821844b893f700663a95df78197209034d104057974bd6f98011a8b5e662013e28184fae9902927018d022c9e62bccaf1e884a67ba6fd704908c91e957f3497a65e44ebea49d38c08c53a03ae3315a2bd86b4821bd9feda1beef287fbaa059bae6de41e2940fdaabd4a348bbcd4b447367a54339a02304c2e5749ae17088548695114c60974719e85131cc40362f9980a69a44f7bb2410bb89d83c0946d82c1963c84417869e83091f525dde2e0422314e304e8f94db9020780ebbaeda0ae09ee06b4a88a9bf18d84235b2332d5139a6c2bd4cc5bb36e30569ee19e02585202ad55c468489d7cd807a530e6b0f5e992ec1a44e32821e");
+            result.Status.ShouldBe("61a47245044b4d21bd8a016d1546b15c1f69cf7b7f154a2799");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _companyInvitationsCodesAppService.DeleteAsync(Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c"));
+            await _companyInvitationsCodesAppService.DeleteAsync(Guid.Parse("2885aed5-3c12-4038-b214-c471394decce"));
 
             // Assert
-            var result = await _companyInvitationsCodeRepository.FindAsync(c => c.Id == Guid.Parse("a1969ca7-0070-4962-b3e5-6907e586f53c"));
+            var result = await _companyInvitationsCodeRepository.FindAsync(c => c.Id == Guid.Parse("2885aed5-3c12-4038-b214-c471394decce"));
 
             result.ShouldBeNull();
         }

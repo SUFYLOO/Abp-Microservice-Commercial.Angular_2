@@ -35,11 +35,11 @@ export interface ShareDefaultCreateDto {
   formTypeCode: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareDefaultDto extends FullAuditedEntityDto<string> {
@@ -54,11 +54,11 @@ export interface ShareDefaultDto extends FullAuditedEntityDto<string> {
   formTypeCode: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareDefaultExcelDownloadDto {
@@ -79,9 +79,9 @@ export interface ShareDefaultUpdateDto {
   formTypeCode: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

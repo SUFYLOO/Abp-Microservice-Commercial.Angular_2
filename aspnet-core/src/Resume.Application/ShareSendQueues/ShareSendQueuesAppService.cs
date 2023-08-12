@@ -63,7 +63,7 @@ namespace Resume.ShareSendQueues
         {
 
             var shareSendQueue = await _shareSendQueueManager.CreateAsync(
-            input.Key1, input.Key2, input.Key3, input.SendTypeCode, input.FromAddr, input.ToAddr, input.TitleContents, input.Contents, input.Retry, input.Sucess, input.Suspend, input.DateSend, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.SendTypeCode, input.FromAddr, input.ToAddr, input.TitleContents, input.Contents, input.Retry, input.Sucess, input.Suspend, input.DateSend, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareSendQueue, ShareSendQueueDto>(shareSendQueue);
@@ -75,7 +75,7 @@ namespace Resume.ShareSendQueues
 
             var shareSendQueue = await _shareSendQueueManager.UpdateAsync(
             id,
-            input.Key1, input.Key2, input.Key3, input.SendTypeCode, input.FromAddr, input.ToAddr, input.TitleContents, input.Contents, input.Retry, input.Sucess, input.Suspend, input.DateSend, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.SendTypeCode, input.FromAddr, input.ToAddr, input.TitleContents, input.Contents, input.Retry, input.Sucess, input.Suspend, input.DateSend, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareSendQueue, ShareSendQueueDto>(shareSendQueue);

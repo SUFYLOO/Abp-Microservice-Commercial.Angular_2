@@ -131,11 +131,11 @@ export class CompanyJobContentComponent implements OnInit {
       workIdentityCode: [workIdentityCode ?? null, [Validators.maxLength(200)]],
       disabilityCategory: [disabilityCategory ?? null, [Validators.maxLength(200)]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
-      dateA: [dateA ? new Date(dateA) : null, []],
-      dateD: [dateD ? new Date(dateD) : null, []],
-      sort: [sort ?? null, []],
+      dateA: [dateA ?? '1900/1/1', []],
+      dateD: [dateD ?? '2099/12/31', []],
+      sort: [sort ?? '9', []],
       note: [note ?? null, [Validators.maxLength(500)]],
-      status: [status ?? null, [Validators.required, Validators.maxLength(50)]],
+      status: [status ?? '1', [Validators.maxLength(50)]],
     });
   }
 

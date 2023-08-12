@@ -38,31 +38,29 @@ namespace Resume.ResumeRecommenders
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeRecommender()
         {
 
         }
 
-        public ResumeRecommender(Guid id, Guid resumeMainId, string name, DateTime dateA, DateTime dateD, int sort, string status, string companyName = null, string jobName = null, string mobilePhone = null, string officePhone = null, string email = null, string extendedInformation = null, string note = null)
+        public ResumeRecommender(Guid id, Guid resumeMainId, string name, string companyName = null, string jobName = null, string mobilePhone = null, string officePhone = null, string email = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
             Check.NotNull(name, nameof(name));
             Check.Length(name, nameof(name), ResumeRecommenderConsts.NameMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeRecommenderConsts.StatusMaxLength, 0);
             Check.Length(companyName, nameof(companyName), ResumeRecommenderConsts.CompanyNameMaxLength, 0);
             Check.Length(jobName, nameof(jobName), ResumeRecommenderConsts.JobNameMaxLength, 0);
             Check.Length(mobilePhone, nameof(mobilePhone), ResumeRecommenderConsts.MobilePhoneMaxLength, 0);
@@ -70,19 +68,20 @@ namespace Resume.ResumeRecommenders
             Check.Length(email, nameof(email), ResumeRecommenderConsts.EmailMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeRecommenderConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeRecommenderConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeRecommenderConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             Name = name;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             CompanyName = companyName;
             JobName = jobName;
             MobilePhone = mobilePhone;
             OfficePhone = officePhone;
             Email = email;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

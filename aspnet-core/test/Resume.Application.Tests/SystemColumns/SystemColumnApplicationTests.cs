@@ -27,19 +27,19 @@ namespace Resume.SystemColumns
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("bab14eb0-7273-4588-b219-b4f11e79b0e3")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("2da20364-012f-44ae-ae1d-c0c158d36e37")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _systemColumnsAppService.GetAsync(Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585"));
+            var result = await _systemColumnsAppService.GetAsync(Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585"));
+            result.Id.ShouldBe(Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e"));
         }
 
         [Fact]
@@ -48,26 +48,26 @@ namespace Resume.SystemColumns
             // Arrange
             var input = new SystemColumnCreateDto
             {
-                SystemTableId = Guid.Parse("f40f43ee-0d9b-4c71-880a-1f8382cbd6e1"),
-                Name = "36e7446ce6dd47a1bdf3bb613be1a6e7ff0b3e7cf1ff417584",
+                SystemTableId = Guid.Parse("fde17147-7374-4873-bfb8-d68ac6a6a3d0"),
+                Name = "addeb8694aad4eddb771bcb98ca1dc5f3705f95b2f5a4dcaae",
                 IsKey = true,
                 IsSensitive = true,
                 NeedMask = true,
-                DefaultValue = "ce16d38595c648beaea769f429c69d2cf4ed39464b744198ba",
+                DefaultValue = "ad024fd0db5b4b198267ec7a30f0b4858316c38db268494c8a",
                 CheckCode = true,
-                Related = "c524228b880a44ba97bee229cdb6b3b18297e981c65643d4b19ca7f2a3003515ba15f9abb77b47d0b39181cf1d071b34869fd91b448c4f5d980893d8258465aa54938b6a04c84af08a714fd5b633b015f4fa92aa88104ce097d52836a50f9c8a01402802",
+                Related = "4b2dd9e3968242d0828869a2984f20d54acd5bc690bf4fbc9039f5f49c5cc271df98325a75f243ff9630eee88be37f6066f35833a2f44d4b9a2d86df64e7fa76158786575e9a4a6693513971aa033c04e383b249704a4df88ec6bbacb7c43b661265af28",
                 AllowUpdate = true,
                 AllowNull = true,
                 AllowEmpty = true,
                 AllowExport = true,
                 AllowSort = true,
-                ColumnTypeCode = "82b82e41aac8490c8495b12d0e0fc76a4874c7efb41f439c9f",
-                ExtendedInformation = "514b9ea67b2f47a2b2b2b71ddc0e4dc9a9321f6f4e664c2180fcb82ba6307d1cbccf3078f75343d3a1a04ec42afc236207a002357b5a4210ae6af2317108302e3b093ad213e040d9877b61c4822a6afc4364271b23e64dadaf7e92ba8513978393ee8b4a13fc4a7d94c89579faef56455e32095108194703a6f69c71fe53fe0c1769428dc6ef47bb9b21b3e19501a847bc2e8e4196e24a89a4d8ab43204731b58465dfd2e97444efb2f1de149cbe9ce71056862c939143cabeb77e1b6857fa00655bd3dae3e44e0f8ed8d82c7dd37219c7dca735c85e4ad59c311975477b0218f6f22f917b204a12b6fb84f23f613c9eb42837eeae7c45b5b915",
-                DateA = new DateTime(2005, 5, 9),
-                DateD = new DateTime(2000, 7, 7),
-                Sort = 1787631173,
-                Note = "a0a4eca14d1b40b88845bfa29eace727a9a85eef45284d84afad8dbf04d52b337e1e70f48c244b4dae00b08239c3ecb4ad47ad9724c841afa02fef7ba7e9ff819f268fa4c05e478db0d6af44820604f338d227dddd914047897492e42281cb05a3a70dd050f94264bc24138c9ed54e68e08dd1ac42c546d888b2a6a92ae96a06fbc3aedfa3674072aa422283f27bb9a7df5500e88ae84ade93bb25af1928e91871019f122085443184cfdfc76657e1abd4bd49cc98d24af792d6905999865b59a63414a7e3904a6f889fa294a5ccdf2009c25a7fd95e473aac61e9bece54c4e46b39f1dd532545fc96beefb089abcc25a2d4272e28b845a98911",
-                Status = "9ad9717393ae46b7b92d08bed35f33db0818bb0d76704f8fbd"
+                ColumnTypeCode = "78e700c9308e4b88930fe783ee994cb54a4fdc8c69d64ed189",
+                ExtendedInformation = "7d2f06ce4bec4c3db87eff3752ee76a20799bf03817c4d759b97ee1db831b78779a54f0036c744b49c14792645d89d39f4fbc7ece0684d08b161af6904e5ed652043427eec7c455b80e18617351a6af6437e5c5e03f946d7a96fee86ebb4515a7bd1cbf5c18f4d6b9c3cc926ebb89d2e596251e398a044288d13a3ebfe3f8abde3778080f21e48859019f7cb73042f6589846a5c8574419da2217fe031509cd1b4d382d7c1a54c45b7876352693f2ad496c3f55f453c4d9bb7c42ad45b6dd1d7e9fba1b065a346b0a392ee66844fc342c5ec2543db8c4ad7b95a21b35f41b42a0f8611892de3422c9e5cc21b18738d872158c5bf8abc43a8b4a8",
+                DateA = new DateTime(2002, 8, 24),
+                DateD = new DateTime(2008, 3, 25),
+                Sort = 1349821414,
+                Note = "475e8fee392147558a75ddddfb750ced2b6e38ffdd5f4c09b3c13064ffab22c56ef4405a06f6458893bd09a59b6415b3e6c207aa689f4d96ab7cfd7967a69ea0ec8c6946a1894ee48fd325742503373e31b35b9c4c404cd992d5bb1f1325314138a33642640242ec9ad354ea3b920b76c402721df6cc4f59bc7d12603af76481d55b36e560cb44f0a2c8dbeaf2c4e30f2b206e1e72c24ce399cb3b8bab1ce639bcc88bd9ea8f48c5a1ef95e3bcd97031b6021df7d76246799cef9983092fe33333a3dc6770d7498a9c6a0bd028a23ea76d4b70c3bb68411085778e90080f1e072d5c7ae23b6645c7ba8d762776bedd55eed63e1f39c948338634",
+                Status = "4e624619d25d4e7188afab27dcc86ab449479c5154c3401a81"
             };
 
             // Act
@@ -77,26 +77,26 @@ namespace Resume.SystemColumns
             var result = await _systemColumnRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.SystemTableId.ShouldBe(Guid.Parse("f40f43ee-0d9b-4c71-880a-1f8382cbd6e1"));
-            result.Name.ShouldBe("36e7446ce6dd47a1bdf3bb613be1a6e7ff0b3e7cf1ff417584");
+            result.SystemTableId.ShouldBe(Guid.Parse("fde17147-7374-4873-bfb8-d68ac6a6a3d0"));
+            result.Name.ShouldBe("addeb8694aad4eddb771bcb98ca1dc5f3705f95b2f5a4dcaae");
             result.IsKey.ShouldBe(true);
             result.IsSensitive.ShouldBe(true);
             result.NeedMask.ShouldBe(true);
-            result.DefaultValue.ShouldBe("ce16d38595c648beaea769f429c69d2cf4ed39464b744198ba");
+            result.DefaultValue.ShouldBe("ad024fd0db5b4b198267ec7a30f0b4858316c38db268494c8a");
             result.CheckCode.ShouldBe(true);
-            result.Related.ShouldBe("c524228b880a44ba97bee229cdb6b3b18297e981c65643d4b19ca7f2a3003515ba15f9abb77b47d0b39181cf1d071b34869fd91b448c4f5d980893d8258465aa54938b6a04c84af08a714fd5b633b015f4fa92aa88104ce097d52836a50f9c8a01402802");
+            result.Related.ShouldBe("4b2dd9e3968242d0828869a2984f20d54acd5bc690bf4fbc9039f5f49c5cc271df98325a75f243ff9630eee88be37f6066f35833a2f44d4b9a2d86df64e7fa76158786575e9a4a6693513971aa033c04e383b249704a4df88ec6bbacb7c43b661265af28");
             result.AllowUpdate.ShouldBe(true);
             result.AllowNull.ShouldBe(true);
             result.AllowEmpty.ShouldBe(true);
             result.AllowExport.ShouldBe(true);
             result.AllowSort.ShouldBe(true);
-            result.ColumnTypeCode.ShouldBe("82b82e41aac8490c8495b12d0e0fc76a4874c7efb41f439c9f");
-            result.ExtendedInformation.ShouldBe("514b9ea67b2f47a2b2b2b71ddc0e4dc9a9321f6f4e664c2180fcb82ba6307d1cbccf3078f75343d3a1a04ec42afc236207a002357b5a4210ae6af2317108302e3b093ad213e040d9877b61c4822a6afc4364271b23e64dadaf7e92ba8513978393ee8b4a13fc4a7d94c89579faef56455e32095108194703a6f69c71fe53fe0c1769428dc6ef47bb9b21b3e19501a847bc2e8e4196e24a89a4d8ab43204731b58465dfd2e97444efb2f1de149cbe9ce71056862c939143cabeb77e1b6857fa00655bd3dae3e44e0f8ed8d82c7dd37219c7dca735c85e4ad59c311975477b0218f6f22f917b204a12b6fb84f23f613c9eb42837eeae7c45b5b915");
-            result.DateA.ShouldBe(new DateTime(2005, 5, 9));
-            result.DateD.ShouldBe(new DateTime(2000, 7, 7));
-            result.Sort.ShouldBe(1787631173);
-            result.Note.ShouldBe("a0a4eca14d1b40b88845bfa29eace727a9a85eef45284d84afad8dbf04d52b337e1e70f48c244b4dae00b08239c3ecb4ad47ad9724c841afa02fef7ba7e9ff819f268fa4c05e478db0d6af44820604f338d227dddd914047897492e42281cb05a3a70dd050f94264bc24138c9ed54e68e08dd1ac42c546d888b2a6a92ae96a06fbc3aedfa3674072aa422283f27bb9a7df5500e88ae84ade93bb25af1928e91871019f122085443184cfdfc76657e1abd4bd49cc98d24af792d6905999865b59a63414a7e3904a6f889fa294a5ccdf2009c25a7fd95e473aac61e9bece54c4e46b39f1dd532545fc96beefb089abcc25a2d4272e28b845a98911");
-            result.Status.ShouldBe("9ad9717393ae46b7b92d08bed35f33db0818bb0d76704f8fbd");
+            result.ColumnTypeCode.ShouldBe("78e700c9308e4b88930fe783ee994cb54a4fdc8c69d64ed189");
+            result.ExtendedInformation.ShouldBe("7d2f06ce4bec4c3db87eff3752ee76a20799bf03817c4d759b97ee1db831b78779a54f0036c744b49c14792645d89d39f4fbc7ece0684d08b161af6904e5ed652043427eec7c455b80e18617351a6af6437e5c5e03f946d7a96fee86ebb4515a7bd1cbf5c18f4d6b9c3cc926ebb89d2e596251e398a044288d13a3ebfe3f8abde3778080f21e48859019f7cb73042f6589846a5c8574419da2217fe031509cd1b4d382d7c1a54c45b7876352693f2ad496c3f55f453c4d9bb7c42ad45b6dd1d7e9fba1b065a346b0a392ee66844fc342c5ec2543db8c4ad7b95a21b35f41b42a0f8611892de3422c9e5cc21b18738d872158c5bf8abc43a8b4a8");
+            result.DateA.ShouldBe(new DateTime(2002, 8, 24));
+            result.DateD.ShouldBe(new DateTime(2008, 3, 25));
+            result.Sort.ShouldBe(1349821414);
+            result.Note.ShouldBe("475e8fee392147558a75ddddfb750ced2b6e38ffdd5f4c09b3c13064ffab22c56ef4405a06f6458893bd09a59b6415b3e6c207aa689f4d96ab7cfd7967a69ea0ec8c6946a1894ee48fd325742503373e31b35b9c4c404cd992d5bb1f1325314138a33642640242ec9ad354ea3b920b76c402721df6cc4f59bc7d12603af76481d55b36e560cb44f0a2c8dbeaf2c4e30f2b206e1e72c24ce399cb3b8bab1ce639bcc88bd9ea8f48c5a1ef95e3bcd97031b6021df7d76246799cef9983092fe33333a3dc6770d7498a9c6a0bd028a23ea76d4b70c3bb68411085778e90080f1e072d5c7ae23b6645c7ba8d762776bedd55eed63e1f39c948338634");
+            result.Status.ShouldBe("4e624619d25d4e7188afab27dcc86ab449479c5154c3401a81");
         }
 
         [Fact]
@@ -105,65 +105,65 @@ namespace Resume.SystemColumns
             // Arrange
             var input = new SystemColumnUpdateDto()
             {
-                SystemTableId = Guid.Parse("398f1cde-6b64-4a8e-9a33-81985ffacedf"),
-                Name = "c0fdd146aef34cc4a8c0dccec2930a2266416b0e8f624db7ba",
+                SystemTableId = Guid.Parse("326f30e9-e090-444e-8771-d93f632a0044"),
+                Name = "10b19f0d3dc34e1da6809952c83dda12581663c9cdf3477e80",
                 IsKey = true,
                 IsSensitive = true,
                 NeedMask = true,
-                DefaultValue = "a3bd06fe1da241d68a0737701bb1decf956e997783334d2a93",
+                DefaultValue = "925d2ec5c413402382da38b8b725efc3627cf4e45011440387",
                 CheckCode = true,
-                Related = "f9f30867e2104efcad0e235243beffd4d069303c6dba4d0fa75fac3082a72f37810c5bcdef324d14a8521d1c840c9d94d9c745d77be64ca0a5a99839eb231c0512ebf67aea7f40a4b555ab1a0aeea3a0b3406e48ac1a400392ee56f5fa1d681abfe30b99",
+                Related = "8aba3d055635448a8615c9e822b4300f2e3a95d878bd47cd8d769beb4ee712180320ce0cc91a45d3a20a7f807f57e06bdc662da6eb3d403c88207b69839108d617c91e9505324f5a8b2b0834e48ecb1b0e3c5c7fcffc4090a43782f0a42a9e8f817786b6",
                 AllowUpdate = true,
                 AllowNull = true,
                 AllowEmpty = true,
                 AllowExport = true,
                 AllowSort = true,
-                ColumnTypeCode = "c872bff435834fa489649597678904fe436f5d48720f4bafaf",
-                ExtendedInformation = "3756912746254dbc9570e8a7b1655b5b205e6c9a154a4cd39a96d7314ae4e038f6d6bee73ae64781ae0710370d36c533127de953ae5b4a20a041a45ac82424f85a5fb307da5f46e3a428385e711073982e4e6da06c654d5f88f505774d56f39e06a987bac7bf41cba82b04c002495c15ea7498d5ce154edc85b2b551db41358cf0337c4db1814f3ba57cbf05b1d66a8172f1c4981c974ac6a631a963b1097752dc95ba1992aa4783b5e3b4b06df615196779c3ba792146b4b1db2487025bf4ffb4e385cbb25c47c7a05737dc923270923080ffc02bd24f289d214a80f46b564c36c7dbb2041642e8af82a4905712d98bf9a170d839e6464583a2",
-                DateA = new DateTime(2003, 10, 21),
-                DateD = new DateTime(2004, 9, 24),
-                Sort = 615187457,
-                Note = "92abcb255eb44472aed3ea8cf1f1e168469e35a597014c7393c340b14c3a17a26191abecb8674e548856c97d32d0ebc1005d0b90f38e4c31967f96b0da2b22f052612eba14184420b0b55563f775cdc7375ff97292cc4c3cb1e4cbd6a47d64afb4e156f097494095a2fd61dfbb59b6585aa223dc3f55418db06dc28be8e7f9db788a790be6d04c37835ba05d6b7fd356fa9c8bff3d15407c8878db792416d0d1731e4a75ee43433ba21e09f72f9dc2f5d68193e3227f4a74b636e464e21d9bceeece4ca4917542cfa44cfe60f917bebeec7034989c724dfd896618f50604a481545c6d6d14be4d0daf1f4dc96990e6f7643701149d8e4b8c80bc",
-                Status = "d14a9ca341284939a3b6cd24a386e98030b30c21c1ff4bf6b6"
+                ColumnTypeCode = "42c247e0dbd64944be4b5eff4f0e5fba1ef7ad8721494100b6",
+                ExtendedInformation = "acb58c8413f24e47827fa9f94d0a52ba0ab9516795e84aa2a06d1ca2284bab7a2e6c0f891a5243bba7259a6b7d9b193a76e29491cc4b42f19bfe65ab57df28527209bf4c0e8a4d1da8308ef90f1c1f557d4b02ef81594158b6a5431d6c55a52f6b1d1a33490541288edd73f2fe295508eb0850b036654893927551fcd57ced0679a3b42f97c0466cb5e812e2531034b5e7ccb6de0c6544b4b56579789d6e0bf72e9a28a90522488c837c95fc275228ae21681cec70c64c33b1f992f0c7cd73133efbb4256b7c4d3e9b8e22d54b72454cb78f98fd4b7943e79dda7d730b1d36257bf896ac86754e7ab5c4fb67a30b0597b2d6c43c85d0428f9e2f",
+                DateA = new DateTime(2011, 5, 2),
+                DateD = new DateTime(2015, 5, 4),
+                Sort = 439692161,
+                Note = "8bac7a20d14940d899b50d7fc8e8b703da332268b4ea4e68ba183f1b66390d07208f1ff322e04bce8fbccb726361ec06e35b584f45f44722bc8a944b739e784b52270a906cfc4fe39446da1e25aa1c317cd6697c184a4174a331d3ecf01a8b3623449bd50160462ba192c8e49aacf3ab06beaed3b3a94fb0a29effc0c22b3eb84e24451f5cb4429a8b1e2cb3df3d938648ed0719292d4d0a89bdcc4ec73988c653856851ed7840dc9630d4041fc820e0ab38b105e496419dbe5f7ce12cec004430cd009da9b84413b26ff1aa0935896d2c0cb02a6785490799f25ba45073da27ac486ac4a391414695bfaf75e6b28fd3ef0fc6f508024c55b8ad",
+                Status = "e7b759c75502495cae33aa9a7754bcdbe0fc9f35e0fa42d086"
             };
 
             // Act
-            var serviceResult = await _systemColumnsAppService.UpdateAsync(Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585"), input);
+            var serviceResult = await _systemColumnsAppService.UpdateAsync(Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e"), input);
 
             // Assert
             var result = await _systemColumnRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.SystemTableId.ShouldBe(Guid.Parse("398f1cde-6b64-4a8e-9a33-81985ffacedf"));
-            result.Name.ShouldBe("c0fdd146aef34cc4a8c0dccec2930a2266416b0e8f624db7ba");
+            result.SystemTableId.ShouldBe(Guid.Parse("326f30e9-e090-444e-8771-d93f632a0044"));
+            result.Name.ShouldBe("10b19f0d3dc34e1da6809952c83dda12581663c9cdf3477e80");
             result.IsKey.ShouldBe(true);
             result.IsSensitive.ShouldBe(true);
             result.NeedMask.ShouldBe(true);
-            result.DefaultValue.ShouldBe("a3bd06fe1da241d68a0737701bb1decf956e997783334d2a93");
+            result.DefaultValue.ShouldBe("925d2ec5c413402382da38b8b725efc3627cf4e45011440387");
             result.CheckCode.ShouldBe(true);
-            result.Related.ShouldBe("f9f30867e2104efcad0e235243beffd4d069303c6dba4d0fa75fac3082a72f37810c5bcdef324d14a8521d1c840c9d94d9c745d77be64ca0a5a99839eb231c0512ebf67aea7f40a4b555ab1a0aeea3a0b3406e48ac1a400392ee56f5fa1d681abfe30b99");
+            result.Related.ShouldBe("8aba3d055635448a8615c9e822b4300f2e3a95d878bd47cd8d769beb4ee712180320ce0cc91a45d3a20a7f807f57e06bdc662da6eb3d403c88207b69839108d617c91e9505324f5a8b2b0834e48ecb1b0e3c5c7fcffc4090a43782f0a42a9e8f817786b6");
             result.AllowUpdate.ShouldBe(true);
             result.AllowNull.ShouldBe(true);
             result.AllowEmpty.ShouldBe(true);
             result.AllowExport.ShouldBe(true);
             result.AllowSort.ShouldBe(true);
-            result.ColumnTypeCode.ShouldBe("c872bff435834fa489649597678904fe436f5d48720f4bafaf");
-            result.ExtendedInformation.ShouldBe("3756912746254dbc9570e8a7b1655b5b205e6c9a154a4cd39a96d7314ae4e038f6d6bee73ae64781ae0710370d36c533127de953ae5b4a20a041a45ac82424f85a5fb307da5f46e3a428385e711073982e4e6da06c654d5f88f505774d56f39e06a987bac7bf41cba82b04c002495c15ea7498d5ce154edc85b2b551db41358cf0337c4db1814f3ba57cbf05b1d66a8172f1c4981c974ac6a631a963b1097752dc95ba1992aa4783b5e3b4b06df615196779c3ba792146b4b1db2487025bf4ffb4e385cbb25c47c7a05737dc923270923080ffc02bd24f289d214a80f46b564c36c7dbb2041642e8af82a4905712d98bf9a170d839e6464583a2");
-            result.DateA.ShouldBe(new DateTime(2003, 10, 21));
-            result.DateD.ShouldBe(new DateTime(2004, 9, 24));
-            result.Sort.ShouldBe(615187457);
-            result.Note.ShouldBe("92abcb255eb44472aed3ea8cf1f1e168469e35a597014c7393c340b14c3a17a26191abecb8674e548856c97d32d0ebc1005d0b90f38e4c31967f96b0da2b22f052612eba14184420b0b55563f775cdc7375ff97292cc4c3cb1e4cbd6a47d64afb4e156f097494095a2fd61dfbb59b6585aa223dc3f55418db06dc28be8e7f9db788a790be6d04c37835ba05d6b7fd356fa9c8bff3d15407c8878db792416d0d1731e4a75ee43433ba21e09f72f9dc2f5d68193e3227f4a74b636e464e21d9bceeece4ca4917542cfa44cfe60f917bebeec7034989c724dfd896618f50604a481545c6d6d14be4d0daf1f4dc96990e6f7643701149d8e4b8c80bc");
-            result.Status.ShouldBe("d14a9ca341284939a3b6cd24a386e98030b30c21c1ff4bf6b6");
+            result.ColumnTypeCode.ShouldBe("42c247e0dbd64944be4b5eff4f0e5fba1ef7ad8721494100b6");
+            result.ExtendedInformation.ShouldBe("acb58c8413f24e47827fa9f94d0a52ba0ab9516795e84aa2a06d1ca2284bab7a2e6c0f891a5243bba7259a6b7d9b193a76e29491cc4b42f19bfe65ab57df28527209bf4c0e8a4d1da8308ef90f1c1f557d4b02ef81594158b6a5431d6c55a52f6b1d1a33490541288edd73f2fe295508eb0850b036654893927551fcd57ced0679a3b42f97c0466cb5e812e2531034b5e7ccb6de0c6544b4b56579789d6e0bf72e9a28a90522488c837c95fc275228ae21681cec70c64c33b1f992f0c7cd73133efbb4256b7c4d3e9b8e22d54b72454cb78f98fd4b7943e79dda7d730b1d36257bf896ac86754e7ab5c4fb67a30b0597b2d6c43c85d0428f9e2f");
+            result.DateA.ShouldBe(new DateTime(2011, 5, 2));
+            result.DateD.ShouldBe(new DateTime(2015, 5, 4));
+            result.Sort.ShouldBe(439692161);
+            result.Note.ShouldBe("8bac7a20d14940d899b50d7fc8e8b703da332268b4ea4e68ba183f1b66390d07208f1ff322e04bce8fbccb726361ec06e35b584f45f44722bc8a944b739e784b52270a906cfc4fe39446da1e25aa1c317cd6697c184a4174a331d3ecf01a8b3623449bd50160462ba192c8e49aacf3ab06beaed3b3a94fb0a29effc0c22b3eb84e24451f5cb4429a8b1e2cb3df3d938648ed0719292d4d0a89bdcc4ec73988c653856851ed7840dc9630d4041fc820e0ab38b105e496419dbe5f7ce12cec004430cd009da9b84413b26ff1aa0935896d2c0cb02a6785490799f25ba45073da27ac486ac4a391414695bfaf75e6b28fd3ef0fc6f508024c55b8ad");
+            result.Status.ShouldBe("e7b759c75502495cae33aa9a7754bcdbe0fc9f35e0fa42d086");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _systemColumnsAppService.DeleteAsync(Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585"));
+            await _systemColumnsAppService.DeleteAsync(Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e"));
 
             // Assert
-            var result = await _systemColumnRepository.FindAsync(c => c.Id == Guid.Parse("d6a5babe-2697-492d-b6e7-3c64e4993585"));
+            var result = await _systemColumnRepository.FindAsync(c => c.Id == Guid.Parse("f2520c54-cbb1-4944-9daf-d0a42ebe8a5e"));
 
             result.ShouldBeNull();
         }

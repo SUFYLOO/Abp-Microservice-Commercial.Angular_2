@@ -27,19 +27,19 @@ namespace Resume.ShareCodes
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("e716cda3-8d45-45a9-925a-9a3c4d353845")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("a0c2fb89-d7ff-4b5a-9dfd-57dc09f1154b")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _shareCodesAppService.GetAsync(Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec"));
+            var result = await _shareCodesAppService.GetAsync(Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec"));
+            result.Id.ShouldBe(Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5"));
         }
 
         [Fact]
@@ -48,21 +48,21 @@ namespace Resume.ShareCodes
             // Arrange
             var input = new ShareCodeCreateDto
             {
-                GroupCode = "abcaabbb339745e39101018bc4e0067ff213a5aafd29433da8",
-                Key1 = "fb9918a3b93f456a94514e81b446588565ea8712edf045de9ed4c86293365d5fc176fcecf7af478183c64c4817e033014679",
-                Key2 = "c527af8bc8e34ccf86ee43ee35a30ba81a40f6d137f84af18a573c0270696c7de8f0f0b48bdf4f288d3ee0ee4e845f528bca",
-                Key3 = "ffc74ef2e93e4e7e9566c1f6340896e4e411bf8360324b42939bdd3da9c8ef023ff2a32ac61c4eaab9b8fda71bacd7896fe1",
-                Name = "62cc0f1aab4c40e185a1dd65f9d10b1b5f43067d7124492db58b88f7e494131b868cbe4e843b4bd4b1ca59d9b3911875f351",
-                Column1 = "a11768a890f845f3a8b8ec340c1178579305a4641ee9433981",
-                Column2 = "16de8b22b13645b2adee037a61a3c7f2eef4de11685d40c3a4",
-                Column3 = "10eadadd3f72489d9be2e7b3069a3ea30cc976864d45414582",
+                GroupCode = "f33e290015af4777a565ce483d44d7f22e5f4f5ca8c1497fbb",
+                Key1 = "441bd1f59d114c68b9f63d882f4a28e343dfcc2b818b429086e2763133e112038f6c1788216b4c50b8e61b4027cb2c7fc355",
+                Key2 = "d8829efdddbe464696edea41c25d1fe344651c5a4f9a48af9aa1cccf77c04ce4e46ef17cd0ef41d9a9f6fb80a9b16d1e0db6",
+                Key3 = "972a1ae639f447079245aa4191dd9514adca866243cb431d858b7d34eab6aea56622ba94b47244228d415e51e51d17da263f",
+                Name = "44d5c9e13e6c431b9eaf67c24bd3f68d0d0bf9eb46b94a36b9c67dab9ba32f88c75de8d81c0f46b2981c84a8caaf5d291cee",
+                Column1 = "bc0c0a5fe12c422c8db4aa66247bc63347cb60ee805f4cd780",
+                Column2 = "736be31957114e5f8090249fa22ad93811f16d6dc1be46f3bf",
+                Column3 = "a740af95505947f7ae56dceebaa601234628c375250341ad86",
                 SystemUse = true,
-                ExtendedInformation = "c40bec10d6c44b0bb478a6d3577931076607ce9cb4eb47f59c11c587752c09c38ef965c7a67d41a8bb447f0bc28c6f800bf6f7aa1d5849079c94b9419c9696e1559cf0761e464ca099fc7bfe906f46ec57c5981cccbb4e08a1ec5c1b0bc448ec9ec0e13eb5cc4a34a7672fd241ddb1be6b4b93020ae14eee81554cc7a472071de68cccbfda384286b60ecf3c3fc8ecc8f2ca28376e5b40e8b36c94aaa56e03c70956ab38ce4a4923b057a274f80812e930e58adf8c0042dab150f8c7f9a4710040966ebed2684233ae1f7a7ceb8f6ed5909d23bf32b64d59bb4452d2c3dc97c5c87bb0227ea34170938258c51c5a2eb08302642bde80453191ec",
-                DateA = new DateTime(2001, 9, 1),
-                DateD = new DateTime(2016, 2, 18),
-                Sort = 830907079,
-                Note = "2dd453a937d84384967a8aeb5ebc35b05c264581872e41749949e706dfafd02a7720540125f344478afb5eed081a0edc68065b0b27584c7db5aefb93716c94ef6fd4ccf2b49f41e1981d5ec09e945488213c87a5d0354d29a959630f484a259701bcc3a844cf4b9b8ba9f767b7d5c38db955695d47774f318f0b0a9a95474183358d833298e345a5b7baea391413c030ffb05b09293d451cb835b205a2163cef17144b4c884946a79c94501b4db676eaf705015540a749eba1f0b399685c951813b4a74f693d4237aee00bbda024071fc1503844d5f440809ec25cdf9a72efe6e3172ac467e74b9ea0b81a490817a85a9f859bebf9e148959b45",
-                Status = "1aeba8df871847feadf65dcb9552741801f3d3f29b26467ea1"
+                ExtendedInformation = "101153fe251c4abb903e0462ae5daed32a4ed142bcf443e6a125791bad8aa5ff4f46df3945f04bf39adccd85ac52c2187608677f32184682b7b7f613b02fdd608b21eb61bc5a47abaa4ed8cc17c9ff469ad7dfd5dfd54f7d8bf17c56d48a398dee6163bb52fb47f1b8312c32fe031defaa943ee306ac4e54901841782026381d34a6c0eb61b04c40bbc9b249a10f9ad71a727bb10dfe42a283062b42fbeda9d4598ef16bfbc0465b926e17e6422cda2c5fc37284ca4842b9b20bc54412d620d5f32ca80796b14f55beb8139a9aad7b4d29c597d432dc4922b1b13f3ff3257ada4dbdc6d1416e43b48578acb2ddab0c5e1d654aa4a2a840e69b34",
+                DateA = new DateTime(2002, 3, 8),
+                DateD = new DateTime(2002, 10, 18),
+                Sort = 1439444860,
+                Note = "935c7d91e09a4f8a9649efb4fb174161dbe1557349a040a99259f91acf8e278422d28d2828924e30a91410cee5e03d0ff704a05ee47e4657a254b161be0e1c6aa99ddf1c30da49df9302043907c4aa1383e4f0692e2a4b4faaa16ffea99e56b3c65ff56437f54f618bc6ae145b0aed3d96d10822592c4321ae6a0a2be49ebf5f811679072e654f5885f5ad47c399c7add5b096e848ce4c8fa2e90a1883ccd85020124d0889e14ff28ce71e43aace0e64f1db8a55f62044f78366dbde37d75f19c5d02c1677b541d7907bffff152188cb6bd15d7a3a79430cbfde73e1e4d223d6ebb6de6ef03e4482817affe5d2d4ae684c6cdef35de443918b92",
+                Status = "41b45caed1d947a498ad9850695889cdebb2476ff8954a2086"
             };
 
             // Act
@@ -72,21 +72,21 @@ namespace Resume.ShareCodes
             var result = await _shareCodeRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.GroupCode.ShouldBe("abcaabbb339745e39101018bc4e0067ff213a5aafd29433da8");
-            result.Key1.ShouldBe("fb9918a3b93f456a94514e81b446588565ea8712edf045de9ed4c86293365d5fc176fcecf7af478183c64c4817e033014679");
-            result.Key2.ShouldBe("c527af8bc8e34ccf86ee43ee35a30ba81a40f6d137f84af18a573c0270696c7de8f0f0b48bdf4f288d3ee0ee4e845f528bca");
-            result.Key3.ShouldBe("ffc74ef2e93e4e7e9566c1f6340896e4e411bf8360324b42939bdd3da9c8ef023ff2a32ac61c4eaab9b8fda71bacd7896fe1");
-            result.Name.ShouldBe("62cc0f1aab4c40e185a1dd65f9d10b1b5f43067d7124492db58b88f7e494131b868cbe4e843b4bd4b1ca59d9b3911875f351");
-            result.Column1.ShouldBe("a11768a890f845f3a8b8ec340c1178579305a4641ee9433981");
-            result.Column2.ShouldBe("16de8b22b13645b2adee037a61a3c7f2eef4de11685d40c3a4");
-            result.Column3.ShouldBe("10eadadd3f72489d9be2e7b3069a3ea30cc976864d45414582");
+            result.GroupCode.ShouldBe("f33e290015af4777a565ce483d44d7f22e5f4f5ca8c1497fbb");
+            result.Key1.ShouldBe("441bd1f59d114c68b9f63d882f4a28e343dfcc2b818b429086e2763133e112038f6c1788216b4c50b8e61b4027cb2c7fc355");
+            result.Key2.ShouldBe("d8829efdddbe464696edea41c25d1fe344651c5a4f9a48af9aa1cccf77c04ce4e46ef17cd0ef41d9a9f6fb80a9b16d1e0db6");
+            result.Key3.ShouldBe("972a1ae639f447079245aa4191dd9514adca866243cb431d858b7d34eab6aea56622ba94b47244228d415e51e51d17da263f");
+            result.Name.ShouldBe("44d5c9e13e6c431b9eaf67c24bd3f68d0d0bf9eb46b94a36b9c67dab9ba32f88c75de8d81c0f46b2981c84a8caaf5d291cee");
+            result.Column1.ShouldBe("bc0c0a5fe12c422c8db4aa66247bc63347cb60ee805f4cd780");
+            result.Column2.ShouldBe("736be31957114e5f8090249fa22ad93811f16d6dc1be46f3bf");
+            result.Column3.ShouldBe("a740af95505947f7ae56dceebaa601234628c375250341ad86");
             result.SystemUse.ShouldBe(true);
-            result.ExtendedInformation.ShouldBe("c40bec10d6c44b0bb478a6d3577931076607ce9cb4eb47f59c11c587752c09c38ef965c7a67d41a8bb447f0bc28c6f800bf6f7aa1d5849079c94b9419c9696e1559cf0761e464ca099fc7bfe906f46ec57c5981cccbb4e08a1ec5c1b0bc448ec9ec0e13eb5cc4a34a7672fd241ddb1be6b4b93020ae14eee81554cc7a472071de68cccbfda384286b60ecf3c3fc8ecc8f2ca28376e5b40e8b36c94aaa56e03c70956ab38ce4a4923b057a274f80812e930e58adf8c0042dab150f8c7f9a4710040966ebed2684233ae1f7a7ceb8f6ed5909d23bf32b64d59bb4452d2c3dc97c5c87bb0227ea34170938258c51c5a2eb08302642bde80453191ec");
-            result.DateA.ShouldBe(new DateTime(2001, 9, 1));
-            result.DateD.ShouldBe(new DateTime(2016, 2, 18));
-            result.Sort.ShouldBe(830907079);
-            result.Note.ShouldBe("2dd453a937d84384967a8aeb5ebc35b05c264581872e41749949e706dfafd02a7720540125f344478afb5eed081a0edc68065b0b27584c7db5aefb93716c94ef6fd4ccf2b49f41e1981d5ec09e945488213c87a5d0354d29a959630f484a259701bcc3a844cf4b9b8ba9f767b7d5c38db955695d47774f318f0b0a9a95474183358d833298e345a5b7baea391413c030ffb05b09293d451cb835b205a2163cef17144b4c884946a79c94501b4db676eaf705015540a749eba1f0b399685c951813b4a74f693d4237aee00bbda024071fc1503844d5f440809ec25cdf9a72efe6e3172ac467e74b9ea0b81a490817a85a9f859bebf9e148959b45");
-            result.Status.ShouldBe("1aeba8df871847feadf65dcb9552741801f3d3f29b26467ea1");
+            result.ExtendedInformation.ShouldBe("101153fe251c4abb903e0462ae5daed32a4ed142bcf443e6a125791bad8aa5ff4f46df3945f04bf39adccd85ac52c2187608677f32184682b7b7f613b02fdd608b21eb61bc5a47abaa4ed8cc17c9ff469ad7dfd5dfd54f7d8bf17c56d48a398dee6163bb52fb47f1b8312c32fe031defaa943ee306ac4e54901841782026381d34a6c0eb61b04c40bbc9b249a10f9ad71a727bb10dfe42a283062b42fbeda9d4598ef16bfbc0465b926e17e6422cda2c5fc37284ca4842b9b20bc54412d620d5f32ca80796b14f55beb8139a9aad7b4d29c597d432dc4922b1b13f3ff3257ada4dbdc6d1416e43b48578acb2ddab0c5e1d654aa4a2a840e69b34");
+            result.DateA.ShouldBe(new DateTime(2002, 3, 8));
+            result.DateD.ShouldBe(new DateTime(2002, 10, 18));
+            result.Sort.ShouldBe(1439444860);
+            result.Note.ShouldBe("935c7d91e09a4f8a9649efb4fb174161dbe1557349a040a99259f91acf8e278422d28d2828924e30a91410cee5e03d0ff704a05ee47e4657a254b161be0e1c6aa99ddf1c30da49df9302043907c4aa1383e4f0692e2a4b4faaa16ffea99e56b3c65ff56437f54f618bc6ae145b0aed3d96d10822592c4321ae6a0a2be49ebf5f811679072e654f5885f5ad47c399c7add5b096e848ce4c8fa2e90a1883ccd85020124d0889e14ff28ce71e43aace0e64f1db8a55f62044f78366dbde37d75f19c5d02c1677b541d7907bffff152188cb6bd15d7a3a79430cbfde73e1e4d223d6ebb6de6ef03e4482817affe5d2d4ae684c6cdef35de443918b92");
+            result.Status.ShouldBe("41b45caed1d947a498ad9850695889cdebb2476ff8954a2086");
         }
 
         [Fact]
@@ -95,55 +95,55 @@ namespace Resume.ShareCodes
             // Arrange
             var input = new ShareCodeUpdateDto()
             {
-                GroupCode = "e399fe36458b4bb692f1b0eda6c422019d18f769d3204469bc",
-                Key1 = "fd584dc078eb4a549412a5e0fdb74a60a6be57a5d23144ca9811905ead80898cbd8ff806964c40ecad81560b98cd115d899e",
-                Key2 = "9bc0a8dc936446dba351824f21f9ace20695ef6f8cbb43d09e49215094d8a7cb48d81b0df17d4493a4abfc91101898725996",
-                Key3 = "f199d37013bb43c1b16ac040b9a96f06ee413efc44ef4c6c836336a5b5df7cd16e11b2467a704b32b77fb0548cb941200a1e",
-                Name = "39eb784dc1264b06ac61a8477535898e0e435c9a0ea34211b26a1f0c6843e56bb286821d1f0f4c4a8a1fff19d75f895d2e4e",
-                Column1 = "415b27559cfe438eb3064e8d31eaede7ecde79e4bb904df284",
-                Column2 = "35eb89d8267f4d719d21d5b15ff181f88d24b7eea7814ead88",
-                Column3 = "844aeb72086941c08ad3a2c2059223a7f2e38220e41944caa6",
+                GroupCode = "66eabf4b65bc4fe5a61825cc458d487e51ff5940188945648d",
+                Key1 = "5d00440e120f410b9001e1744beaa54a57f3dc25cfed4f0ebc12b321b88b080b11dbeb9f6c5d426389e738584523e6612fc5",
+                Key2 = "a4b00336f742433cbaa9b34af5878ea46b9f1fa2fb1e498789af7a2852bd4d2fb3c3fae1500c4858bfa41bf7acce79601c34",
+                Key3 = "202712cbe34442afba31e9851d912c6e067cee39e9f94ff5bc80669b424be2c0fb449fa831764d439ff20586a7589bbfe476",
+                Name = "1167463113c94a11b2853f354c5854bd8c8560cbc1b8402da7611015093c49b6d645fa50b4a84feda0c34efbf7349a24da11",
+                Column1 = "133f13df715c475cb3f87038ac5e71a240b2f05fbca74410b2",
+                Column2 = "6dcfc6d8df6c4d32a27d57f1ad0c13537987c922c7ef4d2888",
+                Column3 = "86959016951d4a0fa6d6c37c9f40a7707d83354c326e450090",
                 SystemUse = true,
-                ExtendedInformation = "43920ba1b9054c3c8121ec9384ff750bffc72998787244de82cd049ab1dbdf5694d4f56872e5441994c2b59a90a21bb7d9a27301758c479c8a4b53ad937f51e21a1d2aa884b24c149107419d4fd5a342039503003fde4b04b4ead65d264767824f385d00c59c4e1b8685178593cdb41eace20d2c717f484c9ceb4c6e048827500005e7cf342140d992f71032636868d16444f05e1bdd4554b976345e6a2cd9ba9ad42bc852254337bebae2ff5cbbaa5c81ed898f8e8342dc89dbb74286c476e31f882867d3164cb0b48b70d7fc920e59be46d532a8ad49cc99b29b5ea06e32f92305e88578b2476d91d1e9704030a205e402aa6cf0cb465a8dc4",
-                DateA = new DateTime(2018, 11, 11),
-                DateD = new DateTime(2018, 7, 17),
-                Sort = 1318658240,
-                Note = "21f3165d38db4caa98c6d00ee93fc2d6cb9794081b0143e4aeef79eba2271056103d8dd482db4a7487fe9c81a9bd771692df935c5033469ab75dab64863d8670e009cc3861634c80b2f920272f76e7af74f64e0306ab495897cceb3a1bf0d8e4643c2e6898bc4f6f9bdbca9056e523bb698b9f5371f74b618e868d7a3044ddc5baec343c79e848ad9722fcccf3e5c2673ee283e45f214f18addb82b18bbe0c3bd8c0a6f0461047a9b7803b31b707241f8255270bf7e54bc09a075193eaf2242663b2d6c506e8448ab75cc7ad809892e4df460ebc593149158d6dcedeec89d869102d2034c4244a70b6a50c28a5addd8d5afac62218e14f1f850b",
-                Status = "a79dd22c3d1e40299e7e59f1eac7eac6e249e9f0497343729a"
+                ExtendedInformation = "61eb4be5f9314d9c86573ece39e8b84748d781b2621949d2ae0d7fb486403591ba99b5dc94914fb9a5457240584bbc5858bc003b009f4cde8bbc681b97a878126048c949b8184e7092102db5b66949c58564de96316f4459abf23ccb3beec1d266941a4ac0354b2fa5f31db812ad12e5bbd0f0891dc14700af3604266d0103d14e20e0e9da7c4febafa6f0f88771315e343bd9f8187449ffb864ac7c124280fe57ce0e1855664fe980d790073451633750af6cf65a1e41ecbc1590c0292bf8513d0684575e584907997410daa2a120465273fa59adfb4068838718e61368907fd9e9a528ce8144518d692396f4fe3aea389bf2f26a914137849a",
+                DateA = new DateTime(2000, 4, 20),
+                DateD = new DateTime(2019, 10, 4),
+                Sort = 806759864,
+                Note = "b7caeb79553946f89347616648d854542345bec83a664f1a8c5c0a465aa3ce76cf4c02aa2f54492199ff7d6ac93f58b1cba15a2752ed4227bf2b9b6adcf8d13bb5534392b7bc455893229ca65520f795e1b8ede48703482a9a9d8104738a6a4bcdef60a0a3654bbd968f85a403acf6b5ccb9e111fdce473c99219c88d0aebc28653e134bbeb649c19d1d29af3eea08d3c3fa83025c554250958aeca887c0f48bad47d864f1aa40b8a23a2c4c52defd5442c38a5e5cf2404aa89dbeee27a1507e5add229582734479b5cedd97ee69c7e23a39f1d8714241d7a761620cb0b97d41cedba03246b642d7898f56f263f05a60a9a86c131c234ef697b8",
+                Status = "f5850e2cfa404614a5ed24b6523537b808654de8cf4d46e5b0"
             };
 
             // Act
-            var serviceResult = await _shareCodesAppService.UpdateAsync(Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec"), input);
+            var serviceResult = await _shareCodesAppService.UpdateAsync(Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5"), input);
 
             // Assert
             var result = await _shareCodeRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.GroupCode.ShouldBe("e399fe36458b4bb692f1b0eda6c422019d18f769d3204469bc");
-            result.Key1.ShouldBe("fd584dc078eb4a549412a5e0fdb74a60a6be57a5d23144ca9811905ead80898cbd8ff806964c40ecad81560b98cd115d899e");
-            result.Key2.ShouldBe("9bc0a8dc936446dba351824f21f9ace20695ef6f8cbb43d09e49215094d8a7cb48d81b0df17d4493a4abfc91101898725996");
-            result.Key3.ShouldBe("f199d37013bb43c1b16ac040b9a96f06ee413efc44ef4c6c836336a5b5df7cd16e11b2467a704b32b77fb0548cb941200a1e");
-            result.Name.ShouldBe("39eb784dc1264b06ac61a8477535898e0e435c9a0ea34211b26a1f0c6843e56bb286821d1f0f4c4a8a1fff19d75f895d2e4e");
-            result.Column1.ShouldBe("415b27559cfe438eb3064e8d31eaede7ecde79e4bb904df284");
-            result.Column2.ShouldBe("35eb89d8267f4d719d21d5b15ff181f88d24b7eea7814ead88");
-            result.Column3.ShouldBe("844aeb72086941c08ad3a2c2059223a7f2e38220e41944caa6");
+            result.GroupCode.ShouldBe("66eabf4b65bc4fe5a61825cc458d487e51ff5940188945648d");
+            result.Key1.ShouldBe("5d00440e120f410b9001e1744beaa54a57f3dc25cfed4f0ebc12b321b88b080b11dbeb9f6c5d426389e738584523e6612fc5");
+            result.Key2.ShouldBe("a4b00336f742433cbaa9b34af5878ea46b9f1fa2fb1e498789af7a2852bd4d2fb3c3fae1500c4858bfa41bf7acce79601c34");
+            result.Key3.ShouldBe("202712cbe34442afba31e9851d912c6e067cee39e9f94ff5bc80669b424be2c0fb449fa831764d439ff20586a7589bbfe476");
+            result.Name.ShouldBe("1167463113c94a11b2853f354c5854bd8c8560cbc1b8402da7611015093c49b6d645fa50b4a84feda0c34efbf7349a24da11");
+            result.Column1.ShouldBe("133f13df715c475cb3f87038ac5e71a240b2f05fbca74410b2");
+            result.Column2.ShouldBe("6dcfc6d8df6c4d32a27d57f1ad0c13537987c922c7ef4d2888");
+            result.Column3.ShouldBe("86959016951d4a0fa6d6c37c9f40a7707d83354c326e450090");
             result.SystemUse.ShouldBe(true);
-            result.ExtendedInformation.ShouldBe("43920ba1b9054c3c8121ec9384ff750bffc72998787244de82cd049ab1dbdf5694d4f56872e5441994c2b59a90a21bb7d9a27301758c479c8a4b53ad937f51e21a1d2aa884b24c149107419d4fd5a342039503003fde4b04b4ead65d264767824f385d00c59c4e1b8685178593cdb41eace20d2c717f484c9ceb4c6e048827500005e7cf342140d992f71032636868d16444f05e1bdd4554b976345e6a2cd9ba9ad42bc852254337bebae2ff5cbbaa5c81ed898f8e8342dc89dbb74286c476e31f882867d3164cb0b48b70d7fc920e59be46d532a8ad49cc99b29b5ea06e32f92305e88578b2476d91d1e9704030a205e402aa6cf0cb465a8dc4");
-            result.DateA.ShouldBe(new DateTime(2018, 11, 11));
-            result.DateD.ShouldBe(new DateTime(2018, 7, 17));
-            result.Sort.ShouldBe(1318658240);
-            result.Note.ShouldBe("21f3165d38db4caa98c6d00ee93fc2d6cb9794081b0143e4aeef79eba2271056103d8dd482db4a7487fe9c81a9bd771692df935c5033469ab75dab64863d8670e009cc3861634c80b2f920272f76e7af74f64e0306ab495897cceb3a1bf0d8e4643c2e6898bc4f6f9bdbca9056e523bb698b9f5371f74b618e868d7a3044ddc5baec343c79e848ad9722fcccf3e5c2673ee283e45f214f18addb82b18bbe0c3bd8c0a6f0461047a9b7803b31b707241f8255270bf7e54bc09a075193eaf2242663b2d6c506e8448ab75cc7ad809892e4df460ebc593149158d6dcedeec89d869102d2034c4244a70b6a50c28a5addd8d5afac62218e14f1f850b");
-            result.Status.ShouldBe("a79dd22c3d1e40299e7e59f1eac7eac6e249e9f0497343729a");
+            result.ExtendedInformation.ShouldBe("61eb4be5f9314d9c86573ece39e8b84748d781b2621949d2ae0d7fb486403591ba99b5dc94914fb9a5457240584bbc5858bc003b009f4cde8bbc681b97a878126048c949b8184e7092102db5b66949c58564de96316f4459abf23ccb3beec1d266941a4ac0354b2fa5f31db812ad12e5bbd0f0891dc14700af3604266d0103d14e20e0e9da7c4febafa6f0f88771315e343bd9f8187449ffb864ac7c124280fe57ce0e1855664fe980d790073451633750af6cf65a1e41ecbc1590c0292bf8513d0684575e584907997410daa2a120465273fa59adfb4068838718e61368907fd9e9a528ce8144518d692396f4fe3aea389bf2f26a914137849a");
+            result.DateA.ShouldBe(new DateTime(2000, 4, 20));
+            result.DateD.ShouldBe(new DateTime(2019, 10, 4));
+            result.Sort.ShouldBe(806759864);
+            result.Note.ShouldBe("b7caeb79553946f89347616648d854542345bec83a664f1a8c5c0a465aa3ce76cf4c02aa2f54492199ff7d6ac93f58b1cba15a2752ed4227bf2b9b6adcf8d13bb5534392b7bc455893229ca65520f795e1b8ede48703482a9a9d8104738a6a4bcdef60a0a3654bbd968f85a403acf6b5ccb9e111fdce473c99219c88d0aebc28653e134bbeb649c19d1d29af3eea08d3c3fa83025c554250958aeca887c0f48bad47d864f1aa40b8a23a2c4c52defd5442c38a5e5cf2404aa89dbeee27a1507e5add229582734479b5cedd97ee69c7e23a39f1d8714241d7a761620cb0b97d41cedba03246b642d7898f56f263f05a60a9a86c131c234ef697b8");
+            result.Status.ShouldBe("f5850e2cfa404614a5ed24b6523537b808654de8cf4d46e5b0");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _shareCodesAppService.DeleteAsync(Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec"));
+            await _shareCodesAppService.DeleteAsync(Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5"));
 
             // Assert
-            var result = await _shareCodeRepository.FindAsync(c => c.Id == Guid.Parse("5ef88947-59f1-40d6-9324-7ebd7846c4ec"));
+            var result = await _shareCodeRepository.FindAsync(c => c.Id == Guid.Parse("e045f4b5-83ca-4651-b318-f75c4e7647a5"));
 
             result.ShouldBeNull();
         }

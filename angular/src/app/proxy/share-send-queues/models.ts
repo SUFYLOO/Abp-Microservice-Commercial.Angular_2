@@ -41,11 +41,11 @@ export interface ShareSendQueueCreateDto {
   suspend: boolean;
   dateSend: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareSendQueueDto extends FullAuditedEntityDto<string> {
@@ -62,11 +62,11 @@ export interface ShareSendQueueDto extends FullAuditedEntityDto<string> {
   suspend: boolean;
   dateSend: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareSendQueueExcelDownloadDto {
@@ -89,9 +89,9 @@ export interface ShareSendQueueUpdateDto {
   suspend: boolean;
   dateSend: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

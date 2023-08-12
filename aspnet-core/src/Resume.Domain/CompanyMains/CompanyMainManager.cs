@@ -19,14 +19,10 @@ namespace Resume.CompanyMains
         }
 
         public async Task<CompanyMain> CreateAsync(
-        string name, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, string note = null, Guid? companyUserId = null)
+        string name, bool allowSearch, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, string note = null, int? sort = null, string status = null, Guid? companyUserId = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), CompanyMainConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength);
             Check.NotNullOrWhiteSpace(industryCategory, nameof(industryCategory));
             Check.Length(industryCategory, nameof(industryCategory), CompanyMainConsts.IndustryCategoryMaxLength);
             Check.Length(companyUrl, nameof(companyUrl), CompanyMainConsts.CompanyUrlMaxLength);
@@ -43,10 +39,11 @@ namespace Resume.CompanyMains
             Check.Length(principal, nameof(principal), CompanyMainConsts.PrincipalMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength);
 
             var companyMain = new CompanyMain(
              GuidGenerator.Create(),
-             name, allowSearch, dateA, dateD, sort, status, industryCategory, companyUrl, capitalAmount, hideCapitalAmount, companyScaleCode, hidePrincipal, companyProfile, businessPhilosophy, operatingItems, welfareSystem, matching, contractPass, compilation, officePhone, faxPhone, address, principal, extendedInformation, note, companyUserId
+             name, allowSearch, industryCategory, companyUrl, capitalAmount, hideCapitalAmount, companyScaleCode, hidePrincipal, companyProfile, businessPhilosophy, operatingItems, welfareSystem, matching, contractPass, compilation, officePhone, faxPhone, address, principal, extendedInformation, dateA, dateD, note, sort, status, companyUserId
              );
 
             return await _companyMainRepository.InsertAsync(companyMain);
@@ -54,15 +51,11 @@ namespace Resume.CompanyMains
 
         public async Task<CompanyMain> UpdateAsync(
             Guid id,
-            string name, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, string note = null, Guid? companyUserId = null
+            string name, bool allowSearch, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, string note = null, int? sort = null, string status = null, Guid? companyUserId = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), CompanyMainConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength);
             Check.NotNullOrWhiteSpace(industryCategory, nameof(industryCategory));
             Check.Length(industryCategory, nameof(industryCategory), CompanyMainConsts.IndustryCategoryMaxLength);
             Check.Length(companyUrl, nameof(companyUrl), CompanyMainConsts.CompanyUrlMaxLength);
@@ -79,15 +72,12 @@ namespace Resume.CompanyMains
             Check.Length(principal, nameof(principal), CompanyMainConsts.PrincipalMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength);
 
             var companyMain = await _companyMainRepository.GetAsync(id);
 
             companyMain.Name = name;
             companyMain.AllowSearch = allowSearch;
-            companyMain.DateA = dateA;
-            companyMain.DateD = dateD;
-            companyMain.Sort = sort;
-            companyMain.Status = status;
             companyMain.IndustryCategory = industryCategory;
             companyMain.CompanyUrl = companyUrl;
             companyMain.CapitalAmount = capitalAmount;
@@ -106,7 +96,11 @@ namespace Resume.CompanyMains
             companyMain.Address = address;
             companyMain.Principal = principal;
             companyMain.ExtendedInformation = extendedInformation;
+            companyMain.DateA = dateA;
+            companyMain.DateD = dateD;
             companyMain.Note = note;
+            companyMain.Sort = sort;
+            companyMain.Status = status;
             companyMain.CompanyUserId = companyUserId;
 
             return await _companyMainRepository.UpdateAsync(companyMain);

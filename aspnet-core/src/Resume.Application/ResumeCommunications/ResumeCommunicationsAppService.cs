@@ -63,7 +63,7 @@ namespace Resume.ResumeCommunications
         {
 
             var resumeCommunication = await _resumeCommunicationManager.CreateAsync(
-            input.ResumeMainId, input.CommunicationCategoryCode, input.CommunicationValue, input.Main, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.CommunicationCategoryCode, input.CommunicationValue, input.Main, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeCommunication, ResumeCommunicationDto>(resumeCommunication);
@@ -75,7 +75,7 @@ namespace Resume.ResumeCommunications
 
             var resumeCommunication = await _resumeCommunicationManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.CommunicationCategoryCode, input.CommunicationValue, input.Main, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.CommunicationCategoryCode, input.CommunicationValue, input.Main, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeCommunication, ResumeCommunicationDto>(resumeCommunication);

@@ -63,7 +63,7 @@ namespace Resume.TradeOrders
         {
 
             var tradeOrder = await _tradeOrderManager.CreateAsync(
-            input.KeyId, input.OrderNumber, input.DateOrder, input.DeliveryMethodCode, input.DeliveryZipCode, input.DeliveryCityCode, input.DeliveryAreaCode, input.DeliveryAddress, input.DeliveryFee, input.UserName, input.OrderStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.DateNeed, input.DateDelivery
+            input.KeyId, input.OrderNumber, input.DateOrder, input.DeliveryMethodCode, input.DeliveryZipCode, input.DeliveryCityCode, input.DeliveryAreaCode, input.DeliveryAddress, input.DeliveryFee, input.UserName, input.OrderStateCode, input.DateNeed, input.DateDelivery, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<TradeOrder, TradeOrderDto>(tradeOrder);
@@ -75,7 +75,7 @@ namespace Resume.TradeOrders
 
             var tradeOrder = await _tradeOrderManager.UpdateAsync(
             id,
-            input.KeyId, input.OrderNumber, input.DateOrder, input.DeliveryMethodCode, input.DeliveryZipCode, input.DeliveryCityCode, input.DeliveryAreaCode, input.DeliveryAddress, input.DeliveryFee, input.UserName, input.OrderStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.DateNeed, input.DateDelivery, input.ConcurrencyStamp
+            input.KeyId, input.OrderNumber, input.DateOrder, input.DeliveryMethodCode, input.DeliveryZipCode, input.DeliveryCityCode, input.DeliveryAreaCode, input.DeliveryAddress, input.DeliveryFee, input.UserName, input.OrderStateCode, input.DateNeed, input.DateDelivery, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
             );
 
             return ObjectMapper.Map<TradeOrder, TradeOrderDto>(tradeOrder);

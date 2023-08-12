@@ -20,15 +20,12 @@ namespace Resume.TradeOderDetails
         }
 
         public async Task<TradeOderDetail> CreateAsync(
-        Guid tradeOrderId, Guid tradeProductId, decimal unitPrice, int quantity, string orderDetailStateCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid tradeOrderId, Guid tradeProductId, decimal unitPrice, int quantity, string orderDetailStateCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(orderDetailStateCode, nameof(orderDetailStateCode));
             Check.Length(orderDetailStateCode, nameof(orderDetailStateCode), TradeOderDetailConsts.OrderDetailStateCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), TradeOderDetailConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), TradeOderDetailConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), TradeOderDetailConsts.StatusMaxLength);
 
             var tradeOderDetail = new TradeOderDetail(
@@ -41,16 +38,13 @@ namespace Resume.TradeOderDetails
 
         public async Task<TradeOderDetail> UpdateAsync(
             Guid id,
-            Guid tradeOrderId, Guid tradeProductId, decimal unitPrice, int quantity, string orderDetailStateCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid tradeOrderId, Guid tradeProductId, decimal unitPrice, int quantity, string orderDetailStateCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(orderDetailStateCode, nameof(orderDetailStateCode));
             Check.Length(orderDetailStateCode, nameof(orderDetailStateCode), TradeOderDetailConsts.OrderDetailStateCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), TradeOderDetailConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), TradeOderDetailConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), TradeOderDetailConsts.StatusMaxLength);
 
             var tradeOderDetail = await _tradeOderDetailRepository.GetAsync(id);

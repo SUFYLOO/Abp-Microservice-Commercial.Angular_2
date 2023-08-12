@@ -63,7 +63,7 @@ namespace Resume.CompanyUsers
         {
 
             var companyUser = await _companyUserManager.CreateAsync(
-            input.CompanyMainId, input.UserMainId, input.DateA, input.DateD, input.Sort, input.Status, input.MatchingReceive, input.JobName, input.OfficePhone, input.ExtendedInformation, input.Note
+            input.CompanyMainId, input.UserMainId, input.JobName, input.OfficePhone, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.MatchingReceive
             );
 
             return ObjectMapper.Map<CompanyUser, CompanyUserDto>(companyUser);
@@ -75,7 +75,7 @@ namespace Resume.CompanyUsers
 
             var companyUser = await _companyUserManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.UserMainId, input.DateA, input.DateD, input.Sort, input.Status, input.MatchingReceive, input.JobName, input.OfficePhone, input.ExtendedInformation, input.Note
+            input.CompanyMainId, input.UserMainId, input.JobName, input.OfficePhone, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.MatchingReceive
             );
 
             return ObjectMapper.Map<CompanyUser, CompanyUserDto>(companyUser);

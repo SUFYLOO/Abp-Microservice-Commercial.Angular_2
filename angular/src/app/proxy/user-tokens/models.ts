@@ -25,7 +25,7 @@ export interface UserTokenCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserTokenDto extends FullAuditedEntityDto<string> {
@@ -37,7 +37,7 @@ export interface UserTokenDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -56,6 +56,6 @@ export interface UserTokenUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

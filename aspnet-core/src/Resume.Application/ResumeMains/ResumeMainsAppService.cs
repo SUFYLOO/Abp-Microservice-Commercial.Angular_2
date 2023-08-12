@@ -63,7 +63,7 @@ namespace Resume.ResumeMains
         {
 
             var resumeMain = await _resumeMainManager.CreateAsync(
-            input.UserMainId, input.ResumeName, input.MarriageCode, input.MilitaryCode, input.DisabilityCategoryCode, input.SpecialIdentityCode, input.Main, input.DateA, input.DateD, input.Sort, input.Status, input.Autobiography1, input.Autobiography2, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ResumeName, input.MarriageCode, input.MilitaryCode, input.DisabilityCategoryCode, input.SpecialIdentityCode, input.Main, input.Autobiography1, input.Autobiography2, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeMain, ResumeMainDto>(resumeMain);
@@ -75,7 +75,7 @@ namespace Resume.ResumeMains
 
             var resumeMain = await _resumeMainManager.UpdateAsync(
             id,
-            input.UserMainId, input.ResumeName, input.MarriageCode, input.MilitaryCode, input.DisabilityCategoryCode, input.SpecialIdentityCode, input.Main, input.DateA, input.DateD, input.Sort, input.Status, input.Autobiography1, input.Autobiography2, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ResumeName, input.MarriageCode, input.MilitaryCode, input.DisabilityCategoryCode, input.SpecialIdentityCode, input.Main, input.Autobiography1, input.Autobiography2, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeMain, ResumeMainDto>(resumeMain);

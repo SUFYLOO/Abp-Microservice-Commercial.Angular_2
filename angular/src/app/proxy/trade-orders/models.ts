@@ -49,7 +49,7 @@ export interface TradeOrderCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface TradeOrderDto extends FullAuditedEntityDto<string> {
@@ -71,7 +71,7 @@ export interface TradeOrderDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -100,6 +100,6 @@ export interface TradeOrderUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

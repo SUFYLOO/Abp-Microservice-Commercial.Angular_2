@@ -19,20 +19,17 @@ namespace Resume.SystemUserRoles
         }
 
         public async Task<SystemUserRole> CreateAsync(
-        string name, int keys, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string name, int keys, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), SystemUserRoleConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemUserRoleConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemUserRoleConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemUserRoleConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemUserRoleConsts.StatusMaxLength);
 
             var systemUserRole = new SystemUserRole(
              GuidGenerator.Create(),
-             name, keys, dateA, dateD, sort, status, extendedInformation, note
+             name, keys, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemUserRoleRepository.InsertAsync(systemUserRole);
@@ -40,28 +37,25 @@ namespace Resume.SystemUserRoles
 
         public async Task<SystemUserRole> UpdateAsync(
             Guid id,
-            string name, int keys, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string name, int keys, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), SystemUserRoleConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemUserRoleConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemUserRoleConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemUserRoleConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemUserRoleConsts.StatusMaxLength);
 
             var systemUserRole = await _systemUserRoleRepository.GetAsync(id);
 
             systemUserRole.Name = name;
             systemUserRole.Keys = keys;
+            systemUserRole.ExtendedInformation = extendedInformation;
             systemUserRole.DateA = dateA;
             systemUserRole.DateD = dateD;
             systemUserRole.Sort = sort;
-            systemUserRole.Status = status;
-            systemUserRole.ExtendedInformation = extendedInformation;
             systemUserRole.Note = note;
+            systemUserRole.Status = status;
 
             return await _systemUserRoleRepository.UpdateAsync(systemUserRole);
         }

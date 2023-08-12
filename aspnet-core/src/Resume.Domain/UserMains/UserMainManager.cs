@@ -19,7 +19,7 @@ namespace Resume.UserMains
         }
 
         public async Task<UserMain> CreateAsync(
-        Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, bool matching, string anonymousName = null, string extendedInformation = null, string note = null)
+        Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, bool matching, string anonymousName = null, string extendedInformation = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), UserMainConsts.NameMaxLength);
@@ -33,16 +33,14 @@ namespace Resume.UserMains
             Check.NotNullOrWhiteSpace(password, nameof(password));
             Check.Length(password, nameof(password), UserMainConsts.PasswordMaxLength);
             Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength);
             Check.Length(anonymousName, nameof(anonymousName), UserMainConsts.AnonymousNameMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), UserMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength);
 
             var userMain = new UserMain(
              GuidGenerator.Create(),
-             userId, name, loginAccountCode, loginMobilePhoneUpdate, loginMobilePhone, loginEmailUpdate, loginEmail, loginIdentityNo, password, systemUserRoleKeys, allowSearch, dateA, dateD, sort, status, matching, anonymousName, extendedInformation, note
+             userId, name, loginAccountCode, loginMobilePhoneUpdate, loginMobilePhone, loginEmailUpdate, loginEmail, loginIdentityNo, password, systemUserRoleKeys, allowSearch, dateA, matching, anonymousName, extendedInformation, dateD, sort, note, status
              );
 
             return await _userMainRepository.InsertAsync(userMain);
@@ -50,7 +48,7 @@ namespace Resume.UserMains
 
         public async Task<UserMain> UpdateAsync(
             Guid id,
-            Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, bool matching, string anonymousName = null, string extendedInformation = null, string note = null
+            Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, bool matching, string anonymousName = null, string extendedInformation = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -65,12 +63,10 @@ namespace Resume.UserMains
             Check.NotNullOrWhiteSpace(password, nameof(password));
             Check.Length(password, nameof(password), UserMainConsts.PasswordMaxLength);
             Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength);
             Check.Length(anonymousName, nameof(anonymousName), UserMainConsts.AnonymousNameMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), UserMainConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength);
 
             var userMain = await _userMainRepository.GetAsync(id);
 
@@ -86,13 +82,13 @@ namespace Resume.UserMains
             userMain.SystemUserRoleKeys = systemUserRoleKeys;
             userMain.AllowSearch = allowSearch;
             userMain.DateA = dateA;
-            userMain.DateD = dateD;
-            userMain.Sort = sort;
-            userMain.Status = status;
             userMain.Matching = matching;
             userMain.AnonymousName = anonymousName;
             userMain.ExtendedInformation = extendedInformation;
+            userMain.DateD = dateD;
+            userMain.Sort = sort;
             userMain.Note = note;
+            userMain.Status = status;
 
             return await _userMainRepository.UpdateAsync(userMain);
         }

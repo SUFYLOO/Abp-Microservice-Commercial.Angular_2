@@ -22,17 +22,13 @@ namespace Resume.ResumeRecommenders
         public string? Email { get; set; }
         [StringLength(ResumeRecommenderConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(ResumeRecommenderConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(ResumeRecommenderConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
     }
 }

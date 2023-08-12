@@ -19,22 +19,19 @@ namespace Resume.ResumeCommunications
         }
 
         public async Task<ResumeCommunication> CreateAsync(
-        Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(communicationCategoryCode, nameof(communicationCategoryCode));
             Check.Length(communicationCategoryCode, nameof(communicationCategoryCode), ResumeCommunicationConsts.CommunicationCategoryCodeMaxLength);
             Check.NotNullOrWhiteSpace(communicationValue, nameof(communicationValue));
             Check.Length(communicationValue, nameof(communicationValue), ResumeCommunicationConsts.CommunicationValueMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeCommunicationConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeCommunicationConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength);
 
             var resumeCommunication = new ResumeCommunication(
              GuidGenerator.Create(),
-             resumeMainId, communicationCategoryCode, communicationValue, main, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, communicationCategoryCode, communicationValue, main, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeCommunicationRepository.InsertAsync(resumeCommunication);
@@ -42,19 +39,16 @@ namespace Resume.ResumeCommunications
 
         public async Task<ResumeCommunication> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(communicationCategoryCode, nameof(communicationCategoryCode));
             Check.Length(communicationCategoryCode, nameof(communicationCategoryCode), ResumeCommunicationConsts.CommunicationCategoryCodeMaxLength);
             Check.NotNullOrWhiteSpace(communicationValue, nameof(communicationValue));
             Check.Length(communicationValue, nameof(communicationValue), ResumeCommunicationConsts.CommunicationValueMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeCommunicationConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeCommunicationConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength);
 
             var resumeCommunication = await _resumeCommunicationRepository.GetAsync(id);
 
@@ -62,12 +56,12 @@ namespace Resume.ResumeCommunications
             resumeCommunication.CommunicationCategoryCode = communicationCategoryCode;
             resumeCommunication.CommunicationValue = communicationValue;
             resumeCommunication.Main = main;
+            resumeCommunication.ExtendedInformation = extendedInformation;
             resumeCommunication.DateA = dateA;
             resumeCommunication.DateD = dateD;
             resumeCommunication.Sort = sort;
-            resumeCommunication.Status = status;
-            resumeCommunication.ExtendedInformation = extendedInformation;
             resumeCommunication.Note = note;
+            resumeCommunication.Status = status;
 
             return await _resumeCommunicationRepository.UpdateAsync(resumeCommunication);
         }

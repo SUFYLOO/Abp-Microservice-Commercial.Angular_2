@@ -19,7 +19,7 @@ namespace Resume.ResumeExperiencess
         }
 
         public async Task<ResumeExperiences> CreateAsync(
-        Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ResumeExperiencesConsts.NameMaxLength);
@@ -39,16 +39,13 @@ namespace Resume.ResumeExperiencess
             Check.Length(companyScaleCode, nameof(companyScaleCode), ResumeExperiencesConsts.CompanyScaleCodeMaxLength);
             Check.NotNullOrWhiteSpace(companyManagementNumberCode, nameof(companyManagementNumberCode));
             Check.Length(companyManagementNumberCode, nameof(companyManagementNumberCode), ResumeExperiencesConsts.CompanyManagementNumberCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeExperiencesConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeExperiencesConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength);
 
             var resumeExperiences = new ResumeExperiences(
              GuidGenerator.Create(),
-             resumeMainId, name, workNatureCode, hideCompanyName, industryCategoryCode, jobName, jobType, working, workPlaceCode, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1, salary2, companyScaleCode, companyManagementNumberCode, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, name, workNatureCode, hideCompanyName, industryCategoryCode, jobName, jobType, working, workPlaceCode, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1, salary2, companyScaleCode, companyManagementNumberCode, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeExperiencesRepository.InsertAsync(resumeExperiences);
@@ -56,7 +53,7 @@ namespace Resume.ResumeExperiencess
 
         public async Task<ResumeExperiences> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -77,12 +74,9 @@ namespace Resume.ResumeExperiencess
             Check.Length(companyScaleCode, nameof(companyScaleCode), ResumeExperiencesConsts.CompanyScaleCodeMaxLength);
             Check.NotNullOrWhiteSpace(companyManagementNumberCode, nameof(companyManagementNumberCode));
             Check.Length(companyManagementNumberCode, nameof(companyManagementNumberCode), ResumeExperiencesConsts.CompanyManagementNumberCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeExperiencesConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeExperiencesConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength);
 
             var resumeExperiences = await _resumeExperiencesRepository.GetAsync(id);
 
@@ -102,12 +96,12 @@ namespace Resume.ResumeExperiencess
             resumeExperiences.Salary2 = salary2;
             resumeExperiences.CompanyScaleCode = companyScaleCode;
             resumeExperiences.CompanyManagementNumberCode = companyManagementNumberCode;
+            resumeExperiences.ExtendedInformation = extendedInformation;
             resumeExperiences.DateA = dateA;
             resumeExperiences.DateD = dateD;
             resumeExperiences.Sort = sort;
-            resumeExperiences.Status = status;
-            resumeExperiences.ExtendedInformation = extendedInformation;
             resumeExperiences.Note = note;
+            resumeExperiences.Status = status;
 
             return await _resumeExperiencesRepository.UpdateAsync(resumeExperiences);
         }

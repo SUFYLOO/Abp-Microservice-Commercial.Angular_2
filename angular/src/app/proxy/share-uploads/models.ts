@@ -32,11 +32,11 @@ export interface ShareUploadCreateDto {
   size: number;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareUploadDto extends FullAuditedEntityDto<string> {
@@ -49,11 +49,11 @@ export interface ShareUploadDto extends FullAuditedEntityDto<string> {
   size: number;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareUploadExcelDownloadDto {
@@ -72,9 +72,9 @@ export interface ShareUploadUpdateDto {
   size: number;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

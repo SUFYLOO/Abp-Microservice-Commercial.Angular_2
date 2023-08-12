@@ -63,7 +63,7 @@ namespace Resume.UserCompanyBinds
         {
 
             var userCompanyBind = await _userCompanyBindManager.CreateAsync(
-            input.UserMainId, input.CompanyMainId, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.CompanyInvitationsId, input.ExtendedInformation, input.Note
+            input.UserMainId, input.CompanyMainId, input.CompanyJobId, input.CompanyInvitationsId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserCompanyBind, UserCompanyBindDto>(userCompanyBind);
@@ -75,7 +75,7 @@ namespace Resume.UserCompanyBinds
 
             var userCompanyBind = await _userCompanyBindManager.UpdateAsync(
             id,
-            input.UserMainId, input.CompanyMainId, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.CompanyInvitationsId, input.ExtendedInformation, input.Note
+            input.UserMainId, input.CompanyMainId, input.CompanyJobId, input.CompanyInvitationsId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserCompanyBind, UserCompanyBindDto>(userCompanyBind);

@@ -63,7 +63,7 @@ namespace Resume.CompanyJobPays
         {
 
             var companyJobPay = await _companyJobPayManager.CreateAsync(
-            input.CompanyMainId, input.CompanyJobId, input.JobPayTypeCode, input.IsCancel, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.DateReal
+            input.CompanyMainId, input.CompanyJobId, input.JobPayTypeCode, input.IsCancel, input.DateReal, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobPay, CompanyJobPayDto>(companyJobPay);
@@ -75,7 +75,7 @@ namespace Resume.CompanyJobPays
 
             var companyJobPay = await _companyJobPayManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.JobPayTypeCode, input.IsCancel, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.DateReal, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.JobPayTypeCode, input.IsCancel, input.DateReal, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
             );
 
             return ObjectMapper.Map<CompanyJobPay, CompanyJobPayDto>(companyJobPay);

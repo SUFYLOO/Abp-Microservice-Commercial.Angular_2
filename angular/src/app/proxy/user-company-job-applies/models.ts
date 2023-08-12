@@ -23,7 +23,7 @@ export interface UserCompanyJobApplyCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserCompanyJobApplyDto extends FullAuditedEntityDto<string> {
@@ -34,7 +34,7 @@ export interface UserCompanyJobApplyDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -52,6 +52,6 @@ export interface UserCompanyJobApplyUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

@@ -15,14 +15,13 @@ namespace Resume.CompanyJobPairs
         public string? PairCondition { get; set; }
         [StringLength(CompanyJobPairConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(CompanyJobPairConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyJobPairConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         public string ConcurrencyStamp { get; set; }
     }

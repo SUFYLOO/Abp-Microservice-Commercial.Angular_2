@@ -27,19 +27,19 @@ namespace Resume.TradeOrders
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("f49076a5-cb97-4494-b23e-213de50229a3")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("875aea5d-a415-4138-862c-b1b278e3b70c")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _tradeOrdersAppService.GetAsync(Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"));
+            var result = await _tradeOrdersAppService.GetAsync(Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"));
+            result.Id.ShouldBe(Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"));
         }
 
         [Fact]
@@ -48,25 +48,25 @@ namespace Resume.TradeOrders
             // Arrange
             var input = new TradeOrderCreateDto
             {
-                KeyId = Guid.Parse("8b3f578b-4ae9-4cbd-ace1-6de13fb863f8"),
-                OrderNumber = "e8312253f89b4c5a9104e66eb23f5e3c4b3bfd1d8cb5497abf",
-                DateOrder = new DateTime(2005, 4, 23),
-                DateNeed = new DateTime(2019, 2, 17),
-                DateDelivery = new DateTime(2009, 5, 3),
-                DeliveryMethodCode = "d828664505cf45daa4264c8e7f31c4870ce7fb2c8ec0498b9b",
-                DeliveryZipCode = "b1794d92c50044bd9dfd8a270a63c331c2dbb63276204f7397",
-                DeliveryCityCode = "305f60f626de4b6997be0017322ef06e891abf1ddaf745bc9d",
-                DeliveryAreaCode = "e2d62e6726424da68b9fa81a460f545f8878e7497684478e97",
-                DeliveryAddress = "fb249455040247c9bc6d89954b0b6c3162dfe6360e5e44dd9f",
-                DeliveryFee = 308317692,
-                UserName = "a209fee373694165983d02ce0eb1fe4670a2d03a778146f5bf",
-                OrderStateCode = "6d5abac0e35a40ba8d181e86c0ad113820f16ded8d77422f98",
-                ExtendedInformation = "d3479819d5b04a1ca8c14b0c6ca5bb12b991f68db94c4f7f8347e50c0de6c951bbbe15a57fda4fc29a84a65df73de24d1c5e3370e640426681d2682cab4ca96652fda3b93fd0408a91dbbc25bc0c42c4c7d1bdfb899546c292832a40f73de64c0c3ef46431cd487799f132f026ee64a4fd0a971bc6f449bcb7b6f7522161c8999ee7f493070e445bb49a7ae9bf8aad23ecb588d9cc60488ea0f2eaf1e002d9a2fb1362c994af4c97a44c5b6552db8f2ba7d8c7f9a9d242b4828055b7b2ca6675006259975fe1438e8348fa9a93fdd0e534f4d29a0fd346bca5be3755cd23daf80bf907814556492994ced13d81789ca3b1d8da81b67242b2bb67",
-                DateA = new DateTime(2006, 4, 24),
-                DateD = new DateTime(2008, 5, 17),
-                Sort = 1206109428,
-                Note = "41738d2010f64a89a04fd6d2fbfdc6d0e858482e8a9a403c8fff1268226bed6e03e8c4c7dbd9464195a2929726612fbd9ee7b3739cc4438db93c9c18fcbb4ef6eb2be537622848e9bd898334d9b6a307a3b5fe23c2234400a6ccd8984b19e7c0f1884f52db994b6fbc93e46c30ab3b0b62db56bb7b484a0f8db5d50a49b3757079e5839291154577ba18194ee5a22c24d3c260d4239f4ecca556157b526edfed234bbcade6bf4d90b6e0f06a034fa58972ca4d1e74594df9bffd556655d995595feea8d8ca464408b5e7d440cc60f86c5c1245fd621b45ce9d4fe84ff4921bc2fddb2f0a754548c897a3fdab2ba1024006033fba610b44728807",
-                Status = "78f73601e9fd430fb12734965be0cf3c5599df2a52a5402da9"
+                KeyId = Guid.Parse("bf967ab7-c22b-4edc-86aa-78120317b390"),
+                OrderNumber = "a7951ef0fc3045e5b7e346da2f9f2689391169ca404241709b",
+                DateOrder = new DateTime(2004, 8, 22),
+                DateNeed = new DateTime(2011, 4, 7),
+                DateDelivery = new DateTime(2017, 10, 1),
+                DeliveryMethodCode = "f69727dcac6a4fbea64875b0996d67f615354d30dc464183a0",
+                DeliveryZipCode = "0c14b6cd7bb8430b842d33da64c40690787fa071e8fc46cea9",
+                DeliveryCityCode = "3676eac02b924e7c8e4916b2b3f09f50f8778e6c3d5a481485",
+                DeliveryAreaCode = "d29ff39e60c44b57af70525c124934c32c0d7df0bfea40bba2",
+                DeliveryAddress = "7beaa248dda14aff924f547621bc0443e0e3b54fca814b0bae",
+                DeliveryFee = 719442374,
+                UserName = "d3c3af58023c4943b6e2686a126aaa3381a2964fb4d94c59a0",
+                OrderStateCode = "b7ba6689d2d044e3b2d8ec81e0fa187eb2a836f44e394eac8d",
+                ExtendedInformation = "b0065ba65b01426ea40ea24d823ee0afc39a623ce4dc4c9b96d5517b85989e9d0da8a1c10ff948bb82365bda23f5d6d0bda6be25648a4734b6691b0ccf273b7f1423ce1f613144cdbb4aebb5449edc0c6954ed9eb9234866ade23c4dd8b4aa6c17c40a60f99648779268e9fb710611be75bc3d99441744819077187fe90d4db5f02e02188f9e426db9e7ede0a01f54314cd5d13b7f7e4ba0878dac531cb3e49d9e9bc4af81334129a1a3d6347fdc013e1c80c51177ee442fa28cedb2c6077d6cc616324613fa4b65af834c19a58f6b8ddce3eaec8ea6422fb5b5dd9cc7696fe697211e10cd49433787a5ecd87502d36af6e8f5c4702e4d7cbba0",
+                DateA = new DateTime(2008, 10, 10),
+                DateD = new DateTime(2018, 7, 5),
+                Sort = 464315852,
+                Note = "5ed9d52a304a46729d79eddb26b567288c3bae0da1f54ae889915c4cf419c6f4a09c0a6deeac43d38f89ca2d31cd997f69e05dc7f77b46d1afd2c34f44dc0e95e487037de94e473b815ab7d037139b9a69425335de0643c5bf3bd29499a536dddac735f579ee40d8bab96776da8408fae414c419476a418399583180eb3d487bb594e86e5fe64516877d331f0d544d3e94ccb8cee55343a6a4a8d5af7fe6d4641d2228d507f347ab874477c455175ad63a438008e99e4209bb9b14e07cdd2ff262e113ec4728436baeed095cd7f3bbeb296860722a5541868c01b21c87cf120b52da8a6dca3142819c173810e224c527fa25519ba2664a22b1a2",
+                Status = "6ac4edad2fb5488397f58b2bd62f8e432f12f63130864ff9ad"
             };
 
             // Act
@@ -76,25 +76,25 @@ namespace Resume.TradeOrders
             var result = await _tradeOrderRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.KeyId.ShouldBe(Guid.Parse("8b3f578b-4ae9-4cbd-ace1-6de13fb863f8"));
-            result.OrderNumber.ShouldBe("e8312253f89b4c5a9104e66eb23f5e3c4b3bfd1d8cb5497abf");
-            result.DateOrder.ShouldBe(new DateTime(2005, 4, 23));
-            result.DateNeed.ShouldBe(new DateTime(2019, 2, 17));
-            result.DateDelivery.ShouldBe(new DateTime(2009, 5, 3));
-            result.DeliveryMethodCode.ShouldBe("d828664505cf45daa4264c8e7f31c4870ce7fb2c8ec0498b9b");
-            result.DeliveryZipCode.ShouldBe("b1794d92c50044bd9dfd8a270a63c331c2dbb63276204f7397");
-            result.DeliveryCityCode.ShouldBe("305f60f626de4b6997be0017322ef06e891abf1ddaf745bc9d");
-            result.DeliveryAreaCode.ShouldBe("e2d62e6726424da68b9fa81a460f545f8878e7497684478e97");
-            result.DeliveryAddress.ShouldBe("fb249455040247c9bc6d89954b0b6c3162dfe6360e5e44dd9f");
-            result.DeliveryFee.ShouldBe(308317692);
-            result.UserName.ShouldBe("a209fee373694165983d02ce0eb1fe4670a2d03a778146f5bf");
-            result.OrderStateCode.ShouldBe("6d5abac0e35a40ba8d181e86c0ad113820f16ded8d77422f98");
-            result.ExtendedInformation.ShouldBe("d3479819d5b04a1ca8c14b0c6ca5bb12b991f68db94c4f7f8347e50c0de6c951bbbe15a57fda4fc29a84a65df73de24d1c5e3370e640426681d2682cab4ca96652fda3b93fd0408a91dbbc25bc0c42c4c7d1bdfb899546c292832a40f73de64c0c3ef46431cd487799f132f026ee64a4fd0a971bc6f449bcb7b6f7522161c8999ee7f493070e445bb49a7ae9bf8aad23ecb588d9cc60488ea0f2eaf1e002d9a2fb1362c994af4c97a44c5b6552db8f2ba7d8c7f9a9d242b4828055b7b2ca6675006259975fe1438e8348fa9a93fdd0e534f4d29a0fd346bca5be3755cd23daf80bf907814556492994ced13d81789ca3b1d8da81b67242b2bb67");
-            result.DateA.ShouldBe(new DateTime(2006, 4, 24));
-            result.DateD.ShouldBe(new DateTime(2008, 5, 17));
-            result.Sort.ShouldBe(1206109428);
-            result.Note.ShouldBe("41738d2010f64a89a04fd6d2fbfdc6d0e858482e8a9a403c8fff1268226bed6e03e8c4c7dbd9464195a2929726612fbd9ee7b3739cc4438db93c9c18fcbb4ef6eb2be537622848e9bd898334d9b6a307a3b5fe23c2234400a6ccd8984b19e7c0f1884f52db994b6fbc93e46c30ab3b0b62db56bb7b484a0f8db5d50a49b3757079e5839291154577ba18194ee5a22c24d3c260d4239f4ecca556157b526edfed234bbcade6bf4d90b6e0f06a034fa58972ca4d1e74594df9bffd556655d995595feea8d8ca464408b5e7d440cc60f86c5c1245fd621b45ce9d4fe84ff4921bc2fddb2f0a754548c897a3fdab2ba1024006033fba610b44728807");
-            result.Status.ShouldBe("78f73601e9fd430fb12734965be0cf3c5599df2a52a5402da9");
+            result.KeyId.ShouldBe(Guid.Parse("bf967ab7-c22b-4edc-86aa-78120317b390"));
+            result.OrderNumber.ShouldBe("a7951ef0fc3045e5b7e346da2f9f2689391169ca404241709b");
+            result.DateOrder.ShouldBe(new DateTime(2004, 8, 22));
+            result.DateNeed.ShouldBe(new DateTime(2011, 4, 7));
+            result.DateDelivery.ShouldBe(new DateTime(2017, 10, 1));
+            result.DeliveryMethodCode.ShouldBe("f69727dcac6a4fbea64875b0996d67f615354d30dc464183a0");
+            result.DeliveryZipCode.ShouldBe("0c14b6cd7bb8430b842d33da64c40690787fa071e8fc46cea9");
+            result.DeliveryCityCode.ShouldBe("3676eac02b924e7c8e4916b2b3f09f50f8778e6c3d5a481485");
+            result.DeliveryAreaCode.ShouldBe("d29ff39e60c44b57af70525c124934c32c0d7df0bfea40bba2");
+            result.DeliveryAddress.ShouldBe("7beaa248dda14aff924f547621bc0443e0e3b54fca814b0bae");
+            result.DeliveryFee.ShouldBe(719442374);
+            result.UserName.ShouldBe("d3c3af58023c4943b6e2686a126aaa3381a2964fb4d94c59a0");
+            result.OrderStateCode.ShouldBe("b7ba6689d2d044e3b2d8ec81e0fa187eb2a836f44e394eac8d");
+            result.ExtendedInformation.ShouldBe("b0065ba65b01426ea40ea24d823ee0afc39a623ce4dc4c9b96d5517b85989e9d0da8a1c10ff948bb82365bda23f5d6d0bda6be25648a4734b6691b0ccf273b7f1423ce1f613144cdbb4aebb5449edc0c6954ed9eb9234866ade23c4dd8b4aa6c17c40a60f99648779268e9fb710611be75bc3d99441744819077187fe90d4db5f02e02188f9e426db9e7ede0a01f54314cd5d13b7f7e4ba0878dac531cb3e49d9e9bc4af81334129a1a3d6347fdc013e1c80c51177ee442fa28cedb2c6077d6cc616324613fa4b65af834c19a58f6b8ddce3eaec8ea6422fb5b5dd9cc7696fe697211e10cd49433787a5ecd87502d36af6e8f5c4702e4d7cbba0");
+            result.DateA.ShouldBe(new DateTime(2008, 10, 10));
+            result.DateD.ShouldBe(new DateTime(2018, 7, 5));
+            result.Sort.ShouldBe(464315852);
+            result.Note.ShouldBe("5ed9d52a304a46729d79eddb26b567288c3bae0da1f54ae889915c4cf419c6f4a09c0a6deeac43d38f89ca2d31cd997f69e05dc7f77b46d1afd2c34f44dc0e95e487037de94e473b815ab7d037139b9a69425335de0643c5bf3bd29499a536dddac735f579ee40d8bab96776da8408fae414c419476a418399583180eb3d487bb594e86e5fe64516877d331f0d544d3e94ccb8cee55343a6a4a8d5af7fe6d4641d2228d507f347ab874477c455175ad63a438008e99e4209bb9b14e07cdd2ff262e113ec4728436baeed095cd7f3bbeb296860722a5541868c01b21c87cf120b52da8a6dca3142819c173810e224c527fa25519ba2664a22b1a2");
+            result.Status.ShouldBe("6ac4edad2fb5488397f58b2bd62f8e432f12f63130864ff9ad");
         }
 
         [Fact]
@@ -103,63 +103,63 @@ namespace Resume.TradeOrders
             // Arrange
             var input = new TradeOrderUpdateDto()
             {
-                KeyId = Guid.Parse("61db6d2e-1f6f-45d0-bfbf-cbbf9f6d3709"),
-                OrderNumber = "f81a8976493a49ffada857d0a2275396fcc78ab8bdf945ad86",
-                DateOrder = new DateTime(2010, 1, 1),
-                DateNeed = new DateTime(2007, 2, 5),
-                DateDelivery = new DateTime(2022, 11, 23),
-                DeliveryMethodCode = "2d8d2abe581a430d8b807b0a448ccf34b18a8c8e32d7402eb1",
-                DeliveryZipCode = "d98dada694f24c36b96106d83fd716e60775a51e230c40c39c",
-                DeliveryCityCode = "f5482bf6f131413782057925eb63ee1fe21ef7e6877f4d09af",
-                DeliveryAreaCode = "be49b558ac784f4093f3c53ffd22852025b971c0d0db416095",
-                DeliveryAddress = "1368179efd5b43878401cd8d4b69539cd090897f9a674c1394",
-                DeliveryFee = 627940554,
-                UserName = "f9b52b1842b04b87961c81c578af8f510c3458d215104ae38b",
-                OrderStateCode = "6db21e49d5664a8eb62aaa7b07e6924621faf72e1c43449494",
-                ExtendedInformation = "4309b1b93bec4025a65214d7496747b8c40f39451e4049ceadf354818f62708672b5e4edc7bf4496a73233f80fc82c652730a5a940f240889c866b206efe09e72397749b565a42ecabaefa59d815cba93350c1fed5a34b4a87d4c86be69b9b7192e197b488884a89b56ce4525dbd2adf7949eb2f489841b592c9512d8cbddec54ae26e5dbb3c40ea98bc6d3074c582699ebff9db1dca4ccfbcd428728927dfa761a45e71e5aa430cb9e4646ba4292798eb02eb3ae52647db9aabf7a676c86a78471c9be92dbf4896a9d32d8b80c825ec4f147b9a3e7e4a10a0fe912671a5c4bc397772fa7ac54210929ca1d93a1425dec2af8e5daa214e9683e4",
-                DateA = new DateTime(2020, 10, 7),
-                DateD = new DateTime(2004, 11, 18),
-                Sort = 1346104719,
-                Note = "7ba887ef61b34655a946c74f3704f3cac015ec73ed23406e9b04d6fff1f04a87605eb243f3d143579d8099b31cfb01f890f238113ee74c9a8ba06e79114d004f72223a53a9c044caa3e123a189cbf53d0507981c1df0491e81385d5090b015461f724bc42c37482abaa1e3d1e45d200e8032ee2a6e874b4f989921933dd2439fdce6ae8803904f598ea2fc64a1f0718c08e550579e1848e1993a3af8ba35ba829116606e02ab4426be6c1baa1c0676c26f58192dcada4be19dc03ed37d323dc827a2d7675abb4b1d92a296a267a4ebb9a5503f42b966451283763daeaeed93fbf251676d5fba4e2387d0ed4ce651b318091d7c0bda104b4c9004",
-                Status = "7240456c2a6145db9dc6175ad653e3676a3a2e6161154f2c93"
+                KeyId = Guid.Parse("e84d3be8-c3f9-4431-87ee-2f5eeb326e5a"),
+                OrderNumber = "f2c91c456c234a5fb5994f3cdc60812df35299d5513444caa9",
+                DateOrder = new DateTime(2012, 3, 25),
+                DateNeed = new DateTime(2002, 8, 21),
+                DateDelivery = new DateTime(2022, 6, 12),
+                DeliveryMethodCode = "41a87dd7631c48c9936a379dea8992aa73db6c4291f246e084",
+                DeliveryZipCode = "b756908f2ba44f07951f48a52c21c59d5eceffd704e14ed59f",
+                DeliveryCityCode = "53e902aa59ea4c12ae4b80d9e688c11cfeb72ceb88d94196b6",
+                DeliveryAreaCode = "2e7387a020f04874bec47726956150def63eec33c73a4620bf",
+                DeliveryAddress = "2d6365c882dc48aa94e1659ebef3244722578fac70ef43c196",
+                DeliveryFee = 1699055544,
+                UserName = "dacb355cce5746058a94553a18b6f343a8e224a60bdc4ad58a",
+                OrderStateCode = "feb2fa2ea04647bab6a08968452df00a9f4292ba509c44e4b1",
+                ExtendedInformation = "df9d9f8dea644a9ba1263cbe4b1b1dedf5fcc01b4e8145d2903fec2c0217a15be37f0e04b7774cd99a8669cad1d73d467a16ab0e74ac4a328e7ba9c571d1c8ec6a113069d15547f4b60176ba406afcb7f3e7306f288f48aa960ddd500169b3f7dd1de204c900491ea78129a1d109aa30657eee8bf25a42cd938e140375c448c6ee94cf762e1a46fa8621843ce9bdcc2e36e61138c4f442cab651ea3525268d00a111f7f2fdc543c8aaf9f42b42011617870105139af444d58c8d943e0b9985b53abbfcbdb0464584a1a49f3bead827a5d8ec280a2c744d338f4e16c02cd8b50515a9576e28744c63a2c62e426d6f08995812274ea83f417d8b30",
+                DateA = new DateTime(2000, 9, 12),
+                DateD = new DateTime(2000, 1, 12),
+                Sort = 1788156105,
+                Note = "8f7c8145477344c6903a5c39018f6c41ff7b27e38185433092638fd01ef69eb075e3e65e7f254a63918025b470e2b4277a5083fe2175474aa5ffdb92550170980adab8aa392b478e868acb752131ee8d915c85d2ad384fa392ae91fe2ed04ab3e47744ccefa7430aa4e9fc8b625bb5cb6b6bf02ea17d4c96a9a058de41d6126d8b0877195f5e434aabcaddbfcf023a019c11d19720544e558adb3b09c1fafe45dd38ee71ad5749209456de5e987c8f78d3531e2531ca4ee2a77a70277ea376d0f76f7134db8b498d88d119b9df2e6b79c400271c61c541ffb803f643610bf53e7c02e8b092b249078323b48bf2a1fc0e11ddc66532c64d609f6e",
+                Status = "6659d9dc0f4949e0b680bdbac8065f25e6de8c4ed2dd4ebf87"
             };
 
             // Act
-            var serviceResult = await _tradeOrdersAppService.UpdateAsync(Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"), input);
+            var serviceResult = await _tradeOrdersAppService.UpdateAsync(Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"), input);
 
             // Assert
             var result = await _tradeOrderRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.KeyId.ShouldBe(Guid.Parse("61db6d2e-1f6f-45d0-bfbf-cbbf9f6d3709"));
-            result.OrderNumber.ShouldBe("f81a8976493a49ffada857d0a2275396fcc78ab8bdf945ad86");
-            result.DateOrder.ShouldBe(new DateTime(2010, 1, 1));
-            result.DateNeed.ShouldBe(new DateTime(2007, 2, 5));
-            result.DateDelivery.ShouldBe(new DateTime(2022, 11, 23));
-            result.DeliveryMethodCode.ShouldBe("2d8d2abe581a430d8b807b0a448ccf34b18a8c8e32d7402eb1");
-            result.DeliveryZipCode.ShouldBe("d98dada694f24c36b96106d83fd716e60775a51e230c40c39c");
-            result.DeliveryCityCode.ShouldBe("f5482bf6f131413782057925eb63ee1fe21ef7e6877f4d09af");
-            result.DeliveryAreaCode.ShouldBe("be49b558ac784f4093f3c53ffd22852025b971c0d0db416095");
-            result.DeliveryAddress.ShouldBe("1368179efd5b43878401cd8d4b69539cd090897f9a674c1394");
-            result.DeliveryFee.ShouldBe(627940554);
-            result.UserName.ShouldBe("f9b52b1842b04b87961c81c578af8f510c3458d215104ae38b");
-            result.OrderStateCode.ShouldBe("6db21e49d5664a8eb62aaa7b07e6924621faf72e1c43449494");
-            result.ExtendedInformation.ShouldBe("4309b1b93bec4025a65214d7496747b8c40f39451e4049ceadf354818f62708672b5e4edc7bf4496a73233f80fc82c652730a5a940f240889c866b206efe09e72397749b565a42ecabaefa59d815cba93350c1fed5a34b4a87d4c86be69b9b7192e197b488884a89b56ce4525dbd2adf7949eb2f489841b592c9512d8cbddec54ae26e5dbb3c40ea98bc6d3074c582699ebff9db1dca4ccfbcd428728927dfa761a45e71e5aa430cb9e4646ba4292798eb02eb3ae52647db9aabf7a676c86a78471c9be92dbf4896a9d32d8b80c825ec4f147b9a3e7e4a10a0fe912671a5c4bc397772fa7ac54210929ca1d93a1425dec2af8e5daa214e9683e4");
-            result.DateA.ShouldBe(new DateTime(2020, 10, 7));
-            result.DateD.ShouldBe(new DateTime(2004, 11, 18));
-            result.Sort.ShouldBe(1346104719);
-            result.Note.ShouldBe("7ba887ef61b34655a946c74f3704f3cac015ec73ed23406e9b04d6fff1f04a87605eb243f3d143579d8099b31cfb01f890f238113ee74c9a8ba06e79114d004f72223a53a9c044caa3e123a189cbf53d0507981c1df0491e81385d5090b015461f724bc42c37482abaa1e3d1e45d200e8032ee2a6e874b4f989921933dd2439fdce6ae8803904f598ea2fc64a1f0718c08e550579e1848e1993a3af8ba35ba829116606e02ab4426be6c1baa1c0676c26f58192dcada4be19dc03ed37d323dc827a2d7675abb4b1d92a296a267a4ebb9a5503f42b966451283763daeaeed93fbf251676d5fba4e2387d0ed4ce651b318091d7c0bda104b4c9004");
-            result.Status.ShouldBe("7240456c2a6145db9dc6175ad653e3676a3a2e6161154f2c93");
+            result.KeyId.ShouldBe(Guid.Parse("e84d3be8-c3f9-4431-87ee-2f5eeb326e5a"));
+            result.OrderNumber.ShouldBe("f2c91c456c234a5fb5994f3cdc60812df35299d5513444caa9");
+            result.DateOrder.ShouldBe(new DateTime(2012, 3, 25));
+            result.DateNeed.ShouldBe(new DateTime(2002, 8, 21));
+            result.DateDelivery.ShouldBe(new DateTime(2022, 6, 12));
+            result.DeliveryMethodCode.ShouldBe("41a87dd7631c48c9936a379dea8992aa73db6c4291f246e084");
+            result.DeliveryZipCode.ShouldBe("b756908f2ba44f07951f48a52c21c59d5eceffd704e14ed59f");
+            result.DeliveryCityCode.ShouldBe("53e902aa59ea4c12ae4b80d9e688c11cfeb72ceb88d94196b6");
+            result.DeliveryAreaCode.ShouldBe("2e7387a020f04874bec47726956150def63eec33c73a4620bf");
+            result.DeliveryAddress.ShouldBe("2d6365c882dc48aa94e1659ebef3244722578fac70ef43c196");
+            result.DeliveryFee.ShouldBe(1699055544);
+            result.UserName.ShouldBe("dacb355cce5746058a94553a18b6f343a8e224a60bdc4ad58a");
+            result.OrderStateCode.ShouldBe("feb2fa2ea04647bab6a08968452df00a9f4292ba509c44e4b1");
+            result.ExtendedInformation.ShouldBe("df9d9f8dea644a9ba1263cbe4b1b1dedf5fcc01b4e8145d2903fec2c0217a15be37f0e04b7774cd99a8669cad1d73d467a16ab0e74ac4a328e7ba9c571d1c8ec6a113069d15547f4b60176ba406afcb7f3e7306f288f48aa960ddd500169b3f7dd1de204c900491ea78129a1d109aa30657eee8bf25a42cd938e140375c448c6ee94cf762e1a46fa8621843ce9bdcc2e36e61138c4f442cab651ea3525268d00a111f7f2fdc543c8aaf9f42b42011617870105139af444d58c8d943e0b9985b53abbfcbdb0464584a1a49f3bead827a5d8ec280a2c744d338f4e16c02cd8b50515a9576e28744c63a2c62e426d6f08995812274ea83f417d8b30");
+            result.DateA.ShouldBe(new DateTime(2000, 9, 12));
+            result.DateD.ShouldBe(new DateTime(2000, 1, 12));
+            result.Sort.ShouldBe(1788156105);
+            result.Note.ShouldBe("8f7c8145477344c6903a5c39018f6c41ff7b27e38185433092638fd01ef69eb075e3e65e7f254a63918025b470e2b4277a5083fe2175474aa5ffdb92550170980adab8aa392b478e868acb752131ee8d915c85d2ad384fa392ae91fe2ed04ab3e47744ccefa7430aa4e9fc8b625bb5cb6b6bf02ea17d4c96a9a058de41d6126d8b0877195f5e434aabcaddbfcf023a019c11d19720544e558adb3b09c1fafe45dd38ee71ad5749209456de5e987c8f78d3531e2531ca4ee2a77a70277ea376d0f76f7134db8b498d88d119b9df2e6b79c400271c61c541ffb803f643610bf53e7c02e8b092b249078323b48bf2a1fc0e11ddc66532c64d609f6e");
+            result.Status.ShouldBe("6659d9dc0f4949e0b680bdbac8065f25e6de8c4ed2dd4ebf87");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _tradeOrdersAppService.DeleteAsync(Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"));
+            await _tradeOrdersAppService.DeleteAsync(Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"));
 
             // Assert
-            var result = await _tradeOrderRepository.FindAsync(c => c.Id == Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"));
+            var result = await _tradeOrderRepository.FindAsync(c => c.Id == Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"));
 
             result.ShouldBeNull();
         }

@@ -15,13 +15,12 @@ namespace Resume.CompanyJobPays
         public bool IsCancel { get; set; }
         [StringLength(CompanyJobPayConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(CompanyJobPayConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyJobPayConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

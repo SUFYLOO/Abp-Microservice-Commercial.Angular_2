@@ -63,7 +63,7 @@ namespace Resume.SystemTables
         {
 
             var systemTable = await _systemTableManager.CreateAsync(
-            input.Name, input.AllowInsert, input.AllowUpdate, input.AllowDelete, input.AllowSelect, input.AllowExport, input.AllowImport, input.AllowPage, input.AllowSort, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.AllowInsert, input.AllowUpdate, input.AllowDelete, input.AllowSelect, input.AllowExport, input.AllowImport, input.AllowPage, input.AllowSort, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemTable, SystemTableDto>(systemTable);
@@ -75,7 +75,7 @@ namespace Resume.SystemTables
 
             var systemTable = await _systemTableManager.UpdateAsync(
             id,
-            input.Name, input.AllowInsert, input.AllowUpdate, input.AllowDelete, input.AllowSelect, input.AllowExport, input.AllowImport, input.AllowPage, input.AllowSort, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.AllowInsert, input.AllowUpdate, input.AllowDelete, input.AllowSelect, input.AllowExport, input.AllowImport, input.AllowPage, input.AllowSort, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemTable, SystemTableDto>(systemTable);

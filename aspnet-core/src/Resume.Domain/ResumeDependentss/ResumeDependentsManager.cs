@@ -19,7 +19,7 @@ namespace Resume.ResumeDependentss
         }
 
         public async Task<ResumeDependents> CreateAsync(
-        Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, DateTime dateA, DateTime dateD, int sort, string status, string address = null, string mobilePhone = null, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, string address = null, string mobilePhone = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ResumeDependentsConsts.NameMaxLength);
@@ -27,18 +27,15 @@ namespace Resume.ResumeDependentss
             Check.NotNullOrWhiteSpace(kinshipCode, nameof(kinshipCode));
             Check.Length(kinshipCode, nameof(kinshipCode), ResumeDependentsConsts.KinshipCodeMaxLength);
             Check.NotNull(birthDate, nameof(birthDate));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength);
             Check.Length(address, nameof(address), ResumeDependentsConsts.AddressMaxLength);
             Check.Length(mobilePhone, nameof(mobilePhone), ResumeDependentsConsts.MobilePhoneMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeDependentsConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeDependentsConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength);
 
             var resumeDependents = new ResumeDependents(
              GuidGenerator.Create(),
-             resumeMainId, name, identityNo, kinshipCode, birthDate, dateA, dateD, sort, status, address, mobilePhone, extendedInformation, note
+             resumeMainId, name, identityNo, kinshipCode, birthDate, address, mobilePhone, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeDependentsRepository.InsertAsync(resumeDependents);
@@ -46,7 +43,7 @@ namespace Resume.ResumeDependentss
 
         public async Task<ResumeDependents> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, DateTime dateA, DateTime dateD, int sort, string status, string address = null, string mobilePhone = null, string extendedInformation = null, string note = null
+            Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, string address = null, string mobilePhone = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -55,14 +52,11 @@ namespace Resume.ResumeDependentss
             Check.NotNullOrWhiteSpace(kinshipCode, nameof(kinshipCode));
             Check.Length(kinshipCode, nameof(kinshipCode), ResumeDependentsConsts.KinshipCodeMaxLength);
             Check.NotNull(birthDate, nameof(birthDate));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength);
             Check.Length(address, nameof(address), ResumeDependentsConsts.AddressMaxLength);
             Check.Length(mobilePhone, nameof(mobilePhone), ResumeDependentsConsts.MobilePhoneMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeDependentsConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeDependentsConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength);
 
             var resumeDependents = await _resumeDependentsRepository.GetAsync(id);
 
@@ -71,14 +65,14 @@ namespace Resume.ResumeDependentss
             resumeDependents.IdentityNo = identityNo;
             resumeDependents.KinshipCode = kinshipCode;
             resumeDependents.BirthDate = birthDate;
-            resumeDependents.DateA = dateA;
-            resumeDependents.DateD = dateD;
-            resumeDependents.Sort = sort;
-            resumeDependents.Status = status;
             resumeDependents.Address = address;
             resumeDependents.MobilePhone = mobilePhone;
             resumeDependents.ExtendedInformation = extendedInformation;
+            resumeDependents.DateA = dateA;
+            resumeDependents.DateD = dateD;
+            resumeDependents.Sort = sort;
             resumeDependents.Note = note;
+            resumeDependents.Status = status;
 
             return await _resumeDependentsRepository.UpdateAsync(resumeDependents);
         }

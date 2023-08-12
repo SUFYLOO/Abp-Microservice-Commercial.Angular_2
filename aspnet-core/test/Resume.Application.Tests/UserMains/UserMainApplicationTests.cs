@@ -27,19 +27,19 @@ namespace Resume.UserMains
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("09628d9c-5356-40c0-9d68-0d8d484e2449")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("0ce3b2f9-ad1e-4fbf-982c-a9fbbfaf4fc9")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _userMainsAppService.GetAsync(Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75"));
+            var result = await _userMainsAppService.GetAsync(Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75"));
+            result.Id.ShouldBe(Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8"));
         }
 
         [Fact]
@@ -48,24 +48,24 @@ namespace Resume.UserMains
             // Arrange
             var input = new UserMainCreateDto
             {
-                UserId = Guid.Parse("6a910b2d-92ff-42c5-bff1-495bf37cf47e"),
-                Name = "5f6ab2091e924d84b13c9a092ef9e930fbcd6ed5e67447dbb7",
-                AnonymousName = "232077a02ad24384bc5b67cc2851dc0a58339ae96f0a401cb7",
-                LoginAccountCode = "ac29c5f522bd46bd892aa12dd8094205d07e1eaa5008486690",
-                LoginMobilePhoneUpdate = "4d34a99c60d34304814429f079cd78ab480c2291086e4388be",
-                LoginMobilePhone = "0eb45ed5cff249fb807614d4ec33e3a3c1462e27cd034c60be",
-                LoginEmailUpdate = "2794f96336e3466e93e38ffb5992fba40ca274b3d46043e1875a598fe3695fd7b1f52c7018814c28ace2e959ff45d4cc652e47ade2da469a948b90ce78466fdcf4cff7d70511455891e1889e20689085304102a59c074805ac6c15a098a7243e7ab19ad6",
-                LoginEmail = "5070b6cde9704cfa9b58a92fe8dd8bce54c7f35110064d8cb622837afa799b3aa30c7497496c4acbaf02f83eb1a01c8749f94161da6a431a96fdd73b354fe9535ed15e00159447379bd5ebba15807af2313ea123536740e8aa9b07dc58269d239e2357b5",
-                LoginIdentityNo = "28d687a7d600403da6daa7b6033441a9acbf936c0cb041659d",
-                Password = "48de0a9560d942abbc6e1791f28a04f118517710a0404b43b4a49c96101026ba949414c92bc14450beb3cc2c0f01fcd30b5323dddfb1436a9a18897b8f6163334e8ef006870645bc97164084639eab7d4ec6b94ce8fe4494ba4012d59d00d601339e2d7c",
-                SystemUserRoleKeys = 1796944001,
+                UserId = Guid.Parse("7a775d24-0477-4459-a72e-36fe3e224f55"),
+                Name = "5bf993b9b0304c6ca77be191f1f9ca710ca0db6798944f95ab",
+                AnonymousName = "170f15d89df24bf2b63c0023448a6bfc02ed7ace5f2840fdb8",
+                LoginAccountCode = "2b4d564fc7d6494fbcd9c3f5452101417e5dcb52be574d5683",
+                LoginMobilePhoneUpdate = "68059cc449824709a498bbe9b832ea2392dfab4eb6fb41b1b3",
+                LoginMobilePhone = "78f8457c363d4428b0a7354184ee9c894d0210b4ba9e4f3ebb",
+                LoginEmailUpdate = "ab3549d1270e441490209fbe33287c6563a81ad7dbe24668acba97a0a06f070bdba91a25d0904b0b9c36c97cb37b5a7f6901221355ed4fd082905c8ddac49e45d5a298c171ea4810a37cf1c474c4b70f0447973a45b74655a93075b8897cf59030db464e",
+                LoginEmail = "7dac666f0146464a8e4aa0e7f12b8fbef69d90317c7f4116a322b2681e570b7310f8fb9a10f946e6b26615f1c882d176ce925b4c97004f999b89994235608b009f9d8be4f8f54c5495ffffe0b42453f20bbd8fa9eae94d808047902cd771bcdd02d71d63",
+                LoginIdentityNo = "fec0d6cffb2a4947a714bf3980287b758b9779968dde4c33ac",
+                Password = "a251fef3c02f4082b4be27a8ff20ccc20c5fa1c97e744668aebaac8061fdc0670051a7cca73d42d691fce8a44b76e66f6331ddfaa39040d28388c6572af36b0c4cfab9084fb8483e8e766bac21086ec094451a561e6d49dda5db7714eaab6aa88f93f9e6",
+                SystemUserRoleKeys = 1944854759,
                 AllowSearch = true,
-                DateA = new DateTime(2018, 6, 14),
-                ExtendedInformation = "77c8421c2ed04d80bf7e63ac401db5c4f0b89fdd39e549b791a1af7933e407749be588d504284869a5d44cfdcc4f771f88a103cf5aa74cc1861c0f5edc608f8bc626b3fb170f468991ee8df86d3072a2bad4865e044a4bf69f6a3989fb83f09aa88b5d477d8e49afa08eafb45cd3f03b734d1d9ba5664e37b35939ee9a73741dd6b8442969a64cf2a2a25d32842e7bd49cea6468893949d1939d5f6f1828af1c70a830b1a9ba4dc3a93f44409d0dceab6cdc3c49512f4a339190cff64d122ad8d66736b000194062bd8bcc0980627d95fdff3a85c41d4aed9da43c65bf2a8075d59561fca1194216a2470fc073f85e7de8c14b1e231d4294bb96",
-                DateD = new DateTime(2022, 1, 7),
-                Sort = 2130533146,
-                Note = "c16fa05b272e4a84a9b068b4b6782a3b9ad9941c20ef4e53856ecb24c7f7dc15ab45460ee3fc46538b40fd8412adadc005e3f422354340a3bb8a73ec14307ab000f962973eef4023903d1febb08087ac725de9cc0dd948758b0843b8a066faa098b939f67dfd483c86648e19bed4ae872258bebedb364fc8b29a521d4b407198ae2d0189670e419780f52bdb830a99c6e4872bf01094498d9c5df1392d2d55f11fe138b4ca4846f086e37ff9ec0bf133ba99dbdc9e61424182b9a232cb339d6b286202d547334478976ce465952a1bbc0b3a0300766f4094a063e07f4c160ce8b54c879beb6b4b1cb2a44d392381469fa44762a6a0ef485aa308",
-                Status = "a4895b6d3da8483f8f9fabe8ca962ac9d0f7750409214095b6",
+                DateA = new DateTime(2016, 4, 8),
+                ExtendedInformation = "7ced20b32d8e45b38423d0fd64c00ca544d701aff2364e799b817a39932a13283008d689d9e2458da8f9902e893ac4c3daf3c172e2184cb8a5132e4f817b599d0d5c61d5b0f84c29a462a98c802af8d4d7967687535349b4bfc4bbf16ba14e7405e93ea785304ad28115a4e00949eb5b469e7fd6f049457db70331ecc41e1ddf8b0e94a173f54fd0be1497b010d9a2b91746c49e0cd2463e98866faa3d73214c232dce6b4e2f48f79b3535ef2a265d51f8ab767ab8be43f2bccafef299a13335e5ac8f4c09454fccbbbe13d1aa766c13bf81670cf752457fad027087c4eb742649e307a1ac6d43d89c5127f636a5d691f4412fef0cc947ec96ea",
+                DateD = new DateTime(2001, 4, 21),
+                Sort = 6363979,
+                Note = "7361da95036b48bdb032dc2e7133a40a2cf7c30482074f2db4b053bd642672ec3b3b9c4bd61b4327a6b2ad621b622493cc35a6022d9a46f79860e0f3bda748a91f7de28daa1a4ec9b9f1f73ea3bb8615e9a690fe53ce47c68729623420732f5bc79527f823e64ed4a7493236880ddfc2e3a80a7cef394fdc8f531cde0158e4e7511604ff16bb44f99e2bbf93addc03361405ae036b964ee8a1bfc47a4bc52714c6b0ed6595874f68b65ac4a4c064e7ba171c444c806c4b1bb3f04a8a8684445ac2518576038d462daaea0d1a77a6e4361235ba7cd45a4f3db59bd20709d339dffc7430c144e34b598c3b319b14d15cecf7e66b71898a45cf8292",
+                Status = "12beeaedaea44e96926fd9d9b2efe5671a67900122644bf284",
                 Matching = true
             };
 
@@ -76,24 +76,24 @@ namespace Resume.UserMains
             var result = await _userMainRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.UserId.ShouldBe(Guid.Parse("6a910b2d-92ff-42c5-bff1-495bf37cf47e"));
-            result.Name.ShouldBe("5f6ab2091e924d84b13c9a092ef9e930fbcd6ed5e67447dbb7");
-            result.AnonymousName.ShouldBe("232077a02ad24384bc5b67cc2851dc0a58339ae96f0a401cb7");
-            result.LoginAccountCode.ShouldBe("ac29c5f522bd46bd892aa12dd8094205d07e1eaa5008486690");
-            result.LoginMobilePhoneUpdate.ShouldBe("4d34a99c60d34304814429f079cd78ab480c2291086e4388be");
-            result.LoginMobilePhone.ShouldBe("0eb45ed5cff249fb807614d4ec33e3a3c1462e27cd034c60be");
-            result.LoginEmailUpdate.ShouldBe("2794f96336e3466e93e38ffb5992fba40ca274b3d46043e1875a598fe3695fd7b1f52c7018814c28ace2e959ff45d4cc652e47ade2da469a948b90ce78466fdcf4cff7d70511455891e1889e20689085304102a59c074805ac6c15a098a7243e7ab19ad6");
-            result.LoginEmail.ShouldBe("5070b6cde9704cfa9b58a92fe8dd8bce54c7f35110064d8cb622837afa799b3aa30c7497496c4acbaf02f83eb1a01c8749f94161da6a431a96fdd73b354fe9535ed15e00159447379bd5ebba15807af2313ea123536740e8aa9b07dc58269d239e2357b5");
-            result.LoginIdentityNo.ShouldBe("28d687a7d600403da6daa7b6033441a9acbf936c0cb041659d");
-            result.Password.ShouldBe("48de0a9560d942abbc6e1791f28a04f118517710a0404b43b4a49c96101026ba949414c92bc14450beb3cc2c0f01fcd30b5323dddfb1436a9a18897b8f6163334e8ef006870645bc97164084639eab7d4ec6b94ce8fe4494ba4012d59d00d601339e2d7c");
-            result.SystemUserRoleKeys.ShouldBe(1796944001);
+            result.UserId.ShouldBe(Guid.Parse("7a775d24-0477-4459-a72e-36fe3e224f55"));
+            result.Name.ShouldBe("5bf993b9b0304c6ca77be191f1f9ca710ca0db6798944f95ab");
+            result.AnonymousName.ShouldBe("170f15d89df24bf2b63c0023448a6bfc02ed7ace5f2840fdb8");
+            result.LoginAccountCode.ShouldBe("2b4d564fc7d6494fbcd9c3f5452101417e5dcb52be574d5683");
+            result.LoginMobilePhoneUpdate.ShouldBe("68059cc449824709a498bbe9b832ea2392dfab4eb6fb41b1b3");
+            result.LoginMobilePhone.ShouldBe("78f8457c363d4428b0a7354184ee9c894d0210b4ba9e4f3ebb");
+            result.LoginEmailUpdate.ShouldBe("ab3549d1270e441490209fbe33287c6563a81ad7dbe24668acba97a0a06f070bdba91a25d0904b0b9c36c97cb37b5a7f6901221355ed4fd082905c8ddac49e45d5a298c171ea4810a37cf1c474c4b70f0447973a45b74655a93075b8897cf59030db464e");
+            result.LoginEmail.ShouldBe("7dac666f0146464a8e4aa0e7f12b8fbef69d90317c7f4116a322b2681e570b7310f8fb9a10f946e6b26615f1c882d176ce925b4c97004f999b89994235608b009f9d8be4f8f54c5495ffffe0b42453f20bbd8fa9eae94d808047902cd771bcdd02d71d63");
+            result.LoginIdentityNo.ShouldBe("fec0d6cffb2a4947a714bf3980287b758b9779968dde4c33ac");
+            result.Password.ShouldBe("a251fef3c02f4082b4be27a8ff20ccc20c5fa1c97e744668aebaac8061fdc0670051a7cca73d42d691fce8a44b76e66f6331ddfaa39040d28388c6572af36b0c4cfab9084fb8483e8e766bac21086ec094451a561e6d49dda5db7714eaab6aa88f93f9e6");
+            result.SystemUserRoleKeys.ShouldBe(1944854759);
             result.AllowSearch.ShouldBe(true);
-            result.DateA.ShouldBe(new DateTime(2018, 6, 14));
-            result.ExtendedInformation.ShouldBe("77c8421c2ed04d80bf7e63ac401db5c4f0b89fdd39e549b791a1af7933e407749be588d504284869a5d44cfdcc4f771f88a103cf5aa74cc1861c0f5edc608f8bc626b3fb170f468991ee8df86d3072a2bad4865e044a4bf69f6a3989fb83f09aa88b5d477d8e49afa08eafb45cd3f03b734d1d9ba5664e37b35939ee9a73741dd6b8442969a64cf2a2a25d32842e7bd49cea6468893949d1939d5f6f1828af1c70a830b1a9ba4dc3a93f44409d0dceab6cdc3c49512f4a339190cff64d122ad8d66736b000194062bd8bcc0980627d95fdff3a85c41d4aed9da43c65bf2a8075d59561fca1194216a2470fc073f85e7de8c14b1e231d4294bb96");
-            result.DateD.ShouldBe(new DateTime(2022, 1, 7));
-            result.Sort.ShouldBe(2130533146);
-            result.Note.ShouldBe("c16fa05b272e4a84a9b068b4b6782a3b9ad9941c20ef4e53856ecb24c7f7dc15ab45460ee3fc46538b40fd8412adadc005e3f422354340a3bb8a73ec14307ab000f962973eef4023903d1febb08087ac725de9cc0dd948758b0843b8a066faa098b939f67dfd483c86648e19bed4ae872258bebedb364fc8b29a521d4b407198ae2d0189670e419780f52bdb830a99c6e4872bf01094498d9c5df1392d2d55f11fe138b4ca4846f086e37ff9ec0bf133ba99dbdc9e61424182b9a232cb339d6b286202d547334478976ce465952a1bbc0b3a0300766f4094a063e07f4c160ce8b54c879beb6b4b1cb2a44d392381469fa44762a6a0ef485aa308");
-            result.Status.ShouldBe("a4895b6d3da8483f8f9fabe8ca962ac9d0f7750409214095b6");
+            result.DateA.ShouldBe(new DateTime(2016, 4, 8));
+            result.ExtendedInformation.ShouldBe("7ced20b32d8e45b38423d0fd64c00ca544d701aff2364e799b817a39932a13283008d689d9e2458da8f9902e893ac4c3daf3c172e2184cb8a5132e4f817b599d0d5c61d5b0f84c29a462a98c802af8d4d7967687535349b4bfc4bbf16ba14e7405e93ea785304ad28115a4e00949eb5b469e7fd6f049457db70331ecc41e1ddf8b0e94a173f54fd0be1497b010d9a2b91746c49e0cd2463e98866faa3d73214c232dce6b4e2f48f79b3535ef2a265d51f8ab767ab8be43f2bccafef299a13335e5ac8f4c09454fccbbbe13d1aa766c13bf81670cf752457fad027087c4eb742649e307a1ac6d43d89c5127f636a5d691f4412fef0cc947ec96ea");
+            result.DateD.ShouldBe(new DateTime(2001, 4, 21));
+            result.Sort.ShouldBe(6363979);
+            result.Note.ShouldBe("7361da95036b48bdb032dc2e7133a40a2cf7c30482074f2db4b053bd642672ec3b3b9c4bd61b4327a6b2ad621b622493cc35a6022d9a46f79860e0f3bda748a91f7de28daa1a4ec9b9f1f73ea3bb8615e9a690fe53ce47c68729623420732f5bc79527f823e64ed4a7493236880ddfc2e3a80a7cef394fdc8f531cde0158e4e7511604ff16bb44f99e2bbf93addc03361405ae036b964ee8a1bfc47a4bc52714c6b0ed6595874f68b65ac4a4c064e7ba171c444c806c4b1bb3f04a8a8684445ac2518576038d462daaea0d1a77a6e4361235ba7cd45a4f3db59bd20709d339dffc7430c144e34b598c3b319b14d15cecf7e66b71898a45cf8292");
+            result.Status.ShouldBe("12beeaedaea44e96926fd9d9b2efe5671a67900122644bf284");
             result.Matching.ShouldBe(true);
         }
 
@@ -103,52 +103,52 @@ namespace Resume.UserMains
             // Arrange
             var input = new UserMainUpdateDto()
             {
-                UserId = Guid.Parse("4dcbe5dd-c2ad-47df-bc5a-6849e02292f4"),
-                Name = "b3c363b581bd4966b687e6e0811337a737860a32f2fa4d7e8e",
-                AnonymousName = "872fb2df19ad4ba98ee81404f878812613a4baf2d5b743418d",
-                LoginAccountCode = "406e964dbb8846ffa5e87006f7aeb85a52941e8ce9264e089f",
-                LoginMobilePhoneUpdate = "7180c63631194b13b49f55f27b7782611cc828b897c1443399",
-                LoginMobilePhone = "81b0499981f944ccaf2019a68accf4b8b653afae749f462db4",
-                LoginEmailUpdate = "b46da854c15d4159a59517fe65f35a26e8ff7c2501504a79acce78a503369998a8375b8506ce46fdbe0347fc7645c28fc9e612bae3ad41968f786da2aa58bbd9caf4bda7d0b446e2bcdc9c545fd14c1fd9e226393b6c47a69ddb21896c83a5f07688938d",
-                LoginEmail = "3a6ca9cbdec34fb1b8874a3b3d3eb288277f8584869041179a92a35b00e668dcbbdbfa4b74774f67a7230d9c09a9526083a47e78fa724b1fa3568d3ae39d18d208f1ac733d604afe9ecb5489f2d02835bcb707d742094f709a18356105157087e8034cdb",
-                LoginIdentityNo = "6deb079d09cc4118910fbd8344bbedb8ddb46df74ac944b4ac",
-                Password = "541b8e25f05e4f51ac904df514cc3e301442c93f9b44497597b6b2068d41273c25ff980b34f849aa80ff20e4991e4f1bde8a45b25d6e4754a0077b8019fc2e72b850ef11ba7543379326b8c53421688428b537301a914b4aa838748b0922ac42ef998462",
-                SystemUserRoleKeys = 1850158833,
+                UserId = Guid.Parse("3592a1a5-41a3-45a7-b9db-d1d2656c1e31"),
+                Name = "55253303cfd5453390f6469a4fb0a6cf5d7c9088823e46e0bc",
+                AnonymousName = "fc344ecc4b954b2da1e4ff99f3bd009988fc8e56dee94c6c9b",
+                LoginAccountCode = "9338cade8dd4464f81c8bd07b1a8afb668e5b89a3c694c61a7",
+                LoginMobilePhoneUpdate = "ae92e770f7f548d285a20d13aff7c8d59aea4785dc0e476599",
+                LoginMobilePhone = "b50b38c6ad2947c58c76a5bf044ed2a6b3122f14a25f42d184",
+                LoginEmailUpdate = "b0d21f11659946e7b9b7f269fb7a4b959489cdf227aa4ababc1ec9a3794d569de0bea68efc4544578eed2bbcd72c2f2ab7f16c2d6b7242069c6ae5ab8bdcbad1f23cc007de70486db07800cc9c1780a874b0881282d04bf4be4ecd9b87b6b89e8fbb661c",
+                LoginEmail = "1e5e52363e844a7e8053af4e8f4cdaf0f32cc0c9f1b44afe87faf13f9e3250a88149b2e0a4ad4ae0b10ab0559ce70319dd514b43420d461d9b99aa2ca98111851d824f6770c441c1a14258a78d085e5271aab19ab54c48299f77fafeba19c7e301deb55b",
+                LoginIdentityNo = "90baef30339c48e799fdd206fccf06177683e502315042799d",
+                Password = "77eb1d4a294540f3825415e3a85a308e007c50d34d41447d85261737ef04d199d1f56d314b8247cc8ec537a15b6c7a40e0fd933fabe64e8c9d98e4b3e73a9b353e0dc6e17ab14c19b61eb25d6385675b64b3da16736b4b6dbd59a4053790baa4da9c77af",
+                SystemUserRoleKeys = 334161177,
                 AllowSearch = true,
-                DateA = new DateTime(2001, 4, 18),
-                ExtendedInformation = "790276b47c594410ad5f02fa3a271fcc3e957a8a34964acb9484a4b86d8ce982e2a3c10dbaa441138899ce15a75d10612a21b093b4e44f6fbe3f91a99893429cd338db1f05e64a869a5c34b91ae9d76f2f4bad760bdc4720b993f2ea177fa138613b5fa0d2364f54aa5d3c13e0ff057f9ea45554b7f4406d82673a2254b97fbb7fdce60f15f24000ac9b61527bc7e75e70dddd93853e4af3b5fbd41f8e18eda395d111b2b74d4d8ba47a9d527bb027b3c487730944b44867a68994f3f6e0fad313fbc05ddffe4451be9f54a143cece0341f60746899249ca9beb0c16d31ff481b7520f9db10e45b999f237fdd511a2e7e585781f257a4db5bacc",
-                DateD = new DateTime(2021, 1, 12),
-                Sort = 1685659434,
-                Note = "fd19161ef1754458be82820b969ab032ee323e7bec4b493fb909a4b8fe663faa1bf82e90657f440a8ce8a6a31cbc966bedce616af8be4ef485d4e9fe178abcf268da706161e44d8cab4a965b33875e8ba65f153c38124af2b6fecc3de00a5a5c5142120c83b2410aa74d530b2e4afb33accf4c146e3d45618682df423181ec989c968f49af6640f59c593190b0f1df3c39f6f1cddb7942f9b5f9711a7afabe624058afccb04c4c3590e575e59578de6677d98115c30d4952bbf897b6741ef908ed9b2e58fdf14781b298191baae8efc778013cf3cc6844288452e4ea31179f569073c68178cc444780097a3fe2e2e01c4f50d73566244fb2bbec",
-                Status = "b9504a654209456790e099a42111b0d228828fcfd4db442595",
+                DateA = new DateTime(2006, 5, 20),
+                ExtendedInformation = "6740f516c9e84391a4e681466c52a2570c5af9213de04c0aa574b5919c1548f9b70d459a4df24861b7dad64cf4c36da59bd6fc5656cf46c19fb89c30c22721223f141b2e9b0643f9bce5f644daca344cbe798d5d30ff4052a6f2dee9884fee2ffeec1802957c45e7a91b19d305ac5f2732e2135f64fd4a7da9ca4785b3ea7e4ac8201a644ed4476186478364e3c85e946f1518b88c684e19883164f971b1fefe6d188d558c93482980aeef67f31648cbd082a8f6ceb54682abe756b1bbb5742a431aee7acd3847929e0cb7400a64518d6ae056673e59440bbf9c0826364e0b28b073772e94cd43a1bdf37309a92001403aa57966c021434abb0a",
+                DateD = new DateTime(2012, 3, 20),
+                Sort = 1841182579,
+                Note = "f3ccb8063b2f456c851733432f1aadeab0c1a9c3951b4d5899b205e6f08af9c61d7441c40a3542dc806d4f6cd72d8afa3b4bfa324ab04af0a124f692fea92ee636cf4e2abe0046e3bfd0d0f1e48b487f9b846056cc3d4cd9a32a992616cb0df76dd74dc9f9c44b3d88a65ac121919f47b2f8dd7d765f4973926c0038870530e015237f5a1ff1410caaa7faa571cdc7f3ffc4a5ab90284d9396d02d479635fa5af7f8aaae3ea644c580f3bdf89288e5e1d51c71322dc94bff9543439940ab829517b335ad2dea4119aea23788a62e6447bfd6b259058c4c14bad0eeec3b5cbc01107a99554f9748748786e7919dba3546ac82d286e379440db73b",
+                Status = "429c8e7b1c6f4fa98bf9e7fa81c006b7b82ef78052d94b5282",
                 Matching = true
             };
 
             // Act
-            var serviceResult = await _userMainsAppService.UpdateAsync(Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75"), input);
+            var serviceResult = await _userMainsAppService.UpdateAsync(Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8"), input);
 
             // Assert
             var result = await _userMainRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.UserId.ShouldBe(Guid.Parse("4dcbe5dd-c2ad-47df-bc5a-6849e02292f4"));
-            result.Name.ShouldBe("b3c363b581bd4966b687e6e0811337a737860a32f2fa4d7e8e");
-            result.AnonymousName.ShouldBe("872fb2df19ad4ba98ee81404f878812613a4baf2d5b743418d");
-            result.LoginAccountCode.ShouldBe("406e964dbb8846ffa5e87006f7aeb85a52941e8ce9264e089f");
-            result.LoginMobilePhoneUpdate.ShouldBe("7180c63631194b13b49f55f27b7782611cc828b897c1443399");
-            result.LoginMobilePhone.ShouldBe("81b0499981f944ccaf2019a68accf4b8b653afae749f462db4");
-            result.LoginEmailUpdate.ShouldBe("b46da854c15d4159a59517fe65f35a26e8ff7c2501504a79acce78a503369998a8375b8506ce46fdbe0347fc7645c28fc9e612bae3ad41968f786da2aa58bbd9caf4bda7d0b446e2bcdc9c545fd14c1fd9e226393b6c47a69ddb21896c83a5f07688938d");
-            result.LoginEmail.ShouldBe("3a6ca9cbdec34fb1b8874a3b3d3eb288277f8584869041179a92a35b00e668dcbbdbfa4b74774f67a7230d9c09a9526083a47e78fa724b1fa3568d3ae39d18d208f1ac733d604afe9ecb5489f2d02835bcb707d742094f709a18356105157087e8034cdb");
-            result.LoginIdentityNo.ShouldBe("6deb079d09cc4118910fbd8344bbedb8ddb46df74ac944b4ac");
-            result.Password.ShouldBe("541b8e25f05e4f51ac904df514cc3e301442c93f9b44497597b6b2068d41273c25ff980b34f849aa80ff20e4991e4f1bde8a45b25d6e4754a0077b8019fc2e72b850ef11ba7543379326b8c53421688428b537301a914b4aa838748b0922ac42ef998462");
-            result.SystemUserRoleKeys.ShouldBe(1850158833);
+            result.UserId.ShouldBe(Guid.Parse("3592a1a5-41a3-45a7-b9db-d1d2656c1e31"));
+            result.Name.ShouldBe("55253303cfd5453390f6469a4fb0a6cf5d7c9088823e46e0bc");
+            result.AnonymousName.ShouldBe("fc344ecc4b954b2da1e4ff99f3bd009988fc8e56dee94c6c9b");
+            result.LoginAccountCode.ShouldBe("9338cade8dd4464f81c8bd07b1a8afb668e5b89a3c694c61a7");
+            result.LoginMobilePhoneUpdate.ShouldBe("ae92e770f7f548d285a20d13aff7c8d59aea4785dc0e476599");
+            result.LoginMobilePhone.ShouldBe("b50b38c6ad2947c58c76a5bf044ed2a6b3122f14a25f42d184");
+            result.LoginEmailUpdate.ShouldBe("b0d21f11659946e7b9b7f269fb7a4b959489cdf227aa4ababc1ec9a3794d569de0bea68efc4544578eed2bbcd72c2f2ab7f16c2d6b7242069c6ae5ab8bdcbad1f23cc007de70486db07800cc9c1780a874b0881282d04bf4be4ecd9b87b6b89e8fbb661c");
+            result.LoginEmail.ShouldBe("1e5e52363e844a7e8053af4e8f4cdaf0f32cc0c9f1b44afe87faf13f9e3250a88149b2e0a4ad4ae0b10ab0559ce70319dd514b43420d461d9b99aa2ca98111851d824f6770c441c1a14258a78d085e5271aab19ab54c48299f77fafeba19c7e301deb55b");
+            result.LoginIdentityNo.ShouldBe("90baef30339c48e799fdd206fccf06177683e502315042799d");
+            result.Password.ShouldBe("77eb1d4a294540f3825415e3a85a308e007c50d34d41447d85261737ef04d199d1f56d314b8247cc8ec537a15b6c7a40e0fd933fabe64e8c9d98e4b3e73a9b353e0dc6e17ab14c19b61eb25d6385675b64b3da16736b4b6dbd59a4053790baa4da9c77af");
+            result.SystemUserRoleKeys.ShouldBe(334161177);
             result.AllowSearch.ShouldBe(true);
-            result.DateA.ShouldBe(new DateTime(2001, 4, 18));
-            result.ExtendedInformation.ShouldBe("790276b47c594410ad5f02fa3a271fcc3e957a8a34964acb9484a4b86d8ce982e2a3c10dbaa441138899ce15a75d10612a21b093b4e44f6fbe3f91a99893429cd338db1f05e64a869a5c34b91ae9d76f2f4bad760bdc4720b993f2ea177fa138613b5fa0d2364f54aa5d3c13e0ff057f9ea45554b7f4406d82673a2254b97fbb7fdce60f15f24000ac9b61527bc7e75e70dddd93853e4af3b5fbd41f8e18eda395d111b2b74d4d8ba47a9d527bb027b3c487730944b44867a68994f3f6e0fad313fbc05ddffe4451be9f54a143cece0341f60746899249ca9beb0c16d31ff481b7520f9db10e45b999f237fdd511a2e7e585781f257a4db5bacc");
-            result.DateD.ShouldBe(new DateTime(2021, 1, 12));
-            result.Sort.ShouldBe(1685659434);
-            result.Note.ShouldBe("fd19161ef1754458be82820b969ab032ee323e7bec4b493fb909a4b8fe663faa1bf82e90657f440a8ce8a6a31cbc966bedce616af8be4ef485d4e9fe178abcf268da706161e44d8cab4a965b33875e8ba65f153c38124af2b6fecc3de00a5a5c5142120c83b2410aa74d530b2e4afb33accf4c146e3d45618682df423181ec989c968f49af6640f59c593190b0f1df3c39f6f1cddb7942f9b5f9711a7afabe624058afccb04c4c3590e575e59578de6677d98115c30d4952bbf897b6741ef908ed9b2e58fdf14781b298191baae8efc778013cf3cc6844288452e4ea31179f569073c68178cc444780097a3fe2e2e01c4f50d73566244fb2bbec");
-            result.Status.ShouldBe("b9504a654209456790e099a42111b0d228828fcfd4db442595");
+            result.DateA.ShouldBe(new DateTime(2006, 5, 20));
+            result.ExtendedInformation.ShouldBe("6740f516c9e84391a4e681466c52a2570c5af9213de04c0aa574b5919c1548f9b70d459a4df24861b7dad64cf4c36da59bd6fc5656cf46c19fb89c30c22721223f141b2e9b0643f9bce5f644daca344cbe798d5d30ff4052a6f2dee9884fee2ffeec1802957c45e7a91b19d305ac5f2732e2135f64fd4a7da9ca4785b3ea7e4ac8201a644ed4476186478364e3c85e946f1518b88c684e19883164f971b1fefe6d188d558c93482980aeef67f31648cbd082a8f6ceb54682abe756b1bbb5742a431aee7acd3847929e0cb7400a64518d6ae056673e59440bbf9c0826364e0b28b073772e94cd43a1bdf37309a92001403aa57966c021434abb0a");
+            result.DateD.ShouldBe(new DateTime(2012, 3, 20));
+            result.Sort.ShouldBe(1841182579);
+            result.Note.ShouldBe("f3ccb8063b2f456c851733432f1aadeab0c1a9c3951b4d5899b205e6f08af9c61d7441c40a3542dc806d4f6cd72d8afa3b4bfa324ab04af0a124f692fea92ee636cf4e2abe0046e3bfd0d0f1e48b487f9b846056cc3d4cd9a32a992616cb0df76dd74dc9f9c44b3d88a65ac121919f47b2f8dd7d765f4973926c0038870530e015237f5a1ff1410caaa7faa571cdc7f3ffc4a5ab90284d9396d02d479635fa5af7f8aaae3ea644c580f3bdf89288e5e1d51c71322dc94bff9543439940ab829517b335ad2dea4119aea23788a62e6447bfd6b259058c4c14bad0eeec3b5cbc01107a99554f9748748786e7919dba3546ac82d286e379440db73b");
+            result.Status.ShouldBe("429c8e7b1c6f4fa98bf9e7fa81c006b7b82ef78052d94b5282");
             result.Matching.ShouldBe(true);
         }
 
@@ -156,10 +156,10 @@ namespace Resume.UserMains
         public async Task DeleteAsync()
         {
             // Act
-            await _userMainsAppService.DeleteAsync(Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75"));
+            await _userMainsAppService.DeleteAsync(Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8"));
 
             // Assert
-            var result = await _userMainRepository.FindAsync(c => c.Id == Guid.Parse("ee94154c-0556-4e0a-93c1-f28111a9ea75"));
+            var result = await _userMainRepository.FindAsync(c => c.Id == Guid.Parse("5ca3d1be-a829-483d-bfae-2e3039ed3ce8"));
 
             result.ShouldBeNull();
         }

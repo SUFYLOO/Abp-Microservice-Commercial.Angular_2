@@ -19,20 +19,17 @@ namespace Resume.ResumeDrvingLicenses
         }
 
         public async Task<ResumeDrvingLicense> CreateAsync(
-        Guid resumeMainId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(drvingLicenseCode, nameof(drvingLicenseCode));
             Check.Length(drvingLicenseCode, nameof(drvingLicenseCode), ResumeDrvingLicenseConsts.DrvingLicenseCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeDrvingLicenseConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeDrvingLicenseConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeDrvingLicenseConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeDrvingLicenseConsts.StatusMaxLength);
 
             var resumeDrvingLicense = new ResumeDrvingLicense(
              GuidGenerator.Create(),
-             resumeMainId, drvingLicenseCode, haveDrvingLicense, haveCar, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, drvingLicenseCode, haveDrvingLicense, haveCar, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeDrvingLicenseRepository.InsertAsync(resumeDrvingLicense);
@@ -40,17 +37,14 @@ namespace Resume.ResumeDrvingLicenses
 
         public async Task<ResumeDrvingLicense> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(drvingLicenseCode, nameof(drvingLicenseCode));
             Check.Length(drvingLicenseCode, nameof(drvingLicenseCode), ResumeDrvingLicenseConsts.DrvingLicenseCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeDrvingLicenseConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeDrvingLicenseConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeDrvingLicenseConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeDrvingLicenseConsts.StatusMaxLength);
 
             var resumeDrvingLicense = await _resumeDrvingLicenseRepository.GetAsync(id);
 
@@ -58,12 +52,12 @@ namespace Resume.ResumeDrvingLicenses
             resumeDrvingLicense.DrvingLicenseCode = drvingLicenseCode;
             resumeDrvingLicense.HaveDrvingLicense = haveDrvingLicense;
             resumeDrvingLicense.HaveCar = haveCar;
+            resumeDrvingLicense.ExtendedInformation = extendedInformation;
             resumeDrvingLicense.DateA = dateA;
             resumeDrvingLicense.DateD = dateD;
             resumeDrvingLicense.Sort = sort;
-            resumeDrvingLicense.Status = status;
-            resumeDrvingLicense.ExtendedInformation = extendedInformation;
             resumeDrvingLicense.Note = note;
+            resumeDrvingLicense.Status = status;
 
             return await _resumeDrvingLicenseRepository.UpdateAsync(resumeDrvingLicense);
         }

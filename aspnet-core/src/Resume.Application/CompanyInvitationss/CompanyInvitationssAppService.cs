@@ -63,7 +63,7 @@ namespace Resume.CompanyInvitationss
         {
 
             var companyInvitations = await _companyInvitationsManager.CreateAsync(
-            input.CompanyMainId, input.OpenAllJob, input.UserMainName, input.UserMainLoginMobilePhone, input.UserMainLoginEmail, input.UserMainLoginIdentityNo, input.SendTypeCode, input.SendStatusCode, input.ResumeFlowStageCode, input.IsRead, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.UserMainId, input.UserCompanyBindId, input.ResumeSnapshotId, input.ExtendedInformation, input.Note
+            input.CompanyMainId, input.OpenAllJob, input.UserMainName, input.UserMainLoginMobilePhone, input.UserMainLoginEmail, input.UserMainLoginIdentityNo, input.SendTypeCode, input.SendStatusCode, input.ResumeFlowStageCode, input.IsRead, input.CompanyJobId, input.UserMainId, input.UserCompanyBindId, input.ResumeSnapshotId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyInvitations, CompanyInvitationsDto>(companyInvitations);
@@ -75,7 +75,7 @@ namespace Resume.CompanyInvitationss
 
             var companyInvitations = await _companyInvitationsManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.OpenAllJob, input.UserMainName, input.UserMainLoginMobilePhone, input.UserMainLoginEmail, input.UserMainLoginIdentityNo, input.SendTypeCode, input.SendStatusCode, input.ResumeFlowStageCode, input.IsRead, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.UserMainId, input.UserCompanyBindId, input.ResumeSnapshotId, input.ExtendedInformation, input.Note
+            input.CompanyMainId, input.OpenAllJob, input.UserMainName, input.UserMainLoginMobilePhone, input.UserMainLoginEmail, input.UserMainLoginIdentityNo, input.SendTypeCode, input.SendStatusCode, input.ResumeFlowStageCode, input.IsRead, input.CompanyJobId, input.UserMainId, input.UserCompanyBindId, input.ResumeSnapshotId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyInvitations, CompanyInvitationsDto>(companyInvitations);

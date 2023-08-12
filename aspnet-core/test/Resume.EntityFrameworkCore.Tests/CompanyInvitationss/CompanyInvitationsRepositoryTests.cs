@@ -25,29 +25,29 @@ namespace Resume.CompanyInvitationss
             {
                 // Act
                 var result = await _companyInvitationsRepository.GetListAsync(
-                    companyMainId: Guid.Parse("0da6a12b-89b7-4abc-a131-712718d2d159"),
-                    companyJobId: Guid.Parse("3b08e63d-d554-4d22-b3bc-3cc75dc4a835"),
+                    companyMainId: Guid.Parse("3d4f4f2d-244d-4461-8676-46e94d290c69"),
+                    companyJobId: Guid.Parse("18b5fd60-2b62-4de5-8adb-4ccb2bf13f28"),
                     openAllJob: true,
-                    userMainId: Guid.Parse("b23c6e7e-928f-49b6-994b-b95f2e247a44"),
-                    userMainName: "b89626c4be25406dab5a8e544ab07db0be092ccbf18042a081",
-                    userMainLoginMobilePhone: "385f26ed1f82493895988b9d45b4288bc1cc9415bea642d18a",
-                    userMainLoginEmail: "6b5615c4fb7d43158608341cdc35022c0bedfa1c5aaf4461bcbe5e2f6e61a7f0fc1807ae80a24e13a9a26a1754188160771baa8e77254ac8a5ac485640f5386dffe1cfb632f2488caf97ee9838caa6ec05b0e5f7f7ba4d2cbfef4e3289d32cc0adb556ac",
-                    userMainLoginIdentityNo: "9853cc50ebe84a588d6d3f189b5a33d063bde91378474bd686",
-                    sendTypeCode: "123030f74250402fa9703f7e315fc84b461e3bfe20c442c4a2",
-                    sendStatusCode: "39f0bcb4de1f4cf08cf943af03671a45d80819cbc6ea497894",
-                    resumeFlowStageCode: "c150ef2d7a26464485bbe2e80e37936fe0d1d555003346bd94",
+                    userMainId: Guid.Parse("5088759b-475e-4ebd-a35e-24c265bd462b"),
+                    userMainName: "7bee3abc39db4bfc90fc663c88d6c65318c0b21c76314341b7",
+                    userMainLoginMobilePhone: "9d5ebe2c2aeb49cea24888d46fed64c880efda545c644d2cbc",
+                    userMainLoginEmail: "8ebf660e855440189f1a1c81f7924e26fda2c54b0c954482b526e5b6f3cdb6ab270e7af344644ef1b818f10f5ff0ed86a02938d95084475bb11122776cfbdebd0bb9ddf798ad4980b4cf34fcc81f58c59df778bacd8a456a914378a0f99d53da4a260503",
+                    userMainLoginIdentityNo: "72ea46c80c3f4e98a668b604b463677ae4501e847fa44291b5",
+                    sendTypeCode: "0e00f3ebc365491090d52c737504f3fac2546b9149214b9988",
+                    sendStatusCode: "7b49ce288067494d9e150866c25fb04333a941c81c6947c094",
+                    resumeFlowStageCode: "1ddf59a829ab430ead1e2f8d2b3787969ba1b11083904e28ba",
                     isRead: true,
-                    userCompanyBindId: Guid.Parse("5ee3ce13-527e-4dfd-a72a-be21e48ee86d"),
-                    resumeSnapshotId: Guid.Parse("2675d5b8-a674-442a-b804-996e09ffbdd1"),
-                    extendedInformation: "199c68474dcb4c6bb40dd61c7844e0f072a52c56d6c946d89d8a7df418213a99e53663ddc8044ec396002b7301b5e08f7654a05d7b9640858b8feb5701d65bd2fa9ed326ec084d40b9645f51cf83845cd94d6e43b3224572b4938e7077c1880733c49e8a13b24e8d82e7a6f5da1d1656e4ea420e4f3e4ac594c5fa547ed06e0f4d5ec05030fc4fa3a47c23e98dc20644d022821552f64eb9bbdda8be1309cc29d6839e6f096443d4ace59baa3515dc0ffb68aa3ea5384a1bb92ad87e2575ab19b67eb94f351646c5ac9008df5c7f1f2056546fc0c8e04df1a8ebdb924555119b96320cd833b64c0e91bc75d63ed0ae741b6b636756014ed68ab2",
-                    note: "51d00baf5db1445098cddd7c25caeea0e11a91e657a3417d88dba1877b9fd67eaae0a05c69ff4717a57bcf862e9acf142dd1874c96734618b966c454e209da7e38aa84287ea34ffb96646320aad688eadbeb5a20caf541f5933a6bf0e6816c180e7726c4ace1446a9e9f304663be3c2372301572025d43ab8b4e83d77e8b3f74fa751103faad462ebee5fc96390734a5dc42a158ac5846d99f869cfaa3fe14f18aa3e91904c445d686f5f7510791b16e3dcb3e1fe2db43a48e5cfb0df1dfb6c616081cb9083943a289ec9dadc611dc9d55a677aeb2a54471938e04ca62b04316c52d57241e2544d6b3b1c9d0eba60afa4d26014c1c4c4ac7babe",
-                    status: "3e2f039b841a4ca4a66e2145cb468e664dc6aa8e96294fff8a"
+                    userCompanyBindId: Guid.Parse("40ce67b7-c397-4dee-8032-53487fb4ef99"),
+                    resumeSnapshotId: Guid.Parse("a287896f-e5f4-422b-bff4-e8ce8cea79a6"),
+                    extendedInformation: "61ab36b02ff34ad39b743ca8f9994c88193c6c0c1287411780b703b70e7aa3e722c5da389b5248cf9cdafb453c02e7c7b9009b8630e64c4c9288e72457626d47e8d956aeba2c4fc4afe4f3cd2ae24d1962a45d7608ed4867b1dd938b8439f588ca5e3bbcc4344c51b2220d3b38657ab0c301332435694f57b410a2fafe6b784437d0c16405374a8f88dd1def4d862fed942bfd51adaf45738616424218da660fb6fe3f749fcd407f886fb3fadf6befb66cfcd6e7a8374969afc034b6e94a3566588f25b0f5da49c7b1cbe1480efadb151f276312913c434da944d5847dab5132be70647e63d541728d1bd56f350c71ee976ebf9430ab404bba59",
+                    note: "2458c4b76c29470c804614af0fc7812f45a7f10858984c8282a989e41a00d9287a1bef21fc07443d833fec5e2061710b63597d1f397544ce9f116319f31adb439eed86e841f047309409bb371c9f7eae1239a596fad54f03bdc85c8e12dfa6d4a3ab9896f17645c39a39fa8f9f1e88414e8a3655d2604c299bc07a16c759385a6300407d0cd6451a9b055cd508c9452dc3ed958ae5e6458eb7637b8cb9c2040164d65eb31d4745bf8728fc3bfbcbd5d112d331c51ae64c19994252c4bf1acfd79a9ec89d05754375bdc6526447163ac230ec6a8521a64d88b366bd99e4922e2c031aab880b334be9ae7cdf9a472143c226af339c341f46989015",
+                    status: "a0ae6dd178f845b28187ff29b87b208d976572934e7847aaa4"
                 );
 
                 // Assert
                 result.Count.ShouldBe(1);
                 result.FirstOrDefault().ShouldNotBe(null);
-                result.First().Id.ShouldBe(Guid.Parse("5c7012d9-716d-442d-ad79-ce1c0907b86d"));
+                result.First().Id.ShouldBe(Guid.Parse("348a2661-4df6-4891-ba6c-04528bed40de"));
             });
         }
 
@@ -59,23 +59,23 @@ namespace Resume.CompanyInvitationss
             {
                 // Act
                 var result = await _companyInvitationsRepository.GetCountAsync(
-                    companyMainId: Guid.Parse("19c6407b-2d52-4338-bde9-b91e8eb824f0"),
-                    companyJobId: Guid.Parse("83ed56c7-d794-4321-93a0-8f84033a81a4"),
+                    companyMainId: Guid.Parse("bec53c2f-ef7a-464b-892d-5f739483b7ad"),
+                    companyJobId: Guid.Parse("4f0b4d39-38d1-4021-bda9-3902800890a2"),
                     openAllJob: true,
-                    userMainId: Guid.Parse("efa4f174-861f-48b9-b92f-41ba29a7842a"),
-                    userMainName: "762db9b60cea49d08b6b6d498c59b56b7bae2d1f4f724085bd",
-                    userMainLoginMobilePhone: "ea9f8e5e0e224062bafc12b790bb6f329de75dd3cb714b23b8",
-                    userMainLoginEmail: "92f117e6beb74d898277dd649ea20ea6d017b630ca62455689906d53c7009ff1ebd849d871ff4e2b8f35a5576fa90d1f31a2f4e0dd3f4dd68234515bdbbf971e8d0af36c523549fe9a60d8045adddef47f011047c5414164906883535b75ffe68333f6f0",
-                    userMainLoginIdentityNo: "d0b6d27739324085ba46c7609dcde33d3613fcb6e05b443787",
-                    sendTypeCode: "dbe9b637c9254831b0fb958bae804b724e9144d76b744abc8d",
-                    sendStatusCode: "60174d8fc3804c1c9d0b1fc8a904f06d8f6546dc9a4247b095",
-                    resumeFlowStageCode: "0229b5863590424792e70b4f1f325f91c1d3840e172a4375a8",
+                    userMainId: Guid.Parse("1c6190e0-bb15-4bb1-b39d-96444a8ce279"),
+                    userMainName: "690995598c264af1b40d7df9e786f2120cdc5d87dd9d40ee9a",
+                    userMainLoginMobilePhone: "02246eba05d64f8e8443d39da4df3c530688d447d53e45e99e",
+                    userMainLoginEmail: "d08d22d42e744dceac88bfdc49f5831e5120a999d6464ae892d09907eb822acca2b54c3040aa467e9894cb806cb4323d18904ccaa8d94d57aa4fbf1b3de3aa149c51892b6cd24c1bbbd0fd64a869e728c24c4140e34140f7a44e7dba916e71dcbbe42086",
+                    userMainLoginIdentityNo: "5ce7013d04904e878144f56c5983a13892bb47211530463a8a",
+                    sendTypeCode: "b68874b61ee845c7a2cf5c7c5f34b714239adf45a7754459a9",
+                    sendStatusCode: "d9ebf5c284a64d5087a749c9afba13050d4f57f7d05949c5ac",
+                    resumeFlowStageCode: "447935bfb6644aa0ab5ff23e2a1ca8e2bb4d8e890e474cbba0",
                     isRead: true,
-                    userCompanyBindId: Guid.Parse("409d75c3-b25b-4ddd-8edc-1d2a75a74c4d"),
-                    resumeSnapshotId: Guid.Parse("dd9a9548-c9c6-4e24-807e-b37980db162d"),
-                    extendedInformation: "2c7e175165c94a99b4ce4510df631c0f4db85a7c0e854f05bc83354904a7b07aa99513b29c7940778fae4efbd328658f6f792f2e0add425a931099265cb5b0eb106a2abd69564cfda0d7ac50c09099c95c999dd88695479f8f04b2d26cb6f5cacf186ce9aae04c56b12c53815259e770fa91fda7d2ca43b8876b93c01263eeb8f2f89c7997634d0dbf11e3bed4d6f566dde8259e49e54271a455994059fea030f1b5559c5dcd43cda85a6892977b2e0f6fba6a771eed4f9eb2c1848b86188971cd6b6c09e3484a478519e0c90990c1366b736ddbe9e14a1a9893de84bc0a4b0e3cc1891b28e34690b5521304fb0634eca8a0849da08e4c259388",
-                    note: "39559c2c3e744051a0ef4cd67e5a89d7031287ac807c4c028b6b3ee087d99e4c43a7b5e43b3f4ac8a403f57dd772b87af362a1e059c94d8b9964cbb45208110c801fc85974d740e9823901d34602d8c034cbae58695f42b49c31d8c24c255b70dc43ef2c1d70494dbff0687092c0ab48e2e8e2ef726340a7bd150ffcadc0488dd752248c25b64876a9529ec043ce34c274d469e0deb049b3bf8848a6f508b67681af6908089e4c8db1aafee0642976e6d60bf5132a534e948547dc5f35d0d64dca82d96b3e9347d898ebff428b4222d087138115743b4800923b7693636cb1574d85edb36c7547f3ab042c419116661d57bf290fe84648c4a786",
-                    status: "c09d628ea49a4a7995a8aeb14038f2ab7b18593aa9d44544a7"
+                    userCompanyBindId: Guid.Parse("f8a2316d-3c49-4c7e-9961-06deb3ccdc5b"),
+                    resumeSnapshotId: Guid.Parse("e5519cd2-d4c6-4c18-b9d4-506b5719afd4"),
+                    extendedInformation: "c362592d8d874256a578d4a38a0f8f4661096afc33854544b7862327ffde5ae399da23035718481dbd7f19aacf5a593d31e38bd6f0dd4b7c9ef5994a3f2bf020fd5edaaae1c648cc82d6690b3ffced6ca933dc1f94a54f50a2c3b65a67990cfdd92a9114674441d599f5fb4228d696863fafc9683ebd45da83fdb7fdceace6d5017faa9626d74c59bec147bfb0147239afc94c9212ba4dbeb56cf3ffe1f21f441de0c4d9e4fd46d1a4b69631f5e70ccdde331f52ef514aa1911d6f0b8fcfb04c724ee26ce0764efdb94f072ef8e5fdbe389a4f5f305f4277b97211041da00f635c528c57fbfa4c5d87fd7edd430ac8896332f9784c1049dfb595",
+                    note: "6a480384461d47ada4194ab5c2a4db5a48a0dc0946dd472eb85f98df733133df4d1b375f9cd34a4d80ca1af6e783626a3b8df8b2707741ab84fd00d38610c61e9962d8dcfe614c1dbb4257f96ccfbd407b2deaa16f8848ebbf6086b69e98e558c93961b1da1345eb80b62640e665d1509f4cd41c5f9e423a99ff70fdb012a61a8e495fd22624435691c75a3f8f8c2603226f7d482477497681a8ef492a51c0718e2f0f0b94ab42c7af47ac062f63451aca4a33d3fb5845db980a0baf2d2c5f31a2b575238d1e4819ac6d6ccc89299b898c358a9d32c545beaa49e40f3b1f8afed1bfeb1bbec146188d29b6ec6a9851331e4d7232f7204ac38895",
+                    status: "c64024e7aebb423f9b1247a452a4004b6329845ff53a43f2ad"
                 );
 
                 // Assert

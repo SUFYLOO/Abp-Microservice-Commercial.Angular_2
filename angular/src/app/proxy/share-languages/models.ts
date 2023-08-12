@@ -17,21 +17,21 @@ export interface GetShareLanguagesInput extends PagedAndSortedResultRequestDto {
 export interface ShareLanguageCreateDto {
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareLanguageDto extends FullAuditedEntityDto<string> {
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareLanguageExcelDownloadDto {
@@ -43,9 +43,9 @@ export interface ShareLanguageExcelDownloadDto {
 export interface ShareLanguageUpdateDto {
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

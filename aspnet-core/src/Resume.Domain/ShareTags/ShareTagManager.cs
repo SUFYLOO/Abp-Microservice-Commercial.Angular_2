@@ -19,7 +19,7 @@ namespace Resume.ShareTags
         }
 
         public async Task<ShareTag> CreateAsync(
-        string colorCode, string key1, string key2, string key3, string name, string tagCategoryCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string colorCode, string key1, string key2, string key3, string name, string tagCategoryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(colorCode, nameof(colorCode));
             Check.Length(colorCode, nameof(colorCode), ShareTagConsts.ColorCodeMaxLength);
@@ -33,16 +33,13 @@ namespace Resume.ShareTags
             Check.Length(name, nameof(name), ShareTagConsts.NameMaxLength);
             Check.NotNullOrWhiteSpace(tagCategoryCode, nameof(tagCategoryCode));
             Check.Length(tagCategoryCode, nameof(tagCategoryCode), ShareTagConsts.TagCategoryCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareTagConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareTagConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareTagConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareTagConsts.StatusMaxLength);
 
             var shareTag = new ShareTag(
              GuidGenerator.Create(),
-             colorCode, key1, key2, key3, name, tagCategoryCode, dateA, dateD, sort, status, extendedInformation, note
+             colorCode, key1, key2, key3, name, tagCategoryCode, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareTagRepository.InsertAsync(shareTag);
@@ -50,7 +47,7 @@ namespace Resume.ShareTags
 
         public async Task<ShareTag> UpdateAsync(
             Guid id,
-            string colorCode, string key1, string key2, string key3, string name, string tagCategoryCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string colorCode, string key1, string key2, string key3, string name, string tagCategoryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(colorCode, nameof(colorCode));
@@ -65,12 +62,9 @@ namespace Resume.ShareTags
             Check.Length(name, nameof(name), ShareTagConsts.NameMaxLength);
             Check.NotNullOrWhiteSpace(tagCategoryCode, nameof(tagCategoryCode));
             Check.Length(tagCategoryCode, nameof(tagCategoryCode), ShareTagConsts.TagCategoryCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareTagConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareTagConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareTagConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareTagConsts.StatusMaxLength);
 
             var shareTag = await _shareTagRepository.GetAsync(id);
 
@@ -80,12 +74,12 @@ namespace Resume.ShareTags
             shareTag.Key3 = key3;
             shareTag.Name = name;
             shareTag.TagCategoryCode = tagCategoryCode;
+            shareTag.ExtendedInformation = extendedInformation;
             shareTag.DateA = dateA;
             shareTag.DateD = dateD;
             shareTag.Sort = sort;
-            shareTag.Status = status;
-            shareTag.ExtendedInformation = extendedInformation;
             shareTag.Note = note;
+            shareTag.Status = status;
 
             return await _shareTagRepository.UpdateAsync(shareTag);
         }

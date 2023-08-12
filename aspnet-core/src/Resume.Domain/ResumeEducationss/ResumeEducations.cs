@@ -53,24 +53,24 @@ namespace Resume.ResumeEducationss
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeEducations()
         {
 
         }
 
-        public ResumeEducations(Guid id, Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategoryCode, string minorDepartmentName, string minorDepartmentCategoryCode, string graduationCode, bool domestic, string countryCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ResumeEducations(Guid id, Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategoryCode, string minorDepartmentName, string minorDepartmentCategoryCode, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -92,10 +92,9 @@ namespace Resume.ResumeEducationss
             Check.Length(graduationCode, nameof(graduationCode), ResumeEducationsConsts.GraduationCodeMaxLength, 0);
             Check.NotNull(countryCode, nameof(countryCode));
             Check.Length(countryCode, nameof(countryCode), ResumeEducationsConsts.CountryCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeEducationsConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeEducationsConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeEducationsConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeEducationsConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             EducationLevelCode = educationLevelCode;
             SchoolCode = schoolCode;
@@ -109,12 +108,12 @@ namespace Resume.ResumeEducationss
             GraduationCode = graduationCode;
             Domestic = domestic;
             CountryCode = countryCode;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

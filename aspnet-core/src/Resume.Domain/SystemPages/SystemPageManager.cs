@@ -19,7 +19,7 @@ namespace Resume.SystemPages
         }
 
         public async Task<SystemPage> CreateAsync(
-        string typeCode, string systemUserRoleKeys, string parentCode, DateTime dateA, DateTime dateD, int sort, string status, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, string note = null)
+        string typeCode, string systemUserRoleKeys, string parentCode, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(typeCode, nameof(typeCode));
             Check.Length(typeCode, nameof(typeCode), SystemPageConsts.TypeCodeMaxLength);
@@ -27,19 +27,16 @@ namespace Resume.SystemPages
             Check.Length(systemUserRoleKeys, nameof(systemUserRoleKeys), SystemPageConsts.SystemUserRoleKeysMaxLength);
             Check.NotNullOrWhiteSpace(parentCode, nameof(parentCode));
             Check.Length(parentCode, nameof(parentCode), SystemPageConsts.ParentCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength);
             Check.Length(filePath, nameof(filePath), SystemPageConsts.FilePathMaxLength);
             Check.Length(fileName, nameof(fileName), SystemPageConsts.FileNameMaxLength);
             Check.Length(fileTitle, nameof(fileTitle), SystemPageConsts.FileTitleMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemPageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemPageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength);
 
             var systemPage = new SystemPage(
              GuidGenerator.Create(),
-             typeCode, systemUserRoleKeys, parentCode, dateA, dateD, sort, status, filePath, fileName, fileTitle, extendedInformation, note
+             typeCode, systemUserRoleKeys, parentCode, filePath, fileName, fileTitle, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemPageRepository.InsertAsync(systemPage);
@@ -47,7 +44,7 @@ namespace Resume.SystemPages
 
         public async Task<SystemPage> UpdateAsync(
             Guid id,
-            string typeCode, string systemUserRoleKeys, string parentCode, DateTime dateA, DateTime dateD, int sort, string status, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, string note = null
+            string typeCode, string systemUserRoleKeys, string parentCode, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(typeCode, nameof(typeCode));
@@ -56,30 +53,27 @@ namespace Resume.SystemPages
             Check.Length(systemUserRoleKeys, nameof(systemUserRoleKeys), SystemPageConsts.SystemUserRoleKeysMaxLength);
             Check.NotNullOrWhiteSpace(parentCode, nameof(parentCode));
             Check.Length(parentCode, nameof(parentCode), SystemPageConsts.ParentCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength);
             Check.Length(filePath, nameof(filePath), SystemPageConsts.FilePathMaxLength);
             Check.Length(fileName, nameof(fileName), SystemPageConsts.FileNameMaxLength);
             Check.Length(fileTitle, nameof(fileTitle), SystemPageConsts.FileTitleMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemPageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemPageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength);
 
             var systemPage = await _systemPageRepository.GetAsync(id);
 
             systemPage.TypeCode = typeCode;
             systemPage.SystemUserRoleKeys = systemUserRoleKeys;
             systemPage.ParentCode = parentCode;
-            systemPage.DateA = dateA;
-            systemPage.DateD = dateD;
-            systemPage.Sort = sort;
-            systemPage.Status = status;
             systemPage.FilePath = filePath;
             systemPage.FileName = fileName;
             systemPage.FileTitle = fileTitle;
             systemPage.ExtendedInformation = extendedInformation;
+            systemPage.DateA = dateA;
+            systemPage.DateD = dateD;
+            systemPage.Sort = sort;
             systemPage.Note = note;
+            systemPage.Status = status;
 
             return await _systemPageRepository.UpdateAsync(systemPage);
         }

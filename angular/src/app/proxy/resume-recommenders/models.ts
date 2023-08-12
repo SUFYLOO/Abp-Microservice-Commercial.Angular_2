@@ -29,11 +29,11 @@ export interface ResumeRecommenderCreateDto {
   officePhone?: string;
   email?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeRecommenderDto extends FullAuditedEntityDto<string> {
@@ -45,11 +45,11 @@ export interface ResumeRecommenderDto extends FullAuditedEntityDto<string> {
   officePhone?: string;
   email?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeRecommenderExcelDownloadDto {
@@ -67,9 +67,9 @@ export interface ResumeRecommenderUpdateDto {
   officePhone?: string;
   email?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

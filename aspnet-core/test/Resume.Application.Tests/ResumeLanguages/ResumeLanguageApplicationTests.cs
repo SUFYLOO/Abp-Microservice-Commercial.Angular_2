@@ -27,19 +27,19 @@ namespace Resume.ResumeLanguages
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("3eb9b099-5da2-4aff-8654-6f943440d5fa")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("5ac5c550-8d36-4564-af97-419c0bcd3d90")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _resumeLanguagesAppService.GetAsync(Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8"));
+            var result = await _resumeLanguagesAppService.GetAsync(Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8"));
+            result.Id.ShouldBe(Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996"));
         }
 
         [Fact]
@@ -48,18 +48,18 @@ namespace Resume.ResumeLanguages
             // Arrange
             var input = new ResumeLanguageCreateDto
             {
-                ResumeMainId = Guid.Parse("3c3d304e-b334-4289-b804-dee073b862cf"),
-                LanguageCategoryCode = "8818c70e551640d4a451fa4a8e0f0b63d052eacd0dec486d93",
-                LevelSayCode = "f665a7a63a3240ed9493ca5ea0cfd68243c67a5e843e4d2c94",
-                LevelListenCode = "4c34594e92074d6789b5d6689921128101e6729fdd7a4ae386",
-                LevelReadCode = "02f0d3ee6f18422aada3da8bbe477185c928895f58dd435eb2",
-                LevelWriteCode = "b183277cd88148b7bba8a66864f9e7900082f6c4e9ee48dd80",
-                ExtendedInformation = "eaa6fbea866c4fb393583aa33f13c7b2dcf60f3242f84687971b19224d4229a1aa6224c0277f4b36ac97422ad26a158a1e7b7b7a48b0483a875a9ae36ce45ff57e011b8317764041b8a508edd8fbc9b3aad9107e3f78451c85e2cf769dfc62be14678b294b5f4b3ea4258edcc4b445309e1c1df759ae4d06932c2b6b63a48e9d5cff315ce4af49ac84ff99bcbbe93c6e64cda0c5e3044518ab8e9686947099b710f7b3d9244846d7a976c63b5c1f52f61563bff0c1cd40d9933ced831bd2abcb4779f18029ca49bf82121ad3e682d42b194a877176a54430a029cf3a3e466f446089736dbdbc40a0af2ad59828c6a428eb13645adf1a4cd7a50f",
-                DateA = new DateTime(2016, 7, 23),
-                DateD = new DateTime(2015, 3, 16),
-                Sort = 1917777567,
-                Note = "40a0652191614c5c8b9ec143d37a1359ea1596bc7cc741a2b563a83819a632d9659d741c204b46fe97af3b8305c12b78a703be1f5d43480b922d7bf53dea63c898326c6ee655400fb699298dff076c12af2fd31e6f9345c1b439f79a69f25ffa718d58992a104531a7853ac456e907fcfa7592f3f893412bb866cc5ebf16a193933c67437d804931a4a7197bd196fa73ccf909503ef64bfd954d8c2ff6b13eae8773a4b9730d4a978adef2ca9ce9929b971e181536dd4e2bac67f817bccf9ec8bcddb20583234fc88e510f4491793c1914f5402fc14f48e3a46bcf7547826911f14939b2ea56498c98fe7285c61fd1b189a43bea5686481e8821",
-                Status = "b2ab474dec314c12bdf566016b3226a5ac229fb073b14010ba"
+                ResumeMainId = Guid.Parse("f4ab60e6-8b36-432b-8a37-67558a293c32"),
+                LanguageCategoryCode = "aa9a0ab8f87e4a148740ef10a3eeb178b5ebe67f185f452a96",
+                LevelSayCode = "f652c2b9039949c5b0b6a43259eff17848dd165375cf46fdb9",
+                LevelListenCode = "23d3105441f746a2999fdd9d207d769a36dccb1db442453fa9",
+                LevelReadCode = "82688cff1c644d05ae96292b59c2ec1411873cc1f0064719a6",
+                LevelWriteCode = "ab1b4887eb194d20a5ce49be68fe103d1fef96c01f274efca8",
+                ExtendedInformation = "991289bc3e214bd5a5d3825a02929d46ce1f63a9368d4a12884abe903aafe01a7fd2124886434926b6dda14aef2913ca37d071c02c704e6b828feb9732226bd8e23bf6d3f3e34f15a95a59651ec7e3cf8fca33b9e0d049a988f219aaaef678c7b6b54b5a7c484038a8475056d991d5e63a9d5171c5c54e95bd3f7368e1464be9b73c3b4312a340429d46e2b6c4b1e6fe69380358991e451085429462f277ef7768e2522c777f48bf9e31a58cb0096ef5e50703a23d624a76acbdf4161eb32e5ddebe2b2d9a8a464abc7560455e6fd1699360d255ab214bf98aefbd1c5208fb7d74e86e27c3824a3eb1c4443450ce6b40a0ce6c2369f64bb4909e",
+                DateA = new DateTime(2014, 6, 4),
+                DateD = new DateTime(2018, 7, 25),
+                Sort = 1033930296,
+                Note = "5b97865b0c8b4a8798acb68e0ef8a75baf262e6b838947b1989bb9eaa191197b468b2eb714aa4f35b6fed758ac2f75cde87585503d4642de9d1d8f32be30f273d2ca2cece6fa412ca223f69ca6e3d5d0f9b3181cec8f4ba69a6cea77b22c1795b92442d96d7648699ecf45fb7585d369c6bbc6c0e9704aa197f28d2bccf59d15f51df78a367e4967b34321d86d8db172a0982c4e399e494a9e74d1f03044a25cbcdbe7ad76df44b690e99674eedc12de4b13b76c63ba40b9a1bd7334a604ac957059c5406b8b4f6eafd8ac13cad3d834ed5b9910166d4ef4bcca92a28d4e895f0f5956178fdf42dfabd795a71615e8db275c16e1b2124ffd804a",
+                Status = "0239b3b35a1e40b594ee38f5853650e4877f1204bb3e472db4"
             };
 
             // Act
@@ -69,18 +69,18 @@ namespace Resume.ResumeLanguages
             var result = await _resumeLanguageRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("3c3d304e-b334-4289-b804-dee073b862cf"));
-            result.LanguageCategoryCode.ShouldBe("8818c70e551640d4a451fa4a8e0f0b63d052eacd0dec486d93");
-            result.LevelSayCode.ShouldBe("f665a7a63a3240ed9493ca5ea0cfd68243c67a5e843e4d2c94");
-            result.LevelListenCode.ShouldBe("4c34594e92074d6789b5d6689921128101e6729fdd7a4ae386");
-            result.LevelReadCode.ShouldBe("02f0d3ee6f18422aada3da8bbe477185c928895f58dd435eb2");
-            result.LevelWriteCode.ShouldBe("b183277cd88148b7bba8a66864f9e7900082f6c4e9ee48dd80");
-            result.ExtendedInformation.ShouldBe("eaa6fbea866c4fb393583aa33f13c7b2dcf60f3242f84687971b19224d4229a1aa6224c0277f4b36ac97422ad26a158a1e7b7b7a48b0483a875a9ae36ce45ff57e011b8317764041b8a508edd8fbc9b3aad9107e3f78451c85e2cf769dfc62be14678b294b5f4b3ea4258edcc4b445309e1c1df759ae4d06932c2b6b63a48e9d5cff315ce4af49ac84ff99bcbbe93c6e64cda0c5e3044518ab8e9686947099b710f7b3d9244846d7a976c63b5c1f52f61563bff0c1cd40d9933ced831bd2abcb4779f18029ca49bf82121ad3e682d42b194a877176a54430a029cf3a3e466f446089736dbdbc40a0af2ad59828c6a428eb13645adf1a4cd7a50f");
-            result.DateA.ShouldBe(new DateTime(2016, 7, 23));
-            result.DateD.ShouldBe(new DateTime(2015, 3, 16));
-            result.Sort.ShouldBe(1917777567);
-            result.Note.ShouldBe("40a0652191614c5c8b9ec143d37a1359ea1596bc7cc741a2b563a83819a632d9659d741c204b46fe97af3b8305c12b78a703be1f5d43480b922d7bf53dea63c898326c6ee655400fb699298dff076c12af2fd31e6f9345c1b439f79a69f25ffa718d58992a104531a7853ac456e907fcfa7592f3f893412bb866cc5ebf16a193933c67437d804931a4a7197bd196fa73ccf909503ef64bfd954d8c2ff6b13eae8773a4b9730d4a978adef2ca9ce9929b971e181536dd4e2bac67f817bccf9ec8bcddb20583234fc88e510f4491793c1914f5402fc14f48e3a46bcf7547826911f14939b2ea56498c98fe7285c61fd1b189a43bea5686481e8821");
-            result.Status.ShouldBe("b2ab474dec314c12bdf566016b3226a5ac229fb073b14010ba");
+            result.ResumeMainId.ShouldBe(Guid.Parse("f4ab60e6-8b36-432b-8a37-67558a293c32"));
+            result.LanguageCategoryCode.ShouldBe("aa9a0ab8f87e4a148740ef10a3eeb178b5ebe67f185f452a96");
+            result.LevelSayCode.ShouldBe("f652c2b9039949c5b0b6a43259eff17848dd165375cf46fdb9");
+            result.LevelListenCode.ShouldBe("23d3105441f746a2999fdd9d207d769a36dccb1db442453fa9");
+            result.LevelReadCode.ShouldBe("82688cff1c644d05ae96292b59c2ec1411873cc1f0064719a6");
+            result.LevelWriteCode.ShouldBe("ab1b4887eb194d20a5ce49be68fe103d1fef96c01f274efca8");
+            result.ExtendedInformation.ShouldBe("991289bc3e214bd5a5d3825a02929d46ce1f63a9368d4a12884abe903aafe01a7fd2124886434926b6dda14aef2913ca37d071c02c704e6b828feb9732226bd8e23bf6d3f3e34f15a95a59651ec7e3cf8fca33b9e0d049a988f219aaaef678c7b6b54b5a7c484038a8475056d991d5e63a9d5171c5c54e95bd3f7368e1464be9b73c3b4312a340429d46e2b6c4b1e6fe69380358991e451085429462f277ef7768e2522c777f48bf9e31a58cb0096ef5e50703a23d624a76acbdf4161eb32e5ddebe2b2d9a8a464abc7560455e6fd1699360d255ab214bf98aefbd1c5208fb7d74e86e27c3824a3eb1c4443450ce6b40a0ce6c2369f64bb4909e");
+            result.DateA.ShouldBe(new DateTime(2014, 6, 4));
+            result.DateD.ShouldBe(new DateTime(2018, 7, 25));
+            result.Sort.ShouldBe(1033930296);
+            result.Note.ShouldBe("5b97865b0c8b4a8798acb68e0ef8a75baf262e6b838947b1989bb9eaa191197b468b2eb714aa4f35b6fed758ac2f75cde87585503d4642de9d1d8f32be30f273d2ca2cece6fa412ca223f69ca6e3d5d0f9b3181cec8f4ba69a6cea77b22c1795b92442d96d7648699ecf45fb7585d369c6bbc6c0e9704aa197f28d2bccf59d15f51df78a367e4967b34321d86d8db172a0982c4e399e494a9e74d1f03044a25cbcdbe7ad76df44b690e99674eedc12de4b13b76c63ba40b9a1bd7334a604ac957059c5406b8b4f6eafd8ac13cad3d834ed5b9910166d4ef4bcca92a28d4e895f0f5956178fdf42dfabd795a71615e8db275c16e1b2124ffd804a");
+            result.Status.ShouldBe("0239b3b35a1e40b594ee38f5853650e4877f1204bb3e472db4");
         }
 
         [Fact]
@@ -89,49 +89,49 @@ namespace Resume.ResumeLanguages
             // Arrange
             var input = new ResumeLanguageUpdateDto()
             {
-                ResumeMainId = Guid.Parse("a3835268-543e-4a6c-903c-4d70c2482873"),
-                LanguageCategoryCode = "85f5b09e7607492d8303cda10086198a66dfa50fa806483f99",
-                LevelSayCode = "81609f2a7f4a495cb753ebd6b878eea26648b08cd728418686",
-                LevelListenCode = "921b30ccbf884dc594710293d4ae9c09419b7cd4d752458486",
-                LevelReadCode = "be5f804d2cc04ce58acc8793ac77cb6e0b7e65ada5ca4fae89",
-                LevelWriteCode = "551257b7719249a7beac8d6fa52caf87c2607be681a0479b85",
-                ExtendedInformation = "43bf1baeffbf4f938657f8c7e34416e1deba0651e5e845debd7a325aa5dc36897697811ad49b4332b4bbb94424fdbbfa95ff327e681b421fae366dfdca3e6afbf7910a74e9624099a2b2210d19fc030a2ef2e1adc36a477abb4787d5fc04d0b19348956237a34e5ba809132777e0dfe696522d88fefa4e3787bfeb1fffa03c61097d3d440fda45cc8f6ab60eae44fcfc1ce36e36c8fa482798feccf311a17e94add02ca5311a483890dd40f2af2df39116618e3beb9c4c34aaa88df45c70bdff3c9dee10e3154d3f9d46c0631ab815fcae28f4a762694f30b552f37e36c38d6ec7e3178cc7ef44eaa957d6943af59b03614637aa248b4352b084",
-                DateA = new DateTime(2009, 4, 19),
-                DateD = new DateTime(2002, 1, 16),
-                Sort = 1228955328,
-                Note = "0e95d123b09145029b2649f327bca530af75d6ae02344419922012d91e7fdb9646d2fc3e34684432a4d200b2d9e4b60d3eafc4b261f447bfb82ca066a7e42a65b5b48ed93b7c492e86663bbc3a8779803c9862eba2414fceaf14060f7509108fdffa50ad9138499db94d1837ca5545f56de031ee39694e14b931d166ab25df2316a4ecd9db2f40a08e16455015b34c8ffe19b4a14f0e4d489c7594de3cb722b1c812b4399db143e19b03af29ec163a36b50ac593d9c745109b153a1cfbc0a3fac9ae11de990d40b9b64e57c4846896ef054f00be33e544df9e22ab4a1a15eddf3c6027a1db1042b9b504ecfb2e512ed27e31b3b49f7146b2ae33",
-                Status = "954eb07e7a8447b3ac54946b3b171403d61872f705f14bc599"
+                ResumeMainId = Guid.Parse("c7fcb62f-ab9e-4792-b1a2-d0daedd57070"),
+                LanguageCategoryCode = "d72651a411544197a33a1948b003ad195573236fc7ea4081b6",
+                LevelSayCode = "334478145f204d468874c63fde7e8eaee7e08acc7b2c4d7f9b",
+                LevelListenCode = "378ef9a4fded4081bc48783351140930d31b016950b44abaaf",
+                LevelReadCode = "9a3701a813724558bb0be300462ea02fc2310b5cfa0444069b",
+                LevelWriteCode = "200101bf3e494465bbeae3fbe945c1c49417c57918554967a9",
+                ExtendedInformation = "53fefe6986734f8eb115f1999c3766dcb985b769e0db4703848d2745f44d7c7dbe7ae1c1ad104efe8fda76423e6faa300d0672ce59794174aec78ed6a9806e10af1b9933c2544ad0a6a0ca575f407b9211205fe0684d41c8a8641380e495be2174245d7643ae48f1887e18b173f1f11d02d05f8960f14312a49fba81d9e514ae6f39e0b9a8994c21a2fadab1eca276aca44adaf29acb48a19e54771531344edb94b990bbaca4459284ab2568afc6bf75cdd220a858dd4a27b7bf747e7abb86ce90022536e3164d82bdd7cf062a361e378df04c4131b949d3bec9173edd3be6a8973ac1781f8a474e8b1dcebb7851fda155cd59bb53c44a4da032",
+                DateA = new DateTime(2020, 4, 4),
+                DateD = new DateTime(2002, 1, 19),
+                Sort = 91699630,
+                Note = "7b875ebffa55412d8f67551757dfc5d1acbcff5f868c48c3b3f820a3d30447f8ed9aa360c8c146c399731b44c374abba8fa35b42d830468195784f603bcf27ba5c4bcc666cd54572aa1dcd1fcfda7083414e2948c7864fceb4d72b9cac2e22d6aff32644430f49cbbe2a9464cff9134d4cf83a88d6024791bc55062b956d8989c3563fcdcf60440fb36710b955cc366392bccd6a9dd741798baa33e6592f944cae8c922b87df47a89be8bb6ee938852f673b53b8de1a4888af1891506f00be5284da2e2a2ec34789a6874e4c6c2eb7a45cd282a1ad4c4f9f887e93eb195b39d9d729d075b464436f9596bf8bed00dbef611d4dc1b8bf40ea89a9",
+                Status = "f6baacd54cea4640a529007b8a0453e6984a8a3f0206412186"
             };
 
             // Act
-            var serviceResult = await _resumeLanguagesAppService.UpdateAsync(Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8"), input);
+            var serviceResult = await _resumeLanguagesAppService.UpdateAsync(Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996"), input);
 
             // Assert
             var result = await _resumeLanguageRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.ResumeMainId.ShouldBe(Guid.Parse("a3835268-543e-4a6c-903c-4d70c2482873"));
-            result.LanguageCategoryCode.ShouldBe("85f5b09e7607492d8303cda10086198a66dfa50fa806483f99");
-            result.LevelSayCode.ShouldBe("81609f2a7f4a495cb753ebd6b878eea26648b08cd728418686");
-            result.LevelListenCode.ShouldBe("921b30ccbf884dc594710293d4ae9c09419b7cd4d752458486");
-            result.LevelReadCode.ShouldBe("be5f804d2cc04ce58acc8793ac77cb6e0b7e65ada5ca4fae89");
-            result.LevelWriteCode.ShouldBe("551257b7719249a7beac8d6fa52caf87c2607be681a0479b85");
-            result.ExtendedInformation.ShouldBe("43bf1baeffbf4f938657f8c7e34416e1deba0651e5e845debd7a325aa5dc36897697811ad49b4332b4bbb94424fdbbfa95ff327e681b421fae366dfdca3e6afbf7910a74e9624099a2b2210d19fc030a2ef2e1adc36a477abb4787d5fc04d0b19348956237a34e5ba809132777e0dfe696522d88fefa4e3787bfeb1fffa03c61097d3d440fda45cc8f6ab60eae44fcfc1ce36e36c8fa482798feccf311a17e94add02ca5311a483890dd40f2af2df39116618e3beb9c4c34aaa88df45c70bdff3c9dee10e3154d3f9d46c0631ab815fcae28f4a762694f30b552f37e36c38d6ec7e3178cc7ef44eaa957d6943af59b03614637aa248b4352b084");
-            result.DateA.ShouldBe(new DateTime(2009, 4, 19));
-            result.DateD.ShouldBe(new DateTime(2002, 1, 16));
-            result.Sort.ShouldBe(1228955328);
-            result.Note.ShouldBe("0e95d123b09145029b2649f327bca530af75d6ae02344419922012d91e7fdb9646d2fc3e34684432a4d200b2d9e4b60d3eafc4b261f447bfb82ca066a7e42a65b5b48ed93b7c492e86663bbc3a8779803c9862eba2414fceaf14060f7509108fdffa50ad9138499db94d1837ca5545f56de031ee39694e14b931d166ab25df2316a4ecd9db2f40a08e16455015b34c8ffe19b4a14f0e4d489c7594de3cb722b1c812b4399db143e19b03af29ec163a36b50ac593d9c745109b153a1cfbc0a3fac9ae11de990d40b9b64e57c4846896ef054f00be33e544df9e22ab4a1a15eddf3c6027a1db1042b9b504ecfb2e512ed27e31b3b49f7146b2ae33");
-            result.Status.ShouldBe("954eb07e7a8447b3ac54946b3b171403d61872f705f14bc599");
+            result.ResumeMainId.ShouldBe(Guid.Parse("c7fcb62f-ab9e-4792-b1a2-d0daedd57070"));
+            result.LanguageCategoryCode.ShouldBe("d72651a411544197a33a1948b003ad195573236fc7ea4081b6");
+            result.LevelSayCode.ShouldBe("334478145f204d468874c63fde7e8eaee7e08acc7b2c4d7f9b");
+            result.LevelListenCode.ShouldBe("378ef9a4fded4081bc48783351140930d31b016950b44abaaf");
+            result.LevelReadCode.ShouldBe("9a3701a813724558bb0be300462ea02fc2310b5cfa0444069b");
+            result.LevelWriteCode.ShouldBe("200101bf3e494465bbeae3fbe945c1c49417c57918554967a9");
+            result.ExtendedInformation.ShouldBe("53fefe6986734f8eb115f1999c3766dcb985b769e0db4703848d2745f44d7c7dbe7ae1c1ad104efe8fda76423e6faa300d0672ce59794174aec78ed6a9806e10af1b9933c2544ad0a6a0ca575f407b9211205fe0684d41c8a8641380e495be2174245d7643ae48f1887e18b173f1f11d02d05f8960f14312a49fba81d9e514ae6f39e0b9a8994c21a2fadab1eca276aca44adaf29acb48a19e54771531344edb94b990bbaca4459284ab2568afc6bf75cdd220a858dd4a27b7bf747e7abb86ce90022536e3164d82bdd7cf062a361e378df04c4131b949d3bec9173edd3be6a8973ac1781f8a474e8b1dcebb7851fda155cd59bb53c44a4da032");
+            result.DateA.ShouldBe(new DateTime(2020, 4, 4));
+            result.DateD.ShouldBe(new DateTime(2002, 1, 19));
+            result.Sort.ShouldBe(91699630);
+            result.Note.ShouldBe("7b875ebffa55412d8f67551757dfc5d1acbcff5f868c48c3b3f820a3d30447f8ed9aa360c8c146c399731b44c374abba8fa35b42d830468195784f603bcf27ba5c4bcc666cd54572aa1dcd1fcfda7083414e2948c7864fceb4d72b9cac2e22d6aff32644430f49cbbe2a9464cff9134d4cf83a88d6024791bc55062b956d8989c3563fcdcf60440fb36710b955cc366392bccd6a9dd741798baa33e6592f944cae8c922b87df47a89be8bb6ee938852f673b53b8de1a4888af1891506f00be5284da2e2a2ec34789a6874e4c6c2eb7a45cd282a1ad4c4f9f887e93eb195b39d9d729d075b464436f9596bf8bed00dbef611d4dc1b8bf40ea89a9");
+            result.Status.ShouldBe("f6baacd54cea4640a529007b8a0453e6984a8a3f0206412186");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _resumeLanguagesAppService.DeleteAsync(Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8"));
+            await _resumeLanguagesAppService.DeleteAsync(Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996"));
 
             // Assert
-            var result = await _resumeLanguageRepository.FindAsync(c => c.Id == Guid.Parse("85c9c21d-e528-41b0-9648-9a508a96c6b8"));
+            var result = await _resumeLanguageRepository.FindAsync(c => c.Id == Guid.Parse("ab71f01e-45be-4326-9b65-e19d5fa8d996"));
 
             result.ShouldBeNull();
         }

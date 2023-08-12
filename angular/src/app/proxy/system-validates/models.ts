@@ -20,22 +20,22 @@ export interface SystemValidateCreateDto {
   param: string;
   dateOpen: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemValidateDto extends FullAuditedEntityDto<string> {
   param: string;
   dateOpen: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemValidateExcelDownloadDto {
@@ -48,9 +48,9 @@ export interface SystemValidateUpdateDto {
   param: string;
   dateOpen: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

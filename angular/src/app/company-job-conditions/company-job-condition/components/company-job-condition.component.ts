@@ -97,11 +97,11 @@ export class CompanyJobConditionComponent implements OnInit {
       drvingLicense: [drvingLicense ?? null, [Validators.maxLength(200)]],
       etcCondition: [etcCondition ?? null, [Validators.maxLength(500)]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
-      dateA: [dateA ? new Date(dateA) : null, []],
-      dateD: [dateD ? new Date(dateD) : null, []],
+      dateA: [dateA ?? '1900/1/1', []],
+      dateD: [dateD ?? '2099/12/31', []],
       sort: [sort ?? null, []],
       note: [note ?? null, [Validators.maxLength(500)]],
-      status: [status ?? null, [Validators.required, Validators.maxLength(50)]],
+      status: [status ?? '1', [Validators.maxLength(50)]],
     });
   }
 

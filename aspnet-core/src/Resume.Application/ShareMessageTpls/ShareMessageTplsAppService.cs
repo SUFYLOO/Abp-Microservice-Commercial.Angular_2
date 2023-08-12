@@ -63,7 +63,7 @@ namespace Resume.ShareMessageTpls
         {
 
             var shareMessageTpl = await _shareMessageTplManager.CreateAsync(
-            input.Key1, input.Key2, input.Key3, input.Name, input.Statement, input.TitleContents, input.ContentMail, input.ContentSMS, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.Name, input.Statement, input.TitleContents, input.ContentMail, input.ContentSMS, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareMessageTpl, ShareMessageTplDto>(shareMessageTpl);
@@ -75,7 +75,7 @@ namespace Resume.ShareMessageTpls
 
             var shareMessageTpl = await _shareMessageTplManager.UpdateAsync(
             id,
-            input.Key1, input.Key2, input.Key3, input.Name, input.Statement, input.TitleContents, input.ContentMail, input.ContentSMS, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.Name, input.Statement, input.TitleContents, input.ContentMail, input.ContentSMS, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareMessageTpl, ShareMessageTplDto>(shareMessageTpl);

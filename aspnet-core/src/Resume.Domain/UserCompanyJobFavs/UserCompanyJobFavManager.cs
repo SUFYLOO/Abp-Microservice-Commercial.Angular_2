@@ -20,13 +20,10 @@ namespace Resume.UserCompanyJobFavs
         }
 
         public async Task<UserCompanyJobFav> CreateAsync(
-        Guid userMainId, Guid companyJobId, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid userMainId, Guid companyJobId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobFavConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserCompanyJobFavConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobFavConsts.StatusMaxLength);
 
             var userCompanyJobFav = new UserCompanyJobFav(
@@ -39,14 +36,11 @@ namespace Resume.UserCompanyJobFavs
 
         public async Task<UserCompanyJobFav> UpdateAsync(
             Guid id,
-            Guid userMainId, Guid companyJobId, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, Guid companyJobId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobFavConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserCompanyJobFavConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobFavConsts.StatusMaxLength);
 
             var userCompanyJobFav = await _userCompanyJobFavRepository.GetAsync(id);

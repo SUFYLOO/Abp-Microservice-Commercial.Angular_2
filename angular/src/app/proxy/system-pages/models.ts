@@ -27,11 +27,11 @@ export interface SystemPageCreateDto {
   systemUserRoleKeys: string;
   parentCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemPageDto extends FullAuditedEntityDto<string> {
@@ -42,11 +42,11 @@ export interface SystemPageDto extends FullAuditedEntityDto<string> {
   systemUserRoleKeys: string;
   parentCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemPageExcelDownloadDto {
@@ -63,9 +63,9 @@ export interface SystemPageUpdateDto {
   systemUserRoleKeys: string;
   parentCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

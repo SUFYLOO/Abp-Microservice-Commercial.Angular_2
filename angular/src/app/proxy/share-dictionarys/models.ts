@@ -27,11 +27,11 @@ export interface ShareDictionaryCreateDto {
   key3?: string;
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareDictionaryDto extends FullAuditedEntityDto<string> {
@@ -42,11 +42,11 @@ export interface ShareDictionaryDto extends FullAuditedEntityDto<string> {
   key3?: string;
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareDictionaryExcelDownloadDto {
@@ -63,9 +63,9 @@ export interface ShareDictionaryUpdateDto {
   key3?: string;
   name: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

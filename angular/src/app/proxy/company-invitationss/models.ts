@@ -16,11 +16,11 @@ export interface CompanyInvitationsCreateDto {
   userCompanyBindId?: string;
   resumeSnapshotId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyInvitationsDto extends FullAuditedEntityDto<string> {
@@ -39,11 +39,11 @@ export interface CompanyInvitationsDto extends FullAuditedEntityDto<string> {
   userCompanyBindId?: string;
   resumeSnapshotId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyInvitationsExcelDownloadDto {
@@ -68,11 +68,11 @@ export interface CompanyInvitationsUpdateDto {
   userCompanyBindId?: string;
   resumeSnapshotId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface GetCompanyInvitationssInput extends PagedAndSortedResultRequestDto {

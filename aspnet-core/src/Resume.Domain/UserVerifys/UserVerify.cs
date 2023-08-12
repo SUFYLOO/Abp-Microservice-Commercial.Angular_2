@@ -24,42 +24,41 @@ namespace Resume.UserVerifys
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public UserVerify()
         {
 
         }
 
-        public UserVerify(string verifyId, string verifyCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public UserVerify(string verifyId, string verifyCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Check.NotNull(verifyId, nameof(verifyId));
             Check.Length(verifyId, nameof(verifyId), UserVerifyConsts.VerifyIdMaxLength, 0);
             Check.NotNull(verifyCode, nameof(verifyCode));
             Check.Length(verifyCode, nameof(verifyCode), UserVerifyConsts.VerifyCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), UserVerifyConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), UserVerifyConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), UserVerifyConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), UserVerifyConsts.StatusMaxLength, 0);
             VerifyId = verifyId;
             VerifyCode = verifyCode;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

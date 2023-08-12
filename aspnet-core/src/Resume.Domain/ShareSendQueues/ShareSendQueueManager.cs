@@ -19,7 +19,7 @@ namespace Resume.ShareSendQueues
         }
 
         public async Task<ShareSendQueue> CreateAsync(
-        string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(key1, nameof(key1));
             Check.Length(key1, nameof(key1), ShareSendQueueConsts.Key1MaxLength);
@@ -35,16 +35,13 @@ namespace Resume.ShareSendQueues
             Check.Length(titleContents, nameof(titleContents), ShareSendQueueConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.NotNull(dateSend, nameof(dateSend));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareSendQueueConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareSendQueueConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength);
 
             var shareSendQueue = new ShareSendQueue(
              GuidGenerator.Create(),
-             key1, key2, key3, sendTypeCode, fromAddr, toAddr, titleContents, contents, retry, sucess, suspend, dateSend, dateA, dateD, sort, status, extendedInformation, note
+             key1, key2, key3, sendTypeCode, fromAddr, toAddr, titleContents, contents, retry, sucess, suspend, dateSend, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareSendQueueRepository.InsertAsync(shareSendQueue);
@@ -52,7 +49,7 @@ namespace Resume.ShareSendQueues
 
         public async Task<ShareSendQueue> UpdateAsync(
             Guid id,
-            string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(key1, nameof(key1));
@@ -69,12 +66,9 @@ namespace Resume.ShareSendQueues
             Check.Length(titleContents, nameof(titleContents), ShareSendQueueConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.NotNull(dateSend, nameof(dateSend));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareSendQueueConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareSendQueueConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength);
 
             var shareSendQueue = await _shareSendQueueRepository.GetAsync(id);
 
@@ -90,12 +84,12 @@ namespace Resume.ShareSendQueues
             shareSendQueue.Sucess = sucess;
             shareSendQueue.Suspend = suspend;
             shareSendQueue.DateSend = dateSend;
+            shareSendQueue.ExtendedInformation = extendedInformation;
             shareSendQueue.DateA = dateA;
             shareSendQueue.DateD = dateD;
             shareSendQueue.Sort = sort;
-            shareSendQueue.Status = status;
-            shareSendQueue.ExtendedInformation = extendedInformation;
             shareSendQueue.Note = note;
+            shareSendQueue.Status = status;
 
             return await _shareSendQueueRepository.UpdateAsync(shareSendQueue);
         }

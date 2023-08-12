@@ -38,17 +38,17 @@ namespace Resume.CompanyMains
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         [NotNull]
         public virtual string IndustryCategory { get; set; }
@@ -88,14 +88,12 @@ namespace Resume.CompanyMains
 
         }
 
-        public CompanyMain(Guid id, string name, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, string note = null, Guid? companyUserId = null)
+        public CompanyMain(Guid id, string name, bool allowSearch, string industryCategory, string companyUrl, int capitalAmount, bool hideCapitalAmount, string companyScaleCode, bool hidePrincipal, string companyProfile, string businessPhilosophy, string operatingItems, string welfareSystem, bool matching, bool contractPass, string compilation = null, string officePhone = null, string faxPhone = null, string address = null, string principal = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, string note = null, int? sort = null, string status = null, Guid? companyUserId = null)
         {
 
             Id = id;
             Check.NotNull(name, nameof(name));
             Check.Length(name, nameof(name), CompanyMainConsts.NameMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength, 0);
             Check.NotNull(industryCategory, nameof(industryCategory));
             Check.Length(industryCategory, nameof(industryCategory), CompanyMainConsts.IndustryCategoryMaxLength, 0);
             Check.Length(companyUrl, nameof(companyUrl), CompanyMainConsts.CompanyUrlMaxLength, 0);
@@ -112,12 +110,9 @@ namespace Resume.CompanyMains
             Check.Length(principal, nameof(principal), CompanyMainConsts.PrincipalMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyMainConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyMainConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), CompanyMainConsts.StatusMaxLength, 0);
             Name = name;
             AllowSearch = allowSearch;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             IndustryCategory = industryCategory;
             CompanyUrl = companyUrl;
             CapitalAmount = capitalAmount;
@@ -136,7 +131,11 @@ namespace Resume.CompanyMains
             Address = address;
             Principal = principal;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
             Note = note;
+            Sort = sort;
+            Status = status;
             CompanyUserId = companyUserId;
         }
 

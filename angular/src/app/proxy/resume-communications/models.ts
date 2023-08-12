@@ -23,11 +23,11 @@ export interface ResumeCommunicationCreateDto {
   communicationValue: string;
   main: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeCommunicationDto extends FullAuditedEntityDto<string> {
@@ -36,11 +36,11 @@ export interface ResumeCommunicationDto extends FullAuditedEntityDto<string> {
   communicationValue: string;
   main: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeCommunicationExcelDownloadDto {
@@ -55,9 +55,9 @@ export interface ResumeCommunicationUpdateDto {
   communicationValue: string;
   main: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

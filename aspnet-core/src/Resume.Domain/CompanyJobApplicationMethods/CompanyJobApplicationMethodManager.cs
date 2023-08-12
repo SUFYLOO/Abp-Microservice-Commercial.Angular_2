@@ -20,7 +20,7 @@ namespace Resume.CompanyJobApplicationMethods
         }
 
         public async Task<CompanyJobApplicationMethod> CreateAsync(
-        Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(orgDept, nameof(orgDept), CompanyJobApplicationMethodConsts.OrgDeptMaxLength);
             Check.Length(orgContactPerson, nameof(orgContactPerson), CompanyJobApplicationMethodConsts.OrgContactPersonMaxLength);
@@ -29,10 +29,7 @@ namespace Resume.CompanyJobApplicationMethods
             Check.Length(personally, nameof(personally), CompanyJobApplicationMethodConsts.PersonallyMaxLength);
             Check.Length(personallyAddress, nameof(personallyAddress), CompanyJobApplicationMethodConsts.PersonallyAddressMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobApplicationMethodConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyJobApplicationMethodConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyJobApplicationMethodConsts.StatusMaxLength);
 
             var companyJobApplicationMethod = new CompanyJobApplicationMethod(
@@ -45,7 +42,7 @@ namespace Resume.CompanyJobApplicationMethods
 
         public async Task<CompanyJobApplicationMethod> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.Length(orgDept, nameof(orgDept), CompanyJobApplicationMethodConsts.OrgDeptMaxLength);
@@ -55,10 +52,7 @@ namespace Resume.CompanyJobApplicationMethods
             Check.Length(personally, nameof(personally), CompanyJobApplicationMethodConsts.PersonallyMaxLength);
             Check.Length(personallyAddress, nameof(personallyAddress), CompanyJobApplicationMethodConsts.PersonallyAddressMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobApplicationMethodConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyJobApplicationMethodConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyJobApplicationMethodConsts.StatusMaxLength);
 
             var companyJobApplicationMethod = await _companyJobApplicationMethodRepository.GetAsync(id);

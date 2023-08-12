@@ -81,24 +81,24 @@ namespace Resume.CompanyJobContents
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public CompanyJobContent()
         {
 
         }
 
-        public CompanyJobContent(Guid id, Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHour, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemote, string workDifferentPlaces, string holidaySystemCode, string workDayCode, string workIdentityCode, string disabilityCategory, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public CompanyJobContent(Guid id, Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHour, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemote, string workDifferentPlaces, string holidaySystemCode, string workDayCode, string workIdentityCode, string disabilityCategory, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -124,7 +124,6 @@ namespace Resume.CompanyJobContents
             Check.Length(disabilityCategory, nameof(disabilityCategory), CompanyJobContentConsts.DisabilityCategoryMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobContentConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobContentConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), CompanyJobContentConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             CompanyJobId = companyJobId;

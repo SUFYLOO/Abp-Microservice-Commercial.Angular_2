@@ -63,7 +63,7 @@ namespace Resume.ShareLanguages
         {
 
             var shareLanguage = await _shareLanguageManager.CreateAsync(
-            input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareLanguage, ShareLanguageDto>(shareLanguage);
@@ -75,7 +75,7 @@ namespace Resume.ShareLanguages
 
             var shareLanguage = await _shareLanguageManager.UpdateAsync(
             id,
-            input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareLanguage, ShareLanguageDto>(shareLanguage);

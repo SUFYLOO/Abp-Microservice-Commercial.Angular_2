@@ -91,11 +91,11 @@ export class ShareDefaultComponent implements OnInit {
       formTypeCode: [formTypeCode ?? null, [Validators.required, Validators.maxLength(50)]],
       systemUse: [systemUse ?? false, [Validators.required]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
-      dateA: [dateA ? new Date(dateA) : null, [Validators.required]],
-      dateD: [dateD ? new Date(dateD) : null, [Validators.required]],
-      sort: [sort ?? null, [Validators.required]],
+      dateA: [dateA ? new Date(dateA) : null, []],
+      dateD: [dateD ? new Date(dateD) : null, []],
+      sort: [sort ?? null, []],
       note: [note ?? null, [Validators.maxLength(500)]],
-      status: [status ?? null, [Validators.required, Validators.maxLength(50)]],
+      status: [status ?? null, [Validators.maxLength(50)]],
     });
   }
 

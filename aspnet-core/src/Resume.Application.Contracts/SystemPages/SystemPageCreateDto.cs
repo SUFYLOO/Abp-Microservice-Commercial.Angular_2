@@ -23,16 +23,12 @@ namespace Resume.SystemPages
         public string ParentCode { get; set; }
         [StringLength(SystemPageConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; } = 9;
         [StringLength(SystemPageConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(SystemPageConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

@@ -30,11 +30,11 @@ export interface ResumeDependentsCreateDto {
   address?: string;
   mobilePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeDependentsDto extends FullAuditedEntityDto<string> {
@@ -46,11 +46,11 @@ export interface ResumeDependentsDto extends FullAuditedEntityDto<string> {
   address?: string;
   mobilePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeDependentsExcelDownloadDto {
@@ -68,9 +68,9 @@ export interface ResumeDependentsUpdateDto {
   address?: string;
   mobilePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

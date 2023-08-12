@@ -34,24 +34,24 @@ namespace Resume.ShareDictionarys
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareDictionary()
         {
 
         }
 
-        public ShareDictionary(Guid id, Guid shareLanguageId, Guid shareTagId, string key1, string key2, string key3, string name, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareDictionary(Guid id, Guid shareLanguageId, Guid shareTagId, string key1, string key2, string key3, string name, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -60,22 +60,21 @@ namespace Resume.ShareDictionarys
             Check.Length(key3, nameof(key3), ShareDictionaryConsts.Key3MaxLength, 0);
             Check.NotNull(name, nameof(name));
             Check.Length(name, nameof(name), ShareDictionaryConsts.NameMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareDictionaryConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareDictionaryConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareDictionaryConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareDictionaryConsts.StatusMaxLength, 0);
             ShareLanguageId = shareLanguageId;
             ShareTagId = shareTagId;
             Key1 = key1;
             Key2 = key2;
             Key3 = key3;
             Name = name;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

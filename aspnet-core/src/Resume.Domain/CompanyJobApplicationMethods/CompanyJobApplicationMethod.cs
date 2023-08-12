@@ -48,24 +48,24 @@ namespace Resume.CompanyJobApplicationMethods
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public CompanyJobApplicationMethod()
         {
 
         }
 
-        public CompanyJobApplicationMethod(Guid id, Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public CompanyJobApplicationMethod(Guid id, Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -77,7 +77,6 @@ namespace Resume.CompanyJobApplicationMethods
             Check.Length(personallyAddress, nameof(personallyAddress), CompanyJobApplicationMethodConsts.PersonallyAddressMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobApplicationMethodConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobApplicationMethodConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), CompanyJobApplicationMethodConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             CompanyJobId = companyJobId;

@@ -50,24 +50,24 @@ namespace Resume.SystemColumns
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public SystemColumn()
         {
 
         }
 
-        public SystemColumn(Guid id, Guid systemTableId, string name, bool isKey, bool isSensitive, bool needMask, string defaultValue, bool checkCode, string related, bool allowUpdate, bool allowNull, bool allowEmpty, bool allowExport, bool allowSort, string columnTypeCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public SystemColumn(Guid id, Guid systemTableId, string name, bool isKey, bool isSensitive, bool needMask, string defaultValue, bool checkCode, string related, bool allowUpdate, bool allowNull, bool allowEmpty, bool allowExport, bool allowSort, string columnTypeCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -77,10 +77,9 @@ namespace Resume.SystemColumns
             Check.Length(related, nameof(related), SystemColumnConsts.RelatedMaxLength, 0);
             Check.NotNull(columnTypeCode, nameof(columnTypeCode));
             Check.Length(columnTypeCode, nameof(columnTypeCode), SystemColumnConsts.ColumnTypeCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), SystemColumnConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemColumnConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), SystemColumnConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), SystemColumnConsts.StatusMaxLength, 0);
             SystemTableId = systemTableId;
             Name = name;
             IsKey = isKey;
@@ -95,12 +94,12 @@ namespace Resume.SystemColumns
             AllowExport = allowExport;
             AllowSort = allowSort;
             ColumnTypeCode = columnTypeCode;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

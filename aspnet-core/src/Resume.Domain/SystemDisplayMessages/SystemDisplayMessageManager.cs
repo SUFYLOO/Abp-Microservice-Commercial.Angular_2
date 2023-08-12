@@ -19,7 +19,7 @@ namespace Resume.SystemDisplayMessages
         }
 
         public async Task<SystemDisplayMessage> CreateAsync(
-        string displayTypeCode, string titleContents, string contents, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string displayTypeCode, string titleContents, string contents, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(displayTypeCode, nameof(displayTypeCode));
             Check.Length(displayTypeCode, nameof(displayTypeCode), SystemDisplayMessageConsts.DisplayTypeCodeMaxLength);
@@ -27,16 +27,13 @@ namespace Resume.SystemDisplayMessages
             Check.Length(titleContents, nameof(titleContents), SystemDisplayMessageConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.Length(contents, nameof(contents), SystemDisplayMessageConsts.ContentsMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemDisplayMessageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemDisplayMessageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemDisplayMessageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemDisplayMessageConsts.StatusMaxLength);
 
             var systemDisplayMessage = new SystemDisplayMessage(
              GuidGenerator.Create(),
-             displayTypeCode, titleContents, contents, dateA, dateD, sort, status, extendedInformation, note
+             displayTypeCode, titleContents, contents, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemDisplayMessageRepository.InsertAsync(systemDisplayMessage);
@@ -44,7 +41,7 @@ namespace Resume.SystemDisplayMessages
 
         public async Task<SystemDisplayMessage> UpdateAsync(
             Guid id,
-            string displayTypeCode, string titleContents, string contents, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string displayTypeCode, string titleContents, string contents, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(displayTypeCode, nameof(displayTypeCode));
@@ -53,24 +50,21 @@ namespace Resume.SystemDisplayMessages
             Check.Length(titleContents, nameof(titleContents), SystemDisplayMessageConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.Length(contents, nameof(contents), SystemDisplayMessageConsts.ContentsMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemDisplayMessageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemDisplayMessageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemDisplayMessageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemDisplayMessageConsts.StatusMaxLength);
 
             var systemDisplayMessage = await _systemDisplayMessageRepository.GetAsync(id);
 
             systemDisplayMessage.DisplayTypeCode = displayTypeCode;
             systemDisplayMessage.TitleContents = titleContents;
             systemDisplayMessage.Contents = contents;
+            systemDisplayMessage.ExtendedInformation = extendedInformation;
             systemDisplayMessage.DateA = dateA;
             systemDisplayMessage.DateD = dateD;
             systemDisplayMessage.Sort = sort;
-            systemDisplayMessage.Status = status;
-            systemDisplayMessage.ExtendedInformation = extendedInformation;
             systemDisplayMessage.Note = note;
+            systemDisplayMessage.Status = status;
 
             return await _systemDisplayMessageRepository.UpdateAsync(systemDisplayMessage);
         }

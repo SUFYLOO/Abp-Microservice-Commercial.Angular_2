@@ -19,20 +19,17 @@ namespace Resume.SystemTables
         }
 
         public async Task<SystemTable> CreateAsync(
-        string name, bool allowInsert, bool allowUpdate, bool allowDelete, bool allowSelect, bool allowExport, bool allowImport, bool allowPage, bool allowSort, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string name, bool allowInsert, bool allowUpdate, bool allowDelete, bool allowSelect, bool allowExport, bool allowImport, bool allowPage, bool allowSort, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), SystemTableConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemTableConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemTableConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemTableConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemTableConsts.StatusMaxLength);
 
             var systemTable = new SystemTable(
              GuidGenerator.Create(),
-             name, allowInsert, allowUpdate, allowDelete, allowSelect, allowExport, allowImport, allowPage, allowSort, dateA, dateD, sort, status, extendedInformation, note
+             name, allowInsert, allowUpdate, allowDelete, allowSelect, allowExport, allowImport, allowPage, allowSort, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemTableRepository.InsertAsync(systemTable);
@@ -40,17 +37,14 @@ namespace Resume.SystemTables
 
         public async Task<SystemTable> UpdateAsync(
             Guid id,
-            string name, bool allowInsert, bool allowUpdate, bool allowDelete, bool allowSelect, bool allowExport, bool allowImport, bool allowPage, bool allowSort, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string name, bool allowInsert, bool allowUpdate, bool allowDelete, bool allowSelect, bool allowExport, bool allowImport, bool allowPage, bool allowSort, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), SystemTableConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemTableConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemTableConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemTableConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemTableConsts.StatusMaxLength);
 
             var systemTable = await _systemTableRepository.GetAsync(id);
 
@@ -63,12 +57,12 @@ namespace Resume.SystemTables
             systemTable.AllowImport = allowImport;
             systemTable.AllowPage = allowPage;
             systemTable.AllowSort = allowSort;
+            systemTable.ExtendedInformation = extendedInformation;
             systemTable.DateA = dateA;
             systemTable.DateD = dateD;
             systemTable.Sort = sort;
-            systemTable.Status = status;
-            systemTable.ExtendedInformation = extendedInformation;
             systemTable.Note = note;
+            systemTable.Status = status;
 
             return await _systemTableRepository.UpdateAsync(systemTable);
         }

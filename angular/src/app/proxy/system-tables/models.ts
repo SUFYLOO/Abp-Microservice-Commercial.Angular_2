@@ -33,11 +33,11 @@ export interface SystemTableCreateDto {
   allowPage: boolean;
   allowSort: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemTableDto extends FullAuditedEntityDto<string> {
@@ -51,11 +51,11 @@ export interface SystemTableDto extends FullAuditedEntityDto<string> {
   allowPage: boolean;
   allowSort: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemTableExcelDownloadDto {
@@ -75,9 +75,9 @@ export interface SystemTableUpdateDto {
   allowPage: boolean;
   allowSort: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

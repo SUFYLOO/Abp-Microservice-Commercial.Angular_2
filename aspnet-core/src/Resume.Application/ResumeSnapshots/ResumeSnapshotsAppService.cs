@@ -63,7 +63,7 @@ namespace Resume.ResumeSnapshots
         {
 
             var resumeSnapshot = await _resumeSnapshotManager.CreateAsync(
-            input.UserMainId, input.ResumeMainId, input.CompanyMainId, input.Snapshot, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.UserCompanyBindId, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ResumeMainId, input.CompanyMainId, input.Snapshot, input.CompanyJobId, input.UserCompanyBindId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSnapshot, ResumeSnapshotDto>(resumeSnapshot);
@@ -75,7 +75,7 @@ namespace Resume.ResumeSnapshots
 
             var resumeSnapshot = await _resumeSnapshotManager.UpdateAsync(
             id,
-            input.UserMainId, input.ResumeMainId, input.CompanyMainId, input.Snapshot, input.DateA, input.DateD, input.Sort, input.Status, input.CompanyJobId, input.UserCompanyBindId, input.ExtendedInformation, input.Note
+            input.UserMainId, input.ResumeMainId, input.CompanyMainId, input.Snapshot, input.CompanyJobId, input.UserCompanyBindId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSnapshot, ResumeSnapshotDto>(resumeSnapshot);

@@ -29,36 +29,36 @@ namespace Resume.ResumeSnapshots
 
             await _resumeSnapshotRepository.InsertAsync(new ResumeSnapshot
             (
-                id: Guid.Parse("b60d9509-c18e-406e-b6e1-3b573f889b51"),
-                userMainId: Guid.Parse("2a988c27-0ce0-4553-9e55-a567f5d6ab74"),
-                resumeMainId: Guid.Parse("98856d37-465a-4ebb-8546-89f47c01f45f"),
-                companyMainId: Guid.Parse("9f517962-d055-403d-abb9-5b5ea1c1e648"),
-                companyJobId: Guid.Parse("888b3fc1-1203-44f7-b07c-ea5398a78db1"),
-                snapshot: "cce69b",
-                userCompanyBindId: Guid.Parse("19bd0fcd-7b1f-4796-93c1-43cdbbb028e0"),
-                extendedInformation: "bc4b8fb9db1040e399955f35059d615fa0e5d1e01b7b448dac4a3c052ece66cd292e85fc1a1541d297c89e1fc98d4cf0fd0750e3485c4a709fffb116c3e6a8f6f6a41b7abfb74cc49eba09c8e04eb7abef153ebfd3254f48bd98f187a7e011303093ec135215467e94b146b6a4f677e7d76734e7f0dc4eb58e92342cddf275037350cc63fbb0455e94108b9559a4b3a288e5881c77334e918fee9df6e7b57124b3cfa2463ce44598920492a0c032ac4d70b85d1180944eb0bff60e0ad6383c7b3cde24e85ecc47d098fc3f65fbf6fa65da03b597f6fe44838eeed6057dc25f5cb8c944db84e4434dae0f1767bec0b99812358349ea9044dc9935",
-                dateA: new DateTime(2018, 5, 12),
-                dateD: new DateTime(2014, 10, 4),
-                sort: 1295102379,
-                note: "451076bdae7742ac8880f53d39bc228474a2e20994724cf9bbb7143a6aa79ab71ec1c2a83a6045c9affcde9302652f9f8fecc8928b6f40edaf5880fc3118142026cd9a0a7625403c9c71162005b0dcb055117600e1454be2a1d78386aaae0ee308ed462307b24f91a60507e1947844f07ecb398678ed41e6baffa5182fb6618fd01f169b8acc44b8978ab9a119dba007cf60670a363244d6b18530dbbac9fabddb4b784e35604c77a2b491e64ad35174a815676903e74a21af981dc7079966f311b1c00afdd34b72a943b086383a16026b3c02a4339d40f79502fae7d600b13d9ac7da72404544b8a5e7ecdbdb3c692e52fe921c382b4473802a",
-                status: "fafd0be0794c4b1db7abd9281e462dfb12166150f68442c1be"
+                id: Guid.Parse("a9082218-5311-4a49-8afd-fb8f250873e3"),
+                userMainId: Guid.Parse("f47b2736-4e2b-47a7-a265-c78ee5a194d6"),
+                resumeMainId: Guid.Parse("7704046a-0b53-4a53-85ab-405bc120dda7"),
+                companyMainId: Guid.Parse("f9fc9b98-32a9-4c31-a3a6-38b918d54cb4"),
+                companyJobId: Guid.Parse("613bcc50-50b2-4289-9158-1c0ab138bbf7"),
+                snapshot: "e5deccb64738462893eb35423463688832886e95cb714d828447eb075f8a57b30136f4caa97745ff8bef1c649e2117349",
+                userCompanyBindId: Guid.Parse("a61fef2c-d15a-4976-bdc5-c1b5bb49634e"),
+                extendedInformation: "190e3fc1a3834bd988e86f43ff196ee08884bf42dea9453bb974e980db7dfc1fefa0c8819a9b4b93aef2dd5f93d5b3085f3d0902438942bf892207097cfabfbd0a24d5d562e2498291c70d858aff30a1381035d3719c483f8db9e98aef5daafb6a7f23ef47134bcd9f7b876bb10112877e3bd4f152544e87aeeb87968e96a381c807beb2a85e476898115013d3f3d170c4b69288bebd4a9dacc72389d19e4cb1a2a157eaf157452db15a98d9ea1b641555ef62fe96454e7fb2ba17e5ff25d09bc7350416d2ed4c69a086e34fe71cd492ff344b110a4a46329b314b91613343304cd27130a31a4f8ba141058ca30fe30a39ae809ce7cb4ecb9049",
+                dateA: new DateTime(2014, 1, 20),
+                dateD: new DateTime(2000, 4, 4),
+                sort: 1689420159,
+                note: "ba32587c588441229a7fb10d1cb72781a29b5e55500e4d6b83623cfeecee93930ce4715de2064a0688a4b195319166febfd2b3a825db4980a235928e6a83ab11f71133def4914aa6bd7d89efc8c7d60cd1756889a4f54e77bc58a14186d0b5653ca01049761242b8ae9bc8962d70944ad4ff2df7f58d4b2f9163d996045e5317b0ce84dfdda841b3ba823c6a7ff06c8a4964c0fce7094e80ba9d59375b2f030985e8e8e7fd934ec494828651a0b2d86c893c979b72f745ba9810b6f1eb18d2de0bdcda7fa7cf4672b45031905436a6fc8e515ba07c4e471db0c19e2e7adff71c081db8dbd051410cb366de19d96688aa326d307365934e6aa857",
+                status: "c4cce0a7ce594ad4a43bd510832271544eb33b0d1fd94ccbb8"
             ));
 
             await _resumeSnapshotRepository.InsertAsync(new ResumeSnapshot
             (
-                id: Guid.Parse("446163c3-feed-4e73-b651-5f35ed56f49a"),
-                userMainId: Guid.Parse("ed0638e1-61cf-4bad-8fbb-a7c5d9c4adc2"),
-                resumeMainId: Guid.Parse("d8c7241b-4d08-472a-81d2-87bd555c4638"),
-                companyMainId: Guid.Parse("95e64d43-3715-48d9-9e6c-dfe346cd138b"),
-                companyJobId: Guid.Parse("f9a03fc5-f447-4399-bc76-b126143bf1dd"),
-                snapshot: "419271b7e1624677ac7ed962d343bf2ced23898a25e642d39",
-                userCompanyBindId: Guid.Parse("1d870829-8ec5-4309-ab2b-53599874384c"),
-                extendedInformation: "32af4e6dd221495eab3eb75ae7213bf4bce889eb881a42fe82eae283bfb1416aa177993bd43e48789d2b6ff2909ea42d943a0078cd1d4af392483ed32037b7629c0bb22087614fb8b5cf619f934bcaab5a7b4f1366e84873843ebfc1d958098657d316659dcc4454a6c64a1d5f33c3cf4ed5924ac38b41a382db8b395b5c2bf012805317b6514fa5a105cc072781d2d09ee6f2f7346b47c0b6117bdccacd8286e0e04407cddb4137b20e7893f28fc4a7bb76b9195637448c8e0049f8323e1aef7b15e024d83049b4bdd7065c07cccc1fc5bde9ea5fc747abb834837b20345201b1a0ab73a11143f88163755faa26e237913d1f5620f14c3f8f02",
-                dateA: new DateTime(2006, 8, 23),
-                dateD: new DateTime(2002, 5, 15),
-                sort: 1361167682,
-                note: "9108eded8c3b4d7faffb94b96bb5829530771ca0d77249c5b2b238b193862b83d7f6a7ba6103475a91639ee7353e92f15caac79efe764cd393a47d97b3cb299abee8f0d57c904a248c13f91d3a217fc3e6ab111520004b2280578c0170e99d1e2379ca6262904701b9838793546c6cab3b958d1d518946348e8332bc6a41a057010aa54caf5a4c678a830632e35d457511f79de08c4d4134b938ac1c8570b85660016e0740034f4a8a0a37bd2a8278ac0db00ef8dae149eda35acdf4459c132b5d9355a1d8274bd5b1dcf82b9cd97da372213c942b6140008e4e294c2439a13d0dcbd1d810aa4fb38a44ce843837f5ff436b90a5db704fa5b1de",
-                status: "4edc978ceb1c4ce19df597d3daefbcb48d77d17657a6408b9b"
+                id: Guid.Parse("42ba9321-b044-458e-aaef-40287ebfd28c"),
+                userMainId: Guid.Parse("957ab820-3536-47e2-9fff-cea673efb9d7"),
+                resumeMainId: Guid.Parse("edb5ce81-d6ad-40fb-85a7-0b76e3aef374"),
+                companyMainId: Guid.Parse("0ca9cbfd-a39e-42b9-a82c-de6035bd942e"),
+                companyJobId: Guid.Parse("87368ed6-6137-499c-aedf-49c18308a40d"),
+                snapshot: "81d632c1da0f490b96620dd1f58ec0b2a55d860492b849519ae7d5ffae35",
+                userCompanyBindId: Guid.Parse("266ade8a-5471-4994-beab-1debd4484c3c"),
+                extendedInformation: "1d3be543cb21470e82c9b6092b4aeda363704e14e9b7461eb0ea38e908d97510e73f43c252e14e1f8ee27e30a24979d6514c835a84fd4b7f91fa47411541374af08a9c7c712341a0b97049279988ab96bf5bc8d3d27e4b87b289be4cfd9c993eae39c755ad64490e8f132dd7f2c0fef3025080eb3a0e45d894318343df797cea9a7b156a1f7947b6ad9b4eee8d453ce46ac2c5ee13084b8ea778010fdba32f76b1beea1854684fe49905f4ff99319e94f6aca0e5ae6d48599b48429f4b029ba245044a261a0f4073a9c201089768085c6b9419253fe74db8ab9085ebc730e567ee59da9a0c234530ba4739850c9c245b98a881649d85451cb2de",
+                dateA: new DateTime(2022, 1, 3),
+                dateD: new DateTime(2017, 8, 18),
+                sort: 1855520289,
+                note: "f56984e3ae1c423cb72915032a882c8812b117775aa14c0ca2f3f40c893d04199cbe167f391c4a25905b79bb86e79958f648d6b344fc4d1197bf65182e37ca1188486e465279402c956863a8141679bd16343cc1526a4b5c9296a1995d3d1507a4bb69635d8e4b4c9a2aa53aa32da3ddc88da698bcbf485fb4c937d7c62b380fda287654691b4dc6b56cdc52f24d8dc6d008f42a31aa4e25a38372088cfed73b15f9b089bee64a86b7668a16e98b05e9dcf860ca1ba446ba928703a8df0e7542eff5eaa872d641ada1ee8df13a20d70b152fdb306fed49acab4837fc6dc84fd22cc4876bb1e44cc9b5a38b676c7b487d0831897a332e453d8aba",
+                status: "5bff75d3fd6d4326ac0a3a6f669487c2cfb660ed303a46ce8f"
             ));
 
             await _unitOfWorkManager.Current.SaveChangesAsync();

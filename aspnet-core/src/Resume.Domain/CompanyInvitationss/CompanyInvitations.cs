@@ -53,24 +53,24 @@ namespace Resume.CompanyInvitationss
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public CompanyInvitations()
         {
 
         }
 
-        public CompanyInvitations(Guid id, Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, string note = null)
+        public CompanyInvitations(Guid id, Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -84,10 +84,9 @@ namespace Resume.CompanyInvitationss
             Check.Length(sendStatusCode, nameof(sendStatusCode), CompanyInvitationsConsts.SendStatusCodeMaxLength, 0);
             Check.NotNull(resumeFlowStageCode, nameof(resumeFlowStageCode));
             Check.Length(resumeFlowStageCode, nameof(resumeFlowStageCode), CompanyInvitationsConsts.ResumeFlowStageCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyInvitationsConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             OpenAllJob = openAllJob;
             UserMainName = userMainName;
@@ -98,16 +97,16 @@ namespace Resume.CompanyInvitationss
             SendStatusCode = sendStatusCode;
             ResumeFlowStageCode = resumeFlowStageCode;
             IsRead = isRead;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             CompanyJobId = companyJobId;
             UserMainId = userMainId;
             UserCompanyBindId = userCompanyBindId;
             ResumeSnapshotId = resumeSnapshotId;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

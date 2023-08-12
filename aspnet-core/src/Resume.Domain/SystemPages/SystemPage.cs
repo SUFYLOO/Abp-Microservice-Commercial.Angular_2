@@ -36,24 +36,24 @@ namespace Resume.SystemPages
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public SystemPage()
         {
 
         }
 
-        public SystemPage(Guid id, string typeCode, string systemUserRoleKeys, string parentCode, DateTime dateA, DateTime dateD, int sort, string status, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, string note = null)
+        public SystemPage(Guid id, string typeCode, string systemUserRoleKeys, string parentCode, string filePath = null, string fileName = null, string fileTitle = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -63,25 +63,24 @@ namespace Resume.SystemPages
             Check.Length(systemUserRoleKeys, nameof(systemUserRoleKeys), SystemPageConsts.SystemUserRoleKeysMaxLength, 0);
             Check.NotNull(parentCode, nameof(parentCode));
             Check.Length(parentCode, nameof(parentCode), SystemPageConsts.ParentCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength, 0);
             Check.Length(filePath, nameof(filePath), SystemPageConsts.FilePathMaxLength, 0);
             Check.Length(fileName, nameof(fileName), SystemPageConsts.FileNameMaxLength, 0);
             Check.Length(fileTitle, nameof(fileTitle), SystemPageConsts.FileTitleMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemPageConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), SystemPageConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), SystemPageConsts.StatusMaxLength, 0);
             TypeCode = typeCode;
             SystemUserRoleKeys = systemUserRoleKeys;
             ParentCode = parentCode;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             FilePath = filePath;
             FileName = fileName;
             FileTitle = fileTitle;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

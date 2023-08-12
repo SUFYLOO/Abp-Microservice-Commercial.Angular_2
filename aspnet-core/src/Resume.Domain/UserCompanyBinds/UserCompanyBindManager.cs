@@ -19,18 +19,15 @@ namespace Resume.UserCompanyBinds
         }
 
         public async Task<UserCompanyBind> CreateAsync(
-        Guid userMainId, Guid companyMainId, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? companyInvitationsId = null, string extendedInformation = null, string note = null)
+        Guid userMainId, Guid companyMainId, Guid? companyJobId = null, Guid? companyInvitationsId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), UserCompanyBindConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyBindConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), UserCompanyBindConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), UserCompanyBindConsts.StatusMaxLength);
 
             var userCompanyBind = new UserCompanyBind(
              GuidGenerator.Create(),
-             userMainId, companyMainId, dateA, dateD, sort, status, companyJobId, companyInvitationsId, extendedInformation, note
+             userMainId, companyMainId, companyJobId, companyInvitationsId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _userCompanyBindRepository.InsertAsync(userCompanyBind);
@@ -38,28 +35,25 @@ namespace Resume.UserCompanyBinds
 
         public async Task<UserCompanyBind> UpdateAsync(
             Guid id,
-            Guid userMainId, Guid companyMainId, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? companyInvitationsId = null, string extendedInformation = null, string note = null
+            Guid userMainId, Guid companyMainId, Guid? companyJobId = null, Guid? companyInvitationsId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), UserCompanyBindConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyBindConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), UserCompanyBindConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), UserCompanyBindConsts.StatusMaxLength);
 
             var userCompanyBind = await _userCompanyBindRepository.GetAsync(id);
 
             userCompanyBind.UserMainId = userMainId;
             userCompanyBind.CompanyMainId = companyMainId;
-            userCompanyBind.DateA = dateA;
-            userCompanyBind.DateD = dateD;
-            userCompanyBind.Sort = sort;
-            userCompanyBind.Status = status;
             userCompanyBind.CompanyJobId = companyJobId;
             userCompanyBind.CompanyInvitationsId = companyInvitationsId;
             userCompanyBind.ExtendedInformation = extendedInformation;
+            userCompanyBind.DateA = dateA;
+            userCompanyBind.DateD = dateD;
+            userCompanyBind.Sort = sort;
             userCompanyBind.Note = note;
+            userCompanyBind.Status = status;
 
             return await _userCompanyBindRepository.UpdateAsync(userCompanyBind);
         }

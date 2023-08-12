@@ -63,7 +63,7 @@ namespace Resume.SystemValidates
         {
 
             var systemValidate = await _systemValidateManager.CreateAsync(
-            input.Param, input.DateOpen, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Param, input.DateOpen, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemValidate, SystemValidateDto>(systemValidate);
@@ -75,7 +75,7 @@ namespace Resume.SystemValidates
 
             var systemValidate = await _systemValidateManager.UpdateAsync(
             id,
-            input.Param, input.DateOpen, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Param, input.DateOpen, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemValidate, SystemValidateDto>(systemValidate);

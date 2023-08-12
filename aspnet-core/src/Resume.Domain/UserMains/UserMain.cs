@@ -53,15 +53,15 @@ namespace Resume.UserMains
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public virtual bool Matching { get; set; }
 
@@ -70,7 +70,7 @@ namespace Resume.UserMains
 
         }
 
-        public UserMain(Guid id, Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, DateTime dateD, int sort, string status, bool matching, string anonymousName = null, string extendedInformation = null, string note = null)
+        public UserMain(Guid id, Guid userId, string name, string loginAccountCode, string loginMobilePhoneUpdate, string loginMobilePhone, string loginEmailUpdate, string loginEmail, string loginIdentityNo, string password, int systemUserRoleKeys, bool allowSearch, DateTime dateA, bool matching, string anonymousName = null, string extendedInformation = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -85,11 +85,10 @@ namespace Resume.UserMains
             Check.Length(loginIdentityNo, nameof(loginIdentityNo), UserMainConsts.LoginIdentityNoMaxLength, 0);
             Check.NotNull(password, nameof(password));
             Check.Length(password, nameof(password), UserMainConsts.PasswordMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength, 0);
             Check.Length(anonymousName, nameof(anonymousName), UserMainConsts.AnonymousNameMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), UserMainConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), UserMainConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), UserMainConsts.StatusMaxLength, 0);
             UserId = userId;
             Name = name;
             LoginAccountCode = loginAccountCode;
@@ -102,13 +101,13 @@ namespace Resume.UserMains
             SystemUserRoleKeys = systemUserRoleKeys;
             AllowSearch = allowSearch;
             DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             Matching = matching;
             AnonymousName = anonymousName;
             ExtendedInformation = extendedInformation;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

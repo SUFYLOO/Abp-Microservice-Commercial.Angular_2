@@ -96,7 +96,7 @@ export class TradeProductComponent implements OnInit {
       dateD: [dateD ? new Date(dateD) : null, []],
       sort: [sort ?? null, []],
       orderStateCode: [orderStateCode ?? null, [Validators.maxLength(500)]],
-      status: [status ?? null, [Validators.required, Validators.maxLength(50)]],
+      status: [status ?? null, [Validators.maxLength(50)]],
     });
   }
 

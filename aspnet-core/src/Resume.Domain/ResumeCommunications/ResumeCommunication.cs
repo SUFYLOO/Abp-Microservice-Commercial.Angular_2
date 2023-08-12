@@ -28,24 +28,24 @@ namespace Resume.ResumeCommunications
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeCommunication()
         {
 
         }
 
-        public ResumeCommunication(Guid id, Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ResumeCommunication(Guid id, Guid resumeMainId, string communicationCategoryCode, string communicationValue, bool main, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -53,20 +53,19 @@ namespace Resume.ResumeCommunications
             Check.Length(communicationCategoryCode, nameof(communicationCategoryCode), ResumeCommunicationConsts.CommunicationCategoryCodeMaxLength, 0);
             Check.NotNull(communicationValue, nameof(communicationValue));
             Check.Length(communicationValue, nameof(communicationValue), ResumeCommunicationConsts.CommunicationValueMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeCommunicationConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeCommunicationConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeCommunicationConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             CommunicationCategoryCode = communicationCategoryCode;
             CommunicationValue = communicationValue;
             Main = main;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

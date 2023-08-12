@@ -27,11 +27,11 @@ export interface ResumeLanguageCreateDto {
   levelReadCode: string;
   levelWriteCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeLanguageDto extends FullAuditedEntityDto<string> {
@@ -42,11 +42,11 @@ export interface ResumeLanguageDto extends FullAuditedEntityDto<string> {
   levelReadCode: string;
   levelWriteCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeLanguageExcelDownloadDto {
@@ -63,9 +63,9 @@ export interface ResumeLanguageUpdateDto {
   levelReadCode: string;
   levelWriteCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

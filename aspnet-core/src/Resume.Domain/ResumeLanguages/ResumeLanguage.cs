@@ -35,24 +35,24 @@ namespace Resume.ResumeLanguages
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeLanguage()
         {
 
         }
 
-        public ResumeLanguage(Guid id, Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ResumeLanguage(Guid id, Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -66,22 +66,21 @@ namespace Resume.ResumeLanguages
             Check.Length(levelReadCode, nameof(levelReadCode), ResumeLanguageConsts.LevelReadCodeMaxLength, 0);
             Check.NotNull(levelWriteCode, nameof(levelWriteCode));
             Check.Length(levelWriteCode, nameof(levelWriteCode), ResumeLanguageConsts.LevelWriteCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeLanguageConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeLanguageConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             LanguageCategoryCode = languageCategoryCode;
             LevelSayCode = levelSayCode;
             LevelListenCode = levelListenCode;
             LevelReadCode = levelReadCode;
             LevelWriteCode = levelWriteCode;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

@@ -33,11 +33,11 @@ export interface ShareCodeCreateDto {
   column3?: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareCodeDto extends FullAuditedEntityDto<string> {
@@ -51,11 +51,11 @@ export interface ShareCodeDto extends FullAuditedEntityDto<string> {
   column3?: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareCodeExcelDownloadDto {
@@ -75,9 +75,9 @@ export interface ShareCodeUpdateDto {
   column3?: string;
   systemUse: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
