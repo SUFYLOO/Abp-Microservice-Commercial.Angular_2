@@ -113,6 +113,7 @@ namespace Resume.App
             CreateMap<CompanyMain, UpdateCompanyMainWelfareSystemDto>();
 
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentDto>();
+            CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
             CreateMap<CompanyJobContentDto, CompanyJobContent>();
             CreateMap<CompanyJobContent, SaveCompanyJobContentDto>();
             
@@ -132,11 +133,18 @@ namespace Resume.App
             CreateMap<CompanyJobPayDto, CompanyJobPay>();
             CreateMap<CompanyJobPay, SaveCompanyJobPayDto>();
 
-            CreateMap<UpdateCompanyJobDateInput, CompanyJob>();
-            CreateMap<CompanyJob, UpdateCompanyJobDateDto>();
-
-            CreateMap<CompanyJob,CompanysJobDto>();
+            CreateMap<CompanyJobDto, CompanysJobDto>();
             CreateMap<CompanyJob, UpdateCompanyJobOpenDto>();
+            CreateMap<CompanyJob, CompanysJobDto>();
+
+            //三個一組
+            CreateMap<CompanyJobContent, CompanyJobContentDto>();
+            CreateMap<SaveCompanyJobContentInput, CompanyJobContentCreateDto>();
+            CreateMap<SaveCompanyJobContentInput, CompanyJobContentUpdateDto>();
+            CreateMap<CompanyJobContentDto, SaveCompanyJobContentDto>();
+
+    
+
 
             CreateMap<SaveResumeMainInput, ResumeMainDto>();
             CreateMap<ResumeMainDto, ResumeMain>();

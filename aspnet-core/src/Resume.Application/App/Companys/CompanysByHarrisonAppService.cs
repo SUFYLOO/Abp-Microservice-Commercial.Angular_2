@@ -15,7 +15,10 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Validation;
-using PayPalCheckoutSdk.Orders;
+using Resume.App.Users;
+using Volo.Saas.Tenants;
+using static Volo.Abp.Identity.Settings.IdentitySettingNames;
+using Volo.Abp.Users;
 
 namespace Resume.App.Companys
 {
@@ -28,38 +31,42 @@ namespace Resume.App.Companys
         /// <returns></returns>
         public virtual async Task<SaveCompanyJobContentDto> SaveCompanyJobContentAsync(SaveCompanyJobContentInput input)
         {
+            //結果
             var Result = new SaveCompanyJobContentDto();
-            //新增的話可以不用id, update要輸入id
+
+            //常用
+            var DateNow = DateTime.Now;
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
             var CompanyJobContentId = input.Id;
 
-            await SaveCompanyJobContentCheckAsync(input);
+            //檢查
+            //await SaveCompanyJobContentCheckAsync(input);
 
+            //主體資料
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
             var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
-
-
-            //如果CompanyJobContentRepository沒有這個Id就新增資料，已存在就update
+ 
             if (itemCompanyJobContent == null)
             {
-                var itemCompanyJobContentDto = ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContentDto>(input);
-
-                itemCompanyJobContentDto.CompanyJobId = _appService._guidGenerator.Create();
-                itemCompanyJobContentDto.CompanyMainId = _appService._guidGenerator.Create();
-
-                itemCompanyJobContent = ObjectMapper.Map<CompanyJobContentDto, CompanyJobContent>(itemCompanyJobContentDto);
-                await _appService._companyJobContentRepository.InsertAsync(itemCompanyJobContent);
-
-                Result = ObjectMapper.Map<CompanyJobContent, SaveCompanyJobContentDto>(itemCompanyJobContent);
+                itemCompanyJobContent = ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContent>(input);
+                itemCompanyJobContent = await _appService._companyJobContentRepository.InsertAsync(itemCompanyJobContent);
             }
             else
             {
-                itemCompanyJobContent = ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContent>(input);
-                await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
-
-                Result = ObjectMapper.Map<CompanyJobContent, SaveCompanyJobContentDto>(itemCompanyJobContent);
+                ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContent>(input, itemCompanyJobContent);
+                itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
             }
+
+            Result = ObjectMapper.Map<CompanyJobContent, SaveCompanyJobContentDto>(itemCompanyJobContent);
+
             return Result;
         }
+
         /// <summary>
         /// 檢查公司職缺方法
         /// </summary>

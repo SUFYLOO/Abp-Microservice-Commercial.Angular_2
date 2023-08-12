@@ -225,7 +225,7 @@ namespace Resume.App.Companys
                 if (itemUser != null)
                 {
                     var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
-                    if (itemsRole == null && itemsRole.Count == 0)
+                    if (itemsRole == null && itemsRole?.Count == 0)
                         ex.Data.Add(GuidGenerator.Create().ToString(), "目前沒有對應的角色");
 
                     if (!itemUser.IsActive)

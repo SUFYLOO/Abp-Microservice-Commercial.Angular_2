@@ -7,6 +7,7 @@ using Resume.CompanyUsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Volo.Abp.Domain.Entities;
 
 namespace Resume.App.Companys
 {
@@ -132,19 +133,10 @@ namespace Resume.App.Companys
         public string WelfareSystem { get; set; }
     }
 
-    public class SaveCompanyJobContentInput : CompanyJobContentDto
+    public class SaveCompanyJobContentInput : CompanyJobContentCreateDto
     {
-        public Guid? Id { get; set; }
-        //[Required]
-        //public string Name { get; set; }
-        //[Required]
-        //public string JobTypeCode { get; set; }
-        //[Required]
-        //public string WorkPlace { get; set; }
-        //[Required]
-        //public string WorkHours { get; set; }
-        //[Required]
-        //public string SalaryPayTypeCode { get; set; }
+        public Guid Id { get; set; }
+        public string ConcurrencyStamp { get; set; }
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
