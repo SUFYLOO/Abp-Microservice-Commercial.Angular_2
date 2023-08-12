@@ -19,19 +19,16 @@ namespace Resume.ResumeSnapshots
         }
 
         public async Task<ResumeSnapshot> CreateAsync(
-        Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, string note = null)
+        Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(snapshot, nameof(snapshot));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);
 
             var resumeSnapshot = new ResumeSnapshot(
              GuidGenerator.Create(),
-             userMainId, resumeMainId, companyMainId, snapshot, dateA, dateD, sort, status, companyJobId, userCompanyBindId, extendedInformation, note
+             userMainId, resumeMainId, companyMainId, snapshot, companyJobId, userCompanyBindId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeSnapshotRepository.InsertAsync(resumeSnapshot);
@@ -39,16 +36,13 @@ namespace Resume.ResumeSnapshots
 
         public async Task<ResumeSnapshot> UpdateAsync(
             Guid id,
-            Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, string note = null
+            Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(snapshot, nameof(snapshot));
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);
 
             var resumeSnapshot = await _resumeSnapshotRepository.GetAsync(id);
 
@@ -56,14 +50,14 @@ namespace Resume.ResumeSnapshots
             resumeSnapshot.ResumeMainId = resumeMainId;
             resumeSnapshot.CompanyMainId = companyMainId;
             resumeSnapshot.Snapshot = snapshot;
-            resumeSnapshot.DateA = dateA;
-            resumeSnapshot.DateD = dateD;
-            resumeSnapshot.Sort = sort;
-            resumeSnapshot.Status = status;
             resumeSnapshot.CompanyJobId = companyJobId;
             resumeSnapshot.UserCompanyBindId = userCompanyBindId;
             resumeSnapshot.ExtendedInformation = extendedInformation;
+            resumeSnapshot.DateA = dateA;
+            resumeSnapshot.DateD = dateD;
+            resumeSnapshot.Sort = sort;
             resumeSnapshot.Note = note;
+            resumeSnapshot.Status = status;
 
             return await _resumeSnapshotRepository.UpdateAsync(resumeSnapshot);
         }

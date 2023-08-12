@@ -12,13 +12,12 @@ namespace Resume.CompanyPointss
         public int Points { get; set; }
         [StringLength(CompanyPointsConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(CompanyPointsConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyPointsConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

@@ -25,24 +25,24 @@ namespace Resume.TradeOrders
             {
                 // Act
                 var result = await _tradeOrderRepository.GetListAsync(
-                    keyId: Guid.Parse("edb0be41-c9b5-474f-98ca-3cc2dd466462"),
-                    orderNumber: "1a467b57ecb548e692c5da39f023bc8ff76e22f9820d433e90",
-                    deliveryMethodCode: "576d79c898e54ef4a43c189acb71255b800d3759b77d4c5a92",
-                    deliveryZipCode: "5c5bf6efd4f84c86b5c274010b150a9659a7d5f737b94ab4af",
-                    deliveryCityCode: "c60236130696427fbdaf62fa688287ba7460c159373140cba3",
-                    deliveryAreaCode: "143437da6e554b21809ac78cb3e6007b4f9b74c571fd4797be",
-                    deliveryAddress: "f293273ba3dd43adb7d553d933c5c885b2e20728fcc142e39e",
-                    userName: "df35e88e77434b39a9d0ac66ccef6b8bf33a9466e86245c7b4",
-                    orderStateCode: "0e385a12483e4e1a928e965ecd0eb8d829d46fbf866c451bac",
-                    extendedInformation: "925ad4c49c48411686013d84015a9532b88979b2a4d84bf9a15002adc483a353c2d6fd2e14bc4d269dd53eefd2d40f4480c6339597994a86b23020e2dc4d38ae8c28f170df544efaa772ddcf593cccbed614dff65fd040fd98b618e7cf1c63a36d9078ec722642b1a8cbb9992aeeb2525544599ef6d84fd6a8fe63f58ae73b6a9a404ab7fdf143bfa0553b492c25847d34c96fdf5de74987a733d18bc9a29ba861af08f252ae4cd3ae17753cab4f36abd5a44b46d0a94f76a36275622865d03efdbe2bbf13774e989c272c3354c13d1c0515fa096ba84feaac20c40c6dfd08d68fff822ce44848c18013140cf9623ccbb6d64221c98349218957",
-                    note: "a545ec6d600444ee9311d6b683760f07f964dd973776467d90eebd1aa2db7398e26f185406fa448e92321214d4d9f3a1173c3057046e4752aa07bd649de1a8548265fe00da6d462cb6f5ef1600903d611b54b3662b7e4d5a9eaba0709c8aa4f0e50e6cfb5dfa4e3080a02322f89cad0d182dae07694a4f189792ee1cefabc34b9e949ed8ef664c0992ca597e2f03e586f86c2a52640b4d83955d4bc4a513d6832474b403ff224c67baf951fcd1b4ccd055ef2934f8ad4348b1fd9054cffb93eeaf585d31020a448b8082cbabcd5df5ebf5e00be7fe6b46f58c69658c7719a382f5c91fe678844d2b9c4f7b5b484288475f3d92dc14e744578e3b",
-                    status: "b01cc954ff37414cba3ee6a025e1d6a960be94a9625d4a11af"
+                    keyId: Guid.Parse("1043387e-fc92-46ac-ad21-6ddfc1cc7a4a"),
+                    orderNumber: "bda33824f7f74dc980269d88f87fe621bfbc8ffe2d374bf7b0",
+                    deliveryMethodCode: "4f18cf0f8cfa48fbaf4979130e1764c77049eee4a2ca43218a",
+                    deliveryZipCode: "9023c85c73564400833e5b58ccda53fabea34bd635c049ab97",
+                    deliveryCityCode: "b04bd016e9c04fa2b50fc7e2dc44dc29c1c449df53ca4110b6",
+                    deliveryAreaCode: "291b91723fd14b148a0b6d8bd66f45a2375d39d809f143958b",
+                    deliveryAddress: "057fb72a1fc04cc3b086f6fa3765b8d6639544ded5994ad5a5",
+                    userName: "7615df1461f449729e8853085905af2ca6d4285844614a36b9",
+                    orderStateCode: "246a8ceb13fa4c539e459514c73911f7689dfdf410a74ce28b",
+                    extendedInformation: "4b581a517cd5433aa54fd1ff4a8dc520c912dc305a6841bca938c08cbf29d6cec183f2ce7f9b41d4b9b44443e0630fe0f9ef75f284cb455fb4dfdd3b2121fa9f386985bb8cf8457b944fc5638940155d99259f5edffd4f268cc9483728d9464cf8155bdb30f24d3184ac37ded7eb8635b771a37f2c4842908ada4271aa02651d8d6242fdfd3948b0b55b3eb50b542f5dbb0432af479b4a3d81ce98d5e1e5db8a7d24a09426db4d3ab743f0d049c2cdd3f5df2afb3a2340a1a6241039a1fdb201ab69888587b94aee9d18fe6d62a8c79599e0e996ad7641099902b6e94d0af0fe4f00bfd8f8c64c65919c1073056398dc559a8769733845f2b84b",
+                    note: "a0900f3bcee14d3d8f2aa6c9095613a0c986ec2920c244a18168d1e92058bd397af40127713b49bfa4331e3252dad19c84ad04290042475aaf5bbfa7a008e96da72d7aac0702441ba9c82e9f51ee837d6407d39220b74d5399912b0664a7c0ad8af5487c207f43bf8db16f028b64efbe52570a68bc1f49d3898587ad9fe98087e0fc25e1b9794562b661cb3d43d7fc4e7be21eb542e045a19c44a72778268258ba32834648e84357bfd318ae0eaa23628129bf2bef6643ce9ffb19b720b354ccfaaefe2cbbee4a0882df1671b08e807d5f3143994cba450abd89ce11798a696e79cc8f09008347caa259cda0eb1e4973c599f085ab18437db9ce",
+                    status: "909112bdcf5249949abd5eb1d1644ea9e9446412005c4623ae"
                 );
 
                 // Assert
                 result.Count.ShouldBe(1);
                 result.FirstOrDefault().ShouldNotBe(null);
-                result.First().Id.ShouldBe(Guid.Parse("e14c0c92-e195-4706-bed1-22cf7229428b"));
+                result.First().Id.ShouldBe(Guid.Parse("40f7ff75-5653-4e38-b446-48b35f6a67eb"));
             });
         }
 
@@ -54,18 +54,18 @@ namespace Resume.TradeOrders
             {
                 // Act
                 var result = await _tradeOrderRepository.GetCountAsync(
-                    keyId: Guid.Parse("60d0a972-586f-4945-9662-bab5f9a593ee"),
-                    orderNumber: "d2d1d026af0f427fb8e3d8b8593db29582cc721f24814b04a0",
-                    deliveryMethodCode: "f15aa7fedc3542bfb8b230683dcf9d3fe8ded4d7835f488a9c",
-                    deliveryZipCode: "bfe33734d6ba4d40bee4091a8a574431fe937e04639a468a99",
-                    deliveryCityCode: "0b4837f94eb44319a94c3f246f4b2338edc1202ff5d049bd8e",
-                    deliveryAreaCode: "ff6364b2d119407ba5cf85cff8ba3cca38fa25dad99e4465bb",
-                    deliveryAddress: "6521f1d34a964a398eb896b0834716b748be5410a24949568e",
-                    userName: "08dfceab278d421f9ad843ca369c5eb98b91c48c47cf463191",
-                    orderStateCode: "53043cc196d943879bc2b04d809a9547b5239f9139bd40518d",
-                    extendedInformation: "7d4577b72aa24b78a82f1ed08b0caa6267e0dcf4a93f44e4a8f0aefe9fdeaadfcfb94b3463c34dd8863d939b4219da1e41e3ecee193f448db3b1181de722f15116c7c37723dc43dea996743ab559bb9e93321baf7ad345c3a8b809c35743b6f26cae839eec5d428dacf190a8a3473df85c4f0a497dca47458219396eb36501b3dc5c92d4ac414e6dad3d3a3083796b6fbf15f9c6837147dc83474818ef30937606a5d1e941b2402d8adf14842fcc5b037cc1dc5b514441bcac7d78895b9e464dab958e00685740a4ba22fe019b4801fa38f98c814ce54ae28deec150389479a878576a43b376410bbe8083df612262e29c67e00e5caf4c5881bb",
-                    note: "c325366e613c4ef8b1a5b799747b4f14e769a80ba7f1438c9a3751a9ba73e749fd0e576bd2d94c6981820b119f312d980ff0df0267c14f5086c206b4db69d534c3272734cbda4afa9da77a0d75654fdb749a8de4e5f34dd5977c05bbf5c9851af206f69b595a4749b941338971f2e3d9cca74ab10edc40a6b6c19420c54caeee241e12cff798431b85e23c1b9f39569e049e6e3337974b3aa608dabbc80036c28f9d5bc72061406598b944e65a0432f5cdfbc73263ce485a873676d7876ab77793fc061cf604410485760632fcebc0edb08c6d90f28e48d994e562603b4a5d9918dd3a170bb242caac6c938b9b5d466391a3c707e4bf498cb611",
-                    status: "1f2a3306e57a4fdc958de89bd99b5a42995041c2a86b4b0bb9"
+                    keyId: Guid.Parse("88c14f0f-4d04-473f-b226-222429e4c597"),
+                    orderNumber: "d3951e092fe9442abce583f7a3a99a164f9961e4ff1540c5b4",
+                    deliveryMethodCode: "05c2606bdef24b8c8cea3947dd014ce11c3b7fc03276478692",
+                    deliveryZipCode: "e8f6015c87ff4623b85b4b0fcc53793d07c06caba5fa4fafa9",
+                    deliveryCityCode: "b00255c78f6e48ba8a8d3207fabfbc7a413be5873a704d248b",
+                    deliveryAreaCode: "1dda1812459148acb25742c2f5ee39026bcee6cec4c345a988",
+                    deliveryAddress: "24dd46d9e43941dbb8ebd44d5885d41e86a31a21ee5c43fa95",
+                    userName: "ca2b2fd3313e4cf9b26bf01c759e41d717948a2bdea442c197",
+                    orderStateCode: "fce4999b332d4d27b7d72876b8d91440bd30963c6af14acabe",
+                    extendedInformation: "7efce15c490f4dabaa8c667a3bd86d44f2518f36060043668e0cdf8ee39b20b73e6c18c78dc54acba2548e39f8fd75a138abf6653a26437885e7d5f3480f1629c4a8887186924efc885853eb5a3cd353ea3cc219d05c47baae5742d47ab20aaf254cc940292040589f494689d631a5a2a4bcd5d20e03448f87eb890cf906921c46f1e9a2e247447f8dd155d0bad35914a59bad0eed4d47b1a8fb1d400ba028b8b6bbc01e8050439399d98d190ddfc89ad5bd85c38bf24a59ae7af7cd1653bdc827f6b64c2ffa41bba7f65c8e834e7313259c673d52f54047920270fe4ddb2a0f3ef1f1207af74fd7972986f46123be2b9ca2bd94c824481daa87",
+                    note: "10fc9aba00484618be0bdfbc5a30a75cb921f6ada6734e7ea08b085c7d7ac987ed46a3fdff0348db814474884bf4316b2ec6fe53336a4c019b7ff4a90b93d867fc60397bfe5944489f7f45a66565ef4658aa4ca269a348088baf28f11a04d2d8d7e113c6b2af428a9f1ee7cc75b992036f4027ebf611428c9bbcf4925e752b88dc2e7cddf69f46a4bbd3c7c8eda286d4b89b1f98af6747cab3572dfd3527ccd632e0c6a272984938a53426084b0d9b0ab2870afb197047f2a50da9d5c6400272b3148e9f884c4fff96174d3f9150edd73cf66e411e9a42a488972ed0c4ee750fe077fd751496454ba7e3608e0dda89a98736dd443fd044fcaf7e",
+                    status: "e1441c371cdb4b6f8f024b90e535d4880d03dc1086d946f2a5"
                 );
 
                 // Assert

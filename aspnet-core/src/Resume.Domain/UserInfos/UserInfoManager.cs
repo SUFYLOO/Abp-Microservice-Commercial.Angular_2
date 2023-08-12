@@ -20,7 +20,7 @@ namespace Resume.UserInfos
         }
 
         public async Task<UserInfo> CreateAsync(
-        Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? birthDate = null)
+        Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, DateTime? birthDate = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(nameC, nameof(nameC));
             Check.Length(nameC, nameof(nameC), UserInfoConsts.NameCMaxLength);
@@ -33,15 +33,12 @@ namespace Resume.UserInfos
             Check.Length(nationalityCode, nameof(nationalityCode), UserInfoConsts.NationalityCodeMaxLength);
             Check.Length(residenceNo, nameof(residenceNo), UserInfoConsts.ResidenceNoMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserInfoConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserInfoConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserInfoConsts.StatusMaxLength);
 
             var userInfo = new UserInfo(
              GuidGenerator.Create(),
-             userMainId, nameC, nameE, identityNo, sexCode, bloodCode, placeOfBirthCode, passportNo, nationalityCode, residenceNo, extendedInformation, dateA, dateD, sort, note, status, birthDate
+             userMainId, nameC, nameE, identityNo, sexCode, bloodCode, placeOfBirthCode, passportNo, nationalityCode, residenceNo, birthDate, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _userInfoRepository.InsertAsync(userInfo);
@@ -49,7 +46,7 @@ namespace Resume.UserInfos
 
         public async Task<UserInfo> UpdateAsync(
             Guid id,
-            Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? birthDate = null, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, DateTime? birthDate = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(nameC, nameof(nameC));
@@ -63,10 +60,7 @@ namespace Resume.UserInfos
             Check.Length(nationalityCode, nameof(nationalityCode), UserInfoConsts.NationalityCodeMaxLength);
             Check.Length(residenceNo, nameof(residenceNo), UserInfoConsts.ResidenceNoMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserInfoConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserInfoConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserInfoConsts.StatusMaxLength);
 
             var userInfo = await _userInfoRepository.GetAsync(id);
@@ -81,13 +75,13 @@ namespace Resume.UserInfos
             userInfo.PassportNo = passportNo;
             userInfo.NationalityCode = nationalityCode;
             userInfo.ResidenceNo = residenceNo;
+            userInfo.BirthDate = birthDate;
             userInfo.ExtendedInformation = extendedInformation;
             userInfo.DateA = dateA;
             userInfo.DateD = dateD;
             userInfo.Sort = sort;
             userInfo.Note = note;
             userInfo.Status = status;
-            userInfo.BirthDate = birthDate;
 
             userInfo.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _userInfoRepository.UpdateAsync(userInfo);

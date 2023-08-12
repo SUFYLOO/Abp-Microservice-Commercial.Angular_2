@@ -29,13 +29,12 @@ namespace Resume.UserInfos
         public string? ResidenceNo { get; set; }
         [StringLength(UserInfoConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(UserInfoConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(UserInfoConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

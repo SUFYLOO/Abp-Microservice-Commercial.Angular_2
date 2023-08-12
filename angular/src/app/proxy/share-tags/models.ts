@@ -27,11 +27,11 @@ export interface ShareTagCreateDto {
   name: string;
   tagCategoryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareTagDto extends FullAuditedEntityDto<string> {
@@ -42,11 +42,11 @@ export interface ShareTagDto extends FullAuditedEntityDto<string> {
   name: string;
   tagCategoryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareTagExcelDownloadDto {
@@ -63,9 +63,9 @@ export interface ShareTagUpdateDto {
   name: string;
   tagCategoryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

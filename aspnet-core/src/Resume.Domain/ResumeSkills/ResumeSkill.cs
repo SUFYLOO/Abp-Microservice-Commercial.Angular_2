@@ -45,24 +45,24 @@ namespace Resume.ResumeSkills
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeSkill()
         {
 
         }
 
-        public ResumeSkill(Guid id, Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ResumeSkill(Guid id, Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -74,10 +74,9 @@ namespace Resume.ResumeSkills
             Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), ResumeSkillConsts.ProfessionalLicenseEtcMaxLength, 0);
             Check.Length(workSkills, nameof(workSkills), ResumeSkillConsts.WorkSkillsMaxLength, 0);
             Check.Length(workSkillsEtc, nameof(workSkillsEtc), ResumeSkillConsts.WorkSkillsEtcMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSkillConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeSkillConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             ComputerSkills = computerSkills;
             ComputerSkillsEtc = computerSkillsEtc;
@@ -88,12 +87,12 @@ namespace Resume.ResumeSkills
             ProfessionalLicenseEtc = professionalLicenseEtc;
             WorkSkills = workSkills;
             WorkSkillsEtc = workSkillsEtc;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

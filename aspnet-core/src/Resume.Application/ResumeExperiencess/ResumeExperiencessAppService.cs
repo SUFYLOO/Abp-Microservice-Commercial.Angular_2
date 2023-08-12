@@ -63,7 +63,7 @@ namespace Resume.ResumeExperiencess
         {
 
             var resumeExperiences = await _resumeExperiencesManager.CreateAsync(
-            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeExperiences, ResumeExperiencesDto>(resumeExperiences);
@@ -75,7 +75,7 @@ namespace Resume.ResumeExperiencess
 
             var resumeExperiences = await _resumeExperiencesManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeExperiences, ResumeExperiencesDto>(resumeExperiences);

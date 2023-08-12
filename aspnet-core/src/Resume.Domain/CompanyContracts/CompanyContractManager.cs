@@ -20,15 +20,12 @@ namespace Resume.CompanyContracts
         }
 
         public async Task<CompanyContract> CreateAsync(
-        Guid companyMainId, string planCode, int pointsTotal, int pointsPay, int pointsGift, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid companyMainId, string planCode, int pointsTotal, int pointsPay, int pointsGift, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(planCode, nameof(planCode));
             Check.Length(planCode, nameof(planCode), CompanyContractConsts.PlanCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyContractConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyContractConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyContractConsts.StatusMaxLength);
 
             var companyContract = new CompanyContract(
@@ -41,16 +38,13 @@ namespace Resume.CompanyContracts
 
         public async Task<CompanyContract> UpdateAsync(
             Guid id,
-            Guid companyMainId, string planCode, int pointsTotal, int pointsPay, int pointsGift, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, string planCode, int pointsTotal, int pointsPay, int pointsGift, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(planCode, nameof(planCode));
             Check.Length(planCode, nameof(planCode), CompanyContractConsts.PlanCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyContractConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyContractConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyContractConsts.StatusMaxLength);
 
             var companyContract = await _companyContractRepository.GetAsync(id);

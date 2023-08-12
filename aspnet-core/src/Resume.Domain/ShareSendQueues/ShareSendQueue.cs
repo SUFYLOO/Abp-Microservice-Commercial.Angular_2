@@ -50,24 +50,24 @@ namespace Resume.ShareSendQueues
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareSendQueue()
         {
 
         }
 
-        public ShareSendQueue(Guid id, string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareSendQueue(Guid id, string key1, string key2, string key3, string sendTypeCode, string fromAddr, string toAddr, string titleContents, string contents, int retry, bool sucess, bool suspend, DateTime dateSend, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -84,10 +84,9 @@ namespace Resume.ShareSendQueues
             Check.Length(toAddr, nameof(toAddr), ShareSendQueueConsts.ToAddrMaxLength, 0);
             Check.Length(titleContents, nameof(titleContents), ShareSendQueueConsts.TitleContentsMaxLength, 0);
             Check.NotNull(contents, nameof(contents));
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareSendQueueConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareSendQueueConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareSendQueueConsts.StatusMaxLength, 0);
             Key1 = key1;
             Key2 = key2;
             Key3 = key3;
@@ -100,12 +99,12 @@ namespace Resume.ShareSendQueues
             Sucess = sucess;
             Suspend = suspend;
             DateSend = dateSend;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

@@ -63,7 +63,7 @@ namespace Resume.CompanyMains
         {
 
             var companyMain = await _companyMainManager.CreateAsync(
-            input.Name, input.AllowSearch, input.DateA, input.DateD, input.Sort, input.Status, input.IndustryCategory, input.CompanyUrl, input.CapitalAmount, input.HideCapitalAmount, input.CompanyScaleCode, input.HidePrincipal, input.CompanyProfile, input.BusinessPhilosophy, input.OperatingItems, input.WelfareSystem, input.Matching, input.ContractPass, input.Compilation, input.OfficePhone, input.FaxPhone, input.Address, input.Principal, input.ExtendedInformation, input.Note, input.CompanyUserId
+            input.Name, input.AllowSearch, input.IndustryCategory, input.CompanyUrl, input.CapitalAmount, input.HideCapitalAmount, input.CompanyScaleCode, input.HidePrincipal, input.CompanyProfile, input.BusinessPhilosophy, input.OperatingItems, input.WelfareSystem, input.Matching, input.ContractPass, input.Compilation, input.OfficePhone, input.FaxPhone, input.Address, input.Principal, input.ExtendedInformation, input.DateA, input.DateD, input.Note, input.Sort, input.Status, input.CompanyUserId
             );
 
             return ObjectMapper.Map<CompanyMain, CompanyMainDto>(companyMain);
@@ -75,7 +75,7 @@ namespace Resume.CompanyMains
 
             var companyMain = await _companyMainManager.UpdateAsync(
             id,
-            input.Name, input.AllowSearch, input.DateA, input.DateD, input.Sort, input.Status, input.IndustryCategory, input.CompanyUrl, input.CapitalAmount, input.HideCapitalAmount, input.CompanyScaleCode, input.HidePrincipal, input.CompanyProfile, input.BusinessPhilosophy, input.OperatingItems, input.WelfareSystem, input.Matching, input.ContractPass, input.Compilation, input.OfficePhone, input.FaxPhone, input.Address, input.Principal, input.ExtendedInformation, input.Note, input.CompanyUserId
+            input.Name, input.AllowSearch, input.IndustryCategory, input.CompanyUrl, input.CapitalAmount, input.HideCapitalAmount, input.CompanyScaleCode, input.HidePrincipal, input.CompanyProfile, input.BusinessPhilosophy, input.OperatingItems, input.WelfareSystem, input.Matching, input.ContractPass, input.Compilation, input.OfficePhone, input.FaxPhone, input.Address, input.Principal, input.ExtendedInformation, input.DateA, input.DateD, input.Note, input.Sort, input.Status, input.CompanyUserId
             );
 
             return ObjectMapper.Map<CompanyMain, CompanyMainDto>(companyMain);

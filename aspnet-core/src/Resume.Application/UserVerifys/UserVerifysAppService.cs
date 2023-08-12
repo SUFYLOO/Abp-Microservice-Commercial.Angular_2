@@ -63,7 +63,7 @@ namespace Resume.UserVerifys
         {
 
             var userVerify = await _userVerifyManager.CreateAsync(
-            input.VerifyId, input.VerifyCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.VerifyId, input.VerifyCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserVerify, UserVerifyDto>(userVerify);
@@ -75,7 +75,7 @@ namespace Resume.UserVerifys
 
             var userVerify = await _userVerifyManager.UpdateAsync(
             id,
-            input.VerifyId, input.VerifyCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.VerifyId, input.VerifyCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserVerify, UserVerifyDto>(userVerify);

@@ -52,24 +52,24 @@ namespace Resume.TradeOrders
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public TradeOrder()
         {
 
         }
 
-        public TradeOrder(Guid id, Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? dateNeed = null, DateTime? dateDelivery = null)
+        public TradeOrder(Guid id, Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, DateTime? dateNeed = null, DateTime? dateDelivery = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -85,7 +85,6 @@ namespace Resume.TradeOrders
             Check.Length(orderStateCode, nameof(orderStateCode), TradeOrderConsts.OrderStateCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), TradeOrderConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), TradeOrderConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), TradeOrderConsts.StatusMaxLength, 0);
             KeyId = keyId;
             OrderNumber = orderNumber;
@@ -98,14 +97,14 @@ namespace Resume.TradeOrders
             DeliveryFee = deliveryFee;
             UserName = userName;
             OrderStateCode = orderStateCode;
+            DateNeed = dateNeed;
+            DateDelivery = dateDelivery;
             ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
             Note = note;
             Status = status;
-            DateNeed = dateNeed;
-            DateDelivery = dateDelivery;
         }
 
     }

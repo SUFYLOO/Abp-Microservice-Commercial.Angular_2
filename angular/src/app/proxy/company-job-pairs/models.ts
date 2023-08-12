@@ -9,7 +9,7 @@ export interface CompanyJobPairCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyJobPairDto extends FullAuditedEntityDto<string> {
@@ -21,7 +21,7 @@ export interface CompanyJobPairDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -40,7 +40,7 @@ export interface CompanyJobPairUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

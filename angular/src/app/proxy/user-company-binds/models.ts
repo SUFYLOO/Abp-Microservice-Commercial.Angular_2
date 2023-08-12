@@ -23,11 +23,11 @@ export interface UserCompanyBindCreateDto {
   companyJobId?: string;
   companyInvitationsId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserCompanyBindDto extends FullAuditedEntityDto<string> {
@@ -36,11 +36,11 @@ export interface UserCompanyBindDto extends FullAuditedEntityDto<string> {
   companyJobId?: string;
   companyInvitationsId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserCompanyBindExcelDownloadDto {
@@ -55,9 +55,9 @@ export interface UserCompanyBindUpdateDto {
   companyJobId?: string;
   companyInvitationsId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

@@ -27,11 +27,11 @@ export interface ResumeSnapshotCreateDto {
   snapshot: string;
   userCompanyBindId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeSnapshotDto extends FullAuditedEntityDto<string> {
@@ -42,11 +42,11 @@ export interface ResumeSnapshotDto extends FullAuditedEntityDto<string> {
   snapshot: string;
   userCompanyBindId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeSnapshotExcelDownloadDto {
@@ -63,9 +63,9 @@ export interface ResumeSnapshotUpdateDto {
   snapshot: string;
   userCompanyBindId?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

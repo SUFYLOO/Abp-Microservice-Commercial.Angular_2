@@ -34,24 +34,24 @@ namespace Resume.CompanyJobs
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public CompanyJob()
         {
 
         }
 
-        public CompanyJob(Guid id, Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public CompanyJob(Guid id, Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -63,22 +63,21 @@ namespace Resume.CompanyJobs
             Check.Length(mailTplId, nameof(mailTplId), CompanyJobConsts.MailTplIdMaxLength, 0);
             Check.NotNull(sMSTplId, nameof(sMSTplId));
             Check.Length(sMSTplId, nameof(sMSTplId), CompanyJobConsts.SMSTplIdMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             Name = name;
             JobTypeCode = jobTypeCode;
             JobOpen = jobOpen;
             MailTplId = mailTplId;
             SMSTplId = sMSTplId;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

@@ -11,7 +11,7 @@ export interface CompanyInvitationsCodeCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyInvitationsCodeDto extends FullAuditedEntityDto<string> {
@@ -25,7 +25,7 @@ export interface CompanyInvitationsCodeDto extends FullAuditedEntityDto<string> 
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -46,7 +46,7 @@ export interface CompanyInvitationsCodeUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

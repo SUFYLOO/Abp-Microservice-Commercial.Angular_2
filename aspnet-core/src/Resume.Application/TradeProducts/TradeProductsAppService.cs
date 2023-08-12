@@ -63,7 +63,7 @@ namespace Resume.TradeProducts
         {
 
             var tradeProduct = await _tradeProductManager.CreateAsync(
-            input.Name, input.Contents, input.ProductCategoryCode, input.UnitPrice, input.UnitPricePromotions, input.UnitCode, input.QuantityStock, input.QuantityOrdered, input.QuantitySafetyStock, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.OrderStateCode, input.Status
+            input.Name, input.Contents, input.ProductCategoryCode, input.UnitPrice, input.UnitPricePromotions, input.UnitCode, input.QuantityStock, input.QuantityOrdered, input.QuantitySafetyStock, input.OrderStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Status
             );
 
             return ObjectMapper.Map<TradeProduct, TradeProductDto>(tradeProduct);
@@ -75,7 +75,7 @@ namespace Resume.TradeProducts
 
             var tradeProduct = await _tradeProductManager.UpdateAsync(
             id,
-            input.Name, input.Contents, input.ProductCategoryCode, input.UnitPrice, input.UnitPricePromotions, input.UnitCode, input.QuantityStock, input.QuantityOrdered, input.QuantitySafetyStock, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.OrderStateCode, input.Status, input.ConcurrencyStamp
+            input.Name, input.Contents, input.ProductCategoryCode, input.UnitPrice, input.UnitPricePromotions, input.UnitCode, input.QuantityStock, input.QuantityOrdered, input.QuantitySafetyStock, input.OrderStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Status, input.ConcurrencyStamp
             );
 
             return ObjectMapper.Map<TradeProduct, TradeProductDto>(tradeProduct);

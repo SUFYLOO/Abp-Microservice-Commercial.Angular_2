@@ -20,16 +20,13 @@ namespace Resume.UserCompanyJobPairs
         }
 
         public async Task<UserCompanyJobPair> CreateAsync(
-        Guid userMainId, string name, string pairCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid userMainId, string name, string pairCondition, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), UserCompanyJobPairConsts.NameMaxLength);
             Check.Length(pairCondition, nameof(pairCondition), UserCompanyJobPairConsts.PairConditionMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobPairConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserCompanyJobPairConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobPairConsts.StatusMaxLength);
 
             var userCompanyJobPair = new UserCompanyJobPair(
@@ -42,17 +39,14 @@ namespace Resume.UserCompanyJobPairs
 
         public async Task<UserCompanyJobPair> UpdateAsync(
             Guid id,
-            Guid userMainId, string name, string pairCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, string name, string pairCondition, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), UserCompanyJobPairConsts.NameMaxLength);
             Check.Length(pairCondition, nameof(pairCondition), UserCompanyJobPairConsts.PairConditionMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobPairConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserCompanyJobPairConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobPairConsts.StatusMaxLength);
 
             var userCompanyJobPair = await _userCompanyJobPairRepository.GetAsync(id);

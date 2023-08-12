@@ -42,24 +42,24 @@ namespace Resume.ShareMessageTpls
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareMessageTpl()
         {
 
         }
 
-        public ShareMessageTpl(Guid id, string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareMessageTpl(Guid id, string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -73,10 +73,9 @@ namespace Resume.ShareMessageTpls
             Check.NotNull(titleContents, nameof(titleContents));
             Check.Length(titleContents, nameof(titleContents), ShareMessageTplConsts.TitleContentsMaxLength, 0);
             Check.Length(contentSMS, nameof(contentSMS), ShareMessageTplConsts.ContentSMSMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareMessageTplConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareMessageTplConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength, 0);
             Key1 = key1;
             Key2 = key2;
             Key3 = key3;
@@ -85,12 +84,12 @@ namespace Resume.ShareMessageTpls
             TitleContents = titleContents;
             ContentMail = contentMail;
             ContentSMS = contentSMS;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

@@ -443,8 +443,8 @@ namespace Resume.App.Users
             }
 
             Result.Data.VerifyId = rUserVerify.VerifyId;
-            Result.Data.DateA = rUserVerify.DateA;
-            Result.Data.DateD = rUserVerify.DateD;
+            Result.Data.DateA = rUserVerify.DateA.Value;
+            Result.Data.DateD = rUserVerify.DateD.Value;
 
             Result.Check = Result.Messages.Count == 0;
 

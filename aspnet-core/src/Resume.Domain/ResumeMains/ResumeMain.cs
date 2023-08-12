@@ -43,24 +43,24 @@ namespace Resume.ResumeMains
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeMain()
         {
 
         }
 
-        public ResumeMain(Guid id, Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, DateTime dateA, DateTime dateD, int sort, string status, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, string note = null)
+        public ResumeMain(Guid id, Guid userMainId, string resumeName, string marriageCode, string militaryCode, string disabilityCategoryCode, string specialIdentityCode, bool main, string autobiography1 = null, string autobiography2 = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -70,10 +70,9 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength, 0);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength, 0);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             ResumeName = resumeName;
             MarriageCode = marriageCode;
@@ -81,14 +80,14 @@ namespace Resume.ResumeMains
             DisabilityCategoryCode = disabilityCategoryCode;
             SpecialIdentityCode = specialIdentityCode;
             Main = main;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             Autobiography1 = autobiography1;
             Autobiography2 = autobiography2;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

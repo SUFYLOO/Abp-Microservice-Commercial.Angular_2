@@ -23,7 +23,7 @@ export interface UserCompanyJobFavCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserCompanyJobFavDto extends FullAuditedEntityDto<string> {
@@ -34,7 +34,7 @@ export interface UserCompanyJobFavDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -52,6 +52,6 @@ export interface UserCompanyJobFavUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

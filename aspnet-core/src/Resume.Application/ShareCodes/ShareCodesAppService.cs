@@ -63,7 +63,7 @@ namespace Resume.ShareCodes
         {
 
             var shareCode = await _shareCodeManager.CreateAsync(
-            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.Column1, input.Column2, input.Column3, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.Column1, input.Column2, input.Column3, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareCode, ShareCodeDto>(shareCode);
@@ -75,7 +75,7 @@ namespace Resume.ShareCodes
 
             var shareCode = await _shareCodeManager.UpdateAsync(
             id,
-            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.Column1, input.Column2, input.Column3, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.GroupCode, input.Key1, input.Key2, input.Key3, input.Name, input.Column1, input.Column2, input.Column3, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareCode, ShareCodeDto>(shareCode);

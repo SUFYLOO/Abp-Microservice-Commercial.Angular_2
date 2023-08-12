@@ -19,7 +19,7 @@ namespace Resume.SystemUserNotifys
         }
 
         public async Task<SystemUserNotify> CreateAsync(
-        Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(keyId, nameof(keyId), SystemUserNotifyConsts.KeyIdMaxLength);
             Check.Length(keyName, nameof(keyName), SystemUserNotifyConsts.KeyNameMaxLength);
@@ -33,16 +33,13 @@ namespace Resume.SystemUserNotifys
             Check.Length(titleContents, nameof(titleContents), SystemUserNotifyConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.Length(contents, nameof(contents), SystemUserNotifyConsts.ContentsMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemUserNotifyConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemUserNotifyConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength);
 
             var systemUserNotify = new SystemUserNotify(
              GuidGenerator.Create(),
-             userMainId, keyId, keyName, notifyTypeCode, appName, appCode, titleContents, contents, isRead, dateA, dateD, sort, status, extendedInformation, note
+             userMainId, keyId, keyName, notifyTypeCode, appName, appCode, titleContents, contents, isRead, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _systemUserNotifyRepository.InsertAsync(systemUserNotify);
@@ -50,7 +47,7 @@ namespace Resume.SystemUserNotifys
 
         public async Task<SystemUserNotify> UpdateAsync(
             Guid id,
-            Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid userMainId, string keyId, string keyName, string notifyTypeCode, string appName, string appCode, string titleContents, string contents, bool isRead, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(keyId, nameof(keyId), SystemUserNotifyConsts.KeyIdMaxLength);
@@ -65,12 +62,9 @@ namespace Resume.SystemUserNotifys
             Check.Length(titleContents, nameof(titleContents), SystemUserNotifyConsts.TitleContentsMaxLength);
             Check.NotNullOrWhiteSpace(contents, nameof(contents));
             Check.Length(contents, nameof(contents), SystemUserNotifyConsts.ContentsMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), SystemUserNotifyConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), SystemUserNotifyConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), SystemUserNotifyConsts.StatusMaxLength);
 
             var systemUserNotify = await _systemUserNotifyRepository.GetAsync(id);
 
@@ -83,12 +77,12 @@ namespace Resume.SystemUserNotifys
             systemUserNotify.TitleContents = titleContents;
             systemUserNotify.Contents = contents;
             systemUserNotify.IsRead = isRead;
+            systemUserNotify.ExtendedInformation = extendedInformation;
             systemUserNotify.DateA = dateA;
             systemUserNotify.DateD = dateD;
             systemUserNotify.Sort = sort;
-            systemUserNotify.Status = status;
-            systemUserNotify.ExtendedInformation = extendedInformation;
             systemUserNotify.Note = note;
+            systemUserNotify.Status = status;
 
             return await _systemUserNotifyRepository.UpdateAsync(systemUserNotify);
         }

@@ -13,11 +13,11 @@ namespace Resume.CompanyMains
         public string? Principal { get; set; }
         public bool AllowSearch { get; set; }
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
         public string? Note { get; set; }
-        public int Sort { get; set; }
-        public string Status { get; set; }
+        public int? Sort { get; set; }
+        public string? Status { get; set; }
         public string IndustryCategory { get; set; }
         public string? CompanyUrl { get; set; }
         public int CapitalAmount { get; set; }

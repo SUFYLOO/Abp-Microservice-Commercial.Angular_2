@@ -421,7 +421,7 @@ namespace Resume.App.Shares
                          {
                              Text = c.Name,
                              Value = c.Key3,
-                             Sort = c.Sort,
+                             Sort = c.Sort.Value,
                          }).ToList();
 
 
@@ -458,7 +458,7 @@ namespace Resume.App.Shares
                              Name = c.Name,
                              Code = c.Key3,
                              Column1 = c.Column1,
-                             Sort = c.Sort,
+                             Sort = c.Sort.Value,
                          }).ToList();
 
 

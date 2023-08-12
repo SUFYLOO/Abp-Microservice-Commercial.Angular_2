@@ -6,11 +6,11 @@ export interface CompanyUserCreateDto {
   jobName?: string;
   officePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matchingReceive?: boolean;
 }
 
@@ -20,11 +20,11 @@ export interface CompanyUserDto extends FullAuditedEntityDto<string> {
   jobName?: string;
   officePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matchingReceive?: boolean;
 }
 
@@ -40,11 +40,11 @@ export interface CompanyUserUpdateDto {
   jobName?: string;
   officePhone?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   matchingReceive?: boolean;
 }
 

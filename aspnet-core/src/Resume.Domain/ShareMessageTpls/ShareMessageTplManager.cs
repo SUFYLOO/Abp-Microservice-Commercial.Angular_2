@@ -19,7 +19,7 @@ namespace Resume.ShareMessageTpls
         }
 
         public async Task<ShareMessageTpl> CreateAsync(
-        string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(key1, nameof(key1), ShareMessageTplConsts.Key1MaxLength);
             Check.Length(key2, nameof(key2), ShareMessageTplConsts.Key2MaxLength);
@@ -31,16 +31,13 @@ namespace Resume.ShareMessageTpls
             Check.NotNullOrWhiteSpace(titleContents, nameof(titleContents));
             Check.Length(titleContents, nameof(titleContents), ShareMessageTplConsts.TitleContentsMaxLength);
             Check.Length(contentSMS, nameof(contentSMS), ShareMessageTplConsts.ContentSMSMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareMessageTplConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareMessageTplConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength);
 
             var shareMessageTpl = new ShareMessageTpl(
              GuidGenerator.Create(),
-             key1, key2, key3, name, statement, titleContents, contentMail, contentSMS, dateA, dateD, sort, status, extendedInformation, note
+             key1, key2, key3, name, statement, titleContents, contentMail, contentSMS, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareMessageTplRepository.InsertAsync(shareMessageTpl);
@@ -48,7 +45,7 @@ namespace Resume.ShareMessageTpls
 
         public async Task<ShareMessageTpl> UpdateAsync(
             Guid id,
-            string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string key1, string key2, string key3, string name, string statement, string titleContents, string contentMail, string contentSMS, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(key1, nameof(key1), ShareMessageTplConsts.Key1MaxLength);
@@ -61,12 +58,9 @@ namespace Resume.ShareMessageTpls
             Check.NotNullOrWhiteSpace(titleContents, nameof(titleContents));
             Check.Length(titleContents, nameof(titleContents), ShareMessageTplConsts.TitleContentsMaxLength);
             Check.Length(contentSMS, nameof(contentSMS), ShareMessageTplConsts.ContentSMSMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareMessageTplConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareMessageTplConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareMessageTplConsts.StatusMaxLength);
 
             var shareMessageTpl = await _shareMessageTplRepository.GetAsync(id);
 
@@ -78,12 +72,12 @@ namespace Resume.ShareMessageTpls
             shareMessageTpl.TitleContents = titleContents;
             shareMessageTpl.ContentMail = contentMail;
             shareMessageTpl.ContentSMS = contentSMS;
+            shareMessageTpl.ExtendedInformation = extendedInformation;
             shareMessageTpl.DateA = dateA;
             shareMessageTpl.DateD = dateD;
             shareMessageTpl.Sort = sort;
-            shareMessageTpl.Status = status;
-            shareMessageTpl.ExtendedInformation = extendedInformation;
             shareMessageTpl.Note = note;
+            shareMessageTpl.Status = status;
 
             return await _shareMessageTplRepository.UpdateAsync(shareMessageTpl);
         }

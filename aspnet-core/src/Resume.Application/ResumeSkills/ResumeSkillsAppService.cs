@@ -63,7 +63,7 @@ namespace Resume.ResumeSkills
         {
 
             var resumeSkill = await _resumeSkillManager.CreateAsync(
-            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSkill, ResumeSkillDto>(resumeSkill);
@@ -75,7 +75,7 @@ namespace Resume.ResumeSkills
 
             var resumeSkill = await _resumeSkillManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSkill, ResumeSkillDto>(resumeSkill);

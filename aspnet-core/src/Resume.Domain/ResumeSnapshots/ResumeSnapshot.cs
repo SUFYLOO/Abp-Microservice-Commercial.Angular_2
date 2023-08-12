@@ -31,44 +31,43 @@ namespace Resume.ResumeSnapshots
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeSnapshot()
         {
 
         }
 
-        public ResumeSnapshot(Guid id, Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, string note = null)
+        public ResumeSnapshot(Guid id, Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
             Check.NotNull(snapshot, nameof(snapshot));
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             ResumeMainId = resumeMainId;
             CompanyMainId = companyMainId;
             Snapshot = snapshot;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             CompanyJobId = companyJobId;
             UserCompanyBindId = userCompanyBindId;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

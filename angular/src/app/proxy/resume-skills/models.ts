@@ -37,11 +37,11 @@ export interface ResumeSkillCreateDto {
   workSkills?: string;
   workSkillsEtc?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeSkillDto extends FullAuditedEntityDto<string> {
@@ -56,11 +56,11 @@ export interface ResumeSkillDto extends FullAuditedEntityDto<string> {
   workSkills?: string;
   workSkillsEtc?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeSkillExcelDownloadDto {
@@ -81,9 +81,9 @@ export interface ResumeSkillUpdateDto {
   workSkills?: string;
   workSkillsEtc?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

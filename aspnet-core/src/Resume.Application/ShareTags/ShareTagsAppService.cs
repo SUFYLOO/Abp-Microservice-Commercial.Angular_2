@@ -63,7 +63,7 @@ namespace Resume.ShareTags
         {
 
             var shareTag = await _shareTagManager.CreateAsync(
-            input.ColorCode, input.Key1, input.Key2, input.Key3, input.Name, input.TagCategoryCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ColorCode, input.Key1, input.Key2, input.Key3, input.Name, input.TagCategoryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareTag, ShareTagDto>(shareTag);
@@ -75,7 +75,7 @@ namespace Resume.ShareTags
 
             var shareTag = await _shareTagManager.UpdateAsync(
             id,
-            input.ColorCode, input.Key1, input.Key2, input.Key3, input.Name, input.TagCategoryCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ColorCode, input.Key1, input.Key2, input.Key3, input.Name, input.TagCategoryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareTag, ShareTagDto>(shareTag);

@@ -19,22 +19,22 @@ export interface UserVerifyCreateDto {
   verifyId: string;
   verifyCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserVerifyDto extends FullAuditedEntityDto<number> {
   verifyId: string;
   verifyCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserVerifyExcelDownloadDto {
@@ -47,9 +47,9 @@ export interface UserVerifyUpdateDto {
   verifyId: string;
   verifyCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

@@ -19,20 +19,17 @@ namespace Resume.ShareLanguages
         }
 
         public async Task<ShareLanguage> CreateAsync(
-        string name, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string name, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ShareLanguageConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareLanguageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareLanguageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareLanguageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareLanguageConsts.StatusMaxLength);
 
             var shareLanguage = new ShareLanguage(
              GuidGenerator.Create(),
-             name, dateA, dateD, sort, status, extendedInformation, note
+             name, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareLanguageRepository.InsertAsync(shareLanguage);
@@ -40,27 +37,24 @@ namespace Resume.ShareLanguages
 
         public async Task<ShareLanguage> UpdateAsync(
             Guid id,
-            string name, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string name, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ShareLanguageConsts.NameMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareLanguageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareLanguageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareLanguageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareLanguageConsts.StatusMaxLength);
 
             var shareLanguage = await _shareLanguageRepository.GetAsync(id);
 
             shareLanguage.Name = name;
+            shareLanguage.ExtendedInformation = extendedInformation;
             shareLanguage.DateA = dateA;
             shareLanguage.DateD = dateD;
             shareLanguage.Sort = sort;
-            shareLanguage.Status = status;
-            shareLanguage.ExtendedInformation = extendedInformation;
             shareLanguage.Note = note;
+            shareLanguage.Status = status;
 
             return await _shareLanguageRepository.UpdateAsync(shareLanguage);
         }

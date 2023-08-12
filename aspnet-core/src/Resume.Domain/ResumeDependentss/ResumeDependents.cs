@@ -37,24 +37,24 @@ namespace Resume.ResumeDependentss
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeDependents()
         {
 
         }
 
-        public ResumeDependents(Guid id, Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, DateTime dateA, DateTime dateD, int sort, string status, string address = null, string mobilePhone = null, string extendedInformation = null, string note = null)
+        public ResumeDependents(Guid id, Guid resumeMainId, string name, string identityNo, string kinshipCode, DateTime birthDate, string address = null, string mobilePhone = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -63,25 +63,24 @@ namespace Resume.ResumeDependentss
             Check.Length(identityNo, nameof(identityNo), ResumeDependentsConsts.IdentityNoMaxLength, 0);
             Check.NotNull(kinshipCode, nameof(kinshipCode));
             Check.Length(kinshipCode, nameof(kinshipCode), ResumeDependentsConsts.KinshipCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength, 0);
             Check.Length(address, nameof(address), ResumeDependentsConsts.AddressMaxLength, 0);
             Check.Length(mobilePhone, nameof(mobilePhone), ResumeDependentsConsts.MobilePhoneMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeDependentsConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeDependentsConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeDependentsConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             Name = name;
             IdentityNo = identityNo;
             KinshipCode = kinshipCode;
             BirthDate = birthDate;
-            DateA = dateA;
-            DateD = dateD;
-            Sort = sort;
-            Status = status;
             Address = address;
             MobilePhone = mobilePhone;
             ExtendedInformation = extendedInformation;
+            DateA = dateA;
+            DateD = dateD;
+            Sort = sort;
             Note = note;
+            Status = status;
         }
 
     }

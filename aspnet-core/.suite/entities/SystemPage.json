@@ -200,16 +200,16 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "e06f44d7-7a5c-4bf4-af77-a88d46c6244e",
+      "Id": "982a5265-c553-4d39-a60a-d91f9644a51f",
       "Name": "DateA",
       "Type": "DateTime",
       "EnumType": null,
       "EnumNamespace": null,
       "EnumAngularImport": null,
       "EnumFilePath": null,
-      "DefaultValue": null,
-      "IsNullable": false,
-      "IsRequired": true,
+      "DefaultValue": "1900/1/1",
+      "IsNullable": true,
+      "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": null,
@@ -223,19 +223,19 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 8
+      "OrdinalIndex": 0
     },
     {
-      "Id": "5fd848bd-e8fb-423f-8aef-ff0896dbe052",
+      "Id": "a2e50774-d75f-4298-a4dc-9face3ef0689",
       "Name": "DateD",
       "Type": "DateTime",
       "EnumType": null,
       "EnumNamespace": null,
       "EnumAngularImport": null,
       "EnumFilePath": null,
-      "DefaultValue": null,
-      "IsNullable": false,
-      "IsRequired": true,
+      "DefaultValue": "2099/12/31",
+      "IsNullable": true,
+      "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": null,
@@ -249,19 +249,19 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 9
+      "OrdinalIndex": 0
     },
     {
-      "Id": "bfa162d2-957c-4d1c-b996-f7f19c81a11a",
+      "Id": "135c604c-1fc4-46dc-8c1d-82290269a999",
       "Name": "Sort",
       "Type": "int",
       "EnumType": null,
       "EnumNamespace": null,
       "EnumAngularImport": null,
       "EnumFilePath": null,
-      "DefaultValue": null,
-      "IsNullable": false,
-      "IsRequired": true,
+      "DefaultValue": "9",
+      "IsNullable": true,
+      "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": null,
@@ -275,10 +275,10 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 10
+      "OrdinalIndex": 0
     },
     {
-      "Id": "2d269fea-7399-4ee3-b955-ef9f3d1314a7",
+      "Id": "c5807d7c-311f-4bef-bdc3-ff1034e24142",
       "Name": "Note",
       "Type": "string",
       "EnumType": null,
@@ -304,7 +304,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "799ea020-4fb3-4ad6-acbe-1d044ed91f8b",
+      "Id": "3e916f3c-827b-41d5-9723-ae2548ca9223",
       "Name": "Status",
       "Type": "string",
       "EnumType": null,
@@ -312,8 +312,8 @@
       "EnumAngularImport": null,
       "EnumFilePath": null,
       "DefaultValue": null,
-      "IsNullable": false,
-      "IsRequired": true,
+      "IsNullable": true,
+      "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,
@@ -327,7 +327,7 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 12
+      "OrdinalIndex": 0
     }
   ],
   "NavigationProperties": [],

@@ -49,11 +49,11 @@ export interface ResumeExperiencesCreateDto {
   companyScaleCode: string;
   companyManagementNumberCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeExperiencesDto extends FullAuditedEntityDto<string> {
@@ -74,11 +74,11 @@ export interface ResumeExperiencesDto extends FullAuditedEntityDto<string> {
   companyScaleCode: string;
   companyManagementNumberCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeExperiencesExcelDownloadDto {
@@ -105,9 +105,9 @@ export interface ResumeExperiencesUpdateDto {
   companyScaleCode: string;
   companyManagementNumberCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

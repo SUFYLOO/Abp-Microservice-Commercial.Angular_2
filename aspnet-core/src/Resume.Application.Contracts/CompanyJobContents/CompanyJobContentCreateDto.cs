@@ -52,13 +52,12 @@ namespace Resume.CompanyJobContents
         public string? DisabilityCategory { get; set; }
         [StringLength(CompanyJobContentConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; } = 9;
         [StringLength(CompanyJobContentConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(CompanyJobContentConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; } = "1";
     }
 }

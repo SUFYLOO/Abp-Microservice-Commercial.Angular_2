@@ -43,11 +43,11 @@ export interface SystemColumnCreateDto {
   allowSort: boolean;
   columnTypeCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemColumnDto extends FullAuditedEntityDto<string> {
@@ -66,11 +66,11 @@ export interface SystemColumnDto extends FullAuditedEntityDto<string> {
   allowSort: boolean;
   columnTypeCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemColumnExcelDownloadDto {
@@ -95,9 +95,9 @@ export interface SystemColumnUpdateDto {
   allowSort: boolean;
   columnTypeCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

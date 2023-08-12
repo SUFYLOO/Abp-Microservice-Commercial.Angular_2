@@ -19,7 +19,7 @@ namespace Resume.ResumeLanguages
         }
 
         public async Task<ResumeLanguage> CreateAsync(
-        Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(languageCategoryCode, nameof(languageCategoryCode));
             Check.Length(languageCategoryCode, nameof(languageCategoryCode), ResumeLanguageConsts.LanguageCategoryCodeMaxLength);
@@ -31,16 +31,13 @@ namespace Resume.ResumeLanguages
             Check.Length(levelReadCode, nameof(levelReadCode), ResumeLanguageConsts.LevelReadCodeMaxLength);
             Check.NotNullOrWhiteSpace(levelWriteCode, nameof(levelWriteCode));
             Check.Length(levelWriteCode, nameof(levelWriteCode), ResumeLanguageConsts.LevelWriteCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeLanguageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeLanguageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength);
 
             var resumeLanguage = new ResumeLanguage(
              GuidGenerator.Create(),
-             resumeMainId, languageCategoryCode, levelSayCode, levelListenCode, levelReadCode, levelWriteCode, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, languageCategoryCode, levelSayCode, levelListenCode, levelReadCode, levelWriteCode, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeLanguageRepository.InsertAsync(resumeLanguage);
@@ -48,7 +45,7 @@ namespace Resume.ResumeLanguages
 
         public async Task<ResumeLanguage> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string languageCategoryCode, string levelSayCode, string levelListenCode, string levelReadCode, string levelWriteCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(languageCategoryCode, nameof(languageCategoryCode));
@@ -61,12 +58,9 @@ namespace Resume.ResumeLanguages
             Check.Length(levelReadCode, nameof(levelReadCode), ResumeLanguageConsts.LevelReadCodeMaxLength);
             Check.NotNullOrWhiteSpace(levelWriteCode, nameof(levelWriteCode));
             Check.Length(levelWriteCode, nameof(levelWriteCode), ResumeLanguageConsts.LevelWriteCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeLanguageConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeLanguageConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeLanguageConsts.StatusMaxLength);
 
             var resumeLanguage = await _resumeLanguageRepository.GetAsync(id);
 
@@ -76,12 +70,12 @@ namespace Resume.ResumeLanguages
             resumeLanguage.LevelListenCode = levelListenCode;
             resumeLanguage.LevelReadCode = levelReadCode;
             resumeLanguage.LevelWriteCode = levelWriteCode;
+            resumeLanguage.ExtendedInformation = extendedInformation;
             resumeLanguage.DateA = dateA;
             resumeLanguage.DateD = dateD;
             resumeLanguage.Sort = sort;
-            resumeLanguage.Status = status;
-            resumeLanguage.ExtendedInformation = extendedInformation;
             resumeLanguage.Note = note;
+            resumeLanguage.Status = status;
 
             return await _resumeLanguageRepository.UpdateAsync(resumeLanguage);
         }

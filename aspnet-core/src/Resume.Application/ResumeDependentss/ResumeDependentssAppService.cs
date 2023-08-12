@@ -63,7 +63,7 @@ namespace Resume.ResumeDependentss
         {
 
             var resumeDependents = await _resumeDependentsManager.CreateAsync(
-            input.ResumeMainId, input.Name, input.IdentityNo, input.KinshipCode, input.BirthDate, input.DateA, input.DateD, input.Sort, input.Status, input.Address, input.MobilePhone, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.IdentityNo, input.KinshipCode, input.BirthDate, input.Address, input.MobilePhone, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeDependents, ResumeDependentsDto>(resumeDependents);
@@ -75,7 +75,7 @@ namespace Resume.ResumeDependentss
 
             var resumeDependents = await _resumeDependentsManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.Name, input.IdentityNo, input.KinshipCode, input.BirthDate, input.DateA, input.DateD, input.Sort, input.Status, input.Address, input.MobilePhone, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.Name, input.IdentityNo, input.KinshipCode, input.BirthDate, input.Address, input.MobilePhone, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeDependents, ResumeDependentsDto>(resumeDependents);

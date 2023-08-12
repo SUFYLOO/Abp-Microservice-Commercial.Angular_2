@@ -63,7 +63,7 @@ namespace Resume.UserInfos
         {
 
             var userInfo = await _userInfoManager.CreateAsync(
-            input.UserMainId, input.NameC, input.NameE, input.IdentityNo, input.SexCode, input.BloodCode, input.PlaceOfBirthCode, input.PassportNo, input.NationalityCode, input.ResidenceNo, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.BirthDate
+            input.UserMainId, input.NameC, input.NameE, input.IdentityNo, input.SexCode, input.BloodCode, input.PlaceOfBirthCode, input.PassportNo, input.NationalityCode, input.ResidenceNo, input.BirthDate, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserInfo, UserInfoDto>(userInfo);
@@ -75,7 +75,7 @@ namespace Resume.UserInfos
 
             var userInfo = await _userInfoManager.UpdateAsync(
             id,
-            input.UserMainId, input.NameC, input.NameE, input.IdentityNo, input.SexCode, input.BloodCode, input.PlaceOfBirthCode, input.PassportNo, input.NationalityCode, input.ResidenceNo, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.BirthDate, input.ConcurrencyStamp
+            input.UserMainId, input.NameC, input.NameE, input.IdentityNo, input.SexCode, input.BloodCode, input.PlaceOfBirthCode, input.PassportNo, input.NationalityCode, input.ResidenceNo, input.BirthDate, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
             );
 
             return ObjectMapper.Map<UserInfo, UserInfoDto>(userInfo);

@@ -31,11 +31,11 @@ export interface ShareMessageTplCreateDto {
   contentMail?: string;
   contentSMS?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareMessageTplDto extends FullAuditedEntityDto<string> {
@@ -48,11 +48,11 @@ export interface ShareMessageTplDto extends FullAuditedEntityDto<string> {
   contentMail?: string;
   contentSMS?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ShareMessageTplExcelDownloadDto {
@@ -71,9 +71,9 @@ export interface ShareMessageTplUpdateDto {
   contentMail?: string;
   contentSMS?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

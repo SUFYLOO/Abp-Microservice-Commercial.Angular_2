@@ -8,11 +8,11 @@ export interface CompanyJobCreateDto {
   mailTplId: string;
   smsTplId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyJobDto extends FullAuditedEntityDto<string> {
@@ -23,11 +23,11 @@ export interface CompanyJobDto extends FullAuditedEntityDto<string> {
   mailTplId: string;
   smsTplId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyJobExcelDownloadDto {
@@ -44,11 +44,11 @@ export interface CompanyJobUpdateDto {
   mailTplId: string;
   smsTplId: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface GetCompanyJobsInput extends PagedAndSortedResultRequestDto {

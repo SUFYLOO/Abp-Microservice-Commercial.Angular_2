@@ -18,7 +18,7 @@ export interface CompanyJobApplicationMethodCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyJobApplicationMethodDto extends FullAuditedEntityDto<string> {
@@ -39,7 +39,7 @@ export interface CompanyJobApplicationMethodDto extends FullAuditedEntityDto<str
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -67,7 +67,7 @@ export interface CompanyJobApplicationMethodUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

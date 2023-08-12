@@ -21,11 +21,11 @@ export interface ResumeWorksCreateDto {
   name: string;
   link?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeWorksDto extends FullAuditedEntityDto<string> {
@@ -33,11 +33,11 @@ export interface ResumeWorksDto extends FullAuditedEntityDto<string> {
   name: string;
   link?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeWorksExcelDownloadDto {
@@ -51,9 +51,9 @@ export interface ResumeWorksUpdateDto {
   name: string;
   link?: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

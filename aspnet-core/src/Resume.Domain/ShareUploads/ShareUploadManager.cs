@@ -19,7 +19,7 @@ namespace Resume.ShareUploads
         }
 
         public async Task<ShareUpload> CreateAsync(
-        string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(key1, nameof(key1), ShareUploadConsts.Key1MaxLength);
             Check.Length(key2, nameof(key2), ShareUploadConsts.Key2MaxLength);
@@ -30,16 +30,13 @@ namespace Resume.ShareUploads
             Check.Length(serverName, nameof(serverName), ShareUploadConsts.ServerNameMaxLength);
             Check.NotNullOrWhiteSpace(type, nameof(type));
             Check.Length(type, nameof(type), ShareUploadConsts.TypeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareUploadConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareUploadConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength);
 
             var shareUpload = new ShareUpload(
              GuidGenerator.Create(),
-             key1, key2, key3, uploadName, serverName, type, size, systemUse, dateA, dateD, sort, status, extendedInformation, note
+             key1, key2, key3, uploadName, serverName, type, size, systemUse, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareUploadRepository.InsertAsync(shareUpload);
@@ -47,7 +44,7 @@ namespace Resume.ShareUploads
 
         public async Task<ShareUpload> UpdateAsync(
             Guid id,
-            string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(key1, nameof(key1), ShareUploadConsts.Key1MaxLength);
@@ -59,12 +56,9 @@ namespace Resume.ShareUploads
             Check.Length(serverName, nameof(serverName), ShareUploadConsts.ServerNameMaxLength);
             Check.NotNullOrWhiteSpace(type, nameof(type));
             Check.Length(type, nameof(type), ShareUploadConsts.TypeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareUploadConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareUploadConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength);
 
             var shareUpload = await _shareUploadRepository.GetAsync(id);
 
@@ -76,12 +70,12 @@ namespace Resume.ShareUploads
             shareUpload.Type = type;
             shareUpload.Size = size;
             shareUpload.SystemUse = systemUse;
+            shareUpload.ExtendedInformation = extendedInformation;
             shareUpload.DateA = dateA;
             shareUpload.DateD = dateD;
             shareUpload.Sort = sort;
-            shareUpload.Status = status;
-            shareUpload.ExtendedInformation = extendedInformation;
             shareUpload.Note = note;
+            shareUpload.Status = status;
 
             return await _shareUploadRepository.UpdateAsync(shareUpload);
         }

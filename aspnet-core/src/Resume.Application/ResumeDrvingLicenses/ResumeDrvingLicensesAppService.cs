@@ -63,7 +63,7 @@ namespace Resume.ResumeDrvingLicenses
         {
 
             var resumeDrvingLicense = await _resumeDrvingLicenseManager.CreateAsync(
-            input.ResumeMainId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeDrvingLicense, ResumeDrvingLicenseDto>(resumeDrvingLicense);
@@ -75,7 +75,7 @@ namespace Resume.ResumeDrvingLicenses
 
             var resumeDrvingLicense = await _resumeDrvingLicenseManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeDrvingLicense, ResumeDrvingLicenseDto>(resumeDrvingLicense);

@@ -22,30 +22,29 @@ namespace Resume.UserCompanyJobApplies
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public UserCompanyJobApply()
         {
 
         }
 
-        public UserCompanyJobApply(Guid id, Guid userMainId, Guid companyJobId, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public UserCompanyJobApply(Guid id, Guid userMainId, Guid companyJobId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobApplyConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), UserCompanyJobApplyConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobApplyConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             CompanyJobId = companyJobId;

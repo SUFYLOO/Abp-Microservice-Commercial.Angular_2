@@ -33,11 +33,11 @@ export interface SystemUserNotifyCreateDto {
   contents: string;
   isRead: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemUserNotifyDto extends FullAuditedEntityDto<string> {
@@ -51,11 +51,11 @@ export interface SystemUserNotifyDto extends FullAuditedEntityDto<string> {
   contents: string;
   isRead: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemUserNotifyExcelDownloadDto {
@@ -75,9 +75,9 @@ export interface SystemUserNotifyUpdateDto {
   contents: string;
   isRead: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

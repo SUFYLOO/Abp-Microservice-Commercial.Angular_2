@@ -63,7 +63,7 @@ namespace Resume.SystemColumns
         {
 
             var systemColumn = await _systemColumnManager.CreateAsync(
-            input.SystemTableId, input.Name, input.IsKey, input.IsSensitive, input.NeedMask, input.DefaultValue, input.CheckCode, input.Related, input.AllowUpdate, input.AllowNull, input.AllowEmpty, input.AllowExport, input.AllowSort, input.ColumnTypeCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.SystemTableId, input.Name, input.IsKey, input.IsSensitive, input.NeedMask, input.DefaultValue, input.CheckCode, input.Related, input.AllowUpdate, input.AllowNull, input.AllowEmpty, input.AllowExport, input.AllowSort, input.ColumnTypeCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemColumn, SystemColumnDto>(systemColumn);
@@ -75,7 +75,7 @@ namespace Resume.SystemColumns
 
             var systemColumn = await _systemColumnManager.UpdateAsync(
             id,
-            input.SystemTableId, input.Name, input.IsKey, input.IsSensitive, input.NeedMask, input.DefaultValue, input.CheckCode, input.Related, input.AllowUpdate, input.AllowNull, input.AllowEmpty, input.AllowExport, input.AllowSort, input.ColumnTypeCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.SystemTableId, input.Name, input.IsKey, input.IsSensitive, input.NeedMask, input.DefaultValue, input.CheckCode, input.Related, input.AllowUpdate, input.AllowNull, input.AllowEmpty, input.AllowExport, input.AllowSort, input.ColumnTypeCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemColumn, SystemColumnDto>(systemColumn);

@@ -42,7 +42,7 @@ export interface UserInfoCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface UserInfoDto extends FullAuditedEntityDto<string> {
@@ -62,7 +62,7 @@ export interface UserInfoDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -89,6 +89,6 @@ export interface UserInfoUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }

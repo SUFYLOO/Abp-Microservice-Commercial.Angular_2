@@ -41,11 +41,11 @@ export interface ResumeEducationsCreateDto {
   domestic: boolean;
   countryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeEducationsDto extends FullAuditedEntityDto<string> {
@@ -63,11 +63,11 @@ export interface ResumeEducationsDto extends FullAuditedEntityDto<string> {
   domestic: boolean;
   countryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeEducationsExcelDownloadDto {
@@ -91,9 +91,9 @@ export interface ResumeEducationsUpdateDto {
   domestic: boolean;
   countryCode: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

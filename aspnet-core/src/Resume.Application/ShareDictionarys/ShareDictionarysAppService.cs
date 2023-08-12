@@ -63,7 +63,7 @@ namespace Resume.ShareDictionarys
         {
 
             var shareDictionary = await _shareDictionaryManager.CreateAsync(
-            input.ShareLanguageId, input.ShareTagId, input.Key1, input.Key2, input.Key3, input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ShareLanguageId, input.ShareTagId, input.Key1, input.Key2, input.Key3, input.Name, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareDictionary, ShareDictionaryDto>(shareDictionary);
@@ -75,7 +75,7 @@ namespace Resume.ShareDictionarys
 
             var shareDictionary = await _shareDictionaryManager.UpdateAsync(
             id,
-            input.ShareLanguageId, input.ShareTagId, input.Key1, input.Key2, input.Key3, input.Name, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ShareLanguageId, input.ShareTagId, input.Key1, input.Key2, input.Key3, input.Name, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareDictionary, ShareDictionaryDto>(shareDictionary);

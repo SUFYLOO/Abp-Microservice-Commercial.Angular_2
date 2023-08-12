@@ -63,7 +63,7 @@ namespace Resume.SystemPages
         {
 
             var systemPage = await _systemPageManager.CreateAsync(
-            input.TypeCode, input.SystemUserRoleKeys, input.ParentCode, input.DateA, input.DateD, input.Sort, input.Status, input.FilePath, input.FileName, input.FileTitle, input.ExtendedInformation, input.Note
+            input.TypeCode, input.SystemUserRoleKeys, input.ParentCode, input.FilePath, input.FileName, input.FileTitle, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemPage, SystemPageDto>(systemPage);
@@ -75,7 +75,7 @@ namespace Resume.SystemPages
 
             var systemPage = await _systemPageManager.UpdateAsync(
             id,
-            input.TypeCode, input.SystemUserRoleKeys, input.ParentCode, input.DateA, input.DateD, input.Sort, input.Status, input.FilePath, input.FileName, input.FileTitle, input.ExtendedInformation, input.Note
+            input.TypeCode, input.SystemUserRoleKeys, input.ParentCode, input.FilePath, input.FileName, input.FileTitle, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemPage, SystemPageDto>(systemPage);

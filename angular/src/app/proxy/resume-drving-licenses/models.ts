@@ -23,11 +23,11 @@ export interface ResumeDrvingLicenseCreateDto {
   haveDrvingLicense: boolean;
   haveCar: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeDrvingLicenseDto extends FullAuditedEntityDto<string> {
@@ -36,11 +36,11 @@ export interface ResumeDrvingLicenseDto extends FullAuditedEntityDto<string> {
   haveDrvingLicense: boolean;
   haveCar: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface ResumeDrvingLicenseExcelDownloadDto {
@@ -55,9 +55,9 @@ export interface ResumeDrvingLicenseUpdateDto {
   haveDrvingLicense: boolean;
   haveCar: boolean;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

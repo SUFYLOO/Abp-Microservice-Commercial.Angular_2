@@ -49,24 +49,24 @@ namespace Resume.UserInfos
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public UserInfo()
         {
 
         }
 
-        public UserInfo(Guid id, Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, DateTime? birthDate = null)
+        public UserInfo(Guid id, Guid userMainId, string nameC, string nameE, string identityNo, string sexCode, string bloodCode, string placeOfBirthCode, string passportNo, string nationalityCode, string residenceNo, DateTime? birthDate = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -82,7 +82,6 @@ namespace Resume.UserInfos
             Check.Length(residenceNo, nameof(residenceNo), UserInfoConsts.ResidenceNoMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), UserInfoConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), UserInfoConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), UserInfoConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             NameC = nameC;
@@ -94,13 +93,13 @@ namespace Resume.UserInfos
             PassportNo = passportNo;
             NationalityCode = nationalityCode;
             ResidenceNo = residenceNo;
+            BirthDate = birthDate;
             ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
             Note = note;
             Status = status;
-            BirthDate = birthDate;
         }
 
     }

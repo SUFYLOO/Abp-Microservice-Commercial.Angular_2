@@ -19,7 +19,7 @@ namespace Resume.ShareDefaults
         }
 
         public async Task<ShareDefault> CreateAsync(
-        string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(groupCode, nameof(groupCode));
             Check.Length(groupCode, nameof(groupCode), ShareDefaultConsts.GroupCodeMaxLength);
@@ -35,16 +35,13 @@ namespace Resume.ShareDefaults
             Check.Length(columnTypeCode, nameof(columnTypeCode), ShareDefaultConsts.ColumnTypeCodeMaxLength);
             Check.NotNullOrWhiteSpace(formTypeCode, nameof(formTypeCode));
             Check.Length(formTypeCode, nameof(formTypeCode), ShareDefaultConsts.FormTypeCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareDefaultConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareDefaultConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength);
 
             var shareDefault = new ShareDefault(
              GuidGenerator.Create(),
-             groupCode, key1, key2, key3, name, fieldKey, fieldValue, columnTypeCode, formTypeCode, systemUse, dateA, dateD, sort, status, extendedInformation, note
+             groupCode, key1, key2, key3, name, fieldKey, fieldValue, columnTypeCode, formTypeCode, systemUse, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _shareDefaultRepository.InsertAsync(shareDefault);
@@ -52,7 +49,7 @@ namespace Resume.ShareDefaults
 
         public async Task<ShareDefault> UpdateAsync(
             Guid id,
-            string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(groupCode, nameof(groupCode));
@@ -69,12 +66,9 @@ namespace Resume.ShareDefaults
             Check.Length(columnTypeCode, nameof(columnTypeCode), ShareDefaultConsts.ColumnTypeCodeMaxLength);
             Check.NotNullOrWhiteSpace(formTypeCode, nameof(formTypeCode));
             Check.Length(formTypeCode, nameof(formTypeCode), ShareDefaultConsts.FormTypeCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareDefaultConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ShareDefaultConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength);
 
             var shareDefault = await _shareDefaultRepository.GetAsync(id);
 
@@ -88,12 +82,12 @@ namespace Resume.ShareDefaults
             shareDefault.ColumnTypeCode = columnTypeCode;
             shareDefault.FormTypeCode = formTypeCode;
             shareDefault.SystemUse = systemUse;
+            shareDefault.ExtendedInformation = extendedInformation;
             shareDefault.DateA = dateA;
             shareDefault.DateD = dateD;
             shareDefault.Sort = sort;
-            shareDefault.Status = status;
-            shareDefault.ExtendedInformation = extendedInformation;
             shareDefault.Note = note;
+            shareDefault.Status = status;
 
             return await _shareDefaultRepository.UpdateAsync(shareDefault);
         }

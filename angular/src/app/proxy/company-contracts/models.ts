@@ -11,7 +11,7 @@ export interface CompanyContractCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyContractDto extends FullAuditedEntityDto<string> {
@@ -25,7 +25,7 @@ export interface CompanyContractDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -46,7 +46,7 @@ export interface CompanyContractUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

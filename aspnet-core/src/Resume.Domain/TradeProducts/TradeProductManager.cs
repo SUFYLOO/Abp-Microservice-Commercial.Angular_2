@@ -20,7 +20,7 @@ namespace Resume.TradeProducts
         }
 
         public async Task<TradeProduct> CreateAsync(
-        string name, string contents, string productCategoryCode, decimal unitPrice, decimal unitPricePromotions, string unitCode, int quantityStock, int quantityOrdered, int quantitySafetyStock, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string orderStateCode, string status)
+        string name, string contents, string productCategoryCode, decimal unitPrice, decimal unitPricePromotions, string unitCode, int quantityStock, int quantityOrdered, int quantitySafetyStock, string orderStateCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), TradeProductConsts.NameMaxLength);
@@ -29,16 +29,13 @@ namespace Resume.TradeProducts
             Check.Length(productCategoryCode, nameof(productCategoryCode), TradeProductConsts.ProductCategoryCodeMaxLength);
             Check.NotNullOrWhiteSpace(unitCode, nameof(unitCode));
             Check.Length(unitCode, nameof(unitCode), TradeProductConsts.UnitCodeMaxLength);
-            Check.Length(extendedInformation, nameof(extendedInformation), TradeProductConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(orderStateCode, nameof(orderStateCode), TradeProductConsts.OrderStateCodeMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
+            Check.Length(extendedInformation, nameof(extendedInformation), TradeProductConsts.ExtendedInformationMaxLength);
             Check.Length(status, nameof(status), TradeProductConsts.StatusMaxLength);
 
             var tradeProduct = new TradeProduct(
              GuidGenerator.Create(),
-             name, contents, productCategoryCode, unitPrice, unitPricePromotions, unitCode, quantityStock, quantityOrdered, quantitySafetyStock, extendedInformation, dateA, dateD, sort, orderStateCode, status
+             name, contents, productCategoryCode, unitPrice, unitPricePromotions, unitCode, quantityStock, quantityOrdered, quantitySafetyStock, orderStateCode, extendedInformation, dateA, dateD, sort, status
              );
 
             return await _tradeProductRepository.InsertAsync(tradeProduct);
@@ -46,7 +43,7 @@ namespace Resume.TradeProducts
 
         public async Task<TradeProduct> UpdateAsync(
             Guid id,
-            string name, string contents, string productCategoryCode, decimal unitPrice, decimal unitPricePromotions, string unitCode, int quantityStock, int quantityOrdered, int quantitySafetyStock, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string orderStateCode, string status, [CanBeNull] string concurrencyStamp = null
+            string name, string contents, string productCategoryCode, decimal unitPrice, decimal unitPricePromotions, string unitCode, int quantityStock, int quantityOrdered, int quantitySafetyStock, string orderStateCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -56,11 +53,8 @@ namespace Resume.TradeProducts
             Check.Length(productCategoryCode, nameof(productCategoryCode), TradeProductConsts.ProductCategoryCodeMaxLength);
             Check.NotNullOrWhiteSpace(unitCode, nameof(unitCode));
             Check.Length(unitCode, nameof(unitCode), TradeProductConsts.UnitCodeMaxLength);
-            Check.Length(extendedInformation, nameof(extendedInformation), TradeProductConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(orderStateCode, nameof(orderStateCode), TradeProductConsts.OrderStateCodeMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
+            Check.Length(extendedInformation, nameof(extendedInformation), TradeProductConsts.ExtendedInformationMaxLength);
             Check.Length(status, nameof(status), TradeProductConsts.StatusMaxLength);
 
             var tradeProduct = await _tradeProductRepository.GetAsync(id);
@@ -74,11 +68,11 @@ namespace Resume.TradeProducts
             tradeProduct.QuantityStock = quantityStock;
             tradeProduct.QuantityOrdered = quantityOrdered;
             tradeProduct.QuantitySafetyStock = quantitySafetyStock;
+            tradeProduct.OrderStateCode = orderStateCode;
             tradeProduct.ExtendedInformation = extendedInformation;
             tradeProduct.DateA = dateA;
             tradeProduct.DateD = dateD;
             tradeProduct.Sort = sort;
-            tradeProduct.OrderStateCode = orderStateCode;
             tradeProduct.Status = status;
 
             tradeProduct.SetConcurrencyStampIfNotNull(concurrencyStamp);

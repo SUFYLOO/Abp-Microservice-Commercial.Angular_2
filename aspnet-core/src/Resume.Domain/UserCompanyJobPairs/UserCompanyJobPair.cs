@@ -26,24 +26,24 @@ namespace Resume.UserCompanyJobPairs
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public UserCompanyJobPair()
         {
 
         }
 
-        public UserCompanyJobPair(Guid id, Guid userMainId, string name, string pairCondition, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        public UserCompanyJobPair(Guid id, Guid userMainId, string name, string pairCondition, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -52,7 +52,6 @@ namespace Resume.UserCompanyJobPairs
             Check.Length(pairCondition, nameof(pairCondition), UserCompanyJobPairConsts.PairConditionMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobPairConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), UserCompanyJobPairConsts.NoteMaxLength, 0);
-            Check.NotNull(status, nameof(status));
             Check.Length(status, nameof(status), UserCompanyJobPairConsts.StatusMaxLength, 0);
             UserMainId = userMainId;
             Name = name;

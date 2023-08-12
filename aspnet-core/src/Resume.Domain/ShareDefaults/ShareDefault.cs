@@ -47,24 +47,24 @@ namespace Resume.ShareDefaults
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareDefault()
         {
 
         }
 
-        public ShareDefault(Guid id, string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareDefault(Guid id, string groupCode, string key1, string key2, string key3, string name, string fieldKey, string fieldValue, string columnTypeCode, string formTypeCode, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -82,10 +82,9 @@ namespace Resume.ShareDefaults
             Check.Length(columnTypeCode, nameof(columnTypeCode), ShareDefaultConsts.ColumnTypeCodeMaxLength, 0);
             Check.NotNull(formTypeCode, nameof(formTypeCode));
             Check.Length(formTypeCode, nameof(formTypeCode), ShareDefaultConsts.FormTypeCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareDefaultConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareDefaultConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareDefaultConsts.StatusMaxLength, 0);
             GroupCode = groupCode;
             Key1 = key1;
             Key2 = key2;
@@ -96,12 +95,12 @@ namespace Resume.ShareDefaults
             ColumnTypeCode = columnTypeCode;
             FormTypeCode = formTypeCode;
             SystemUse = systemUse;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

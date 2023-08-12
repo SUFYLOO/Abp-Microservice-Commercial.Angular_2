@@ -19,7 +19,7 @@ namespace Resume.ResumeSkills
         }
 
         public async Task<ResumeSkill> CreateAsync(
-        Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(computerSkills, nameof(computerSkills), ResumeSkillConsts.ComputerSkillsMaxLength);
             Check.Length(computerSkillsEtc, nameof(computerSkillsEtc), ResumeSkillConsts.ComputerSkillsEtcMaxLength);
@@ -29,16 +29,13 @@ namespace Resume.ResumeSkills
             Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), ResumeSkillConsts.ProfessionalLicenseEtcMaxLength);
             Check.Length(workSkills, nameof(workSkills), ResumeSkillConsts.WorkSkillsMaxLength);
             Check.Length(workSkillsEtc, nameof(workSkillsEtc), ResumeSkillConsts.WorkSkillsEtcMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSkillConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSkillConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength);
 
             var resumeSkill = new ResumeSkill(
              GuidGenerator.Create(),
-             resumeMainId, computerSkills, computerSkillsEtc, chineseTypingSpeed, chineseTypingCode, englishTypingSpeed, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, computerSkills, computerSkillsEtc, chineseTypingSpeed, chineseTypingCode, englishTypingSpeed, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeSkillRepository.InsertAsync(resumeSkill);
@@ -46,7 +43,7 @@ namespace Resume.ResumeSkills
 
         public async Task<ResumeSkill> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(computerSkills, nameof(computerSkills), ResumeSkillConsts.ComputerSkillsMaxLength);
@@ -57,12 +54,9 @@ namespace Resume.ResumeSkills
             Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), ResumeSkillConsts.ProfessionalLicenseEtcMaxLength);
             Check.Length(workSkills, nameof(workSkills), ResumeSkillConsts.WorkSkillsMaxLength);
             Check.Length(workSkillsEtc, nameof(workSkillsEtc), ResumeSkillConsts.WorkSkillsEtcMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSkillConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSkillConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength);
 
             var resumeSkill = await _resumeSkillRepository.GetAsync(id);
 
@@ -76,12 +70,12 @@ namespace Resume.ResumeSkills
             resumeSkill.ProfessionalLicenseEtc = professionalLicenseEtc;
             resumeSkill.WorkSkills = workSkills;
             resumeSkill.WorkSkillsEtc = workSkillsEtc;
+            resumeSkill.ExtendedInformation = extendedInformation;
             resumeSkill.DateA = dateA;
             resumeSkill.DateD = dateD;
             resumeSkill.Sort = sort;
-            resumeSkill.Status = status;
-            resumeSkill.ExtendedInformation = extendedInformation;
             resumeSkill.Note = note;
+            resumeSkill.Status = status;
 
             return await _resumeSkillRepository.UpdateAsync(resumeSkill);
         }

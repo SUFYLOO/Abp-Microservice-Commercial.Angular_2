@@ -37,16 +37,12 @@ namespace Resume.ShareSendQueues
         public DateTime DateSend { get; set; }
         [StringLength(ShareSendQueueConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
-        [Required]
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(ShareSendQueueConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(ShareSendQueueConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

@@ -11,7 +11,7 @@ export interface CompanyJobPayCreateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface CompanyJobPayDto extends FullAuditedEntityDto<string> {
@@ -25,7 +25,7 @@ export interface CompanyJobPayDto extends FullAuditedEntityDto<string> {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 
@@ -46,7 +46,7 @@ export interface CompanyJobPayUpdateDto {
   dateD?: string;
   sort?: number;
   note?: string;
-  status: string;
+  status?: string;
   concurrencyStamp?: string;
 }
 

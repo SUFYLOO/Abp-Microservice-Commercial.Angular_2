@@ -86,11 +86,11 @@ export class SystemPageComponent implements OnInit {
       ],
       parentCode: [parentCode ?? null, [Validators.required, Validators.maxLength(50)]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
-      dateA: [dateA ? new Date(dateA) : null, [Validators.required]],
-      dateD: [dateD ? new Date(dateD) : null, [Validators.required]],
-      sort: [sort ?? null, [Validators.required]],
+      dateA: [dateA ?? '1900/1/1', []],
+      dateD: [dateD ?? '2099/12/31', []],
+      sort: [sort ?? '9', []],
       note: [note ?? null, [Validators.maxLength(500)]],
-      status: [status ?? null, [Validators.required, Validators.maxLength(50)]],
+      status: [status ?? null, [Validators.maxLength(50)]],
     });
   }
 

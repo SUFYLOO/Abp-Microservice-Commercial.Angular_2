@@ -25,24 +25,24 @@ namespace Resume.ResumeMains
             {
                 // Act
                 var result = await _resumeMainRepository.GetListAsync(
-                    userMainId: Guid.Parse("760a202f-4ed1-4a6c-898d-f0cedffa7f55"),
-                    resumeName: "b1d7ea4a1f2c4b92b5f8390299b54dd5618e5212c0254fce9a",
-                    marriageCode: "309082e2244a422784685bbd9b5a83ead929ccfd7ef54a8f84",
-                    militaryCode: "fe3acfda2c1b43af8d4c4578f17b5098a5da252bc78147a28a",
-                    disabilityCategoryCode: "9178d96f4e3b44168b3092b7cbdcb70eb4dced5ab2d04a23a8",
-                    specialIdentityCode: "10d877008cce44a899e5e6c0e3f662bdf4b56d83e8ac4064a9",
+                    userMainId: Guid.Parse("915d981a-b4ec-46b0-b8d1-7999f160ec63"),
+                    resumeName: "01b9690cb2464e579fe7b65e99137b370dc08c57863b4c7986",
+                    marriageCode: "6f9174f660ac4e8283f8d70e9a80ee529c2df71528134072a3",
+                    militaryCode: "c4f85fdc6897413fb2b2b8bcb4402d0f71a1ccba02274cdf95",
+                    disabilityCategoryCode: "4c760f652646466f99d0c487be17137124d91b0aa4304317b3",
+                    specialIdentityCode: "517ebcd8f0724222b63b74743f326c6f2bfa4a1ea26b4a55b2",
                     main: true,
-                    autobiography1: "11dad2abf56d4",
-                    autobiography2: "e163bd4549854071b4005f0e504",
-                    extendedInformation: "61a2ea12c70f45618ab26ad094bcf66498c2214f25ee4298b8a7a3bf08fd04f626d7dd67216f44caa22f34363a5b2332196659b9dc404c5b8ad60b1e641e0902e8625f0f9e5b4baf93ddba6efdfe2651a1ffa5508cc14083a46476546324fb010a1943396fb0495bbd2ec918c61d76a418a6cf4d2e194a8fb1ace80ae3e20d40377eb9bde3ce436689d944f50f0b348f2a7deff142a64f9b816eefc10fe0dc3608bd83230aee4c5e993606aea7abc59a11a42c0203b942f0a0ff63cafd220dda363d650ad984430a9a456f7496f3147a29a5694af3fc4da2813e6f28ebc76e8d0f5da85666284111ad0c830863ed06f1dc74d0ce9641474eb04b",
-                    note: "5e51ef8136074d049ace12df3721f67495c5b49e335841d589290f5026ffaa9091130a61bc5c45a9aca43fe6bd434d3ca1d658d11ba74aa48cee1d7541a15b4984772ecfd72a4a2fad8765d2d51ee83d7eef8cf98b7a45faaf6a27fac2047b500aeb9b5f12be4e8f9c5ddfaa72dd0e5bfe516f9d799f425faaf63305625d1c87caffb33b4a0746dab6e98c82b50bd643771a5d5738e24fa090843b262eb71cda945ba6bce32d4572a29290a598b471158e9498a021e9444cb5767c8bbc146bc3bc2d6ee4476f4c6eb1d8c9caec69635bd9c13ed3d85e4b319ce105417b0f48f3cce331ba47404dceacce50b2a2ab6451095c70529f2f44288e14",
-                    status: "a711d740a2d247168f7eeea8b9aee10f556578f99a22485fa6"
+                    autobiography1: "347441798c3a44798529b731b837da2c7fea5d8b6f3d41dcbc486e90a8",
+                    autobiography2: "db76388441b5405a8ca6375ad31d56f3a4629812690b400f",
+                    extendedInformation: "5fc043bd695042a5a91a2b2dc422491b4245230388ea49c4a5a4799b57df7d0c2a389f4a82c5497985b8c5c5daf3c478c2416b742093453fbc333ae6b3cb5a3933c298eaf587488a82d2ef20d21e49ac1770c712360046a392a50460453fdc7aa9675899b6f14736a5aeb17672a70edd99c91342ff2f4544a163e9771637e18af070c4de65bc40449d5033bba2acf5dffabfd110321d4c5da4d0c51795f3b6a59ab00b382c834090ae3169a7f863591cfda5dacad1a947369b04e09a0975e027ac9d40a6807e42f6ab77630465d600bd7665a9af8b544621be0da533349c5deb8acb3f03d42e461b8f4c6272392cf18100963cea64474badb55d",
+                    note: "b087930ea7344fcb9321bc002d85e6fef564599ca71f456b8ff6d226d17391a7bb00d811753149adbb9a0e38228c94753cea0e6efec24c22a08cb6489c95a2d705eb8f80b3e044a18b50d67dcf2e7b039a42be8f8ada48e692639fa548d3e4510d81874fedb84a9fbf4bd60431dab633d5695fdba99a4d728a6aa84aa0d2906ce085a706b91c46f3a804a8eb6ca75ca54c492fa5b98c4341a4dd335825185479ebd2e28aab3f431b9e19c8f17cbd94e566c6db652faf4c5d8dda83f7e1a92f51527d9de1e25b432495e3d5312548c6ce462b40ba0f1941e99792253d3a1c7038789b17acf1a749bb94976452dda303bf7d98e57b0b924d5a9f01",
+                    status: "31a37e406c2f4ef1986952e7bde984d097139deafa6d4699b1"
                 );
 
                 // Assert
                 result.Count.ShouldBe(1);
                 result.FirstOrDefault().ShouldNotBe(null);
-                result.First().Id.ShouldBe(Guid.Parse("fbad2b8c-db3d-4bb2-aa67-745c177b2834"));
+                result.First().Id.ShouldBe(Guid.Parse("a67ce190-d438-4bc4-91fb-0b44c428d4f8"));
             });
         }
 
@@ -54,18 +54,18 @@ namespace Resume.ResumeMains
             {
                 // Act
                 var result = await _resumeMainRepository.GetCountAsync(
-                    userMainId: Guid.Parse("f0bf39a1-c21f-447d-899e-77b25c0144f2"),
-                    resumeName: "7a5c7d33ff4540aabd293e8b2b775a48a8bf2cd6d8cc402d84",
-                    marriageCode: "ceeaa7af7bde42baa176bf5d7c508e31a04550dbf3914f9c81",
-                    militaryCode: "42fff270a1394e51806e99f264720ea4a0819ee8d3ff4443a9",
-                    disabilityCategoryCode: "9bc049f27ae946faa76cda2d61c25a07eb18e8c0189c4d2199",
-                    specialIdentityCode: "0e1cae702ce5461993216bcd34eb4fe010cec331ae1f4f3cb7",
+                    userMainId: Guid.Parse("4cc12c24-d1d2-4a0f-b9aa-46f7a7d82559"),
+                    resumeName: "7d29abff074c47f8b42e54140aa5d0349cdb381f68ff41cea9",
+                    marriageCode: "87ffd4f525ec435dbf38cdc66c618ffcf8182f2840384fe3ab",
+                    militaryCode: "6aaa44c44d0b4e4d8fe9603b7985db5814c84b6430ab43d9bc",
+                    disabilityCategoryCode: "0b7cbe060cec41209e7879c1be58c06529d41fdd20a74b61b9",
+                    specialIdentityCode: "c9b491f5be2b49e4a5f1350d230fc5cd52c7258a127c44a9b4",
                     main: true,
-                    autobiography1: "2e035a21d6834a2785533bfdd8fc7f925929f4a3b8bb448f",
-                    autobiography2: "95c634b19fef4088a11d7426",
-                    extendedInformation: "a717544f22e948c6b37d6cfc8a8e778d9b11789eaad243559bf8518829542d1bc592ec52b12745b1904c2546184df0107f594aec106e4c799e86363787109a23a99337e30648441196a78b688b49edf7240c06cbc7204b39a66acb5878fda802fee69bd4f3564a4fab0b9767ded4fdfbe66c2667a4994fc6b8b5f6953f728798dbf1a27b0ae143f8984dfe0e37748bb1af30fbdd039a40a89ef8ee1444c664dbb75dd185374b4dd480021c67701a13e63ab17e441b3f4e6d9407d493ec13ff7ac9ec3d186335403aba776793d46984553097f02bf25a417eaac006c565d1b58a91f4c020822e403dbc2e4e536f854f1a53976786b89f4bd9a091",
-                    note: "c6b63a1dd2574667a23b6ec79635b63b7ecd07a24cd74f54898725ec46354483bd9d2ca06add400491b333d193a1bae580ba9b3f427149bbb09cd6c4f1b67b740a29917c4ba74a4aa1199ca9dcae9a857c23b3e911394cfea196ab15d3e1210ac0afb78219c447d58804f25ca4062d31136af3d6ac2d42cc8a6580389643631a8abff22b0e104ebb89d134cc738c16038696f666a7cd4888994d7accfe363dab1b8bde3281eb4790bc909c77f26c864c359269ca3e7f4f998a7a8e84f39fedfcd262950f4c364b09b95c34cf9d6d304f74bcd61c9d2c4c1ebc59ef95cbac700bdf4c2ffe2e254ba38b3841bcc1a1fd243bb91ecae8b449c3899e",
-                    status: "73b903c41a1045719779812dc882fe1d028194f404b141dbae"
+                    autobiography1: "1312e50b47be4e98813c4bf83d954ceb0d832d0e2e44435c87d6253ca96d155c6787d57650494a82be8948caf924",
+                    autobiography2: "72a67369631a4c5ea76d416fbdf28",
+                    extendedInformation: "c4f05e0f201c4b679077929354d7a6152fa2fc5e2b36406a97131ff04a91553cf8374b0ad19447b290d7487ddbf18ac94fd0a085a4d742029c710eaaf3f17c794d3277d2b2e343e9b8168833829f652007d8ace6a31448498c9b9d965b4c02fa7704c24230d34e78b5b9320f6648b0bc1398a28440e14a54a98ca5a5320de1e03abc1bcbb26d428da0392120db2379e6de4aa0feb6954d4b87754b9864c046cbfc27a634a5e048bd9e821bdc941f1edd03b127c12cf54140a20efea3db3b7b763e6d2cc5c26e43d79e46f6bba0d788bde1ae65e21cd04c968a4d9e4af1a5e063dc6d3a9fdf6e496d8958d36248637f7296950db1950a4d71a1b4",
+                    note: "b4944e512f2e4539bdb65023d014198daf0e6eede3f441ec969cb74ef36e2057bbfe3345b84846f28a4060413aafbb9346d538dd57934ed0bfd757f04c00e6967749303c114342dda1a3c988cd883a759a0cb9f82feb4ee5892794d1686b45ac78e644a261c94991a961cc4a0a26d87b5e0093ed3741459b83d6df17c844072adcf4478e54124bb9aad0c3835adff256f3f006a52b54494ca9fcdabc00a3cc58b06f946643af4f39917d620941f13f4ade9c52caa007441f8ec7fcdda2e7e3e2778ea2c161374ce9998dad8a68a7276ce4fb0cd4dfa34a2ca2fac571647e3b1e26723de807ee422c8834da30b44a6cd5527b96d0a8014de2a234",
+                    status: "81956fcfbcc94bd89dc83c066a050f5528f52f978e7f4ba69b"
                 );
 
                 // Assert

@@ -22,17 +22,13 @@ namespace Resume.CompanyMains
         public bool AllowSearch { get; set; }
         [StringLength(CompanyMainConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        [Required]
-        public DateTime DateA { get; set; }
-        [Required]
-        public DateTime DateD { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
         [StringLength(CompanyMainConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
-        public int Sort { get; set; }
-        [Required]
+        public int? Sort { get; set; }
         [StringLength(CompanyMainConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
         [Required]
         [StringLength(CompanyMainConsts.IndustryCategoryMaxLength)]
         public string IndustryCategory { get; set; }

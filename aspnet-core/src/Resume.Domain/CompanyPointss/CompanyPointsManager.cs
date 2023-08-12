@@ -20,14 +20,11 @@ namespace Resume.CompanyPointss
         }
 
         public async Task<CompanyPoints> CreateAsync(
-        Guid companyMainId, string companyPointsTypeCode, int points, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid companyMainId, string companyPointsTypeCode, int points, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(companyPointsTypeCode, nameof(companyPointsTypeCode), CompanyPointsConsts.CompanyPointsTypeCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyPointsConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyPointsConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyPointsConsts.StatusMaxLength);
 
             var companyPoints = new CompanyPoints(
@@ -40,15 +37,12 @@ namespace Resume.CompanyPointss
 
         public async Task<CompanyPoints> UpdateAsync(
             Guid id,
-            Guid companyMainId, string companyPointsTypeCode, int points, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, string companyPointsTypeCode, int points, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.Length(companyPointsTypeCode, nameof(companyPointsTypeCode), CompanyPointsConsts.CompanyPointsTypeCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyPointsConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyPointsConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyPointsConsts.StatusMaxLength);
 
             var companyPoints = await _companyPointsRepository.GetAsync(id);

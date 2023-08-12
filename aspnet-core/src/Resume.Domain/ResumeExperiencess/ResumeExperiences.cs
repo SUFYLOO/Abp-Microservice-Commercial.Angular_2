@@ -60,24 +60,24 @@ namespace Resume.ResumeExperiencess
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ResumeExperiences()
         {
 
         }
 
-        public ResumeExperiences(Guid id, Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ResumeExperiences(Guid id, Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -99,10 +99,9 @@ namespace Resume.ResumeExperiencess
             Check.Length(companyScaleCode, nameof(companyScaleCode), ResumeExperiencesConsts.CompanyScaleCodeMaxLength, 0);
             Check.NotNull(companyManagementNumberCode, nameof(companyManagementNumberCode));
             Check.Length(companyManagementNumberCode, nameof(companyManagementNumberCode), ResumeExperiencesConsts.CompanyManagementNumberCodeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeExperiencesConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeExperiencesConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ResumeExperiencesConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
             Name = name;
             WorkNatureCode = workNatureCode;
@@ -119,12 +118,12 @@ namespace Resume.ResumeExperiencess
             Salary2 = salary2;
             CompanyScaleCode = companyScaleCode;
             CompanyManagementNumberCode = companyManagementNumberCode;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

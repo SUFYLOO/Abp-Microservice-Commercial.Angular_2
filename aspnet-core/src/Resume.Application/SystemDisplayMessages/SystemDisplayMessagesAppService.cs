@@ -63,7 +63,7 @@ namespace Resume.SystemDisplayMessages
         {
 
             var systemDisplayMessage = await _systemDisplayMessageManager.CreateAsync(
-            input.DisplayTypeCode, input.TitleContents, input.Contents, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.DisplayTypeCode, input.TitleContents, input.Contents, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemDisplayMessage, SystemDisplayMessageDto>(systemDisplayMessage);
@@ -75,7 +75,7 @@ namespace Resume.SystemDisplayMessages
 
             var systemDisplayMessage = await _systemDisplayMessageManager.UpdateAsync(
             id,
-            input.DisplayTypeCode, input.TitleContents, input.Contents, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.DisplayTypeCode, input.TitleContents, input.Contents, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemDisplayMessage, SystemDisplayMessageDto>(systemDisplayMessage);

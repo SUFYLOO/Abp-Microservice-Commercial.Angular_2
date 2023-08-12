@@ -19,7 +19,7 @@ namespace Resume.CompanyJobs
         }
 
         public async Task<CompanyJob> CreateAsync(
-        Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), CompanyJobConsts.NameMaxLength);
@@ -29,16 +29,13 @@ namespace Resume.CompanyJobs
             Check.Length(mailTplId, nameof(mailTplId), CompanyJobConsts.MailTplIdMaxLength);
             Check.NotNullOrWhiteSpace(sMSTplId, nameof(sMSTplId));
             Check.Length(sMSTplId, nameof(sMSTplId), CompanyJobConsts.SMSTplIdMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength);
 
             var companyJob = new CompanyJob(
              GuidGenerator.Create(),
-             companyMainId, name, jobTypeCode, jobOpen, mailTplId, sMSTplId, dateA, dateD, sort, status, extendedInformation, note
+             companyMainId, name, jobTypeCode, jobOpen, mailTplId, sMSTplId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyJobRepository.InsertAsync(companyJob);
@@ -46,7 +43,7 @@ namespace Resume.CompanyJobs
 
         public async Task<CompanyJob> UpdateAsync(
             Guid id,
-            Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid companyMainId, string name, string jobTypeCode, bool jobOpen, string mailTplId, string sMSTplId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -57,12 +54,9 @@ namespace Resume.CompanyJobs
             Check.Length(mailTplId, nameof(mailTplId), CompanyJobConsts.MailTplIdMaxLength);
             Check.NotNullOrWhiteSpace(sMSTplId, nameof(sMSTplId));
             Check.Length(sMSTplId, nameof(sMSTplId), CompanyJobConsts.SMSTplIdMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyJobConsts.StatusMaxLength);
 
             var companyJob = await _companyJobRepository.GetAsync(id);
 
@@ -72,12 +66,12 @@ namespace Resume.CompanyJobs
             companyJob.JobOpen = jobOpen;
             companyJob.MailTplId = mailTplId;
             companyJob.SMSTplId = sMSTplId;
+            companyJob.ExtendedInformation = extendedInformation;
             companyJob.DateA = dateA;
             companyJob.DateD = dateD;
             companyJob.Sort = sort;
-            companyJob.Status = status;
-            companyJob.ExtendedInformation = extendedInformation;
             companyJob.Note = note;
+            companyJob.Status = status;
 
             return await _companyJobRepository.UpdateAsync(companyJob);
         }

@@ -20,15 +20,12 @@ namespace Resume.UserTokens
         }
 
         public async Task<UserToken> CreateAsync(
-        Guid userMainId, string tokenOld, string tokenNew, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid userMainId, string tokenOld, string tokenNew, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(tokenOld, nameof(tokenOld));
             Check.NotNullOrWhiteSpace(tokenNew, nameof(tokenNew));
             Check.Length(extendedInformation, nameof(extendedInformation), UserTokenConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserTokenConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserTokenConsts.StatusMaxLength);
 
             var userToken = new UserToken(
@@ -41,16 +38,13 @@ namespace Resume.UserTokens
 
         public async Task<UserToken> UpdateAsync(
             Guid id,
-            Guid userMainId, string tokenOld, string tokenNew, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, string tokenOld, string tokenNew, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(tokenOld, nameof(tokenOld));
             Check.NotNullOrWhiteSpace(tokenNew, nameof(tokenNew));
             Check.Length(extendedInformation, nameof(extendedInformation), UserTokenConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), UserTokenConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), UserTokenConsts.StatusMaxLength);
 
             var userToken = await _userTokenRepository.GetAsync(id);

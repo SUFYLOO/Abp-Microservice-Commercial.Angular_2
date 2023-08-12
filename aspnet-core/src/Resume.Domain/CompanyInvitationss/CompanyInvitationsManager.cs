@@ -19,7 +19,7 @@ namespace Resume.CompanyInvitationss
         }
 
         public async Task<CompanyInvitations> CreateAsync(
-        Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, string note = null)
+        Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(userMainName, nameof(userMainName), CompanyInvitationsConsts.UserMainNameMaxLength);
             Check.Length(userMainLoginMobilePhone, nameof(userMainLoginMobilePhone), CompanyInvitationsConsts.UserMainLoginMobilePhoneMaxLength);
@@ -31,16 +31,13 @@ namespace Resume.CompanyInvitationss
             Check.Length(sendStatusCode, nameof(sendStatusCode), CompanyInvitationsConsts.SendStatusCodeMaxLength);
             Check.NotNullOrWhiteSpace(resumeFlowStageCode, nameof(resumeFlowStageCode));
             Check.Length(resumeFlowStageCode, nameof(resumeFlowStageCode), CompanyInvitationsConsts.ResumeFlowStageCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyInvitationsConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength);
 
             var companyInvitations = new CompanyInvitations(
              GuidGenerator.Create(),
-             companyMainId, openAllJob, userMainName, userMainLoginMobilePhone, userMainLoginEmail, userMainLoginIdentityNo, sendTypeCode, sendStatusCode, resumeFlowStageCode, isRead, dateA, dateD, sort, status, companyJobId, userMainId, userCompanyBindId, resumeSnapshotId, extendedInformation, note
+             companyMainId, openAllJob, userMainName, userMainLoginMobilePhone, userMainLoginEmail, userMainLoginIdentityNo, sendTypeCode, sendStatusCode, resumeFlowStageCode, isRead, companyJobId, userMainId, userCompanyBindId, resumeSnapshotId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyInvitationsRepository.InsertAsync(companyInvitations);
@@ -48,7 +45,7 @@ namespace Resume.CompanyInvitationss
 
         public async Task<CompanyInvitations> UpdateAsync(
             Guid id,
-            Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, DateTime dateA, DateTime dateD, int sort, string status, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, string note = null
+            Guid companyMainId, bool openAllJob, string userMainName, string userMainLoginMobilePhone, string userMainLoginEmail, string userMainLoginIdentityNo, string sendTypeCode, string sendStatusCode, string resumeFlowStageCode, bool isRead, Guid? companyJobId = null, Guid? userMainId = null, Guid? userCompanyBindId = null, Guid? resumeSnapshotId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(userMainName, nameof(userMainName), CompanyInvitationsConsts.UserMainNameMaxLength);
@@ -61,12 +58,9 @@ namespace Resume.CompanyInvitationss
             Check.Length(sendStatusCode, nameof(sendStatusCode), CompanyInvitationsConsts.SendStatusCodeMaxLength);
             Check.NotNullOrWhiteSpace(resumeFlowStageCode, nameof(resumeFlowStageCode));
             Check.Length(resumeFlowStageCode, nameof(resumeFlowStageCode), CompanyInvitationsConsts.ResumeFlowStageCodeMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyInvitationsConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), CompanyInvitationsConsts.StatusMaxLength);
 
             var companyInvitations = await _companyInvitationsRepository.GetAsync(id);
 
@@ -80,16 +74,16 @@ namespace Resume.CompanyInvitationss
             companyInvitations.SendStatusCode = sendStatusCode;
             companyInvitations.ResumeFlowStageCode = resumeFlowStageCode;
             companyInvitations.IsRead = isRead;
-            companyInvitations.DateA = dateA;
-            companyInvitations.DateD = dateD;
-            companyInvitations.Sort = sort;
-            companyInvitations.Status = status;
             companyInvitations.CompanyJobId = companyJobId;
             companyInvitations.UserMainId = userMainId;
             companyInvitations.UserCompanyBindId = userCompanyBindId;
             companyInvitations.ResumeSnapshotId = resumeSnapshotId;
             companyInvitations.ExtendedInformation = extendedInformation;
+            companyInvitations.DateA = dateA;
+            companyInvitations.DateD = dateD;
+            companyInvitations.Sort = sort;
             companyInvitations.Note = note;
+            companyInvitations.Status = status;
 
             return await _companyInvitationsRepository.UpdateAsync(companyInvitations);
         }

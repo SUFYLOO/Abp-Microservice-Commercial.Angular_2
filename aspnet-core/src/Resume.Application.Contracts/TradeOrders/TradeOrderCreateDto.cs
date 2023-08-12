@@ -31,13 +31,12 @@ namespace Resume.TradeOrders
         public string OrderStateCode { get; set; }
         [StringLength(TradeOrderConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
-        public DateTime DateA { get; set; }
-        public DateTime DateD { get; set; }
-        public int Sort { get; set; }
+        public DateTime? DateA { get; set; }
+        public DateTime? DateD { get; set; }
+        public int? Sort { get; set; }
         [StringLength(TradeOrderConsts.NoteMaxLength)]
         public string? Note { get; set; }
-        [Required]
         [StringLength(TradeOrderConsts.StatusMaxLength)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

@@ -20,22 +20,22 @@ export interface SystemUserRoleCreateDto {
   name: string;
   keys: number;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemUserRoleDto extends FullAuditedEntityDto<string> {
   name: string;
   keys: number;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemUserRoleExcelDownloadDto {
@@ -48,9 +48,9 @@ export interface SystemUserRoleUpdateDto {
   name: string;
   keys: number;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

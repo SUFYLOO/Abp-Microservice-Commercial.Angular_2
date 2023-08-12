@@ -63,7 +63,7 @@ namespace Resume.ResumeEducationss
         {
 
             var resumeEducations = await _resumeEducationsManager.CreateAsync(
-            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeEducations, ResumeEducationsDto>(resumeEducations);
@@ -75,7 +75,7 @@ namespace Resume.ResumeEducationss
 
             var resumeEducations = await _resumeEducationsManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeEducations, ResumeEducationsDto>(resumeEducations);

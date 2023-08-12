@@ -63,7 +63,7 @@ namespace Resume.ShareUploads
         {
 
             var shareUpload = await _shareUploadManager.CreateAsync(
-            input.Key1, input.Key2, input.Key3, input.UploadName, input.ServerName, input.Type, input.Size, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.UploadName, input.ServerName, input.Type, input.Size, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareUpload, ShareUploadDto>(shareUpload);
@@ -75,7 +75,7 @@ namespace Resume.ShareUploads
 
             var shareUpload = await _shareUploadManager.UpdateAsync(
             id,
-            input.Key1, input.Key2, input.Key3, input.UploadName, input.ServerName, input.Type, input.Size, input.SystemUse, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Key1, input.Key2, input.Key3, input.UploadName, input.ServerName, input.Type, input.Size, input.SystemUse, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ShareUpload, ShareUploadDto>(shareUpload);

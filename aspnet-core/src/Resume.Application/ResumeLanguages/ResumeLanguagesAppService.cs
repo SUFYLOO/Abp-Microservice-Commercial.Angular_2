@@ -63,7 +63,7 @@ namespace Resume.ResumeLanguages
         {
 
             var resumeLanguage = await _resumeLanguageManager.CreateAsync(
-            input.ResumeMainId, input.LanguageCategoryCode, input.LevelSayCode, input.LevelListenCode, input.LevelReadCode, input.LevelWriteCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.LanguageCategoryCode, input.LevelSayCode, input.LevelListenCode, input.LevelReadCode, input.LevelWriteCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeLanguage, ResumeLanguageDto>(resumeLanguage);
@@ -75,7 +75,7 @@ namespace Resume.ResumeLanguages
 
             var resumeLanguage = await _resumeLanguageManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.LanguageCategoryCode, input.LevelSayCode, input.LevelListenCode, input.LevelReadCode, input.LevelWriteCode, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.ResumeMainId, input.LanguageCategoryCode, input.LevelSayCode, input.LevelListenCode, input.LevelReadCode, input.LevelWriteCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeLanguage, ResumeLanguageDto>(resumeLanguage);

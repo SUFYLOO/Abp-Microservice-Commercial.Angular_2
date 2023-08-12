@@ -63,7 +63,7 @@ namespace Resume.SystemUserRoles
         {
 
             var systemUserRole = await _systemUserRoleManager.CreateAsync(
-            input.Name, input.Keys, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.Keys, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemUserRole, SystemUserRoleDto>(systemUserRole);
@@ -75,7 +75,7 @@ namespace Resume.SystemUserRoles
 
             var systemUserRole = await _systemUserRoleManager.UpdateAsync(
             id,
-            input.Name, input.Keys, input.DateA, input.DateD, input.Sort, input.Status, input.ExtendedInformation, input.Note
+            input.Name, input.Keys, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<SystemUserRole, SystemUserRoleDto>(systemUserRole);

@@ -40,24 +40,24 @@ namespace Resume.ShareUploads
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareUpload()
         {
 
         }
 
-        public ShareUpload(Guid id, string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareUpload(Guid id, string key1, string key2, string key3, string uploadName, string serverName, string type, int size, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -70,10 +70,9 @@ namespace Resume.ShareUploads
             Check.Length(serverName, nameof(serverName), ShareUploadConsts.ServerNameMaxLength, 0);
             Check.NotNull(type, nameof(type));
             Check.Length(type, nameof(type), ShareUploadConsts.TypeMaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareUploadConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareUploadConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareUploadConsts.StatusMaxLength, 0);
             Key1 = key1;
             Key2 = key2;
             Key3 = key3;
@@ -82,12 +81,12 @@ namespace Resume.ShareUploads
             Type = type;
             Size = size;
             SystemUse = systemUse;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }

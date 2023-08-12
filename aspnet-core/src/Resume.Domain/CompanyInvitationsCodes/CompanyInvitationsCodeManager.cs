@@ -20,7 +20,7 @@ namespace Resume.CompanyInvitationsCodes
         }
 
         public async Task<CompanyInvitationsCode> CreateAsync(
-        Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status)
+        Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(companyInvitationId, nameof(companyInvitationId));
             Check.Length(companyInvitationId, nameof(companyInvitationId), CompanyInvitationsCodeConsts.CompanyInvitationIdMaxLength);
@@ -29,10 +29,7 @@ namespace Resume.CompanyInvitationsCodes
             Check.NotNullOrWhiteSpace(verifyCode, nameof(verifyCode));
             Check.Length(verifyCode, nameof(verifyCode), CompanyInvitationsCodeConsts.VerifyCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsCodeConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyInvitationsCodeConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyInvitationsCodeConsts.StatusMaxLength);
 
             var companyInvitationsCode = new CompanyInvitationsCode(
@@ -45,7 +42,7 @@ namespace Resume.CompanyInvitationsCodes
 
         public async Task<CompanyInvitationsCode> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation, DateTime dateA, DateTime dateD, int sort, string note, string status, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string companyInvitationId, string verifyId, string verifyCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
             Check.NotNullOrWhiteSpace(companyInvitationId, nameof(companyInvitationId));
@@ -55,10 +52,7 @@ namespace Resume.CompanyInvitationsCodes
             Check.NotNullOrWhiteSpace(verifyCode, nameof(verifyCode));
             Check.Length(verifyCode, nameof(verifyCode), CompanyInvitationsCodeConsts.VerifyCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyInvitationsCodeConsts.ExtendedInformationMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
             Check.Length(note, nameof(note), CompanyInvitationsCodeConsts.NoteMaxLength);
-            Check.NotNullOrWhiteSpace(status, nameof(status));
             Check.Length(status, nameof(status), CompanyInvitationsCodeConsts.StatusMaxLength);
 
             var companyInvitationsCode = await _companyInvitationsCodeRepository.GetAsync(id);

@@ -47,11 +47,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -109,12 +109,11 @@ namespace Resume.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PointsTotal");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -161,11 +160,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -205,12 +204,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -263,11 +261,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -337,12 +335,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SendTypeCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -411,11 +408,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -484,12 +481,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("PersonallyAddress");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -552,11 +548,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -626,12 +622,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("ProfessionalLicense");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -678,11 +673,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -780,12 +775,11 @@ namespace Resume.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("SalaryUp");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -872,11 +866,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -927,12 +921,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("PairCondition");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -973,11 +966,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1031,12 +1024,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1073,11 +1065,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1145,12 +1137,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SMSTplId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1230,11 +1221,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1318,12 +1309,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Principal");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1370,11 +1360,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1418,12 +1408,11 @@ namespace Resume.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Points");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1460,11 +1449,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1504,7 +1493,7 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<bool>("MatchingReceive")
+                    b.Property<bool?>("MatchingReceive")
                         .HasColumnType("bit")
                         .HasColumnName("MatchingReceive");
 
@@ -1518,12 +1507,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("OfficePhone");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1572,11 +1560,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1624,12 +1612,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1671,11 +1658,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1741,12 +1728,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1779,11 +1765,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1841,12 +1827,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -1885,11 +1870,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -1989,12 +1974,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("SchoolName");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2049,11 +2033,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("CurrencyTypeCode");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2142,12 +2126,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SalaryPayTypeCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2195,11 +2178,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2273,12 +2256,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2319,11 +2301,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2388,7 +2370,7 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("ResumeName");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
@@ -2398,7 +2380,6 @@ namespace Resume.Migrations
                         .HasColumnName("SpecialIdentityCode");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2440,11 +2421,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2514,12 +2495,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2572,11 +2552,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2634,12 +2614,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2690,11 +2669,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2743,12 +2722,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Snapshot");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2789,11 +2767,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2848,12 +2826,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ResumeMainId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -2901,11 +2878,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -2975,12 +2952,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3023,11 +2999,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3111,12 +3087,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3153,11 +3128,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3226,12 +3201,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ShareTagId");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3264,11 +3238,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3314,12 +3288,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3361,11 +3334,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3427,7 +3400,7 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
@@ -3437,7 +3410,6 @@ namespace Resume.Migrations
                         .HasColumnName("Statement");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3481,11 +3453,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3562,12 +3534,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SendTypeCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3625,11 +3596,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3693,12 +3664,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3737,11 +3707,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3806,12 +3776,11 @@ namespace Resume.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Size");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -3890,11 +3859,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -3962,12 +3931,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("Related");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4010,11 +3978,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4060,12 +4028,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4104,11 +4071,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4169,12 +4136,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("ParentCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4251,11 +4217,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4301,12 +4267,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4357,11 +4322,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4421,12 +4386,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("NotifyTypeCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4469,11 +4433,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4523,12 +4487,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4561,11 +4524,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4615,12 +4578,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("Param");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4653,11 +4615,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4707,12 +4669,11 @@ namespace Resume.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Quantity");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4757,11 +4718,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4858,12 +4819,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("OrderStateCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -4906,11 +4866,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -4974,12 +4934,11 @@ namespace Resume.Migrations
                         .HasColumnType("int")
                         .HasColumnName("QuantityStock");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5026,11 +4985,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5070,12 +5029,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5136,11 +5094,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5180,12 +5138,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5226,11 +5183,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5270,12 +5227,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5316,11 +5272,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5360,12 +5316,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5402,11 +5357,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5457,12 +5412,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("PairCondition");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5508,11 +5462,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5593,12 +5547,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SexCode");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5648,7 +5601,7 @@ namespace Resume.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5735,12 +5688,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("Password");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5781,11 +5733,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5825,12 +5777,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");
@@ -5880,11 +5831,11 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<DateTime>("DateA")
+                    b.Property<DateTime?>("DateA")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateA");
 
-                    b.Property<DateTime>("DateD")
+                    b.Property<DateTime?>("DateD")
                         .HasColumnType("datetime2")
                         .HasColumnName("DateD");
 
@@ -5924,12 +5875,11 @@ namespace Resume.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("Sort")
+                    b.Property<int?>("Sort")
                         .HasColumnType("int")
                         .HasColumnName("Sort");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Status");

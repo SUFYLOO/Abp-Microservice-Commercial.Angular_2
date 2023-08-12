@@ -19,21 +19,18 @@ namespace Resume.ResumeWorkss
         }
 
         public async Task<ResumeWorks> CreateAsync(
-        Guid resumeMainId, string name, string link, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        Guid resumeMainId, string name, string link, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ResumeWorksConsts.NameMaxLength);
             Check.Length(link, nameof(link), ResumeWorksConsts.LinkMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeWorksConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeWorksConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeWorksConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeWorksConsts.StatusMaxLength);
 
             var resumeWorks = new ResumeWorks(
              GuidGenerator.Create(),
-             resumeMainId, name, link, dateA, dateD, sort, status, extendedInformation, note
+             resumeMainId, name, link, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeWorksRepository.InsertAsync(resumeWorks);
@@ -41,30 +38,27 @@ namespace Resume.ResumeWorkss
 
         public async Task<ResumeWorks> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string name, string link, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null
+            Guid resumeMainId, string name, string link, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
             Check.Length(name, nameof(name), ResumeWorksConsts.NameMaxLength);
             Check.Length(link, nameof(link), ResumeWorksConsts.LinkMaxLength);
-            Check.NotNull(dateA, nameof(dateA));
-            Check.NotNull(dateD, nameof(dateD));
-            Check.NotNullOrWhiteSpace(status, nameof(status));
-            Check.Length(status, nameof(status), ResumeWorksConsts.StatusMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeWorksConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeWorksConsts.NoteMaxLength);
+            Check.Length(status, nameof(status), ResumeWorksConsts.StatusMaxLength);
 
             var resumeWorks = await _resumeWorksRepository.GetAsync(id);
 
             resumeWorks.ResumeMainId = resumeMainId;
             resumeWorks.Name = name;
             resumeWorks.Link = link;
+            resumeWorks.ExtendedInformation = extendedInformation;
             resumeWorks.DateA = dateA;
             resumeWorks.DateD = dateD;
             resumeWorks.Sort = sort;
-            resumeWorks.Status = status;
-            resumeWorks.ExtendedInformation = extendedInformation;
             resumeWorks.Note = note;
+            resumeWorks.Status = status;
 
             return await _resumeWorksRepository.UpdateAsync(resumeWorks);
         }

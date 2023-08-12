@@ -21,11 +21,11 @@ export interface SystemDisplayMessageCreateDto {
   titleContents: string;
   contents: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemDisplayMessageDto extends FullAuditedEntityDto<string> {
@@ -33,11 +33,11 @@ export interface SystemDisplayMessageDto extends FullAuditedEntityDto<string> {
   titleContents: string;
   contents: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }
 
 export interface SystemDisplayMessageExcelDownloadDto {
@@ -51,9 +51,9 @@ export interface SystemDisplayMessageUpdateDto {
   titleContents: string;
   contents: string;
   extendedInformation?: string;
-  dateA: string;
-  dateD: string;
-  sort: number;
+  dateA?: string;
+  dateD?: string;
+  sort?: number;
   note?: string;
-  status: string;
+  status?: string;
 }

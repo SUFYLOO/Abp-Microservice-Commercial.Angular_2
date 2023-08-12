@@ -44,24 +44,24 @@ namespace Resume.ShareCodes
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
 
-        public virtual DateTime DateA { get; set; }
+        public virtual DateTime? DateA { get; set; }
 
-        public virtual DateTime DateD { get; set; }
+        public virtual DateTime? DateD { get; set; }
 
-        public virtual int Sort { get; set; }
+        public virtual int? Sort { get; set; }
 
         [CanBeNull]
         public virtual string? Note { get; set; }
 
-        [NotNull]
-        public virtual string Status { get; set; }
+        [CanBeNull]
+        public virtual string? Status { get; set; }
 
         public ShareCode()
         {
 
         }
 
-        public ShareCode(Guid id, string groupCode, string key1, string key2, string key3, string name, string column1, string column2, string column3, bool systemUse, DateTime dateA, DateTime dateD, int sort, string status, string extendedInformation = null, string note = null)
+        public ShareCode(Guid id, string groupCode, string key1, string key2, string key3, string name, string column1, string column2, string column3, bool systemUse, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -78,10 +78,9 @@ namespace Resume.ShareCodes
             Check.Length(column1, nameof(column1), ShareCodeConsts.Column1MaxLength, 0);
             Check.Length(column2, nameof(column2), ShareCodeConsts.Column2MaxLength, 0);
             Check.Length(column3, nameof(column3), ShareCodeConsts.Column3MaxLength, 0);
-            Check.NotNull(status, nameof(status));
-            Check.Length(status, nameof(status), ShareCodeConsts.StatusMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ShareCodeConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ShareCodeConsts.NoteMaxLength, 0);
+            Check.Length(status, nameof(status), ShareCodeConsts.StatusMaxLength, 0);
             GroupCode = groupCode;
             Key1 = key1;
             Key2 = key2;
@@ -91,12 +90,12 @@ namespace Resume.ShareCodes
             Column2 = column2;
             Column3 = column3;
             SystemUse = systemUse;
+            ExtendedInformation = extendedInformation;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
-            Status = status;
-            ExtendedInformation = extendedInformation;
             Note = note;
+            Status = status;
         }
 
     }
