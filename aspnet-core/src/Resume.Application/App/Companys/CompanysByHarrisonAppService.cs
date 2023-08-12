@@ -113,9 +113,9 @@ namespace Resume.App.Companys
             var WorkHours = input.WorkHours ?? ""; //
 
             //預設值
-            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
-            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            if (CompanyMainId != input.CompanyMainId)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = L[nameof(CompanyMainId)] + L[ResumeDomainErrorCodes.NotExists], Pass = false });
+
 
             //必要代碼檢核
             //if (CompainMainId.IsNullOrEmpty())
