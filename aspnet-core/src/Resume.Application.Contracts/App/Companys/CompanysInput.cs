@@ -137,6 +137,8 @@ namespace Resume.App.Companys
     {
         new public Guid Id { get; set; }
         new public string ConcurrencyStamp { get; set; }
+
+        public bool RefreshItem { get; set; } = false;
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto

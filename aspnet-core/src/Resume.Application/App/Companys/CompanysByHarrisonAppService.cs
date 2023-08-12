@@ -38,10 +38,15 @@ namespace Resume.App.Companys
 
             //系統層級
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
             input.CompanyMainId = CompanyMainId;
 
             //外部傳入
             var CompanyJobContentId = input.Id;
+            var RefreshItem = input.RefreshItem;
 
             //預設值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
@@ -70,6 +75,10 @@ namespace Resume.App.Companys
 
                 ObjectMapper.Map(input, itemCompanyJobContent);
                 itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
+              
+                //如果要更新為最新資料 就需要認可交易
+                if (RefreshItem)
+                    await _appService._unitOfWorkManager.Current.SaveChangesAsync();
             }
 
             Result = ObjectMapper.Map<CompanyJobContent, SaveCompanyJobContentDto>(itemCompanyJobContent);
@@ -84,14 +93,29 @@ namespace Resume.App.Companys
         /// <returns></returns>
         public virtual async Task<ResultDto> SaveCompanyJobContentCheckAsync(SaveCompanyJobContentInput input)
         {
+            //結果
             var Result = new ResultDto();
 
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //外部傳入
+            var CompanyJobContentId = input.Id;
             var JobTypeCode = input.JobTypeCode ?? ""; //
             var Name = input.Name ?? "";
             var JobType = input.JobType ?? ""; //
             var SalaryPayTypeCode = input.SalaryPayTypeCode ?? ""; //
             var WorkPlace = input.WorkPlace ?? ""; //
             var WorkHours = input.WorkHours ?? ""; //
+
+            //預設值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
 
             //必要代碼檢核
             //if (CompainMainId.IsNullOrEmpty())
