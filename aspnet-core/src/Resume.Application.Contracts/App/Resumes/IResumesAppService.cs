@@ -54,5 +54,7 @@ namespace Resume.App.Resumes
         Task<ResultDto<List<ResumeSnapshotsDto>>> GetResumeSnapshotsListAsync(ResumeSnapshotsListInput input);
         Task<ResultDto<ResumeSnapshotsDto>> GetResumeSnapshotsAsync(ResumeSnapshotsInput input);
         Task<ResultDto<List<ResumeSnapshotsDto>>> GetResumeSnapshotsListAsync(ResumeSnapshotsListKeyWordsInput input);
+
+        Task<SaveResumeMainDto> SaveResumeMainsAsync(SaveResumeMainInput input);
     }
 }

@@ -561,7 +561,7 @@ namespace Resume.App.Controllers.AppStd.Companys
         }
 
         [HttpPost]
-        [Route("UpdateCompanyJobLaunch")]
+        [Route("UpdateCompanyJobDate")]
         [ProducesResponseType(typeof(UpdateCompanyJobDateDto), StatusCodes.Status200OK)]
 
         public virtual Task<UpdateCompanyJobDateDto> UpdateCompanyJobLaunchAsync(UpdateCompanyJobDateInput input)

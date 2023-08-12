@@ -2,6 +2,7 @@ using Volo.Abp.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using Resume.ResumeSnapshots;
+using Resume.ResumeMains;
 
 namespace Resume.App.Resumes
 {
@@ -110,4 +111,10 @@ namespace Resume.App.Resumes
         public Guid ResumeMainId { get; set; }
         public string ResumeMainName { get; set; } = "";
     }
+
+    public class SaveResumeMainInput : ResumeMainDto
+    {
+        public Guid? Id { get; set; }
+    }
+
 }
