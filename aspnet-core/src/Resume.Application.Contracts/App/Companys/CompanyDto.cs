@@ -124,7 +124,7 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobContentDto : CompanyJobContentDto
     {
-        
+        public SaveIntentType SaveIntent { get; set; } = SaveIntentType.Insert;
     }
     public class SaveCompanyJobConditionDto : CompanyJobConditionDto
     {

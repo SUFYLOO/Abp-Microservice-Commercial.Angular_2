@@ -33,9 +33,8 @@ namespace Resume.App.Companys
         {
             //結果
             var Result = new SaveCompanyJobContentDto();
-
+             
             //常用
-            var DateNow = DateTime.Now;
 
             //系統層級
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
@@ -44,13 +43,19 @@ namespace Resume.App.Companys
             //外部傳入
             var CompanyJobContentId = input.Id;
 
+            //預設值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
             //檢查
-            //await SaveCompanyJobContentCheckAsync(input);
+            await SaveCompanyJobContentCheckAsync(input);
 
             //主體資料
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
             var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
- 
+            Result.SaveIntent = itemCompanyJobContent == null ? SaveIntentType.Insert : SaveIntentType.Update;
+
             if (itemCompanyJobContent == null)
             {
                 itemCompanyJobContent = ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContent>(input);
@@ -58,7 +63,12 @@ namespace Resume.App.Companys
             }
             else
             {
-                ObjectMapper.Map<SaveCompanyJobContentInput, CompanyJobContent>(input, itemCompanyJobContent);
+                //不要變更的值
+                input.Sort = itemCompanyJobContent.Sort;
+                input.DateA = itemCompanyJobContent.DateA;
+                input.DateD = itemCompanyJobContent.DateD;
+
+                ObjectMapper.Map(input, itemCompanyJobContent);
                 itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
             }
 

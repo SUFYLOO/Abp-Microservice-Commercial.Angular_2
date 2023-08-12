@@ -26,7 +26,7 @@ namespace Resume.App
 
     public enum SaveIntentType
     {
-        Insert,
+        Insert ,
         Update,
         Delete,
         None,

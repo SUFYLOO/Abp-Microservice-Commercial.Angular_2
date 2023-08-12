@@ -133,10 +133,10 @@ namespace Resume.App.Companys
         public string WelfareSystem { get; set; }
     }
 
-    public class SaveCompanyJobContentInput : CompanyJobContentCreateDto
+    public class SaveCompanyJobContentInput : CompanyJobContentDto
     {
-        public Guid Id { get; set; }
-        public string ConcurrencyStamp { get; set; }
+        new public Guid Id { get; set; }
+        new public string ConcurrencyStamp { get; set; }
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
