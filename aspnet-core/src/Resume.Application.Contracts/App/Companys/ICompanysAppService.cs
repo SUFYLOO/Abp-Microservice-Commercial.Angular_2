@@ -25,8 +25,8 @@ namespace Resume.App.Companys
         //公司基本資料管理：管理人員管理
         //公司職缺管理
         //求職者邀約(履歷)管理：複制連結、發送訊息、履歷檢視、郵件或簡訊記錄
-        Task<ResultDto<List<CompanyMainsDto>>> GetCompanyMainListAsync(CompanyMainListInput input);
-        Task<ResultDto<CompanyMainsDto>> GetCompanyMainAsync(CompanyMainInput input);
+        Task<List<CompanyMainsDto>> GetCompanyMainListAsync(CompanyMainListInput input);
+        Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input);
         Task<ResultDto<CompanyMainDto>> SaveCompanyMainAsync(CompanyMainDto input);
         Task<ResultDto<DeleteCompanyMainDto>> DeleteCompanyMainAsync(DeleteCompanyMainInput input);
         Task<ResultDto<List<CompanyUsersDto>>> GetCompanyUserListAsync(CompanyUserListInput input);

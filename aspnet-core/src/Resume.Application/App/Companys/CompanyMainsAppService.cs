@@ -10,101 +10,119 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.MultiTenancy;
 using Resume.CompanyJobContents;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp;
 
 namespace Resume.App.Companys
 {
     public partial class CompanysAppService : ApplicationService, ICompanysAppService
     {
-        public virtual async Task<ResultDto<List<CompanyMainsDto>>> GetCompanyMainListAsync(CompanyMainListInput input)
+        public virtual async Task<List<CompanyMainsDto>> GetCompanyMainListAsync(CompanyMainListInput input)
         {
-            var Result = new ResultDto<List<CompanyMainsDto>>();
-            Result.Data = new List<CompanyMainsDto>();
-            Result.Version = "2023033001";
+            //結果
+            var Result = new List<CompanyMainsDto>();
+            var ex = new UserFriendlyException("錯誤訊息");
 
-            var DateNow = DateTime.Now;
+            //常用
 
-            var CurrentTenantId = CurrentTenant.Id;
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
+            //強制把input帶入系統值
+            //input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
+            //var CompanyMainId = input.Id;
+            //var RefreshItem = input.RefreshItem;
+
+            //預設值
+            //input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            //input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            //input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
             //由登入者的CurrentUser.Id尋找CompanyUser.UserMainId      
             //得到公司的主檔代碼(可能有多筆，來自於不同的，也可能來自於不同的租戶)
             if (SystemUserRoleKeys >= 16)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
+                ex.Data.Add(GuidGenerator.Create().ToString(), "您沒有權限");
 
-            using (_appService._dataFilter.Disable<IMultiTenant>())
-            {
-                var itemsCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
-                itemsCompanyUser = itemsCompanyUser.Where(p => p.UserMainId == UserMainId);
+            //主體資料
+            var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
+            var qrbsCompanyMain = from c in qrbCompanyMain
+                                      //where c.DateA <= ShareDefine.DateTimeNow && ShareDefine.DateTimeNow <= c.DateD
+                                      //&& c.Status == "1"                      
+                                  select c;
 
-                var ListCompanyMainId = itemsCompanyUser.Select(p => p.CompanyMainId);
-
-                var itemsAll = await _appService._companyMainRepository.GetQueryableAsync();
-                var items = itemsAll.Where(p => ListCompanyMainId.Contains(p.Id) || p.TenantId == CurrentTenantId).ToList();
-                if (SystemUserRoleKeys <= 2)    //系統廠可以看
-                    items = itemsAll.ToList();
-
-                if (Result.Messages.Count == 0)
+            if (ex.Data.Count == 0)
+                using (_appService._dataFilter.Disable<IMultiTenant>())
                 {
-                    var Data = ObjectMapper.Map<List<CompanyMain>, List<CompanyMainsDto>>(items);
-                    Data = (from c in Data
-                                //where c.DateA <= DateNow && DateNow <= c.DateD
-                            where c.Status == "1"
-                            orderby c.Sort
-                            select c).ToList();
+                    var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+                    var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
+                    var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
 
-                    Result.Data = Data;
-                    Result.Save = true;
+                    //如果是一般公司
+                    if (SystemUserRoleKeys > 2)
+                        qrbsCompanyMain = qrbsCompanyMain.Where(p => ListCompanyMainId.Contains(p.Id) || p.TenantId == TenantId);
+
+                    var itemsCompanyMain = qrbsCompanyMain.ToList();
+
+                    //排序結果 ，如果需要排序就
+                    //itemsCompanyMain = (from c in itemsCompanyMain
+                    //                    orderby c.Sort
+                    //                    select c).ToList();
+
+                    ObjectMapper.Map<List<CompanyMain>, List<CompanyMainsDto>>(itemsCompanyMain, Result);
                 }
-            }
 
-            Result.Check = Result.Messages.Count == 0;
-
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
 
-        public virtual async Task<ResultDto<CompanyMainsDto>> GetCompanyMainAsync(CompanyMainInput input)
+        public virtual async Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input)
         {
-            var Result = new ResultDto<CompanyMainsDto>();
-            Result.Data = new CompanyMainsDto();
-            Result.Version = "2023051101";
+            var Result = new CompanyMainsDto();
+            //Result.Data = new CompanyMainsDto();
+            //Result.Version = "2023051101";
 
-            var DateNow = DateTime.Now;
+            //var DateNow = DateTime.Now;
 
-            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            //var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            //var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            //由Id取得公司資料
-            if (SystemUserRoleKeys >= 16)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
+            ////由Id取得公司資料
+            //if (SystemUserRoleKeys >= 16)
+            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
 
-            var Id = input.Id;
+            //var Id = input.Id;
 
-            using (_appService._dataFilter.Disable<IMultiTenant>())
-            {
-                //理論上 一個使用者只會對應到一間公司 但未來會開放一個使用者 可以跨公司管理不同的租戶資料 目前如果要實現 只能改資料庫的欄位值 到CompanyUser新增一筆資料
-                var itemsCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
-                itemsCompanyUser = itemsCompanyUser.Where(p => p.UserMainId == UserMainId);
+            //using (_appService._dataFilter.Disable<IMultiTenant>())
+            //{
+            //    //理論上 一個使用者只會對應到一間公司 但未來會開放一個使用者 可以跨公司管理不同的租戶資料 目前如果要實現 只能改資料庫的欄位值 到CompanyUser新增一筆資料
+            //    var itemsCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+            //    itemsCompanyUser = itemsCompanyUser.Where(p => p.UserMainId == UserMainId);
 
-                var ListCompanyMainId = itemsCompanyUser.Select(p => p.CompanyMainId).ToList();
+            //    var ListCompanyMainId = itemsCompanyUser.Select(p => p.CompanyMainId).ToList();
 
-                if (SystemUserRoleKeys >= 4)
-                    if (!ListCompanyMainId.Contains(Id))
-                        Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
+            //    if (SystemUserRoleKeys >= 4)
+            //        if (!ListCompanyMainId.Contains(Id))
+            //            Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
 
-                if (Result.Messages.Count == 0)
-                {
-                    var itemsAll = await _appService._companyMainRepository.GetQueryableAsync();
-                    var item = itemsAll.FirstOrDefault(p => p.Id == Id);
+            //    if (Result.Messages.Count == 0)
+            //    {
+            //        var itemsAll = await _appService._companyMainRepository.GetQueryableAsync();
+            //        var item = itemsAll.FirstOrDefault(p => p.Id == Id);
 
-                    var Data = ObjectMapper.Map<CompanyMain, CompanyMainsDto>(item);
+            //        var Data = ObjectMapper.Map<CompanyMain, CompanyMainsDto>(item);
 
-                    Result.Data = Data;
-                    Result.Save = true;
-                }
-            }
+            //        Result.Data = Data;
+            //        Result.Save = true;
+            //    }
+            //}
 
-            Result.Check = Result.Messages.Count == 0;
+            //Result.Check = Result.Messages.Count == 0;
 
             return Result;
         }
@@ -198,14 +216,15 @@ namespace Resume.App.Companys
             input.DateA = itemCompanyJobMain.DateA;
             input.DateD = itemCompanyJobMain.DateD;
 
-            ObjectMapper.Map(input, itemCompanyJobMain);
+            //映射
+            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainInput, CompanyMain>(input);
             itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
-
+           
             //如果要更新為最新資料 就需要認可交易
             if (RefreshItem)
                 await _appService._unitOfWorkManager.Current.SaveChangesAsync();
 
-            Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainDto>(itemCompanyJobMain);
+            ObjectMapper.Map(itemCompanyJobMain, Result);
             return Result;
         }
 

@@ -142,7 +142,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("GetCompanyMain")]
         [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<CompanyMainsDto>> GetCompanyMainAsync( CompanyMainInput input)
+        public virtual Task<CompanyMainsDto> GetCompanyMainAsync( CompanyMainInput input)
         {
             return _CompanysAppService.GetCompanyMainAsync(input);
         }
@@ -151,7 +151,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("GetCompanyMainList")]
         [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<List<CompanyMainsDto>>> GetCompanyMainListAsync( CompanyMainListInput input)
+        public virtual Task<List<CompanyMainsDto>> GetCompanyMainListAsync( CompanyMainListInput input)
         {
             return _CompanysAppService.GetCompanyMainListAsync(input);
         }

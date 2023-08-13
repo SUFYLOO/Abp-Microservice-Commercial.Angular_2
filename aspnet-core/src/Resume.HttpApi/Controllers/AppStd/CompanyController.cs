@@ -177,26 +177,22 @@ namespace Resume.App.Controllers.AppStd.Companys
         [Route("GetCompanyMain")]
         [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetCompanyMainAsync(CompanyMainInput input)
+        public virtual  Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyMainAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _CompanysAppService.GetCompanyMainAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return  _CompanysAppService.GetCompanyMainAsync(input);
         }
 
         [HttpPost]
         [Route("GetCompanyMainList")]
         [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetCompanyMainListAsync(CompanyMainListInput input)
+        public virtual  Task<List<CompanyMainsDto>> GetCompanyMainListAsync(CompanyMainListInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyMainListAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return  _CompanysAppService.GetCompanyMainListAsync(input);
         }
 
         [HttpPost]

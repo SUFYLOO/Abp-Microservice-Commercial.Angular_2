@@ -143,9 +143,8 @@ namespace Resume.App
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentUpdateDto>();
             CreateMap<CompanyJobContentDto, SaveCompanyJobContentDto>();
 
-            CreateMap<SaveResumeMainInput, ResumeMainDto>();
-            CreateMap<ResumeMainDto, ResumeMain>();
-            CreateMap<ResumeMain, SaveResumeMainDto>();
+            CreateMap<UpdateCompanyMainInput, CompanyMain>();
+            CreateMap<CompanyMain, UpdateCompanyMainDto>();
 
             CreateMap<SaveResumeMainInput, ResumeMainDto>();
             CreateMap<ResumeMainDto, ResumeMain>();
