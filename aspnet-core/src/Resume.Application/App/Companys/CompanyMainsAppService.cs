@@ -11,6 +11,7 @@ using Volo.Abp.MultiTenancy;
 using Resume.CompanyJobContents;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp;
+using PayPalCheckoutSdk.Orders;
 
 namespace Resume.App.Companys
 {
@@ -138,7 +139,7 @@ namespace Resume.App.Companys
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            if (SystemUserRoleKeys >= 16)
+            if (SystemUserRoleKeys >9)
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
 
             var Id = input.Id;
@@ -175,6 +176,68 @@ namespace Resume.App.Companys
 
             Result.Check = Result.Messages.Count == 0;
 
+            return Result;
+        }
+
+        public virtual async Task<CompanyMainDto> DeleteCompanyMain1Async(DeleteCompanyMainInput input)
+        {
+            //結果
+            var Result = new CompanyMainsDto();
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+            //input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
+            var Id = input.Id;
+            //var RefreshItem = input.RefreshItem;
+
+            //預設值
+            //input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            //input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            //input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
+            if (SystemUserRoleKeys > 5)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "您沒有權限");
+
+            if (CompanyMainId == Id)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "您無法刪除自己");
+
+            //主體資料
+            var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
+            var qrbsCompanyMain = from c in qrbCompanyMain
+                                      //where c.DateA <= ShareDefine.DateTimeNow && ShareDefine.DateTimeNow <= c.DateD
+                                      //&& c.Status == "1"                      
+                                  select c;
+
+            if (ex.Data.Count == 0)
+                using (_appService._dataFilter.Disable<IMultiTenant>())
+                {
+                    var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+                    var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
+                    var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
+
+                    var itemCompanyMain = qrbCompanyMain.FirstOrDefault(p => p.Id == Id);
+                    if (itemCompanyMain == null)
+                        ex.Data.Add(GuidGenerator.Create().ToString(), "您沒有權限");
+                    else
+                    {
+                        await _appService._companyMainRepository.DeleteAsync(itemCompanyMain);
+                        ObjectMapper.Map(itemCompanyMain, Result);
+                    }
+                }
+
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
 
