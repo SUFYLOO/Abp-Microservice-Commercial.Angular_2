@@ -75,13 +75,13 @@ namespace Resume.App.Companys
 
                 ObjectMapper.Map(input, itemCompanyJobContent);
                 itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
-              
+
                 //如果要更新為最新資料 就需要認可交易
                 if (RefreshItem)
                     await _appService._unitOfWorkManager.Current.SaveChangesAsync();
             }
 
-            Result = ObjectMapper.Map<CompanyJobContent, SaveCompanyJobContentDto>(itemCompanyJobContent);
+            ObjectMapper.Map(itemCompanyJobContent, Result);
 
             return Result;
         }
