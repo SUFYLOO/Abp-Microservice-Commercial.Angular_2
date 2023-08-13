@@ -94,14 +94,12 @@ namespace Resume.App.Companys
 
     }
 
-    public class InsertCompanyMainInput : CompanyMainDto
-    {
-
-    }
 
     public class UpdateCompanyMainInput : CompanyMainDto
     {
-
+        new public Guid Id { get; set; }
+        new public string ConcurrencyStamp { get; set; }
+        public bool RefreshItem { get; set; } = false;
     }
 
     public class UpdateCompanyMainCompanyProfileInput
@@ -131,6 +129,7 @@ namespace Resume.App.Companys
         [Required]
         public Guid CompanyMainId { get; set; }
         public string WelfareSystem { get; set; }
+
     }
 
     public class SaveCompanyJobContentInput : CompanyJobContentDto
@@ -139,6 +138,14 @@ namespace Resume.App.Companys
         new public string ConcurrencyStamp { get; set; }
 
         public bool RefreshItem { get; set; } = false;
+        [Required]
+        new public String JobTypeCode { get; set; }
+        [Required]
+        new public String Name { get; set; }
+        [Required]
+        public string  JobType { get; set; }
+        [Required]
+        public string  WorkHours{ get; set; }
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto

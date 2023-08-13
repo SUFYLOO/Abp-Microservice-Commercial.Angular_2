@@ -59,7 +59,7 @@ namespace Resume;
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<ResumeResource>("en")
+                .Add<ResumeResource>("zh-Hant")
                 .AddBaseTypes(typeof(AbpValidationResource))
                 .AddVirtualJson("/Localization/Resume");
 

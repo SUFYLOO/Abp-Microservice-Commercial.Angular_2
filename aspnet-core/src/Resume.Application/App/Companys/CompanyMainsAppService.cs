@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.MultiTenancy;
+using Resume.CompanyJobContents;
+using Volo.Abp.ObjectMapping;
 
 namespace Resume.App.Companys
 {
@@ -160,36 +162,50 @@ namespace Resume.App.Companys
 
         public virtual async Task<UpdateCompanyMainDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input)
         {
+            // 結果
             var Result = new UpdateCompanyMainDto();
 
-            var DateNow = DateTime.Now;
-
+            //系統層
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var Id = CompanyMainId;
+            // input id
+            input.Id = CompanyMainId;
+
+            // 外部傳入
+            CompanyMainId = input.Id;
+            var RefreshItem = input.RefreshItem;
+
+            //固定資料
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
+            await UpdateCompanyMainCheckAsync(input);
+           
 
             var itemsCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanyMain.FirstOrDefault(p => p.Id == Id);
-            //check
-            var ResultMessage = await UpdateCompanyMainCheckAsync(input);
+            var item = itemsCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
-            if (ResultMessage.Check)
-            {
-                item.IndustryCategory = input.IndustryCategory;
-                item.CapitalAmount = input.CapitalAmount;
-                item.HideCapitalAmount = input.HideCapitalAmount;
-                item.CompanyScaleCode = input.CompanyScaleCode;
-                item.CompanyUrl = input.CompanyUrl;
-                item.CompanyUserId = input.CompanyUserId;
-                item.OfficePhone = input.OfficePhone;
-                item.FaxPhone = input.FaxPhone;
-                item.Address = input.Address;
-                item.Principal = input.Principal;
-                item.HidePrincipal = input.HidePrincipal;
-                await _appService._companyMainRepository.UpdateAsync(item);
-                Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainDto>(item);
-            }
+            //主體資料
+            var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
+            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+
+            //不要變更的值
+            input.Sort = itemCompanyJobMain.Sort;
+            input.DateA = itemCompanyJobMain.DateA;
+            input.DateD = itemCompanyJobMain.DateD;
+
+            ObjectMapper.Map(input, itemCompanyJobMain);
+            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
+
+            //如果要更新為最新資料 就需要認可交易
+            if (RefreshItem)
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+
+            Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainDto>(itemCompanyJobMain);
             return Result;
         }
 

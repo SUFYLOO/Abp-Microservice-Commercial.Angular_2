@@ -137,18 +137,21 @@ namespace Resume.App
             CreateMap<CompanyJob, UpdateCompanyJobOpenDto>();
             CreateMap<CompanyJob, CompanysJobDto>();
 
-            //三個一組
+            //四個一組
             CreateMap<CompanyJobContent, CompanyJobContentDto>();
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentCreateDto>();
             CreateMap<SaveCompanyJobContentInput, CompanyJobContentUpdateDto>();
             CreateMap<CompanyJobContentDto, SaveCompanyJobContentDto>();
 
-    
-
+            CreateMap<SaveResumeMainInput, ResumeMainDto>();
+            CreateMap<ResumeMainDto, ResumeMain>();
+            CreateMap<ResumeMain, SaveResumeMainDto>();
 
             CreateMap<SaveResumeMainInput, ResumeMainDto>();
             CreateMap<ResumeMainDto, ResumeMain>();
             CreateMap<ResumeMain, SaveResumeMainDto>();
+
+
         }
     }
 }

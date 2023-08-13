@@ -41,5 +41,6 @@ namespace Resume;
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         ResumeDtoExtensions.Configure();
+
     }
 }
