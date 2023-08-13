@@ -74,6 +74,7 @@ import { USER_INFOS_USER_INFO_ROUTE_PROVIDER } from './user-infos/user-info/prov
 import { USER_MAINS_USER_MAIN_ROUTE_PROVIDER } from './user-mains/user-main/providers/user-main-route.provider';
 import { USER_TOKENS_USER_TOKEN_ROUTE_PROVIDER } from './user-tokens/user-token/providers/user-token-route.provider';
 import { USER_VERIFYS_USER_VERIFY_ROUTE_PROVIDER } from './user-verifys/user-verify/providers/user-verify-route.provider';
+import { COMPANY_JOB_ORGANIZATION_UNITS_COMPANY_JOB_ORGANIZATION_UNIT_ROUTE_PROVIDER } from './company-job-organization-units/company-job-organization-unit/providers/company-job-organization-unit-route.provider';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -167,6 +168,7 @@ import { USER_VERIFYS_USER_VERIFY_ROUTE_PROVIDER } from './user-verifys/user-ver
     USER_MAINS_USER_MAIN_ROUTE_PROVIDER,
     USER_TOKENS_USER_TOKEN_ROUTE_PROVIDER,
     USER_VERIFYS_USER_VERIFY_ROUTE_PROVIDER,
+    COMPANY_JOB_ORGANIZATION_UNITS_COMPANY_JOB_ORGANIZATION_UNIT_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

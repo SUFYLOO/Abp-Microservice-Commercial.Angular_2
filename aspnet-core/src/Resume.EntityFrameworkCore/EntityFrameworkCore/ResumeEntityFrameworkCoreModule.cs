@@ -1,3 +1,4 @@
+using Resume.CompanyJobOrganizationUnits;
 using Resume.UserVerifys;
 using Resume.UserTokens;
 using Resume.UserMains;
@@ -90,9 +91,9 @@ namespace Resume.EntityFrameworkCore;
     typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
     )]
 [DependsOn(typeof(ChatEntityFrameworkCoreModule))]
-    [DependsOn(typeof(FileManagementEntityFrameworkCoreModule))]
-    [DependsOn(typeof(AbpPaymentEntityFrameworkCoreModule))]
-    public class ResumeEntityFrameworkCoreModule : AbpModule
+[DependsOn(typeof(FileManagementEntityFrameworkCoreModule))]
+[DependsOn(typeof(AbpPaymentEntityFrameworkCoreModule))]
+public class ResumeEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -205,6 +206,8 @@ namespace Resume.EntityFrameworkCore;
             options.AddRepository<UserToken, UserTokens.EfCoreUserTokenRepository>();
 
             options.AddRepository<UserVerify, UserVerifys.EfCoreUserVerifyRepository>();
+
+            options.AddRepository<CompanyJobOrganizationUnit, CompanyJobOrganizationUnits.EfCoreCompanyJobOrganizationUnitRepository>();
 
         });
 

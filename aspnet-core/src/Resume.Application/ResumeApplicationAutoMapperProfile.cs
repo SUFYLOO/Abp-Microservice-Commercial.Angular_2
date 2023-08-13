@@ -1,3 +1,4 @@
+using Resume.CompanyJobOrganizationUnits;
 using Resume.UserVerifys;
 using Resume.UserTokens;
 using Resume.UserMains;
@@ -212,5 +213,8 @@ public class ResumeApplicationAutoMapperProfile : Profile
 
         CreateMap<UserVerify, UserVerifyDto>();
         CreateMap<UserVerify, UserVerifyExcelDto>();
+
+        CreateMap<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitDto>();
+        CreateMap<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitExcelDto>();
     }
 }

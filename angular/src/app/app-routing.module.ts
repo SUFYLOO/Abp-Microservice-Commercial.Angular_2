@@ -376,6 +376,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./user-verifys/user-verify/user-verify.module').then(m => m.UserVerifyModule),
   },
+  {
+    path: 'company-job-organization-units',
+    loadChildren: () =>
+      import(
+        './company-job-organization-units/company-job-organization-unit/company-job-organization-unit.module'
+      ).then(m => m.CompanyJobOrganizationUnitModule),
+  },
 ];
 
 @NgModule({

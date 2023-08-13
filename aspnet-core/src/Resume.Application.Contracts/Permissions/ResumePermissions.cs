@@ -413,4 +413,12 @@ public static class ResumePermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class CompanyJobOrganizationUnits
+    {
+        public const string Default = GroupName + ".CompanyJobOrganizationUnits";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

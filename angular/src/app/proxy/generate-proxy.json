@@ -26266,6 +26266,470 @@
               }
             }
           }
+        },
+        "Resume.Controllers.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitController": {
+          "controllerName": "CompanyJobOrganizationUnit",
+          "type": "Resume.Controllers.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitController",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "interfaces": [
+            {
+              "type": "Resume.CompanyJobOrganizationUnits.ICompanyJobOrganizationUnitAppService"
+            }
+          ],
+          "actions": {
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/app/company-job-organization-units",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Resume.CompanyJobOrganizationUnits.GetCompanyJobOrganizationUnitsInput, Resume.Application.Contracts",
+                  "type": "Resume.CompanyJobOrganizationUnits.GetCompanyJobOrganizationUnitsInput",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.GetCompanyJobOrganizationUnitsInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "FilterText",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "CompanyMainId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "CompanyJobId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "OrganizationUnitId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "ExtendedInformation",
+                  "jsonName": null,
+                  "type": "System.String?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "DateAMin",
+                  "jsonName": null,
+                  "type": "System.DateTime?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "DateAMax",
+                  "jsonName": null,
+                  "type": "System.DateTime?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "DateDMin",
+                  "jsonName": null,
+                  "type": "System.DateTime?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "DateDMax",
+                  "jsonName": null,
+                  "type": "System.DateTime?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SortMin",
+                  "jsonName": null,
+                  "type": "System.Int?",
+                  "typeSimple": "number?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SortMax",
+                  "jsonName": null,
+                  "type": "System.Int?",
+                  "typeSimple": "number?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Note",
+                  "jsonName": null,
+                  "type": "System.String?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Status",
+                  "jsonName": null,
+                  "type": "System.String?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto>"
+              }
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/app/company-job-organization-units/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto",
+                "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto"
+              }
+            },
+            "GetListAsExcelFileAsyncByInput": {
+              "uniqueName": "GetListAsExcelFileAsyncByInput",
+              "name": "GetListAsExcelFileAsync",
+              "httpMethod": "GET",
+              "url": "api/app/company-job-organization-units/as-excel-file",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitExcelDownloadDto, Resume.Application.Contracts",
+                  "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitExcelDownloadDto",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitExcelDownloadDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "DownloadToken",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "FilterText",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Content.IRemoteStreamContent",
+                "typeSimple": "Volo.Abp.Content.IRemoteStreamContent"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Resume.CompanyJobOrganizationUnits.ICompanyJobOrganizationUnitsAppService"
+            },
+            "GetDownloadTokenAsync": {
+              "uniqueName": "GetDownloadTokenAsync",
+              "name": "GetDownloadTokenAsync",
+              "httpMethod": "GET",
+              "url": "api/app/company-job-organization-units/download-token",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Resume.Shared.DownloadTokenResultDto",
+                "typeSimple": "Resume.Shared.DownloadTokenResultDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Resume.CompanyJobOrganizationUnits.ICompanyJobOrganizationUnitsAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/company-job-organization-units",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto, Resume.Application.Contracts",
+                  "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto",
+                "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto"
+              }
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/app/company-job-organization-units/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto, Resume.Application.Contracts",
+                  "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto",
+                  "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto",
+                "typeSimple": "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto"
+              }
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/company-job-organization-units/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              }
+            }
+          }
         }
       }
     }
@@ -53378,6 +53842,408 @@
       ]
     },
     "Resume.UserVerifys.UserVerifyExcelDownloadDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "DownloadToken",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FilterText",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Name",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Resume.CompanyJobOrganizationUnits.GetCompanyJobOrganizationUnitsInput": {
+      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "FilterText",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false
+        },
+        {
+          "name": "CompanyMainId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "CompanyJobId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "OrganizationUnitId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "ExtendedInformation",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "DateAMin",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "DateAMax",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "DateDMin",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "DateDMax",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "SortMin",
+          "jsonName": null,
+          "type": "System.Int?",
+          "typeSimple": "number?",
+          "isRequired": false
+        },
+        {
+          "name": "SortMax",
+          "jsonName": null,
+          "type": "System.Int?",
+          "typeSimple": "number?",
+          "isRequired": false
+        },
+        {
+          "name": "Note",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRequired": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRequired": false
+        }
+      ]
+    },
+    "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CompanyMainId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "CompanyJobId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "OrganizationUnitId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "ExtendedInformation",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateA",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateD",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Sort",
+          "jsonName": null,
+          "type": "System.Int?",
+          "typeSimple": "number?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Note",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "ConcurrencyStamp",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false
+        }
+      ]
+    },
+    "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitCreateDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CompanyMainId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "CompanyJobId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "OrganizationUnitId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "ExtendedInformation",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateA",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateD",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Sort",
+          "jsonName": null,
+          "type": "System.Int?",
+          "typeSimple": "number?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Note",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        }
+      ]
+    },
+    "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitUpdateDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CompanyMainId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "CompanyJobId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "OrganizationUnitId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "ExtendedInformation",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateA",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "DateD",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Sort",
+          "jsonName": null,
+          "type": "System.Int?",
+          "typeSimple": "number?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Note",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "System.String?",
+          "typeSimple": "string?",
+          "isRef": false,
+          "isRequired": false
+        },
+        {
+          "name": "ConcurrencyStamp",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false
+        }
+      ]
+    },
+    "Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnitExcelDownloadDto": {
       "baseType": null,
       "isEnum": false,
       "enumNames": null,

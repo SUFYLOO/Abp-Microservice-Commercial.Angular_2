@@ -266,6 +266,11 @@ public class ResumePermissionDefinitionProvider : PermissionDefinitionProvider
         userVerifyPermission.AddChild(ResumePermissions.UserVerifys.Create, L("Permission:Create"));
         userVerifyPermission.AddChild(ResumePermissions.UserVerifys.Edit, L("Permission:Edit"));
         userVerifyPermission.AddChild(ResumePermissions.UserVerifys.Delete, L("Permission:Delete"));
+
+        var companyJobOrganizationUnitPermission = myGroup.AddPermission(ResumePermissions.CompanyJobOrganizationUnits.Default, L("Permission:CompanyJobOrganizationUnits"));
+        companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Create, L("Permission:Create"));
+        companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Edit, L("Permission:Edit"));
+        companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

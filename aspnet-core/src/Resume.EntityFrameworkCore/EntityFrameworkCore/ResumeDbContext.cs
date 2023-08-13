@@ -1,3 +1,4 @@
+using Resume.CompanyJobOrganizationUnits;
 using Resume.UserVerifys;
 using Resume.UserTokens;
 using Resume.UserMains;
@@ -82,6 +83,7 @@ public class ResumeDbContext :
     IIdentityProDbContext,
     ISaasDbContext
 {
+    public DbSet<CompanyJobOrganizationUnit> CompanyJobOrganizationUnits { get; set; }
     public DbSet<UserVerify> UserVerifys { get; set; }
     public DbSet<UserToken> UserTokens { get; set; }
     public DbSet<UserMain> UserMains { get; set; }
@@ -1176,5 +1178,23 @@ public class ResumeDbContext :
         b.Property(x => x.Note).HasColumnName(nameof(UserVerify.Note)).HasMaxLength(UserVerifyConsts.NoteMaxLength);
         b.Property(x => x.Status).HasColumnName(nameof(UserVerify.Status)).HasMaxLength(UserVerifyConsts.StatusMaxLength);
     });
+        if (builder.IsHostDatabase())
+        {
+            builder.Entity<CompanyJobOrganizationUnit>(b =>
+{
+    b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobOrganizationUnits", ResumeConsts.DbSchema);
+    b.ConfigureByConvention();
+    b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyJobOrganizationUnit.CompanyMainId));
+    b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyJobOrganizationUnit.CompanyJobId));
+    b.Property(x => x.OrganizationUnitId).HasColumnName(nameof(CompanyJobOrganizationUnit.OrganizationUnitId));
+    b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyJobOrganizationUnit.ExtendedInformation)).HasMaxLength(CompanyJobOrganizationUnitConsts.ExtendedInformationMaxLength);
+    b.Property(x => x.DateA).HasColumnName(nameof(CompanyJobOrganizationUnit.DateA));
+    b.Property(x => x.DateD).HasColumnName(nameof(CompanyJobOrganizationUnit.DateD));
+    b.Property(x => x.Sort).HasColumnName(nameof(CompanyJobOrganizationUnit.Sort));
+    b.Property(x => x.Note).HasColumnName(nameof(CompanyJobOrganizationUnit.Note)).HasMaxLength(CompanyJobOrganizationUnitConsts.NoteMaxLength);
+    b.Property(x => x.Status).HasColumnName(nameof(CompanyJobOrganizationUnit.Status)).HasMaxLength(CompanyJobOrganizationUnitConsts.StatusMaxLength);
+});
+
+        }
     }
 }

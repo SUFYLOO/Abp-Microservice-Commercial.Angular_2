@@ -1077,14 +1077,15 @@
     "NewUserVerify": "New User Verify",
     "UserVerify": "User Verify",
     "Menu:UserVerifys": "User Verifys",
-
-    //共用
     "Resume:CodeAlreadyExists": "代碼不存在",
-
-    //欄位
-
-
-    //不要刪
-    "Na": "代碼不存在"
+    "Na": "代碼不存在",
+    "Permission:CompanyJobOrganizationUnits": "Company Job Organization Units",
+    "CompanyJobOrganizationUnits": "Company Job Organization Units",
+    "NewCompanyJobOrganizationUnit": "New Company Job Organization Unit",
+    "CompanyJobOrganizationUnit": "Company Job Organization Unit",
+    "Menu:CompanyJobOrganizationUnits": "Company Job Organization Units",
+    "OrganizationUnitId": "Organization Unit Id",
+    "MinOrganizationUnitId": "Min Organization Unit Id",
+    "MaxOrganizationUnitId": "Max Organization Unit Id"
   }
 }
