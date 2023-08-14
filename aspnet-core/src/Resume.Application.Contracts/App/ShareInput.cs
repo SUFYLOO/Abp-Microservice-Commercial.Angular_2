@@ -12,8 +12,6 @@ namespace Resume.App
         [Required]
         public Guid Id { get; set; }
         [Required]
-        public string ConcurrencyStamp { get; set; }
-        [Required]
         public bool RefreshItem { get; set; } = false;
 
     }

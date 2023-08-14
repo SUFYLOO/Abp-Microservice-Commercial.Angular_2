@@ -19,4 +19,5 @@ public static class ResumeDomainErrorCodes
     public const string ActionTypeChangeViolation = "Resume:ActionTypeChangeViolation"; //操作類型更改違規
     public const string InputValueMinViolation = "Resume:InputValueMinViolation";   //輸入值最小違規
     public const string BiggerThen = "Resume:BiggerThen";   //再大一點
+
 }

@@ -28,7 +28,7 @@ namespace Resume.App.Companys
         Task<List<CompanyMainsDto>> GetCompanyMainListAsync(CompanyMainListInput input);
         Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input);
         Task<ResultDto<CompanyMainDto>> SaveCompanyMainAsync(CompanyMainDto input);
-        Task<ResultDto<DeleteCompanyMainDto>> DeleteCompanyMainAsync(DeleteCompanyMainInput input);
+        Task<CompanyMainsDto> DeleteCompanyMainAsync(DeleteCompanyMainInput input);
         Task<ResultDto<List<CompanyUsersDto>>> GetCompanyUserListAsync(CompanyUserListInput input);
         Task<ResultDto<CompanyUsersDto>> GetCompanyUserAsync(CompanyUserInput input);
         Task<ResultDto<CompanyUsersDto>> InsertCompanyUserAsync(SaveCompanyUserInput input);
@@ -46,7 +46,7 @@ namespace Resume.App.Companys
         Task<ResultDto<DeleteCompanyInvitationsAsyncDto>> DeleteCompanyInvitationsAsync(DeleteCompanyInvitationsInput input);
         Task<ResultDto<GenerateLinkCompanyInvitationsDto>> GenerateLinkCompanyInvitationsAsync(GenerateLinkCompanyInvitationsInput input);
         Task<ResultDto<CompanyInvitationssDto>> SendCompanyInvitationsAsync(SendCompanyInvitationsInput input);
-        Task<UpdateCompanyMainDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input);
+        Task<CompanyMainsDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input);
         Task<ResultDto> UpdateCompanyMainCheckAsync(UpdateCompanyMainInput input);
         Task<UpdateCompanyMainCompanyProfileDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input);
         Task<ResultDto> UpdateCompanyMainCompanyProfileCheckAsync(UpdateCompanyMainCompanyProfileInput input);

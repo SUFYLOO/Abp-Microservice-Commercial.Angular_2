@@ -97,8 +97,6 @@ namespace Resume.App.Companys
 
     public class UpdateCompanyMainInput : CompanyMainDto
     {
-        new public Guid Id { get; set; }
-        new public string ConcurrencyStamp { get; set; }
         public bool RefreshItem { get; set; } = false;
     }
 

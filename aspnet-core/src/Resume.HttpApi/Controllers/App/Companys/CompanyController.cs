@@ -77,9 +77,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("DeleteCompanyMain")]
-        [ProducesResponseType(typeof(DeleteCompanyMainDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<DeleteCompanyMainDto>> DeleteCompanyMainAsync(DeleteCompanyMainInput input)
+        public virtual Task<CompanyMainsDto> DeleteCompanyMainAsync(DeleteCompanyMainInput input)
         {
             return _CompanysAppService.DeleteCompanyMainAsync(input);
         }
@@ -250,7 +250,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("UpdateCompanyMain")]
         [ProducesResponseType(typeof(UpdateCompanyMainDto), StatusCodes.Status200OK)]
 
-        public virtual Task<UpdateCompanyMainDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input)
+        public virtual Task<CompanyMainsDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input)
         {
             return _CompanysAppService.UpdateCompanyMainAsync(input);
         }

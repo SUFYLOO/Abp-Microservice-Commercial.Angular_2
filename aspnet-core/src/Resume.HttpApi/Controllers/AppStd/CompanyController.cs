@@ -85,15 +85,15 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("DeleteCompanyMain")]
-        [ProducesResponseType(typeof(DeleteCompanyMainDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> DeleteCompanyMainAsync(DeleteCompanyMainInput input)
+        public virtual async Task<CompanyMainsDto> DeleteCompanyMainAsync(DeleteCompanyMainInput input)
         {
-            var Result = await _CompanysAppService.DeleteCompanyMainAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _CompanysAppService.DeleteCompanyMainAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.DeleteCompanyMainAsync(input);
         }
 
         [HttpPost]
