@@ -75,7 +75,7 @@ namespace Resume.UserCompanyJobFavs
 
             var userCompanyJobFav = await _userCompanyJobFavManager.UpdateAsync(
             id,
-            input.UserMainId, input.CompanyJobId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.UserMainId, input.CompanyJobId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserCompanyJobFav, UserCompanyJobFavDto>(userCompanyJobFav);

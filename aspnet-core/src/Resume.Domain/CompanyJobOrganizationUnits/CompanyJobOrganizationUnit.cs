@@ -6,13 +6,12 @@ using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 using JetBrains.Annotations;
-using Volo.Abp.Domain.Entities;
 
 using Volo.Abp;
 
 namespace Resume.CompanyJobOrganizationUnits
 {
-    public class CompanyJobOrganizationUnit : Entity<Guid>, IHasConcurrencyStamp
+    public class CompanyJobOrganizationUnit : Entity<Guid>
     {
         public virtual Guid CompanyMainId { get; set; }
 
@@ -35,8 +34,6 @@ namespace Resume.CompanyJobOrganizationUnits
         [CanBeNull]
         public virtual string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
-
         public CompanyJobOrganizationUnit()
         {
 
@@ -44,7 +41,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
         public CompanyJobOrganizationUnit(Guid id, Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null)
         {
-            ConcurrencyStamp = Guid.NewGuid().ToString("N");
+
             Id = id;
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobOrganizationUnitConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobOrganizationUnitConsts.NoteMaxLength, 0);

@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.UserTokens
 {
@@ -38,7 +37,7 @@ namespace Resume.UserTokens
 
         public async Task<UserToken> UpdateAsync(
             Guid id,
-            Guid userMainId, string tokenOld, string tokenNew, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, string tokenOld, string tokenNew, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(tokenOld, nameof(tokenOld));
@@ -59,7 +58,6 @@ namespace Resume.UserTokens
             userToken.Note = note;
             userToken.Status = status;
 
-            userToken.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _userTokenRepository.UpdateAsync(userToken);
         }
 

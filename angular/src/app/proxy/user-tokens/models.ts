@@ -38,7 +38,6 @@ export interface UserTokenDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface UserTokenExcelDownloadDto {
@@ -57,5 +56,4 @@ export interface UserTokenUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

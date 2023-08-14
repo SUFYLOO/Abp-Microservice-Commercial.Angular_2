@@ -35,7 +35,6 @@ export interface UserCompanyJobApplyDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface UserCompanyJobApplyExcelDownloadDto {
@@ -53,5 +52,4 @@ export interface UserCompanyJobApplyUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

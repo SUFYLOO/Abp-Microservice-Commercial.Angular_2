@@ -46,7 +46,6 @@ export interface TradeOderDetailDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface TradeOderDetailExcelDownloadDto {
@@ -67,5 +66,4 @@ export interface TradeOderDetailUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

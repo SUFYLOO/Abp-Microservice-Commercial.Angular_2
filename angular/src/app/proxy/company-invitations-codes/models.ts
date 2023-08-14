@@ -26,7 +26,6 @@ export interface CompanyInvitationsCodeDto extends FullAuditedEntityDto<string> 
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyInvitationsCodeExcelDownloadDto {
@@ -47,7 +46,6 @@ export interface CompanyInvitationsCodeUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyInvitationsCodesInput extends PagedAndSortedResultRequestDto {

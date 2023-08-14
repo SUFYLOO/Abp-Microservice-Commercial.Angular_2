@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobOrganizationUnits
 {
-    public class CompanyJobOrganizationUnitDto : EntityDto<Guid>, IHasConcurrencyStamp
+    public class CompanyJobOrganizationUnitDto : EntityDto<Guid>
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -16,6 +15,5 @@ namespace Resume.CompanyJobOrganizationUnits
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

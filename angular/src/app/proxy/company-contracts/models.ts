@@ -26,7 +26,6 @@ export interface CompanyContractDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyContractExcelDownloadDto {
@@ -47,7 +46,6 @@ export interface CompanyContractUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyContractsInput extends PagedAndSortedResultRequestDto {

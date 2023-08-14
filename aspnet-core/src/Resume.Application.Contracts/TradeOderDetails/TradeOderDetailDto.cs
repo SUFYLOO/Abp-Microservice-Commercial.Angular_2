@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.TradeOderDetails
 {
-    public class TradeOderDetailDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class TradeOderDetailDto : FullAuditedEntityDto<Guid>
     {
         public Guid TradeOrderId { get; set; }
         public Guid TradeProductId { get; set; }
@@ -18,6 +17,5 @@ namespace Resume.TradeOderDetails
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

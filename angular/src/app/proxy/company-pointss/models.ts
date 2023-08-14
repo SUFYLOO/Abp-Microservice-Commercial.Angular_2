@@ -22,7 +22,6 @@ export interface CompanyPointsDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyPointsExcelDownloadDto {
@@ -41,7 +40,6 @@ export interface CompanyPointsUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyPointssInput extends PagedAndSortedResultRequestDto {

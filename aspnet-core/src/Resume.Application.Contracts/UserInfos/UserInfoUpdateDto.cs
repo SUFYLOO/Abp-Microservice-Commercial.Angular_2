@@ -1,11 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.UserInfos
 {
-    public class UserInfoUpdateDto : IHasConcurrencyStamp
+    public class UserInfoUpdateDto
     {
         public Guid UserMainId { get; set; }
         [Required]
@@ -38,6 +37,5 @@ namespace Resume.UserInfos
         [StringLength(UserInfoConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

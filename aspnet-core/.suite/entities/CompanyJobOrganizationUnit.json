@@ -9,7 +9,7 @@
   "MenuIcon": "file-alt",
   "PrimaryKeyType": "Guid",
   "IsMultiTenant": false,
-  "CheckConcurrency": true,
+  "CheckConcurrency": false,
   "ShouldCreateUserInterface": true,
   "ShouldCreateBackend": true,
   "ShouldExportExcel": true,

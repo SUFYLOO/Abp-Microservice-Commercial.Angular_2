@@ -1,11 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.TradeOderDetails
 {
-    public class TradeOderDetailUpdateDto : IHasConcurrencyStamp
+    public class TradeOderDetailUpdateDto
     {
         public Guid TradeOrderId { get; set; }
         public Guid TradeProductId { get; set; }
@@ -24,6 +23,5 @@ namespace Resume.TradeOderDetails
         [StringLength(TradeOderDetailConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

@@ -102,10 +102,7 @@ export class UserCompanyJobPairComponent implements OnInit {
     if (this.form.invalid) return;
 
     const request = this.selected
-      ? this.service.update(this.selected.id, {
-          ...this.form.value,
-          concurrencyStamp: this.selected.concurrencyStamp,
-        })
+      ? this.service.update(this.selected.id, this.form.value)
       : this.service.create(this.form.value);
 
     this.isModalBusy = true;

@@ -61,7 +61,6 @@ export interface TradeProductDto extends FullAuditedEntityDto<string> {
   sort?: number;
   orderStateCode?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface TradeProductExcelDownloadDto {
@@ -86,5 +85,4 @@ export interface TradeProductUpdateDto {
   sort?: number;
   orderStateCode?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

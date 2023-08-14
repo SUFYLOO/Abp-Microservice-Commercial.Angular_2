@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.CompanyJobConditions
 {
@@ -45,7 +44,7 @@ namespace Resume.CompanyJobConditions
 
         public async Task<CompanyJobCondition> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(workExperienceYearCode, nameof(workExperienceYearCode));
@@ -80,7 +79,6 @@ namespace Resume.CompanyJobConditions
             companyJobCondition.Note = note;
             companyJobCondition.Status = status;
 
-            companyJobCondition.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _companyJobConditionRepository.UpdateAsync(companyJobCondition);
         }
 

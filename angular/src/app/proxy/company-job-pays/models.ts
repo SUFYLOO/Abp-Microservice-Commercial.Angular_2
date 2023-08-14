@@ -26,7 +26,6 @@ export interface CompanyJobPayDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobPayExcelDownloadDto {
@@ -47,7 +46,6 @@ export interface CompanyJobPayUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobPaysInput extends PagedAndSortedResultRequestDto {

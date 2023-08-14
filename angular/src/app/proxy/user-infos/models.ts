@@ -63,7 +63,6 @@ export interface UserInfoDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface UserInfoExcelDownloadDto {
@@ -90,5 +89,4 @@ export interface UserInfoUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

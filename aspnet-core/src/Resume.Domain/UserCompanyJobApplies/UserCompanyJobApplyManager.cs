@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.UserCompanyJobApplies
 {
@@ -36,7 +35,7 @@ namespace Resume.UserCompanyJobApplies
 
         public async Task<UserCompanyJobApply> UpdateAsync(
             Guid id,
-            Guid userMainId, Guid companyJobId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid userMainId, Guid companyJobId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(extendedInformation, nameof(extendedInformation), UserCompanyJobApplyConsts.ExtendedInformationMaxLength);
@@ -54,7 +53,6 @@ namespace Resume.UserCompanyJobApplies
             userCompanyJobApply.Note = note;
             userCompanyJobApply.Status = status;
 
-            userCompanyJobApply.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _userCompanyJobApplyRepository.UpdateAsync(userCompanyJobApply);
         }
 

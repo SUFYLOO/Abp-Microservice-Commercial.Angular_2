@@ -75,7 +75,7 @@ namespace Resume.CompanyJobApplicationMethods
 
             var companyJobApplicationMethod = await _companyJobApplicationMethodManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobApplicationMethod, CompanyJobApplicationMethodDto>(companyJobApplicationMethod);

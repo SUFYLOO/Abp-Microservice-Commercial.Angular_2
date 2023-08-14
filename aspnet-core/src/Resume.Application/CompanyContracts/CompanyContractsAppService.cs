@@ -75,7 +75,7 @@ namespace Resume.CompanyContracts
 
             var companyContract = await _companyContractManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.PlanCode, input.PointsTotal, input.PointsPay, input.PointsGift, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.PlanCode, input.PointsTotal, input.PointsPay, input.PointsGift, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyContract, CompanyContractDto>(companyContract);

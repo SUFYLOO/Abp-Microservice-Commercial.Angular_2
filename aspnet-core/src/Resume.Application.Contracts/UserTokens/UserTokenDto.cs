@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.UserTokens
 {
-    public class UserTokenDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class UserTokenDto : FullAuditedEntityDto<Guid>
     {
         public Guid UserMainId { get; set; }
         public string TokenOld { get; set; }
@@ -16,6 +15,5 @@ namespace Resume.UserTokens
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

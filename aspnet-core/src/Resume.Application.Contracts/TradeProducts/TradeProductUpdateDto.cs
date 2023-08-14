@@ -1,11 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.TradeProducts
 {
-    public class TradeProductUpdateDto : IHasConcurrencyStamp
+    public class TradeProductUpdateDto
     {
         [Required]
         [StringLength(TradeProductConsts.NameMaxLength)]
@@ -33,6 +32,5 @@ namespace Resume.TradeProducts
         [StringLength(TradeProductConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

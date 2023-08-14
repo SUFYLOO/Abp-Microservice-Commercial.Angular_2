@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.CompanyJobContents
 {
@@ -56,7 +55,7 @@ namespace Resume.CompanyJobContents
 
         public async Task<CompanyJobContent> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHour, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemote, string workDifferentPlaces, string holidaySystemCode, string workDayCode, string workIdentityCode, string disabilityCategory, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHour, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemote, string workDifferentPlaces, string holidaySystemCode, string workDayCode, string workIdentityCode, string disabilityCategory, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -116,7 +115,6 @@ namespace Resume.CompanyJobContents
             companyJobContent.Note = note;
             companyJobContent.Status = status;
 
-            companyJobContent.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _companyJobContentRepository.UpdateAsync(companyJobContent);
         }
 

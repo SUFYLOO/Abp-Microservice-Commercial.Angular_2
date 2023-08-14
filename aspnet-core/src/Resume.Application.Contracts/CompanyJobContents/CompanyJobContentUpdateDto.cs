@@ -1,11 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobContents
 {
-    public class CompanyJobContentUpdateDto : IHasConcurrencyStamp
+    public class CompanyJobContentUpdateDto
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -61,6 +60,5 @@ namespace Resume.CompanyJobContents
         [StringLength(CompanyJobContentConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

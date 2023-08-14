@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.TradeOrders
 {
@@ -47,7 +46,7 @@ namespace Resume.TradeOrders
 
         public async Task<TradeOrder> UpdateAsync(
             Guid id,
-            Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, DateTime? dateNeed = null, DateTime? dateDelivery = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid keyId, string orderNumber, DateTime dateOrder, string deliveryMethodCode, string deliveryZipCode, string deliveryCityCode, string deliveryAreaCode, string deliveryAddress, decimal deliveryFee, string userName, string orderStateCode, DateTime? dateNeed = null, DateTime? dateDelivery = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(orderNumber, nameof(orderNumber));
@@ -87,7 +86,6 @@ namespace Resume.TradeOrders
             tradeOrder.Note = note;
             tradeOrder.Status = status;
 
-            tradeOrder.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _tradeOrderRepository.UpdateAsync(tradeOrder);
         }
 

@@ -75,7 +75,7 @@ namespace Resume.CompanyJobPairs
 
             var companyJobPair = await _companyJobPairManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.Name, input.PairCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.Name, input.PairCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobPair, CompanyJobPairDto>(companyJobPair);

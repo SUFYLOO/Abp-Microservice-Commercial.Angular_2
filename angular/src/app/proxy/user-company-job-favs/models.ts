@@ -35,7 +35,6 @@ export interface UserCompanyJobFavDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface UserCompanyJobFavExcelDownloadDto {
@@ -53,5 +52,4 @@ export interface UserCompanyJobFavUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

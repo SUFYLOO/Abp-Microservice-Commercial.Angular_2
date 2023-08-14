@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobPays
 {
-    public class CompanyJobPayDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class CompanyJobPayDto : FullAuditedEntityDto<Guid>
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -18,6 +17,5 @@ namespace Resume.CompanyJobPays
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

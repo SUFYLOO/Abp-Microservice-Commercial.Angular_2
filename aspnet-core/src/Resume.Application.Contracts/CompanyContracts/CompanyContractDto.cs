@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyContracts
 {
-    public class CompanyContractDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class CompanyContractDto : FullAuditedEntityDto<Guid>
     {
         public Guid CompanyMainId { get; set; }
         public string PlanCode { get; set; }
@@ -18,6 +17,5 @@ namespace Resume.CompanyContracts
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

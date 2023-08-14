@@ -64,7 +64,6 @@ export interface CompanyJobContentDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobContentExcelDownloadDto {
@@ -104,7 +103,6 @@ export interface CompanyJobContentUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobContentsInput extends PagedAndSortedResultRequestDto {

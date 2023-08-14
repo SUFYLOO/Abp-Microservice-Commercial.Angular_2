@@ -75,7 +75,7 @@ namespace Resume.CompanyInvitationsCodes
 
             var companyInvitationsCode = await _companyInvitationsCodeManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.CompanyInvitationId, input.VerifyId, input.VerifyCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.CompanyInvitationId, input.VerifyId, input.VerifyCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyInvitationsCode, CompanyInvitationsCodeDto>(companyInvitationsCode);

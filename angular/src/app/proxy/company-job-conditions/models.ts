@@ -36,7 +36,6 @@ export interface CompanyJobConditionDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobConditionExcelDownloadDto {
@@ -62,7 +61,6 @@ export interface CompanyJobConditionUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobConditionsInput extends PagedAndSortedResultRequestDto {

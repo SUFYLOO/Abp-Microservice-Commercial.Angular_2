@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobApplicationMethods
 {
-    public class CompanyJobApplicationMethodDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class CompanyJobApplicationMethodDto : FullAuditedEntityDto<Guid>
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -25,6 +24,5 @@ namespace Resume.CompanyJobApplicationMethods
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

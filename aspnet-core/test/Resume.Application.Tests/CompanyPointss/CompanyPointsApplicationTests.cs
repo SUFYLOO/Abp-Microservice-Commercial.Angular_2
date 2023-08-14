@@ -27,19 +27,19 @@ namespace Resume.CompanyPointss
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("10a44f11-a205-43c3-9b27-51bf9bb61873")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("ba1c8e5e-84b7-4797-99db-9d6d173e11d6")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _companyPointssAppService.GetAsync(Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec"));
+            var result = await _companyPointssAppService.GetAsync(Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec"));
+            result.Id.ShouldBe(Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb"));
         }
 
         [Fact]
@@ -48,15 +48,15 @@ namespace Resume.CompanyPointss
             // Arrange
             var input = new CompanyPointsCreateDto
             {
-                CompanyMainId = Guid.Parse("c4c5ade1-5790-4cb8-96f6-cca17170638e"),
-                CompanyPointsTypeCode = "fe5709b031904916b37719dafbe0985e4ce309d3aa2341dfbc",
-                Points = 1778495224,
-                ExtendedInformation = "8c5f6ac7c32547e3806d45f808916c2e110603609a3e40c9b8115c036d91fcd5cb71af5b345a4bb98945f179f56e7c7b8f82307f729b41edbd5d5f6181bfc75f2e100a06a4b749d88e4765b30a69dcc4530be0decbb549a3adc007a50a5ab2888439e17cfec74d25bc86f37c69e0a63d5bcac26c13d84a5ca2df5cb428a155a61f22f11727e9489fadad53c1f7ba8a240c2b96b5397f4b618ee2926f3dc906822952e88ccc084aa8b0bc30123a2295f723a589931d0c48c58f51d6ccbd1e848454243990d10b469ea25d1b55e689fe0640880d1ad90c49c98e5b24e86942bf80ed0ebe89aa684ccd944282bad8d5e8bcd61bf98b599a43a0979d",
-                DateA = new DateTime(2015, 7, 25),
-                DateD = new DateTime(2002, 2, 8),
-                Sort = 488431541,
-                Note = "f01aa699860246c985b07f28e027d5b887b892cf45da44159d5be14a45ac854755a12bc5c9ce4b6f86d174be2c355d27169c1c96d26a4b3dbf239364854ae4577ad167fd657d40108aad5707f1ce6a7c8b6f39f4ee8d4e389cfe001a75c8cc5ed3eb37d777ed4cf88f43b74be3a437cfcc7b95768a894c8090998ac09f430e7b9f3e9a9d1e1141e0b22b74b89c4fec226d633b1be8f34acc8a7e283586333e2113a57ee5e2154ec8b937dca2197dd212bf6fccec90284d3d9d7d16ac42192eb850643e540b4c44ce931282653bbb6b9bcc7dd34a29154ad2928133d76eb5ac63a20b7fb53f424840816852ad5ecd2994c7f64767c03248d29e92",
-                Status = "96e3262d601d497b9ce0722d1b43b1c41a3113535cca4d27be"
+                CompanyMainId = Guid.Parse("f709fcdc-2862-4be8-9923-056f5cfd5ce7"),
+                CompanyPointsTypeCode = "3e641aabd41b42b1ae7c1383d3dceb9807437aec6d6742d592",
+                Points = 1565892303,
+                ExtendedInformation = "ff51215386944868a1d9e842ca5424254320fab49c754212855e5ea9d14e6a575a9dfb858358401da749549672dfd38693c7cb03fbd143209f71bcdb70a32301dbe6c6d61dcc42a0820e403e9f472d1900277505b3644cedaa986404162e4f01f5e5bc611d0f4eedacfcba0b073eb28de9e79a5791bf47fb8f5f684668ba525dd801c46553934f588cdbef718a6c34b5a77d482bf003412f928e46b4e05fc96de17836818992462a8d47297b8577e12335b45435b15745ff9b11337d9370a3625bfaca5053f9477cb63fa97d63b0c15765d3000c8ecc4f8584a0237ccda2fcbd20ff1f1f4e6a49609c1b4a05641726e03377958cc59840a38d35",
+                DateA = new DateTime(2003, 2, 15),
+                DateD = new DateTime(2021, 5, 3),
+                Sort = 146691293,
+                Note = "b0466a57e62d493b839e8150ad323ae707bfb9c0353c485e91ff6aa2b65801345e0ae5deee874ca184cdee0d00b1a2617d8f6fb10c2c4023a4c22f85df899f105192f7dba1ef4ab6a8f57eb2fead024a9b73a3615ea241c0b1cfddf8346984bce311551cb88d4543bcec1b6ea91a61a751bf6f24f71340848ce99d6552ddbb82406b1b71a894449885b592896aa5e87a2937880b4ed94641a65173683b0aff06c4ae755a7fb441089b38dd7eb2fe91bc39b5d0f0632c4f6a8b081fbb4b6465bbf9d54af7e9c24c91b28fd2ab4c8a208ec6fade073b95482799057caaf308f3fc9855f22051fa447b9807f7c44727bc721c1f7c51dd8744d38483",
+                Status = "a2d7e9d9d72b49c895ba6456ef6102ec74994d54737a4928a4"
             };
 
             // Act
@@ -66,15 +66,15 @@ namespace Resume.CompanyPointss
             var result = await _companyPointsRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("c4c5ade1-5790-4cb8-96f6-cca17170638e"));
-            result.CompanyPointsTypeCode.ShouldBe("fe5709b031904916b37719dafbe0985e4ce309d3aa2341dfbc");
-            result.Points.ShouldBe(1778495224);
-            result.ExtendedInformation.ShouldBe("8c5f6ac7c32547e3806d45f808916c2e110603609a3e40c9b8115c036d91fcd5cb71af5b345a4bb98945f179f56e7c7b8f82307f729b41edbd5d5f6181bfc75f2e100a06a4b749d88e4765b30a69dcc4530be0decbb549a3adc007a50a5ab2888439e17cfec74d25bc86f37c69e0a63d5bcac26c13d84a5ca2df5cb428a155a61f22f11727e9489fadad53c1f7ba8a240c2b96b5397f4b618ee2926f3dc906822952e88ccc084aa8b0bc30123a2295f723a589931d0c48c58f51d6ccbd1e848454243990d10b469ea25d1b55e689fe0640880d1ad90c49c98e5b24e86942bf80ed0ebe89aa684ccd944282bad8d5e8bcd61bf98b599a43a0979d");
-            result.DateA.ShouldBe(new DateTime(2015, 7, 25));
-            result.DateD.ShouldBe(new DateTime(2002, 2, 8));
-            result.Sort.ShouldBe(488431541);
-            result.Note.ShouldBe("f01aa699860246c985b07f28e027d5b887b892cf45da44159d5be14a45ac854755a12bc5c9ce4b6f86d174be2c355d27169c1c96d26a4b3dbf239364854ae4577ad167fd657d40108aad5707f1ce6a7c8b6f39f4ee8d4e389cfe001a75c8cc5ed3eb37d777ed4cf88f43b74be3a437cfcc7b95768a894c8090998ac09f430e7b9f3e9a9d1e1141e0b22b74b89c4fec226d633b1be8f34acc8a7e283586333e2113a57ee5e2154ec8b937dca2197dd212bf6fccec90284d3d9d7d16ac42192eb850643e540b4c44ce931282653bbb6b9bcc7dd34a29154ad2928133d76eb5ac63a20b7fb53f424840816852ad5ecd2994c7f64767c03248d29e92");
-            result.Status.ShouldBe("96e3262d601d497b9ce0722d1b43b1c41a3113535cca4d27be");
+            result.CompanyMainId.ShouldBe(Guid.Parse("f709fcdc-2862-4be8-9923-056f5cfd5ce7"));
+            result.CompanyPointsTypeCode.ShouldBe("3e641aabd41b42b1ae7c1383d3dceb9807437aec6d6742d592");
+            result.Points.ShouldBe(1565892303);
+            result.ExtendedInformation.ShouldBe("ff51215386944868a1d9e842ca5424254320fab49c754212855e5ea9d14e6a575a9dfb858358401da749549672dfd38693c7cb03fbd143209f71bcdb70a32301dbe6c6d61dcc42a0820e403e9f472d1900277505b3644cedaa986404162e4f01f5e5bc611d0f4eedacfcba0b073eb28de9e79a5791bf47fb8f5f684668ba525dd801c46553934f588cdbef718a6c34b5a77d482bf003412f928e46b4e05fc96de17836818992462a8d47297b8577e12335b45435b15745ff9b11337d9370a3625bfaca5053f9477cb63fa97d63b0c15765d3000c8ecc4f8584a0237ccda2fcbd20ff1f1f4e6a49609c1b4a05641726e03377958cc59840a38d35");
+            result.DateA.ShouldBe(new DateTime(2003, 2, 15));
+            result.DateD.ShouldBe(new DateTime(2021, 5, 3));
+            result.Sort.ShouldBe(146691293);
+            result.Note.ShouldBe("b0466a57e62d493b839e8150ad323ae707bfb9c0353c485e91ff6aa2b65801345e0ae5deee874ca184cdee0d00b1a2617d8f6fb10c2c4023a4c22f85df899f105192f7dba1ef4ab6a8f57eb2fead024a9b73a3615ea241c0b1cfddf8346984bce311551cb88d4543bcec1b6ea91a61a751bf6f24f71340848ce99d6552ddbb82406b1b71a894449885b592896aa5e87a2937880b4ed94641a65173683b0aff06c4ae755a7fb441089b38dd7eb2fe91bc39b5d0f0632c4f6a8b081fbb4b6465bbf9d54af7e9c24c91b28fd2ab4c8a208ec6fade073b95482799057caaf308f3fc9855f22051fa447b9807f7c44727bc721c1f7c51dd8744d38483");
+            result.Status.ShouldBe("a2d7e9d9d72b49c895ba6456ef6102ec74994d54737a4928a4");
         }
 
         [Fact]
@@ -83,43 +83,43 @@ namespace Resume.CompanyPointss
             // Arrange
             var input = new CompanyPointsUpdateDto()
             {
-                CompanyMainId = Guid.Parse("77588d96-1ca5-4175-9511-07e1ddfe5cdc"),
-                CompanyPointsTypeCode = "e2706d4eb7e4400bbcb3d4cb8c20c273f7f741aa2f594e27ae",
-                Points = 149903520,
-                ExtendedInformation = "aa750876220e456190c93fde74a3a6485f86239e513e4e619b774530b72b5f0284e682cb3a8c49a385f564a23171050d1d88a021ba3a4be4a49e475c3ff020b82ab5a1c1a31a498a98a7110ecfa409523c386b7f315d463e93278561f22800eb1aec120714f94408855e53dac30768ef6b70b1c2b302422888b372198542410631a0ed1ade5a489cb3cf82b7c1a5a48c2c13dfe49b61484da5c7e7c48b3127c93e097b0c16ac464587b8a37ad08d8dec301d1ba11025404693044c4c27343ef7febcec267d694f8aace25550393958d418124305e26f428091661c02c4adaf59929236171d174696bb994757069331d000f2142c82744f9cabef",
-                DateA = new DateTime(2011, 8, 16),
-                DateD = new DateTime(2005, 11, 22),
-                Sort = 1533736530,
-                Note = "a956dc628739461bab61fe3fdc127b19fd29ee5bc8fe4881a05ad60a862ecf3bdf2f2ec274074785b1cb2c0f3c67d4309a2ffb735ef44d9ba74da1c06602ee765e1b1d26267f48ffa014111fa8bb94af66c7d9de003e46508b8e0d3ee2271da27a2abbc9a6e8482dbc4c74750b4a8e01bd6f759b8b7f4b91939d87cab01a969c6b9238beac13419c80b7bb43c719d33b52e8b726b0894111b07c5ba1cfec13f66ff7707ac21d4c579f062dc49b4f0cb100edb071be5147049e426687dcb0400e48fa9306670e4820b64b9e48ed98af2de969bb9d494348f18fd1b05645d1ced8a43993f8d5654b3593a056b044d34ac5ffe09729931442ea862c",
-                Status = "f6de0f62728f45dcb7b692db67092026ccc3d351a8984a648d"
+                CompanyMainId = Guid.Parse("f16d3b17-3eb8-4e69-9ff3-a19880133aef"),
+                CompanyPointsTypeCode = "2c9d9452ad6e4aaf940814b03e0e4d23c23a88698e04442ab7",
+                Points = 759519152,
+                ExtendedInformation = "d8a0b51b61a344d9b28e93d3fcc820d85371d6fd0aea497daf01318f9587428db91c96e34cbd4f0e8e63c4b47cb6acdaa02ca9bd6b614ebdab8e3f21960c5d9d0b9cfce5ce5c4c599833ee42d924e611026268a429f3479398b949581670b4e39536d2eb4c114dc6b1f2a8d3282dafdf1d20c5f8f95e4c8f80b196c8d511f73d09a60b2a2a17452584c2b290038d5c68554cf1687ccf4ebfaa73e30e02bc9c3d1697807d2b7a48e4b90def5661dd945cc6571676f9bb41e6a1651c1e878a1b0209bd53a089904b26864c6a703aa20c0e345c4fa1bc6048fd812aa30696c2a484ba8abe80e705453cb1ac67c36d7b9e988b354447692f44bf97c7",
+                DateA = new DateTime(2018, 6, 14),
+                DateD = new DateTime(2000, 5, 6),
+                Sort = 891567660,
+                Note = "9dd8dae0ee3042e0a50e468641675e6aad6b208199744e9a9024049fdf0fd8c93c3c27792b3d40918f01bc1543896760b3dce4db16b54f7a97892101c5de3a41edd2f6d137a54c02a7985df0b5933f364d3909b58e05473fbbf9ca7f1f6ca639c1bd170a014b46488be69767b1eb4ae1c5b7194efa2647149b82640daa65776d78ce1aebc1ef40d0bfe35d5857eed056c36328308101462fb1fe5a2cc0429bf3e025f8a8cfb24a4699897bd23f6ba5c0cefb76888bc84fa68f653e030fab7db31815dcaa8bb84ccea0e57835e5c1fdc2dfd1f91675e2415e94b3b39ef2dacc08c7f1a6b0f6c940718ba50c61f7833e5f4c9078bdfd664714b905",
+                Status = "cea6d1c6a5ee4368bd6d2bf6009f50b4918941dbf99b4cec8d"
             };
 
             // Act
-            var serviceResult = await _companyPointssAppService.UpdateAsync(Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec"), input);
+            var serviceResult = await _companyPointssAppService.UpdateAsync(Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb"), input);
 
             // Assert
             var result = await _companyPointsRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("77588d96-1ca5-4175-9511-07e1ddfe5cdc"));
-            result.CompanyPointsTypeCode.ShouldBe("e2706d4eb7e4400bbcb3d4cb8c20c273f7f741aa2f594e27ae");
-            result.Points.ShouldBe(149903520);
-            result.ExtendedInformation.ShouldBe("aa750876220e456190c93fde74a3a6485f86239e513e4e619b774530b72b5f0284e682cb3a8c49a385f564a23171050d1d88a021ba3a4be4a49e475c3ff020b82ab5a1c1a31a498a98a7110ecfa409523c386b7f315d463e93278561f22800eb1aec120714f94408855e53dac30768ef6b70b1c2b302422888b372198542410631a0ed1ade5a489cb3cf82b7c1a5a48c2c13dfe49b61484da5c7e7c48b3127c93e097b0c16ac464587b8a37ad08d8dec301d1ba11025404693044c4c27343ef7febcec267d694f8aace25550393958d418124305e26f428091661c02c4adaf59929236171d174696bb994757069331d000f2142c82744f9cabef");
-            result.DateA.ShouldBe(new DateTime(2011, 8, 16));
-            result.DateD.ShouldBe(new DateTime(2005, 11, 22));
-            result.Sort.ShouldBe(1533736530);
-            result.Note.ShouldBe("a956dc628739461bab61fe3fdc127b19fd29ee5bc8fe4881a05ad60a862ecf3bdf2f2ec274074785b1cb2c0f3c67d4309a2ffb735ef44d9ba74da1c06602ee765e1b1d26267f48ffa014111fa8bb94af66c7d9de003e46508b8e0d3ee2271da27a2abbc9a6e8482dbc4c74750b4a8e01bd6f759b8b7f4b91939d87cab01a969c6b9238beac13419c80b7bb43c719d33b52e8b726b0894111b07c5ba1cfec13f66ff7707ac21d4c579f062dc49b4f0cb100edb071be5147049e426687dcb0400e48fa9306670e4820b64b9e48ed98af2de969bb9d494348f18fd1b05645d1ced8a43993f8d5654b3593a056b044d34ac5ffe09729931442ea862c");
-            result.Status.ShouldBe("f6de0f62728f45dcb7b692db67092026ccc3d351a8984a648d");
+            result.CompanyMainId.ShouldBe(Guid.Parse("f16d3b17-3eb8-4e69-9ff3-a19880133aef"));
+            result.CompanyPointsTypeCode.ShouldBe("2c9d9452ad6e4aaf940814b03e0e4d23c23a88698e04442ab7");
+            result.Points.ShouldBe(759519152);
+            result.ExtendedInformation.ShouldBe("d8a0b51b61a344d9b28e93d3fcc820d85371d6fd0aea497daf01318f9587428db91c96e34cbd4f0e8e63c4b47cb6acdaa02ca9bd6b614ebdab8e3f21960c5d9d0b9cfce5ce5c4c599833ee42d924e611026268a429f3479398b949581670b4e39536d2eb4c114dc6b1f2a8d3282dafdf1d20c5f8f95e4c8f80b196c8d511f73d09a60b2a2a17452584c2b290038d5c68554cf1687ccf4ebfaa73e30e02bc9c3d1697807d2b7a48e4b90def5661dd945cc6571676f9bb41e6a1651c1e878a1b0209bd53a089904b26864c6a703aa20c0e345c4fa1bc6048fd812aa30696c2a484ba8abe80e705453cb1ac67c36d7b9e988b354447692f44bf97c7");
+            result.DateA.ShouldBe(new DateTime(2018, 6, 14));
+            result.DateD.ShouldBe(new DateTime(2000, 5, 6));
+            result.Sort.ShouldBe(891567660);
+            result.Note.ShouldBe("9dd8dae0ee3042e0a50e468641675e6aad6b208199744e9a9024049fdf0fd8c93c3c27792b3d40918f01bc1543896760b3dce4db16b54f7a97892101c5de3a41edd2f6d137a54c02a7985df0b5933f364d3909b58e05473fbbf9ca7f1f6ca639c1bd170a014b46488be69767b1eb4ae1c5b7194efa2647149b82640daa65776d78ce1aebc1ef40d0bfe35d5857eed056c36328308101462fb1fe5a2cc0429bf3e025f8a8cfb24a4699897bd23f6ba5c0cefb76888bc84fa68f653e030fab7db31815dcaa8bb84ccea0e57835e5c1fdc2dfd1f91675e2415e94b3b39ef2dacc08c7f1a6b0f6c940718ba50c61f7833e5f4c9078bdfd664714b905");
+            result.Status.ShouldBe("cea6d1c6a5ee4368bd6d2bf6009f50b4918941dbf99b4cec8d");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _companyPointssAppService.DeleteAsync(Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec"));
+            await _companyPointssAppService.DeleteAsync(Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb"));
 
             // Assert
-            var result = await _companyPointsRepository.FindAsync(c => c.Id == Guid.Parse("bcde3f61-9faf-4896-8adf-e781e2c9baec"));
+            var result = await _companyPointsRepository.FindAsync(c => c.Id == Guid.Parse("cbb91d82-6cec-4bb7-a867-61950103a6eb"));
 
             result.ShouldBeNull();
         }

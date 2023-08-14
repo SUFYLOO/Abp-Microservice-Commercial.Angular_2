@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.UserInfos
 {
-    public class UserInfoDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class UserInfoDto : FullAuditedEntityDto<Guid>
     {
         public Guid UserMainId { get; set; }
         public string NameC { get; set; }
@@ -24,6 +23,5 @@ namespace Resume.UserInfos
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

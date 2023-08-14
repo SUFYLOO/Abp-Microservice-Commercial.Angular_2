@@ -75,7 +75,7 @@ namespace Resume.UserTokens
 
             var userToken = await _userTokenManager.UpdateAsync(
             id,
-            input.UserMainId, input.TokenOld, input.TokenNew, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.UserMainId, input.TokenOld, input.TokenNew, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<UserToken, UserTokenDto>(userToken);

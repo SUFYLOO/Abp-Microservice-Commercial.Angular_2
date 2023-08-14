@@ -75,7 +75,7 @@ namespace Resume.CompanyJobConditions
 
             var companyJobCondition = await _companyJobConditionManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobCondition, CompanyJobConditionDto>(companyJobCondition);

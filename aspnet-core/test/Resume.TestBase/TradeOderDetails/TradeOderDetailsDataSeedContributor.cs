@@ -29,34 +29,34 @@ namespace Resume.TradeOderDetails
 
             await _tradeOderDetailRepository.InsertAsync(new TradeOderDetail
             (
-                id: Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"),
-                tradeOrderId: Guid.Parse("fab42f0b-59bd-4a99-ac30-f078713c943f"),
-                tradeProductId: Guid.Parse("b0ca9140-ebf5-4007-9555-393c74153bbe"),
-                unitPrice: 1626049157,
-                quantity: 256325325,
-                orderDetailStateCode: "54559be2e062483d887b760d3ae8636a6faec25ca17d417ca3",
-                extendedInformation: "42d75a35170d43e8ae067f91d8dc895eabd19ce320924d19bf02a4ba28715f569dd9ae4ec4ec41c78ed0111f91e570a5deee54acd2f54ce3b21ca41fe7ddff44253446bb6cdf41fa98855c9603e8dc55681cc3ee22bd4adab3873ff775e17d15e81cdc993b0b48d49aea6378419336dca786cadccd394a79be1af6a8288170242ae43fa4aabc4bd5befca902df9c6deee5836fc6326047689d6bd160862fcecfe659d7627f28445d9df4553e8d01b6d3f62f244730e944a6a81134c8fb04b6dac481ee129e044de1a9e5d3373969349cfed25e4f5acc4275bba1e416b7b530c7612adfc0446a416e911f1b5e9b70acbcc73b0b3b89344e7bab44",
-                dateA: new DateTime(2008, 10, 14),
-                dateD: new DateTime(2015, 5, 25),
-                sort: 1105656464,
-                note: "697d9e5fcee347cc89be0f424c66636ad478c52ea8fe44a5a734fc8d9a3784fd5abf8152476b4d6aa5ecb62fc453a7a1e0d0b7cd53594e42b06d16bce2d4bab1d3dbc4a52dd64b3e9e997981e08ebfd4f30ac5afc9704dd2bfec1d0fda6aa26616a6968444654a96a6845a67b1a72dd270b3e9e70cdc4ecca70938c400a8d436faed89faea434fc1b1bebf4383651c2b89727f4663ae495a9fb313231573ba4a7cd64d368db4469d978cf03a08b6ff14113db8e75a4847e2b2b1a1cf9f8ce0053c34534beb9e48b489f05956c6d13cba8f83bfc56b9740c4a72c1b7384a144f9f4a6807eabf04564836059485b0ff7e709bc58b8562249c59d47",
-                status: "e1e83a99327349abab429f8c4cae52bdae725ba691da4c2ebb"
+                id: Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"),
+                tradeOrderId: Guid.Parse("7fe581d4-a623-418a-90e1-269865c4785a"),
+                tradeProductId: Guid.Parse("af8f0e16-5c2c-4a4d-bcae-8ab25389fa4f"),
+                unitPrice: 1650339558,
+                quantity: 40037530,
+                orderDetailStateCode: "dfdbac81ef78459493759f469812fc8f9b22afd195fc49b8a1",
+                extendedInformation: "aa97576042c14c91b37c66eaf6cfca543647ad1416dd4595aed47ac6744a1472854dcba2a3434d0386178998a6a3c95ded66d1d80ce14c2d9b85e510d6b72577853d2c30ebe446a2b1d8eb9e33d3054e6f5f7d5dcd424a31a6b5ae4435a2e02640be1b088f3841c3bf9a38b85dfda009a2f6cb83367342408b91cd1d554dce0076011ece9b834254b57a924c7b44e395b637d216382344039e7ca12f2a06e54c9afa2c9fab624bd2a8dd51473da3e5d8d7c02ce050bc4770ad3885248eab072ab6c6cd46d693407bb4024ed2d9f893dbf5b14a7238784abaae14b6f69a711d358e3f222bc661491db0473b5e4c5e1f6ff3b8dfa83c074f3b88c9",
+                dateA: new DateTime(2000, 6, 22),
+                dateD: new DateTime(2016, 8, 13),
+                sort: 492057921,
+                note: "33048a15a7e44edbb22d746aecedeb9bf70a0504780e46bd9b6d1424eeb7400f11b55c02ed724c94be8ef627d52c9bbf319ffc7026424e57ba4abbdfaf1c2b811cdc7e0637004d9b9b0cdbe66f464078dacf7a4add494f9bbe6214a1c35f44cb9e4d3bddc4b64a69ac5b8c40aa279305a97155eb27cf4e149f410f71380c9eb25b8792f6264140c5bf412a7b558cbf89e49e9b41e2ff49cda6e65eb77cfef36c297dfa328e194b0482cee35afb328e951cf74ba6964f4b0cbb5024d15326142c6016c99e8f6b4a7db699f8553f3949774befbf1b03e14be88e03941ede7974dac1a67323a9b74c8ea8e809e0b5133406e8fd42f4cbd349909622",
+                status: "caa9959fbabe4a378ad4423585aaaa48b8bfa8e0198947a3ba"
             ));
 
             await _tradeOderDetailRepository.InsertAsync(new TradeOderDetail
             (
-                id: Guid.Parse("b508e74c-5247-476e-983d-71b63229e5a9"),
-                tradeOrderId: Guid.Parse("d99851d3-62ef-44e2-b387-3fc27098b60a"),
-                tradeProductId: Guid.Parse("e2e42f76-b67d-4f7e-bdf4-a2d416fdeacc"),
-                unitPrice: 1340051948,
-                quantity: 1411389050,
-                orderDetailStateCode: "9cc4208029e0430687fa4554255b23c0fa339e168d9248ce8b",
-                extendedInformation: "f699d9d9ada146c593bcb7546ee440ec84fd6e433ad2400d95263e31d4cce9c53eb414d00e764d78922537064eb8dc63b27de009733840ffa71ae6187bcaf7bbce45d432d1a7460e879f8ca36375e06eada4888398fd4c2a9a3e79731bee3cf346e6cdaf080f4794bfe60ab49b5568854d145dd49f1440a39fa86d375f7aba1c5a2d5062d5fa47628bc18857e61c5c3c647be7285f91453db10b0006fc59cc3a99673198709448bda623904e7105fa7942bd9771dfc14ca98d88de959e803356911f24d18549447f82a45e9df70498fc960fe26beb4f43f3b0abde52d0b51458e665530e16944ea6ac5237d191d47361538193dd38be4319a1cc",
-                dateA: new DateTime(2015, 11, 7),
-                dateD: new DateTime(2015, 11, 2),
-                sort: 168276310,
-                note: "66e7108b9e6140ef94ebf8cd350331bb4cca5c731deb48c3a7247916c64ae0357076a56700fa400e97fe2e1e35f6e9f7536e2837f41d4ab2bdb2978b815257dd5b3d8f5e13c3407a817bf067f2d5ccf4a73e248157394f94b83691840ca8c40205d118b1d7fc47f7b919d87e57b3a7bedefb420fc6aa42c48db7cc4d30377066fdb0ac3589bc4b1ca23649e6adfbb4af86c91f1424fd49388d983557f37379e137fe9cdb7cde4a94b3d494a777bb33ab75e51ae8af6842ac9ae0d06bb5ed4c525f0606e1ef94401b84a3cf14b0114fcf5e6bfaf29bb04e99812601c460e557120b6c8060c98f4a65afa324ad8cd9e75f27b56a2de10b4d7fa824",
-                status: "6e7eaea37b5541b3a23b45b036af5a166ee239483f0140dd82"
+                id: Guid.Parse("5312bd17-4a4f-4d4b-b859-2590fa1cd53a"),
+                tradeOrderId: Guid.Parse("708280d9-0d49-4391-95b7-91b53257b6be"),
+                tradeProductId: Guid.Parse("d192d28b-3d09-4003-82d9-eaac6a4672f3"),
+                unitPrice: 468048627,
+                quantity: 267783600,
+                orderDetailStateCode: "52574f8a449445c9a0a52cadd2a8312c0e12364744b94e1195",
+                extendedInformation: "635b9e340d6c48bd9e94ff96d8a065523c2ede727ba44833ac5ae825154ff367a43364b3a6154cf8b4745f3e453ee209bd2fb20618864dcfbbe7485547641af3f2b6b234c27e4e70a1be35de85df09a69860b1c0563d4e8eba54485d5b4870ca4304d93180fb407da86d5dfbd212adf79157d5fae322495d81cce225f999110b97cf2058dd004444b806230cdb5667eaeab745e4687f470e9381ac5975856d8ddc0b432082b4481689a88e781d21fde72cd3aa1ef5744fb7a1f51551ba843cbf500557813db34731ad50be7f43c7872598bb540931454050aea281342ae0cfc82e92b90f18e04a4790a0dd08bef0596128fe1fd2541c42bab3e3",
+                dateA: new DateTime(2008, 1, 5),
+                dateD: new DateTime(2010, 5, 3),
+                sort: 1948904937,
+                note: "c5bf234e59ee4a3e9c54f07058e0fb1726666de95c344507b67f66c6685f79a878549e70ab8b422086092b8a8fba190a1e1588fb2adf4660a35cc02fb1a7606b213c249b9ad3416daba5a6d08f6c6b350c84887ff8b54627a2bc96e2df29ae8c0a3844d1370445d2a64bfe1f22c23808e14e3075284e4b80b61611e939be6913aef27fd7a4c640f89d1137cc01f40c5b27062e5d38cb41619eea2575aa42ba4aac5d40b1d2754fdbaaffb587bdd8e4915d550c19d0e64f418bb2d4c58e4a8222bdd0df075a03491fb64ec82f0fd6b1505e05ef1df2fd4d3aa6291a7567aeaac8374aac00fc6c4285b4348116bb18d02924c2a0d29b1b44209a5c",
+                status: "2562ff32c88e43609351240eab6830c25daa576f4116430889"
             ));
 
             await _unitOfWorkManager.Current.SaveChangesAsync();

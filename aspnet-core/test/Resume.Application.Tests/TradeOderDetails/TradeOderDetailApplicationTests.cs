@@ -27,19 +27,19 @@ namespace Resume.TradeOderDetails
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("b508e74c-5247-476e-983d-71b63229e5a9")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("5312bd17-4a4f-4d4b-b859-2590fa1cd53a")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _tradeOderDetailsAppService.GetAsync(Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"));
+            var result = await _tradeOderDetailsAppService.GetAsync(Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"));
+            result.Id.ShouldBe(Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"));
         }
 
         [Fact]
@@ -48,17 +48,17 @@ namespace Resume.TradeOderDetails
             // Arrange
             var input = new TradeOderDetailCreateDto
             {
-                TradeOrderId = Guid.Parse("2a58e0f5-32c8-42c5-a6e2-01870773f182"),
-                TradeProductId = Guid.Parse("f82ca6ae-6224-4bf0-812d-b34ba1fb07fd"),
-                UnitPrice = 1332984216,
-                Quantity = 1925443172,
-                OrderDetailStateCode = "c200b13eccce4536bd38634287ced2988f0a582c09c042b680",
-                ExtendedInformation = "e56ba8a60fd849189e8742ab3d6b4b8df70a7e72ed6a43528b8712772a80ef63ef4541e498b9481a9185951f963cf50c522c7e5fba994f5f9e98425e226e76c5ac4035722f6640088e0f4fdf8ac93b5983e5ffec86ba4842935b48c193295db2506a6885865046bbabd94b0ae87bbca21f1b4a71813f4d4b962e40a31664a031ce3cb23107984705a5750026dbb473b3fa55aaf2b03f4114a0606abcbc1cf8792321dab11ec34888aa1bbe93cbfb01f48e766b1542f9473297c49be303712b42c306734679d24dd8940f69f4f35dfa344fce399cb1e94f6cad64fd6433fa188c69818fb7604349519926df1df95e688588117504fa71489cb3b6",
-                DateA = new DateTime(2011, 9, 21),
-                DateD = new DateTime(2002, 5, 7),
-                Sort = 1581248504,
-                Note = "f183056af02a40eeb296ebd9f1911a44f7ee8407185548ea988af41b6595251019b6b573b3184b75867dd96792848ea6f43192b34aef40038504db8f812c0644c72dc0cfca164af0ab9e658ed53261e9535d880d543343d0901bbe9b417f0d323582dcdce65e4b9baee4aa4913ad501da4fb93fec734441280129ffe657553fd8141004a86ad49c38c2c315205601524ee8a0a268fe6491a9c3fdda124b5048068909e2636b4412598d962574828dd5d48af5bcb02054ec6bebf2107dc5dd27728137a3a64e546d380193d7ab5911f1b343baf59dc4641e3aa7b5d26a825583e59b7f652353a424f9adb8c69081c8080a72926dea6224817aa4f",
-                Status = "b669d3a8ffd64923b1ef3317d8324e5eaa6a07067a564790a7"
+                TradeOrderId = Guid.Parse("b69535d3-c808-44d0-b1d8-cd59a91cbe3f"),
+                TradeProductId = Guid.Parse("41817069-25d6-4c15-808c-e67d673c6943"),
+                UnitPrice = 1363068386,
+                Quantity = 1710463840,
+                OrderDetailStateCode = "0d9d20f36629438182fe84e52e2e9ad878e8c007528d4f6b9f",
+                ExtendedInformation = "698f0134f4df4ae383e09da5cd9a6d2d039510fb86a34c8d93614fd40bf2fe06a438e38fba6a42349e9fc2c8ccef1ea78aea29d1ede34d51ba87b6fc7e7d53ed044ae48ed2564d509af77f7e324b2d693fc1dcff00a1478cb10060a421101f829ff9fac1c1ce4732b5561b0906ea0dce6854589a02ca4e38ad9a694f7e586a92fc3609b62366425585291f6df7148c432b52d963076540baa111ab01f1200194b48d9f35f60f4d41b7aee9cae7f7b32052e2a4048d594e0eb21b1732aac49bfc79f1f7e72dae4deea18fffd996a9b6d4cf5849bca74c446a8b9800e36a41681016105dc1f7274b3faa2e9b6e630a1d02d69d83a771db42a18df3",
+                DateA = new DateTime(2017, 1, 18),
+                DateD = new DateTime(2007, 4, 8),
+                Sort = 930856715,
+                Note = "aa290e4ef1214ea08f848ff5ccc0185051186bb1219f4fe89e19e2103780a672ddd0d0b6400649a3b6bc22e3e15553db9f35ce6b47d844a29a3885e34a43e361b710ebec03354efe8d1607c2436f19540c8b0124448444ea86671b7887e26a9620fe0ce82c314f8e9b884b39fd74545c45f61e91ce5d4a0c95d62d1cb3c4a30edbfd5874263a41ec8eae5f95c46d01363190baca28194ade801a17ed243ed1c179452d40d8d54282a42851c9c307da4d26bc1d15ed6749dfa2d3cfea5f8f61527f1e403bdd5d4cdc8a14106c4fd384b38889c4756bc64fbe99a6f24d766e9267eccbd5a158b946b5bf679701da01460e2f006d2e0fb142caa99f",
+                Status = "f63486891d9e43adb949a5216d11da27769d02c4bb9b4cb887"
             };
 
             // Act
@@ -68,17 +68,17 @@ namespace Resume.TradeOderDetails
             var result = await _tradeOderDetailRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.TradeOrderId.ShouldBe(Guid.Parse("2a58e0f5-32c8-42c5-a6e2-01870773f182"));
-            result.TradeProductId.ShouldBe(Guid.Parse("f82ca6ae-6224-4bf0-812d-b34ba1fb07fd"));
-            result.UnitPrice.ShouldBe(1332984216);
-            result.Quantity.ShouldBe(1925443172);
-            result.OrderDetailStateCode.ShouldBe("c200b13eccce4536bd38634287ced2988f0a582c09c042b680");
-            result.ExtendedInformation.ShouldBe("e56ba8a60fd849189e8742ab3d6b4b8df70a7e72ed6a43528b8712772a80ef63ef4541e498b9481a9185951f963cf50c522c7e5fba994f5f9e98425e226e76c5ac4035722f6640088e0f4fdf8ac93b5983e5ffec86ba4842935b48c193295db2506a6885865046bbabd94b0ae87bbca21f1b4a71813f4d4b962e40a31664a031ce3cb23107984705a5750026dbb473b3fa55aaf2b03f4114a0606abcbc1cf8792321dab11ec34888aa1bbe93cbfb01f48e766b1542f9473297c49be303712b42c306734679d24dd8940f69f4f35dfa344fce399cb1e94f6cad64fd6433fa188c69818fb7604349519926df1df95e688588117504fa71489cb3b6");
-            result.DateA.ShouldBe(new DateTime(2011, 9, 21));
-            result.DateD.ShouldBe(new DateTime(2002, 5, 7));
-            result.Sort.ShouldBe(1581248504);
-            result.Note.ShouldBe("f183056af02a40eeb296ebd9f1911a44f7ee8407185548ea988af41b6595251019b6b573b3184b75867dd96792848ea6f43192b34aef40038504db8f812c0644c72dc0cfca164af0ab9e658ed53261e9535d880d543343d0901bbe9b417f0d323582dcdce65e4b9baee4aa4913ad501da4fb93fec734441280129ffe657553fd8141004a86ad49c38c2c315205601524ee8a0a268fe6491a9c3fdda124b5048068909e2636b4412598d962574828dd5d48af5bcb02054ec6bebf2107dc5dd27728137a3a64e546d380193d7ab5911f1b343baf59dc4641e3aa7b5d26a825583e59b7f652353a424f9adb8c69081c8080a72926dea6224817aa4f");
-            result.Status.ShouldBe("b669d3a8ffd64923b1ef3317d8324e5eaa6a07067a564790a7");
+            result.TradeOrderId.ShouldBe(Guid.Parse("b69535d3-c808-44d0-b1d8-cd59a91cbe3f"));
+            result.TradeProductId.ShouldBe(Guid.Parse("41817069-25d6-4c15-808c-e67d673c6943"));
+            result.UnitPrice.ShouldBe(1363068386);
+            result.Quantity.ShouldBe(1710463840);
+            result.OrderDetailStateCode.ShouldBe("0d9d20f36629438182fe84e52e2e9ad878e8c007528d4f6b9f");
+            result.ExtendedInformation.ShouldBe("698f0134f4df4ae383e09da5cd9a6d2d039510fb86a34c8d93614fd40bf2fe06a438e38fba6a42349e9fc2c8ccef1ea78aea29d1ede34d51ba87b6fc7e7d53ed044ae48ed2564d509af77f7e324b2d693fc1dcff00a1478cb10060a421101f829ff9fac1c1ce4732b5561b0906ea0dce6854589a02ca4e38ad9a694f7e586a92fc3609b62366425585291f6df7148c432b52d963076540baa111ab01f1200194b48d9f35f60f4d41b7aee9cae7f7b32052e2a4048d594e0eb21b1732aac49bfc79f1f7e72dae4deea18fffd996a9b6d4cf5849bca74c446a8b9800e36a41681016105dc1f7274b3faa2e9b6e630a1d02d69d83a771db42a18df3");
+            result.DateA.ShouldBe(new DateTime(2017, 1, 18));
+            result.DateD.ShouldBe(new DateTime(2007, 4, 8));
+            result.Sort.ShouldBe(930856715);
+            result.Note.ShouldBe("aa290e4ef1214ea08f848ff5ccc0185051186bb1219f4fe89e19e2103780a672ddd0d0b6400649a3b6bc22e3e15553db9f35ce6b47d844a29a3885e34a43e361b710ebec03354efe8d1607c2436f19540c8b0124448444ea86671b7887e26a9620fe0ce82c314f8e9b884b39fd74545c45f61e91ce5d4a0c95d62d1cb3c4a30edbfd5874263a41ec8eae5f95c46d01363190baca28194ade801a17ed243ed1c179452d40d8d54282a42851c9c307da4d26bc1d15ed6749dfa2d3cfea5f8f61527f1e403bdd5d4cdc8a14106c4fd384b38889c4756bc64fbe99a6f24d766e9267eccbd5a158b946b5bf679701da01460e2f006d2e0fb142caa99f");
+            result.Status.ShouldBe("f63486891d9e43adb949a5216d11da27769d02c4bb9b4cb887");
         }
 
         [Fact]
@@ -87,47 +87,47 @@ namespace Resume.TradeOderDetails
             // Arrange
             var input = new TradeOderDetailUpdateDto()
             {
-                TradeOrderId = Guid.Parse("37b2fb62-ceb2-4e67-a4f4-e3429167cc67"),
-                TradeProductId = Guid.Parse("d11b35e0-3556-488a-a829-bb313418043e"),
-                UnitPrice = 1574412980,
-                Quantity = 564919126,
-                OrderDetailStateCode = "2f2624fa63a14bffb213aacb8887af9d02dacad33a704f6385",
-                ExtendedInformation = "a9b3de83b0944e679e0489dbbe81d016f2a15f610fb449f4a5815ec99fae25b57e43c60a2d8d4937a1113dfa7c2d7b947a536573ec9f4f47bc620ed8eb389c1d278108561b884ec3ac5f7902244de5b05d253925004a462b996cc77dc77ddceff82c3d4b2cb44bc39dc08cf3fa80c403d541a07db43840e68b9de61de44e13d1f54b73ce028a4f088325df1547b8d220c0026e2e20dc4e0892129220347a5783f6d19c7020fa46a283ef93c8c6fffce0126f8300402c42079fb9f4080b473e96117dbd3cbf1640a2a2e999e6118d4d0e166deb67c5124aa6bbb18fdea598b649b4b18474bb414d6794fd0b6a89381230ef5b8d6de328426c94df",
-                DateA = new DateTime(2019, 1, 19),
-                DateD = new DateTime(2010, 8, 15),
-                Sort = 1180493076,
-                Note = "12d91667dbcb40829ed83e7681e1b84867260d4230c7415184cc6236c8c1d8f9efd3540faed144a3a88f3b5ee33eb686b1513753a6f04cd49bd06442aeee47dcd9711dffac0648ea891b3b1b8f2c3c1e69a3b034d61346369295f44ae0993e64284e9e4e33ff4a45834fe78fd6eecba4b43b1d0f575949d1a71a79f55ff7d79f8e4192609fac4ab2a8a279db420a8b0d788564d0cc4345b2a504790a992879bed8f0c6f87b8b4cc5acb4f81d4805a2a0449d5a187ddb403ab9d26ff549b500f78435a5634096426fb9eb19c878b5c78aa1559c672e2e48f682e899e23988b9f5d583d689694b4cec9db4056abd8e096fb15cc6ea02e84cd19813",
-                Status = "a5a4a43969cd423fab04a2c16efe44177c0a5b25379244f1a8"
+                TradeOrderId = Guid.Parse("499ad2ce-54a8-474c-9daf-abcc6d8f84c1"),
+                TradeProductId = Guid.Parse("4160eb62-6602-4c3d-9591-d889eb3a6f69"),
+                UnitPrice = 1101059931,
+                Quantity = 1115742476,
+                OrderDetailStateCode = "3e92292804e94a4aaff9859bf02adc7bbe70d1b4cc964729b2",
+                ExtendedInformation = "ac23537153ef47cdb2316851bf27ab8d3df844432b02458d8f14157ccd64dd740b6b6b8274a4459baded01288d9217bbed701463abde42ea98678fd93da92c31752c3aaa2f184c91810c85d4baf53d13f0c60c8120d44f3d8fa59dbf4fedbab0269bba02822e48d28f2720fe9d8fa8c3dd42fb02d50745f692d0afa3cdab9daead35415fc6fb43c6b283177116915e35323a8998106748cc89d4620a465f84917a0edeef838d45b1afeb1f8f7b287f867e8afbaf4576434abf5906474cb3847168a62848d3074c04b0b7fb7f89eb45eacc151af5f3524ebdb7b3f8a1760239f855bce67c224b4799af21c9e8111e6224b24ac407722840e88ec8",
+                DateA = new DateTime(2010, 4, 24),
+                DateD = new DateTime(2003, 10, 8),
+                Sort = 1109019063,
+                Note = "a30f6ea2a7b64a48bb265032d9f4727142fc280492334435bbb9267cd37f0e1afca776abaf7c49a0ac3a7ed2ac74ccc51df80e2bed1143d0ba0532d08298fc644c2c01e6b96a41b29c6cc82a7ba2e730bc497745fb9f435085b37aa167ed290635bd0aff2e9845bc9e9c130be343910e931c846742c64eb68056a46ca3da3a2efba16a446e824c5c9f09184dcfd1015025a6e8091f37444b955a9e644aa4f9bfabda049cf2c345d582df31c6b6c3ccdf7d7a547f051d4ec6817f570d4dc1a4c82ba3ca40004a41a68a2feb0ae042b3969dfa66d1cb9040d8b026d09bc5ec4e9a4ed366d8ca154c33b47ccc633410a6619e855336971b4770aa73",
+                Status = "f1f528a79d5847749ec0e3ff0bd759772bc8865d743c4b298b"
             };
 
             // Act
-            var serviceResult = await _tradeOderDetailsAppService.UpdateAsync(Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"), input);
+            var serviceResult = await _tradeOderDetailsAppService.UpdateAsync(Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"), input);
 
             // Assert
             var result = await _tradeOderDetailRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.TradeOrderId.ShouldBe(Guid.Parse("37b2fb62-ceb2-4e67-a4f4-e3429167cc67"));
-            result.TradeProductId.ShouldBe(Guid.Parse("d11b35e0-3556-488a-a829-bb313418043e"));
-            result.UnitPrice.ShouldBe(1574412980);
-            result.Quantity.ShouldBe(564919126);
-            result.OrderDetailStateCode.ShouldBe("2f2624fa63a14bffb213aacb8887af9d02dacad33a704f6385");
-            result.ExtendedInformation.ShouldBe("a9b3de83b0944e679e0489dbbe81d016f2a15f610fb449f4a5815ec99fae25b57e43c60a2d8d4937a1113dfa7c2d7b947a536573ec9f4f47bc620ed8eb389c1d278108561b884ec3ac5f7902244de5b05d253925004a462b996cc77dc77ddceff82c3d4b2cb44bc39dc08cf3fa80c403d541a07db43840e68b9de61de44e13d1f54b73ce028a4f088325df1547b8d220c0026e2e20dc4e0892129220347a5783f6d19c7020fa46a283ef93c8c6fffce0126f8300402c42079fb9f4080b473e96117dbd3cbf1640a2a2e999e6118d4d0e166deb67c5124aa6bbb18fdea598b649b4b18474bb414d6794fd0b6a89381230ef5b8d6de328426c94df");
-            result.DateA.ShouldBe(new DateTime(2019, 1, 19));
-            result.DateD.ShouldBe(new DateTime(2010, 8, 15));
-            result.Sort.ShouldBe(1180493076);
-            result.Note.ShouldBe("12d91667dbcb40829ed83e7681e1b84867260d4230c7415184cc6236c8c1d8f9efd3540faed144a3a88f3b5ee33eb686b1513753a6f04cd49bd06442aeee47dcd9711dffac0648ea891b3b1b8f2c3c1e69a3b034d61346369295f44ae0993e64284e9e4e33ff4a45834fe78fd6eecba4b43b1d0f575949d1a71a79f55ff7d79f8e4192609fac4ab2a8a279db420a8b0d788564d0cc4345b2a504790a992879bed8f0c6f87b8b4cc5acb4f81d4805a2a0449d5a187ddb403ab9d26ff549b500f78435a5634096426fb9eb19c878b5c78aa1559c672e2e48f682e899e23988b9f5d583d689694b4cec9db4056abd8e096fb15cc6ea02e84cd19813");
-            result.Status.ShouldBe("a5a4a43969cd423fab04a2c16efe44177c0a5b25379244f1a8");
+            result.TradeOrderId.ShouldBe(Guid.Parse("499ad2ce-54a8-474c-9daf-abcc6d8f84c1"));
+            result.TradeProductId.ShouldBe(Guid.Parse("4160eb62-6602-4c3d-9591-d889eb3a6f69"));
+            result.UnitPrice.ShouldBe(1101059931);
+            result.Quantity.ShouldBe(1115742476);
+            result.OrderDetailStateCode.ShouldBe("3e92292804e94a4aaff9859bf02adc7bbe70d1b4cc964729b2");
+            result.ExtendedInformation.ShouldBe("ac23537153ef47cdb2316851bf27ab8d3df844432b02458d8f14157ccd64dd740b6b6b8274a4459baded01288d9217bbed701463abde42ea98678fd93da92c31752c3aaa2f184c91810c85d4baf53d13f0c60c8120d44f3d8fa59dbf4fedbab0269bba02822e48d28f2720fe9d8fa8c3dd42fb02d50745f692d0afa3cdab9daead35415fc6fb43c6b283177116915e35323a8998106748cc89d4620a465f84917a0edeef838d45b1afeb1f8f7b287f867e8afbaf4576434abf5906474cb3847168a62848d3074c04b0b7fb7f89eb45eacc151af5f3524ebdb7b3f8a1760239f855bce67c224b4799af21c9e8111e6224b24ac407722840e88ec8");
+            result.DateA.ShouldBe(new DateTime(2010, 4, 24));
+            result.DateD.ShouldBe(new DateTime(2003, 10, 8));
+            result.Sort.ShouldBe(1109019063);
+            result.Note.ShouldBe("a30f6ea2a7b64a48bb265032d9f4727142fc280492334435bbb9267cd37f0e1afca776abaf7c49a0ac3a7ed2ac74ccc51df80e2bed1143d0ba0532d08298fc644c2c01e6b96a41b29c6cc82a7ba2e730bc497745fb9f435085b37aa167ed290635bd0aff2e9845bc9e9c130be343910e931c846742c64eb68056a46ca3da3a2efba16a446e824c5c9f09184dcfd1015025a6e8091f37444b955a9e644aa4f9bfabda049cf2c345d582df31c6b6c3ccdf7d7a547f051d4ec6817f570d4dc1a4c82ba3ca40004a41a68a2feb0ae042b3969dfa66d1cb9040d8b026d09bc5ec4e9a4ed366d8ca154c33b47ccc633410a6619e855336971b4770aa73");
+            result.Status.ShouldBe("f1f528a79d5847749ec0e3ff0bd759772bc8865d743c4b298b");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _tradeOderDetailsAppService.DeleteAsync(Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"));
+            await _tradeOderDetailsAppService.DeleteAsync(Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"));
 
             // Assert
-            var result = await _tradeOderDetailRepository.FindAsync(c => c.Id == Guid.Parse("62e925f1-1bce-40b7-8b67-fef6c7e23393"));
+            var result = await _tradeOderDetailRepository.FindAsync(c => c.Id == Guid.Parse("f72b6b8f-2a8d-4232-a390-fb0fcfa62e19"));
 
             result.ShouldBeNull();
         }

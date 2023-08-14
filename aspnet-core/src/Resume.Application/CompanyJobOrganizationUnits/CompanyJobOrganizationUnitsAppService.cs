@@ -75,7 +75,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
             var companyJobOrganizationUnit = await _companyJobOrganizationUnitManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort
             );
 
             return ObjectMapper.Map<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitDto>(companyJobOrganizationUnit);

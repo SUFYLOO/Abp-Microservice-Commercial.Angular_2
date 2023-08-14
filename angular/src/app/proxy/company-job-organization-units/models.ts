@@ -22,7 +22,6 @@ export interface CompanyJobOrganizationUnitDto extends EntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobOrganizationUnitExcelDownloadDto {
@@ -41,7 +40,6 @@ export interface CompanyJobOrganizationUnitUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobOrganizationUnitsInput extends PagedAndSortedResultRequestDto {

@@ -75,7 +75,7 @@ namespace Resume.CompanyPointss
 
             var companyPoints = await _companyPointsManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyPointsTypeCode, input.Points, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyPointsTypeCode, input.Points, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyPoints, CompanyPointsDto>(companyPoints);

@@ -75,7 +75,7 @@ namespace Resume.TradeOderDetails
 
             var tradeOderDetail = await _tradeOderDetailManager.UpdateAsync(
             id,
-            input.TradeOrderId, input.TradeProductId, input.UnitPrice, input.Quantity, input.OrderDetailStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.TradeOrderId, input.TradeProductId, input.UnitPrice, input.Quantity, input.OrderDetailStateCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<TradeOderDetail, TradeOderDetailDto>(tradeOderDetail);

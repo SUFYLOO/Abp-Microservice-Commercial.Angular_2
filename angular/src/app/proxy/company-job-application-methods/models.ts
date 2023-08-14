@@ -40,7 +40,6 @@ export interface CompanyJobApplicationMethodDto extends FullAuditedEntityDto<str
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobApplicationMethodExcelDownloadDto {
@@ -68,7 +67,6 @@ export interface CompanyJobApplicationMethodUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobApplicationMethodsInput extends PagedAndSortedResultRequestDto {

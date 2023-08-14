@@ -1,10 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.UserCompanyJobFavs
 {
-    public class UserCompanyJobFavDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class UserCompanyJobFavDto : FullAuditedEntityDto<Guid>
     {
         public Guid UserMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -15,6 +14,5 @@ namespace Resume.UserCompanyJobFavs
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

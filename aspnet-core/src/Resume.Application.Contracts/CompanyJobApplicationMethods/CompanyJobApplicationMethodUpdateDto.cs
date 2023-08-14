@@ -1,11 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobApplicationMethods
 {
-    public class CompanyJobApplicationMethodUpdateDto : IHasConcurrencyStamp
+    public class CompanyJobApplicationMethodUpdateDto
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
@@ -35,6 +34,5 @@ namespace Resume.CompanyJobApplicationMethods
         [StringLength(CompanyJobApplicationMethodConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

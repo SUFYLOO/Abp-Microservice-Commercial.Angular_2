@@ -75,7 +75,7 @@ namespace Resume.CompanyJobContents
 
             var companyJobContent = await _companyJobContentManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.Name, input.JobTypeCode, input.PeopleRequiredNumber, input.PeopleRequiredNumberUnlimited, input.JobType, input.JobTypeContent, input.SalaryPayTypeCode, input.SalaryMin, input.SalaryMax, input.SalaryUp, input.WorkPlace, input.WorkHours, input.WorkHour, input.WorkShift, input.WorkRemoteAllow, input.WorkRemoteTypeCode, input.WorkRemote, input.WorkDifferentPlaces, input.HolidaySystemCode, input.WorkDayCode, input.WorkIdentityCode, input.DisabilityCategory, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.Name, input.JobTypeCode, input.PeopleRequiredNumber, input.PeopleRequiredNumberUnlimited, input.JobType, input.JobTypeContent, input.SalaryPayTypeCode, input.SalaryMin, input.SalaryMax, input.SalaryUp, input.WorkPlace, input.WorkHours, input.WorkHour, input.WorkShift, input.WorkRemoteAllow, input.WorkRemoteTypeCode, input.WorkRemote, input.WorkDifferentPlaces, input.HolidaySystemCode, input.WorkDayCode, input.WorkIdentityCode, input.DisabilityCategory, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobContent, CompanyJobContentDto>(companyJobContent);
