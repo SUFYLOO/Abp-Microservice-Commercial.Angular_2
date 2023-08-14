@@ -35,10 +35,10 @@ namespace Resume.App.Companys
         Task<ResultDto<CompanyUsersDto>> UpdateCompanyUserAsync(UpdateCompanyUserInput input);
         Task<ResultDto<CompanyUsersDto>> SaveCompanyUserAsync(SaveCompanyUserInput input);
         Task<ResultDto<DeleteCompanyUserDto>> DeleteCompanyUserAsync(DeleteCompanyUserInput input);
-        Task<ResultDto<List<CompanyJobsDto>>> GetCompanyJobListAsync(CompanyJobListInput input);
-        Task<ResultDto<CompanyJobsDto>> GetCompanyJobAsync(CompanyJobInput input);
-        Task<ResultDto<CompanyJobDto>> SaveCompanyJobAsync(CompanyJobDto input);
-        Task<ResultDto<DeleteCompanyJobDto>> DeleteCompanyJobAsync(DeleteCompanyJobInput input);
+        Task<List<CompanyJobsDto>> GetCompanyJobListAsync(CompanyJobListInput input);
+        Task<CompanyJobsDto> GetCompanyJobAsync(CompanyJobInput input);
+        Task<CompanyJobDto> SaveCompanyJobAsync(SaveCompanyJobInput input);
+        Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input);
         Task<ResultDto<List<UserResumeSnapshotsListDto>>> GetUserResumeSnapshotsListAsync(UserResumeSnapshotsListInput input);
         Task<ResultDto<List<CompanyInvitationssDto>>> GetCompanyInvitationsListAsync(CompanyInvitationsListInput input);
         Task<ResultDto<CompanyInvitationssDto>> GetCompanyInvitationsAsync(CompanyInvitationsInput input);
@@ -48,13 +48,13 @@ namespace Resume.App.Companys
         Task<ResultDto<CompanyInvitationssDto>> SendCompanyInvitationsAsync(SendCompanyInvitationsInput input);
         Task<CompanyMainsDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input);
         Task<ResultDto> UpdateCompanyMainCheckAsync(UpdateCompanyMainInput input);
-        Task<UpdateCompanyMainCompanyProfileDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input);
+        Task<CompanyMainsDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input);
         Task<ResultDto> UpdateCompanyMainCompanyProfileCheckAsync(UpdateCompanyMainCompanyProfileInput input);
-        Task<UpdateCompanyMainBusinessPhilosophyDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input);
+        Task<CompanyMainsDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input);
         Task<ResultDto> UpdateCompanyMainBusinessPhilosophyCheckAsync(UpdateCompanyMainBusinessPhilosophyInput input);
-        Task<UpdateCompanyMainOperatingItemsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input);
+        Task<CompanyMainsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input);
         Task<ResultDto> UpdateCompanyMainOperatingItemsCheckAsync(UpdateCompanyMainOperatingItemsInput input);
-        Task<UpdateCompanyMainWelfareSystemDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input);
+        Task<CompanyMainsDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input);
         Task<ResultDto> UpdateCompanyMainWelfareSystemCheckAsync(UpdateCompanyMainWelfareSystemInput input);
         Task<RegisterDto> RegisterAsync(RegisterInput input);
         Task<ResultDto> RegisterCheckAsync(RegisterInput input);
@@ -73,8 +73,7 @@ namespace Resume.App.Companys
         Task<UpdateCompanyJobDateDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input);
         Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input);
         Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input);
-        Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobsInput input);
-        Task<List<CompanysJobDto>> GetCompanyJobsListAsync(CompanyJobsInput input);
+        Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input);
         Task<UpdateCompanyJobOpenDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input);
         Task<ResultDto> UpdateCompanyJobOpenCheckAsync(UpdateCompanyJobOpenInput input);
     }

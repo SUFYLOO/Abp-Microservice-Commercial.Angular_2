@@ -72,15 +72,15 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("DeleteCompanyJob")]
-        [ProducesResponseType(typeof(DeleteCompanyJobDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
+        public virtual  Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
         {
-            var Result = await _CompanysAppService.DeleteCompanyJobAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _CompanysAppService.DeleteCompanyJobAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return  _CompanysAppService.DeleteCompanyJobAsync(input);
         }
 
         [HttpPost]
@@ -152,25 +152,25 @@ namespace Resume.App.Controllers.AppStd.Companys
         [Route("GetCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetCompanyJobAsync(CompanyJobInput input)
+        public virtual Task<CompanyJobsDto> GetCompanyJobAsync(CompanyJobInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyJobAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _CompanysAppService.GetCompanyJobAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return _CompanysAppService.GetCompanyJobAsync(input); ;
         }
 
         [HttpPost]
         [Route("GetCompanyJobList")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetCompanyJobListAsync(CompanyJobListInput input)
+        public virtual async Task<List<CompanyJobsDto>> GetCompanyJobListAsync(CompanyJobListInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyJobListAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            //var Result = await _CompanysAppService.GetCompanyJobListAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
+            return await _CompanysAppService.GetCompanyJobListAsync(input);
         }
 
         [HttpPost]
@@ -237,13 +237,13 @@ namespace Resume.App.Controllers.AppStd.Companys
         [Route("SaveCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> SaveCompanyJobAsync(CompanyJobDto input)
+        public virtual  Task<CompanyJobDto> SaveCompanyJobAsync(SaveCompanyJobInput input)
         {
-            var Result = await _CompanysAppService.SaveCompanyJobAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _CompanysAppService.SaveCompanyJobAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return _CompanysAppService.SaveCompanyJobAsync(input);
         }
 
         [HttpPost]
@@ -587,19 +587,11 @@ namespace Resume.App.Controllers.AppStd.Companys
         [Route("GetCompanyJobs")]
         [ProducesResponseType(typeof(CompanysJobDto), StatusCodes.Status200OK)]
 
-        public virtual Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobsInput input)
+        public virtual Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input)
         {
             return _CompanysAppService.GetCompanyJobsAsync(input);
         }
 
-        [HttpPost]
-        [Route("GetCompanyJobsList")]
-        [ProducesResponseType(typeof(CompanysJobDto), StatusCodes.Status200OK)]
-
-        public virtual Task<List<CompanysJobDto>> GetCompanyJobsListAsync(CompanyJobsInput input)
-        {
-            return _CompanysAppService.GetCompanyJobsListAsync(input);
-        }
 
         [HttpPost]
         [Route("UpdateCompanyJobOpen")]

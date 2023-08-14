@@ -69,7 +69,7 @@ namespace Resume.App.Companys
 
                     var itemsCompanyMain = qrbsCompanyMain.ToList();
 
-                    //排序結果 ，如果需要排序就
+                    //排序結果 ，如果需要排序就動作
                     //itemsCompanyMain = (from c in itemsCompanyMain
                     //                    orderby c.Sort
                     //                    select c).ToList();
@@ -295,14 +295,7 @@ namespace Resume.App.Companys
             //input.Id = CompanyMainId;
 
             // 外部傳入
-            CompanyMainId = input.Id;
             var RefreshItem = input.RefreshItem;
-
-            //固定資料
-            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
-            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
-
             //檢查
             await UpdateCompanyMainCheckAsync(input);
 
@@ -361,27 +354,30 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<UpdateCompanyMainCompanyProfileDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input)
+        public virtual async Task<CompanyMainsDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input)
         {
-            var Result = new UpdateCompanyMainCompanyProfileDto();
-
+            var Result = new CompanyMainsDto();
+            //系統層
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var CompanyMainId = input.CompanyMainId;
-            var CompanyProfile = input.CompanyProfile ?? "";
+            // 外部傳入
+            CompanyMainId = input.Id;
+            //var RefreshItem = input.RefreshItem;
 
+            //檢查
+            await UpdateCompanyMainCompanyProfileCheckAsync(input);
+
+            //主體資料
             var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var itemCompanyMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
-            var ResultMessage = await UpdateCompanyMainCompanyProfileCheckAsync(input);
+            //映射
+            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainCompanyProfileInput, CompanyMain>(input);
+            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
-            if (ResultMessage.Check)
-            {
-                itemCompanyMain.CompanyProfile = CompanyProfile;
-                await _appService._companyMainRepository.UpdateAsync(itemCompanyMain);
-                Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainCompanyProfileDto>(itemCompanyMain);
-            }
+            ObjectMapper.Map(itemCompanyJobMain, Result);
             return Result;
         }
 
@@ -389,7 +385,7 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyMainId = input.Id;
             var CompanyProfile = input.CompanyProfile ?? "";
 
             //if (CompanyMainId == null)
@@ -408,36 +404,37 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<UpdateCompanyMainBusinessPhilosophyDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input)
+        public virtual async Task<CompanyMainsDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input)
         {
-            var Result = new UpdateCompanyMainBusinessPhilosophyDto();
-            var Datenow = DateTime.Now;
-
+            var Result = new CompanyMainsDto();
+            //系統層
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKes = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var Id = input.CompanyMainId;
+            // 外部傳入
+            CompanyMainId = input.Id;
+            //var RefreshItem = input.RefreshItem;
 
+            //檢查
+            await UpdateCompanyMainBusinessPhilosophyCheckAsync(input);
+
+            //主體資料
             var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var itemCompanyMain = qrbCompanyMain.FirstOrDefault(p => p.Id == Id);
+            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
-            var ResultMessage = await UpdateCompanyMainBusinessPhilosophyCheckAsync(input);
+            //映射
+            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainBusinessPhilosophyInput, CompanyMain>(input);
+            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
-            if (ResultMessage.Check)
-            {
-                itemCompanyMain.BusinessPhilosophy = input.BusinessPhilosophy;
-                await _appService._companyMainRepository.UpdateAsync(itemCompanyMain);
-
-                Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainBusinessPhilosophyDto>(itemCompanyMain);
-            }
-
+            ObjectMapper.Map(itemCompanyJobMain, Result);
             return Result;
         }
 
         public virtual async Task<ResultDto> UpdateCompanyMainBusinessPhilosophyCheckAsync(UpdateCompanyMainBusinessPhilosophyInput input)
         {
             var Result = new ResultDto();
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyMainId = input.Id;
             var BusinessPhilosophy = input.BusinessPhilosophy ?? "";
 
             //if (CompanyMainId==null)
@@ -456,35 +453,37 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<UpdateCompanyMainOperatingItemsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input)
+        public virtual async Task<CompanyMainsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input)
         {
-            var Result = new UpdateCompanyMainOperatingItemsDto();
-            var DateNow = DateTime.Now;
-
+            var Result = new CompanyMainsDto();
+            //系統層
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKes = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var CompanyMainId = input.CompanyMainId;
+            // 外部傳入
+            CompanyMainId = input.Id;
+            //var RefreshItem = input.RefreshItem;
 
+            //檢查
+            await UpdateCompanyMainOperatingItemsCheckAsync(input);
+
+            //主體資料
             var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
-            var ResultMessage = await UpdateCompanyMainOperatingItemsCheckAsync(input);
+            //映射
+            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainOperatingItemsInput, CompanyMain>(input);
+            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
-            if (ResultMessage.Check)
-            {
-                item.OperatingItems = input.OperatingItems;
-                await _appService._companyMainRepository.UpdateAsync(item);
-
-                Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainOperatingItemsDto>(item);
-            }
+            ObjectMapper.Map(itemCompanyJobMain, Result);
             return Result;
         }
 
         public virtual async Task<ResultDto> UpdateCompanyMainOperatingItemsCheckAsync(UpdateCompanyMainOperatingItemsInput input)
         {
             var Result = new ResultDto();
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyMainId = input.Id;
             var OperatingItems = input.OperatingItems ?? "";
 
             //if (CompanyMainId.IsNullOrEmpty())
@@ -503,28 +502,30 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<UpdateCompanyMainWelfareSystemDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input)
+        public virtual async Task<CompanyMainsDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input)
         {
-            var Result = new UpdateCompanyMainWelfareSystemDto();
-            var DateNow = DateTime.Now;
-
+            var Result = new CompanyMainsDto();
+            //系統層
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKes = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var CompanyMainId = input.CompanyMainId;
+            // 外部傳入
+            CompanyMainId = input.Id;
+            //var RefreshItem = input.RefreshItem;
 
+            //檢查
+            await UpdateCompanyMainWelfareSystemCheckAsync(input);
+
+            //主體資料
             var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
-            var ResultMessage = await UpdateCompanyMainWelfareSystemCheckAsync(input);
+            //映射
+            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainWelfareSystemInput, CompanyMain>(input);
+            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
-            if (ResultMessage.Check)
-            {
-                item.WelfareSystem = input.WelfareSystem;
-                await _appService._companyMainRepository.UpdateAsync(item);
-
-                Result = ObjectMapper.Map<CompanyMain, UpdateCompanyMainWelfareSystemDto>(item);
-            }
+            ObjectMapper.Map(itemCompanyJobMain, Result);
             return Result;
 
         }
@@ -538,7 +539,7 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyMainId = input.Id;
             var WelfareSystem = input.WelfareSystem ?? "";
 
             //if (CompanyMainId.IsNullOrEmpty())

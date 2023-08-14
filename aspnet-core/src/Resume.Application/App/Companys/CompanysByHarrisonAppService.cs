@@ -499,36 +499,9 @@ namespace Resume.App.Companys
                 throw ex;
 
             return Result;
+
         }
-
-        public virtual async Task<List<CompanysJobDto>> GetCompanyJobsListAsync(CompanyJobsInput input)
-        {
-            var Result = new List<CompanysJobDto>();
-
-            var JobOpen = input.JobOpen;
-            var KeyWords = input.KeyWords;
-            var SortName = input.SortName;
-
-            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
-            qrbCompanyJob = from c in qrbCompanyJob
-                            where c.JobOpen == JobOpen
-                            && c.Name.IndexOf(KeyWords) >= 0
-                            select c;
-
-            var Data = qrbCompanyJob.OrderByDescending(p => p.LastModificationTime);
-            if (SortName.Equals("Name"))
-                Data = qrbCompanyJob.OrderBy(p => p.Name);
-
-            if (SortName.Equals("LastModificationTime"))
-                Data = qrbCompanyJob.OrderByDescending(p => p.LastModificationTime);
-
-            var itemsCompanyJob = await AsyncExecuter.ToListAsync(Data);
-
-            Result = ObjectMapper.Map<List<CompanyJob>, List<CompanysJobDto>>(itemsCompanyJob);
-            return Result;
-        }
-
-        public virtual async Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobsInput input)
+        public virtual async Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input)
         {
             var Result = new CompanysJobDto();
 

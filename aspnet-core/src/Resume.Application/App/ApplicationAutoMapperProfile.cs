@@ -97,7 +97,8 @@ namespace Resume.App
             CreateMap<CompanyUser, CompanyUsersDto>();
             CreateMap<CompanyUsersDto, CompanyUser>();
             CreateMap<CompanyJob, CompanyJobsDto>();
-            CreateMap<CompanyJobsDto, CompanyJob>();
+            CreateMap<SaveCompanyJobInput, CompanyJob>();
+
             CreateMap<CompanyInvitations, CompanyInvitationssDto>();
             CreateMap<CompanyInvitationssDto, CompanyInvitations>();
 
@@ -107,8 +108,8 @@ namespace Resume.App
             CreateMap<ShareUpload, SaveShareUploadDto>();
 
             CreateMap<CompanyMain, UpdateCompanyMainDto>();
-            CreateMap<CompanyMain, UpdateCompanyMainCompanyProfileDto>();
-            CreateMap<CompanyMain, UpdateCompanyMainBusinessPhilosophyDto>();
+            CreateMap<UpdateCompanyMainCompanyProfileInput, CompanyMain>();
+            CreateMap<UpdateCompanyMainBusinessPhilosophyInput, CompanyMain>();
             CreateMap<CompanyMain, UpdateCompanyMainOperatingItemsDto>();
             CreateMap<CompanyMain, UpdateCompanyMainWelfareSystemDto>();
 

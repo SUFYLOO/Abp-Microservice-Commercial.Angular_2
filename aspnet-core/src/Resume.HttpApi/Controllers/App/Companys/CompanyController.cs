@@ -68,9 +68,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("DeleteCompanyJob")]
-        [ProducesResponseType(typeof(DeleteCompanyJobDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<DeleteCompanyJobDto>> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
+        public virtual Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
         {
             return _CompanysAppService.DeleteCompanyJobAsync(input);
         }
@@ -124,7 +124,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("GetCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<CompanyJobsDto>> GetCompanyJobAsync( CompanyJobInput input)
+        public virtual Task<CompanyJobsDto> GetCompanyJobAsync( CompanyJobInput input)
         {
             return _CompanysAppService.GetCompanyJobAsync(input);
         }
@@ -132,8 +132,8 @@ namespace Resume.App.Controllers.App.Companys
         [HttpPost]
         [Route("GetCompanyJobList")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<List<CompanyJobsDto>>> GetCompanyJobListAsync( CompanyJobListInput input)
+
+        public virtual Task<List<CompanyJobsDto>> GetCompanyJobListAsync(CompanyJobListInput input)
         {
             return _CompanysAppService.GetCompanyJobListAsync(input);
         }
@@ -187,7 +187,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("SaveCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<CompanyJobDto>> SaveCompanyJobAsync(CompanyJobDto input)
+        public virtual Task<CompanyJobDto> SaveCompanyJobAsync(SaveCompanyJobInput input)
         {
             return _CompanysAppService.SaveCompanyJobAsync(input);
         }
@@ -266,9 +266,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("UpdateCompanyMainCompanyProfile")]
-        [ProducesResponseType(typeof(UpdateCompanyMainCompanyProfileDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<UpdateCompanyMainCompanyProfileDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input)
+        public virtual Task<CompanyMainsDto> UpdateCompanyMainCompanyProfileAsync(UpdateCompanyMainCompanyProfileInput input)
         {
             return _CompanysAppService.UpdateCompanyMainCompanyProfileAsync(input);
         }
@@ -284,9 +284,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("UpdateCompanyMainBusinessPhilosophy")]
-        [ProducesResponseType(typeof(UpdateCompanyMainBusinessPhilosophyDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<UpdateCompanyMainBusinessPhilosophyDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input)
+        public virtual Task<CompanyMainsDto> UpdateCompanyMainBusinessPhilosophyAsync(UpdateCompanyMainBusinessPhilosophyInput input)
         {
             return _CompanysAppService.UpdateCompanyMainBusinessPhilosophyAsync(input);
         }
@@ -303,9 +303,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("UpdateCompanyMainOperatingItems")]
-        [ProducesResponseType(typeof(UpdateCompanyMainOperatingItemsDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<UpdateCompanyMainOperatingItemsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input)
+        public virtual Task<CompanyMainsDto> UpdateCompanyMainOperatingItemsAsync(UpdateCompanyMainOperatingItemsInput input)
         {
             return _CompanysAppService.UpdateCompanyMainOperatingItemsAsync(input);
         }
@@ -321,8 +321,8 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("UpdateCompanyMainWelfareSystem")]
-        [ProducesResponseType(typeof(UpdateCompanyMainWelfareSystemDto), StatusCodes.Status200OK)]        
-        public virtual Task<UpdateCompanyMainWelfareSystemDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input)
+        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]        
+        public virtual Task<CompanyMainsDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input)
         {
             return _CompanysAppService.UpdateCompanyMainWelfareSystemAsync(input);
         }
@@ -490,19 +490,14 @@ namespace Resume.App.Controllers.App.Companys
         [Route("GetCompanyJobs")]
         [ProducesResponseType(typeof(CompanysJobDto), StatusCodes.Status200OK)]
 
-        public virtual Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobsInput input)
+        public virtual Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input)
         {
             return _CompanysAppService.GetCompanyJobsAsync(input);
         }
 
         [HttpPost]
         [Route("GetCompanyJobsList")]
-        [ProducesResponseType(typeof(CompanysJobDto), StatusCodes.Status200OK)]
-
-        public virtual Task<List<CompanysJobDto>> GetCompanyJobsListAsync(CompanyJobsInput input)
-        {
-            return _CompanysAppService.GetCompanyJobsListAsync(input);
-        }
+        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
 
         [HttpPost]
         [Route("UpdateCompanyJobOpen")]

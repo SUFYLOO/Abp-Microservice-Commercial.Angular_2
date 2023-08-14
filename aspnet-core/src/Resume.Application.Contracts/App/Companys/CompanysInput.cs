@@ -2,6 +2,7 @@ using Resume.CompanyJobApplicationMethods;
 using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
 using Resume.CompanyJobPays;
+using Resume.CompanyJobs;
 using Resume.CompanyMains;
 using Resume.CompanyUsers;
 using System;
@@ -58,12 +59,13 @@ namespace Resume.App.Companys
     public class DeleteCompanyUserInput : StdInput
     {
     }
-    public class CompanyJobListInput
-    {
-        public string CompanyMainCode { get; set; }
-    }
     public class CompanyJobInput : StdInput
     {
+    }
+    public class SaveCompanyJobInput : CompanyJobDto
+    {
+        public Guid Id { get; set; }
+        public bool RefreshItem { get; set; } = false;
     }
     public class DeleteCompanyJobInput : StdInput
     {
@@ -97,35 +99,34 @@ namespace Resume.App.Companys
 
     public class UpdateCompanyMainInput : CompanyMainDto
     {
+        public Guid Id { get; set; }
         public bool RefreshItem { get; set; } = false;
     }
 
     public class UpdateCompanyMainCompanyProfileInput
     {
-        [Required]
-        public Guid CompanyMainId { get; set; }
-        [Required]
-        public string CompanyProfile { get; set; }
+        public Guid Id { get; set; }
+        public string? CompanyProfile { get; set; }
+
     }
 
     public class UpdateCompanyMainBusinessPhilosophyInput
     {
         [Required]
-        public Guid CompanyMainId { get; set; }
+        public Guid Id { get; set; }
         public string BusinessPhilosophy { get; set; }
     }
 
     public class UpdateCompanyMainOperatingItemsInput
     {
         [Required]
-        public Guid CompanyMainId { get; set; }
+        public Guid Id { get; set; }
         public string OperatingItems { get; set; }
     }
 
     public class UpdateCompanyMainWelfareSystemInput
     {
-        [Required]
-        public Guid CompanyMainId { get; set; }
+        public Guid Id { get; set; }
         public string WelfareSystem { get; set; }
 
     }
@@ -197,7 +198,7 @@ namespace Resume.App.Companys
         public Guid? Id { get; set; }
     }
 
-    public class CompanyJobsInput : StdInput
+    public class CompanyJobListInput : StdInput
     {
         [Required]
         public bool JobOpen { get; set; } = true;
