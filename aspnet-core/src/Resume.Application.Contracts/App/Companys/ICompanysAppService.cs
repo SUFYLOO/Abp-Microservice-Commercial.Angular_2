@@ -61,20 +61,21 @@ namespace Resume.App.Companys
         Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input);
         Task<List<LoginInfoDto>> GetLoginInfoAsync(LoginInput input);
         Task<LoginDto> LoginAsync(LoginInput input);
-        Task<SaveCompanyJobContentDto> SaveCompanyJobContentAsync (SaveCompanyJobContentInput input);
+        Task<CompanyJobContentsDto> SaveCompanyJobContentAsync (SaveCompanyJobContentInput input);
         Task<ResultDto> SaveCompanyJobContentCheckAsync(SaveCompanyJobContentInput input);
-        Task<SaveCompanyJobConditionDto> SaveCompanyJobConditionAsync(SaveCompanyJobConditionInput input);
+        Task<CompanyJobConditionsDto> SaveCompanyJobConditionAsync(SaveCompanyJobConditionInput input);
         Task<ResultDto> SaveCompanyJobConditionCheckAsync(SaveCompanyJobConditionInput input);
-        Task<SaveCompanyJobApplicationMethodDto> SaveCompanyJobApplicationMethodAsync(SaveCompanyJobApplicationMethodInput input);
+        Task<CompanyJobApplicationMethodsDto> SaveCompanyJobApplicationMethodAsync(SaveCompanyJobApplicationMethodInput input);
         Task<ResultDto> SaveCompanyJobApplicationMethodCheckAsync(SaveCompanyJobApplicationMethodInput input);
         Task<CompanyJobContentsDto> GetCompanyJobContentAsync(CompanyJobContentInput input);
         Task<CompanyJobConditionsDto> GetCompanyJobConditionAsync(CompanyJobConditionInput input);
         Task<CompanyJobApplicationMethodsDto> GetCompanyJobApplicationMethodAsync(CompanyJobApplicationMethodInput input);
-        Task<UpdateCompanyJobDateDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input);
         Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input);
         Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input);
-        Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input);
-        Task<UpdateCompanyJobOpenDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input);
+        Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input);
+        Task<CompanyJobsDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input);
+        Task<ResultDto> UpdateCompanyJobDateCheckAsync(UpdateCompanyJobDateInput input);
+        Task<CompanyJobsDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input);
         Task<ResultDto> UpdateCompanyJobOpenCheckAsync(UpdateCompanyJobOpenInput input);
     }
 

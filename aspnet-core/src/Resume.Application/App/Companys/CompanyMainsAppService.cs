@@ -12,6 +12,7 @@ using Resume.CompanyJobContents;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp;
 using PayPalCheckoutSdk.Orders;
+using Resume.CompanyJobPairs;
 
 namespace Resume.App.Companys
 {
@@ -61,11 +62,11 @@ namespace Resume.App.Companys
                 {
                     var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
                     var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
-                    var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
+                    var ListTenantId = qrbsCompanyUser.Select(p => p.TenantId);
 
                     //如果是一般公司
                     if (SystemUserRoleKeys > 2)
-                        qrbsCompanyMain = qrbsCompanyMain.Where(p => ListCompanyMainId.Contains(p.Id) || p.TenantId == TenantId);
+                        qrbsCompanyMain = qrbsCompanyMain.Where(p => ListTenantId.Contains(p.TenantId));
 
                     var itemsCompanyMain = qrbsCompanyMain.ToList();
 
@@ -96,17 +97,12 @@ namespace Resume.App.Companys
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
             //強制把input帶入系統值
-            //input.CompanyMainId = CompanyMainId;
 
             //外部傳入
             var Id = input.Id;
-            //var RefreshItem = input.RefreshItem;
 
             //預設值
-            //input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
-            //input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            //input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
-            
+
 
             //檢查
             if (SystemUserRoleKeys > 5)
@@ -125,11 +121,11 @@ namespace Resume.App.Companys
                 {
                     var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
                     var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
-                    var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
+                    var ListTenantId = qrbsCompanyUser.Select(p => p.TenantId);
 
                     //如果是一般公司
                     if (SystemUserRoleKeys > 2)
-                        qrbsCompanyMain = qrbsCompanyMain.Where(p => ListCompanyMainId.Contains(p.Id) || p.TenantId == TenantId);
+                        qrbsCompanyMain = qrbsCompanyMain.Where(p => ListTenantId.Contains(p.TenantId));
 
                     var itemCompanyMain = qrbsCompanyMain.FirstOrDefault(p => p.Id == Id);
                     if (itemCompanyMain == null)
@@ -262,7 +258,7 @@ namespace Resume.App.Companys
                 {
                     var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
                     var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
-                    var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
+                    var ListTenantId = qrbsCompanyUser.Select(p => p.TenantId);
 
                     var itemCompanyMain = qrbCompanyMain.FirstOrDefault(p => p.Id == Id);
                     if (itemCompanyMain == null)
@@ -279,46 +275,47 @@ namespace Resume.App.Companys
             return Result;
         }
 
-
-
         public virtual async Task<CompanyMainsDto> UpdateCompanyMainAsync(UpdateCompanyMainInput input)
         {
             // 結果
             var Result = new CompanyMainsDto();
 
             //系統層
-            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            //var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
             // input id
             //input.Id = CompanyMainId;
-
+            
             // 外部傳入
-            var RefreshItem = input.RefreshItem;
+            //var RefreshItem = input.RefreshItem;
+
+            var CompanyMainId = input.Id;
             //檢查
             await UpdateCompanyMainCheckAsync(input);
 
             //主體資料
             var qrbCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemCompanyMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             //不要變更的值
-            input.Name = itemCompanyJobMain.Name;
-            input.Compilation = itemCompanyJobMain.Compilation;
-            input.Sort = itemCompanyJobMain.Sort;
-            input.DateA = itemCompanyJobMain.DateA;
-            input.DateD = itemCompanyJobMain.DateD;
+            input.Name = itemCompanyMain.Name;
+            input.Compilation = itemCompanyMain.Compilation;
+            input.Sort = itemCompanyMain.Sort;
+            input.DateA = itemCompanyMain.DateA;
+            input.DateD = itemCompanyMain.DateD;
 
             //映射
-            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainInput, CompanyMain>(input);
-            itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
+             ObjectMapper.Map(input, itemCompanyMain);
+
+            itemCompanyMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyMain);
 
             //如果要更新為最新資料 就需要認可交易
-            if (RefreshItem)
-                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+            //if (RefreshItem)
+            //    await _appService._unitOfWorkManager.Current.SaveChangesAsync();
 
-            ObjectMapper.Map(itemCompanyJobMain, Result);
+            ObjectMapper.Map(itemCompanyMain, Result);
             return Result;
         }
 
@@ -364,6 +361,7 @@ namespace Resume.App.Companys
 
             // 外部傳入
             CompanyMainId = input.Id;
+            var CompanyProfile = input.CompanyProfile;
             //var RefreshItem = input.RefreshItem;
 
             //檢查
@@ -374,7 +372,7 @@ namespace Resume.App.Companys
             var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             //映射
-            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainCompanyProfileInput, CompanyMain>(input);
+            ObjectMapper.Map(input,itemCompanyJobMain);
             itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
             ObjectMapper.Map(itemCompanyJobMain, Result);
@@ -414,6 +412,7 @@ namespace Resume.App.Companys
 
             // 外部傳入
             CompanyMainId = input.Id;
+            var BusinessPhilosophy = input.BusinessPhilosophy;
             //var RefreshItem = input.RefreshItem;
 
             //檢查
@@ -424,7 +423,7 @@ namespace Resume.App.Companys
             var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             //映射
-            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainBusinessPhilosophyInput, CompanyMain>(input);
+            ObjectMapper.Map(input, itemCompanyJobMain);
             itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
             ObjectMapper.Map(itemCompanyJobMain, Result);
@@ -437,8 +436,8 @@ namespace Resume.App.Companys
             var CompanyMainId = input.Id;
             var BusinessPhilosophy = input.BusinessPhilosophy ?? "";
 
-            //if (CompanyMainId==null)
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "代碼不能空白", Pass = false });
+            if (CompanyMainId==null)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "代碼不能空白", Pass = false });
             if (BusinessPhilosophy.IsNullOrEmpty())
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "經營理念不能空白", Pass = false });
 
@@ -473,7 +472,7 @@ namespace Resume.App.Companys
             var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             //映射
-            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainOperatingItemsInput, CompanyMain>(input);
+            ObjectMapper.Map(input, itemCompanyJobMain);
             itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
             ObjectMapper.Map(itemCompanyJobMain, Result);
@@ -486,8 +485,8 @@ namespace Resume.App.Companys
             var CompanyMainId = input.Id;
             var OperatingItems = input.OperatingItems ?? "";
 
-            //if (CompanyMainId.IsNullOrEmpty())
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "代碼不能空白", Pass = false });
+            if (CompanyMainId == null)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "ID不能空白", Pass = false });
             if (OperatingItems.IsNullOrEmpty())
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "主要項目不能空白", Pass = false });
 
@@ -512,6 +511,7 @@ namespace Resume.App.Companys
 
             // 外部傳入
             CompanyMainId = input.Id;
+            var WelfareSystem = input.WelfareSystem;
             //var RefreshItem = input.RefreshItem;
 
             //檢查
@@ -522,7 +522,7 @@ namespace Resume.App.Companys
             var itemCompanyJobMain = qrbCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             //映射
-            itemCompanyJobMain = ObjectMapper.Map<UpdateCompanyMainWelfareSystemInput, CompanyMain>(input);
+            ObjectMapper.Map(input, itemCompanyJobMain);
             itemCompanyJobMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyJobMain);
 
             ObjectMapper.Map(itemCompanyJobMain, Result);

@@ -94,7 +94,14 @@ namespace Resume.App
 
             CreateMap<CompanyMain, CompanyMainsDto>();
             CreateMap<CompanyMainsDto, CompanyMain>();
-            CreateMap<CompanyUser, CompanyUsersDto>();
+
+            CreateMap<UpdateCompanyMainInput, CompanyMain>();
+
+            CreateMap<UpdateCompanyMainCompanyProfileInput, CompanyMain>();
+            CreateMap<UpdateCompanyMainBusinessPhilosophyInput,CompanyMain>();
+            CreateMap<UpdateCompanyMainWelfareSystemInput, CompanyMain>();
+            CreateMap<UpdateCompanyMainOperatingItemsInput, CompanyMain>();
+
             CreateMap<CompanyUsersDto, CompanyUser>();
             CreateMap<CompanyJob, CompanyJobsDto>();
             CreateMap<SaveCompanyJobInput, CompanyJob>();
@@ -107,45 +114,18 @@ namespace Resume.App
 
             CreateMap<ShareUpload, SaveShareUploadDto>();
 
-            CreateMap<CompanyMain, UpdateCompanyMainDto>();
-            CreateMap<UpdateCompanyMainCompanyProfileInput, CompanyMain>();
-            CreateMap<UpdateCompanyMainBusinessPhilosophyInput, CompanyMain>();
-            CreateMap<CompanyMain, UpdateCompanyMainOperatingItemsDto>();
-            CreateMap<CompanyMain, UpdateCompanyMainWelfareSystemDto>();
-
-            CreateMap<SaveCompanyJobContentInput, CompanyJobContentDto>();
             CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
-            CreateMap<CompanyJobContentDto, CompanyJobContent>();
-            CreateMap<CompanyJobContent, SaveCompanyJobContentDto>();
-            
             CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
-            CreateMap<CompanyJobConditionDto, CompanyJobCondition>();
-            CreateMap<CompanyJobCondition, SaveCompanyJobConditionDto>();
+            CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>();
 
-            CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethodDto>();
-            CreateMap<CompanyJobApplicationMethodDto, CompanyJobApplicationMethod>();
-            CreateMap<CompanyJobApplicationMethod, SaveCompanyJobApplicationMethodDto>();
+            CreateMap<SaveCompanyJobPayInput, CompanyJobPay>();
 
-            CreateMap<CompanyJobContentDto, CompanyJobContentsDto>();
-            CreateMap<CompanyJobConditionDto, CompanyJobConditionsDto>();
-            CreateMap<CompanyJobApplicationMethodDto, CompanyJobApplicationMethodsDto>();
 
-            CreateMap<SaveCompanyJobPayInput, CompanyJobPayDto>();
-            CreateMap<CompanyJobPayDto, CompanyJobPay>();
-            CreateMap<CompanyJobPay, SaveCompanyJobPayDto>();
-
-            CreateMap<CompanyJobDto, CompanysJobDto>();
-            CreateMap<CompanyJob, UpdateCompanyJobOpenDto>();
-            CreateMap<CompanyJob, CompanysJobDto>();
-
-            //四個一組
-            CreateMap<CompanyJobContent, CompanyJobContentDto>();
-            CreateMap<SaveCompanyJobContentInput, CompanyJobContentCreateDto>();
-            CreateMap<SaveCompanyJobContentInput, CompanyJobContentUpdateDto>();
-            CreateMap<CompanyJobContentDto, SaveCompanyJobContentDto>();
+            CreateMap<UpdateCompanyJobDateInput, CompanyJob>();
+            CreateMap<UpdateCompanyJobOpenInput ,CompanyJob>();
+            
 
             CreateMap<UpdateCompanyMainInput, CompanyMain>();
-            CreateMap<CompanyMain, UpdateCompanyMainDto>();
 
             CreateMap<SaveResumeMainInput, ResumeMainDto>();
             CreateMap<ResumeMainDto, ResumeMain>();

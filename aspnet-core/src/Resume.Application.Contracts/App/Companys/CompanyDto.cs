@@ -45,10 +45,6 @@ namespace Resume.App.Companys
 
     }
 
-    public class DeleteCompanyJobDto
-    {
-        public bool Pass { get; set; } = false;
-    }
 
     public class CompanyInvitationssDto : CompanyInvitationsDto
     {
@@ -121,19 +117,6 @@ namespace Resume.App.Companys
         public Guid CompanyMainId;
         public string WelfareSystem { get; set; }
     }
-
-    public class SaveCompanyJobContentDto : CompanyJobContentDto
-    {
-        public SaveIntentType SaveIntent { get; set; } = SaveIntentType.Insert;
-    }
-    public class SaveCompanyJobConditionDto : CompanyJobConditionDto
-    {
-
-    }
-    public class SaveCompanyJobApplicationMethodDto : CompanyJobApplicationMethodUpdateDto
-    {
-
-    }
     public class CompanyJobContentsDto : CompanyJobContentDto
     {
 
@@ -158,18 +141,9 @@ namespace Resume.App.Companys
 
     }
     
-    public class CompanysJobDto : CompanyJobDto
-    {
 
-    }
 
-    public class UpdateCompanyJobOpenDto
-    {
-        public string JobOpen { get; set; }
-    }
-    public class CompanyJobOpenDto: CompanyJobDto
-    {
 
-    }
+    
 }
 

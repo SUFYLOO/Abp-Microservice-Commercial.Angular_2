@@ -99,8 +99,6 @@ namespace Resume.App.Companys
 
     public class UpdateCompanyMainInput : CompanyMainDto
     {
-        public Guid Id { get; set; }
-        public bool RefreshItem { get; set; } = false;
     }
 
     public class UpdateCompanyMainCompanyProfileInput
@@ -133,9 +131,7 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobContentInput : CompanyJobContentDto
     {
-        //new public Guid Id { get; set; }
-        //new public string ConcurrencyStamp { get; set; }
-
+        //public enum SaveIntent
         public bool RefreshItem { get; set; } = false;
         [Required]
         new public String JobTypeCode { get; set; }
@@ -149,15 +145,14 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
     {
-        public Guid? Id { get; set; }
-        //[Required]
-        //new public string EducationLevel { get; set; }
+        public bool RefreshItem { get; set; } = false;
+        [Required]
+        new public string EducationLevel { get; set; }
     }
 
     public class SaveCompanyJobApplicationMethodInput : CompanyJobApplicationMethodDto
     {
-      
-        public Guid? Id { get; set; }
+        public bool RefreshItem { get; set; } = false;
         //public Guid CompanyJobApplicationMethodId { get; set; }
         //[Required]
         //new public string OrgDept { get; set; }
@@ -167,20 +162,19 @@ namespace Resume.App.Companys
         //new public string OrgContactMail { get; set; }
         //[Required]
         //new public bool ToRespond { get; set; }
-
     }
 
     public class CompanyJobContentInput : StdInput
     {
-        public Guid? CompanyJobContentId { get; set; }
+
     }
     public class CompanyJobConditionInput : StdInput
     {
-        public Guid? CompanyJobConditionId { get; set; }
+
     }
     public class CompanyJobApplicationMethodInput : StdInput
     {
-        public Guid? CompanyJobApplicationMethodId { get; set; }
+
     }
 
     public class UpdateCompanyJobDateInput : StdInput

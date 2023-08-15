@@ -19,6 +19,8 @@ using Resume.App.Users;
 using Volo.Saas.Tenants;
 using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 using Volo.Abp.Users;
+using PayPalCheckoutSdk.Orders;
+using Volo.Abp.MultiTenancy;
 
 namespace Resume.App.Companys
 {
@@ -29,10 +31,10 @@ namespace Resume.App.Companys
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual async Task<SaveCompanyJobContentDto> SaveCompanyJobContentAsync(SaveCompanyJobContentInput input)
+        public virtual async Task<CompanyJobContentsDto> SaveCompanyJobContentAsync(SaveCompanyJobContentInput input)
         {
             //結果
-            var Result = new SaveCompanyJobContentDto();
+            var Result = new CompanyJobContentsDto();
              
             //常用
 
@@ -59,7 +61,7 @@ namespace Resume.App.Companys
             //主體資料
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
             var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
-            Result.SaveIntent = itemCompanyJobContent == null ? SaveIntentType.Insert : SaveIntentType.Update;
+            //Result.SaveIntent = itemCompanyJobContent == null ? SaveIntentType.Insert : SaveIntentType.Update;
 
             if (itemCompanyJobContent == null)
             {
@@ -76,7 +78,7 @@ namespace Resume.App.Companys
                 ObjectMapper.Map(input, itemCompanyJobContent);
                 itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
 
-                //如果要更新為最新資料 就需要認可交易
+                ////如果要更新為最新資料 就需要認可交易
                 if (RefreshItem)
                     await _appService._unitOfWorkManager.Current.SaveChangesAsync();
             }
@@ -178,38 +180,54 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<SaveCompanyJobConditionDto> SaveCompanyJobConditionAsync(SaveCompanyJobConditionInput input)
+        public virtual async Task<CompanyJobConditionsDto> SaveCompanyJobConditionAsync(SaveCompanyJobConditionInput input)
         {
-            var Result = new SaveCompanyJobConditionDto();
+            var Result = new CompanyJobConditionsDto();
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
+            //強制帶入Id
+            input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
             var CompanyJobConditionId = input.Id;
+            var RefreshItem = input.RefreshItem;
 
+            //不要變更的值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
             await SaveCompanyJobConditionCheckAsync(input);
 
+
+            //主體資料
             var qrbcompanyJobCondition = await _appService._companyJobConditionRepository.GetQueryableAsync();
             var itemCompanyJobCondition = qrbcompanyJobCondition.FirstOrDefault(p => p.Id == CompanyJobConditionId);
 
             //如果CompanyJobConditionsRepository沒有這個Id就新增資料，已存在就update
             if (itemCompanyJobCondition == null)
             {
-                var CompanyJobConditionDto = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobConditionDto>(input);
-
-                CompanyJobConditionDto.CompanyJobId = _appService._guidGenerator.Create();
-                CompanyJobConditionDto.CompanyMainId = _appService._guidGenerator.Create();
-
-                itemCompanyJobCondition = ObjectMapper.Map<CompanyJobConditionDto, CompanyJobCondition>(input);
-                await _appService._companyJobConditionRepository.InsertAsync(itemCompanyJobCondition);
-
-                Result = ObjectMapper.Map<CompanyJobCondition, SaveCompanyJobConditionDto>(itemCompanyJobCondition);
+                itemCompanyJobCondition = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobCondition>(input);
+                itemCompanyJobCondition = await _appService._companyJobConditionRepository.InsertAsync(itemCompanyJobCondition);
             }
             else
             {
-                var item = ObjectMapper.Map<SaveCompanyJobConditionInput, CompanyJobCondition>(input);
-                await _appService._companyJobConditionRepository.UpdateAsync(item);
+                //不要變更的值
+                input.Sort = itemCompanyJobCondition.Sort;
+                input.DateA = itemCompanyJobCondition.DateA;
+                input.DateD = itemCompanyJobCondition.DateD;
 
-                Result = ObjectMapper.Map<CompanyJobCondition, SaveCompanyJobConditionDto>(item);
+                ObjectMapper.Map(input,itemCompanyJobCondition);
+                await _appService._companyJobConditionRepository.UpdateAsync(itemCompanyJobCondition);
             }
+            if (RefreshItem)
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
 
+            ObjectMapper.Map(itemCompanyJobCondition, Result);
             return Result;
         }
 
@@ -248,42 +266,59 @@ namespace Resume.App.Companys
             return Result;
         }
 
-
         /// <summary>
         /// 儲存工作應徵方式
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual async Task<SaveCompanyJobApplicationMethodDto> SaveCompanyJobApplicationMethodAsync(SaveCompanyJobApplicationMethodInput input)
+        public virtual async Task<CompanyJobApplicationMethodsDto> SaveCompanyJobApplicationMethodAsync(SaveCompanyJobApplicationMethodInput input)
         {
-            var Result = new SaveCompanyJobApplicationMethodDto();
+            var Result = new CompanyJobApplicationMethodsDto();
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
+            //強制帶入Id
+            input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
             var CompanyJobApplicationMethodId = input.Id;
+            var RefreshItem = input.RefreshItem;
 
-            //await SaveCompanyJobApplicationMethodCheckAsync(input);
+            //不要變更的值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
 
-            var qbrCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
-            var itemCompanyJobApplicationMethod = qbrCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
+            //檢查
+            await SaveCompanyJobApplicationMethodCheckAsync(input);
 
+
+            //主體資料
+            var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
+            var itemCompanyJobApplicationMethod = qrbCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
+
+            //如果CompanyJobApplicationMethodsRepository沒有這個Id就新增資料，已存在就update
             if (itemCompanyJobApplicationMethod == null)
             {
-                var itemCompanyJobApplicationMethodDto = ObjectMapper.Map<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethodDto>(input);
-
-                itemCompanyJobApplicationMethodDto.CompanyMainId = GuidGenerator.Create();
-                itemCompanyJobApplicationMethodDto.CompanyJobId = GuidGenerator.Create();
-
-                itemCompanyJobApplicationMethod = ObjectMapper.Map<CompanyJobApplicationMethodDto, CompanyJobApplicationMethod>(itemCompanyJobApplicationMethodDto);
-                await _appService._companyJobApplicationMethodRepository.InsertAsync(itemCompanyJobApplicationMethod);
-
-                Result = ObjectMapper.Map<CompanyJobApplicationMethod, SaveCompanyJobApplicationMethodDto>(itemCompanyJobApplicationMethod);
+                itemCompanyJobApplicationMethod = ObjectMapper.Map<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>(input);
+                itemCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.InsertAsync(itemCompanyJobApplicationMethod);
             }
             else
             {
-                var item = ObjectMapper.Map<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>(input);
-                await _appService._companyJobApplicationMethodRepository.UpdateAsync(item);
+                //不要變更的值
+                input.Sort = itemCompanyJobApplicationMethod.Sort;
+                input.DateA = itemCompanyJobApplicationMethod.DateA;
+                input.DateD = itemCompanyJobApplicationMethod.DateD;
 
-                Result = ObjectMapper.Map<CompanyJobApplicationMethod, SaveCompanyJobApplicationMethodDto>(item);
+                ObjectMapper.Map(input, itemCompanyJobApplicationMethod);
+                await _appService._companyJobApplicationMethodRepository.UpdateAsync(itemCompanyJobApplicationMethod);
             }
+            if (RefreshItem)
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+
+            ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
             return Result;
         }
 
@@ -325,26 +360,44 @@ namespace Resume.App.Companys
         {
             var Result = new CompanyJobContentsDto();
 
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var CompanyJobContentId = input.Id;
 
+            //預設值
+
+
+            //檢查
             if (CompanyJobContentId.ToString() == " ")
             {
-                var ex = new AbpValidationException("代碼不能空白");
+                ex.Data.Add(GuidGenerator.Create().ToString(), "ID不能為空白");
                 throw ex;
             }
+            //主體資料
+            var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
 
-            //var inputGetCompanyJobContents = new GetCompanyJobContentsInput();
-            //var itemsCompanyJobContents = await _appService._companyJobContentsAppService.GetListAsync(inputGetCompanyJobContents);
-            //var itemCompanyJobContents = itemsCompanyJobContents.Items.FirstOrDefault();
-            var itemCompanyJobContents = await _appService._companyJobContentsAppService.GetAsync(CompanyJobContentId);
-            
-            if (itemCompanyJobContents == null)
+            if (ex.Data.Count == 0)
             {
-                var ex = new EntityNotFoundException("沒有資料");
-                throw ex;
-            }
 
-            Result = ObjectMapper.Map<CompanyJobContentDto, CompanyJobContentsDto>(itemCompanyJobContents);
+                    //如果是一般公司
+                    var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
+                    if (itemCompanyJobContent == null)
+                        ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+
+                    ObjectMapper.Map(itemCompanyJobContent, Result);
+            }
+            if (ex.Data.Count > 0)
+                throw ex;
 
             return Result;
         }
@@ -353,27 +406,44 @@ namespace Resume.App.Companys
         {
             var Result = new CompanyJobConditionsDto();
 
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var CompanyJobConditionId = input.Id;
 
+            //預設值
+
+
+            //檢查
             if (CompanyJobConditionId.ToString() == " ")
             {
-                var ex = new AbpValidationException("代碼不能空白");
+                ex.Data.Add(GuidGenerator.Create().ToString(), "ID不能為空白");
                 throw ex;
             }
+            //主體資料
+            var qrbCompanyJobCondition = await _appService._companyJobConditionRepository.GetQueryableAsync();
 
-            //var inputGetCompanyJobConditions = new GetCompanyJobConditionsInput();
-            //var itemsCompanyJobConditions = await _appService._companyJobConditionAppService.GetListAsync(inputGetCompanyJobConditions);
-            //var itemCompanyJobConditions = itemsCompanyJobConditions.Items.FirstOrDefault();
-
-            var itemCompanyJobConditions = await _appService._companyJobConditionAppService.GetAsync(CompanyJobConditionId);
-
-            if (itemCompanyJobConditions == null)
+            if (ex.Data.Count == 0)
             {
-                var ex = new EntityNotFoundException("沒有資料");
-                throw ex;
-            }
 
-            Result = ObjectMapper.Map<CompanyJobConditionDto, CompanyJobConditionsDto>(itemCompanyJobConditions);
+                //如果是一般公司
+                var itemCompanyJobCondition = qrbCompanyJobCondition.FirstOrDefault(p => p.Id == CompanyJobConditionId);
+                if (itemCompanyJobCondition == null)
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+
+                ObjectMapper.Map(itemCompanyJobCondition, Result);
+            }
+            if (ex.Data.Count > 0)
+                throw ex;
 
             return Result;
         }
@@ -382,161 +452,127 @@ namespace Resume.App.Companys
         {
             var Result = new CompanyJobApplicationMethodsDto();
 
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var CompanyJobApplicationMethodId = input.Id;
 
+            //預設值
+
+
+            //檢查
             if (CompanyJobApplicationMethodId.ToString() == " ")
             {
-                var ex = new AbpValidationException("代碼不能空白");
+                ex.Data.Add(GuidGenerator.Create().ToString(), "ID不能為空白");
                 throw ex;
             }
+            //主體資料
+            var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
 
-            //var inputCompanyJobApplicationMethod = new GetCompanyJobApplicationMethodsInput();
-            //var itemsCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodsAppService.GetListAsync(inputCompanyJobApplicationMethod);
-            //var itemCompanyJobApplicationMethod = itemsCompanyJobApplicationMethod.Items.FirstOrDefault();
-
-            var itemCompanyJobApplicationMethods = await _appService._companyJobApplicationMethodsAppService.GetAsync(CompanyJobApplicationMethodId);
-
-            if (itemCompanyJobApplicationMethods == null)
+            if (ex.Data.Count == 0)
             {
-                var ex = new EntityNotFoundException("沒有資料");
-                throw ex;
+
+                //如果是一般公司
+                var itemCompanyJobApplicationMethod = qrbCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
+                if (itemCompanyJobApplicationMethod == null)
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+
+                ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
             }
-            Result = ObjectMapper.Map<CompanyJobApplicationMethodDto, CompanyJobApplicationMethodsDto>(itemCompanyJobApplicationMethods);
+            if (ex.Data.Count > 0)
+                throw ex;
 
             return Result;
         }
 
-        public virtual async Task<UpdateCompanyJobDateDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input)
+        public virtual async Task<CompanyJobsDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input)
         {
-            var Result = new UpdateCompanyJobDateDto();
+            var Result = new CompanyJobsDto();
 
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            // 外部傳入
             var CompanyJobId = input.Id;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
+            //var RefreshItem = input.RefreshItem;
 
-            if (CompanyJobId.Equals(null))
-            {
-                var ex = new UserFriendlyException("Id不能空白");
-                throw ex;
-            }
+            //檢查
+            await UpdateCompanyJobDateCheckAsync(input);
 
-            var qrbitemCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
-            var itemCompanyJob = qrbitemCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
+            //主體資料
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            var itemCompanyJobDate = ObjectMapper.Map<UpdateCompanyJobDateInput, CompanyJob>(input);
-            itemCompanyJobDate.DateA = input.DateA;
-            itemCompanyJobDate.DateD = input.DateD;
-            await _appService._companyJobRepository.UpdateAsync(itemCompanyJobDate);
+            //映射
+            ObjectMapper.Map(input, itemCompanyJob);
+            itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
 
-            Result = ObjectMapper.Map<CompanyJob, UpdateCompanyJobDateDto>(itemCompanyJobDate);
-
+            ObjectMapper.Map(itemCompanyJob, Result);
             return Result;
         }
 
-        public virtual async Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input)
-        {
-            var Result = new SaveCompanyJobPayDto();
-
-            var CompanyJobPayId = input.Id;
-            //await SaveCompanyJobPayCheckAsync(input);
-
-            var qrbCompanyJobPay = await _appService._companyJobPayRepository.GetQueryableAsync();
-            var itemCompanyJobPay = qrbCompanyJobPay.FirstOrDefault(p => p.Id == CompanyJobPayId);
-
-            
-            if (itemCompanyJobPay == null)
-            {
-                var itemCompanyJobPayDto = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPayDto>(input);
-
-                itemCompanyJobPayDto.CompanyMainId = _appService._guidGenerator.Create();
-                itemCompanyJobPayDto.CompanyJobId = _appService._guidGenerator.Create();
-
-                itemCompanyJobPay = ObjectMapper.Map<CompanyJobPayDto, CompanyJobPay>(itemCompanyJobPayDto);
-                await _appService._companyJobPayRepository.InsertAsync(itemCompanyJobPay);
-                Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(itemCompanyJobPay);
-            }
-            else
-            {
-                var item = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPay>(input);
-                await _appService._companyJobPayRepository.UpdateAsync(item);
-
-                Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(item);
-            }
-            return Result;
-        }
-
-        public virtual async Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input)
+        public virtual async Task<ResultDto> UpdateCompanyJobDateCheckAsync(UpdateCompanyJobDateInput input)
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
-            var JobPayTypeCode = input.JobPayTypeCode ?? "";
-            var DateReal = input.DateReal;
+            var CompanyMainId = input.Id;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
 
-            if (JobPayTypeCode.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費代碼不能空白", Pass = false });
-            if (DateReal.Equals(null))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "上架日期不能空白", Pass = false });
+            if (DateA.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺上架日不能空白", Pass = false });
 
-            var itemsCompanymain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanymain.FirstOrDefault(p => p.Id == CompanyMainId);
+            if (DateD.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺下架日不能空白", Pass = false });
 
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-            inputShareCodeGroup.ListGroupCode.Add("JobPayTypeCode");
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "JobPayTypeCode" && p.Code == JobPayTypeCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            var itemsCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
+            var item = itemsCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
 
             if (item == null)
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
 
-            var ex = new UserFriendlyException("系統發生錯誤");
-            foreach (var msg in Result.Messages)
-                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
-
-
             Result.Check = !Result.Messages.Any(p => !p.Pass);
-            if (!Result.Check)
-                throw ex;
 
             return Result;
-
         }
-        public virtual async Task<CompanysJobDto> GetCompanyJobsAsync(CompanyJobInput input)
-        {
-            var Result = new CompanysJobDto();
 
+        public virtual async Task<CompanyJobsDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input)
+        {
+            var Result = new CompanyJobsDto();
+
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            // 外部傳入
             var CompanyJobId = input.Id;
+            var DateA = input.JobOpen;
+            //var RefreshItem = input.RefreshItem;
 
-            if (CompanyJobId.Equals(null))
-            {
-                var ex = new UserFriendlyException("Id不能空白");
-                throw ex;
-            }
-
-            //var inputCompanyJobs = new GetCompanyJobsInput();
-            //inputCompanyJobs.IsDelelte
-
-            var itemCompanyJob = await _appService._companyJobsAppService.GetAsync(CompanyJobId);
-
-            Result = ObjectMapper.Map<CompanyJobDto, CompanysJobDto>(itemCompanyJob);
-            return Result;
-        }
-
-        public virtual async Task<UpdateCompanyJobOpenDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input)
-        {
-            var Result = new UpdateCompanyJobOpenDto();
-
-            var CompanyMainId = input.CompanyMainId;
-
+            //檢查
             await UpdateCompanyJobOpenCheckAsync(input);
 
-            var itemsCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
-            var item = itemsCompanyJob.FirstOrDefault(p => p.Id == CompanyMainId);
+            //主體資料
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            item.JobOpen = input.JobOpen;
-            await _appService._companyJobRepository.UpdateAsync(item);
+            //映射
+            ObjectMapper.Map(input, itemCompanyJob);
+            itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
 
-            Result = ObjectMapper.Map<CompanyJob, UpdateCompanyJobOpenDto>(item);
+            ObjectMapper.Map(itemCompanyJob, Result);
 
             return Result;
         }
