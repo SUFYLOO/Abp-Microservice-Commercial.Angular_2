@@ -12,10 +12,7 @@ namespace Resume.App
         [Required]
         public Guid Id { get; set; }
         public bool RefreshItem { get; set; } = false;
-
     }
-
-
 
     public  class DeleteInput: StdInput
     {
@@ -43,33 +40,29 @@ namespace Resume.App
         public string VerifyId { get; set; } = "";
         [Required]
         public string VerifyCode { get; set; } = "";
-
-        public CheckUserVerifyInput()
-        {
-
-        }
     }
 
-    //public class RegisterInput
-    //{
-    //    public string TenantName { get; set; } = "User";
-    //    public string Name { get; set; }
-    //    public string AccountCode { get; set; }
-    //    public string Email { get; set; }
-    //    public string MobilePhone { get; set; }
-    //    public string IdentityNo { get; set; }
-    //    public string Password { get; set; }
-    //    public CheckUserVerifyInput CheckUserVerify { get; set; }
-    //    public string ThirdPartyTypeCode { get; set; } = "";
-    //    public ThirdPartyUserDataDto UserData { get; set; }
+    public class RegisterInput
+    {
+        public string Name { get; set; }
+        public string AccountCode { get; set; } = "";
+        public string Email { get; set; }
+        public string MobilePhone { get; set; }
+        public string IdentityNo { get; set; }
+        public string Password { get; set; }
+        public CheckUserVerifyInput CheckUserVerify { get; set; }
+        public string ThirdPartyTypeCode { get; set; } = "";
+        public ThirdPartyUserDataDto UserData { get; set; }
+    }
 
-    //    public RegisterInput()
-    //    {
+    public class RegisterBaseInput : RegisterInput
+    {      
+        public bool NeedCheckUserVerify { get; set; }  = true;
+        public List<Guid>? ListRoleId { get;  set; }
+        public List<Guid>? ListOrgId { get;  set; }
+    }
 
-    //    }
-    //}
-
-    public class RegisterInput : SaasTenantCreateDto
+    public class RegisterTenantInput : SaasTenantCreateDto
     {
         /// <summary>
         /// 允許沒有MAIL 由系統自創
@@ -78,10 +71,8 @@ namespace Resume.App
         [Required]
         public string CompanyMainName { get; set; }
         public string AccountCode { get; set; } = "";
-        //public string Email { get; set; }
         public string MobilePhone { get; set; }
         public string IdentityNo { get; set; }
-        //public string Password { get; set; }
         public CheckUserVerifyInput CheckUserVerify { get; set; }
         public string ThirdPartyTypeCode { get; set; } = "";
         public ThirdPartyUserDataDto UserData { get; set; }

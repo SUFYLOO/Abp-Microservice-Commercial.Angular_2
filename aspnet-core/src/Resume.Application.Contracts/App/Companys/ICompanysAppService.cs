@@ -29,9 +29,9 @@ namespace Resume.App.Companys
         Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input);
         Task<ResultDto<CompanyMainDto>> SaveCompanyMainAsync(CompanyMainDto input);
         Task<CompanyMainsDto> DeleteCompanyMainAsync(DeleteCompanyMainInput input);
-        Task<ResultDto<List<CompanyUsersDto>>> GetCompanyUserListAsync(CompanyUserListInput input);
-        Task<ResultDto<CompanyUsersDto>> GetCompanyUserAsync(CompanyUserInput input);
-        Task<ResultDto<CompanyUsersDto>> InsertCompanyUserAsync(SaveCompanyUserInput input);
+        Task<List<CompanyUsersDto>> GetCompanyUserListAsync(CompanyUserListInput input);
+        Task<CompanyUsersDto> GetCompanyUserAsync(CompanyUserInput input);
+        Task<CompanyUsersDto> InsertCompanyUserAsync(SaveCompanyUserInput input);
         Task<ResultDto<CompanyUsersDto>> UpdateCompanyUserAsync(UpdateCompanyUserInput input);
         Task<ResultDto<CompanyUsersDto>> SaveCompanyUserAsync(SaveCompanyUserInput input);
         Task<ResultDto<DeleteCompanyUserDto>> DeleteCompanyUserAsync(DeleteCompanyUserInput input);
@@ -56,8 +56,8 @@ namespace Resume.App.Companys
         Task<ResultDto> UpdateCompanyMainOperatingItemsCheckAsync(UpdateCompanyMainOperatingItemsInput input);
         Task<CompanyMainsDto> UpdateCompanyMainWelfareSystemAsync(UpdateCompanyMainWelfareSystemInput input);
         Task<ResultDto> UpdateCompanyMainWelfareSystemCheckAsync(UpdateCompanyMainWelfareSystemInput input);
-        Task<RegisterDto> RegisterAsync(RegisterInput input);
-        Task<ResultDto> RegisterCheckAsync(RegisterInput input);
+        Task<RegisterDto> RegisterAsync(RegisterTenantInput input);
+        Task<ResultDto> RegisterCheckAsync(RegisterTenantInput input);
         Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input);
         Task<List<LoginInfoDto>> GetLoginInfoAsync(LoginInput input);
         Task<LoginDto> LoginAsync(LoginInput input);

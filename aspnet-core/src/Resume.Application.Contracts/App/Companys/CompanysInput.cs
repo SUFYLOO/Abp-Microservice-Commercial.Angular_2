@@ -33,10 +33,7 @@ namespace Resume.App.Companys
 
     public class SaveCompanyUserInput : CompanyUserDto
     {
-        public RegisterInput Register { get; set; }
-        public List<Guid?> OrganizationUnitsId { get; set; }
-        public List<Guid?> RolesId { get; set; }
-        public SaveIntentType SaveIntent { get; set; }
+        public RegisterBaseInput Register { get; set; }
     }
 
     public class UpdateCompanyUserInput : CompanyUserDto

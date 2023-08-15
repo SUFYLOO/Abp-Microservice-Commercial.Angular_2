@@ -54,6 +54,7 @@ using static Volo.Abp.Identity.IdentityPermissions;
 using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 using static Volo.Saas.Host.SaasHostPermissions;
 using OrganizationUnit = Volo.Abp.Identity.OrganizationUnit;
+using Resume.CompanyJobContents;
 
 namespace Resume.App.Users
 {
@@ -68,152 +69,207 @@ namespace Resume.App.Users
             _appService = appService;
         }
 
-        public virtual async Task<ResultDto<List<ResultMessageDto>>> RegisterCheckAsync(RegisterCheckInput input)
+        public virtual async Task<ResultDto> RegisterCheckAsync(RegisterInput input)
         {
-            var Result = new ResultDto<List<ResultMessageDto>>();
-            Result.Data = new List<ResultMessageDto>();
-            Result.Version = "2023041701";
+            //結果
+            var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
 
-            var TenantId = Guid.Parse("d63dd51b-2e19-a965-ed20-3a09cda74359");
-            var TenantName = input.TenantName.IsNullOrEmpty() ? "User" : input.TenantName;
+            //常用
 
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var Name = input.Name ?? "";
             var Email = input.Email ?? "";
             var MobilePhone = input.MobilePhone ?? "";
             var IdentityNo = input.IdentityNo ?? "";
             var Password = input.Password ?? "";
 
-            try
+            //預設值
+            //如果是新註冊非管理者新增 則要搜尋User這個租戶住冊
+            var itemTenant = await _appService._tenantRepository.FindByNameAsync("User");
+            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : null;
+
+            //檢查
+            //if (TenantId == null)
+            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"租戶不存在", Pass = false });
+            if (Name.Length == 0)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"姓名不得為空白", Pass = false });
+            if (Email.Length == 0 && MobilePhone.Length == 0 && IdentityNo.Length == 0)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"資料填寫不完整(信箱或手機或身份證必須填寫一項)", Pass = false });
+            if (Password.Length == 0)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"密碼不得為空白", Pass = false });
+
+            //判斷是否有重複
+            using (CurrentTenant.Change(TenantId))
             {
-                if (Name.Length == 0)
-                    Result.Data.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"姓名不得為空白" });
+                var itemsRole = await _appService._identityRoleRepository.GetDefaultOnesAsync();
+                if (itemsRole ==  null || !itemsRole.Any())
+                    Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"沒有角色存在(系統錯誤)", Pass = false });
+                var itemsAllOrg = await _appService._organizationUnitRepository.GetListAsync();
+                if (itemsAllOrg == null || !itemsAllOrg.Any())
+                    Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"沒有部門存在(系統錯誤)", Pass = false });
 
-                if (Email.Length == 0 && MobilePhone.Length == 0 && IdentityNo.Length == 0)
-                    Result.Data.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"資料填寫不完整(信箱或手機或身份證必須填寫一項)" });
-
-                if (Password.Length == 0)
-                    Result.Data.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"密碼不得為空白" });
-
-                //判斷是否有重複
-                using (_appService._dataFilter.Disable<IMultiTenant>())
-                {
-                    var itemTenant = await _appService._tenantRepository.FindByNameAsync(TenantName);
-                    if (itemTenant != null)
-                        TenantId = itemTenant.Id;
-
-                    //相同租戶不可以重複
-                    var itemsAllUserMain = await _appService._userMainRepository.GetQueryableAsync();
-                    itemsAllUserMain = from c in itemsAllUserMain
-                                       where c.TenantId == TenantId
-                                       && ((c.LoginEmail.Length > 0 && c.LoginEmail.ToUpper() == Email.ToUpper())
-                                       || (c.LoginMobilePhone.Length > 0 && c.LoginMobilePhone.ToUpper() == MobilePhone.ToUpper())
-                                       || (c.LoginIdentityNo.Length > 0 && c.LoginIdentityNo.ToUpper() == IdentityNo.ToUpper()))
-                                       select c;
-
-                    var itemsUser = await _appService._identityUserRepository.GetListAsync();
-                    var itemUser = from c in itemsUser
+                //相同租戶不可以重複
+                var itemsAllUserMain = await _appService._userMainRepository.GetQueryableAsync();
+                itemsAllUserMain = from c in itemsAllUserMain
                                    where c.TenantId == TenantId
-                                   && ((!c.PhoneNumber.IsNullOrEmpty() && c.PhoneNumber.ToUpper() == MobilePhone.ToUpper())
-                                   || (!c.NormalizedEmail.IsNullOrEmpty() && c.NormalizedEmail.ToUpper() == Email.ToUpper())
-                                   || (!c.Surname.IsNullOrEmpty() && c.Surname.ToUpper() == IdentityNo.ToUpper()))
+                                   && ((c.LoginEmail != null && c.LoginEmail.Length > 0 && c.LoginEmail.ToUpper() == Email.ToUpper())
+                                   || (c.LoginMobilePhone != null && c.LoginMobilePhone.Length > 0 && c.LoginMobilePhone.ToUpper() == MobilePhone.ToUpper())
+                                   || (c.LoginIdentityNo != null && c.LoginIdentityNo.Length > 0 && c.LoginIdentityNo.ToUpper() == IdentityNo.ToUpper()))
                                    select c;
 
-                    if (itemsAllUserMain.Any() || itemUser.Any())
-                        Result.Data.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"申請資料重複" });
-                }
-            }
-            catch (Exception ex)
-            {
-                Result.StackTrace = ex.StackTrace;
-                Result.Status = false;
+                var itemsUser = await _appService._identityUserRepository.GetListAsync();
+                var itemUser = from c in itemsUser
+                               where c.TenantId == TenantId
+                               && ((!c.PhoneNumber.IsNullOrEmpty() && c.PhoneNumber.ToUpper() == MobilePhone.ToUpper())
+                               || (!c.NormalizedEmail.IsNullOrEmpty() && c.NormalizedEmail.ToUpper() == Email.ToUpper())
+                               || (!c.Surname.IsNullOrEmpty() && c.Surname.ToUpper() == IdentityNo.ToUpper()))
+                               select c;
 
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"系統發生錯誤 請稍後再試" });
-
-                _appService._logger.LogException(ex);
+                if (itemsAllUserMain.Any() || itemUser.Any())
+                    Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"申請資料重複", Pass = false });
             }
 
-            Result.Check = Result.Data.Count == 0;
-            Result.Save = true;
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             return Result;
         }
 
-        public virtual async Task<ResultDto<RegisterDto>> RegisterAsync(RegisterInput input)
+        public virtual async Task<RegisterDto> RegisterAsync(RegisterInput input)
         {
-            var Result = new ResultDto<RegisterDto>();
-            Result.Data = new RegisterDto();
-            Result.Version = "2023041701";
+            //結果
+            var Result = new RegisterDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
 
-            //註冊的公開方法 並會知道當前TenantName
-            var TenantName = "User";// input.TenantName; 一般使用者註冊 一律用User檢查
+            //常用
+
+            //系統層級
+
+            //強制把input帶入系統值
+
+            //外部傳入
+
+            //預設值
+
+            //檢查
+
+            //主體資料
+
+            var inputRegisterBase = ObjectMapper.Map<RegisterInput, RegisterBaseInput>(input);
+            Result = await RegisterAsync(inputRegisterBase);
+
+            if (ex.Data.Count > 0)
+                throw ex;
+
+            return Result;
+        }
+
+        public virtual async Task<RegisterDto> RegisterAsync(RegisterBaseInput input)
+        {
+            //結果
+            var Result = new RegisterDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
+
+            //常用
+
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var Name = input.Name ?? "";
-            var Email = input.AdminEmailAddress ?? "";
+            var Email = input.Email ?? "";
             var MobilePhone = input.MobilePhone ?? "";
             var IdentityNo = input.IdentityNo ?? "";
             IdentityNo = IdentityNo.ToUpper();//身份證轉大寫
-            var Password = input.AdminPassword ?? "";
+            var Password = input.Password ?? "";
+            var NeedCheckUserVerify = input.NeedCheckUserVerify;
+            var ListRoleId = input.ListRoleId;
+            var ListOrgId = input.ListOrgId;
 
-            //先寫死
-            var OrgId = Guid.Parse("910ebc10-6f99-1a6d-0410-3a0a1a237bfe");
-            var RoleId = Guid.Parse("45fd7f1d-3e7e-7bd6-d787-3a0a1a24ee50");
-            var TenantId = Guid.Parse("d63dd51b-2e19-a965-ed20-3a09cda74359");
+            //預設值
+            //如果是新註冊非管理者新增 則要搜尋User這個租戶住冊
+            var itemTenant = await _appService._tenantRepository.FindByNameAsync("User");
+            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : null;
 
-            try
+            //檢查
+            await RegisterCheckAsync(input);
+
+            //檢查是否有先經過驗証
+            if (NeedCheckUserVerify)
             {
-                var inputRegisterCheck = new RegisterCheckInput();
-                inputRegisterCheck.TenantName = TenantName;
-                inputRegisterCheck.Name = Name;
-                inputRegisterCheck.Email = Email;
-                inputRegisterCheck.MobilePhone = MobilePhone;
-                inputRegisterCheck.IdentityNo = IdentityNo;
-                inputRegisterCheck.Password = Password;
-                var RegisterCheck = await RegisterCheckAsync(inputRegisterCheck);
-                Result.Messages = RegisterCheck.Data;
-
-                //檢查是否有先經過驗証
                 var rCheckUserVerifyInput = new CheckUserVerifyInput();
                 rCheckUserVerifyInput.VerifyId = input.CheckUserVerify.VerifyId;
                 rCheckUserVerifyInput.VerifyCode = input.CheckUserVerify.VerifyCode;
-                var CheckUserVerify = await CheckUserVerifyAsync(rCheckUserVerifyInput);
-                Result.Messages.AddRange(CheckUserVerify.Messages);
+                await CheckUserVerifyAsync(rCheckUserVerifyInput);
+            }
 
-                if (Result.Messages.Count == 0)
+            //主體資料
+
+            if (ex.Data.Count == 0)
+            {
+                using (CurrentTenant.Change(TenantId))
                 {
-                    //由於Abp信箱不可以空白，而在履歷系統信箱代表唯一值，因此如果使用者用手機註冊時，我決定採用UserName當做信箱暫用
+                    //角色資料-沒有的話，則使用預設值
+                    var itemsRole = await _appService._identityRoleRepository.GetDefaultOnesAsync();
+                    if (ListRoleId == null && itemsRole != null && itemsRole.Any())
+                        ListRoleId = itemsRole.Select(p => p.Id).ToList();
 
+                    //組織資料-沒有的話，則使用沒有權限的部門
+                    var itemsAllOrg = await _appService._organizationUnitRepository.GetListAsync();
+                    var itemOrg = itemsAllOrg.FirstOrDefault(p => p.DisplayName == "NotClassified");
+                    if (ListOrgId == null && itemOrg != null)
+                        ListOrgId = new List<Guid>() { itemOrg.Id };
+
+                    //由於Abp信箱不可以空白，而在履歷系統信箱代表唯一值，因此如果使用者用手機註冊時，我決定採用UserName當做信箱暫用
                     var UserName = _appService._guidGenerator.Create().ToString();
                     var EmailAbp = Email.Length > 0 ? Email : (UserName + "@jbjob.com.tw");
-                    var user = new IdentityUser(GuidGenerator.Create(), UserName, EmailAbp, TenantId);
-                    user.AddOrganizationUnit(OrgId);  //加入組織
-                    user.AddRole(RoleId); //加入角色
-                    user.Name = Name;
-                    user.SetPhoneNumber(MobilePhone, MobilePhone.Length > 0);    //設定電話
-                    user.Surname = IdentityNo;  //暫存身份證
+                    var itemIdentityUser = new IdentityUser(GuidGenerator.Create(), UserName, EmailAbp);
+                    if (ListRoleId != null)
+                        foreach (var itemRoleId in ListRoleId)
+                            itemIdentityUser.AddRole(itemRoleId); //加入角色
+                    if (ListOrgId != null)
+                        foreach(var itemOrgId in ListOrgId)
+                        itemIdentityUser.AddOrganizationUnit(itemOrgId);  //加入組織
+                    itemIdentityUser.Name = Name;
+                    itemIdentityUser.SetPhoneNumber(MobilePhone, MobilePhone.Length > 0);    //設定電話
+                    itemIdentityUser.Surname = IdentityNo;  //暫存身份證
 
-                    //將密碼加密
-                    var itemUser = await _appService._identityUserManager.CreateAsync(user, Password, false);
+                    //密碼不判斷原則
+                    var itemUser = await _appService._identityUserManager.CreateAsync(itemIdentityUser, Password, false);
                     itemUser.CheckErrors();
 
                     //加入所有預設角色
-                    //var SetRole = await _appService._identityUserManager.AddDefaultRolesAsync(user);
+                    //var SetRole = await _appService._identityUserManager.AddDefaultRolesAsync(itemIdentityUser);
                     //SetRole.CheckErrors();
 
-                    //UserMain主檔
-                    var UserId = user.Id;
-                    var UserMainId = _appService._guidGenerator.Create();
+                    //User主檔
+                    var UserId = itemIdentityUser.Id;
 
                     //建基本資訊
-                    var inputInsertUserMain = new InsertUserMainInput();
+                    var inputInsertUserMain = ObjectMapper.Map<RegisterInput, InsertUserMainInput>(input); 
                     inputInsertUserMain.TenantId = TenantId;
-                    inputInsertUserMain.UserId = UserId;
-                    inputInsertUserMain.UserMainId = UserMainId;
-                    inputInsertUserMain.Name = input.Name;
-                    inputInsertUserMain.UserName = UserName;
-                    inputInsertUserMain.MobilePhone = MobilePhone;
-                    inputInsertUserMain.Email = Email;
-                    inputInsertUserMain.IdentityNo = IdentityNo;
-                    inputInsertUserMain.Password = Password;    //改到方法裡面再加密
-                    await InsertUserMainAsync(inputInsertUserMain);
+                    inputInsertUserMain.UserId = UserId;                  
+                    inputInsertUserMain.UserName = UserName;           
+                   var itemUserMain = await InsertUserMainAsync(inputInsertUserMain);
+                    Result.UserMainId = itemUserMain.UserMains.Id;
 
                     //寫入第三方資訊
                     var UserData = input.UserData;
@@ -252,21 +308,11 @@ namespace Resume.App.Users
                     //inputLogin.Password = Password;
                     //var Data = await LoginAsync(inputLogin);
                     //Result.Data.Login = Data.Data;
-
-                    Result.Save = true;
                 }
-            }
-            catch (Exception ex)
-            {
-                Result.StackTrace = ex.StackTrace;
-                Result.Status = false;
+            } 
 
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"系統發生錯誤 請稍後再試" });
-
-                _appService._logger.LogException(ex);
-            }
-
-            Result.Check = Result.Messages.Count == 0;
+            if (ex.Data.Count > 0)
+                throw ex;
 
             return Result;
         }
@@ -276,11 +322,21 @@ namespace Resume.App.Users
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual async Task<bool> InsertUserMainAsync(InsertUserMainInput input)
+        public virtual async Task<InsertUserMainsDto> InsertUserMainAsync(InsertUserMainInput input)
         {
+            //結果
+            var Result = new InsertUserMainsDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
+
+            //常用
+
+            //系統層級
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var TenantId = input.TenantId;
             var UserId = input.UserId;
-            var UserMainId = input.UserMainId;
             var Name = input.Name;
             var UserName = input.UserName;
             var MobilePhone = input.MobilePhone;
@@ -288,6 +344,14 @@ namespace Resume.App.Users
             var IdentityNo = input.IdentityNo;
             var Password = input.Password;
             var SystemUserRoleKeys = input.SystemUserRoleKeys;
+
+            //預設值
+
+            //檢查
+
+            //檢查是否有先經過驗証
+
+            //主體資料
 
             var rUserMain = new UserMain();
             rUserMain.TenantId = TenantId;
@@ -309,7 +373,8 @@ namespace Resume.App.Users
             rUserMain.Sort = 9;
             rUserMain.Note = "";
             rUserMain.Status = "1";
-            var iUserMain = await _appService._userMainRepository.InsertAsync(rUserMain);
+            var itemUserMain = await _appService._userMainRepository.InsertAsync(rUserMain);
+            ObjectMapper.Map(itemUserMain  , Result.UserMains);
 
             var rUserInfo = new UserInfo();
             rUserInfo.TenantId = TenantId;
@@ -330,29 +395,20 @@ namespace Resume.App.Users
             rUserInfo.Sort = 9;
             rUserInfo.Note = "";
             rUserInfo.Status = "1";
-            var iUserInfo = await _appService._userInfoRepository.InsertAsync(rUserInfo);
+            var itemUserInfo = await _appService._userInfoRepository.InsertAsync(rUserInfo);
+            ObjectMapper.Map(itemUserInfo, Result.UserInfos);
 
             //新增我的第一份履歷
             var rResumeMain = new ResumeMain();
             rResumeMain.TenantId = TenantId;
             rResumeMain.UserMainId = UserMainId;
             rResumeMain.ResumeName = "我的第一份履歷";
-            //rResumeMain.NameC = Name;
-            //rResumeMain.NameE = "";
-            //rResumeMain.IdentityNo = IdentityNo.ToUpper();
-            //rResumeMain.BirthDate = new DateTime(1900, 1, 1).Date;
-            //rResumeMain.SexCode = "";
-            //rResumeMain.BloodCode = "";
             rResumeMain.MarriageCode = "";
-            //rResumeMain.PlaceOfBirthCode = "";
             rResumeMain.MilitaryCode = "";
-            //rResumeMain.PassportNo = "";
             rResumeMain.DisabilityCategoryCode = "";
-            //rResumeMain.NationalityCode = "";
             rResumeMain.SpecialIdentityCode = "";
             rResumeMain.Main = true;
             rResumeMain.Autobiography1 = "";
-            //rResumeMain.ResidenceNo = "";
             rResumeMain.Autobiography2 = "";
             rResumeMain.ExtendedInformation = "";
             rResumeMain.DateA = new DateTime(1900, 1, 1);
@@ -386,7 +442,7 @@ namespace Resume.App.Users
                 await _appService._resumeCommunicationRepository.InsertAsync(item);
             }
 
-            return true;
+            return Result;
         }
 
         public virtual async Task<ResultDto<SendUserVerifyDto>> SendUserVerifyAsync(SendUserVerifyInput input)
@@ -503,31 +559,28 @@ namespace Resume.App.Users
             return Result;
         }
 
-        public virtual async Task<ResultDto<CheckUserVerifyDto>> CheckUserVerifyAsync(CheckUserVerifyInput input)
+        public virtual async Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input)
         {
-            var Result = new ResultDto<CheckUserVerifyDto>();
-            Result.Data = new CheckUserVerifyDto();
-            Result.Version = "2023041201";
+            var Result = new ResultDto();
 
             var VerifyId = input.VerifyId;
             var VerifyCode = input.VerifyCode;
 
             var DateNow = DateTime.Now;
 
-            var itemsAll = await _appService._userVerifyRepository.GetQueryableAsync();
-            var any = itemsAll.Any(c => c.VerifyId == VerifyId
-                               && c.VerifyCode == VerifyCode
-                               && c.DateA <= DateNow && DateNow <= c.DateD);
+            var qrbUserVerify = await _appService._userVerifyRepository.GetQueryableAsync();
+            var anyUserVerify = qrbUserVerify.Any(c => c.VerifyId == VerifyId && c.VerifyCode == VerifyCode && c.DateA <= DateNow && DateNow <= c.DateD);
 
-            if (!any)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"驗証碼錯誤 請重新輸入" });
-            else
-            {
-                Result.Data.Pass = true;
-                Result.Save = true;
-            }
+            if (!anyUserVerify)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"驗証碼錯誤 請重新輸入", Pass = false });
 
-            Result.Check = Result.Messages.Count == 0;
+            var ex = new UserFriendlyException("系統發生錯誤");
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             return Result;
         }
@@ -649,7 +702,6 @@ namespace Resume.App.Users
                                     var inputInsertUserMain = new InsertUserMainInput();
                                     inputInsertUserMain.TenantId = TenantId;
                                     inputInsertUserMain.UserId = itemUser.Id;
-                                    inputInsertUserMain.UserMainId = UserMainId;
                                     inputInsertUserMain.Name = itemUser.Name;
                                     inputInsertUserMain.UserName = itemUser.UserName;
                                     inputInsertUserMain.MobilePhone = itemUser.PhoneNumber ?? "";

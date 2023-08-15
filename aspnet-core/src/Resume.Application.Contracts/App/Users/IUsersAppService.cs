@@ -16,11 +16,11 @@ namespace Resume.App.Users
 {
     public interface IUsersAppService : IApplicationService
     {
-        Task<ResultDto<RegisterDto>> RegisterAsync(RegisterInput input);
+        Task<RegisterDto> RegisterAsync(RegisterInput input);
 
         Task<ResultDto<SendUserVerifyDto>> SendUserVerifyAsync(SendUserVerifyInput input);
 
-        Task<ResultDto<CheckUserVerifyDto>> CheckUserVerifyAsync(CheckUserVerifyInput input);
+        Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input);
 
         Task<ResultDto<LoginDto>> LoginAsync(LoginInput input);
         Task<ResultDto<LoginDto>> RefreshTokenAsync(RefreshTokenInput input);

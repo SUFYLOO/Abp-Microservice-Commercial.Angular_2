@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Application.Dtos;
 using static Resume.Permissions.ResumePermissions;
+using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace Resume.App.Companys
 {
@@ -30,8 +31,8 @@ namespace Resume.App.Companys
 
     public class CompanyUsersDto : CompanyUserDto
     {
-        public List<string> Roles { get; set; } = new List<string>();
-        public List<string> Orgs { get; set; } = new List<string>();
+        public List<Guid>? ListRoleId { get; set; }
+        public List<Guid>? ListOrgId { get; set; }
     }
 
 

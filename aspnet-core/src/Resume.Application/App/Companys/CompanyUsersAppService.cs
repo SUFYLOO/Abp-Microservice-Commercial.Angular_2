@@ -12,271 +12,211 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp;
+using Org.BouncyCastle.Asn1.Ocsp;
+using PayPalCheckoutSdk.Orders;
+using Volo.Abp.ObjectMapping;
 
 namespace Resume.App.Companys
 {
     public partial class CompanysAppService : ApplicationService, ICompanysAppService
-    {
-       
-
-        public virtual async Task<ResultDto<List<CompanyUsersDto>>> GetCompanyUserListAsync(CompanyUserListInput input)
+    {       
+        public virtual async Task<List<CompanyUsersDto>> GetCompanyUserListAsync(CompanyUserListInput input)
         {
-            var Result = new ResultDto<List<CompanyUsersDto>>();
-            Result.Data = new List<CompanyUsersDto>();
-            Result.Version = "2023040101";
+            //結果
+            var Result = new List<CompanyUsersDto>();
+            var ex = new UserFriendlyException("錯誤訊息");
 
-            var DateNow = DateTime.Now;
+            //常用
 
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            if (SystemUserRoleKeys >= 16)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
+            //強制把input帶入系統值
 
-            if (Result.Messages.Count == 0)
+            //外部傳入
+
+            //預設值
+
+            //檢查
+            if (SystemUserRoleKeys >= 9)
             {
-                //預設走Tenant原則 只會取得自己的Tenant名單
-                var itemsAll = await _appService._companyUserRepository.GetQueryableAsync();
-                var items = itemsAll.ToList();
+                var Msg = "您沒有權限";
+                ex.Code = "401";
+                ex.Details = Msg;
+                ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
+            }
 
-                var Data = ObjectMapper.Map<List<CompanyUser>, List<CompanyUsersDto>>(items);
-                Data = (from c in Data
-                        where c.DateA <= DateNow && DateNow <= c.DateD
-                        && c.Status == "1"
-                        orderby c.Sort
-                        select c).ToList();
+            //主體資料
+            var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+            var qrbsCompanyUser = from c in qrbCompanyUser
+                                  select c;
 
-                foreach (var item in Data)
+            if (ex.Data.Count == 0)
+            {
+                var itemsCompanyUser = qrbsCompanyUser.ToList();
+
+                //排序結果 ，如果需要排序就
+                //itemsCompanyUser = (from c in itemsCompanyUser
+                //                    orderby c.Sort
+                //                    select c).ToList();
+
+                ObjectMapper.Map(itemsCompanyUser, Result);
+
+                //取得角色
+                var qrbUserMain = await _appService._userMainRepository.GetQueryableAsync();
+                foreach (var item in Result)
                 {
-                    //使用者主檔
+                    //使用者主檔的UserMainId
                     UserMainId = item.UserMainId;
-                    var itemsAllUserMain = await _appService._userMainRepository.GetQueryableAsync();
-
-                    //取得要被修改的UserId
-                    var UserId = Guid.NewGuid();
-                    var itemUserMain = itemsAllUserMain.FirstOrDefault(p => p.Id == UserMainId);
+                    var itemUserMain = qrbUserMain.FirstOrDefault(p => p.Id == UserMainId);
                     if (itemUserMain != null)
                     {
-                        UserId = itemUserMain.UserId;
+                        //Abp原生的UserId
+                        var UserId = itemUserMain.UserId;
                         var itemUser = await _appService._identityUserRepository.GetAsync(id: UserId);
                         if (itemUser != null)
                         {
                             var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                             var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                            item.Roles = itemsRole.ToList();
-                            item.Orgs = itemsOrg.Select(p => p.Code).ToList();
+                            item.ListOrgId = itemsRole.Cast<Guid>().ToList();
+                            item.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                         }
                     }
                 }
-
-                Result.Data = Data;
-                Result.Save = true;
             }
 
-            Result.Check = Result.Messages.Count == 0;
-
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
-        public virtual async Task<ResultDto<CompanyUsersDto>> GetCompanyUserAsync(CompanyUserInput input)
+
+        public virtual async Task<CompanyUsersDto> GetCompanyUserAsync(CompanyUserInput input)
         {
-            var Result = new ResultDto<CompanyUsersDto>();
-            Result.Data = new CompanyUsersDto();
-            Result.Version = "2023040101";
+            //結果
+            var Result = new CompanyUsersDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
 
-            var DateNow = DateTime.Now;
+            //常用
 
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            var Id = input.Id;
+            //強制把input帶入系統值
 
-            if (SystemUserRoleKeys >= 16)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
+            //外部傳入
+            var CompanyUserId = input.Id;
 
-            //預設走Tenant原則 只會取得自己的Tenant名單
-            var itemsAll = await _appService._companyUserRepository.GetQueryableAsync();
-            var item = itemsAll.FirstOrDefault(p => p.Id == Id);
+            //預設值
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在" });
-
-            if (Result.Messages.Count == 0)
+            //檢查
+            if (SystemUserRoleKeys >= 9)
             {
-                var Data = ObjectMapper.Map<CompanyUser, CompanyUsersDto>(item);
+                var Msg = "您沒有權限";
+                ex.Code = "401";
+                ex.Details = Msg;
+                ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
+            }
 
-                //使用者主檔
-                UserMainId = item.UserMainId;
-                var itemsAllUserMain = await _appService._userMainRepository.GetQueryableAsync();
+            //主體資料
+            var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+            var qrbsCompanyUser = from c in qrbCompanyUser
+                                  select c;
 
-                //取得要被修改的UserId
-                var UserId = Guid.NewGuid();
-                var itemUserMain = itemsAllUserMain.FirstOrDefault(p => p.Id == UserMainId);
+            if (ex.Data.Count == 0)
+            {
+                var itemCompanyUser = qrbsCompanyUser.FirstOrDefault(p => p.Id == CompanyUserId);
+                if (itemCompanyUser == null)
+                {
+                    var Msg = "沒有資料";
+                    ex.Code = "204";
+                    ex.Details = Msg;
+                    ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
+                }
+
+                ObjectMapper.Map(itemCompanyUser, Result);
+
+                //取得角色
+                var qrbUserMain = await _appService._userMainRepository.GetQueryableAsync();
+
+                //使用者主檔的UserMainId
+                var itemUserMain = qrbUserMain.FirstOrDefault(p => p.Id == UserMainId);
                 if (itemUserMain != null)
                 {
-                    UserId = itemUserMain.UserId;
+                    //Abp原生的UserId
+                    var UserId = itemUserMain.UserId;
                     var itemUser = await _appService._identityUserRepository.GetAsync(id: UserId);
                     if (itemUser != null)
                     {
                         var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                         var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                        Data.Roles = itemsRole.ToList();
-                        Data.Orgs = itemsOrg.Select(p => p.Code).ToList();
+                        Result.ListOrgId = itemsRole.Cast<Guid>().ToList();
+                        Result.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                     }
                 }
-
-                Result.Data = Data;
-                Result.Save = true;
             }
 
-            Result.Check = Result.Messages.Count == 0;
-
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
 
-        public virtual async Task<ResultDto<CompanyUsersDto>> InsertCompanyUserAsync(SaveCompanyUserInput input)
+        public virtual async Task<CompanyUsersDto> InsertCompanyUserAsync(SaveCompanyUserInput input)
         {
-            var Result = new ResultDto<CompanyUsersDto>();
-            Result.Data = new CompanyUsersDto();
-            Result.Version = "2023041701";
+            //結果
+            var Result = new CompanyUsersDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
 
-            var DateNow = DateTime.Now;
+            //常用
 
-            var CurrentTenantId = CurrentTenant.Id;
-            var CurrentTenantName = CurrentTenant.Name;
-
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
-            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
 
-            var SaveIntent = input.SaveIntent;
-            var Id = input.Id;
-            var RoleId = input.RolesId;
-            var OrgId = input.OrganizationUnitsId;
+            //強制把input帶入系統值
+            input.Register.NeedCheckUserVerify = false;
 
-            var itemRole = await _appService._identityRoleRepository.FindByNormalizedNameAsync("MANAGE");
-            if (RoleId == null && itemRole != null)
-                RoleId = new List<Guid?>() { itemRole.Id };
-
-            var itemsAllOrg = await _appService._organizationUnitRepository.GetListAsync();
-            var itemOrg = itemsAllOrg.FirstOrDefault(p => p.ParentId == null && p.DisplayName == "Org");
-            if (OrgId == null && itemOrg != null)
-                OrgId = new List<Guid?>() { itemOrg.Id };
-
+            //外部傳入
+            var CompanyUserId = input.Id;
             var inputRegister = input.Register;
-            var Name = inputRegister.Name ?? "";
-            var AccountCode = inputRegister.AccountCode;
-            var Email = inputRegister.AdminEmailAddress ?? "";
-            var MobilePhone = inputRegister.MobilePhone ?? "";
-            var IdentityNo = inputRegister.IdentityNo ?? ""; //身份證轉大寫
-            IdentityNo = IdentityNo.Trim().ToUpper();
-            var Password = inputRegister.AdminPassword ?? "";
 
-            //預設走Tenant原則 只會取得自己的Tenant名單
-            var itemsAllCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
-            var item = itemsAllCompanyUser.FirstOrDefault(p => p.Id == Id);
+            //預設值
 
-            SaveIntent = (item == null) ? SaveIntentType.Insert : SaveIntentType.Update;
-
+            //檢查
             if (SystemUserRoleKeys >= 5)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "您沒有權限" });
-
-            //如果是新增 則要檢查重複註冊的問題
-            if (SaveIntent == SaveIntentType.Insert)
             {
-                var inputRegisterCheck = new RegisterCheckInput();
-                inputRegisterCheck.TenantName = CurrentTenantName;
-                inputRegisterCheck.Name = Name;
-                inputRegisterCheck.Email = Email;
-                inputRegisterCheck.MobilePhone = MobilePhone;
-                inputRegisterCheck.IdentityNo = IdentityNo;
-                inputRegisterCheck.Password = Password;
-                var RegisterCheck = await _appService._serviceProvider.GetService<UsersAppService>().RegisterCheckAsync(inputRegisterCheck);
-                Result.Messages.AddRange(RegisterCheck.Data);
+                var Msg = "您沒有權限";
+                ex.Code = "401";
+                ex.Details = Msg;
+                ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
             }
 
-            if (Result.Messages.Count == 0)
+            //主體資料
+
+            if (ex.Data.Count == 0)
             {
-                if (item == null)
-                {
-                    //註冊流程
-                    var UserName = Guid.NewGuid().ToString();
-                    var EmailAbp = Email.Length > 0 ? Email : (UserName + "@jbjob.com.tw");
-                    var user = new IdentityUser(GuidGenerator.Create(), UserName, EmailAbp, CurrentTenantId);
-                    //if (OrgId != null)
-                    //    user.AddOrganizationUnit(OrgId.Value);  //加入組織
-                    //if (RoleId != null)
-                    //    user.AddRole(RoleId.Value); //加入角色
-                    foreach (var s in OrgId)
-                        if (s != null)
-                            user.AddOrganizationUnit(s.Value);
-                    foreach (var s in RoleId)
-                        if (s != null)
-                            user.AddRole(s.Value);
+                var ResultRegister = await _appService._serviceProvider.GetService<UsersAppService>().RegisterAsync(inputRegister);
 
-                    user.Name = Name;
-                    user.SetPhoneNumber(MobilePhone, MobilePhone.Length > 0);    //設定電話
-                    user.Surname = IdentityNo;  //暫存身份證
+                var itemCompanyUser = ObjectMapper.Map<SaveCompanyUserInput, CompanyUser>(input);
+                itemCompanyUser.CompanyMainId = CompanyMainId; //公司不可以更改 且由系統代入
+                itemCompanyUser.UserMainId = ResultRegister.UserMainId;
+                itemCompanyUser = await _appService._companyUserRepository.InsertAsync(itemCompanyUser);
 
-                    //將密碼加密
-                    var itemUser = await _appService._identityUserManager.CreateAsync(user, Password, false);
-                    itemUser.CheckErrors();
-
-                    //加入所有預設角色
-                    var SetRole = await _appService._identityUserManager.AddDefaultRolesAsync(user);
-                    //SetRole.CheckErrors();
-
-                    //UserMain主檔
-                    var UserId = user.Id;
-                    UserMainId = _appService._guidGenerator.Create();
-
-                    var inputInsertUserMain = new InsertUserMainInput();
-                    inputInsertUserMain.TenantId = CurrentTenantId;
-                    inputInsertUserMain.UserId = UserId;
-                    inputInsertUserMain.UserMainId = UserMainId;
-                    inputInsertUserMain.Name = Name;
-                    inputInsertUserMain.UserName = UserName;
-                    inputInsertUserMain.MobilePhone = MobilePhone;
-                    inputInsertUserMain.Email = Email;
-                    inputInsertUserMain.IdentityNo = IdentityNo;
-                    inputInsertUserMain.Password = Password;
-                    inputInsertUserMain.SystemUserRoleKeys = 8;
-                    await _appService._serviceProvider.GetService<UsersAppService>().InsertUserMainAsync(inputInsertUserMain);
-
-                    item = new CompanyUser();
-                    await _appService._companyUserRepository.InsertAsync(item);
-                    item.CompanyMainId = CompanyMainId; //公司不可以更改 且由系統代入
-                    item.UserMainId = UserMainId;
-                    item.Status = "1";
-                    item.JobName = input.JobName;
-                    item.OfficePhone = input.OfficePhone;
-                    item.ExtendedInformation = input.ExtendedInformation;
-                    item.DateA = input.DateA;
-                    item.DateD = input.DateD;
-                    item.Sort = input.Sort;
-                    item.Note = input.Note;
-
-                    var Data = ObjectMapper.Map<CompanyUser, CompanyUsersDto>(item);
-
-                    var roles = new List<string>();
-                    foreach (var r in RoleId)
-                        roles.Add(r.Value.ToString());
-
-                    var orgs = new List<string>();
-                    foreach (var r in OrgId)
-                        orgs.Add(r.Value.ToString());
-
-                    Data.Roles = roles;
-                    Data.Orgs = orgs;
-
-                    Result.Data = Data;
-                    Result.Save = true;
-                }
+                ObjectMapper.Map(itemCompanyUser, Result);
             }
 
-            Result.Check = Result.Messages.Count == 0;
-
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
 
@@ -508,8 +448,8 @@ namespace Resume.App.Companys
                             var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                             var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                            Data.Roles = itemsRole.ToList();
-                            Data.Orgs = itemsOrg.Select(p => p.Code).ToList();
+                            Data.ListOrgId = itemsRole.Cast<Guid>().ToList();
+                            Data.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                         }
 
                         Result.Data = Data;
@@ -540,7 +480,7 @@ namespace Resume.App.Companys
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
 
-            var SaveIntent = input.SaveIntent;
+            var SaveIntent = SaveIntentType.Insert;
             var Id = input.Id;
 
             //預設走Tenant原則 只會取得自己的Tenant名單

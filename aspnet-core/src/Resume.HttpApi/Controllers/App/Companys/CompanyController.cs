@@ -157,19 +157,15 @@ namespace Resume.App.Controllers.App.Companys
         }
 
         [HttpPost]
-        [Route("GetCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<CompanyUsersDto>> GetCompanyUserAsync( CompanyUserInput input)
+        [Route("GetCompanyUser")]        
+        public virtual Task<CompanyUsersDto> GetCompanyUserAsync(CompanyUserInput input)
         {
             return _CompanysAppService.GetCompanyUserAsync(input);
         }
 
         [HttpPost]
-        [Route("GetCompanyUserList")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<List<CompanyUsersDto>>> GetCompanyUserListAsync( CompanyUserListInput input)
+        [Route("GetCompanyUserList")]       
+        public virtual Task<List<CompanyUsersDto>> GetCompanyUserListAsync(CompanyUserListInput input)
         {
             return _CompanysAppService.GetCompanyUserListAsync(input);
         }
@@ -203,9 +199,7 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("InsertCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<CompanyUsersDto>> InsertCompanyUserAsync(SaveCompanyUserInput input)
+        public virtual Task<CompanyUsersDto> InsertCompanyUserAsync(SaveCompanyUserInput input)
         {
             return _CompanysAppService.InsertCompanyUserAsync(input);
         }
@@ -339,7 +333,7 @@ namespace Resume.App.Controllers.App.Companys
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
-        public virtual Task<RegisterDto> RegisterAsync(RegisterInput input)
+        public virtual Task<RegisterDto> RegisterAsync(RegisterTenantInput input)
         {
             return _CompanysAppService.RegisterAsync(input);
         }
@@ -347,7 +341,7 @@ namespace Resume.App.Controllers.App.Companys
         [HttpPost]
         [AllowAnonymous]
         [Route("RegisterCheck")]
-        public virtual Task<ResultDto> RegisterCheckAsync(RegisterInput input)
+        public virtual Task<ResultDto> RegisterCheckAsync(RegisterTenantInput input)
         {
             return _CompanysAppService.RegisterCheckAsync(input);
         }
