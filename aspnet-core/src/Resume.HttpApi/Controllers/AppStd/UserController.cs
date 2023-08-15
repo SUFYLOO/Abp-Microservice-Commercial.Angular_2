@@ -42,14 +42,9 @@ namespace Resume.App.Controllers.AppStd.Users
         [HttpPost]
         [Route("Register")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(RegisterDto), StatusCodes.Status200OK)]
-        public virtual async Task<IActionResult> RegisterAsync(RegisterInput input)
+        public virtual async Task<RegisterDto> RegisterAsync(RegisterInput input)
         {
-            var Result = await _usersAppService.RegisterAsync(input);
-            var ResultCheck = Result.Check;
-            var RseultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(RseultMessage);
+            return await _usersAppService.RegisterAsync(input);
         }
 
         [HttpPost]
@@ -68,14 +63,9 @@ namespace Resume.App.Controllers.AppStd.Users
         [HttpPost]
         [Route("CheckUserVerify")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(CheckUserVerifyDto), StatusCodes.Status200OK)]
-        public virtual async Task<IActionResult> CheckUserVerifyAsync(CheckUserVerifyInput input)
+        public virtual async Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input)
         {
-            var Result = await _usersAppService.CheckUserVerifyAsync(input);
-            var ResultCheck = Result.Check;
-            var RseultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(RseultMessage);
+            return await _usersAppService.CheckUserVerifyAsync(input);
         }
 
         [HttpPost]

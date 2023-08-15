@@ -25,10 +25,13 @@ namespace Resume.App.Users
     // 基本資料
     public class UserMainsDto : UserMainDto
     {
-        /// <summary>
-        /// 生日
-        /// </summary>
-        public DateTime Birthday { get; set; }
+
+    }
+
+    public class InsertUserMainsDto 
+    {
+        public UserMainsDto UserMains { get; set; } = new UserMainsDto();
+        public UserInfosDto UserInfos { get; set; } = new UserInfosDto();
     }
 
     // 基本資料

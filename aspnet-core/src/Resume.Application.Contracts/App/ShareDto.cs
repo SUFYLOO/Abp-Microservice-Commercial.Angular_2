@@ -250,9 +250,9 @@ namespace Resume.App
         public bool Pass { set; get; } = false;
     }
 
-    public class RegisterDto
+    public class RegisterDto : LoginDto
     {
-        public LoginDto Login { get; set; }
+        public Guid UserMainId { get; set; }
     }
 
     public class LoginInfoDto

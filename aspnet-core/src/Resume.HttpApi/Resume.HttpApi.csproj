@@ -15,6 +15,7 @@
     <Compile Remove="Controllers\CompanyJobApplicationMethods\**" />
     <Compile Remove="Controllers\CompanyJobConditions\**" />
     <Compile Remove="Controllers\CompanyJobContents\**" />
+    <Compile Remove="Controllers\CompanyJobOrganizationUnits\**" />
     <Compile Remove="Controllers\CompanyJobPairs\**" />
     <Compile Remove="Controllers\CompanyJobPays\**" />
     <Compile Remove="Controllers\CompanyJobs\**" />
@@ -65,6 +66,7 @@
     <EmbeddedResource Remove="Controllers\CompanyJobApplicationMethods\**" />
     <EmbeddedResource Remove="Controllers\CompanyJobConditions\**" />
     <EmbeddedResource Remove="Controllers\CompanyJobContents\**" />
+    <EmbeddedResource Remove="Controllers\CompanyJobOrganizationUnits\**" />
     <EmbeddedResource Remove="Controllers\CompanyJobPairs\**" />
     <EmbeddedResource Remove="Controllers\CompanyJobPays\**" />
     <EmbeddedResource Remove="Controllers\CompanyJobs\**" />
@@ -115,6 +117,7 @@
     <None Remove="Controllers\CompanyJobApplicationMethods\**" />
     <None Remove="Controllers\CompanyJobConditions\**" />
     <None Remove="Controllers\CompanyJobContents\**" />
+    <None Remove="Controllers\CompanyJobOrganizationUnits\**" />
     <None Remove="Controllers\CompanyJobPairs\**" />
     <None Remove="Controllers\CompanyJobPays\**" />
     <None Remove="Controllers\CompanyJobs\**" />

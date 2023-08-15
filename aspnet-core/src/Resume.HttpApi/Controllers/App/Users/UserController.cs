@@ -31,8 +31,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("Register")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(RegisterDto), StatusCodes.Status200OK)]
-        public virtual Task<ResultDto<RegisterDto>> RegisterAsync(RegisterInput input)
+        public virtual Task<RegisterDto> RegisterAsync(RegisterInput input)
         {
             return _usersAppService.RegisterAsync(input);
         }
@@ -49,8 +48,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("CheckUserVerify")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(CheckUserVerifyDto), StatusCodes.Status200OK)]
-        public virtual Task<ResultDto<CheckUserVerifyDto>> CheckUserVerifyAsync(CheckUserVerifyInput input)
+        public virtual Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input)
         {
             return _usersAppService.CheckUserVerifyAsync(input);
         }

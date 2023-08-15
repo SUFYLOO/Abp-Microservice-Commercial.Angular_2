@@ -37,7 +37,7 @@ namespace Resume.Saas
         {
             if (context.TenantId.HasValue)
             {
-                var input = context.Properties.ContainsKey("input") ? (RegisterInput)context.Properties["input"] : new RegisterInput();
+                var input = context.Properties.ContainsKey("input") ? (RegisterTenantInput)context.Properties["input"] : new RegisterTenantInput();
                 var AdminEmail = context.Properties.ContainsKey("AdminEmail") ? Convert.ToString(context.Properties["AdminEmail"]) : "";
                 var AdminPassword = context.Properties.ContainsKey("AdminPassword") ? Convert.ToString(context.Properties["AdminPassword"]) : "";
 
@@ -124,7 +124,6 @@ namespace Resume.Saas
                 var inputInsertUserMain = new InsertUserMainInput();
                 inputInsertUserMain.TenantId = context.TenantId.Value;
                 inputInsertUserMain.UserId = UserId;
-                inputInsertUserMain.UserMainId = UserMainId;
                 inputInsertUserMain.Name = Name;
                 inputInsertUserMain.UserName = itemUser.UserName; //登入帳號
                 inputInsertUserMain.MobilePhone = input.MobilePhone ?? "";

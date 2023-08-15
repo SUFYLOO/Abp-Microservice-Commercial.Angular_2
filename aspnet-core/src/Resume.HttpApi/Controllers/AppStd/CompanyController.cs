@@ -179,17 +179,11 @@ namespace Resume.App.Controllers.AppStd.Companys
         
         public virtual  Task<CompanyMainsDto> GetCompanyMainAsync(CompanyMainInput input)
         {
-            //var Result = await _CompanysAppService.GetCompanyMainAsync(input);
-            //var ResultCheck = Result.Check;
-            //var ResultMessage = Result.Messages;
-
             return  _CompanysAppService.GetCompanyMainAsync(input);
         }
 
         [HttpPost]
         [Route("GetCompanyMainList")]
-        [ProducesResponseType(typeof(CompanyMainsDto), StatusCodes.Status200OK)]
-        
         public virtual  Task<List<CompanyMainsDto>> GetCompanyMainListAsync(CompanyMainListInput input)
         {
             return  _CompanysAppService.GetCompanyMainListAsync(input);
@@ -197,27 +191,18 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("GetCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> GetCompanyUserAsync(CompanyUserInput input)
+        public virtual async Task<CompanyUsersDto> GetCompanyUserAsync(CompanyUserInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyUserAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.GetCompanyUserAsync(input);
         }
 
         [HttpPost]
         [Route("GetCompanyUserList")]
         [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetCompanyUserListAsync(CompanyUserListInput input)
+        public virtual async Task<List<CompanyUsersDto>> GetCompanyUserListAsync(CompanyUserListInput input)
         {
-            var Result = await _CompanysAppService.GetCompanyUserListAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.GetCompanyUserListAsync(input); 
         }
 
         [HttpPost]
@@ -261,15 +246,9 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("InsertCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> InsertCompanyUserAsync(SaveCompanyUserInput input)
+        public virtual async Task<CompanyUsersDto> InsertCompanyUserAsync(SaveCompanyUserInput input)
         {
-            var Result = await _CompanysAppService.InsertCompanyUserAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.InsertCompanyUserAsync(input);
         }
 
         [HttpPost]
@@ -435,7 +414,7 @@ namespace Resume.App.Controllers.AppStd.Companys
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
-        public virtual Task<RegisterDto> RegisterAsync(RegisterInput input)
+        public virtual Task<RegisterDto> RegisterAsync(RegisterTenantInput input)
         {
             return _CompanysAppService.RegisterAsync(input);
         }
@@ -443,7 +422,7 @@ namespace Resume.App.Controllers.AppStd.Companys
         [HttpPost]
         [AllowAnonymous]
         [Route("RegisterCheck")]
-        public virtual Task<ResultDto> RegisterCheckAsync(RegisterInput input)
+        public virtual Task<ResultDto> RegisterCheckAsync(RegisterTenantInput input)
         {
             return _CompanysAppService.RegisterCheckAsync(input);
         }

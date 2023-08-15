@@ -21,7 +21,7 @@ namespace Resume.App.Companys
 {
     public partial class CompanysAppService : ApplicationService, ICompanysAppService
     {
-        public virtual async Task<RegisterDto> RegisterAsync(RegisterInput input)
+        public virtual async Task<RegisterDto> RegisterAsync(RegisterTenantInput input)
         {
             var Result = new RegisterDto();
 
@@ -90,20 +90,37 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<ResultDto> RegisterCheckAsync(RegisterInput input)
+        public virtual async Task<ResultDto> RegisterCheckAsync(RegisterTenantInput input)
         {
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息", "400");
 
+            //常用
+
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
             var Name = input.Name ?? "";
             var Email = input.AdminEmailAddress ?? "";
             var MobilePhone = input.MobilePhone ?? "";
             var IdentityNo = input.IdentityNo ?? "";
             var Password = input.AdminPassword ?? "";
 
+            //預設值
+
+            //檢查
             if (Email.Length == 0 && MobilePhone.Length == 0 && IdentityNo.Length == 0)
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"資料填寫不完整(信箱或手機或身份證必須填寫一項)", Pass = false });
 
-            var ex = new UserFriendlyException("系統發生錯誤");
+            //主體資料
+
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 

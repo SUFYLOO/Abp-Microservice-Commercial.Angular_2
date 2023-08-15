@@ -27,7 +27,6 @@ namespace Resume.App.Users
     {
         public Guid? TenantId { get; set; }
         public Guid UserId { get; set; }
-        public Guid UserMainId { get; set; }
         public string Name { get; set; }
         public string UserName { get; set; }
         public string MobilePhone { get; set; }
