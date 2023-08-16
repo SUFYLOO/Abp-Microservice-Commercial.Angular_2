@@ -115,22 +115,19 @@ namespace Resume.App
             CreateMap<ShareUpload, SaveShareUploadDto>();
 
             CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
+            CreateMap<SaveCompanyJobContentInput, SaveCompanyJobInput>();
+
             CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
             CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>();
 
             CreateMap<SaveCompanyJobPayInput, CompanyJobPay>();
 
-
             CreateMap<UpdateCompanyJobDateInput, CompanyJob>();
             CreateMap<UpdateCompanyJobOpenInput ,CompanyJob>();
             
-
             CreateMap<UpdateCompanyMainInput, CompanyMain>();
 
-            CreateMap<SaveResumeMainInput, ResumeMainDto>();
-            CreateMap<ResumeMainDto, ResumeMain>();
-            CreateMap<ResumeMain, SaveResumeMainDto>();
-
+            CreateMap<SaveResumeMainInput, ResumeMain>();
 
         }
     }

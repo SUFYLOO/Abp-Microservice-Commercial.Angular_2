@@ -1,54 +1,67 @@
-﻿using Resume.App.Users;
-using Resume.ResumeSnapshots;
-using Resume.UserInfos;
-using Resume.UserMains;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Resume.App.Shares;
+using Resume.App.Users;
+using Resume.CompanyJobPays;
+using Resume.CompanyJobs;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Volo.Abp.MultiTenancy;
-using Resume.CompanyJobs;
-using Resume.CompanyJobPays;
-using Resume.App.Shares;
 
 namespace Resume.App.Companys
 {
     public partial class CompanysAppService : ApplicationService, ICompanysAppService
     {
-        public virtual async Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input)
+        public virtual async Task<CompanyJobPaysDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input)
         {
-            var Result = new SaveCompanyJobPayDto();
+            var Result = new CompanyJobPaysDto();
 
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制帶入Id
+            input.CompanyMainId = CompanyMainId;
+
+            //外部傳入
             var CompanyJobPayId = input.Id;
-            //await SaveCompanyJobPayCheckAsync(input);
+            var RefreshItem = input.RefreshItem;
 
+            //不要變更的值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
+            await SaveCompanyJobPayCheckAsync(input);
+
+
+            //主體資料
             var qrbCompanyJobPay = await _appService._companyJobPayRepository.GetQueryableAsync();
             var itemCompanyJobPay = qrbCompanyJobPay.FirstOrDefault(p => p.Id == CompanyJobPayId);
 
-
+            //如果CompanyJobPaysRepository沒有這個Id就新增資料，已存在就update
             if (itemCompanyJobPay == null)
             {
-                var itemCompanyJobPayDto = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPayDto>(input);
-
-                itemCompanyJobPayDto.CompanyMainId = _appService._guidGenerator.Create();
-                itemCompanyJobPayDto.CompanyJobId = _appService._guidGenerator.Create();
-
-                itemCompanyJobPay = ObjectMapper.Map<CompanyJobPayDto, CompanyJobPay>(itemCompanyJobPayDto);
-                await _appService._companyJobPayRepository.InsertAsync(itemCompanyJobPay);
-                Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(itemCompanyJobPay);
+                itemCompanyJobPay = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPay>(input);
+                itemCompanyJobPay = await _appService._companyJobPayRepository.InsertAsync(itemCompanyJobPay);
             }
             else
             {
-                var item = ObjectMapper.Map<SaveCompanyJobPayInput, CompanyJobPay>(input);
-                await _appService._companyJobPayRepository.UpdateAsync(item);
+                //不要變更的值
+                input.Sort = itemCompanyJobPay.Sort;
+                input.DateA = itemCompanyJobPay.DateA;
+                input.DateD = itemCompanyJobPay.DateD;
 
-                Result = ObjectMapper.Map<CompanyJobPay, SaveCompanyJobPayDto>(item);
+                ObjectMapper.Map(input, itemCompanyJobPay);
+                await _appService._companyJobPayRepository.UpdateAsync(itemCompanyJobPay);
             }
+            if (RefreshItem)
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+
+            ObjectMapper.Map(itemCompanyJobPay, Result);
             return Result;
         }
 
@@ -56,7 +69,6 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
             var JobPayTypeCode = input.JobPayTypeCode ?? "";
             var DateReal = input.DateReal;
 
@@ -65,9 +77,6 @@ namespace Resume.App.Companys
             if (DateReal.Equals(null))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "上架日期不能空白", Pass = false });
 
-            var itemsCompanymain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanymain.FirstOrDefault(p => p.Id == CompanyMainId);
-
             var inputShareCodeGroup = new ShareCodeGroupInput();
             inputShareCodeGroup.ListGroupCode.Add("JobPayTypeCode");
             var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
@@ -75,8 +84,11 @@ namespace Resume.App.Companys
             if (!itemsShareCode.Any(p => p.GroupCode == "JobPayTypeCode" && p.Code == JobPayTypeCode))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
+         //   var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
+
+            //if (item == null)
+            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
 
             var ex = new UserFriendlyException("系統發生錯誤");
             foreach (var msg in Result.Messages)

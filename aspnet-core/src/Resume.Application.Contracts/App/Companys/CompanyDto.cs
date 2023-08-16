@@ -137,7 +137,7 @@ namespace Resume.App.Companys
 
     }
 
-    public class SaveCompanyJobPayDto : CompanyJobPayDto 
+    public class CompanyJobPaysDto : CompanyJobPayDto 
     {
 
     }

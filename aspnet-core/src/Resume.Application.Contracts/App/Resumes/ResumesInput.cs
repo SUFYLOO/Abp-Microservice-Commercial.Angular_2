@@ -114,7 +114,7 @@ namespace Resume.App.Resumes
 
     public class SaveResumeMainInput : ResumeMainDto
     {
-        public Guid? Id { get; set; }
+        public bool RefreshItem { get; set; } = false;
     }
 
 }
