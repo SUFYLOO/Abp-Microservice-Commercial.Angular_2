@@ -1,26 +1,18 @@
-﻿using Resume.App.Shares;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PayPalCheckoutSdk.Orders;
+using Resume.App.Shares;
+using Resume.App.Users;
 using Resume.CompanyJobApplicationMethods;
 using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
-using Resume.CompanyJobPays;
 using Resume.CompanyJobs;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Entities;
-using Volo.Abp.ObjectMapping;
-using Volo.Abp.Validation;
-using Resume.App.Users;
-using Volo.Saas.Tenants;
-using static Volo.Abp.Identity.Settings.IdentitySettingNames;
-using Volo.Abp.Users;
-using PayPalCheckoutSdk.Orders;
-using Volo.Abp.MultiTenancy;
 
 namespace Resume.App.Companys
 {
@@ -35,20 +27,22 @@ namespace Resume.App.Companys
         {
             //結果
             var Result = new CompanyJobContentsDto();
-             
-            //常用
 
+            //常用 
+    
             //系統層級
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
-            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
-            //強制把input帶入系統值
+             //強制把input帶入系統值
             input.CompanyMainId = CompanyMainId;
+            var CompanyJobId = input.CompanyJobId;
 
             //外部傳入
             var CompanyJobContentId = input.Id;
             var RefreshItem = input.RefreshItem;
+            
 
             //預設值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
@@ -57,10 +51,11 @@ namespace Resume.App.Companys
 
             //檢查
             await SaveCompanyJobContentCheckAsync(input);
-
+            
             //主體資料
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
             var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
+
             //Result.SaveIntent = itemCompanyJobContent == null ? SaveIntentType.Insert : SaveIntentType.Update;
 
             if (itemCompanyJobContent == null)
@@ -77,14 +72,16 @@ namespace Resume.App.Companys
 
                 ObjectMapper.Map(input, itemCompanyJobContent);
                 itemCompanyJobContent = await _appService._companyJobContentRepository.UpdateAsync(itemCompanyJobContent);
-
                 ////如果要更新為最新資料 就需要認可交易
                 if (RefreshItem)
                     await _appService._unitOfWorkManager.Current.SaveChangesAsync();
             }
+            //呼叫CompanyJob
+            input.Id = CompanyJobId;
+            var itemCompanyJobs = ObjectMapper.Map<SaveCompanyJobContentInput, SaveCompanyJobInput>(input);
+            await SaveCompanyJobAsync(itemCompanyJobs);
 
             ObjectMapper.Map(itemCompanyJobContent, Result);
-
             return Result;
         }
 
@@ -101,27 +98,26 @@ namespace Resume.App.Companys
             //常用
 
             //系統層級
-            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
-            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
             //外部傳入
-            var CompanyJobContentId = input.Id;
-            var JobTypeCode = input.JobTypeCode ?? ""; //
+            var CompanyJobId = input.CompanyJobId;
+            var JobTypeCode = input.JobTypeCode ?? ""; 
             var Name = input.Name ?? "";
-            var JobType = input.JobType ?? ""; //
-            var SalaryPayTypeCode = input.SalaryPayTypeCode ?? ""; //
-            var WorkPlace = input.WorkPlace ?? ""; //
-            var WorkHours = input.WorkHours ?? ""; //
+            var JobType = input.JobType ?? ""; 
+            var SalaryPayTypeCode = input.SalaryPayTypeCode ?? ""; 
+            var WorkPlace = input.WorkPlace ?? ""; 
+            var WorkHours = input.WorkHours ?? ""; 
 
             //預設值
-            if (CompanyMainId != input.CompanyMainId)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = L[nameof(CompanyMainId)] + L[ResumeDomainErrorCodes.NotExists], Pass = false });
+            //if (CompanyJobId != input.CompanyJobId)
+            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = L[nameof(CompanyMainId)] + L[ResumeDomainErrorCodes.NotExists], Pass = false });
 
 
             //必要代碼檢核
-            //if (CompainMainId.IsNullOrEmpty())
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "公司代碼不能空白", Pass = false });
+         
 
             if (JobTypeCode.IsNullOrEmpty())
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職務類型不能空白", Pass = false });
@@ -163,11 +159,11 @@ namespace Resume.App.Companys
             if (itemsShareCode.Any(p => p.GroupCode == "WorkHours" && p.Code == WorkHours))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "工作時段錯誤", Pass = false });
 
-            var itemsCompanymain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanymain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
+            var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+            //if (item == null)
+            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
 
             var ex = new UserFriendlyException("系統發生錯誤");
             foreach (var msg in Result.Messages)
@@ -235,7 +231,7 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            //var CompanyMainId = input.CompanyMainId ?? "";
+            var CompanyJobId = input.CompanyJobId;
             var EducationLevel = input.EducationLevel ?? "";
 
 
@@ -249,8 +245,8 @@ namespace Resume.App.Companys
             if (!itemsShareCode.Any(p => p.GroupCode == "EducationLevel" && p.Code == EducationLevel))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "教育程度代碼錯誤" });
 
-            var itemsCompanymain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanymain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
+            var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
 
             if (item == null)
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
@@ -326,7 +322,7 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyJobId = input.CompanyJobId;
             var OrgDept = input.OrgDept ?? "";
             var OrgContactPerson = input.OrgContactPerson ?? "";
             var OrgContactMail = input.OrgContactMail ?? "";
@@ -339,8 +335,8 @@ namespace Resume.App.Companys
             if (OrgContactMail.IsNullOrEmpty())
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職務E-mail不能空白", Pass = false });
 
-            var itemsCompanymain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanymain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
+            var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
 
             if (item == null)
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
@@ -537,11 +533,17 @@ namespace Resume.App.Companys
             if (DateD.Equals(null))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺下架日不能空白", Pass = false });
 
-            var itemsCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            if (DateA > DateD)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "日期輸入錯誤", Pass = false });
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+            var ex = new UserFriendlyException("系統發生錯誤");
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
 
@@ -558,7 +560,7 @@ namespace Resume.App.Companys
 
             // 外部傳入
             var CompanyJobId = input.Id;
-            var DateA = input.JobOpen;
+            var JobOpen = input.JobOpen;
             //var RefreshItem = input.RefreshItem;
 
             //檢查
@@ -581,17 +583,20 @@ namespace Resume.App.Companys
         {
             var Result = new ResultDto();
 
-            var CompanyMainId = input.CompanyMainId;
+            var CompanyMainId = input.Id;
             var JobOpen = input.JobOpen;
 
             if (JobOpen.Equals(null))
                 Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺開關不能空白", Pass = false });
 
-            var itemsCompanyMain = await _appService._companyMainRepository.GetQueryableAsync();
-            var item = itemsCompanyMain.FirstOrDefault(p => p.Id == CompanyMainId);
+            var ex = new UserFriendlyException("系統發生錯誤");
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
 

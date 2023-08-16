@@ -130,7 +130,7 @@ namespace Resume.App.Resumes
 
                         //有可能會變成 新的履歷主檔
                         var item = Data.First();
-                        item.ListShareUpload = itemsShareUploadList.Data;
+                        //item.ListShareUpload = itemsShareUploadList.Data;
                         Result.Data.ResumeMains = item;
                         ResumeMainId = item.Id;
                     }
@@ -2502,7 +2502,7 @@ namespace Resume.App.Resumes
                     inputShareUploadList.Key2 = "";
                     inputShareUploadList.Key3 = Data.UserMainId.ToString() ;
                     var itemsShareUploadList = await _appService._serviceProvider.GetService<SharesAppService>().GetShareUploadListAsync(inputShareUploadList);
-                    Data.ListShareUpload = itemsShareUploadList.Data;
+                    //Data.ListShareUpload = itemsShareUploadList.Data;
 
                     Result.Data = Data;
                     Result.Save = true;

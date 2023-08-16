@@ -55,17 +55,18 @@ namespace Resume.App.Companys
 
     public class DeleteCompanyUserInput : StdInput
     {
+
     }
     public class CompanyJobInput : StdInput
     {
     }
     public class SaveCompanyJobInput : CompanyJobDto
     {
-        public Guid Id { get; set; }
         public bool RefreshItem { get; set; } = false;
     }
     public class DeleteCompanyJobInput : StdInput
     {
+
     }
 
     public class CompanyInvitationsListInput
@@ -98,32 +99,25 @@ namespace Resume.App.Companys
     {
     }
 
-    public class UpdateCompanyMainCompanyProfileInput
+    public class UpdateCompanyMainCompanyProfileInput : StdInput
     {
-        public Guid Id { get; set; }
         public string? CompanyProfile { get; set; }
 
     }
 
-    public class UpdateCompanyMainBusinessPhilosophyInput
+    public class UpdateCompanyMainBusinessPhilosophyInput : StdInput
     {
-        [Required]
-        public Guid Id { get; set; }
         public string BusinessPhilosophy { get; set; }
     }
 
-    public class UpdateCompanyMainOperatingItemsInput
+    public class UpdateCompanyMainOperatingItemsInput : StdInput
     {
-        [Required]
-        public Guid Id { get; set; }
         public string OperatingItems { get; set; }
     }
 
-    public class UpdateCompanyMainWelfareSystemInput
+    public class UpdateCompanyMainWelfareSystemInput : StdInput
     {
-        public Guid Id { get; set; }
         public string WelfareSystem { get; set; }
-
     }
 
     public class SaveCompanyJobContentInput : CompanyJobContentDto
@@ -186,7 +180,7 @@ namespace Resume.App.Companys
 
     public class SaveCompanyJobPayInput : CompanyJobPayDto
     {
-        public Guid? Id { get; set; }
+        public bool RefreshItem { get; set; } = false;
     }
 
     public class CompanyJobListInput : StdInput
@@ -201,13 +195,6 @@ namespace Resume.App.Companys
     public class UpdateCompanyJobOpenInput : StdInput
     {
         [Required]
-        public Guid CompanyMainId { get; set; }
-        [Required]
-        public bool JobOpen { get; set; }
-    }
-
-    public class CompanyJobOpenInput : StdInput
-    {
         public bool JobOpen { get; set; }
     }
 }

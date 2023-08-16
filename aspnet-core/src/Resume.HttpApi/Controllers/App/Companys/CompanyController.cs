@@ -500,9 +500,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("SaveCompanyJobPay")]
-        [ProducesResponseType(typeof(SaveCompanyJobPayDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CompanyJobPaysDto), StatusCodes.Status200OK)]
 
-        public virtual Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input)
+        public virtual Task<CompanyJobPaysDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input)
         {
             return _CompanysAppService.SaveCompanyJobPayAsync(input);
         }

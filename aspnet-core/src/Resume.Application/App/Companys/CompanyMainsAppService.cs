@@ -283,7 +283,7 @@ namespace Resume.App.Companys
             //系統層
             //var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
             // input id
             //input.Id = CompanyMainId;
@@ -355,9 +355,9 @@ namespace Resume.App.Companys
         {
             var Result = new CompanyMainsDto();
             //系統層
-            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
-            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
-            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
             // 外部傳入
             CompanyMainId = input.Id;

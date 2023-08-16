@@ -38,15 +38,15 @@ namespace Resume.App.Resumes
     // ¼i¾ú¥DÀÉ
     public class ResumeMainsDto : ResumeMainDto
     {
-        public string SexName { get; set; } = "";
-        public string BloodName { get; set; } = "";
-        public string MarriageName { get; set; } = "";
-        public string PlaceOfBirthName { get; set; } = "";
-        public string MilitaryName { get; set; } = "";
-        public string DisabilityCategoryName { get; set; } = "";
-        public string NationalityName { get; set; } = "";
-        public string SpecialIdentityName { get; set; } = "";
-        public List<ShareUploadsDto> ListShareUpload { get; set; }
+        //public string SexName { get; set; } = "";
+        //public string BloodName { get; set; } = "";
+        //public string MarriageName { get; set; } = "";
+        //public string PlaceOfBirthName { get; set; } = "";
+        //public string MilitaryName { get; set; } = "";
+        //public string DisabilityCategoryName { get; set; } = "";
+        //public string NationalityName { get; set; } = "";
+        //public string SpecialIdentityName { get; set; } = "";
+        //public List<ShareUploadsDto> ListShareUpload { get; set; }
     }
 
     public class ResumeCommunicationsDto : ResumeCommunicationDto

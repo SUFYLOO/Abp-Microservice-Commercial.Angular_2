@@ -11,6 +11,7 @@ using Volo.Abp;
 using Volo.Abp.MultiTenancy;
 using Resume.CompanyJobContents;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Domain.Repositories;
 
 namespace Resume.App.Companys
 {
@@ -52,7 +53,7 @@ namespace Resume.App.Companys
 
                 var itemsCompanyJob = await AsyncExecuter.ToListAsync(Data);
 
-                ObjectMapper.Map<List<CompanyJob>, List<CompanyJobsDto>>(itemsCompanyJob);
+                ObjectMapper.Map(itemsCompanyJob,Result);
             }
 
             if (ex.Data.Count > 0)
@@ -66,9 +67,12 @@ namespace Resume.App.Companys
             var ex = new UserFriendlyException("錯誤訊息");
 
             //系統層級
+            
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+
 
             //權限
             if (SystemUserRoleKeys >= 16)
@@ -90,6 +94,7 @@ namespace Resume.App.Companys
             }
             //回傳錯誤
             if (ex.Data.Count > 0)
+
                 throw ex;
             return Result;
         }
@@ -131,6 +136,8 @@ namespace Resume.App.Companys
 
             if (ex.Data.Count == 0 && itemCompanyJob ==null)
             {
+                input.MailTplId = "01";
+                input.SMSTplId = "01";
                 itemCompanyJob = ObjectMapper.Map<SaveCompanyJobInput, CompanyJob>(input);
                 itemCompanyJob = await _appService._companyJobRepository.InsertAsync(itemCompanyJob);
             }
@@ -140,6 +147,8 @@ namespace Resume.App.Companys
                 input.Sort = itemCompanyJob.Sort;
                 input.DateA = itemCompanyJob.DateA;
                 input.DateD = itemCompanyJob.DateD;
+                input.MailTplId = itemCompanyJob.MailTplId;
+                input.SMSTplId = itemCompanyJob.SMSTplId;
 
                 ObjectMapper.Map(input, itemCompanyJob);
                 itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
@@ -151,6 +160,9 @@ namespace Resume.App.Companys
             ObjectMapper.Map(itemCompanyJob, Result);
             return Result;
         }
+
+        
+
         public virtual async Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
         {
 

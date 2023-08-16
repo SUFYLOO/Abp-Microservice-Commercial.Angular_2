@@ -70,7 +70,7 @@ namespace Resume.App.Companys
         Task<CompanyJobContentsDto> GetCompanyJobContentAsync(CompanyJobContentInput input);
         Task<CompanyJobConditionsDto> GetCompanyJobConditionAsync(CompanyJobConditionInput input);
         Task<CompanyJobApplicationMethodsDto> GetCompanyJobApplicationMethodAsync(CompanyJobApplicationMethodInput input);
-        Task<SaveCompanyJobPayDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input);
+        Task<CompanyJobPaysDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input);
         Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input);
         Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input);
         Task<CompanyJobsDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input);

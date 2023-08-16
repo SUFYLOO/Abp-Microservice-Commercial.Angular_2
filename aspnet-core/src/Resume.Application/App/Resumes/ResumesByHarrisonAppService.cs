@@ -1,4 +1,7 @@
-﻿using Resume.ResumeMains;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Resume.App.Companys;
+using Resume.App.Users;
+using Resume.ResumeMains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,30 +15,55 @@ namespace Resume.App.Resumes
 {
     public partial class ResumesAppService : ApplicationService, IResumesAppService
     {
-        public async Task<SaveResumeMainDto> SaveResumeMainsAsync(SaveResumeMainInput input)
+        public async Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input)
         {
-            var Result = new SaveResumeMainDto();
-            var UserMainId = input.Id;
+            var Result = new ResumeMainsDto();
 
-           var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
-           var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == UserMainId);
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
-            if (itemResumeMain == null) 
+            //強制帶入Id
+            input.UserMainId = UserMainId;
+
+            //外部傳入
+            var RefreshItem = input.RefreshItem;
+
+            //不要變更的值
+            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+
+            //檢查
+            //await SaveCompanyJobApplicationMethodCheckAsync(input);
+
+
+            //主體資料
+            var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+            var itemqrbResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == input.Id);
+
+            //如果CompanyJobApplicationMethodsRepository沒有這個Id就新增資料，已存在就update
+            if (itemqrbResumeMain == null)
             {
-             var inputResumeMainDto =  ObjectMapper.Map<SaveResumeMainInput, ResumeMainDto>(input);
-
-             inputResumeMainDto.UserMainId = _appService._guidGenerator.Create();
-
-             var itemsResumeMain =  ObjectMapper.Map<ResumeMainDto, ResumeMain>(inputResumeMainDto);
-             await _appService._resumeMainRepository.InsertAsync(itemsResumeMain);
-             Result = ObjectMapper.Map<ResumeMain, SaveResumeMainDto>(itemsResumeMain);
+                itemqrbResumeMain = ObjectMapper.Map<SaveResumeMainInput, ResumeMain>(input);
+                itemqrbResumeMain = await _appService._resumeMainRepository.InsertAsync(itemqrbResumeMain);
             }
             else
             {
-                var item = ObjectMapper.Map<SaveResumeMainInput, ResumeMain>(input);
-                await _appService._resumeMainRepository.UpdateAsync(item);
-                Result = ObjectMapper.Map<ResumeMain, SaveResumeMainDto>(item);
+                //不要變更的值
+                input.Sort = itemqrbResumeMain.Sort;
+                input.DateA = itemqrbResumeMain.DateA;
+                input.DateD = itemqrbResumeMain.DateD;
+
+                ObjectMapper.Map(input, itemqrbResumeMain);
+                await _appService._resumeMainRepository.UpdateAsync(itemqrbResumeMain);
             }
+            if (RefreshItem)
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+
+            ObjectMapper.Map(itemqrbResumeMain, Result);
+
             return Result;
         }
     }
