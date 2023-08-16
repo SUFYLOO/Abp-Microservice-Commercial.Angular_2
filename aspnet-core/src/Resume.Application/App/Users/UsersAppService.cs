@@ -111,20 +111,20 @@ namespace Resume.App.Users
             using (CurrentTenant.Change(TenantId))
             {
                 var itemsRole = await _appService._identityRoleRepository.GetDefaultOnesAsync();
-                if (itemsRole ==  null || !itemsRole.Any())
+                if (itemsRole == null || !itemsRole.Any())
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"沒有角色存在(系統錯誤)", Pass = false });
                 var itemsAllOrg = await _appService._organizationUnitRepository.GetListAsync();
                 if (itemsAllOrg == null || !itemsAllOrg.Any())
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"沒有部門存在(系統錯誤)", Pass = false });
 
                 //相同租戶不可以重複
-                var itemsAllUserMain = await _appService._userMainRepository.GetQueryableAsync();
-                itemsAllUserMain = from c in itemsAllUserMain
-                                   where c.TenantId == TenantId
-                                   && ((c.LoginEmail != null && c.LoginEmail.Length > 0 && c.LoginEmail.ToUpper() == Email.ToUpper())
-                                   || (c.LoginMobilePhone != null && c.LoginMobilePhone.Length > 0 && c.LoginMobilePhone.ToUpper() == MobilePhone.ToUpper())
-                                   || (c.LoginIdentityNo != null && c.LoginIdentityNo.Length > 0 && c.LoginIdentityNo.ToUpper() == IdentityNo.ToUpper()))
-                                   select c;
+                var qrbUserMain = await _appService._userMainRepository.GetQueryableAsync();
+                qrbUserMain = from c in qrbUserMain
+                              where c.TenantId == TenantId
+                              && ((c.LoginEmail != null && c.LoginEmail.Length > 0 && c.LoginEmail.ToUpper() == Email.ToUpper())
+                              || (c.LoginMobilePhone != null && c.LoginMobilePhone.Length > 0 && c.LoginMobilePhone.ToUpper() == MobilePhone.ToUpper())
+                              || (c.LoginIdentityNo != null && c.LoginIdentityNo.Length > 0 && c.LoginIdentityNo.ToUpper() == IdentityNo.ToUpper()))
+                              select c;
 
                 var itemsUser = await _appService._identityUserRepository.GetListAsync();
                 var itemUser = from c in itemsUser
@@ -134,7 +134,7 @@ namespace Resume.App.Users
                                || (!c.Surname.IsNullOrEmpty() && c.Surname.ToUpper() == IdentityNo.ToUpper()))
                                select c;
 
-                if (itemsAllUserMain.Any() || itemUser.Any())
+                if (qrbUserMain.Any() || itemUser.Any())
                     Result.Messages.Add(new ResultMessageDto() { MessageCode = @"400", MessageContents = @"申請資料重複", Pass = false });
             }
 
@@ -148,6 +148,11 @@ namespace Resume.App.Users
             return Result;
         }
 
+        /// <summary>
+        /// 使用者註冊-這裡不用做任何檢查 單純只是為了不讓使用者傳某些特定的變數進去
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public virtual async Task<RegisterDto> RegisterAsync(RegisterInput input)
         {
             //結果
@@ -169,6 +174,7 @@ namespace Resume.App.Users
             //主體資料
 
             var inputRegisterBase = ObjectMapper.Map<RegisterInput, RegisterBaseInput>(input);
+            inputRegisterBase.NeedCheckUserVerify = true;
             Result = await RegisterAsync(inputRegisterBase);
 
             if (ex.Data.Count > 0)
@@ -201,6 +207,8 @@ namespace Resume.App.Users
             IdentityNo = IdentityNo.ToUpper();//身份證轉大寫
             var Password = input.Password ?? "";
             var NeedCheckUserVerify = input.NeedCheckUserVerify;
+            var CheckUserVerify = input.CheckUserVerify;
+            var UserData = input.UserData;
             var ListRoleId = input.ListRoleId;
             var ListOrgId = input.ListOrgId;
 
@@ -215,10 +223,20 @@ namespace Resume.App.Users
             //檢查是否有先經過驗証
             if (NeedCheckUserVerify)
             {
-                var rCheckUserVerifyInput = new CheckUserVerifyInput();
-                rCheckUserVerifyInput.VerifyId = input.CheckUserVerify.VerifyId;
-                rCheckUserVerifyInput.VerifyCode = input.CheckUserVerify.VerifyCode;
-                await CheckUserVerifyAsync(rCheckUserVerifyInput);
+                if (CheckUserVerify == null)
+                {
+                    var Msg = "驗証碼不能是空白";
+                    ex.Code = "400";
+                    ex.Details = Msg;
+                    ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
+                }
+                else
+                {
+                    var rCheckUserVerifyInput = new CheckUserVerifyInput();
+                    rCheckUserVerifyInput.VerifyId = CheckUserVerify.VerifyId;
+                    rCheckUserVerifyInput.VerifyCode = CheckUserVerify.VerifyCode;
+                    await CheckUserVerifyAsync(rCheckUserVerifyInput);
+                }
             }
 
             //主體資料
@@ -271,8 +289,7 @@ namespace Resume.App.Users
                    var itemUserMain = await InsertUserMainAsync(inputInsertUserMain);
                     Result.UserMainId = itemUserMain.UserMains.Id;
 
-                    //寫入第三方資訊
-                    var UserData = input.UserData;
+                    //寫入第三方資訊                   
                     if (UserData != null && UserData.Message.IsNullOrEmpty() && !UserData.id.IsNullOrEmpty())
                     {
                         var item = new UserAccountBind();

@@ -98,15 +98,9 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("DeleteCompanyUser")]
-        [ProducesResponseType(typeof(DeleteCompanyUserDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> DeleteCompanyUserAsync(DeleteCompanyUserInput input)
+        public virtual async Task<DeleteCompanyUserDto> DeleteCompanyUserAsync(DeleteCompanyUserInput input)
         {
-            var Result = await _CompanysAppService.DeleteCompanyUserAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.DeleteCompanyUserAsync(input);
         }
 
         [HttpPost]
@@ -253,28 +247,9 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [Route("UpdateCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> UpdateCompanyUserAsync(UpdateCompanyUserInput input)
+        public virtual async Task<CompanyUsersDto> UpdateCompanyUserAsync(SaveCompanyUserInput input)
         {
-            var Result = await _CompanysAppService.UpdateCompanyUserAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
-        }
-
-        [HttpPost]
-        [Route("SaveCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> SaveCompanyUserAsync(SaveCompanyUserInput input)
-        {
-            var Result = await _CompanysAppService.SaveCompanyUserAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
-
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return await _CompanysAppService.UpdateCompanyUserAsync(input);
         }
 
         [HttpPost]

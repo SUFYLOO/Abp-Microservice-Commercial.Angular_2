@@ -33,24 +33,20 @@ namespace Resume.App.Companys
 
     public class SaveCompanyUserInput : CompanyUserDto
     {
-        public RegisterBaseInput Register { get; set; }
-    }
+        public string Name { get; set; } = "";
+        public string AccountCode { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string MobilePhone { get; set; } = "";
+        public string IdentityNo { get; set; } = "";
+        public string Password { get; set; } = "";
 
-    public class UpdateCompanyUserInput : CompanyUserDto
-    {
-        public string Name { get; set; }
-        public string AnonymousName { get; set; }
-        public string LoginAccountCode { get; set; }
-        public string LoginMobilePhone { get; set; }
-        public string LoginEmail { get; set; }
-        public string LoginIdentityNo { get; set; }
-        public string Password { get; set; }
+        public string AnonymousName { get; set; }= "";
         public int SystemUserRoleKeys { get; set; }
         public bool AllowSearch { get; set; }
         public DateTime BirthDate { get; set; }
 
-        public List<Guid?> OrganizationUnitsId { get; set; }
-        public List<Guid?> RolesId { get; set; }
+        public List<Guid>? ListRoleId { get; set; }
+        public List<Guid>? ListOrgId { get; set; }
     }
 
     public class DeleteCompanyUserInput : StdInput

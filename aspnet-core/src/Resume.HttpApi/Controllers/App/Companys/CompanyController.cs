@@ -86,9 +86,7 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("DeleteCompanyUser")]
-        [ProducesResponseType(typeof(DeleteCompanyUserDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<DeleteCompanyUserDto>> DeleteCompanyUserAsync(DeleteCompanyUserInput input)
+        public virtual Task<DeleteCompanyUserDto> DeleteCompanyUserAsync(DeleteCompanyUserInput input)
         {
             return _CompanysAppService.DeleteCompanyUserAsync(input);
         }
@@ -206,20 +204,9 @@ namespace Resume.App.Controllers.App.Companys
 
         [HttpPost]
         [Route("UpdateCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<CompanyUsersDto>> UpdateCompanyUserAsync(UpdateCompanyUserInput input)
+        public virtual Task<CompanyUsersDto> UpdateCompanyUserAsync(SaveCompanyUserInput input)
         {
             return _CompanysAppService.UpdateCompanyUserAsync(input);
-        }
-
-        [HttpPost]
-        [Route("SaveCompanyUser")]
-        [ProducesResponseType(typeof(CompanyUsersDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<CompanyUsersDto>> SaveCompanyUserAsync(SaveCompanyUserInput input)
-        {
-            return _CompanysAppService.SaveCompanyUserAsync(input);
         }
 
         [HttpPost]

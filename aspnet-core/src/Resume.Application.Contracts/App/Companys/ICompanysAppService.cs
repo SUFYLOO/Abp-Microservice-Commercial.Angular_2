@@ -32,9 +32,8 @@ namespace Resume.App.Companys
         Task<List<CompanyUsersDto>> GetCompanyUserListAsync(CompanyUserListInput input);
         Task<CompanyUsersDto> GetCompanyUserAsync(CompanyUserInput input);
         Task<CompanyUsersDto> InsertCompanyUserAsync(SaveCompanyUserInput input);
-        Task<ResultDto<CompanyUsersDto>> UpdateCompanyUserAsync(UpdateCompanyUserInput input);
-        Task<ResultDto<CompanyUsersDto>> SaveCompanyUserAsync(SaveCompanyUserInput input);
-        Task<ResultDto<DeleteCompanyUserDto>> DeleteCompanyUserAsync(DeleteCompanyUserInput input);
+        Task<CompanyUsersDto> UpdateCompanyUserAsync(SaveCompanyUserInput input);
+        Task<DeleteCompanyUserDto> DeleteCompanyUserAsync(DeleteCompanyUserInput input);
         Task<List<CompanyJobsDto>> GetCompanyJobListAsync(CompanyJobListInput input);
         Task<CompanyJobsDto> GetCompanyJobAsync(CompanyJobInput input);
         Task<CompanyJobDto> SaveCompanyJobAsync(SaveCompanyJobInput input);

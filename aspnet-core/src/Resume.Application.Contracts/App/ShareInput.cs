@@ -50,13 +50,13 @@ namespace Resume.App
         public string MobilePhone { get; set; }
         public string IdentityNo { get; set; }
         public string Password { get; set; }
-        public CheckUserVerifyInput CheckUserVerify { get; set; }
-        public string ThirdPartyTypeCode { get; set; } = "";
-        public ThirdPartyUserDataDto UserData { get; set; }
+        public CheckUserVerifyInput? CheckUserVerify { get; set; }
     }
 
     public class RegisterBaseInput : RegisterInput
-    {      
+    {
+        public string ThirdPartyTypeCode { get; set; } = "";
+        public ThirdPartyUserDataDto? UserData { get; set; }
         public bool NeedCheckUserVerify { get; set; }  = true;
         public List<Guid>? ListRoleId { get;  set; }
         public List<Guid>? ListOrgId { get;  set; }
