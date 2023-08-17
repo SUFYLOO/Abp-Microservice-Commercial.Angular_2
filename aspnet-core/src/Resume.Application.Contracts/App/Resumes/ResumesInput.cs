@@ -13,6 +13,17 @@ namespace Resume.App.Resumes
 
     }
 
+    public class GetResumeMainListInput 
+    {
+
+    }
+
+    public class GetResumeMainInput : StdInput
+    {
+        public Guid? ResumeMainId { get; set; }
+        public ResumeDisplayMethod ResumeDisplay { get; set; } = ResumeDisplayMethod.Classification;
+    }
+
     public class UpdateResumeMainNameInput
     {
         public Guid Id { get; set; }
@@ -117,4 +128,8 @@ namespace Resume.App.Resumes
         public bool RefreshItem { get; set; } = false;
     }
 
+    public class SaveResumeEducationsInput : ResumeEducationssDto
+    {
+        public bool RefreshItem { get; set; } = false;
+    }
 }

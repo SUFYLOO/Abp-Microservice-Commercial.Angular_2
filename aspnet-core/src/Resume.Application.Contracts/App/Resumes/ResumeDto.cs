@@ -139,12 +139,12 @@ namespace Resume.App.Resumes
     public class ResumeEducationssDto : ResumeEducationsDto
     {
         // 教育程度 ( 大學、小學 ... ) 
-        public string EducationLevelName { get; set; } = "";
+        //public string EducationLevelName { get; set; } = "";
         // 就學狀態
-        public string GraduationName { get; set; } = "";
+        //public string GraduationName { get; set; } = "";
         //public string MajorDepartmentCategoryName { get; set; } = "";
         //public string MinorDepartmentCategoryName { get; set; } = "";
-        public string CountryName { get; set; } = "";
+       // public string CountryName { get; set; } = "";
     }
 
     // 工作經歷

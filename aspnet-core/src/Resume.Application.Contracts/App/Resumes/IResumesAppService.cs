@@ -14,8 +14,8 @@ namespace Resume.App.Resumes
     public interface IResumesAppService : IApplicationService
     {
         Task<ResultDto<ResumeDto>> GetResumeAsync(ResumeInput input);
-        Task<ResultDto<List<ResumeMainsDto>>> GetResumeMainsListAsync(ResumeInput input);
-        Task<ResultDto<ResumeMainsDto>> GetResumeMainsAsync(ResumeInput input);
+        
+        
         Task<ResultDto<List<ResumeCommunicationsDto>>> GetResumeCommunicationsListAsync(ResumeInput input);
         Task<ResultDto<List<ResumeCommunicationsClassificationDto>>> GetResumeCommunicationsClassificationListAsync(ResumeInput input);
         Task<ResultDto<List<ResumeDrvingLicensesDto>>> GetResumeDrvingLicensesListAsync(ResumeInput input);
@@ -45,7 +45,6 @@ namespace Resume.App.Resumes
         Task<ResultDto<ResumeLanguagesDto>> SaveResumeAsync(ResumeLanguagesDto input);
         Task<ResultDto<ResumeSkillsDto>> SaveResumeAsync(ResumeSkillsDto input);
         Task<ResultDto<ResumeDependentssDto>> SaveResumeAsync(ResumeDependentssDto input);
-        Task<ResultDto<ResumeEducationssDto>> SaveResumeAsync(ResumeEducationssDto input);
         Task<ResultDto<ResumeExperiencessDto>> SaveResumeAsync(ResumeExperiencessDto input);
         Task<ResultDto<ResumeWorkssDto>> SaveResumeAsync(ResumeWorkssDto input);
         Task<ResultDto<DeleteDto>> DeleteResumeAsync(DeleteResumeInput input);
@@ -55,7 +54,10 @@ namespace Resume.App.Resumes
         Task<ResultDto<ResumeSnapshotsDto>> GetResumeSnapshotsAsync(ResumeSnapshotsInput input);
         Task<ResultDto<List<ResumeSnapshotsDto>>> GetResumeSnapshotsListAsync(ResumeSnapshotsListKeyWordsInput input);
 
-        public Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input);
+        Task<ResumeMainsDto> GetResumeMainsAsync(GetResumeMainInput input);
+        Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input);
+        Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input);
+        Task<ResumeEducationssDto> SaveResumeEducationsAsync (SaveResumeEducationsInput input);
 
     }
 }

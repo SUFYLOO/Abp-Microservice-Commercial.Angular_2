@@ -2381,7 +2381,7 @@ namespace Resume.App.Resumes
             return Result;
         }
 
-        public virtual async Task<ResultDto<List<ResumeMainsDto>>> GetResumeMainsListAsync(ResumeInput input)
+        public virtual async Task<ResultDto<List<ResumeMainsDto>>> GetResumeMainsList1Async(ResumeInput input)
         {
             var Result = new ResultDto<List<ResumeMainsDto>>();
             Result.Data = new List<ResumeMainsDto>();

@@ -114,8 +114,8 @@ namespace Resume.App
 
             CreateMap<ShareUpload, SaveShareUploadDto>();
 
-            CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
             CreateMap<SaveCompanyJobContentInput, SaveCompanyJobInput>();
+            CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
 
             CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
             CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>();

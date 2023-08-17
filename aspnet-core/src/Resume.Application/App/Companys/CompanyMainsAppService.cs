@@ -33,17 +33,11 @@ namespace Resume.App.Companys
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
             //強制把input帶入系統值
-            //input.CompanyMainId = CompanyMainId;
 
             //外部傳入
-            //var CompanyMainId = input.Id;
-            //var RefreshItem = input.RefreshItem;
 
             //預設值
-            //input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
-            //input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            //input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
-
+            
             //檢查
             //由登入者的CurrentUser.Id尋找CompanyUser.UserMainId      
             //得到公司的主檔代碼(可能有多筆，來自於不同的，也可能來自於不同的租戶)
@@ -102,7 +96,6 @@ namespace Resume.App.Companys
             var Id = input.Id;
 
             //預設值
-
 
             //檢查
             if (SystemUserRoleKeys > 5)
