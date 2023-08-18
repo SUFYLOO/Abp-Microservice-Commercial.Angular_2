@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -42,6 +45,31 @@ public class Program
             var app = builder.Build();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
+
+            //增加多語系 20230818
+            {
+#if DEBUG
+                var supportedCultures = new[]
+                {
+                new CultureInfo("zh-Hant"),
+                new CultureInfo("en"),
+            };
+                app.UseAbpRequestLocalization(options =>
+                {
+                    options.DefaultRequestCulture = new RequestCulture("zh-Hant");
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+                    options.RequestCultureProviders = new List<IRequestCultureProvider>
+                    {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                    };
+                });
+                app.UseRequestLocalization();
+#endif
+                await app.RunAsync();
+            }
+
             return 0;
         }
         catch (Exception ex)
