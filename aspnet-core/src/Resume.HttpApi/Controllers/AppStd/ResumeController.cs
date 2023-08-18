@@ -302,13 +302,13 @@ namespace Resume.App.Controllers.AppStd.Resumes
         [Route("SaveResumeEducations")]
         [ProducesResponseType(typeof(ResumeEducationssDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> SaveResumeAsync(ResumeEducationssDto input)
+        public virtual Task<ResumeEducationssDto> SaveResumeEducationsAsync(SaveResumeEducationsInput input)
         {
-            var Result = await _resumesAppService.SaveResumeAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _resumesAppService.SaveResumeAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return _resumesAppService.SaveResumeEducationsAsync(input);
         }
 
         [HttpPost]
@@ -351,29 +351,25 @@ namespace Resume.App.Controllers.AppStd.Resumes
         }
 
         [HttpPost]
-        [Route("GetResumeMainsList")]
+        [Route("GetResumeMainList")]
         [ProducesResponseType(typeof(ResumeMainsDto), StatusCodes.Status200OK)]
-        
-        public virtual async Task<IActionResult> GetResumeMainsListAsync(ResumeInput input)
-        {
-            var Result = await _resumesAppService.GetResumeMainsListAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+        public virtual Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input)
+        {
+            return _resumesAppService.GetResumeMainListAsync(input);
         }
 
         [HttpPost]
-        [Route("GetResumeMains")]
+        [Route("GetResumeMain")]
         [ProducesResponseType(typeof(ResumeMainsDto), StatusCodes.Status200OK)]
         
-        public virtual async Task<IActionResult> GetResumeMainsAsync(ResumeInput input)
+        public virtual Task<ResumeMainsDto> GetResumeMainsAsync(GetResumeMainInput input)
         {
-            var Result = await _resumesAppService.GetResumeMainsAsync(input);
-            var ResultCheck = Result.Check;
-            var ResultMessage = Result.Messages;
+            //var Result = await _resumesAppService.GetResumeMainsAsync(input);
+            //var ResultCheck = Result.Check;
+            //var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
+            return _resumesAppService.GetResumeMainsAsync(input);
         }
 
         [HttpPost]

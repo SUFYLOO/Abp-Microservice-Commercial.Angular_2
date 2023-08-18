@@ -140,6 +140,7 @@ namespace Resume.App.Companys
                 input.SMSTplId = "01";
                 itemCompanyJob = ObjectMapper.Map<SaveCompanyJobInput, CompanyJob>(input);
                 itemCompanyJob = await _appService._companyJobRepository.InsertAsync(itemCompanyJob);
+                await _appService._unitOfWorkManager.Current.SaveChangesAsync();
             }
             else
             {
@@ -221,5 +222,117 @@ namespace Resume.App.Companys
                 throw ex;
             return Result;
         }
+
+        public virtual async Task<CompanyJobsDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input)
+        {
+            var Result = new CompanyJobsDto();
+
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            // 外部傳入
+            var CompanyJobId = input.Id;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
+            //var RefreshItem = input.RefreshItem;
+
+            //檢查
+            await UpdateCompanyJobDateCheckAsync(input);
+
+            //主體資料
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
+
+            //映射
+            ObjectMapper.Map(input, itemCompanyJob);
+            itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
+
+            ObjectMapper.Map(itemCompanyJob, Result);
+            return Result;
+        }
+
+        public virtual async Task<ResultDto> UpdateCompanyJobDateCheckAsync(UpdateCompanyJobDateInput input)
+        {
+            var Result = new ResultDto();
+
+            var CompanyMainId = input.Id;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
+
+            if (DateA.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺上架日不能空白", Pass = false });
+
+            if (DateD.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺下架日不能空白", Pass = false });
+
+            if (DateA > DateD)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "日期輸入錯誤", Pass = false });
+
+            var ex = new UserFriendlyException("系統發生錯誤");
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
+
+            return Result;
+        }
+
+        public virtual async Task<CompanyJobsDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input)
+        {
+            var Result = new CompanyJobsDto();
+
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            // 外部傳入
+            var CompanyJobId = input.Id;
+            var JobOpen = input.JobOpen;
+            //var RefreshItem = input.RefreshItem;
+
+            //檢查
+            await UpdateCompanyJobOpenCheckAsync(input);
+
+            //主體資料
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
+
+            //映射
+            ObjectMapper.Map(input, itemCompanyJob);
+            itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
+
+            ObjectMapper.Map(itemCompanyJob, Result);
+
+            return Result;
+        }
+
+        public virtual async Task<ResultDto> UpdateCompanyJobOpenCheckAsync(UpdateCompanyJobOpenInput input)
+        {
+            var Result = new ResultDto();
+
+            var CompanyMainId = input.Id;
+            var JobOpen = input.JobOpen;
+
+            if (JobOpen.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職缺開關不能空白", Pass = false });
+
+            var ex = new UserFriendlyException("系統發生錯誤");
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+
+            return Result;
+        }
+
     }
 }

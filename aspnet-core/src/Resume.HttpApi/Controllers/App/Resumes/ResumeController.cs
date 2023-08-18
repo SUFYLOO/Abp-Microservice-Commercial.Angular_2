@@ -224,9 +224,9 @@ namespace Resume.App.Controllers.App.Resumes
         [Route("SaveResumeEducations")]
         [ProducesResponseType(typeof(ResumeEducationssDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<ResumeEducationssDto>> SaveResumeAsync(ResumeEducationssDto input)
+        public virtual Task<ResumeEducationssDto> SaveResumeEducationsAsync(SaveResumeEducationsInput input)
         {
-            return _resumesAppService.SaveResumeAsync(input);
+            return _resumesAppService.SaveResumeEducationsAsync(input);
         }
 
         [HttpPost]
@@ -257,19 +257,19 @@ namespace Resume.App.Controllers.App.Resumes
         }
 
         [HttpPost]
-        [Route("GetResumeMainsList")]
+        [Route("GetResumeMainList")]
         [ProducesResponseType(typeof(ResumeMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<List<ResumeMainsDto>>> GetResumeMainsListAsync(ResumeInput input)
+        public virtual Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input)
         {
-            return _resumesAppService.GetResumeMainsListAsync(input);
+            return _resumesAppService.GetResumeMainListAsync(input);
         }
 
         [HttpPost]
         [Route("GetResumeMains")]
         [ProducesResponseType(typeof(ResumeMainsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<ResumeMainsDto>> GetResumeMainsAsync(ResumeInput input)
+        public virtual Task<ResumeMainsDto> GetResumeMainsAsync(GetResumeMainInput input)
         {
             return _resumesAppService.GetResumeMainsAsync(input);
         }

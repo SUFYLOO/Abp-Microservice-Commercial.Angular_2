@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <Import Project="..\..\common.props" />
 
@@ -9,7 +9,7 @@
     <RootNamespace>Resume</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <AssemblyVersion>21.2023.0816.02</AssemblyVersion>
-    <FileVersion>21.2023.0816.02</FileVersion>
+    <FileVersion>21.2023.0817.01</FileVersion>
     <UserSecretsId>fbced45b-3fd5-43ac-a21e-e4cd4def4cf1</UserSecretsId>
   </PropertyGroup>
 
