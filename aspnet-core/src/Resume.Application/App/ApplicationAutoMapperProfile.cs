@@ -136,6 +136,9 @@ namespace Resume.App
 
             CreateMap<SaveResumeMainInput, ResumeMain>();
 
+            CreateMap<SaveCompanyUserInput, RegisterBaseInput>();
+            CreateMap<RegisterInput, InsertUserMainInput>();
+            CreateMap<SaveCompanyUserInput, CompanyUser>();
         }
     }
 }
