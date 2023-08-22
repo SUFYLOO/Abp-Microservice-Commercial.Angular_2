@@ -95,7 +95,7 @@ namespace Resume.App.Users
             //預設值
             //如果是新註冊非管理者新增 則要搜尋User這個租戶住冊
             var itemTenant = await _appService._tenantRepository.FindByNameAsync("User");
-            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : null;
+            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : TenantId;
 
             //檢查
             //if (TenantId == null)
@@ -215,7 +215,7 @@ namespace Resume.App.Users
             //預設值
             //如果是新註冊非管理者新增 則要搜尋User這個租戶住冊
             var itemTenant = await _appService._tenantRepository.FindByNameAsync("User");
-            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : null;
+            TenantId = TenantId == null && itemTenant != null ? itemTenant.Id : TenantId;
 
             //檢查
             await RegisterCheckAsync(input);
@@ -247,19 +247,19 @@ namespace Resume.App.Users
                 {
                     //角色資料-沒有的話，則使用預設值
                     var itemsRole = await _appService._identityRoleRepository.GetDefaultOnesAsync();
-                    if (ListRoleId == null && itemsRole != null && itemsRole.Any())
+                    if ((ListRoleId == null || !ListRoleId.Any())  && itemsRole != null && itemsRole.Any())
                         ListRoleId = itemsRole.Select(p => p.Id).ToList();
 
                     //組織資料-沒有的話，則使用沒有權限的部門
                     var itemsAllOrg = await _appService._organizationUnitRepository.GetListAsync();
                     var itemOrg = itemsAllOrg.FirstOrDefault(p => p.DisplayName == "NotClassified");
-                    if (ListOrgId == null && itemOrg != null)
+                    if ((ListOrgId == null || !ListOrgId.Any()) && itemOrg != null )
                         ListOrgId = new List<Guid>() { itemOrg.Id };
 
                     //由於Abp信箱不可以空白，而在履歷系統信箱代表唯一值，因此如果使用者用手機註冊時，我決定採用UserName當做信箱暫用
                     var UserName = _appService._guidGenerator.Create().ToString();
                     var EmailAbp = Email.Length > 0 ? Email : (UserName + "@jbjob.com.tw");
-                    var itemIdentityUser = new IdentityUser(GuidGenerator.Create(), UserName, EmailAbp);
+                    var itemIdentityUser = new IdentityUser(GuidGenerator.Create(), UserName, EmailAbp , TenantId);
                     if (ListRoleId != null)
                         foreach (var itemRoleId in ListRoleId)
                             itemIdentityUser.AddRole(itemRoleId); //加入角色
@@ -370,75 +370,75 @@ namespace Resume.App.Users
 
             //主體資料
 
-            var rUserMain = new UserMain();
-            rUserMain.TenantId = TenantId;
-            rUserMain.UserId = UserId;
-            rUserMain.Name = Name;
-            rUserMain.AnonymousName = Name;
-            rUserMain.LoginAccountCode = UserName.ToUpper();
-            rUserMain.LoginMobilePhoneUpdate = MobilePhone;
-            rUserMain.LoginMobilePhone = MobilePhone;
-            rUserMain.LoginEmail = Email;
-            rUserMain.LoginEmailUpdate = Email;
-            rUserMain.LoginIdentityNo = IdentityNo.ToUpper();
-            rUserMain.Password = Security.Encrypt(Password);  //需要加密
-            rUserMain.SystemUserRoleKeys = SystemUserRoleKeys;
-            rUserMain.AllowSearch = false;
-            rUserMain.ExtendedInformation = "";
-            rUserMain.DateA = new DateTime(1900, 1, 1);
-            rUserMain.DateD = new DateTime(9999, 12, 31);
-            rUserMain.Sort = 9;
-            rUserMain.Note = "";
-            rUserMain.Status = "1";
-            var itemUserMain = await _appService._userMainRepository.InsertAsync(rUserMain);
-            ObjectMapper.Map(itemUserMain  , Result.UserMains);
+            var itemUserMain = new UserMain();
+            itemUserMain.TenantId = TenantId;
+            itemUserMain.UserId = UserId;
+            itemUserMain.Name = Name;
+            itemUserMain.AnonymousName = Name;
+            itemUserMain.LoginAccountCode = UserName.ToUpper();
+            itemUserMain.LoginMobilePhoneUpdate = MobilePhone;
+            itemUserMain.LoginMobilePhone = MobilePhone;
+            itemUserMain.LoginEmail = Email;
+            itemUserMain.LoginEmailUpdate = Email;
+            itemUserMain.LoginIdentityNo = IdentityNo.ToUpper();
+            itemUserMain.Password = Security.Encrypt(Password);  //需要加密
+            itemUserMain.SystemUserRoleKeys = SystemUserRoleKeys;
+            itemUserMain.AllowSearch = false;
+            itemUserMain.ExtendedInformation = "";
+            itemUserMain.DateA = new DateTime(1900, 1, 1);
+            itemUserMain.DateD = new DateTime(9999, 12, 31);
+            itemUserMain.Sort = 9;
+            itemUserMain.Note = "";
+            itemUserMain.Status = "1";
+            itemUserMain = await _appService._userMainRepository.InsertAsync(itemUserMain);
+            ObjectMapper.Map(itemUserMain, Result.UserMains);
 
-            var rUserInfo = new UserInfo();
-            rUserInfo.TenantId = TenantId;
-            rUserInfo.UserMainId = UserMainId;
-            rUserInfo.NameC = Name;
-            rUserInfo.NameE = "";
-            rUserInfo.IdentityNo = IdentityNo.ToUpper();
-            rUserInfo.BirthDate = new DateTime(1900, 1, 1).Date;
-            rUserInfo.SexCode = "";
-            rUserInfo.BloodCode = "";
-            rUserInfo.PlaceOfBirthCode = "";
-            rUserInfo.PassportNo = "";
-            rUserInfo.NationalityCode = "";
-            rUserInfo.ResidenceNo = "";
-            rUserInfo.ExtendedInformation = "";
-            rUserInfo.DateA = new DateTime(1900, 1, 1);
-            rUserInfo.DateD = new DateTime(9999, 12, 31);
-            rUserInfo.Sort = 9;
-            rUserInfo.Note = "";
-            rUserInfo.Status = "1";
-            var itemUserInfo = await _appService._userInfoRepository.InsertAsync(rUserInfo);
+            var itemUserInfo = new UserInfo();
+            itemUserInfo.TenantId = TenantId;
+            itemUserInfo.UserMainId = itemUserMain.Id;
+            itemUserInfo.NameC = Name;
+            itemUserInfo.NameE = "";
+            itemUserInfo.IdentityNo = IdentityNo.ToUpper();
+            itemUserInfo.BirthDate = new DateTime(1900, 1, 1).Date;
+            itemUserInfo.SexCode = "";
+            itemUserInfo.BloodCode = "";
+            itemUserInfo.PlaceOfBirthCode = "";
+            itemUserInfo.PassportNo = "";
+            itemUserInfo.NationalityCode = "";
+            itemUserInfo.ResidenceNo = "";
+            itemUserInfo.ExtendedInformation = "";
+            itemUserInfo.DateA = new DateTime(1900, 1, 1);
+            itemUserInfo.DateD = new DateTime(9999, 12, 31);
+            itemUserInfo.Sort = 9;
+            itemUserInfo.Note = "";
+            itemUserInfo.Status = "1";
+            itemUserInfo = await _appService._userInfoRepository.InsertAsync(itemUserInfo);
             ObjectMapper.Map(itemUserInfo, Result.UserInfos);
 
             //新增我的第一份履歷
-            var rResumeMain = new ResumeMain();
-            rResumeMain.TenantId = TenantId;
-            rResumeMain.UserMainId = UserMainId;
-            rResumeMain.ResumeName = "我的第一份履歷";
-            rResumeMain.MarriageCode = "";
-            rResumeMain.MilitaryCode = "";
-            rResumeMain.DisabilityCategoryCode = "";
-            rResumeMain.SpecialIdentityCode = "";
-            rResumeMain.Main = true;
-            rResumeMain.Autobiography1 = "";
-            rResumeMain.Autobiography2 = "";
-            rResumeMain.ExtendedInformation = "";
-            rResumeMain.DateA = new DateTime(1900, 1, 1);
-            rResumeMain.DateD = new DateTime(9999, 12, 31);
-            rResumeMain.Sort = 9;
-            rResumeMain.Note = "";
-            rResumeMain.Status = "1";
-            var iResumeMain = await _appService._resumeMainRepository.InsertAsync(rResumeMain);
+            var itemResumeMain = new ResumeMain();
+            itemResumeMain.TenantId = TenantId;
+            itemResumeMain.UserMainId = itemUserMain.Id;
+            itemResumeMain.ResumeName = "我的第一份履歷";
+            itemResumeMain.MarriageCode = "";
+            itemResumeMain.MilitaryCode = "";
+            itemResumeMain.DisabilityCategoryCode = "";
+            itemResumeMain.SpecialIdentityCode = "";
+            itemResumeMain.Main = true;
+            itemResumeMain.Autobiography1 = "";
+            itemResumeMain.Autobiography2 = "";
+            itemResumeMain.ExtendedInformation = "";
+            itemResumeMain.DateA = new DateTime(1900, 1, 1);
+            itemResumeMain.DateD = new DateTime(9999, 12, 31);
+            itemResumeMain.Sort = 9;
+            itemResumeMain.Note = "";
+            itemResumeMain.Status = "1";
+            itemResumeMain = await _appService._resumeMainRepository.InsertAsync(itemResumeMain);
 
             //交通工具初始化
             var inputInsertResumeDrvingLicense = new InsertResumeDrvingLicenseInput();
             inputInsertResumeDrvingLicense.TenantId = TenantId;
-            inputInsertResumeDrvingLicense.ResumeMainId = rResumeMain.Id;
+            inputInsertResumeDrvingLicense.ResumeMainId = itemResumeMain.Id;
             await _appService._serviceProvider.GetService<ResumesAppService>().InsertResumeDrvingLicenseAsync(inputInsertResumeDrvingLicense);
 
             //新增連絡資訊
@@ -446,7 +446,7 @@ namespace Resume.App.Users
             {
                 var item = new ResumeCommunication();
                 item.TenantId = TenantId;
-                item.ResumeMainId = rResumeMain.Id;
+                item.ResumeMainId = itemResumeMain.Id;
                 item.Status = "1";
                 item.CommunicationCategoryCode = "04";
                 item.CommunicationValue = MobilePhone;

@@ -135,9 +135,6 @@ namespace Resume.App
             CreateMap<UpdateCompanyMainInput, CompanyMain>();
 
             CreateMap<SaveResumeMainInput, ResumeMain>();
-            CreateMap<UpdateResumeMainsAutobiographyInput, ResumeMain>();
-
-            CreateMap<ResumeMain, ResumeMainsDto>();
 
         }
     }
