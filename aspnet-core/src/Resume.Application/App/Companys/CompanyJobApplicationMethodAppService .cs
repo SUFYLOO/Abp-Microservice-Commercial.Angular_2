@@ -13,6 +13,7 @@ using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.MultiTenancy;
 
 namespace Resume.App.Companys
 {
@@ -37,6 +38,8 @@ namespace Resume.App.Companys
             //外部傳入
             var CompanyJobApplicationMethodId = input.Id;
             var RefreshItem = input.RefreshItem;
+            input.Status = "1";
+            input.ExtendedInformation = "";
 
             //不要變更的值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
@@ -45,7 +48,6 @@ namespace Resume.App.Companys
 
             //檢查
             await SaveCompanyJobApplicationMethodCheckAsync(input);
-
 
             //主體資料
             var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
@@ -145,13 +147,105 @@ namespace Resume.App.Companys
                 //如果是一般公司
                 var itemCompanyJobApplicationMethod = qrbCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
                 if (itemCompanyJobApplicationMethod == null)
-                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
 
                 ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
             }
             if (ex.Data.Count > 0)
                 throw ex;
 
+            return Result;
+        }
+
+        public virtual async Task<List<CompanyJobApplicationMethodsDto>> GetCompanyJobApplicationMethodListAsync(CompanyJobApplicationMethodInput input)
+        {   //結果
+            var Result = new List<CompanyJobApplicationMethodsDto>();
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //輸入值
+
+            //預設值
+
+            //檢查
+
+            //主體資料
+            var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
+            qrbCompanyJobApplicationMethod = from c in qrbCompanyJobApplicationMethod
+                                       //where c.JobOpen == JobOpen
+                                       //&& c.Name.IndexOf(KeyWords) >= 0
+                                   select c;
+
+            if (ex.Data.Count == 0)
+            {
+                var itemsCompanyJobApplicationMethod = await AsyncExecuter.ToListAsync(qrbCompanyJobApplicationMethod);
+                ObjectMapper.Map<List<CompanyJobApplicationMethod>, List<CompanyJobApplicationMethodsDto>>(itemsCompanyJobApplicationMethod, Result);
+            }
+
+            if (ex.Data.Count > 0)
+                throw ex;
+            return Result;
+        }
+
+        public virtual async Task<CompanyJobApplicationMethodsDto> DeleteCompanyJobApplicationMethodAsync(CompanyJobApplicationMethodInput input)
+        {
+
+            var Result = new CompanyJobApplicationMethodsDto();
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+            var TenantId = CurrentTenant.Id;
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+
+            //外部傳入
+            var Id = input.Id;
+
+
+            //預設值
+
+
+            //檢查
+            if (SystemUserRoleKeys > 5)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "您沒有權限");
+
+            //主體資料
+            var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
+            var qrbsCompanyJobApplicationMethod = from c in qrbCompanyJobApplicationMethod
+                                            //where c.DateA <= ShareDefine.DateTimeNow && ShareDefine.DateTimeNow <= c.DateD
+                                            //&& c.Status == "1"                      
+                                        select c;
+
+            if (ex.Data.Count == 0)
+            {
+                var qrbCompanyUser = await _appService._companyUserRepository.GetQueryableAsync();
+                var qrbsCompanyUser = qrbCompanyUser.Where(p => p.UserMainId == UserMainId);
+                var ListCompanyMainId = qrbsCompanyUser.Select(p => p.CompanyMainId);
+
+                var itemCompanyJobApplicationMethod = qrbsCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == Id);
+                if (itemCompanyJobApplicationMethod == null)
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+                else
+                {
+                    await _appService._companyJobApplicationMethodRepository.DeleteAsync(itemCompanyJobApplicationMethod);
+                    ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
+                }
+            }
+
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
     }

@@ -544,6 +544,25 @@ namespace Resume.App.Shares
             return Result;
         }
 
+        public async Task<ResultDto> CheckGroupCode(ResultDto msg, List<GroupCodeConditions> conditions)
+        {
+            var inputShareCodeGroup = new ShareCodeGroupInput();
+
+            foreach (var con in conditions)
+                inputShareCodeGroup.ListGroupCode.Add(con.GroupCode);
+            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+            foreach (var condition in conditions)
+            {
+                if (condition.AllowNull && condition.Code.IsNullOrEmpty())
+                    continue;
+                if (!itemsShareCode.Any(p => p.GroupCode == condition.GroupCode && p.Code == condition.Code))
+                    msg.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = condition.ErrorMessage, Pass = false });
+            }
+
+            return msg;
+        }
+
         public virtual void SetShareCodeAsync<T>(SetShareCodeInput input)
         {
             var Data = input.Data;

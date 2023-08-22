@@ -28,6 +28,8 @@ namespace Resume.App.Companys
             //外部傳入
             var CompanyJobPayId = input.Id;
             var RefreshItem = input.RefreshItem;
+            input.Status = "1";
+            input.ExtendedInformation = "";
 
             //不要變更的值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
@@ -67,59 +69,88 @@ namespace Resume.App.Companys
 
         public virtual async Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input)
         {
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息");
 
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
+
+            //外部傳入
+            var CompanyJobId = input.CompanyJobId;
             var JobPayTypeCode = input.JobPayTypeCode ?? "";
-            var DateReal = input.DateReal;
 
-            if (JobPayTypeCode.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費代碼不能空白", Pass = false });
-            if (DateReal.Equals(null))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "上架日期不能空白", Pass = false });
 
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-            inputShareCodeGroup.ListGroupCode.Add("JobPayTypeCode");
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+            //必要代碼檢核
+            var conditions = new List<GroupCodeConditions>()
+            {
+                new GroupCodeConditions(){GroupCode = "JobPayType",Code =JobPayTypeCode, ErrorMessage = "付費類別代碼錯誤" ,AllowNull = true},
 
-            if (!itemsShareCode.Any(p => p.GroupCode == "JobPayTypeCode" && p.Code == JobPayTypeCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            };
 
-            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
-         //   var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
+            Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            //if (item == null)
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            var ex = new UserFriendlyException("系統發生錯誤");
+            if (itemCompanyJob == null)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
-
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
             if (!Result.Check)
                 throw ex;
 
             return Result;
-
         }
-        public virtual async Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input)
+        public virtual async Task<CompanyJobPaysDto> GetCompanyJobPayAsync(CompanyJobPayInput input)
         {
-            var Result = new CompanyJobsDto();
+            //結果
+            var Result = new CompanyJobPaysDto();
+            var ex = new UserFriendlyException("錯誤訊息");
+            //常用
 
-            var CompanyJobId = input.Id;
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
 
-            if (CompanyJobId.Equals(null))
+            //強制把input帶入系統值
+
+            //外部傳入
+            var CompanyJobPayId = input.Id;
+
+            //預設值
+
+
+            //檢查
+            if (CompanyJobPayId.ToString() == " ")
             {
-                var ex = new UserFriendlyException("Id不能空白");
+                ex.Data.Add(GuidGenerator.Create().ToString(), "ID不能為空白");
                 throw ex;
             }
+            //主體資料
+            var qrbCompanyJobPay = await _appService._companyJobPayRepository.GetQueryableAsync();
 
-            //var inputCompanyJobs = new GetCompanyJobsInput();
-            //inputCompanyJobs.IsDelelte
+            if (ex.Data.Count == 0)
+            {
 
-            var itemCompanyJob = await _appService._companyJobsAppService.GetAsync(CompanyJobId);
+                //如果是一般公司
+                var itemCompanyJobPay = qrbCompanyJobPay.FirstOrDefault(p => p.Id == CompanyJobPayId);
+                if (itemCompanyJobPay == null)
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
 
-            Result = ObjectMapper.Map<CompanyJobDto, CompanyJobsDto>(itemCompanyJob);
+                ObjectMapper.Map(itemCompanyJobPay, Result);
+            }
+            if (ex.Data.Count > 0)
+                throw ex;
+
             return Result;
         }
     }

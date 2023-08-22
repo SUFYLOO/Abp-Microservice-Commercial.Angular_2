@@ -74,7 +74,7 @@ namespace Resume.App.Controllers.AppStd.Companys
         [Route("DeleteCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual  Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
+        public virtual  Task<CompanyJobsDto> DeleteCompanyJobAsync(CompanyJobInput input)
         {
             //var Result = await _CompanysAppService.DeleteCompanyJobAsync(input);
             //var ResultCheck = Result.Check;
@@ -484,6 +484,14 @@ namespace Resume.App.Controllers.AppStd.Companys
         }
 
         [HttpPost]
+        [Route("GetCompanyJobContentList")]
+        [ProducesResponseType(typeof(CompanyJobContentsDto), StatusCodes.Status200OK)]
+        public virtual Task<List<CompanyJobContentsDto>> GetCompanyJobContentListAsync(CompanyJobContentInput input)
+        {
+            return _CompanysAppService.GetCompanyJobContentListAsync(input);
+        }
+
+        [HttpPost]
         [Route("GetCompanyJobContent")]
         [ProducesResponseType(typeof(CompanyJobContentsDto), StatusCodes.Status200OK)]
 
@@ -529,15 +537,6 @@ namespace Resume.App.Controllers.AppStd.Companys
         }
 
         [HttpPost]
-        [Route("GetCompanyJobs")]
-        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
-
-        public virtual Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input)
-        {
-            return _CompanysAppService.GetCompanyJobsAsync(input);
-        }
-
-        [HttpPost]
         [Route("UpdateCompanyJobOpen")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
 
@@ -571,6 +570,15 @@ namespace Resume.App.Controllers.AppStd.Companys
         public virtual Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input)
         {
             return _CompanysAppService.SaveCompanyJobPayCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetCompanyJobPay")]
+        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
+
+        public virtual Task<CompanyJobPaysDto> GetCompanyJobPayAsync(CompanyJobPayInput input)
+        {
+            return _CompanysAppService.GetCompanyJobPayAsync(input);
         }
     }
 }

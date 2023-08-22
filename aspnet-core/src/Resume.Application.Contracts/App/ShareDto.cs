@@ -276,4 +276,18 @@ namespace Resume.App
         public string ThirdPartyTypeCode { get; set; }
         public ThirdPartyUserDataDto UserData { get; set; }
     }
+
+    public class GroupCodeConditions
+    {
+        public string GroupCode { get; set; }
+        public string Code { get; set; }
+        public string ErrorMessage { get; set; }
+        public bool AllowNull { get; set; } = true;
+    }
+
+    public class GroupCodeDto
+    {
+        public string GroupCode { get; set; }
+        public string Code { get; set; }
+    }
 }

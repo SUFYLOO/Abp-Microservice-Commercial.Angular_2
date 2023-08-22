@@ -5,10 +5,13 @@ using Resume.App.Users;
 using Resume.CompanyJobs;
 using Resume.CompanyMains;
 using Resume.ResumeEducationss;
+using Resume.ResumeExperiencess;
 using Resume.ResumeMains;
+using Resume.ResumeSkills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -16,15 +19,16 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Resume.App.Resumes
 {
+    public delegate void Test();
     public partial class ResumesAppService : ApplicationService, IResumesAppService
     {
-        public async Task<ResumeEducationssDto> SaveResumeEducationsAsync (SaveResumeEducationsInput input)
+        public virtual async Task<ResumeSkillsDto> SaveResumeSkillAsync(SaveResumeSkillInput input)
         {
-            var Result = new ResumeEducationssDto();
-
+            var Result = new ResumeSkillsDto();
             //常用
 
             //系統層級
@@ -36,79 +40,85 @@ namespace Resume.App.Resumes
 
             //外部傳入
             var RefreshItem = input.RefreshItem;
-            var ResumeEducationsId = input.Id;
+            var ResumeSkillId = input.Id;
 
-            //不要變更的值
+            //預設值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
             input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            input.DateD = input.DateD != null ? input .DateD : ShareDefine.DateD;
+            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
+            input.ChineseTypingSpeed = input.ChineseTypingSpeed != null ? input.ChineseTypingSpeed : 0;
+            input.ChineseTypingCode = input.ChineseTypingCode != null ? input.ChineseTypingCode : "07";
+            input.EnglishTypingSpeed = input.EnglishTypingSpeed != null ? input.EnglishTypingSpeed : 0;
 
             //檢查
-            // await SaveResumeEducationsAsync(input);
+            //await SaveResumeSkillAsync(input);
 
             //主體資料
-            var ResumeEducation = await _appService._resumeEducationsRepository.GetQueryableAsync();
-            var itemResumeEducation = ResumeEducation.FirstOrDefault(p => p.Id == ResumeEducationsId);
+            var qrbResumeSkill = await _appService._resumeSkillRepository.GetQueryableAsync();
+            var itemResumeSkill = qrbResumeSkill.FirstOrDefault(p => p.Id == ResumeSkillId);
 
             //如果沒有ID就新增資料
-            if (itemResumeEducation != null)
+            if (itemResumeSkill == null)
             {
-                itemResumeEducation = ObjectMapper.Map<SaveResumeEducationsInput, ResumeEducations>(input);
-                itemResumeEducation = await _appService._resumeEducationsRepository.InsertAsync(itemResumeEducation);
+                itemResumeSkill = ObjectMapper.Map<SaveResumeSkillInput, ResumeSkill>(input);
+                itemResumeSkill = await _appService._resumeSkillRepository.InsertAsync(itemResumeSkill);
             }
             else
             {
                 //不要變更的值
-                input.Sort = itemResumeEducation.Sort;
-                input.DateD = itemResumeEducation.DateD;
-                input.DateA = itemResumeEducation.DateA;
+                //input.Sort = itemResumeSkill.Sort;
+                //input.DateD = itemResumeSkill.DateD;
+                //input.DateA = itemResumeSkill.DateA;
 
-                ObjectMapper.Map(input, itemResumeEducation);
-                await _appService._resumeEducationsRepository.UpdateAsync(itemResumeEducation);
+                ObjectMapper.Map(input, itemResumeSkill);
+                await _appService._resumeSkillRepository.UpdateAsync(itemResumeSkill);
             }
 
-            ObjectMapper.Map(itemResumeEducation, input);
+            ObjectMapper.Map(itemResumeSkill, Result);
 
             return Result;
         }
 
-        public virtual async Task<ResultDto> SaveResumeEducationsCheckAsync(SaveResumeEducationsInput input)
+        public virtual async Task<ResultDto> SaveResumeSkillCheckAsync(SaveResumeSkillInput input)
         {
-
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息");
 
-            var ResumeMainId = input.ResumeMainId;
+            //常用
 
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-            inputShareCodeGroup.ListGroupCode.Add("EducationLevelCode");
-            inputShareCodeGroup.ListGroupCode.Add("MajorDepartmentCategoryCode");
-            inputShareCodeGroup.ListGroupCode.Add("MinorDepartmentCategoryCode");
-            inputShareCodeGroup.ListGroupCode.Add("GraduationCode");
-            inputShareCodeGroup.ListGroupCode.Add("CountryCode");
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+            //外部傳入
+            var ComputerSkills = input.ComputerSkills ?? "";
+            var ProfessionalLicense = input.ProfessionalLicense;
+            var WorkSkills = input.WorkSkills;
 
-            //if (!itemsShareCode.Any(p => p.GroupCode == "JobPayTypeCode" && p.Code == MarriageCode))
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            //必要代碼檢核
+            var conditions = new List<GroupCodeConditions>()
+            {
+                new GroupCodeConditions(){GroupCode = "ComputerExpertise",Code =ComputerSkills, ErrorMessage = "電腦技能代碼錯誤" ,AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "WorkSkills",Code = WorkSkills , ErrorMessage = "工作技能代碼錯誤" ,AllowNull = false},               
+                new GroupCodeConditions(){GroupCode = "ProfessionalLicense",Code = ProfessionalLicense  , ErrorMessage = "專業證照代碼錯誤", AllowNull = true},
+            };
 
-            //if (!itemsShareCode.Any(p => p.GroupCode == "DisabilityCategoryCode" && p.Code == DisabilityCategoryCode))
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            //if (!itemsShareCode.Any(p => p.GroupCode == "SpecialIdentityCode" && p.Code == SpecialIdentityCode))
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
-
-            var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
-            var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == ResumeMainId);
-            if (itemResumeMain == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在" });
-            var ex = new UserFriendlyException("系統發生錯誤");
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             return Result;
-        }
 
+
+        }
     }
 }

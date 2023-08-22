@@ -43,9 +43,9 @@ namespace Resume.App.Resumes
         Task<ResultDto<List<ResumeDrvingLicensesDto>>> SaveResumeAsync(List<ResumeDrvingLicensesClassificationDto> input);
         Task<ResultDto<ResumeRecommendersDto>> SaveResumeAsync(ResumeRecommendersDto input);
         Task<ResultDto<ResumeLanguagesDto>> SaveResumeAsync(ResumeLanguagesDto input);
-        Task<ResultDto<ResumeSkillsDto>> SaveResumeAsync(ResumeSkillsDto input);
+        //Task<ResultDto<ResumeSkillsDto>> SaveResumeAsync(ResumeSkillsDto input);
         Task<ResultDto<ResumeDependentssDto>> SaveResumeAsync(ResumeDependentssDto input);
-        Task<ResultDto<ResumeExperiencessDto>> SaveResumeAsync(ResumeExperiencessDto input);
+        
         Task<ResultDto<ResumeWorkssDto>> SaveResumeAsync(ResumeWorkssDto input);
         Task<ResultDto<DeleteDto>> DeleteResumeAsync(DeleteResumeInput input);
 
@@ -54,10 +54,23 @@ namespace Resume.App.Resumes
         Task<ResultDto<ResumeSnapshotsDto>> GetResumeSnapshotsAsync(ResumeSnapshotsInput input);
         Task<ResultDto<List<ResumeSnapshotsDto>>> GetResumeSnapshotsListAsync(ResumeSnapshotsListKeyWordsInput input);
 
+
         Task<ResumeMainsDto> GetResumeMainsAsync(GetResumeMainInput input);
         Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input);
         Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input);
-        Task<ResumeEducationssDto> SaveResumeEducationsAsync (SaveResumeEducationsInput input);
+        Task<ResumeMainsDto> UpdateResumeMainsAutobiography1Async(UpdateResumeMainsAutobiographyInput input);
+        Task<ResultDto> UpdateResumeMainsAutobiography1CheckAsync(UpdateResumeMainsAutobiographyInput input);
 
+        Task<ResumeEducationssDto> SaveResumeEducationsAsync (SaveResumeEducationsInput input);
+        Task<ResultDto> SaveResumeEducationsCheckAsync(SaveResumeEducationsInput input);
+        Task<ResumeEducationssDto> DeleteResumeEducationsAsync(ResumeEducationsInput input);
+        
+        Task<ResumeExperiencessDto> SaveResumeExperiencesAsync(SaveResumeExperiencesInput input);
+        Task<ResultDto> SaveResumeExperiencesCheckAsync(SaveResumeExperiencesInput input);
+        Task<ResumeExperiencessDto> DeleteResumeExperiencesAsync(ResumeExperiencesInput input);
+        Task<List<ResumeExperiencessDto>> GetResumeExperiencesListAsync(ResumeExperiencesInput input);
+
+        Task<ResumeSkillsDto> SaveResumeSkillAsync(SaveResumeSkillInput input);
+        //Task<ResumeSkillsDto> SaveResumeSkillCheckAsync(SaveResumeSkillInput input);
     }
 }

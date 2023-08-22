@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PayPalCheckoutSdk.Orders;
 using Resume.App.Companys;
 using Resume.App.Shares;
 using Resume.App.Users;
 using Resume.CompanyJobs;
 using Resume.CompanyMains;
+using Resume.ResumeExperiencess;
 using Resume.ResumeMains;
 using System;
 using System.Collections.Generic;
@@ -46,15 +48,21 @@ namespace Resume.App.Resumes
             {
                 //取得履歷所需要的代碼資料-為了加速
                 var inputShareCodeGroup = new ShareCodeGroupInput();
-                inputShareCodeGroup.ListGroupCode.Add("MarriageCode");
-                inputShareCodeGroup.ListGroupCode.Add("MilitaryCode");
-                inputShareCodeGroup.ListGroupCode.Add("DisabilityCategoryCode");
-                inputShareCodeGroup.ListGroupCode.Add("SpecialIdentityCode");
+                inputShareCodeGroup.ListGroupCode.Add("Marriage");
+                inputShareCodeGroup.ListGroupCode.Add("Military");
+                inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
+                inputShareCodeGroup.ListGroupCode.Add("SpecialIdentity");
+                inputShareCodeGroup.AllForGroupCode = true;
                 var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
 
-                var inputSetShareCode = new SetShareCodeInput();
-                inputSetShareCode.ListShareCode = itemsShareCode;
-                var ListColumns = new List<NameCodeStandardDto>()
+                {
+
+                    ObjectMapper.Map(itemsResumMain, Result);
+
+                    var inputSetShareCode = new SetShareCodeInput();
+                    inputSetShareCode.ListShareCode = itemsShareCode;
+                    inputSetShareCode.Data = Result;
+                    var ListColumns = new List<NameCodeStandardDto>
                 {
                         new NameCodeStandardDto { GroupCode = "Marriage", Code = "MarriageCode", Name = "MarriageName" },
                         new NameCodeStandardDto { GroupCode = "Military", Code = "MilitaryCode", Name = "MilitaryName" },
@@ -62,10 +70,11 @@ namespace Resume.App.Resumes
                         new NameCodeStandardDto { GroupCode = "SpecialIdentity", Code = "SpecialIdentityCode", Name = "SpecialIdentityName" }
                 };
 
-                inputSetShareCode.ListColumns = ListColumns;
-                _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeMainsDto>(inputSetShareCode);
-                ObjectMapper.Map<List<ResumeMain>, List<ResumeMainsDto>>(itemsResumMain, Result);
+                    inputSetShareCode.ListColumns = ListColumns;
+                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeMainsDto>(inputSetShareCode);
+                }
             }
+
             if (ex.Data.Count > 0)
                 throw ex;
             return Result;
@@ -89,51 +98,55 @@ namespace Resume.App.Resumes
             if (ex.Data.Count == 0)
             {
                 var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+                qrbResumeMain = (from c in qrbResumeMain
+                                 where c.Status == "1"
+                                 orderby c.Sort
+                                 select c);
                 var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == ResumeMainId);
 
                 if (itemResumeMain != null)
                 {
+                    //取得履歷所需要的代碼資料-為了加速
                     var inputShareCodeGroup = new ShareCodeGroupInput();
-                    inputShareCodeGroup.ListGroupCode.Add("MarriageCode");
-                    inputShareCodeGroup.ListGroupCode.Add("MilitaryCode");
-                    inputShareCodeGroup.ListGroupCode.Add("DisabilityCategoryCode");
-                    inputShareCodeGroup.ListGroupCode.Add("SpecialIdentityCode");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkNature");
+                    //inputShareCodeGroup.ListGroupCode.Add("IndustryCategory");
+                    //inputShareCodeGroup.ListGroupCode.Add("WorkPlace");
+                    inputShareCodeGroup.ListGroupCode.Add("SalaryPayType");
+                    inputShareCodeGroup.ListGroupCode.Add("CurrencyType");
+                    inputShareCodeGroup.ListGroupCode.Add("CompanyScale");
+                    inputShareCodeGroup.ListGroupCode.Add("CompanyManagementNumber");
                     var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
 
+                     ObjectMapper.Map(itemResumeMain, Result);
+                  
+                    var inputSetShareCode = new SetShareCodeInput();
+                    inputSetShareCode.ListShareCode = itemsShareCode;
+                    inputSetShareCode.Data = Result;
                     {
-                        ObjectMapper.Map<ResumeMain, ResumeMainsDto>(itemResumeMain, Result);
-
-                        var inputSetShareCode = new SetShareCodeInput();
-                        inputSetShareCode.ListShareCode = itemsShareCode;
-                        var ListColumns = new List<NameCodeStandardDto>();
-
-                        new NameCodeStandardDto { GroupCode = "Marriage", Code = "MarriageCode", Name = "MarriageName" };
-                        new NameCodeStandardDto { GroupCode = "Military", Code = "MilitaryCode", Name = "MilitaryName" };
-                        new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" };
-                        new NameCodeStandardDto { GroupCode = "SpecialIdentity", Code = "SpecialIdentityCode", Name = "SpecialIdentityName" };
-
-                         inputSetShareCode.ListColumns = ListColumns;
-                        _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeMainsDto>(inputSetShareCode);
-
-                        var inputShareUploadList = new ShareUploadListInput();
-                        inputShareUploadList.Key1 = "ResumeMain";
-                        inputShareUploadList.Key2 = "";
-                        inputShareUploadList.Key3 = itemResumeMain.UserMainId.ToString();
-                        var itemsShareUploadList = await _appService._serviceProvider.GetService<SharesAppService>().GetShareUploadListAsync(inputShareUploadList);
-                    };
+                    var ListColumns = new List<NameCodeStandardDto>();
+                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "WorkNature", Code = "WorkNatureCode", Name = "WorkNatureName" });
+                    //ListColumns.Add(new NameCodeStandardDto { GroupCode = "IndustryCategory", Code = "IndustryCategoryCode", Name = "IndustryCategoryName" });
+                    //ListColumns.Add(new NameCodeStandardDto { GroupCode = "WorkPlace", Code = "WorkPlaceCode", Name = "WorkPlaceName" });
+                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "SalaryPayType", Code = "SalaryPayTypeCode", Name = "SalaryPayTypeName" });
+                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "CurrencyType", Code = "CurrencyTypeCode", Name = "CurrencyTypeName" });
+                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "CompanyScale", Code = "CompanyScaleCode", Name = "CompanyScaleName" });
+                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "CompanyManagementNumber", Code = "CompanyManagementNumberCode", Name = "CompanyManagementNumberName" });
+                    inputSetShareCode.ListColumns = ListColumns;
+                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeMainsDto>(inputSetShareCode);
+                    }
                 }
                 else
                 {
-                    ex.Data.Add(GuidGenerator.Create().ToString(), "履歷主檔不正確");
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
                 }
+        
             }
             //回傳錯誤
             if (ex.Data.Count > 0)
-
                 throw ex;
+
             return Result;
         }
-
 
 
         public async Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input)
@@ -147,6 +160,8 @@ namespace Resume.App.Resumes
 
             //強制帶入Id
             input.UserMainId = UserMainId;
+            input.Status = "1";
+            input.ExtendedInformation = "";
 
             //外部傳入
             var RefreshItem = input.RefreshItem;
@@ -189,39 +204,103 @@ namespace Resume.App.Resumes
 
         public virtual async Task<ResultDto> SaveResumeMainsCheckAsync(SaveResumeMainInput input)
         {
-
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息");
 
-            var MarriageCode = input.MarriageCode;
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
+
+            //外部傳入
+
+            var MarriageCode = input.MarriageCode ?? "";
+            var MilitaryCode = input.MilitaryCode;
             var DisabilityCategoryCode = input.DisabilityCategoryCode;
             var SpecialIdentityCode = input.SpecialIdentityCode;
 
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-            inputShareCodeGroup.ListGroupCode.Add("MarriageCode");
-            inputShareCodeGroup.ListGroupCode.Add("DisabilityCategoryCode");
-            inputShareCodeGroup.ListGroupCode.Add("SpecialIdentityCode");
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
 
-            if (!itemsShareCode.Any(p => p.GroupCode == "JobPayTypeCode" && p.Code == MarriageCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            //必要代碼檢核
+            var conditions = new List<GroupCodeConditions>()
+             {
+                 new GroupCodeConditions(){GroupCode = "Marriage",Code =MarriageCode, ErrorMessage = "婚姻類別代碼錯誤" ,AllowNull = true},
+                 new GroupCodeConditions(){GroupCode = "Military",Code = MilitaryCode , ErrorMessage = "兵役類別代碼錯誤" ,AllowNull = false},
+                 new GroupCodeConditions(){GroupCode = "DisabilityCategory",Code = DisabilityCategoryCode , ErrorMessage = "殘障類別代碼錯誤" , AllowNull = true},
+                 new GroupCodeConditions(){GroupCode = "SpecialIdentity",Code = SpecialIdentityCode , ErrorMessage = "特殊身分代碼錯誤" ,AllowNull = true },
+               
+             };
 
-            if (!itemsShareCode.Any(p => p.GroupCode == "DisabilityCategoryCode" && p.Code == DisabilityCategoryCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
+            Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            if (!itemsShareCode.Any(p => p.GroupCode == "SpecialIdentityCode" && p.Code == SpecialIdentityCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "付費類別代碼錯誤" });
-
-            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
-
-            var ex = new UserFriendlyException("系統發生錯誤");
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
 
             return Result;
         }
 
+        public virtual async Task<ResumeMainsDto> UpdateResumeMainsAutobiography1Async(UpdateResumeMainsAutobiographyInput input)
+        {
+            var Result = new ResumeMainsDto();
 
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            // 外部傳入
+            var ResumeMainsId = input.Id;
+            var WelfareSystem = input.Autobiography1;
+            //var RefreshItem = input.RefreshItem;
+
+            //檢查
+            await UpdateResumeMainsAutobiography1CheckAsync(input);
+
+            //主體資料
+            var qrbResumeMains = await _appService._resumeMainRepository.GetQueryableAsync();
+            var itemResumeMains = qrbResumeMains.FirstOrDefault(p => p.Id == ResumeMainsId);
+
+            //映射
+            ObjectMapper.Map(input, itemResumeMains);
+            itemResumeMains = await _appService._resumeMainRepository.UpdateAsync(itemResumeMains);
+
+            ObjectMapper.Map(itemResumeMains, Result);
+            return Result;
+        }
+
+        public virtual async Task<ResultDto> UpdateResumeMainsAutobiography1CheckAsync(UpdateResumeMainsAutobiographyInput input)
+        {
+            var Result = new ResultDto();
+            var ex = new UserFriendlyException("系統發生錯誤");
+
+            var ResumeMainId = input.Id;
+            var Autobiography = input.Autobiography1;
+
+
+            if (Autobiography.Equals(null))
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "自傳不能空白", Pass = false });
+
+            var qrbCompanyJob = await _appService._resumeMainRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == ResumeMainId);
+
+            if (itemCompanyJob == null)
+                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "沒有此筆資料", Pass = false });
+
+
+            foreach (var msg in Result.Messages)
+                ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
+
+
+            Result.Check = !Result.Messages.Any(p => !p.Pass);
+            if (!Result.Check)
+                throw ex;
+
+            return Result;
+        }
     }
 }

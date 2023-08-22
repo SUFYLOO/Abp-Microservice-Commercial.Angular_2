@@ -40,13 +40,13 @@ namespace Resume.App.Resumes
     {
         //public string SexName { get; set; } = "";
         //public string BloodName { get; set; } = "";
-        //public string MarriageName { get; set; } = "";
-        //public string PlaceOfBirthName { get; set; } = "";
-        //public string MilitaryName { get; set; } = "";
-        //public string DisabilityCategoryName { get; set; } = "";
+        public string MarriageName { get; set; } = "";
+       // public string PlaceOfBirthName { get; set; } = "";
+        public string MilitaryName { get; set; } = "";
+        public string DisabilityCategoryName { get; set; } = "";
         //public string NationalityName { get; set; } = "";
-        //public string SpecialIdentityName { get; set; } = "";
-        //public List<ShareUploadsDto> ListShareUpload { get; set; }
+        public string SpecialIdentityName { get; set; } = "";
+        public List<ShareUploadsDto> ListShareUpload { get; set; }
     }
 
     public class ResumeCommunicationsDto : ResumeCommunicationDto
@@ -138,29 +138,13 @@ namespace Resume.App.Resumes
     // 學歷資料
     public class ResumeEducationssDto : ResumeEducationsDto
     {
-        // 教育程度 ( 大學、小學 ... ) 
-        //public string EducationLevelName { get; set; } = "";
-        // 就學狀態
-        //public string GraduationName { get; set; } = "";
-        //public string MajorDepartmentCategoryName { get; set; } = "";
-        //public string MinorDepartmentCategoryName { get; set; } = "";
-       // public string CountryName { get; set; } = "";
+ 
     }
 
     // 工作經歷
     public class ResumeExperiencessDto : ResumeExperiencesDto
     {
-        // 工作性質名稱
-        public string WorkNatureName { get; set; } = "";
-        //public string IndustryCategoryName { get; set; } = "";
-        //public string JobTypeName { get; set; } = "";
-        //public List<ResumeExperiencesJobType> ListJobType { get; set; }
-        //public string ListJobType { get; set; }
-        public string WorkPlaceName { get; set; } = "";
-        public string SalaryPayTypeName { get; set; } = "";
-        public string CompanyScaleName { get; set; } = "";
-        public string CompanyManagementNumberName { get; set; } = "";
-        public string CurrencyTypeName { get; set; } = "";
+
     }
 
     public class ResumeExperiencesJobType

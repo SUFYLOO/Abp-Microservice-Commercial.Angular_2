@@ -62,6 +62,7 @@ namespace Resume.App
             CreateMap<ResumeMain, ResumeMainsDto>();
             CreateMap<ResumeMainsDto, ResumeMain>();
             CreateMap<ResumeMainDto, ResumeMain>();
+
             CreateMap<ResumeSnapshot, ResumeSnapshotsDto>();
             CreateMap<ResumeSnapshotsDto, ResumeSnapshot>();
             CreateMap<ResumeCommunication, ResumeCommunicationsDto>();
@@ -82,12 +83,17 @@ namespace Resume.App
             CreateMap<ResumeDependents, ResumeDependentssDto>();
             CreateMap<ResumeDependentssDto, ResumeDependents>();
             CreateMap<ResumeDependentsDto, ResumeDependents>();
+
+            CreateMap<SaveResumeEducationsInput, ResumeEducations>();
             CreateMap<ResumeEducations, ResumeEducationssDto>();
             CreateMap<ResumeEducationssDto, ResumeEducations>();
             CreateMap<ResumeEducationsDto, ResumeEducations>();
+
+            CreateMap<SaveResumeExperiencesInput, ResumeExperiences>();
             CreateMap<ResumeExperiences, ResumeExperiencessDto>();
             CreateMap<ResumeExperiencessDto, ResumeExperiences>();
             CreateMap<ResumeExperiencesDto, ResumeExperiences>();
+
             CreateMap<ResumeWorks, ResumeWorkssDto>();
             CreateMap<ResumeWorkssDto, ResumeWorks>();
             CreateMap<ResumeWorksDto, ResumeWorks>();
@@ -116,6 +122,7 @@ namespace Resume.App
 
             CreateMap<SaveCompanyJobContentInput, SaveCompanyJobInput>();
             CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
+            CreateMap<CompanyJobContent, CompanyJobContentsDto>();
 
             CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
             CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>();
@@ -128,6 +135,9 @@ namespace Resume.App
             CreateMap<UpdateCompanyMainInput, CompanyMain>();
 
             CreateMap<SaveResumeMainInput, ResumeMain>();
+            CreateMap<UpdateResumeMainsAutobiographyInput, ResumeMain>();
+
+            CreateMap<ResumeMain, ResumeMainsDto>();
 
         }
     }
