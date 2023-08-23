@@ -24,7 +24,7 @@ namespace Resume.App.Companys
     }
     public class CompanyUserListInput
     {
-        public string CompanyMainId { get; set; }
+        //public string CompanyMainId { get; set; }
     }
 
     public class CompanyUserInput : StdInput
@@ -41,7 +41,7 @@ namespace Resume.App.Companys
         public string Password { get; set; } = "";
 
         public string AnonymousName { get; set; }= "";
-        public int SystemUserRoleKeys { get; set; }
+        //public int SystemUserRoleKeys { get; set; }
         public bool AllowSearch { get; set; }
         public DateTime BirthDate { get; set; }
 

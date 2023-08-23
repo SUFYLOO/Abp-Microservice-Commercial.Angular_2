@@ -108,6 +108,7 @@ namespace Resume.App
             CreateMap<UpdateCompanyMainWelfareSystemInput, CompanyMain>();
             CreateMap<UpdateCompanyMainOperatingItemsInput, CompanyMain>();
 
+            CreateMap<CompanyUser, CompanyUsersDto>();
             CreateMap<CompanyUsersDto, CompanyUser>();
             CreateMap<CompanyJob, CompanyJobsDto>();
             CreateMap<SaveCompanyJobInput, CompanyJob>();

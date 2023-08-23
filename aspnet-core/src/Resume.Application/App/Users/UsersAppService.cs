@@ -175,6 +175,7 @@ namespace Resume.App.Users
 
             var inputRegisterBase = ObjectMapper.Map<RegisterInput, RegisterBaseInput>(input);
             inputRegisterBase.NeedCheckUserVerify = true;
+            inputRegisterBase.SystemUserRoleKeys = 16;
             Result = await RegisterAsync(inputRegisterBase);
 
             if (ex.Data.Count > 0)
@@ -211,6 +212,7 @@ namespace Resume.App.Users
             var UserData = input.UserData;
             var ListRoleId = input.ListRoleId;
             var ListOrgId = input.ListOrgId;
+            var UserRoleKeys =input.SystemUserRoleKeys;
 
             //預設值
             //如果是新註冊非管理者新增 則要搜尋User這個租戶住冊
