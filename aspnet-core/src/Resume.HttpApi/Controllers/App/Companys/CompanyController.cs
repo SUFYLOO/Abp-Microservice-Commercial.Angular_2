@@ -70,7 +70,7 @@ namespace Resume.App.Controllers.App.Companys
         [Route("DeleteCompanyJob")]
         [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input)
+        public virtual Task<CompanyJobsDto> DeleteCompanyJobAsync(CompanyJobInput input)
         {
             return _CompanysAppService.DeleteCompanyJobAsync(input);
         }
@@ -414,6 +414,14 @@ namespace Resume.App.Controllers.App.Companys
         }
 
         [HttpPost]
+        [Route("GetCompanyJobContentList")]
+        [ProducesResponseType(typeof(CompanyJobContentsDto), StatusCodes.Status200OK)]
+        public virtual Task<List<CompanyJobContentsDto>> GetCompanyJobContentListAsync(CompanyJobContentInput input)
+        {
+            return _CompanysAppService.GetCompanyJobContentListAsync(input);
+        }
+
+        [HttpPost]
         [Route("GetCompanyJobContent")]
         [ProducesResponseType(typeof(CompanyJobContentDto), StatusCodes.Status200OK)]
 
@@ -458,14 +466,7 @@ namespace Resume.App.Controllers.App.Companys
             return _CompanysAppService.UpdateCompanyJobDateCheckAsync(input);
         }
 
-        [HttpPost]
-        [Route("GetCompanyJobs")]
-        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
-
-        public virtual Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input)
-        {
-            return _CompanysAppService.GetCompanyJobsAsync(input);
-        }
+        
 
         [HttpPost]
         [Route("UpdateCompanyJobOpen")]
@@ -501,6 +502,15 @@ namespace Resume.App.Controllers.App.Companys
         public virtual Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input)
         {
             return _CompanysAppService.SaveCompanyJobPayCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetCompanyJobPay")]
+        [ProducesResponseType(typeof(CompanyJobsDto), StatusCodes.Status200OK)]
+
+        public virtual Task<CompanyJobPaysDto> GetCompanyJobPayAsync(CompanyJobPayInput input)
+        {
+            return _CompanysAppService.GetCompanyJobPayAsync(input);
         }
     }
 }

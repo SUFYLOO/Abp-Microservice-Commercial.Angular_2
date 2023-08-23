@@ -8,8 +8,8 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>Resume</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
-    <AssemblyVersion>21.2023.0816.02</AssemblyVersion>
-    <FileVersion>21.2023.0817.01</FileVersion>
+    <AssemblyVersion>21.2023.0822.01</AssemblyVersion>
+    <FileVersion>21.2023.0822.02</FileVersion>
     <UserSecretsId>fbced45b-3fd5-43ac-a21e-e4cd4def4cf1</UserSecretsId>
   </PropertyGroup>
 

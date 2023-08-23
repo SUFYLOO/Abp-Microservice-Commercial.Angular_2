@@ -60,8 +60,8 @@ namespace Resume.App.Companys
     {
         public bool RefreshItem { get; set; } = false;
     }
-    public class DeleteCompanyJobInput : StdInput
-    {
+    public class CompanyJobPayInput : StdInput
+    { 
 
     }
 
@@ -87,32 +87,47 @@ namespace Resume.App.Companys
 
     public class UserResumeSnapshotsListInput
     {
-
+ 
     }
 
 
     public class UpdateCompanyMainInput : CompanyMainDto
     {
+        [Required]
+        public string IndustryCategory { get; set; }
+        [Required]
+        public int CapitalAmount { get; set; }
+        [Required]
+        public Guid? CompanyUserId { get; set; }
+        [Required]
+        public string? OfficePhone { get; set; }
+        [Required]
+        public string? Address { get; set; }
+        [Required]
+        public string? Principal { get; set; }
     }
 
     public class UpdateCompanyMainCompanyProfileInput : StdInput
     {
+        [Required]
         public string? CompanyProfile { get; set; }
-
     }
 
     public class UpdateCompanyMainBusinessPhilosophyInput : StdInput
     {
+        [Required]
         public string BusinessPhilosophy { get; set; }
     }
 
     public class UpdateCompanyMainOperatingItemsInput : StdInput
     {
+        [Required]
         public string OperatingItems { get; set; }
     }
 
     public class UpdateCompanyMainWelfareSystemInput : StdInput
     {
+        [Required]
         public string WelfareSystem { get; set; }
     }
 
@@ -128,6 +143,19 @@ namespace Resume.App.Companys
         public string  JobType { get; set; }
         [Required]
         public string  WorkHours{ get; set; }
+        [Required]
+        public int SalaryMin { get; set; }
+        [Required]
+        public int SalaryMax { get; set; }
+       // public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
+    }
+
+    public class DisabilityCategoryDto
+    {
+        public string DisabilityCategoryCode { get; set; }
+        public string DisabilityLevelCode { get; set; }
+        public bool DisabilityCertifiedDocumentsNeed { get; set; }
+
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
@@ -140,21 +168,13 @@ namespace Resume.App.Companys
     public class SaveCompanyJobApplicationMethodInput : CompanyJobApplicationMethodDto
     {
         public bool RefreshItem { get; set; } = false;
-        //public Guid CompanyJobApplicationMethodId { get; set; }
-        //[Required]
-        //new public string OrgDept { get; set; }
-        //[Required]
-        //new public string OrgContactPerson { get; set; }
-        //[Required]
-        //new public string OrgContactMail { get; set; }
-        //[Required]
-        //new public bool ToRespond { get; set; }
     }
 
     public class CompanyJobContentInput : StdInput
     {
 
     }
+
     public class CompanyJobConditionInput : StdInput
     {
 
@@ -192,5 +212,10 @@ namespace Resume.App.Companys
     {
         [Required]
         public bool JobOpen { get; set; }
+    }
+
+    public class UpdateCompanyJobInput : StdInput
+    {
+     
     }
 }

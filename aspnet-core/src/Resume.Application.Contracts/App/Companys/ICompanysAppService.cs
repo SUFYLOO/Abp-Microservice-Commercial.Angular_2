@@ -37,7 +37,7 @@ namespace Resume.App.Companys
         Task<List<CompanyJobsDto>> GetCompanyJobListAsync(CompanyJobListInput input);
         Task<CompanyJobsDto> GetCompanyJobAsync(CompanyJobInput input);
         Task<CompanyJobDto> SaveCompanyJobAsync(SaveCompanyJobInput input);
-        Task<CompanyJobsDto> DeleteCompanyJobAsync(DeleteCompanyJobInput input);
+        Task<CompanyJobsDto> DeleteCompanyJobAsync(CompanyJobInput input);
         Task<ResultDto<List<UserResumeSnapshotsListDto>>> GetUserResumeSnapshotsListAsync(UserResumeSnapshotsListInput input);
         Task<ResultDto<List<CompanyInvitationssDto>>> GetCompanyInvitationsListAsync(CompanyInvitationsListInput input);
         Task<ResultDto<CompanyInvitationssDto>> GetCompanyInvitationsAsync(CompanyInvitationsInput input);
@@ -62,6 +62,7 @@ namespace Resume.App.Companys
         Task<LoginDto> LoginAsync(LoginInput input);
         Task<CompanyJobContentsDto> SaveCompanyJobContentAsync (SaveCompanyJobContentInput input);
         Task<ResultDto> SaveCompanyJobContentCheckAsync(SaveCompanyJobContentInput input);
+        Task<List<CompanyJobContentsDto>> GetCompanyJobContentListAsync(CompanyJobContentInput input);
         Task<CompanyJobConditionsDto> SaveCompanyJobConditionAsync(SaveCompanyJobConditionInput input);
         Task<ResultDto> SaveCompanyJobConditionCheckAsync(SaveCompanyJobConditionInput input);
         Task<CompanyJobApplicationMethodsDto> SaveCompanyJobApplicationMethodAsync(SaveCompanyJobApplicationMethodInput input);
@@ -71,16 +72,16 @@ namespace Resume.App.Companys
         Task<CompanyJobApplicationMethodsDto> GetCompanyJobApplicationMethodAsync(CompanyJobApplicationMethodInput input);
         Task<CompanyJobPaysDto> SaveCompanyJobPayAsync(SaveCompanyJobPayInput input);
         Task<ResultDto> SaveCompanyJobPayCheckAsync(SaveCompanyJobPayInput input);
-        Task<CompanyJobsDto> GetCompanyJobsAsync(CompanyJobInput input);
+        Task<CompanyJobPaysDto> GetCompanyJobPayAsync(CompanyJobPayInput input);
         Task<CompanyJobsDto> UpdateCompanyJobDateAsync(UpdateCompanyJobDateInput input);
         Task<ResultDto> UpdateCompanyJobDateCheckAsync(UpdateCompanyJobDateInput input);
         Task<CompanyJobsDto> UpdateCompanyJobOpenAsync(UpdateCompanyJobOpenInput input);
         Task<ResultDto> UpdateCompanyJobOpenCheckAsync(UpdateCompanyJobOpenInput input);
+
     }
 
     public interface ICompanysStdAppService : IApplicationService
     {
-        
 
     }
 }

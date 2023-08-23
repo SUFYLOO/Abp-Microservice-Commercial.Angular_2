@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using Resume.ResumeSnapshots;
 using Resume.ResumeMains;
+using Resume.ResumeEducationss;
+using Resume.ResumeExperiencess;
+using Resume.ResumeSkills;
+using System.ComponentModel.DataAnnotations;
 
 namespace Resume.App.Resumes
 {
@@ -128,8 +132,37 @@ namespace Resume.App.Resumes
         public bool RefreshItem { get; set; } = false;
     }
 
-    public class SaveResumeEducationsInput : ResumeEducationssDto
+    public class SaveResumeEducationsInput : ResumeEducationsDto
     {
         public bool RefreshItem { get; set; } = false;
     }
+    
+    public class SaveResumeExperiencesInput : ResumeExperiencesDto
+    {
+        public bool RefreshItem { get; set;}
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string JobName { get; set; }
+    }
+
+    public class ResumeEducationsInput : StdInput
+    {
+
+    }
+
+    public class ResumeExperiencesInput : StdInput
+    {
+        public Guid ResumeMainId { get; set; }
+    }
+    public class UpdateResumeMainsAutobiographyInput : StdInput
+    {
+        public string? Autobiography1 { get; set; }
+    }
+
+    public class SaveResumeSkillInput : ResumeSkillDto
+    {
+        public bool RefreshItem { get; set; }
+    }
+
 }

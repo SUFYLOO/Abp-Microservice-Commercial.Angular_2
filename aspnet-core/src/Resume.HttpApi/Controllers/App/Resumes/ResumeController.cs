@@ -202,14 +202,14 @@ namespace Resume.App.Controllers.App.Resumes
             return _resumesAppService.SaveResumeAsync(input);
         }
 
-        [HttpPost]
-        [Route("SaveResumeSkill")]
-        [ProducesResponseType(typeof(ResumeSkillsDto), StatusCodes.Status200OK)]
+        //[HttpPost]
+        //[Route("SaveResumeSkill")]
+        //[ProducesResponseType(typeof(ResumeSkillsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<ResumeSkillsDto>> SaveResumeAsync(ResumeSkillsDto input)
-        {
-            return _resumesAppService.SaveResumeAsync(input);
-        }
+        //public virtual Task<ResultDto<ResumeSkillsDto>> SaveResumeAsync(ResumeSkillsDto input)
+        //{
+        //    return _resumesAppService.SaveResumeAsync(input);
+        //}
 
         [HttpPost]
         [Route("SaveResumeDependents")]
@@ -229,14 +229,14 @@ namespace Resume.App.Controllers.App.Resumes
             return _resumesAppService.SaveResumeEducationsAsync(input);
         }
 
-        [HttpPost]
-        [Route("SaveResumeExperiences")]
-        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+        //[HttpPost]
+        //[Route("SaveResumeExperiences")]
+        //[ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<ResumeExperiencessDto>> SaveResumeAsync(ResumeExperiencessDto input)
-        {
-            return _resumesAppService.SaveResumeAsync(input);
-        }
+        //public virtual Task<ResumeExperiencessDto> SaveResumeExperiencesAsync(SaveResumeExperiencesInput input)
+        //{
+        //    return _resumesAppService.SaveResumeExperiencesAsync(input);
+        //}
 
         [HttpPost]
         [Route("SaveResumeWorks")]
@@ -389,6 +389,86 @@ namespace Resume.App.Controllers.App.Resumes
         public virtual Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input)
         {
             return _resumesAppService.SaveResumeMainsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveResumeEducationsCheck")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResultDto> SaveResumeEducationsCheckAsync(SaveResumeEducationsInput input)
+        {
+            return _resumesAppService.SaveResumeEducationsCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("DeleteResumeEducations")]
+        [ProducesResponseType(typeof(ResumeEducationssDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResumeEducationssDto> DeleteResumeEducationsAsync(ResumeEducationsInput input)
+        {
+            return _resumesAppService.DeleteResumeEducationsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveResumeExperiences")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResumeExperiencessDto> SaveResumeExperiencesAsync(SaveResumeExperiencesInput input)
+        {
+            return _resumesAppService.SaveResumeExperiencesAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveResumeExperiencesCheck")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResultDto> SaveResumeExperiencesCheckAsync(SaveResumeExperiencesInput input)
+        {
+            return _resumesAppService.SaveResumeExperiencesCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("DeleteResumeExperiences")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResumeExperiencessDto> DeleteResumeExperiencesAsync(ResumeExperiencesInput input)
+        {
+            return _resumesAppService.DeleteResumeExperiencesAsync(input);
+        }
+
+        [HttpPost]
+        [Route("UpdateResumeMainsAutobiography1")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResumeMainsDto> UpdateResumeMainsAutobiography1Async(UpdateResumeMainsAutobiographyInput input)
+        {
+            return _resumesAppService.UpdateResumeMainsAutobiography1Async(input);
+        }
+
+        [HttpPost]
+        [Route("UpdateResumeMainsAutobiography1Check")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResultDto> UpdateResumeMainsAutobiography1CheckAsync(UpdateResumeMainsAutobiographyInput input)
+        {
+            return _resumesAppService.UpdateResumeMainsAutobiography1CheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetResumeExperiencesList")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<List<ResumeExperiencessDto>> GetResumeExperiencesListAsync(ResumeExperiencesInput input)
+        {
+            return _resumesAppService.GetResumeExperiencesListAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveResumeSkill")]
+        [ProducesResponseType(typeof(ResumeSkillsDto), StatusCodes.Status200OK)]
+        public virtual Task<ResumeSkillsDto> SaveResumeSkillAsync(SaveResumeSkillInput input)
+        {
+            return _resumesAppService.SaveResumeSkillAsync(input);
         }
     }
 }

@@ -46,7 +46,6 @@ namespace Resume.App.Companys
 
     }
 
-
     public class CompanyInvitationssDto : CompanyInvitationsDto
     {
         public string Url { get; set; } = "";
