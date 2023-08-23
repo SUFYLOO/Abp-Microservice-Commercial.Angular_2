@@ -12,6 +12,8 @@ namespace Resume.App.Shares
 {
     public interface ISharesAppService : IApplicationService
     {
+        Task<TestDto> GetTest(string Id);
+        Task<TestDto> PostTest(TestInput input);
         Task<ResultDto<List<TextValueDto>>> GetShareCodeTextValueAsync(ShareCodeInput input);
         Task<ResultDto<List<ShareCodeByGroupCodeDto>>> GetShareCodeByGroupCodeAsync(ShareCodeByGroupCodeInput input);
         Task<ResultDto<List<NameCodeDto>>> GetShareCodeNameCodeAsync(ShareCodeInput input);

@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Resume.App
 {
+    public class TestDto
+    {
+        public string Id { get; set; }
+        public string? Name { get; set; }
+    }
+
     public class ResultDto<T>
     {
         /// <summary>

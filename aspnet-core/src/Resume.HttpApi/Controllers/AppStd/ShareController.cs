@@ -32,6 +32,22 @@ namespace Resume.App.Controllers.AppStd.Shares
             _sharesAppService = sharesAppService;
         }
 
+        [HttpGet]
+        [Route("GetTest")]
+        [AllowAnonymous]
+        public virtual Task<TestDto> GetTest(string Id)
+        {
+            return _sharesAppService.GetTest(Id);
+        }
+
+        [HttpPost]
+        [Route("PostTest")]
+        [AllowAnonymous]
+        public virtual Task<TestDto> PostTest(TestInput input)
+        {
+            return _sharesAppService.PostTest(input);
+        }
+
         [HttpPost]
         [Route("GetShareCodeTextValue")]
         [AllowAnonymous]

@@ -36,6 +36,25 @@ namespace Resume.App.Shares
             _appService = appService;
         }
 
+        public virtual async Task<TestDto> GetTest(string Id)
+        {
+            var Result = new TestDto();
+
+            Result.Id = Id;
+            Result.Name = "測試成功";
+
+            return Result;
+        }
+
+        public virtual async Task<TestDto> PostTest(TestInput input)
+        {
+            var Result = new TestDto();
+            Result.Id = input.Id;
+            Result.Name = "測試成功 Name is:" + input.Name;
+
+            return Result;
+        }
+
         public virtual async Task<ResultDto<List<KeyValueDto>>> GetShareDefaultAsync(ShareDefaultInput input)
         {
             var Result = new ResultDto<List<KeyValueDto>>();

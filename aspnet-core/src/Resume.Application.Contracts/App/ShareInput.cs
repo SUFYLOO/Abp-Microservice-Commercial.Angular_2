@@ -7,6 +7,12 @@ using Volo.Saas.Host.Dtos;
 
 namespace Resume.App
 {
+    public class TestInput
+    {
+        public string Id { get; set; }
+        public string? Name { get; set; }
+    }
+
     public class StdInput
     {
         [Required]
