@@ -69,7 +69,7 @@ namespace Resume.App.Companys
         public string Url { get; set; } = "";
     }
 
-    public class SendCompanyInvitationsAsyncDto 
+    public class SendCompanyInvitationsAsyncDto
     {
         public bool Pass { get; set; } = false;
     }
@@ -85,14 +85,14 @@ namespace Resume.App.Companys
         //public List< ResumeDto> Resume { get; set; }
     }
 
-    public class ResumeSnapshotDto:StdInput
+    public class ResumeSnapshotDto : StdInput
     {
         public DateTime UpdateDate { get; set; }
     }
-    
-    public class UpdateCompanyMainDto : CompanyMainDto 
+
+    public class UpdateCompanyMainDto : CompanyMainDto
     {
-    
+
     }
 
     public class UpdateCompanyMainCompanyProfileDto
@@ -101,7 +101,7 @@ namespace Resume.App.Companys
         public string CompanyProfile { get; set; }
     }
 
-    public class UpdateCompanyMainBusinessPhilosophyDto 
+    public class UpdateCompanyMainBusinessPhilosophyDto
     {
         public Guid CompanyMainId;
         public string BusinessPhilosophy { get; set; }
@@ -117,18 +117,32 @@ namespace Resume.App.Companys
         public Guid CompanyMainId;
         public string WelfareSystem { get; set; }
     }
+
     public class CompanyJobContentsDto : CompanyJobContentDto
     {
-
+        public string JobType { get; set; }
+        public string SalaryPayTypeName { get; set; }
+        public string WorkRemoteTypeName { get; set; }
+        public string WorkDay { get; set; }
+        public string HolidaySystemName { get; set; }
+        public string WorkIdentityCodeName { get; set; }
+        public string DisabilityCategoryName { get; set; }
     }
     public class CompanyJobConditionsDto : CompanyJobConditionDto
     {
+        public string WorkExperienceYearName { get; set; }
+        public string EducationLevelName { get; set; }
+        public string DepartmentCategoryName { get; set; }
+        public string LanguageCategoryName { get; set; }
+        public string ComputerExpertiseName { get; set; }
+        public string ProfessionalLicenseName { get; set; }
+        public string DrvingLicenseName { get; set; }
 
     }
 
     public class CompanyJobApplicationMethodsDto : CompanyJobApplicationMethodDto
     {
-
+        public string PersonallyName { get; set; }
     }
 
     public class UpdateCompanyJobDateDto : CompanyJobDto
@@ -136,14 +150,14 @@ namespace Resume.App.Companys
 
     }
 
-    public class CompanyJobPaysDto : CompanyJobPayDto 
+    public class CompanyJobPaysDto : CompanyJobPayDto
     {
 
     }
-    
 
 
 
-    
+
+
 }
 

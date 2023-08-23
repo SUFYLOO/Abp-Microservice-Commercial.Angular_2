@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
@@ -44,6 +46,12 @@ namespace Resume.App.Companys
             input.Status = "1";
             input.ExtendedInformation = "";
             input.CompanyMainId = CompanyMainId;
+            //var jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            input.DisabilityCategory = JsonSerializer.Serialize(input.ListDisabilityCategory, new JsonSerializerOptions
+            {
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 中文字不編碼
+                WriteIndented = true  // 換行與縮排
+            });
 
             //外部傳入
             var CompanyJobContentId = input.Id;
@@ -118,23 +126,11 @@ namespace Resume.App.Companys
             var HolidaySystemCode = input.HolidaySystemCode;
             var WorkDayCode = input.WorkDayCode;
             var WorkIdentityCode = input.WorkIdentityCode;
-           // var ListDisabilityCategory = input.ListDisabilityCategory;
+            var ListDisabilityCategory = input.ListDisabilityCategory;
 
             //預設值
 
             //必要代碼檢核
-            //if (CompanyJobId != input.CompanyJobId)
-            //    Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = L[nameof(CompanyMainId)] + L[ResumeDomainErrorCodes.NotExists], Pass = false });
-
-            //var inputShareCodeGroup = new ShareCodeGroupInput();
-            //inputShareCodeGroup.ListGroupCode.Add("JobType");
-            //inputShareCodeGroup.ListGroupCode.Add("SalaryPayType");
-            //inputShareCodeGroup.ListGroupCode.Add("WorkRemoteType");
-            //inputShareCodeGroup.ListGroupCode.Add("HolidaySystem");
-            //inputShareCodeGroup.ListGroupCode.Add("WorkDay");
-            //inputShareCodeGroup.ListGroupCode.Add("WorkIdentityCode");
-
-           // var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
 
             var conditions = new List<GroupCodeConditions>()
             {
@@ -146,17 +142,13 @@ namespace Resume.App.Companys
                 new GroupCodeConditions(){GroupCode = "WorkIdentityCode",Code = WorkIdentityCode , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
             };
 
-            //foreach (var itemDisabilityCategory in ListDisabilityCategory)
-            //{
-            //    conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤" ,AllowNull = true });
-            //    conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true });
-            //}
+            foreach (var itemDisabilityCategory in ListDisabilityCategory)
+            {
+                conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤", AllowNull = true });
+                conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true });
+            }
             Result =  await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            //var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
-            //var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobId);
-            //if (itemCompanyJobContent == null)
-            //    msg.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
 
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
@@ -173,20 +165,17 @@ namespace Resume.App.Companys
             //結果
             var Result = new CompanyJobContentsDto();
             var ex = new UserFriendlyException("錯誤訊息");
-            //常用
 
             //系統層級
+
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
-
-            //強制把input帶入系統值
 
             //外部傳入
             var CompanyJobContentId = input.Id;
 
             //預設值
-
 
             //檢查
             if (CompanyJobContentId.ToString() == " ")
@@ -194,19 +183,58 @@ namespace Resume.App.Companys
                 ex.Data.Add(GuidGenerator.Create().ToString(), "ID不能為空白");
                 throw ex;
             }
-            //主體資料
-            var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
 
+            //主體取資料
             if (ex.Data.Count == 0)
             {
-
-                //如果是一般公司
+                var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
+                qrbCompanyJobContent = (from c in qrbCompanyJobContent
+                                 where c.Status == "1"
+                                 orderby c.Sort
+                                 select c);
                 var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
-                if (itemCompanyJobContent == null)
-                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
 
-                ObjectMapper.Map(itemCompanyJobContent, Result);
+                if (itemCompanyJobContent != null)
+                {
+                    var inputShareCodeGroup = new ShareCodeGroupInput();
+                    inputShareCodeGroup.ListGroupCode.Add("JobType");
+                    inputShareCodeGroup.ListGroupCode.Add("SalaryPayType");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkRemoteType");
+                    inputShareCodeGroup.ListGroupCode.Add("HolidaySystem");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkDay");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkIdentityCode");
+                  //inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
+
+                    inputShareCodeGroup.AllForGroupCode = true;
+                    var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+                    ObjectMapper.Map(itemCompanyJobContent, Result);
+
+                    var inputSetShareCode = new SetShareCodeInput();
+                    inputSetShareCode.ListShareCode = itemsShareCode;
+                    inputSetShareCode.Data = new List<CompanyJobContentsDto>() { Result };
+
+                    var ListColumns = new List<NameCodeStandardDto>
+                    {
+                        new NameCodeStandardDto { GroupCode = "JobType", Code = "JobTypeCode", Name = "JobTypeName" },
+                        new NameCodeStandardDto { GroupCode = "SalaryPayType", Code = "SalaryPayTypeCode", Name = "SalaryPayTypeName" },
+                        new NameCodeStandardDto { GroupCode = "WorkRemoteType", Code = "WorkRemoteTypeCode", Name = "WorkRemoteTypeName" },
+                        new NameCodeStandardDto { GroupCode = "HolidaySystem", Code = "HolidaySystemCode", Name = "HolidaySystemName" },
+                        new NameCodeStandardDto { GroupCode = "WorkDay", Code = "WorkDayCode", Name = "WorkDayName" },
+                        new NameCodeStandardDto { GroupCode = "WorkIdentityCode", Code = "WorkIdentityCode", Name = "WorkIdentityCodeName" },
+                      //  new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" }
+                    };
+
+                    inputSetShareCode.ListColumns = ListColumns;
+                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<CompanyJobContentsDto>(inputSetShareCode);
+                }
             }
+            else
+            {
+                ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
+            }
+
+            //回傳錯誤
             if (ex.Data.Count > 0)
                 throw ex;
 

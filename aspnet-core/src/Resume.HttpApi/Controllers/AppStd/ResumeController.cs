@@ -367,7 +367,7 @@ namespace Resume.App.Controllers.AppStd.Resumes
         [Route("GetResumeMainList")]
         [ProducesResponseType(typeof(ResumeMainsDto), StatusCodes.Status200OK)]
 
-        public virtual Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input)
+        public virtual Task<List<ResumeMainsDto>> GetResumeMainListAsync(ResumeMainInput input)
         {
             return _resumesAppService.GetResumeMainListAsync(input);
         }

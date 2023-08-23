@@ -17,7 +17,7 @@ namespace Resume.App.Resumes
 
     }
 
-    public class GetResumeMainListInput 
+    public class ResumeMainInput : StdInput
     {
 
     }

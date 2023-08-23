@@ -182,7 +182,7 @@ namespace Resume.App.Resumes
                         new NameCodeStandardDto { GroupCode = "IndustryCategory", Code = "IndustryCategoryCode", Name = "IndustryCategoryName" },
                         new NameCodeStandardDto { GroupCode = "WorkPlace", Code = "WorkPlaceCode", Name = "WorkPlaceName" },
                         new NameCodeStandardDto { GroupCode = "SalaryPayType", Code = "SalaryPayTypeCode", Name = "SalaryPayTypeName" },
-                        new NameCodeStandardDto { GroupCode = "JobType", Code = "SJobTypeCode", Name = "JobTypeName" },
+                        new NameCodeStandardDto { GroupCode = "JobType", Code = "JobType", Name = "JobTypeName" },
                         new NameCodeStandardDto { GroupCode = "CurrencyType", Code = "CurrencyTypeCode", Name = "CurrencyTypeName" },
                         new NameCodeStandardDto { GroupCode = "CompanyScale", Code = "CompanyScaleCode", Name = "CompanyScaleName" },
                         new NameCodeStandardDto { GroupCode = "CompanyManagementNumber", Code = "CompanyManagementNumberCode", Name = "CompanyManagementNumberName" }

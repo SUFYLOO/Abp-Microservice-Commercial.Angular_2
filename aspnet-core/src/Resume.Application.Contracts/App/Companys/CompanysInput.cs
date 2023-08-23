@@ -147,7 +147,7 @@ namespace Resume.App.Companys
         public int SalaryMin { get; set; }
         [Required]
         public int SalaryMax { get; set; }
-       // public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
+        public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
     }
 
     public class DisabilityCategoryDto

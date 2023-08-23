@@ -294,7 +294,7 @@ namespace Resume.App.Companys
             input.DateA = itemCompanyMain.DateA;
             input.DateD = itemCompanyMain.DateD;
 
-             ObjectMapper.Map(input, itemCompanyMain);
+            ObjectMapper.Map(input, itemCompanyMain);
 
             itemCompanyMain = await _appService._companyMainRepository.UpdateAsync(itemCompanyMain);
 

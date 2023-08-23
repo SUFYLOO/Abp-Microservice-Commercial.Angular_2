@@ -78,31 +78,37 @@ namespace Resume.App.Companys
 
         public virtual async Task<ResultDto> SaveCompanyJobApplicationMethodCheckAsync(SaveCompanyJobApplicationMethodInput input)
         {
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息");
 
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
+
+            //外部傳入
             var CompanyJobId = input.CompanyJobId;
-            var OrgDept = input.OrgDept ?? "";
-            var OrgContactPerson = input.OrgContactPerson ?? "";
-            var OrgContactMail = input.OrgContactMail ?? "";
-            var ToRespond = input.ToRespond;
+            var Personally = input.Personally ?? "";
 
-            if (OrgDept.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "部門不能空白", Pass = false });
-            if (OrgContactPerson.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職務聯絡人不能空白", Pass = false });
-            if (OrgContactMail.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "職務E-mail不能空白", Pass = false });
+            //必要代碼檢核
+            var conditions = new List<GroupCodeConditions>()
+            {
+                new GroupCodeConditions(){GroupCode = "WorkPlace",Code =Personally, ErrorMessage = "地點類別代碼錯誤" ,AllowNull = true},
+            };
 
-            var itemsCompanyjob = await _appService._companyJobRepository.GetQueryableAsync();
-            var item = itemsCompanyjob.FirstOrDefault(p => p.Id == CompanyJobId);
+            Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            if (item == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在", Pass = false });
+            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            var ex = new UserFriendlyException("系統發生錯誤");
+            if (itemCompanyJob == null)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
+
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
-
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
             if (!Result.Check)
@@ -139,17 +145,37 @@ namespace Resume.App.Companys
                 throw ex;
             }
             //主體資料
-            var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
-
             if (ex.Data.Count == 0)
             {
-
-                //如果是一般公司
+                var qrbCompanyJobApplicationMethod = await _appService._companyJobApplicationMethodRepository.GetQueryableAsync();
+                qrbCompanyJobApplicationMethod = (from c in qrbCompanyJobApplicationMethod
+                                          where c.Status == "1"
+                                          orderby c.Sort
+                                          select c);
                 var itemCompanyJobApplicationMethod = qrbCompanyJobApplicationMethod.FirstOrDefault(p => p.Id == CompanyJobApplicationMethodId);
-                if (itemCompanyJobApplicationMethod == null)
-                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
 
-                ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
+                if (itemCompanyJobApplicationMethod != null)
+                {
+                    var inputShareCodeGroup = new ShareCodeGroupInput();
+                    inputShareCodeGroup.ListGroupCode.Add("WorkPlace");
+
+                    inputShareCodeGroup.AllForGroupCode = true;
+                    var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+                    ObjectMapper.Map(itemCompanyJobApplicationMethod, Result);
+
+                    var inputSetShareCode = new SetShareCodeInput();
+                    inputSetShareCode.ListShareCode = itemsShareCode;
+                    inputSetShareCode.Data = new List<CompanyJobApplicationMethodsDto>() { Result };
+
+                    var ListColumns = new List<NameCodeStandardDto>
+                    {
+                        new NameCodeStandardDto { GroupCode = "WorkPlace", Code = "Personally", Name = "PersonallyName" },
+                    };
+
+                    inputSetShareCode.ListColumns = ListColumns;
+                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<CompanyJobApplicationMethodsDto>(inputSetShareCode);
+                }
             }
             if (ex.Data.Count > 0)
                 throw ex;

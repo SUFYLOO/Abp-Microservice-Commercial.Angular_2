@@ -56,7 +56,7 @@ namespace Resume.App.Resumes
 
 
         Task<ResumeMainsDto> GetResumeMainsAsync(GetResumeMainInput input);
-        Task<List<ResumeMainsDto>> GetResumeMainListAsync(GetResumeMainListInput input);
+        Task<List<ResumeMainsDto>> GetResumeMainListAsync(ResumeMainInput input);
         Task<ResumeMainsDto> SaveResumeMainsAsync(SaveResumeMainInput input);
         Task<ResumeMainsDto> UpdateResumeMainsAutobiography1Async(UpdateResumeMainsAutobiographyInput input);
         Task<ResultDto> UpdateResumeMainsAutobiography1CheckAsync(UpdateResumeMainsAutobiographyInput input);

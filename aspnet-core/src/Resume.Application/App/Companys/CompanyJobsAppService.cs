@@ -236,7 +236,6 @@ namespace Resume.App.Companys
             var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
             var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
 
-            //映射
             ObjectMapper.Map(input, itemCompanyJob);
             itemCompanyJob = await _appService._companyJobRepository.UpdateAsync(itemCompanyJob);
 
