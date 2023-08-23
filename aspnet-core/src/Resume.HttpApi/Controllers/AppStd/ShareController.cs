@@ -35,6 +35,7 @@ namespace Resume.App.Controllers.AppStd.Shares
         [HttpGet]
         [Route("GetTest")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         public virtual Task<TestDto> GetTest(string Id)
         {
             return _sharesAppService.GetTest(Id);
@@ -43,6 +44,7 @@ namespace Resume.App.Controllers.AppStd.Shares
         [HttpPost]
         [Route("PostTest")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         public virtual Task<TestDto> PostTest(TestInput input)
         {
             return _sharesAppService.PostTest(input);

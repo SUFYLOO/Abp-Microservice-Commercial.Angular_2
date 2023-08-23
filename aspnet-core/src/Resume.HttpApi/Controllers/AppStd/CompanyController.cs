@@ -388,6 +388,7 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [Route("Register")]
         public virtual Task<RegisterDto> RegisterAsync(RegisterTenantInput input)
         {
@@ -396,6 +397,7 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [Route("RegisterCheck")]
         public virtual Task<ResultDto> RegisterCheckAsync(RegisterTenantInput input)
         {
@@ -404,6 +406,7 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [Route("CheckUserVerify")]
         public virtual Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input)
         {
@@ -412,6 +415,7 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [Route("GetLoginInfo")]
         public virtual Task<List<LoginInfoDto>> GetLoginInfoAsync(LoginInput input)
         {
@@ -420,6 +424,7 @@ namespace Resume.App.Controllers.AppStd.Companys
 
         [HttpPost]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [Route("Login")]
         public virtual Task<LoginDto> LoginAsync(LoginInput input)
         {

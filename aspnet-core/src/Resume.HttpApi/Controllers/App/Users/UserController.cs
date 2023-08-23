@@ -31,6 +31,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("Register")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         public virtual Task<RegisterDto> RegisterAsync(RegisterInput input)
         {
             return _usersAppService.RegisterAsync(input);
@@ -39,6 +40,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("SendUserVerify")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(SendUserVerifyDto), StatusCodes.Status200OK)]
         public virtual Task<ResultDto<SendUserVerifyDto>> SendUserVerifyAsync(SendUserVerifyInput input)
         {
@@ -48,6 +50,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("CheckUserVerify")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         public virtual Task<ResultDto> CheckUserVerifyAsync(CheckUserVerifyInput input)
         {
             return _usersAppService.CheckUserVerifyAsync(input);
@@ -56,6 +59,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(LoginDto), StatusCodes.Status200OK)]
         public virtual Task<ResultDto<LoginDto>> LoginAsync(LoginInput input)
         {
@@ -65,6 +69,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("RefreshToken")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(LoginDto), StatusCodes.Status200OK)]
         public virtual Task<ResultDto<LoginDto>> RefreshTokenAsync(RefreshTokenInput input)
         {
@@ -74,6 +79,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("LoginCookie")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(ClaimsPrincipal), StatusCodes.Status200OK)]
         public virtual  Task<ClaimsPrincipal> LoginCookieAsync(LoginInput input)
         {
@@ -94,6 +100,7 @@ namespace Resume.App.Controllers.App.Users
         [HttpPost]
         [Route("LoginBind")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(LoginDto), StatusCodes.Status200OK)]
         public virtual Task<ResultDto<LoginDto>> LoginBindAsync(LoginBindInput input)
         {

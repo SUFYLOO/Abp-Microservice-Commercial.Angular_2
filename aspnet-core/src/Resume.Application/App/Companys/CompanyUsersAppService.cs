@@ -471,6 +471,7 @@ namespace Resume.App.Companys
                         }
 
                         //更新公司使用者資訊
+                        input.UserMainId = itemCompanyUserUserMainId;
                         ObjectMapper.Map(input, itemCompanyUser);
                         itemCompanyUser = await _appService._companyUserRepository.UpdateAsync(itemCompanyUser);
                         ObjectMapper.Map(itemCompanyUser, Result);

@@ -43,6 +43,7 @@ namespace Resume.App.Controllers.App.Shares
         [HttpPost]
         [Route("PostTest")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         public virtual Task<TestDto> PostTest(TestInput input)
         {
             return _sharesAppService.PostTest(input);
@@ -51,6 +52,7 @@ namespace Resume.App.Controllers.App.Shares
         [HttpPost]
         [Route("GetShareCodeTextValue")]
         [AllowAnonymous]
+        [IgnoreAntiforgeryToken] // ©ø≤§≈Á√“ XSRF-TOKEN
         [ProducesResponseType(typeof(TextValueDto), StatusCodes.Status200OK)]
            
         public virtual Task<ResultDto<List<TextValueDto>>> GetShareCodeTextValueAsync(ShareCodeInput input)
