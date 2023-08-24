@@ -37,6 +37,8 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.ObjectMapping;
 using static Resume.Permissions.ResumePermissions;
 using Volo.Abp.Guids;
+using Resume.UserCompanyJobFavs;
+using Resume.UserCompanyJobApplies;
 
 namespace Resume.App
 {
@@ -139,6 +141,14 @@ namespace Resume.App
             CreateMap<SaveCompanyUserInput, RegisterBaseInput>();
             CreateMap<RegisterInput, InsertUserMainInput>();
             CreateMap<SaveCompanyUserInput, CompanyUser>();
+
+            CreateMap<SaveUserCompanyJobFavsInput, UserCompanyJobFav>();
+            CreateMap<UserCompanyJobFavsDto, UserCompanyJobFav>();
+            CreateMap<UserCompanyJobFav, UserCompanyJobFavsDto>();
+
+            CreateMap<SaveUserCompanyJobApplyInput, UserCompanyJobApply>();
+            CreateMap<UserCompanyJobApplysDto, UserCompanyJobApply>();
+            CreateMap<UserCompanyJobApply, UserCompanyJobApplysDto>();
         }
     }
 }

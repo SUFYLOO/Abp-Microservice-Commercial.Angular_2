@@ -15,6 +15,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
+using System.Xml.Linq;
 
 namespace Resume.App.Resumes
 {
@@ -41,7 +42,7 @@ namespace Resume.App.Resumes
         //public string SexName { get; set; } = "";
         //public string BloodName { get; set; } = "";
         public string MarriageName { get; set; } = "";
-       // public string PlaceOfBirthName { get; set; } = "";
+        // public string PlaceOfBirthName { get; set; } = "";
         public string MilitaryName { get; set; } = "";
         public string DisabilityCategoryName { get; set; } = "";
         //public string NationalityName { get; set; } = "";
@@ -123,8 +124,10 @@ namespace Resume.App.Resumes
     public class ResumeSkillsDto : ResumeSkillDto
     {
         // 中打輸入法名稱
-        public string ChineseTypingName { get; set; } = "";
-
+        //public string ChineseTypingName { get; set; } = "";
+        public string ComputerSkillsname { get; set; } = "";
+        public string ProfessionalLicenseName { get; set; } = "";
+        public string WorkSkillsName { get; set; } = "";
     }
 
     // 眷屬
@@ -137,14 +140,26 @@ namespace Resume.App.Resumes
 
     // 學歷資料
     public class ResumeEducationssDto : ResumeEducationsDto
-    {
- 
+    { 
+     public string EducationLevelName { get; set; }
+    public string SchoolName { get; set; }
+    public string DepartmentCategoryName { get; set; }
+    public string DepartmentCategoryName2 { get; set; }
+    public string GraduationName { get; set; }
+    public string CountryName { get; set; }
     }
 
     // 工作經歷
     public class ResumeExperiencessDto : ResumeExperiencesDto
     {
-
+        public string WorkNatureName { get; set; }
+        public string IndustryCategoryName { get; set; }
+        public string WorkPlaceName { get; set; }
+        public string SalaryPayTypeName { get; set; }
+        public string JobTypeName { get; set; }
+        public string CurrencyTypeName { get; set; }
+        public string CompanyScaleName { get; set; }
+        public string CompanyManagementNumberName { get; set; }
     }
 
     public class ResumeExperiencesJobType
@@ -183,7 +198,7 @@ namespace Resume.App.Resumes
         public List<ResumeWorkssDto> ListResumeWorkss { get; set; }
     }
     public class SaveResumeMainDto : ResumeMainDto
-    { 
+    {
 
     }
 }

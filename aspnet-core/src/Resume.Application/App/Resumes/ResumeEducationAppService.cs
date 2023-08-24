@@ -23,6 +23,139 @@ namespace Resume.App.Resumes
 {
     public partial class ResumesAppService : ApplicationService, IResumesAppService
     {
+        public virtual async Task<List<ResumeEducationssDto>> GetResumeEducationsListAsync(ResumeEducationsInput input)
+        {
+            //結果
+            var Result = new List<ResumeEducationssDto>();
+            var ex = new UserFriendlyException("錯誤訊息");
+            //常用
+
+            var ResumeMainId = input.Id;
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //主體資料
+            var qrbResumeEducations = await _appService._resumeEducationsRepository.GetQueryableAsync();
+            var qrbsResumeEducations = from c in qrbResumeEducations
+                                            //where c.UserMainId == ResumeMainId
+                                            //(c.Id == ResumeMainId)
+                                        where c.DateA <= DateTime.Now
+                                         && c.Status == "1"
+                                        select c;
+            var itemsResumMain = await AsyncExecuter.ToListAsync(qrbsResumeEducations);
+            //var itemsResumMain = await AsyncExecuter.ToListAsync(qrbsResumeEducations);
+
+            if (ex.Data.Count == 0)
+            {
+                //取得履歷所需要的代碼資料-為了加速
+                var inputShareCodeGroup = new ShareCodeGroupInput();
+                inputShareCodeGroup.ListGroupCode.Add("EducationLevel");
+                inputShareCodeGroup.ListGroupCode.Add("School");
+                inputShareCodeGroup.ListGroupCode.Add("DepartmentCategory");
+                inputShareCodeGroup.ListGroupCode.Add("Graduation");
+                inputShareCodeGroup.ListGroupCode.Add("Country");
+
+                inputShareCodeGroup.AllForGroupCode = true;
+                var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+                {
+
+                    ObjectMapper.Map(itemsResumMain, Result);
+
+                    var inputSetShareCode = new SetShareCodeInput();
+                    inputSetShareCode.ListShareCode = itemsShareCode;
+                    inputSetShareCode.Data = Result;
+                    var ListColumns = new List<NameCodeStandardDto>
+                {
+                        new NameCodeStandardDto { GroupCode = "EducationLevel", Code = "EducationLevelCode", Name = "EducationLevelName" },
+                        new NameCodeStandardDto { GroupCode = "School", Code = "SchoolCode", Name = "SchoolName" },
+                        new NameCodeStandardDto { GroupCode = "DepartmentCategory", Code = "MajorDepartmentCategoryCode", Name = "DepartmentCategoryName" },
+                        new NameCodeStandardDto { GroupCode = "DepartmentCategory", Code = "MinorDepartmentCategoryCode", Name = "DepartmentCategoryName2" },
+                        new NameCodeStandardDto { GroupCode = "Graduation", Code = "GraduationCode", Name = "GraduationName" },
+                        new NameCodeStandardDto { GroupCode = "Country", Code = "CountryCode", Name = "CountryName" }
+                };
+
+                    inputSetShareCode.ListColumns = ListColumns;
+                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeEducationssDto>(inputSetShareCode);
+                }
+            }
+
+            if (ex.Data.Count > 0)
+                throw ex;
+            return Result;
+        }
+
+        public async Task<ResumeEducationssDto> GetResumeEducationssAsync(ResumeEducationsInput input)
+        {
+            var Result = new ResumeEducationssDto();
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //系統層級
+
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //外部傳入
+            var ResumeEducationsId = input.Id;
+
+            //主體取資料
+            if (ex.Data.Count == 0)
+            {
+                var qrbResumeEducations = await _appService._resumeEducationsRepository.GetQueryableAsync();
+                var itemResumeEducations = qrbResumeEducations.FirstOrDefault(p => p.Id == ResumeEducationsId);
+
+                if (itemResumeEducations != null)
+                {
+                    var inputShareCodeGroup = new ShareCodeGroupInput();
+                    inputShareCodeGroup.ListGroupCode.Add("EducationLevel");
+                    inputShareCodeGroup.ListGroupCode.Add("School");
+                    inputShareCodeGroup.ListGroupCode.Add("DepartmentCategory");
+                    inputShareCodeGroup.ListGroupCode.Add("Graduation");
+                    inputShareCodeGroup.ListGroupCode.Add("Country");
+                    inputShareCodeGroup.AllForGroupCode = true;
+
+                    var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+                    {
+                        ObjectMapper.Map(itemResumeEducations, Result);
+
+                        var inputSetShareCode = new SetShareCodeInput();
+                        inputSetShareCode.ListShareCode = itemsShareCode;
+                        inputSetShareCode.Data = new List<ResumeEducationssDto>();
+                        var ListColumns = new List<NameCodeStandardDto>()
+                        {
+                        new NameCodeStandardDto { GroupCode = "EducationLevel", Code = "EducationLevelCode", Name = "EducationLevelName" },
+                        new NameCodeStandardDto { GroupCode = "School", Code = "SchoolCode", Name = "SchoolName" },
+                        new NameCodeStandardDto { GroupCode = "DepartmentCategory", Code = "MajorDepartmentCategoryCode", Name = "DepartmentCategoryName" },
+                        new NameCodeStandardDto { GroupCode = "DepartmentCategory", Code = "MinorDepartmentCategoryCode", Name = "DepartmentCategoryName2" },
+                        new NameCodeStandardDto { GroupCode = "Graduation", Code = "GraduationCode", Name = "GraduationName" },
+                        new NameCodeStandardDto { GroupCode = "Country", Code = "CountryCode", Name = "CountryName" }
+                        };
+
+                        inputSetShareCode.ListColumns = ListColumns;
+                        _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeEducationssDto>(inputSetShareCode);
+
+                        //var inputShareUploadList = new ShareUploadListInput();
+                        //inputShareUploadList.Key1 = "ResumeEducations";
+                        //inputShareUploadList.Key2 = "";
+                        //inputShareUploadList.Key3 = itemResumeEducations.ResumeMainId.ToString();
+                        //var itemsShareUploadList = await _appService._serviceProvider.GetService<SharesAppService>().GetShareUploadListAsync(inputShareUploadList);
+                    };
+                }
+                else
+                {
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
+                }
+            }
+            //回傳錯誤
+            if (ex.Data.Count > 0)
+
+                throw ex;
+            return Result;
+        }
+
         public async Task<ResumeEducationssDto> SaveResumeEducationsAsync(SaveResumeEducationsInput input)
         {
             var Result = new ResumeEducationssDto();
@@ -48,7 +181,7 @@ namespace Resume.App.Resumes
             input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
 
             //檢查
-            //await SaveResumeEducationsAsync(input);
+            await SaveResumeEducationsCheckAsync(input);
 
             //主體資料
             var ResumeEducation = await _appService._resumeEducationsRepository.GetQueryableAsync();
@@ -78,74 +211,60 @@ namespace Resume.App.Resumes
 
         public virtual async Task<ResultDto> SaveResumeEducationsCheckAsync(SaveResumeEducationsInput input)
         {
-
+            //結果
             var Result = new ResultDto();
+            var ex = new UserFriendlyException("錯誤訊息");
 
+            //常用
+
+            //系統層級
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>()?.CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
+
+            //外部傳入
             var ResumeMainId = input.ResumeMainId;
-            var SchoolName = input.SchoolName;
-            var MajorDepartmentName = input.MajorDepartmentName;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
             var EducationLevelCode = input.EducationLevelCode;
+            var SchoolCode = input.SchoolCode;
             var MajorDepartmentCategoryCode = input.MajorDepartmentCategoryCode;
             var MinorDepartmentCategoryCode = input.MinorDepartmentCategoryCode;
             var GraduationCode = input.GraduationCode;
-            var CountryCode = input.CountryCode;
+            var Country = input.CountryCode;
 
-            if(SchoolName.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "學校名稱不能空白" });
+            //必要代碼檢核
+            var conditions = new List<GroupCodeConditions>()
+            {
+                new GroupCodeConditions(){GroupCode = "EducationLevel",Code =EducationLevelCode, ErrorMessage = "教育類別代碼錯誤" ,AllowNull = false},
+                new GroupCodeConditions(){GroupCode = "School",Code = SchoolCode , ErrorMessage = "學校類別代碼錯誤" ,AllowNull = false},
+                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MajorDepartmentCategoryCode , ErrorMessage = "主修代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MinorDepartmentCategoryCode , ErrorMessage = "雙主修代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "Graduation",Code = GraduationCode , ErrorMessage = "畢業代碼錯誤", AllowNull = false},
+                new GroupCodeConditions(){GroupCode = "Country",Code = Country , ErrorMessage = "國家代碼錯誤", AllowNull = false},
 
-            if (MajorDepartmentCategoryCode.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "科系名稱不能空白" });
+            };
 
-            if (EducationLevelCode.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "教育程度不能空白" });
+            Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            if (GraduationCode.IsNullOrEmpty())
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "就學狀態不能空白" });
-
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-            inputShareCodeGroup.ListGroupCode.Add("EducationLevel");
-            inputShareCodeGroup.ListGroupCode.Add("MajorDepartmentCategory");
-            inputShareCodeGroup.ListGroupCode.Add("MinorDepartmentCategory");
-            inputShareCodeGroup.ListGroupCode.Add("Graduation");
-            inputShareCodeGroup.ListGroupCode.Add("Country");
-
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "EducationLevel" && p.Code == EducationLevelCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "教育程度代碼錯誤" });
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "MajorDepartmentCategory" && p.Code == MajorDepartmentCategoryCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "科系類別代碼錯誤" });
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "MinorDepartmentCategory" && p.Code == MinorDepartmentCategoryCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "雙主修類別代碼錯誤" });
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "Graduation" && p.Code == GraduationCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "畢業類別代碼錯誤" });
-
-            if (!itemsShareCode.Any(p => p.GroupCode == "Country" && p.Code == CountryCode))
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "國家代碼錯誤" });
+            if (DateA > DateD)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "日期輸入錯誤");
 
             var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
             var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == ResumeMainId);
 
             if (itemResumeMain == null)
-                Result.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = "資料不存在" });
+                ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
 
-            var ex = new UserFriendlyException("系統發生錯誤");
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 
             Result.Check = !Result.Messages.Any(p => !p.Pass);
-
             if (!Result.Check)
                 throw ex;
 
             return Result;
         }
-
-
-
 
         public virtual async Task<ResumeEducationssDto> DeleteResumeEducationsAsync(ResumeEducationsInput input)
         {

@@ -62,9 +62,11 @@ namespace Resume.App.Companys
             else
             {
                 //不要變更的值
-                input.Sort = itemCompanyJobApplicationMethod.Sort;
-                input.DateA = itemCompanyJobApplicationMethod.DateA;
-                input.DateD = itemCompanyJobApplicationMethod.DateD;
+                input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
+                input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
+                input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+                input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+                input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
 
                 ObjectMapper.Map(input, itemCompanyJobApplicationMethod);
                 await _appService._companyJobApplicationMethodRepository.UpdateAsync(itemCompanyJobApplicationMethod);

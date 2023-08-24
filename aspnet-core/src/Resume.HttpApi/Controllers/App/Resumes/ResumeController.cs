@@ -337,17 +337,17 @@ namespace Resume.App.Controllers.App.Resumes
             return _resumesAppService.GetResumeLanguagesClassificationListAsync(input);
         }
 
-        [HttpPost]
-        [Route("GetResumeSkillsList")]
-        [ProducesResponseType(typeof(ResumeSkillsDto), StatusCodes.Status200OK)]
+        //[HttpPost]
+        //[Route("GetResumeSkillsList")]
+        //[ProducesResponseType(typeof(ResumeSkillsDto), StatusCodes.Status200OK)]
         
-        public virtual Task<ResultDto<List<ResumeSkillsDto>>> GetResumeSkillsListAsync(ResumeInput input)
-        {
-            return _resumesAppService.GetResumeSkillsListAsync(input);
-        }
+        //public virtual Task<ResultDto<List<ResumeSkillsDto>>> GetResumeSkillsListAsync(ResumeInput input)
+        //{
+        //    return _resumesAppService.GetResumeSkillsListAsync(input);
+        //}
 
         [HttpPost]
-        [Route("GetResumeDependentssList")]
+        [Route("GetResumeDependentsList")]
         [ProducesResponseType(typeof(ResumeDependentssDto), StatusCodes.Status200OK)]
         
         public virtual Task<ResultDto<List<ResumeDependentssDto>>> GetResumeDependentssListAsync(ResumeInput input)
@@ -358,10 +358,10 @@ namespace Resume.App.Controllers.App.Resumes
         [HttpPost]
         [Route("GetResumeEducationssList")]
         [ProducesResponseType(typeof(ResumeEducationssDto), StatusCodes.Status200OK)]
-        
-        public virtual Task<ResultDto<List<ResumeEducationssDto>>> GetResumeEducationssListAsync(ResumeInput input)
+
+        public virtual Task<List<ResumeEducationssDto>> GetResumeEducationsListAsync(ResumeEducationsInput input)
         {
-            return _resumesAppService.GetResumeEducationssListAsync(input);
+            return _resumesAppService.GetResumeEducationsListAsync(input);
         }
 
         [HttpPost]
@@ -469,6 +469,33 @@ namespace Resume.App.Controllers.App.Resumes
         public virtual Task<ResumeSkillsDto> SaveResumeSkillAsync(SaveResumeSkillInput input)
         {
             return _resumesAppService.SaveResumeSkillAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveResumeSkillCheck")]
+        [ProducesResponseType(typeof(ResultDto), StatusCodes.Status200OK)]
+        public virtual Task<ResultDto> SaveResumeSkillCheckAsync(SaveResumeSkillInput input)
+        {
+            return _resumesAppService.SaveResumeSkillCheckAsync(input);
+        }
+
+
+        [HttpPost]
+        [Route("GetResumeSkills")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<ResumeSkillsDto> GetResumeSkillsAsync(ResumeSkillInput input)
+        {
+            return _resumesAppService.GetResumeSkillsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetResumeSkillList")]
+        [ProducesResponseType(typeof(ResumeExperiencessDto), StatusCodes.Status200OK)]
+
+        public virtual Task<List<ResumeSkillsDto>> GetResumeSkillListAsync(ResumeSkillInput input)
+        {
+            return _resumesAppService.GetResumeSkillListAsync(input);
         }
     }
 }

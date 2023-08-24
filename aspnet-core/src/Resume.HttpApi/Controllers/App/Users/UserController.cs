@@ -284,5 +284,85 @@ namespace Resume.App.Controllers.App.Users
         {
             return _usersAppService.GetUserCompanyBindListAsync(input);
         }
+
+        [HttpPost]
+        [Route("GetUserCompanyJobFavsList")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<List<UserCompanyJobFavsDto>> GetUserCompanyJobFavsListAsync(UserCompanyJobFavsInput input)
+        {
+            return _usersAppService.GetUserCompanyJobFavsListAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetUserCompanyJobFavs")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobFavsDto> GetUserCompanyJobFavsAsync(UserCompanyJobFavsInput input)
+        {
+            return _usersAppService.GetUserCompanyJobFavsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveUserCompanyJobFavs")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobFavsDto> SaveUserCompanyJobFavsAsync(SaveUserCompanyJobFavsInput input)
+        {
+            return _usersAppService.SaveUserCompanyJobFavsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveUserCompanyJobFavsCheck")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<ResultDto> SaveUserCompanyJobFavsCheckAsync(SaveUserCompanyJobFavsInput input)
+        {
+            return _usersAppService.SaveUserCompanyJobFavsCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("DeleteUserCompanyJobFavs")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobFavsDto> DeleteUserCompanyJobFavsAsync(UserCompanyJobFavsInput input)
+        {
+            return _usersAppService.DeleteUserCompanyJobFavsAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetUserCompanyJobApplyList")]
+        [ProducesResponseType(typeof(UserCompanyJobApplysDto), StatusCodes.Status200OK)]
+        public virtual Task<List<UserCompanyJobApplysDto>> GetUserCompanyJobApplyListAsync(UserCompanyJobApplyInput input)
+        {
+            return _usersAppService.GetUserCompanyJobApplyListAsync(input);
+        }
+
+        [HttpPost]
+        [Route("GetUserCompanyJobApply")]
+        [ProducesResponseType(typeof(UserCompanyJobApplysDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobApplysDto> GetUserCompanyJobApplyAsync(UserCompanyJobApplyInput input)
+        {
+            return _usersAppService.GetUserCompanyJobApplyAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveUserCompanyJobApply")]
+        [ProducesResponseType(typeof(UserCompanyJobApplysDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobApplysDto> SaveUserCompanyJobApplyAsync(SaveUserCompanyJobApplyInput input)
+        {
+            return _usersAppService.SaveUserCompanyJobApplyAsync(input);
+        }
+
+        [HttpPost]
+        [Route("SaveUserCompanyJobApplyCheck")]
+        [ProducesResponseType(typeof(UserCompanyJobFavsDto), StatusCodes.Status200OK)]
+        public virtual Task<ResultDto> SaveUserCompanyJobApplyCheckAsync(SaveUserCompanyJobApplyInput input)
+        {
+            return _usersAppService.SaveUserCompanyJobApplyCheckAsync(input);
+        }
+
+        [HttpPost]
+        [Route("DeleteUserCompanyJobApply")]
+        [ProducesResponseType(typeof(UserCompanyJobApplysDto), StatusCodes.Status200OK)]
+        public virtual Task<UserCompanyJobApplysDto> DeleteUserCompanyJobApplyAsync(UserCompanyJobApplyInput input)
+        {
+            return _usersAppService.DeleteUserCompanyJobApplyAsync(input);
+        }
     }
 }

@@ -1,4 +1,6 @@
 using Resume.UserCompanyBinds;
+using Resume.UserCompanyJobApplies;
+using Resume.UserCompanyJobFavs;
 using System;
 
 namespace Resume.App.Users
@@ -126,5 +128,26 @@ namespace Resume.App.Users
     public class DeleteUserAccountBindInput
     {
         public Guid Id { get; set; }
+    }
+
+    public class SaveUserCompanyJobFavsInput : UserCompanyJobFavDto
+    {
+        public bool RefreshItem { get; set; } = false;
+    }
+
+    public class UserCompanyJobFavsInput : StdInput
+    {
+        
+    }
+
+    public class SaveUserCompanyJobApplyInput : UserCompanyJobApplyDto
+    {
+        public bool RefreshItem { get; set; } = false;
+        public int UserMainIdname { get; set; }
+    }
+
+    public class UserCompanyJobApplyInput : StdInput
+    {
+       
     }
 }

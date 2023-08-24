@@ -144,6 +144,12 @@ namespace Resume.App.Resumes
         public string Name { get; set; }
         [Required]
         public string JobName { get; set; }
+        public List<JobTypeDto> ListJobType { get; set; }
+    }
+    public class JobTypeDto
+    {
+        public string JobTypeName { get; set; }
+        public string YearMonth { get; set; }
     }
 
     public class ResumeEducationsInput : StdInput
@@ -165,4 +171,8 @@ namespace Resume.App.Resumes
         public bool RefreshItem { get; set; }
     }
 
+    public class ResumeSkillInput : StdInput
+    {
+
+    }
 }

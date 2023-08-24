@@ -1,4 +1,6 @@
 using Resume.ResumeDependentss;
+using Resume.UserCompanyJobApplies;
+using Resume.UserCompanyJobFavs;
 using Resume.UserInfos;
 using Resume.UserMains;
 using System;
@@ -116,7 +118,6 @@ namespace Resume.App.Users
     {
         public List<NameIdStandardDto> ListCompanyMain { get; set; } = new List<NameIdStandardDto>();
         public List<NameIdStandardDto> ListCompanyJob { get; set; } = new List<NameIdStandardDto>();
-
     }
 
     public class DeleteUserCompanyBindDto
@@ -129,5 +130,15 @@ namespace Resume.App.Users
     {
         public bool Pass { get; set; } = false;
 
+    }
+
+    public class UserCompanyJobFavsDto : UserCompanyJobFavDto
+    {
+
+    }
+
+   public class  UserCompanyJobApplysDto : UserCompanyJobApplyDto
+    {
+        public int UserMainIdname { get; set; }
     }
 }

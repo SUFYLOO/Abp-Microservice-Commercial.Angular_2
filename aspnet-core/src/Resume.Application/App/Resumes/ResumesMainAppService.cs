@@ -174,6 +174,8 @@ namespace Resume.App.Resumes
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
             input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
             input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
 
             //檢查
             await SaveResumeMainsCheckAsync(input);
@@ -304,6 +306,48 @@ namespace Resume.App.Resumes
             if (!Result.Check)
                 throw ex;
 
+            return Result;
+        }
+
+        public virtual async Task<ResumeMainsDto> DeleteResumeMainAsync(ResumeMainInput input)
+        {
+            var Result = new ResumeMainsDto();
+            var ex = new UserFriendlyException("錯誤訊息");
+
+            //常用
+
+            //系統層級
+
+            var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
+            var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
+            var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>().SystemUserRoleKeys;
+
+            //強制把input帶入系統值
+
+            //外部傳入
+            var Id = input.Id;
+
+            //預設值
+
+            //檢查
+
+
+            //主體資料
+            var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+            var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == Id);
+            if (ex.Data.Count == 0)
+            {
+                if (itemResumeMain == null)
+                    ex.Data.Add(GuidGenerator.Create().ToString(), "沒有此筆資料");
+                else
+                {
+                    await _appService._resumeMainRepository.DeleteAsync(itemResumeMain);
+                    ObjectMapper.Map(itemResumeMain, Result);
+                }
+            }
+
+            if (ex.Data.Count > 0)
+                throw ex;
             return Result;
         }
     }

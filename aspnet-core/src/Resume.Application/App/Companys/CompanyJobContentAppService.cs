@@ -46,6 +46,7 @@ namespace Resume.App.Companys
             input.Status = "1";
             input.ExtendedInformation = "";
             input.CompanyMainId = CompanyMainId;
+
             //var jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             input.DisabilityCategory = JsonSerializer.Serialize(input.ListDisabilityCategory, new JsonSerializerOptions
             {
@@ -62,6 +63,9 @@ namespace Resume.App.Companys
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
             input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
             input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
+
 
             //呼叫CompanyJob
             var itemCompanyJob = ObjectMapper.Map<SaveCompanyJobContentInput, SaveCompanyJobInput>(input);
@@ -119,7 +123,7 @@ namespace Resume.App.Companys
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
             //外部傳入
-             var JobTypeCode = input.JobTypeCode ?? "";
+            var JobTypeCode = input.JobTypeCode ?? "";
             var SalaryPayTypeCode = input.SalaryPayTypeCode ?? "";
             var WorkHoursCode = input.WorkHours ?? "";
             var WorkRemoteTypeCode = input.WorkRemoteTypeCode;
@@ -142,11 +146,12 @@ namespace Resume.App.Companys
                 new GroupCodeConditions(){GroupCode = "WorkIdentityCode",Code = WorkIdentityCode , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
             };
 
-            foreach (var itemDisabilityCategory in ListDisabilityCategory)
+            foreach (var itemListDisabilityCategory in ListDisabilityCategory)
             {
-                conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤", AllowNull = true });
-                conditions.Add(new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true });
+                new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemListDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true };
+                new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemListDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤", AllowNull = true };
             }
+
             Result =  await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
 
@@ -188,10 +193,6 @@ namespace Resume.App.Companys
             if (ex.Data.Count == 0)
             {
                 var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
-                qrbCompanyJobContent = (from c in qrbCompanyJobContent
-                                 where c.Status == "1"
-                                 orderby c.Sort
-                                 select c);
                 var itemCompanyJobContent = qrbCompanyJobContent.FirstOrDefault(p => p.Id == CompanyJobContentId);
 
                 if (itemCompanyJobContent != null)
@@ -203,7 +204,8 @@ namespace Resume.App.Companys
                     inputShareCodeGroup.ListGroupCode.Add("HolidaySystem");
                     inputShareCodeGroup.ListGroupCode.Add("WorkDay");
                     inputShareCodeGroup.ListGroupCode.Add("WorkIdentityCode");
-                  //inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
+                    inputShareCodeGroup.ListGroupCode.Add("DisabilityLevel");
+                    inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
 
                     inputShareCodeGroup.AllForGroupCode = true;
                     var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
@@ -213,6 +215,7 @@ namespace Resume.App.Companys
                     var inputSetShareCode = new SetShareCodeInput();
                     inputSetShareCode.ListShareCode = itemsShareCode;
                     inputSetShareCode.Data = new List<CompanyJobContentsDto>() { Result };
+                    var ListDisabilityCategory = new List<DisabilityCategoryDto>();
 
                     var ListColumns = new List<NameCodeStandardDto>
                     {
@@ -222,7 +225,8 @@ namespace Resume.App.Companys
                         new NameCodeStandardDto { GroupCode = "HolidaySystem", Code = "HolidaySystemCode", Name = "HolidaySystemName" },
                         new NameCodeStandardDto { GroupCode = "WorkDay", Code = "WorkDayCode", Name = "WorkDayName" },
                         new NameCodeStandardDto { GroupCode = "WorkIdentityCode", Code = "WorkIdentityCode", Name = "WorkIdentityCodeName" },
-                      //  new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" }
+                        new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName"},
+                        new NameCodeStandardDto { GroupCode = "DisabilityLevel", Code = "DisabilityLevelCode", Name = "DisabilityLevelName" }
                     };
 
                     inputSetShareCode.ListColumns = ListColumns;
@@ -241,7 +245,7 @@ namespace Resume.App.Companys
             return Result;
         }
 
-        public virtual async Task<List<CompanyJobContentsDto>> GetCompanyJobContentListAsync(CompanyJobContentInput input)
+         public virtual async Task<List<CompanyJobContentsDto>> GetCompanyJobContentListAsync(CompanyJobContentInput input)
         {   //結果
             var Result = new List<CompanyJobContentsDto>();
             var ex = new UserFriendlyException("錯誤訊息");

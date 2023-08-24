@@ -60,7 +60,7 @@ namespace Resume.App.Users
 {
     [RemoteService(IsEnabled = false)]
 
-    public class UsersAppService : ApplicationService, IUsersAppService
+    public partial class UsersAppService : ApplicationService, IUsersAppService
     {
         private readonly AppService _appService;
 

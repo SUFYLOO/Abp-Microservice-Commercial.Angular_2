@@ -172,7 +172,7 @@ namespace Resume.App.Companys
 
     public class CompanyJobContentInput : StdInput
     {
-
+        public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
     }
 
     public class CompanyJobConditionInput : StdInput

@@ -37,8 +37,6 @@ namespace Resume.App.Resumes
             //強制帶入Id
 
             //外部傳入
-            input.Status = "1";
-            input.ExtendedInformation = "";
             var RefreshItem = input.RefreshItem;
             var ResumeExperiencesId = input.Id;
 
@@ -46,9 +44,11 @@ namespace Resume.App.Resumes
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
             input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
             input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
 
             //檢查
-            //await SaveResumeExperiencesAsync(input);
+            await SaveResumeExperiencesCheckAsync(input);
 
             //主體資料
             var ResumeExperiences = await _appService._resumeExperiencesRepository.GetQueryableAsync();
@@ -64,14 +64,12 @@ namespace Resume.App.Resumes
             {
                 //不要變更的值
                 input.Sort = itemResumeExperiences.Sort;
-                input.DateD = itemResumeExperiences.DateD;
-                input.DateA = itemResumeExperiences.DateA;
 
                 ObjectMapper.Map(input, itemResumeExperiences);
                 await _appService._resumeExperiencesRepository.UpdateAsync(itemResumeExperiences);
             }
 
-            ObjectMapper.Map(itemResumeExperiences, input);
+            ObjectMapper.Map(itemResumeExperiences, Result);
 
             return Result;
         }
@@ -91,10 +89,12 @@ namespace Resume.App.Resumes
 
             //外部傳入
             var ResumeMainId = input.ResumeMainId;
+            var DateA = input.DateA;
+            var DateD = input.DateD;
             var WorkNatureCode = input.WorkNatureCode;
             var IndustryCategoryCode = input.IndustryCategoryCode;
             var JobName = input.JobName;
-            var JobType = input.JobType;
+            var ListJobType = input.ListJobType;
             var WorkPlaceCode = input.WorkPlaceCode;
             var SalaryPayTypeCode = input.SalaryPayTypeCode;
             var CurrencyTypeCode = input.CurrencyTypeCode;
@@ -106,7 +106,7 @@ namespace Resume.App.Resumes
             {
                 new GroupCodeConditions(){GroupCode = "WorkNature",Code =WorkNatureCode, ErrorMessage = "工作性質代碼錯誤" ,AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "IndustryCategory",Code = IndustryCategoryCode , ErrorMessage = "產業類別代碼錯誤" ,AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "JobType",Code = JobType  , ErrorMessage = "職務類別代碼錯誤", AllowNull = true},
+                //new GroupCodeConditions(){GroupCode = "JobType",Code = JobType , ErrorMessage = "職務類別代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "WorkPlace",Code = WorkPlaceCode , ErrorMessage = "工作地點代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "SalaryPayType",Code = SalaryPayTypeCode , ErrorMessage = "薪資發放分類代碼錯誤", AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "CurrencyType",Code = CurrencyTypeCode , ErrorMessage = "幣別代碼錯誤", AllowNull = false},
@@ -116,19 +116,20 @@ namespace Resume.App.Resumes
 
             Result = await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
-            var qrbCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
-            var itemCompanyJob = qrbCompanyJob.FirstOrDefault(p => p.Id == ResumeMainId);
+            if (DateA > DateD)
+                ex.Data.Add(GuidGenerator.Create().ToString(), "日期輸入錯誤");
 
-            if (itemCompanyJob == null)
+            var qrbResumeMain = await _appService._resumeMainRepository.GetQueryableAsync();
+            var itemResumeMain = qrbResumeMain.FirstOrDefault(p => p.Id == ResumeMainId);
+
+            if (itemResumeMain == null)
                 ex.Data.Add(GuidGenerator.Create().ToString(), "沒有這筆資料");
 
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
 
-            Result.Check = !Result.Messages.Any(p => !p.Pass);
-            if (!Result.Check)
+            if (ex.Data.Count > 0)
                 throw ex;
-
             return Result;
         }
 
@@ -139,6 +140,8 @@ namespace Resume.App.Resumes
             var ex = new UserFriendlyException("錯誤訊息");
             //常用
 
+            var ResumeMainId = input.Id;
+
             //系統層級
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>().UserMainId;
@@ -147,10 +150,10 @@ namespace Resume.App.Resumes
             //主體資料
             var qrbResumeExperiences = await _appService._resumeExperiencesRepository.GetQueryableAsync();
             var qrbsResumeExperiences = from c in qrbResumeExperiences
-                                        //where c.UserMainId == ResumeMainId
-                                         //&& (c.Id == ResumeMainId)
-                                        //&& c.DateA <= DateNow && DateNow <= c.DateD
-                                        //&& c.Status == "1"
+                                            //where c.UserMainId == ResumeMainId
+                                            //(c.Id == ResumeMainId)
+                                        where c.DateA <= DateTime.Now
+                                         && c.Status == "1"
                                         select c;
             var itemsResumMain = await AsyncExecuter.ToListAsync(qrbsResumeExperiences);
             //var itemsResumMain = await AsyncExecuter.ToListAsync(qrbsResumeExperiences);
@@ -221,10 +224,14 @@ namespace Resume.App.Resumes
                 if (itemResumeExperiences != null)
                 {
                     var inputShareCodeGroup = new ShareCodeGroupInput();
-                    inputShareCodeGroup.ListGroupCode.Add("Marriage");
-                    inputShareCodeGroup.ListGroupCode.Add("Military");
-                    inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
-                    inputShareCodeGroup.ListGroupCode.Add("SpecialIdentity");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkNature");
+                    inputShareCodeGroup.ListGroupCode.Add("IndustryCategory");
+                    inputShareCodeGroup.ListGroupCode.Add("WorkPlace");
+                    inputShareCodeGroup.ListGroupCode.Add("JobType");
+                    inputShareCodeGroup.ListGroupCode.Add("SalaryPayType");
+                    inputShareCodeGroup.ListGroupCode.Add("CurrencyType");
+                    inputShareCodeGroup.ListGroupCode.Add("CompanyScale");
+                    inputShareCodeGroup.ListGroupCode.Add("CompanyManagementNumber");
                     inputShareCodeGroup.AllForGroupCode = true;
                     var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
 
@@ -236,20 +243,24 @@ namespace Resume.App.Resumes
                         inputSetShareCode.Data = new List<ResumeExperiencessDto>();
                         var ListColumns = new List<NameCodeStandardDto>()
                         {
-                        new NameCodeStandardDto { GroupCode = "Marriage", Code = "MarriageCode", Name = "MarriageName" },
-                        new NameCodeStandardDto { GroupCode = "Military", Code = "MilitaryCode", Name = "MilitaryName" },
-                        new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" },
-                        new NameCodeStandardDto { GroupCode = "SpecialIdentity", Code = "SpecialIdentityCode", Name = "SpecialIdentityName" },
+                        new NameCodeStandardDto { GroupCode = "WorkNature", Code = "WorkNatureCode", Name = "WorkNatureName" },
+                        new NameCodeStandardDto { GroupCode = "IndustryCategory", Code = "IndustryCategoryCode", Name = "IndustryCategoryName" },
+                        new NameCodeStandardDto { GroupCode = "WorkPlace", Code = "WorkPlaceCode", Name = "WorkPlaceName" },
+                        new NameCodeStandardDto { GroupCode = "SalaryPayType", Code = "SalaryPayTypeCode", Name = "SalaryPayTypeName" },
+                        new NameCodeStandardDto { GroupCode = "JobType", Code = "JobType", Name = "JobTypeName" },
+                        new NameCodeStandardDto { GroupCode = "CurrencyType", Code = "CurrencyTypeCode", Name = "CurrencyTypeName" },
+                        new NameCodeStandardDto { GroupCode = "CompanyScale", Code = "CompanyScaleCode", Name = "CompanyScaleName" },
+                        new NameCodeStandardDto { GroupCode = "CompanyManagementNumber", Code = "CompanyManagementNumberCode", Name = "CompanyManagementNumberName" }
                         };
 
                         inputSetShareCode.ListColumns = ListColumns;
                         _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeExperiencessDto>(inputSetShareCode);
 
-                        var inputShareUploadList = new ShareUploadListInput();
-                        inputShareUploadList.Key1 = "ResumeExperiences";
-                        inputShareUploadList.Key2 = "";
-                        inputShareUploadList.Key3 = itemResumeExperiences.ResumeMainId.ToString();
-                        var itemsShareUploadList = await _appService._serviceProvider.GetService<SharesAppService>().GetShareUploadListAsync(inputShareUploadList);
+                        //var inputShareUploadList = new ShareUploadListInput();
+                        //inputShareUploadList.Key1 = "ResumeExperiences";
+                        //inputShareUploadList.Key2 = "";
+                        //inputShareUploadList.Key3 = itemResumeExperiences.ResumeMainId.ToString();
+                        //var itemsShareUploadList = await _appService._serviceProvider.GetService<SharesAppService>().GetShareUploadListAsync(inputShareUploadList);
                     };
                 }
                 else

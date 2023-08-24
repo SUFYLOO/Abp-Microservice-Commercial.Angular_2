@@ -99,6 +99,9 @@ namespace Resume.App
         public readonly IUserAccountBindRepository _userAccountBindRepository;
         public readonly IUserVerifyRepository _userVerifyRepository;
         public readonly IUserTokenRepository _userTokenRepository;
+        public readonly IUserCompanyJobFavRepository _userCompanyJobFavRepository;
+        public readonly IUserCompanyJobPairRepository _userCompanyJobPairRepository;
+        public readonly IUserCompanyJobApplyRepository _userCompanyJobApplyRepository;
 
         public readonly IResumeMainRepository _resumeMainRepository;
         public readonly IResumeSnapshotRepository _resumeSnapshotRepository;
@@ -193,6 +196,8 @@ namespace Resume.App
         public readonly UserTokensAppService _userTokensAppService;
         public readonly UserVerifysAppService _userVerifysAppService;
 
+
+
         public readonly ILogger<AppService> _logger;
 
         public readonly IServiceProvider _serviceProvider;
@@ -227,6 +232,9 @@ namespace Resume.App
           IUserAccountBindRepository userAccountBindRepository,
           IUserVerifyRepository userVerifyRepository,
           IUserTokenRepository userTokenRepository,
+          IUserCompanyJobFavRepository userCompanyJobFavRepository,
+          IUserCompanyJobPairRepository userCompanyJobPairRepository,
+          IUserCompanyJobApplyRepository userCompanyJobApplyRepository,
 
           IResumeMainRepository resumeMainRepository,
           IResumeSnapshotRepository resumeSnapshotRepository,
@@ -252,6 +260,8 @@ namespace Resume.App
           ICompanyJobConditionRepository companyJobConditionRepository,
           ICompanyJobApplicationMethodRepository companyJobApplicationMethodRepository,
           ICompanyJobPairRepository companyJobPairRepository,
+
+
 
           ITradeProductRepository tradeProductRepository,
           ITradeOderDetailRepository tradeOderDetailRepository,
@@ -355,6 +365,9 @@ namespace Resume.App
             _userAccountBindRepository = userAccountBindRepository;
             _userVerifyRepository = userVerifyRepository;
             _userTokenRepository = userTokenRepository;
+            _userCompanyJobFavRepository = userCompanyJobFavRepository;
+            _userCompanyJobPairRepository = userCompanyJobPairRepository;
+            _userCompanyJobApplyRepository = userCompanyJobApplyRepository;
 
             _resumeMainRepository = resumeMainRepository;
             _resumeSnapshotRepository = resumeSnapshotRepository;
@@ -380,6 +393,7 @@ namespace Resume.App
             _companyJobConditionRepository = companyJobConditionRepository;
             _companyJobApplicationMethodRepository = companyJobApplicationMethodRepository;
             _companyJobPairRepository = companyJobPairRepository;
+
 
             _tradeProductRepository = tradeProductRepository;
             _tradeOderDetailRepository = tradeOderDetailRepository;

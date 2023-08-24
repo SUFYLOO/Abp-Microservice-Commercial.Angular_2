@@ -35,6 +35,9 @@ namespace Resume.App.Companys
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
             input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
             input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
+            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
+            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
+
 
             //檢查
             await SaveCompanyJobPayCheckAsync(input);

@@ -53,6 +53,17 @@ namespace Resume.App.Users
         Task<ResultDto<DeleteUserCompanyBindDto>> DeleteUserCompanyBindAsync(DeleteUserCompanyBindInput input);
         Task<ResultDto<UserCompanyBindListDto>> GetUserCompanyBindListAsync(UserCompanyBindListInput input);
 
-        
+        Task<List<UserCompanyJobFavsDto>> GetUserCompanyJobFavsListAsync(UserCompanyJobFavsInput input);
+        Task<UserCompanyJobFavsDto> GetUserCompanyJobFavsAsync(UserCompanyJobFavsInput input);
+        Task<UserCompanyJobFavsDto> SaveUserCompanyJobFavsAsync(SaveUserCompanyJobFavsInput input);
+        Task<ResultDto> SaveUserCompanyJobFavsCheckAsync(SaveUserCompanyJobFavsInput input);
+        Task<UserCompanyJobFavsDto> DeleteUserCompanyJobFavsAsync(UserCompanyJobFavsInput input);
+
+        Task<List<UserCompanyJobApplysDto>> GetUserCompanyJobApplyListAsync(UserCompanyJobApplyInput input);
+        Task<UserCompanyJobApplysDto> GetUserCompanyJobApplyAsync(UserCompanyJobApplyInput input);
+        Task<UserCompanyJobApplysDto> SaveUserCompanyJobApplyAsync(SaveUserCompanyJobApplyInput input);
+        Task<ResultDto> SaveUserCompanyJobApplyCheckAsync(SaveUserCompanyJobApplyInput input);
+         Task<UserCompanyJobApplysDto> DeleteUserCompanyJobApplyAsync(UserCompanyJobApplyInput input);
+
     }
 }
