@@ -228,8 +228,8 @@ namespace Resume.App.Resumes
             var DateD = input.DateD;
             var EducationLevelCode = input.EducationLevelCode;
             var SchoolCode = input.SchoolCode;
-            var MajorDepartmentCategoryCode = input.MajorDepartmentCategoryCode;
-            var MinorDepartmentCategoryCode = input.MinorDepartmentCategoryCode;
+            var MajorDepartmentCategory = input.MajorDepartmentCategory;
+            var MinorDepartmentCategory = input.MinorDepartmentCategory;
             var GraduationCode = input.GraduationCode;
             var Country = input.CountryCode;
 
@@ -238,8 +238,8 @@ namespace Resume.App.Resumes
             {
                 new GroupCodeConditions(){GroupCode = "EducationLevel",Code =EducationLevelCode, ErrorMessage = "教育類別代碼錯誤" ,AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "School",Code = SchoolCode , ErrorMessage = "學校類別代碼錯誤" ,AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MajorDepartmentCategoryCode , ErrorMessage = "主修代碼錯誤", AllowNull = true},
-                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MinorDepartmentCategoryCode , ErrorMessage = "雙主修代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MajorDepartmentCategory , ErrorMessage = "主修代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MinorDepartmentCategory , ErrorMessage = "雙主修代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "Graduation",Code = GraduationCode , ErrorMessage = "畢業代碼錯誤", AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "Country",Code = Country , ErrorMessage = "國家代碼錯誤", AllowNull = false},
 

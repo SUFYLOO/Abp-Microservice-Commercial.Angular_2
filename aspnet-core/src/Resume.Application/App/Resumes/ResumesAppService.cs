@@ -1840,8 +1840,8 @@ namespace Resume.App.Resumes
                 else
                     await _appService._resumeSkillRepository.UpdateAsync(item);
 
-                item.ComputerSkills = input.ComputerSkills;
-                item.ComputerSkillsEtc = input.ComputerSkillsEtc;
+                item.ComputerExpertise = input.ComputerExpertise;
+                item.ComputerExpertiseEtc = input.ComputerExpertiseEtc;
                 item.ChineseTypingSpeed = input.ChineseTypingSpeed;
                 item.ChineseTypingCode = input.ChineseTypingCode;
                 item.EnglishTypingSpeed = input.EnglishTypingSpeed;
@@ -1958,8 +1958,8 @@ namespace Resume.App.Resumes
             var Id = input.Id;  //空白時當做新增
             var SchoolCode = input.SchoolCode ?? "";
             var EducationLevelCode = input.EducationLevelCode ?? "";
-            var MajorDepartmentCategoryCode = input.MajorDepartmentCategoryCode ?? "";
-            var MinorDepartmentCategoryCode = input.MinorDepartmentCategoryCode ?? "";
+            var MajorDepartmentCategory = input.MajorDepartmentCategory ?? "";
+            var MinorDepartmentCategory = input.MinorDepartmentCategory ?? "";
             var GraduationCode = input.GraduationCode ?? "";
             var CountryCode = input.CountryCode ?? "";
 
@@ -2017,9 +2017,9 @@ namespace Resume.App.Resumes
                 item.Night = input.Night;
                 item.Working = input.Working;
                 item.MajorDepartmentName = input.MajorDepartmentName;
-                item.MajorDepartmentCategoryCode = input.MajorDepartmentCategoryCode;
+                item.MajorDepartmentCategory = input.MajorDepartmentCategory;
                 item.MinorDepartmentName = input.MinorDepartmentName;
-                item.MinorDepartmentCategoryCode = input.MinorDepartmentCategoryCode;
+                item.MinorDepartmentCategory = input.MinorDepartmentCategory;
                 item.GraduationCode = input.GraduationCode;
                 item.Domestic = input.Domestic;
                 item.CountryCode = input.CountryCode;
@@ -2063,8 +2063,8 @@ namespace Resume.App.Resumes
             var ResumeMainId = input.ResumeMainId;
             var Id = input.Id; //空白時當做新增
             var WorkNatureCode = input.WorkNatureCode ?? "";
-            var IndustryCategoryCode = input.IndustryCategoryCode ?? "";
-            var WorkPlaceCode = input.WorkPlaceCode ?? "";
+            var IndustryCategory = input.IndustryCategory ?? "";
+            var WorkPlace = input.WorkPlace ?? "";
             var SalaryPayTypeCode = input.SalaryPayTypeCode ?? "";
             var CurrencyTypeCode = input.CurrencyTypeCode ?? "TWD";
             var CompanyScaleCode = input.CompanyScaleCode ?? "";
@@ -2126,7 +2126,7 @@ namespace Resume.App.Resumes
                 item.Name = input.Name;
                 item.WorkNatureCode = input.WorkNatureCode;
                 item.HideCompanyName = input.HideCompanyName;
-                item.IndustryCategoryCode = input.IndustryCategoryCode; //json
+                item.IndustryCategory = input.IndustryCategory; //json
                 item.JobName = input.JobName;
                 item.JobType = input.JobType;   //json
                 //item.JobType =   JsonSerializer.Serialize(input.ListJobType, new JsonSerializerOptions
@@ -2135,7 +2135,7 @@ namespace Resume.App.Resumes
                 //    WriteIndented = true  // 換行與縮排
                 //});
                 item.Working = input.Working;
-                item.WorkPlaceCode = input.WorkPlaceCode;
+                item.WorkPlace = input.WorkPlace;
                 item.HideWorkSalary = input.HideWorkSalary;
                 item.SalaryPayTypeCode = input.SalaryPayTypeCode;
                 item.CurrencyTypeCode = input.CurrencyTypeCode ?? "TWD";

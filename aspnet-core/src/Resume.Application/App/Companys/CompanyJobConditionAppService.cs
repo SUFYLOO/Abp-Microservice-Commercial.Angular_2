@@ -170,8 +170,6 @@ namespace Resume.App.Companys
             var EducationLevel = input.EducationLevel ?? "";
             var WorkExperienceYearCode = input.WorkExperienceYearCode;
             var MajorDepartmentCategory = input.MajorDepartmentCategory;
-            var LanguageCategory = input.LanguageCategory;
-            var ComputerExpertise = input.ComputerExpertise;
             var ProfessionalLicense = input.ProfessionalLicense;
             var DrvingLicense = input.DrvingLicense;
 
@@ -181,8 +179,6 @@ namespace Resume.App.Companys
                 new GroupCodeConditions(){GroupCode = "EducationLevel",Code =EducationLevel, ErrorMessage = "教育類別代碼錯誤" ,AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "WorkExperienceYear",Code = WorkExperienceYearCode , ErrorMessage = "工作經驗代碼錯誤" ,AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "DepartmentCategory",Code = MajorDepartmentCategory , ErrorMessage = "科系需求代碼錯誤" , AllowNull = true},
-                new GroupCodeConditions(){GroupCode = "LanguageCategory",Code = LanguageCategory , ErrorMessage = "語文條件代碼錯誤" ,AllowNull = true },
-                new GroupCodeConditions(){GroupCode = "ComputerExpertise",Code = ComputerExpertise  , ErrorMessage = "電腦專長代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "ProfessionalLicense",Code = ProfessionalLicense , ErrorMessage = "專業證照代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "DrvingLicense",Code = DrvingLicense , ErrorMessage = "駕照類別代碼錯誤", AllowNull = true}
             };

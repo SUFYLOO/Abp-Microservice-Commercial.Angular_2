@@ -129,7 +129,7 @@ namespace Resume.App.Companys
             var WorkRemoteTypeCode = input.WorkRemoteTypeCode;
             var HolidaySystemCode = input.HolidaySystemCode;
             var WorkDayCode = input.WorkDayCode;
-            var WorkIdentityCode = input.WorkIdentityCode;
+            var WorkIdentity = input.WorkIdentity;
             var ListDisabilityCategory = input.ListDisabilityCategory;
 
             //預設值
@@ -143,7 +143,7 @@ namespace Resume.App.Companys
                 new GroupCodeConditions(){GroupCode = "WorkRemoteType",Code = WorkRemoteTypeCode , ErrorMessage = "遠端工作代碼錯誤" , AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "HolidaySystem",Code = HolidaySystemCode , ErrorMessage = "休假制度代碼錯誤" ,AllowNull = false },
                 new GroupCodeConditions(){GroupCode = "WorkDay",Code = WorkDayCode  , ErrorMessage = "可上班日代碼錯誤", AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "WorkIdentityCode",Code = WorkIdentityCode , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "WorkIdentity",Code = WorkIdentity , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
             };
 
             foreach (var itemListDisabilityCategory in ListDisabilityCategory)

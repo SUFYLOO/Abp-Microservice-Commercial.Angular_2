@@ -94,14 +94,14 @@ namespace Resume.App.Resumes
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
 
             //外部傳入
-            var ComputerSkills = input.ComputerSkills ?? "";
+            var ComputerExpertise = input.ComputerExpertise ?? "";
             var ProfessionalLicense = input.ProfessionalLicense;
             var WorkSkills = input.WorkSkills;
 
             //必要代碼檢核
             var conditions = new List<GroupCodeConditions>()
             {
-                new GroupCodeConditions(){GroupCode = "ComputerExpertise",Code =ComputerSkills, ErrorMessage = "電腦技能代碼錯誤" ,AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "ComputerExpertise",Code =ComputerExpertise, ErrorMessage = "電腦技能代碼錯誤" ,AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "WorkSkills",Code = WorkSkills , ErrorMessage = "工作技能代碼錯誤" ,AllowNull = true},               
                 new GroupCodeConditions(){GroupCode = "ProfessionalLicense",Code = ProfessionalLicense , ErrorMessage = "專業證照代碼錯誤", AllowNull = true},
             };

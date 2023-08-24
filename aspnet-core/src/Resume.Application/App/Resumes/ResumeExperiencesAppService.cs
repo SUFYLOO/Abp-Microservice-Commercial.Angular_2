@@ -92,10 +92,10 @@ namespace Resume.App.Resumes
             var DateA = input.DateA;
             var DateD = input.DateD;
             var WorkNatureCode = input.WorkNatureCode;
-            var IndustryCategoryCode = input.IndustryCategoryCode;
+            var IndustryCategory = input.IndustryCategory;
             var JobName = input.JobName;
             var ListJobType = input.ListJobType;
-            var WorkPlaceCode = input.WorkPlaceCode;
+            var WorkPlace = input.WorkPlace;
             var SalaryPayTypeCode = input.SalaryPayTypeCode;
             var CurrencyTypeCode = input.CurrencyTypeCode;
             var CompanyScaleCode = input.CompanyScaleCode;
@@ -105,9 +105,9 @@ namespace Resume.App.Resumes
             var conditions = new List<GroupCodeConditions>()
             {
                 new GroupCodeConditions(){GroupCode = "WorkNature",Code =WorkNatureCode, ErrorMessage = "工作性質代碼錯誤" ,AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "IndustryCategory",Code = IndustryCategoryCode , ErrorMessage = "產業類別代碼錯誤" ,AllowNull = false},
+                new GroupCodeConditions(){GroupCode = "IndustryCategory",Code = IndustryCategory , ErrorMessage = "產業類別代碼錯誤" ,AllowNull = false},
                 //new GroupCodeConditions(){GroupCode = "JobType",Code = JobType , ErrorMessage = "職務類別代碼錯誤", AllowNull = true},
-                new GroupCodeConditions(){GroupCode = "WorkPlace",Code = WorkPlaceCode , ErrorMessage = "工作地點代碼錯誤", AllowNull = true},
+                new GroupCodeConditions(){GroupCode = "WorkPlace",Code = WorkPlace , ErrorMessage = "工作地點代碼錯誤", AllowNull = true},
                 new GroupCodeConditions(){GroupCode = "SalaryPayType",Code = SalaryPayTypeCode , ErrorMessage = "薪資發放分類代碼錯誤", AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "CurrencyType",Code = CurrencyTypeCode , ErrorMessage = "幣別代碼錯誤", AllowNull = false},
                 new GroupCodeConditions(){GroupCode = "CompanyScale",Code = CompanyScaleCode , ErrorMessage = "公司規模代碼錯誤", AllowNull = false},
