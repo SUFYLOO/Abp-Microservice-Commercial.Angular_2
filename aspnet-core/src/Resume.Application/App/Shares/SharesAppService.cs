@@ -20,6 +20,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Content;
 using Volo.Abp.MultiTenancy;
+using System.Reflection;
 
 namespace Resume.App.Shares
 {
@@ -563,25 +564,6 @@ namespace Resume.App.Shares
             return Result;
         }
 
-        public async Task<ResultDto> CheckGroupCode(ResultDto msg, List<GroupCodeConditions> conditions)
-        {
-            var inputShareCodeGroup = new ShareCodeGroupInput();
-
-            foreach (var con in conditions)
-                inputShareCodeGroup.ListGroupCode.Add(con.GroupCode);
-            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
-
-            foreach (var condition in conditions)
-            {
-                if (condition.AllowNull && condition.Code.IsNullOrEmpty())
-                    continue;
-                if (!itemsShareCode.Any(p => p.GroupCode == condition.GroupCode && p.Code == condition.Code))
-                    msg.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = condition.ErrorMessage, Pass = false });
-            }
-
-            return msg;
-        }
-
         public virtual void SetShareCodeAsync<T>(SetShareCodeInput input)
         {
             var Data = input.Data;
@@ -606,39 +588,195 @@ namespace Resume.App.Shares
             }
         }
 
+        public async virtual void SetShareCodeNameAsync<T>(SetShareCodeNameInput input)
+        {
+            var Reslut = (List<T>)input.Result;
+            var ListSetShareCodeName = input.ListSetShareCodeName ?? new List<SetShareCodeName>();
+            var DynamicSearch = input.DynamicSearch ?? true;
+
+            //動態搜尋結尾是Code的欄位
+            if (DynamicSearch)
+            {
+                var ListSetShareCodeNameMappings = await GetSetShareCodeNameMappings<T>();
+                foreach (var itemSetShareCodeNameMappings in ListSetShareCodeNameMappings)
+                {
+                    var GroupCode = itemSetShareCodeNameMappings.GroupCode;
+
+                    //群組已經存在就不要加入，可以做差異化
+                    if (!ListSetShareCodeName.Any(p => p.GroupCode == GroupCode))
+                        ListSetShareCodeName.Add(itemSetShareCodeNameMappings);
+                }
+            }
+
+            var inputShareCodeGroup = new ShareCodeGroupInput();
+            inputShareCodeGroup.AllForGroupCode = true; //群組所有代碼都要取出
+            //取得資料-為能效能，先一次取得所有要檢查的代碼資料
+            foreach (var itemCheckShareCode in ListSetShareCodeName)
+                inputShareCodeGroup.ListGroupCode.Add(itemCheckShareCode.GroupCode);
+            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+            foreach (var itemSetShareCodeName in ListSetShareCodeName)
+            {
+                var GroupCode = itemSetShareCodeName.GroupCode;
+                var ColumnCode = itemSetShareCodeName.Code;
+                var ColumnName = itemSetShareCodeName.Name;
+
+                //如果群組不存在，可能根本沒有建這個代碼 就不用往下找了
+                if (!itemsShareCode.Any(p => p.GroupCode == GroupCode))
+                    continue;
+
+                foreach (var item in Reslut)
+                {
+                    var ValueCode = DataAccess.GetProperty<string>(item, ColumnCode);
+                    var ValueName = "";// DataAccess.GetProperty<string>(item, ColumnName);
+                    var Value = itemsShareCode.FirstOrDefault(p => p.GroupCode == GroupCode && p.Code == ValueCode)?.Name ?? ValueName;
+
+                    DataAccess.SetProperty(item, ColumnName, Value);
+                }
+            }
+        }
+
+        public async virtual Task<List<SetShareCodeName>> GetSetShareCodeNameMappings<T>()
+        {
+            Type dtoType = typeof(T);
+            PropertyInfo[] properties = dtoType.GetProperties();
+
+            var codeProperties = properties
+                .Where(prop => prop.Name.EndsWith("Code"))
+                .Select(prop => new SetShareCodeName
+                {
+                    GroupCode = prop.Name.Substring(0, prop.Name.Length - 4),
+                    Code = prop.Name,
+                    Name = prop.Name.Substring(0, prop.Name.Length - 4) + "Name"             
+                })
+                .ToList();
+
+            return codeProperties;
+        }
+
+        public async Task<ResultDto> CheckGroupCode(ResultDto msg, List<GroupCodeConditions> conditions)
+        {
+            var inputShareCodeGroup = new ShareCodeGroupInput();
+
+            foreach (var con in conditions)
+                inputShareCodeGroup.ListGroupCode.Add(con.GroupCode);
+            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+            foreach (var condition in conditions)
+            {
+                if (condition.AllowNull && condition.Code.IsNullOrEmpty())
+                    continue;
+                if (!itemsShareCode.Any(p => p.GroupCode == condition.GroupCode && p.Code == condition.Code))
+                    msg.Messages.Add(new ResultMessageDto() { MessageCode = "400", MessageContents = condition.ErrorMessage, Pass = false });
+            }
+
+            return msg;
+        }
+
         /// <summary>
         /// 檢查ShareCode 是否存在
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual async Task<bool> CheckShareCodeAsync(CheckShareCodeInput input)
+        //public virtual async Task<bool> CheckShareCodeAsync(CheckShareCodeInput input)
+        //{
+        //    var Result = false;
+
+        //    var Key1 = input.Key1;
+        //    var Key2 = input.Key2;
+        //    var Key3 = input.Key3;
+        //    var ListKey3 = input.ListKey3;
+        //    var Id = input.Id;
+        //    var GroupCode = input.GroupCode;
+        //    var Display = input.Display;
+
+        //    var DateNow = DateTime.Now;
+
+        //    var items = await _appService._shareCodeRepository.GetQueryableAsync();
+        //    if (items.Any(p => p.Id == Id))
+        //        Result = true;
+        //    else
+        //    {
+        //        items = items.Where(p => p.GroupCode == GroupCode);
+
+        //        if (items.Any(c => c.Key1 == Key1 && (c.Key3 == Key3 || ListKey3.Contains(c.Key3))))
+        //            Result = true;
+        //        else
+        //            Result = items.Any(c => c.Key1.Length == 0 && (c.Key3 == Key3 || ListKey3.Contains(c.Key3)));
+        //    }
+
+        //    return Result;
+        //}
+
+        public async void CheckShareCodeAsync<T>(CheckShareCodeInput input)
         {
-            var Result = false;
+            var Result = input.Result;
+            var Data = new List<T>();
+            if (input.Data != null)
+                Data = (List<T>)input.Data;
+            var ListCheckShareCode = input.ListCheckShareCode ?? new List<CheckShareCode>();
+            var DynamicSearch = input.DynamicSearch ?? true;
 
-            var Key1 = input.Key1;
-            var Key2 = input.Key2;
-            var Key3 = input.Key3;
-            var ListKey3 = input.ListKey3;
-            var Id = input.Id;
-            var GroupCode = input.GroupCode;
-            var Display = input.Display;
-
-            var DateNow = DateTime.Now;
-
-            var items = await _appService._shareCodeRepository.GetQueryableAsync();
-            if (items.Any(p => p.Id == Id))
-                Result = true;
-            else
+            //動態搜尋結尾是Code的欄位
+            if (DynamicSearch)
             {
-                items = items.Where(p => p.GroupCode == GroupCode);
+                var ListCheckShareCodeMappings = await GetCheckShareCodeMappings<T>();
+                foreach (var itemCheckShareCodeMappings in ListCheckShareCodeMappings)
+                {
+                    var GroupCode = itemCheckShareCodeMappings.GroupCode;
+                    var ColumnCode = itemCheckShareCodeMappings.Code;
 
-                if (items.Any(c => c.Key1 == Key1 && (c.Key3 == Key3 || ListKey3.Contains(c.Key3))))
-                    Result = true;
-                else
-                    Result = items.Any(c => c.Key1.Length == 0 && (c.Key3 == Key3 || ListKey3.Contains(c.Key3)));
+                    foreach (var item in Data)
+                    {
+                        var ValueCode = DataAccess.GetProperty<string>(item, ColumnCode);
+
+                        itemCheckShareCodeMappings.Code = ValueCode;
+                        ListCheckShareCode.Add(itemCheckShareCodeMappings);
+                    }
+                }
             }
 
-            return Result;
+            var inputShareCodeGroup = new ShareCodeGroupInput();
+            inputShareCodeGroup.AllForGroupCode = true; //群組所有代碼都要取出
+            //取得資料-為能效能，先一次取得所有要檢查的代碼資料
+            foreach (var itemCheckShareCode in ListCheckShareCode)
+                inputShareCodeGroup.ListGroupCode.Add(itemCheckShareCode.GroupCode);
+            var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+
+            foreach (var itemCheckShareCode in ListCheckShareCode)
+            {
+                //如果允許null則不用判斷
+                if (itemCheckShareCode.AllowNull && itemCheckShareCode.Code.IsNullOrEmpty())
+                    continue;
+
+                var GroupCode = itemCheckShareCode.GroupCode;
+
+                //如果群組不存在，可能根本沒有建這個代碼 就不用往下找了
+                if (!itemsShareCode.Any(p => p.GroupCode == GroupCode))
+                    continue;
+
+                //如果不存在，則把錯誤寫回Result.Messages裡
+                if (!itemsShareCode.Any(p => p.GroupCode == itemCheckShareCode.GroupCode && p.Code == itemCheckShareCode.Code))
+                    Result.Messages.Add(new ResultMessageDto() { MessageCode = itemCheckShareCode.MessageCode, MessageContents = itemCheckShareCode.MessageContents, Pass = itemCheckShareCode.Pass });
+            }
+        }
+
+        public async virtual Task<List<CheckShareCode>> GetCheckShareCodeMappings<T>()
+        {
+            Type dtoType = typeof(T);
+            PropertyInfo[] properties = dtoType.GetProperties();
+
+            var codeProperties = properties
+                .Where(prop => prop.Name.EndsWith("Code"))
+                .Select(prop => new CheckShareCode
+                {
+                    GroupCode = prop.Name.Substring(0, prop.Name.Length - 4),
+                    Code = prop.Name,
+                    MessageContents = prop.Name.Substring(0, prop.Name.Length - 4) + " 代碼錯誤",
+                })
+                .ToList();
+
+            return codeProperties;
         }
 
         public virtual async Task<ResultDto<SendShareSendQueueDto>> SendShareSendQueueAsync(SendShareSendQueueInput input)

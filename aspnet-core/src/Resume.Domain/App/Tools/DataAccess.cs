@@ -191,7 +191,7 @@ namespace Resume.App.Tools
             var theProperty = o.GetType().GetProperties().FirstOrDefault(p => p.Name == propertyName);
 
             if (theProperty == null)
-                throw new ArgumentException("object does not have an " + propertyName + " property", "o");
+                return default(T);
 
             //if (theProperty.PropertyType.FullName != typeof(T).FullName)
             //    throw new ArgumentException("object has an Id property, but it is not of type " + typeof(T).FullName, "o");

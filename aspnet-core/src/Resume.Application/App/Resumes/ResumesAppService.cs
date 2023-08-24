@@ -2403,39 +2403,26 @@ namespace Resume.App.Resumes
             var items = await AsyncExecuter.ToListAsync(itemsAll);
             if (items.Count > 0)
             {
-                //取得履歷所需要的代碼資料-為了加速
-                var inputShareCodeGroup = new ShareCodeGroupInput();
-                inputShareCodeGroup.ListGroupCode.Add("Sex");
-                inputShareCodeGroup.ListGroupCode.Add("Blood");
-                inputShareCodeGroup.ListGroupCode.Add("Marriage");
-                inputShareCodeGroup.ListGroupCode.Add("PlaceOfBirth");
-                inputShareCodeGroup.ListGroupCode.Add("Military");
-                inputShareCodeGroup.ListGroupCode.Add("DisabilityCategory");
-                inputShareCodeGroup.ListGroupCode.Add("Nationality");
-                inputShareCodeGroup.ListGroupCode.Add("SpecialIdentity");
-                var itemsShareCode = await _appService._serviceProvider.GetService<SharesAppService>().GetShareCodeNameCodeAsync(inputShareCodeGroup);
+                ObjectMapper.Map(items, Result.Data);
 
-                {
-                    var Data = ObjectMapper.Map<List<ResumeMain>, List<ResumeMainsDto>>(items);
+                //讓程式動態去找 所以此段不用了
+                //var ListSetShareCodeName = new List<SetShareCodeName>()
+                //     {
+                //         new SetShareCodeName { GroupCode = "Sex", Code = "SexCode", Name = "SexName" },
+                //         new SetShareCodeName { GroupCode = "Blood", Code = "BloodCode", Name = "BloodName" },
+                //         new SetShareCodeName { GroupCode = "Marriage", Code = "MarriageCode", Name = "MarriageName" },
+                //         new SetShareCodeName { GroupCode = "PlaceOfBirth", Code = "PlaceOfBirthCode", Name = "PlaceOfBirthName" },
+                //         new SetShareCodeName { GroupCode = "Military", Code = "MilitaryCode", Name = "MilitaryName" },
+                //         new SetShareCodeName { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" },
+                //         new SetShareCodeName { GroupCode = "Nationality", Code = "NationalityCode", Name = "NationalityName" },
+                //         new SetShareCodeName { GroupCode = "SpecialIdentity", Code = "SpecialIdentityCode", Name = "SpecialIdentityName" }
+                //    };
 
-                    var inputSetShareCode = new SetShareCodeInput();
-                    inputSetShareCode.ListShareCode = itemsShareCode;
-                    inputSetShareCode.Data = Data;
-                    var ListColumns = new List<NameCodeStandardDto>();
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "Sex", Code = "SexCode", Name = "SexName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "Blood", Code = "BloodCode", Name = "BloodName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "Marriage", Code = "MarriageCode", Name = "MarriageName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "PlaceOfBirth", Code = "PlaceOfBirthCode", Name = "PlaceOfBirthName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "Military", Code = "MilitaryCode", Name = "MilitaryName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "DisabilityCategory", Code = "DisabilityCategoryCode", Name = "DisabilityCategoryName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "Nationality", Code = "NationalityCode", Name = "NationalityName" });
-                    ListColumns.Add(new NameCodeStandardDto { GroupCode = "SpecialIdentity", Code = "SpecialIdentityCode", Name = "SpecialIdentityName" });
-                    inputSetShareCode.ListColumns = ListColumns;
-                    _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeAsync<ResumeMainsDto>(inputSetShareCode);
+                var inputSetShareCodeName = new SetShareCodeNameInput();
+                inputSetShareCodeName.Result = Result.Data;
+                _appService._serviceProvider.GetService<SharesAppService>().SetShareCodeNameAsync<ResumeMainsDto>(inputSetShareCodeName);
 
-                    Result.Data = Data;
-                    Result.Save = true;
-                }
+                Result.Save = true;
             }
 
             Result.Check = Result.Messages.Count == 0;
