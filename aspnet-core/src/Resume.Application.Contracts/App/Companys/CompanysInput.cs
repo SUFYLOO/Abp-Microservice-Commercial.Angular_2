@@ -3,6 +3,7 @@ using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
 using Resume.CompanyJobPays;
 using Resume.CompanyJobs;
+using Resume.CompanyJobWorkIdentities;
 using Resume.CompanyMains;
 using Resume.CompanyUsers;
 using System;
@@ -148,6 +149,13 @@ namespace Resume.App.Companys
         [Required]
         public int SalaryMax { get; set; }
         public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
+        public List<SaveCompanyJobWorkIdentityInput> ListSaveCompanyJobWorkIdentityInput { get; set; }
+    }
+
+    public class SaveCompanyJobWorkIdentityInput : CompanyJobWorkIdentityDto
+    {
+        public bool RefreshItem { get; set; } = false;
+        public string WorkIdentityName { get; set; }
     }
 
     public class DisabilityCategoryDto

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -136,24 +137,28 @@ namespace Resume.App.Companys
 
             //必要代碼檢核
 
-            var conditions = new List<GroupCodeConditions>()
-            {
-                new GroupCodeConditions(){GroupCode = "JobType",Code =JobTypeCode, ErrorMessage = "職務類別代碼錯誤" ,AllowNull = true},
-                new GroupCodeConditions(){GroupCode = "SalaryPayType",Code = SalaryPayTypeCode , ErrorMessage = "薪資發放分類代碼錯誤" ,AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "WorkRemoteType",Code = WorkRemoteTypeCode , ErrorMessage = "遠端工作代碼錯誤" , AllowNull = true},
-                new GroupCodeConditions(){GroupCode = "HolidaySystem",Code = HolidaySystemCode , ErrorMessage = "休假制度代碼錯誤" ,AllowNull = false },
-                new GroupCodeConditions(){GroupCode = "WorkDay",Code = WorkDayCode  , ErrorMessage = "可上班日代碼錯誤", AllowNull = false},
-                new GroupCodeConditions(){GroupCode = "WorkIdentity",Code = WorkIdentity , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
-            };
+            //var conditions = new List<GroupCodeConditions>()
+            //{
+            //    new GroupCodeConditions(){GroupCode = "JobType",Code =JobTypeCode, ErrorMessage = "職務類別代碼錯誤" ,AllowNull = true},
+            //    new GroupCodeConditions(){GroupCode = "SalaryPayType",Code = SalaryPayTypeCode , ErrorMessage = "薪資發放分類代碼錯誤" ,AllowNull = false},
+            //    new GroupCodeConditions(){GroupCode = "WorkRemoteType",Code = WorkRemoteTypeCode , ErrorMessage = "遠端工作代碼錯誤" , AllowNull = true},
+            //    new GroupCodeConditions(){GroupCode = "HolidaySystem",Code = HolidaySystemCode , ErrorMessage = "休假制度代碼錯誤" ,AllowNull = false },
+            //    new GroupCodeConditions(){GroupCode = "WorkDay",Code = WorkDayCode  , ErrorMessage = "可上班日代碼錯誤", AllowNull = false},
+            //    new GroupCodeConditions(){GroupCode = "WorkIdentity",Code = WorkIdentity , ErrorMessage = "身分類別代碼錯誤", AllowNull = true},
+            //};
 
-            foreach (var itemListDisabilityCategory in ListDisabilityCategory)
-            {
-                new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemListDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true };
-                new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemListDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤", AllowNull = true };
-            }
+            //foreach (var itemListDisabilityCategory in ListDisabilityCategory)
+            //{
+            //    new GroupCodeConditions() { GroupCode = "DisabilityCategory", Code = itemListDisabilityCategory.DisabilityCategoryCode, ErrorMessage = "殘障類別代碼錯誤", AllowNull = true };
+            //    new GroupCodeConditions() { GroupCode = "DisabilityLevel", Code = itemListDisabilityCategory.DisabilityLevelCode, ErrorMessage = "殘障等級代碼錯誤", AllowNull = true };
+            //}
 
-            Result =  await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
+            //Result =  await _appService._serviceProvider.GetService<SharesAppService>().CheckGroupCode(Result, conditions);
 
+            var inputCheckShareCode = new CheckShareCodeInput();
+            inputCheckShareCode.Result = Result;
+            inputCheckShareCode.Data = input;
+            _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobContentInput>(inputCheckShareCode);
 
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
