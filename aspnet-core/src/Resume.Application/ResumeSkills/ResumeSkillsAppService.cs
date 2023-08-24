@@ -37,8 +37,8 @@ namespace Resume.ResumeSkills
 
         public virtual async Task<PagedResultDto<ResumeSkillDto>> GetListAsync(GetResumeSkillsInput input)
         {
-            var totalCount = await _resumeSkillRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
-            var items = await _resumeSkillRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
+            var totalCount = await _resumeSkillRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.ComputerExpertise, input.ComputerExpertiseEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeSkillRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.ComputerExpertise, input.ComputerExpertiseEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
 
             return new PagedResultDto<ResumeSkillDto>
             {
@@ -63,7 +63,7 @@ namespace Resume.ResumeSkills
         {
 
             var resumeSkill = await _resumeSkillManager.CreateAsync(
-            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.ComputerExpertise, input.ComputerExpertiseEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSkill, ResumeSkillDto>(resumeSkill);
@@ -75,7 +75,7 @@ namespace Resume.ResumeSkills
 
             var resumeSkill = await _resumeSkillManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.ComputerExpertise, input.ComputerExpertiseEtc, input.ChineseTypingSpeed, input.ChineseTypingCode, input.EnglishTypingSpeed, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeSkill, ResumeSkillDto>(resumeSkill);
@@ -90,7 +90,7 @@ namespace Resume.ResumeSkills
                 throw new AbpAuthorizationException("Invalid download token: " + input.DownloadToken);
             }
 
-            var items = await _resumeSkillRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.ComputerSkills, input.ComputerSkillsEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeSkillRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.ComputerExpertise, input.ComputerExpertiseEtc, input.ChineseTypingSpeedMin, input.ChineseTypingSpeedMax, input.ChineseTypingCode, input.EnglishTypingSpeedMin, input.EnglishTypingSpeedMax, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
 
             var memoryStream = new MemoryStream();
             await memoryStream.SaveAsAsync(ObjectMapper.Map<List<ResumeSkill>, List<ResumeSkillExcelDto>>(items));

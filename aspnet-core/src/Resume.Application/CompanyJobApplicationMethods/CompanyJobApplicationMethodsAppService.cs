@@ -37,8 +37,8 @@ namespace Resume.CompanyJobApplicationMethods
 
         public virtual async Task<PagedResultDto<CompanyJobApplicationMethodDto>> GetListAsync(GetCompanyJobApplicationMethodsInput input)
         {
-            var totalCount = await _companyJobApplicationMethodRepository.GetCountAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
-            var items = await _companyJobApplicationMethodRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
+            var totalCount = await _companyJobApplicationMethodRepository.GetCountAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _companyJobApplicationMethodRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
 
             return new PagedResultDto<CompanyJobApplicationMethodDto>
             {
@@ -63,7 +63,7 @@ namespace Resume.CompanyJobApplicationMethods
         {
 
             var companyJobApplicationMethod = await _companyJobApplicationMethodManager.CreateAsync(
-            input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.CompanyMainId, input.CompanyJobId, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobApplicationMethod, CompanyJobApplicationMethodDto>(companyJobApplicationMethod);
@@ -75,7 +75,7 @@ namespace Resume.CompanyJobApplicationMethods
 
             var companyJobApplicationMethod = await _companyJobApplicationMethodManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.CompanyMainId, input.CompanyJobId, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDay, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobApplicationMethod, CompanyJobApplicationMethodDto>(companyJobApplicationMethod);
@@ -90,7 +90,7 @@ namespace Resume.CompanyJobApplicationMethods
                 throw new AbpAuthorizationException("Invalid download token: " + input.DownloadToken);
             }
 
-            var items = await _companyJobApplicationMethodRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgDept, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _companyJobApplicationMethodRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.OrgContactPerson, input.OrgContactMail, input.ToRespondDayMin, input.ToRespondDayMax, input.ToRespond, input.SystemSendResume, input.DisplayMail, input.Telephone, input.Personally, input.PersonallyAddress, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
 
             var memoryStream = new MemoryStream();
             await memoryStream.SaveAsAsync(ObjectMapper.Map<List<CompanyJobApplicationMethod>, List<CompanyJobApplicationMethodExcelDto>>(items));

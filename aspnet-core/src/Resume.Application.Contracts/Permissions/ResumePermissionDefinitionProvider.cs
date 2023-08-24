@@ -271,6 +271,41 @@ public class ResumePermissionDefinitionProvider : PermissionDefinitionProvider
         companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Create, L("Permission:Create"));
         companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Edit, L("Permission:Edit"));
         companyJobOrganizationUnitPermission.AddChild(ResumePermissions.CompanyJobOrganizationUnits.Delete, L("Permission:Delete"));
+
+        var shareExtendedPermission = myGroup.AddPermission(ResumePermissions.ShareExtendeds.Default, L("Permission:ShareExtendeds"));
+        shareExtendedPermission.AddChild(ResumePermissions.ShareExtendeds.Create, L("Permission:Create"));
+        shareExtendedPermission.AddChild(ResumePermissions.ShareExtendeds.Edit, L("Permission:Edit"));
+        shareExtendedPermission.AddChild(ResumePermissions.ShareExtendeds.Delete, L("Permission:Delete"));
+
+        var resumeExperiencesJobPermission = myGroup.AddPermission(ResumePermissions.ResumeExperiencesJobs.Default, L("Permission:ResumeExperiencesJobs"));
+        resumeExperiencesJobPermission.AddChild(ResumePermissions.ResumeExperiencesJobs.Create, L("Permission:Create"));
+        resumeExperiencesJobPermission.AddChild(ResumePermissions.ResumeExperiencesJobs.Edit, L("Permission:Edit"));
+        resumeExperiencesJobPermission.AddChild(ResumePermissions.ResumeExperiencesJobs.Delete, L("Permission:Delete"));
+
+        var companyUserMainFavPermission = myGroup.AddPermission(ResumePermissions.CompanyUserMainFavs.Default, L("Permission:CompanyUserMainFavs"));
+        companyUserMainFavPermission.AddChild(ResumePermissions.CompanyUserMainFavs.Create, L("Permission:Create"));
+        companyUserMainFavPermission.AddChild(ResumePermissions.CompanyUserMainFavs.Edit, L("Permission:Edit"));
+        companyUserMainFavPermission.AddChild(ResumePermissions.CompanyUserMainFavs.Delete, L("Permission:Delete"));
+
+        var companyJobWorkIdentityPermission = myGroup.AddPermission(ResumePermissions.CompanyJobWorkIdentities.Default, L("Permission:CompanyJobWorkIdentities"));
+        companyJobWorkIdentityPermission.AddChild(ResumePermissions.CompanyJobWorkIdentities.Create, L("Permission:Create"));
+        companyJobWorkIdentityPermission.AddChild(ResumePermissions.CompanyJobWorkIdentities.Edit, L("Permission:Edit"));
+        companyJobWorkIdentityPermission.AddChild(ResumePermissions.CompanyJobWorkIdentities.Delete, L("Permission:Delete"));
+
+        var companyJobDisabilityCategoryPermission = myGroup.AddPermission(ResumePermissions.CompanyJobDisabilityCategories.Default, L("Permission:CompanyJobDisabilityCategories"));
+        companyJobDisabilityCategoryPermission.AddChild(ResumePermissions.CompanyJobDisabilityCategories.Create, L("Permission:Create"));
+        companyJobDisabilityCategoryPermission.AddChild(ResumePermissions.CompanyJobDisabilityCategories.Edit, L("Permission:Edit"));
+        companyJobDisabilityCategoryPermission.AddChild(ResumePermissions.CompanyJobDisabilityCategories.Delete, L("Permission:Delete"));
+
+        var companyJobEducationLevelPermission = myGroup.AddPermission(ResumePermissions.CompanyJobEducationLevels.Default, L("Permission:CompanyJobEducationLevels"));
+        companyJobEducationLevelPermission.AddChild(ResumePermissions.CompanyJobEducationLevels.Create, L("Permission:Create"));
+        companyJobEducationLevelPermission.AddChild(ResumePermissions.CompanyJobEducationLevels.Edit, L("Permission:Edit"));
+        companyJobEducationLevelPermission.AddChild(ResumePermissions.CompanyJobEducationLevels.Delete, L("Permission:Delete"));
+
+        var companyJobDrvingLicensePermission = myGroup.AddPermission(ResumePermissions.CompanyJobDrvingLicenses.Default, L("Permission:CompanyJobDrvingLicenses"));
+        companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Create, L("Permission:Create"));
+        companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Edit, L("Permission:Edit"));
+        companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

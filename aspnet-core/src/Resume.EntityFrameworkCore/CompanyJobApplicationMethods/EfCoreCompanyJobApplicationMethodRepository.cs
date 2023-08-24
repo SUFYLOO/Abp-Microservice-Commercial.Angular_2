@@ -23,7 +23,6 @@ namespace Resume.CompanyJobApplicationMethods
             string filterText = null,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            string orgDept = null,
             string orgContactPerson = null,
             string orgContactMail = null,
             int? toRespondDayMin = null,
@@ -48,7 +47,7 @@ namespace Resume.CompanyJobApplicationMethods
             int skipCount = 0,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetQueryableAsync()), filterText, companyMainId, companyJobId, orgDept, orgContactPerson, orgContactMail, toRespondDayMin, toRespondDayMax, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetQueryableAsync()), filterText, companyMainId, companyJobId, orgContactPerson, orgContactMail, toRespondDayMin, toRespondDayMax, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? CompanyJobApplicationMethodConsts.GetDefaultSorting(false) : sorting);
             return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
         }
@@ -57,7 +56,6 @@ namespace Resume.CompanyJobApplicationMethods
             string filterText = null,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            string orgDept = null,
             string orgContactPerson = null,
             string orgContactMail = null,
             int? toRespondDayMin = null,
@@ -79,7 +77,7 @@ namespace Resume.CompanyJobApplicationMethods
             string status = null,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetDbSetAsync()), filterText, companyMainId, companyJobId, orgDept, orgContactPerson, orgContactMail, toRespondDayMin, toRespondDayMax, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetDbSetAsync()), filterText, companyMainId, companyJobId, orgContactPerson, orgContactMail, toRespondDayMin, toRespondDayMax, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             return await query.LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
@@ -88,7 +86,6 @@ namespace Resume.CompanyJobApplicationMethods
             string filterText,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            string orgDept = null,
             string orgContactPerson = null,
             string orgContactMail = null,
             int? toRespondDayMin = null,
@@ -110,10 +107,9 @@ namespace Resume.CompanyJobApplicationMethods
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.OrgDept.Contains(filterText) || e.OrgContactPerson.Contains(filterText) || e.OrgContactMail.Contains(filterText) || e.Telephone.Contains(filterText) || e.Personally.Contains(filterText) || e.PersonallyAddress.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.OrgContactPerson.Contains(filterText) || e.OrgContactMail.Contains(filterText) || e.Telephone.Contains(filterText) || e.Personally.Contains(filterText) || e.PersonallyAddress.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(companyMainId.HasValue, e => e.CompanyMainId == companyMainId)
                     .WhereIf(companyJobId.HasValue, e => e.CompanyJobId == companyJobId)
-                    .WhereIf(!string.IsNullOrWhiteSpace(orgDept), e => e.OrgDept.Contains(orgDept))
                     .WhereIf(!string.IsNullOrWhiteSpace(orgContactPerson), e => e.OrgContactPerson.Contains(orgContactPerson))
                     .WhereIf(!string.IsNullOrWhiteSpace(orgContactMail), e => e.OrgContactMail.Contains(orgContactMail))
                     .WhereIf(toRespondDayMin.HasValue, e => e.ToRespondDay >= toRespondDayMin.Value)

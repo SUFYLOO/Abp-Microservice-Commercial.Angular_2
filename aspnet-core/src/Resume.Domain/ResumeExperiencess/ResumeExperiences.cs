@@ -26,7 +26,7 @@ namespace Resume.ResumeExperiencess
         public virtual bool HideCompanyName { get; set; }
 
         [NotNull]
-        public virtual string IndustryCategoryCode { get; set; }
+        public virtual string IndustryCategory { get; set; }
 
         [NotNull]
         public virtual string JobName { get; set; }
@@ -37,7 +37,7 @@ namespace Resume.ResumeExperiencess
         public virtual bool Working { get; set; }
 
         [CanBeNull]
-        public virtual string? WorkPlaceCode { get; set; }
+        public virtual string? WorkPlace { get; set; }
 
         public virtual bool HideWorkSalary { get; set; }
 
@@ -77,7 +77,7 @@ namespace Resume.ResumeExperiencess
 
         }
 
-        public ResumeExperiences(Guid id, Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategoryCode, string jobName, string jobType, bool working, string workPlaceCode, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public ResumeExperiences(Guid id, Guid resumeMainId, string name, string workNatureCode, bool hideCompanyName, string industryCategory, string jobName, string jobType, bool working, string workPlace, bool hideWorkSalary, string salaryPayTypeCode, string currencyTypeCode, decimal salary1, decimal salary2, string companyScaleCode, string companyManagementNumberCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -85,12 +85,12 @@ namespace Resume.ResumeExperiencess
             Check.Length(name, nameof(name), ResumeExperiencesConsts.NameMaxLength, 0);
             Check.NotNull(workNatureCode, nameof(workNatureCode));
             Check.Length(workNatureCode, nameof(workNatureCode), ResumeExperiencesConsts.WorkNatureCodeMaxLength, 0);
-            Check.NotNull(industryCategoryCode, nameof(industryCategoryCode));
-            Check.Length(industryCategoryCode, nameof(industryCategoryCode), ResumeExperiencesConsts.IndustryCategoryCodeMaxLength, 0);
+            Check.NotNull(industryCategory, nameof(industryCategory));
+            Check.Length(industryCategory, nameof(industryCategory), ResumeExperiencesConsts.IndustryCategoryMaxLength, 0);
             Check.NotNull(jobName, nameof(jobName));
             Check.Length(jobName, nameof(jobName), ResumeExperiencesConsts.JobNameMaxLength, 0);
             Check.Length(jobType, nameof(jobType), ResumeExperiencesConsts.JobTypeMaxLength, 0);
-            Check.Length(workPlaceCode, nameof(workPlaceCode), ResumeExperiencesConsts.WorkPlaceCodeMaxLength, 0);
+            Check.Length(workPlace, nameof(workPlace), ResumeExperiencesConsts.WorkPlaceMaxLength, 0);
             Check.NotNull(salaryPayTypeCode, nameof(salaryPayTypeCode));
             Check.Length(salaryPayTypeCode, nameof(salaryPayTypeCode), ResumeExperiencesConsts.SalaryPayTypeCodeMaxLength, 0);
             Check.NotNull(currencyTypeCode, nameof(currencyTypeCode));
@@ -106,11 +106,11 @@ namespace Resume.ResumeExperiencess
             Name = name;
             WorkNatureCode = workNatureCode;
             HideCompanyName = hideCompanyName;
-            IndustryCategoryCode = industryCategoryCode;
+            IndustryCategory = industryCategory;
             JobName = jobName;
             JobType = jobType;
             Working = working;
-            WorkPlaceCode = workPlaceCode;
+            WorkPlace = workPlace;
             HideWorkSalary = hideWorkSalary;
             SalaryPayTypeCode = salaryPayTypeCode;
             CurrencyTypeCode = currencyTypeCode;

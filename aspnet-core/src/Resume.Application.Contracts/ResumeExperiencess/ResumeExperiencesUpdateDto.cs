@@ -16,8 +16,8 @@ namespace Resume.ResumeExperiencess
         [Required]
         public bool HideCompanyName { get; set; }
         [Required]
-        [StringLength(ResumeExperiencesConsts.IndustryCategoryCodeMaxLength)]
-        public string IndustryCategoryCode { get; set; }
+        [StringLength(ResumeExperiencesConsts.IndustryCategoryMaxLength)]
+        public string IndustryCategory { get; set; }
         [Required]
         [StringLength(ResumeExperiencesConsts.JobNameMaxLength)]
         public string JobName { get; set; }
@@ -25,8 +25,8 @@ namespace Resume.ResumeExperiencess
         public string? JobType { get; set; }
         [Required]
         public bool Working { get; set; }
-        [StringLength(ResumeExperiencesConsts.WorkPlaceCodeMaxLength)]
-        public string? WorkPlaceCode { get; set; }
+        [StringLength(ResumeExperiencesConsts.WorkPlaceMaxLength)]
+        public string? WorkPlace { get; set; }
         public bool HideWorkSalary { get; set; }
         [Required]
         [StringLength(ResumeExperiencesConsts.SalaryPayTypeCodeMaxLength)]

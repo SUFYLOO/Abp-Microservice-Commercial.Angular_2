@@ -90,14 +90,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="industryCategoryCodeFilter">
-                {{ '::IndustryCategoryCode' | abpLocalization }}
+              <label class="form-label" for="industryCategoryFilter">
+                {{ '::IndustryCategory' | abpLocalization }}
               </label>
 
               <input
-                id="industryCategoryCodeFilter"
+                id="industryCategoryFilter"
                 class="form-control"
-                [(ngModel)]="filters.industryCategoryCode"
+                [(ngModel)]="filters.industryCategory"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -152,14 +152,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="workPlaceCodeFilter">
-                {{ '::WorkPlaceCode' | abpLocalization }}
+              <label class="form-label" for="workPlaceFilter">
+                {{ '::WorkPlace' | abpLocalization }}
               </label>
 
               <input
-                id="workPlaceCodeFilter"
+                id="workPlaceFilter"
                 class="form-control"
-                [(ngModel)]="filters.workPlaceCode"
+                [(ngModel)]="filters.workPlace"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -631,11 +631,11 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::IndustryCategoryCode' | abpLocalization }}"
-          prop="industryCategoryCode"
+          name="{{ '::IndustryCategory' | abpLocalization }}"
+          prop="industryCategory"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.industryCategoryCode }}
+            {{ row.industryCategory }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="{{ '::JobName' | abpLocalization }}" prop="jobName">
@@ -669,9 +669,9 @@
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="{{ '::WorkPlaceCode' | abpLocalization }}" prop="workPlaceCode">
+        <ngx-datatable-column name="{{ '::WorkPlace' | abpLocalization }}" prop="workPlace">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.workPlaceCode }}
+            {{ row.workPlace }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -837,13 +837,13 @@
           </label>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-experiences-industry-category-code">
-            {{ '::IndustryCategoryCode' | abpLocalization }} *
+          <label class="form-label" for="resume-experiences-industry-category">
+            {{ '::IndustryCategory' | abpLocalization }} *
           </label>
 
           <input
-            id="resume-experiences-industry-category-code"
-            formControlName="industryCategoryCode"
+            id="resume-experiences-industry-category"
+            formControlName="industryCategory"
             class="form-control"
             maxlength="500"
           />
@@ -885,13 +885,13 @@
           </label>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-experiences-work-place-code">
-            {{ '::WorkPlaceCode' | abpLocalization }}
+          <label class="form-label" for="resume-experiences-work-place">
+            {{ '::WorkPlace' | abpLocalization }}
           </label>
 
           <input
-            id="resume-experiences-work-place-code"
-            formControlName="workPlaceCode"
+            id="resume-experiences-work-place"
+            formControlName="workPlace"
             class="form-control"
             maxlength="500"
           />

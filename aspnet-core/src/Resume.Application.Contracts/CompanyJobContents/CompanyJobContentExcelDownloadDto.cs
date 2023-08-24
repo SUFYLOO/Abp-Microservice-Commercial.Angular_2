@@ -26,15 +26,16 @@ namespace Resume.CompanyJobContents
         public bool? SalaryUp { get; set; }
         public string? WorkPlace { get; set; }
         public string? WorkHours { get; set; }
-        public string? WorkHour { get; set; }
+        public string? WorkHoursCustom { get; set; }
         public bool? WorkShift { get; set; }
         public bool? WorkRemoteAllow { get; set; }
         public string? WorkRemoteTypeCode { get; set; }
-        public string? WorkRemote { get; set; }
-        public string? WorkDifferentPlaces { get; set; }
+        public string? WorkRemoteDescript { get; set; }
+        public bool? BusinessTrip { get; set; }
         public string? HolidaySystemCode { get; set; }
+        public bool? Dispatched { get; set; }
         public string? WorkDayCode { get; set; }
-        public string? WorkIdentityCode { get; set; }
+        public string? WorkIdentity { get; set; }
         public string? DisabilityCategory { get; set; }
         public string? ExtendedInformation { get; set; }
         public DateTime? DateAMin { get; set; }

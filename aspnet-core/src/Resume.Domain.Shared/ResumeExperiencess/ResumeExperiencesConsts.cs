@@ -11,10 +11,10 @@ namespace Resume.ResumeExperiencess
 
         public const int NameMaxLength = 50;
         public const int WorkNatureCodeMaxLength = 50;
-        public const int IndustryCategoryCodeMaxLength = 500;
+        public const int IndustryCategoryMaxLength = 500;
         public const int JobNameMaxLength = 50;
         public const int JobTypeMaxLength = 500;
-        public const int WorkPlaceCodeMaxLength = 500;
+        public const int WorkPlaceMaxLength = 500;
         public const int SalaryPayTypeCodeMaxLength = 50;
         public const int CurrencyTypeCodeMaxLength = 50;
         public const int CompanyScaleCodeMaxLength = 50;

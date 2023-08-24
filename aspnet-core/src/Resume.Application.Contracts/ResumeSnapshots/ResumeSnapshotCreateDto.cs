@@ -11,6 +11,7 @@ namespace Resume.ResumeSnapshots
         public Guid CompanyMainId { get; set; }
         public Guid? CompanyJobId { get; set; }
         [Required]
+        [StringLength(ResumeSnapshotConsts.SnapshotMaxLength)]
         public string Snapshot { get; set; }
         public Guid? UserCompanyBindId { get; set; }
         [StringLength(ResumeSnapshotConsts.ExtendedInformationMaxLength)]

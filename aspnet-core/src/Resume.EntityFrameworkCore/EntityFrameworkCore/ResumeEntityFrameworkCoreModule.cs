@@ -1,3 +1,10 @@
+using Resume.CompanyJobDrvingLicenses;
+using Resume.CompanyJobEducationLevels;
+using Resume.CompanyJobDisabilityCategories;
+using Resume.CompanyJobWorkIdentities;
+using Resume.CompanyUserMainFavs;
+using Resume.ResumeExperiencesJobs;
+using Resume.ShareExtendeds;
 using Resume.CompanyJobOrganizationUnits;
 using Resume.UserVerifys;
 using Resume.UserTokens;
@@ -208,6 +215,20 @@ public class ResumeEntityFrameworkCoreModule : AbpModule
             options.AddRepository<UserVerify, UserVerifys.EfCoreUserVerifyRepository>();
 
             options.AddRepository<CompanyJobOrganizationUnit, CompanyJobOrganizationUnits.EfCoreCompanyJobOrganizationUnitRepository>();
+
+            options.AddRepository<ShareExtended, ShareExtendeds.EfCoreShareExtendedRepository>();
+
+            options.AddRepository<ResumeExperiencesJob, ResumeExperiencesJobs.EfCoreResumeExperiencesJobRepository>();
+
+            options.AddRepository<CompanyUserMainFav, CompanyUserMainFavs.EfCoreCompanyUserMainFavRepository>();
+
+            options.AddRepository<CompanyJobWorkIdentity, CompanyJobWorkIdentities.EfCoreCompanyJobWorkIdentityRepository>();
+
+            options.AddRepository<CompanyJobDisabilityCategory, CompanyJobDisabilityCategories.EfCoreCompanyJobDisabilityCategoryRepository>();
+
+            options.AddRepository<CompanyJobEducationLevel, CompanyJobEducationLevels.EfCoreCompanyJobEducationLevelRepository>();
+
+            options.AddRepository<CompanyJobDrvingLicense, CompanyJobDrvingLicenses.EfCoreCompanyJobDrvingLicenseRepository>();
 
         });
 

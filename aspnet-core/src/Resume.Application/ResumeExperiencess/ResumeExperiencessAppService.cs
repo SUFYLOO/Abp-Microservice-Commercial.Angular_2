@@ -37,8 +37,8 @@ namespace Resume.ResumeExperiencess
 
         public virtual async Task<PagedResultDto<ResumeExperiencesDto>> GetListAsync(GetResumeExperiencessInput input)
         {
-            var totalCount = await _resumeExperiencesRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
-            var items = await _resumeExperiencesRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
+            var totalCount = await _resumeExperiencesRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategory, input.JobName, input.JobType, input.Working, input.WorkPlace, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeExperiencesRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategory, input.JobName, input.JobType, input.Working, input.WorkPlace, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
 
             return new PagedResultDto<ResumeExperiencesDto>
             {
@@ -63,7 +63,7 @@ namespace Resume.ResumeExperiencess
         {
 
             var resumeExperiences = await _resumeExperiencesManager.CreateAsync(
-            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategory, input.JobName, input.JobType, input.Working, input.WorkPlace, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeExperiences, ResumeExperiencesDto>(resumeExperiences);
@@ -75,7 +75,7 @@ namespace Resume.ResumeExperiencess
 
             var resumeExperiences = await _resumeExperiencesManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategory, input.JobName, input.JobType, input.Working, input.WorkPlace, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1, input.Salary2, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeExperiences, ResumeExperiencesDto>(resumeExperiences);
@@ -90,7 +90,7 @@ namespace Resume.ResumeExperiencess
                 throw new AbpAuthorizationException("Invalid download token: " + input.DownloadToken);
             }
 
-            var items = await _resumeExperiencesRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategoryCode, input.JobName, input.JobType, input.Working, input.WorkPlaceCode, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeExperiencesRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.Name, input.WorkNatureCode, input.HideCompanyName, input.IndustryCategory, input.JobName, input.JobType, input.Working, input.WorkPlace, input.HideWorkSalary, input.SalaryPayTypeCode, input.CurrencyTypeCode, input.Salary1Min, input.Salary1Max, input.Salary2Min, input.Salary2Max, input.CompanyScaleCode, input.CompanyManagementNumberCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
 
             var memoryStream = new MemoryStream();
             await memoryStream.SaveAsAsync(ObjectMapper.Map<List<ResumeExperiences>, List<ResumeExperiencesExcelDto>>(items));

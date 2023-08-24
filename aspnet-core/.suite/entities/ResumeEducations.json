@@ -200,8 +200,8 @@
       "OrdinalIndex": 7
     },
     {
-      "Id": "cdb61ef5-fb20-415f-abab-37846729f75c",
-      "Name": "MajorDepartmentCategoryCode",
+      "Id": "af98e551-8f15-48c2-943b-48caed5cd40d",
+      "Name": "MajorDepartmentCategory",
       "Type": "string",
       "EnumType": null,
       "EnumNamespace": null,
@@ -252,8 +252,8 @@
       "OrdinalIndex": 9
     },
     {
-      "Id": "5da8bacb-c757-4421-95e5-2e00d32ac7f2",
-      "Name": "MinorDepartmentCategoryCode",
+      "Id": "b5664cbe-785c-49ee-aab4-40a756db7eac",
+      "Name": "MinorDepartmentCategory",
       "Type": "string",
       "EnumType": null,
       "EnumNamespace": null,

@@ -39,7 +39,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
         }
 
-        public CompanyJobOrganizationUnit(Guid id, Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null)
+        public CompanyJobOrganizationUnit(Guid id, Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -50,11 +50,11 @@ namespace Resume.CompanyJobOrganizationUnits
             CompanyJobId = companyJobId;
             OrganizationUnitId = organizationUnitId;
             ExtendedInformation = extendedInformation;
-            Note = note;
-            Status = status;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
+            Note = note;
+            Status = status;
         }
 
     }

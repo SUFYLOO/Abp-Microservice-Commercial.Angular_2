@@ -19,7 +19,7 @@ namespace Resume.ResumeEducationss
         }
 
         public async Task<ResumeEducations> CreateAsync(
-        Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategoryCode, string minorDepartmentName, string minorDepartmentCategoryCode, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategory, string minorDepartmentName, string minorDepartmentCategory, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(educationLevelCode, nameof(educationLevelCode));
             Check.Length(educationLevelCode, nameof(educationLevelCode), ResumeEducationsConsts.EducationLevelCodeMaxLength);
@@ -29,12 +29,12 @@ namespace Resume.ResumeEducationss
             Check.Length(schoolName, nameof(schoolName), ResumeEducationsConsts.SchoolNameMaxLength);
             Check.NotNullOrWhiteSpace(majorDepartmentName, nameof(majorDepartmentName));
             Check.Length(majorDepartmentName, nameof(majorDepartmentName), ResumeEducationsConsts.MajorDepartmentNameMaxLength);
-            Check.NotNullOrWhiteSpace(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode));
-            Check.Length(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode), ResumeEducationsConsts.MajorDepartmentCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(majorDepartmentCategory, nameof(majorDepartmentCategory));
+            Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), ResumeEducationsConsts.MajorDepartmentCategoryMaxLength);
             Check.NotNullOrWhiteSpace(minorDepartmentName, nameof(minorDepartmentName));
             Check.Length(minorDepartmentName, nameof(minorDepartmentName), ResumeEducationsConsts.MinorDepartmentNameMaxLength);
-            Check.NotNullOrWhiteSpace(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode));
-            Check.Length(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode), ResumeEducationsConsts.MinorDepartmentCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(minorDepartmentCategory, nameof(minorDepartmentCategory));
+            Check.Length(minorDepartmentCategory, nameof(minorDepartmentCategory), ResumeEducationsConsts.MinorDepartmentCategoryMaxLength);
             Check.NotNullOrWhiteSpace(graduationCode, nameof(graduationCode));
             Check.Length(graduationCode, nameof(graduationCode), ResumeEducationsConsts.GraduationCodeMaxLength);
             Check.NotNullOrWhiteSpace(countryCode, nameof(countryCode));
@@ -45,7 +45,7 @@ namespace Resume.ResumeEducationss
 
             var resumeEducations = new ResumeEducations(
              GuidGenerator.Create(),
-             resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategoryCode, minorDepartmentName, minorDepartmentCategoryCode, graduationCode, domestic, countryCode, extendedInformation, dateA, dateD, sort, note, status
+             resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategory, minorDepartmentName, minorDepartmentCategory, graduationCode, domestic, countryCode, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeEducationsRepository.InsertAsync(resumeEducations);
@@ -53,7 +53,7 @@ namespace Resume.ResumeEducationss
 
         public async Task<ResumeEducations> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategoryCode, string minorDepartmentName, string minorDepartmentCategoryCode, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
+            Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategory, string minorDepartmentName, string minorDepartmentCategory, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(educationLevelCode, nameof(educationLevelCode));
@@ -64,12 +64,12 @@ namespace Resume.ResumeEducationss
             Check.Length(schoolName, nameof(schoolName), ResumeEducationsConsts.SchoolNameMaxLength);
             Check.NotNullOrWhiteSpace(majorDepartmentName, nameof(majorDepartmentName));
             Check.Length(majorDepartmentName, nameof(majorDepartmentName), ResumeEducationsConsts.MajorDepartmentNameMaxLength);
-            Check.NotNullOrWhiteSpace(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode));
-            Check.Length(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode), ResumeEducationsConsts.MajorDepartmentCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(majorDepartmentCategory, nameof(majorDepartmentCategory));
+            Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), ResumeEducationsConsts.MajorDepartmentCategoryMaxLength);
             Check.NotNullOrWhiteSpace(minorDepartmentName, nameof(minorDepartmentName));
             Check.Length(minorDepartmentName, nameof(minorDepartmentName), ResumeEducationsConsts.MinorDepartmentNameMaxLength);
-            Check.NotNullOrWhiteSpace(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode));
-            Check.Length(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode), ResumeEducationsConsts.MinorDepartmentCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(minorDepartmentCategory, nameof(minorDepartmentCategory));
+            Check.Length(minorDepartmentCategory, nameof(minorDepartmentCategory), ResumeEducationsConsts.MinorDepartmentCategoryMaxLength);
             Check.NotNullOrWhiteSpace(graduationCode, nameof(graduationCode));
             Check.Length(graduationCode, nameof(graduationCode), ResumeEducationsConsts.GraduationCodeMaxLength);
             Check.NotNullOrWhiteSpace(countryCode, nameof(countryCode));
@@ -87,9 +87,9 @@ namespace Resume.ResumeEducationss
             resumeEducations.Night = night;
             resumeEducations.Working = working;
             resumeEducations.MajorDepartmentName = majorDepartmentName;
-            resumeEducations.MajorDepartmentCategoryCode = majorDepartmentCategoryCode;
+            resumeEducations.MajorDepartmentCategory = majorDepartmentCategory;
             resumeEducations.MinorDepartmentName = minorDepartmentName;
-            resumeEducations.MinorDepartmentCategoryCode = minorDepartmentCategoryCode;
+            resumeEducations.MinorDepartmentCategory = minorDepartmentCategory;
             resumeEducations.GraduationCode = graduationCode;
             resumeEducations.Domestic = domestic;
             resumeEducations.CountryCode = countryCode;

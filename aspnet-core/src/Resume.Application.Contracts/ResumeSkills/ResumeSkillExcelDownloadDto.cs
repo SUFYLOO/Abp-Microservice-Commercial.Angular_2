@@ -10,8 +10,8 @@ namespace Resume.ResumeSkills
         public string? FilterText { get; set; }
 
         public Guid? ResumeMainId { get; set; }
-        public string? ComputerSkills { get; set; }
-        public string? ComputerSkillsEtc { get; set; }
+        public string? ComputerExpertise { get; set; }
+        public string? ComputerExpertiseEtc { get; set; }
         public int? ChineseTypingSpeedMin { get; set; }
         public int? ChineseTypingSpeedMax { get; set; }
         public string? ChineseTypingCode { get; set; }

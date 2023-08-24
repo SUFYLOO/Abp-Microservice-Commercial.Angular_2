@@ -11,7 +11,6 @@ namespace Resume.CompanyJobApplicationMethods
 
         public Guid? CompanyMainId { get; set; }
         public Guid? CompanyJobId { get; set; }
-        public string? OrgDept { get; set; }
         public string? OrgContactPerson { get; set; }
         public string? OrgContactMail { get; set; }
         public int? ToRespondDayMin { get; set; }

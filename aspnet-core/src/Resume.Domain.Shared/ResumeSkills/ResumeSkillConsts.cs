@@ -9,13 +9,13 @@ namespace Resume.ResumeSkills
             return string.Format(DefaultSorting, withEntityName ? "ResumeSkill." : string.Empty);
         }
 
-        public const int ComputerSkillsMaxLength = 500;
-        public const int ComputerSkillsEtcMaxLength = 500;
+        public const int ComputerExpertiseMaxLength = 500;
+        public const int ComputerExpertiseEtcMaxLength = 4000;
         public const int ChineseTypingCodeMaxLength = 50;
         public const int ProfessionalLicenseMaxLength = 500;
-        public const int ProfessionalLicenseEtcMaxLength = 500;
+        public const int ProfessionalLicenseEtcMaxLength = 4000;
         public const int WorkSkillsMaxLength = 500;
-        public const int WorkSkillsEtcMaxLength = 500;
+        public const int WorkSkillsEtcMaxLength = 4000;
         public const int ExtendedInformationMaxLength = 500;
         public const int NoteMaxLength = 500;
         public const int StatusMaxLength = 50;

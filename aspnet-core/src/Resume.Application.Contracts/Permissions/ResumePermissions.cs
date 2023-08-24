@@ -421,4 +421,60 @@ public static class ResumePermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class ShareExtendeds
+    {
+        public const string Default = GroupName + ".ShareExtendeds";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class ResumeExperiencesJobs
+    {
+        public const string Default = GroupName + ".ResumeExperiencesJobs";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class CompanyUserMainFavs
+    {
+        public const string Default = GroupName + ".CompanyUserMainFavs";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class CompanyJobWorkIdentities
+    {
+        public const string Default = GroupName + ".CompanyJobWorkIdentities";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class CompanyJobDisabilityCategories
+    {
+        public const string Default = GroupName + ".CompanyJobDisabilityCategories";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class CompanyJobEducationLevels
+    {
+        public const string Default = GroupName + ".CompanyJobEducationLevels";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class CompanyJobDrvingLicenses
+    {
+        public const string Default = GroupName + ".CompanyJobDrvingLicenses";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

@@ -3,7 +3,6 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface CompanyJobApplicationMethodCreateDto {
   companyMainId?: string;
   companyJobId?: string;
-  orgDept?: string;
   orgContactPerson?: string;
   orgContactMail?: string;
   toRespondDay?: number;
@@ -24,7 +23,6 @@ export interface CompanyJobApplicationMethodCreateDto {
 export interface CompanyJobApplicationMethodDto extends FullAuditedEntityDto<string> {
   companyMainId?: string;
   companyJobId?: string;
-  orgDept?: string;
   orgContactPerson?: string;
   orgContactMail?: string;
   toRespondDay?: number;
@@ -51,7 +49,6 @@ export interface CompanyJobApplicationMethodExcelDownloadDto {
 export interface CompanyJobApplicationMethodUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
-  orgDept?: string;
   orgContactPerson?: string;
   orgContactMail?: string;
   toRespondDay?: number;
@@ -73,7 +70,6 @@ export interface GetCompanyJobApplicationMethodsInput extends PagedAndSortedResu
   filterText?: string;
   companyMainId?: string;
   companyJobId?: string;
-  orgDept?: string;
   orgContactPerson?: string;
   orgContactMail?: string;
   toRespondDayMin?: number;

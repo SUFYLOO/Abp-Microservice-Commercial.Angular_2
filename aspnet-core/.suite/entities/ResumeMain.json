@@ -200,7 +200,7 @@
       "OrdinalIndex": 17
     },
     {
-      "Id": "e3cc13bb-5aa7-4e28-8497-be71f5c0f3f8",
+      "Id": "15a83353-005c-4b5b-ae18-2a5219a61273",
       "Name": "Autobiography1",
       "Type": "string",
       "EnumType": null,
@@ -212,7 +212,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": null,
+      "MaxLength": 4000,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": null,
@@ -223,10 +223,10 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 18
+      "OrdinalIndex": 0
     },
     {
-      "Id": "f9be5982-eaf2-4580-b134-776eb38dd180",
+      "Id": "31bda080-464a-4c26-a22e-35a653d30036",
       "Name": "Autobiography2",
       "Type": "string",
       "EnumType": null,
@@ -238,7 +238,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": null,
+      "MaxLength": 4000,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": null,
@@ -249,7 +249,7 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 19
+      "OrdinalIndex": 0
     },
     {
       "Id": "6e82c5cb-4496-4fb1-aa8d-ba7fb208394b",

@@ -14,9 +14,12 @@ namespace Resume.CompanyJobConditions
         public string? WorkExperienceYearCode { get; set; }
         public string? EducationLevel { get; set; }
         public string? MajorDepartmentCategory { get; set; }
-        public string? LanguageCategory { get; set; }
-        public string? ComputerExpertise { get; set; }
+        public string? LanguageCondition { get; set; }
+        public string? ComputerExpertiseEtc { get; set; }
         public string? ProfessionalLicense { get; set; }
+        public string? ProfessionalLicenseEtc { get; set; }
+        public string? WorkSkills { get; set; }
+        public string? WorkSkillsEtc { get; set; }
         public string? DrvingLicense { get; set; }
         public string? EtcCondition { get; set; }
         public string? ExtendedInformation { get; set; }

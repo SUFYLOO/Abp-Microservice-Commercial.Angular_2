@@ -174,7 +174,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "d3029520-aa67-44f8-9f58-ecba60cbaa18",
+      "Id": "0d9e44ee-4a17-4684-8e53-1e1a7b51ed5b",
       "Name": "JobType",
       "Type": "string",
       "EnumType": "",
@@ -186,7 +186,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 500,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -200,7 +200,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "a9b6b854-3029-4516-b36b-971b2678894b",
+      "Id": "8817e8b7-581e-41de-a130-fb9dcee4f0be",
       "Name": "JobTypeContent",
       "Type": "string",
       "EnumType": "",
@@ -212,7 +212,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": null,
+      "MaxLength": 4000,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -330,7 +330,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "1e2f2861-14f2-4179-bbce-1e5043c4e900",
+      "Id": "56ac01c2-e1bc-4ae2-9025-365d9b1d621f",
       "Name": "WorkPlace",
       "Type": "string",
       "EnumType": "",
@@ -342,7 +342,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 500,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -356,7 +356,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "bee6a9a0-0d7e-4c11-9e78-2eb2c3aa5eb1",
+      "Id": "6273d145-8690-40e4-92bc-839ed540837d",
       "Name": "WorkHours",
       "Type": "string",
       "EnumType": "",
@@ -368,7 +368,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 500,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -382,8 +382,8 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "93407aa2-b51e-4a1a-aa93-4681a51a052d",
-      "Name": "WorkHour",
+      "Id": "3dc94089-aeaa-42aa-8499-56183665c0fd",
+      "Name": "WorkHoursCustom",
       "Type": "string",
       "EnumType": "",
       "EnumNamespace": "",
@@ -434,7 +434,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "2e4deae5-b325-4834-a9e8-7ccc04261b90",
+      "Id": "0ea68d3c-c21b-43e9-bd0f-894fb585d26a",
       "Name": "WorkRemoteAllow",
       "Type": "bool",
       "EnumType": "",
@@ -486,8 +486,8 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "60d3b571-823a-4ec3-8852-6a424cf860c1",
-      "Name": "WorkRemote",
+      "Id": "342faaee-38c8-477f-98b3-8ac4b632aa4f",
+      "Name": "WorkRemoteDescript",
       "Type": "string",
       "EnumType": "",
       "EnumNamespace": "",
@@ -498,7 +498,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 500,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -512,9 +512,9 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "ecabc1bb-db06-4192-a24d-8553355e4b1b",
-      "Name": "WorkDifferentPlaces",
-      "Type": "string",
+      "Id": "d7a0b567-a7e8-459f-942f-f222b55743f3",
+      "Name": "BusinessTrip",
+      "Type": "bool",
       "EnumType": "",
       "EnumNamespace": "",
       "EnumAngularImport": "shared/enums",
@@ -524,7 +524,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": null,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -538,7 +538,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "80aa9ca5-71b1-4375-92bc-0fe1fb5c04b9",
+      "Id": "a8f57de3-3085-4842-b6af-0ca0ca4cef5d",
       "Name": "HolidaySystemCode",
       "Type": "string",
       "EnumType": "",
@@ -551,6 +551,32 @@
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,
+      "SortOrder": 0,
+      "SortType": 0,
+      "Regex": "",
+      "EmailValidation": false,
+      "ShowOnList": true,
+      "ShowOnCreateModal": true,
+      "ShowOnEditModal": true,
+      "ReadonlyOnEditModal": false,
+      "EnumValues": null,
+      "IsSelected": true,
+      "OrdinalIndex": 0
+    },
+    {
+      "Id": "b408bc1e-a51e-4ce3-8955-a118c728fde9",
+      "Name": "Dispatched",
+      "Type": "bool",
+      "EnumType": "",
+      "EnumNamespace": "",
+      "EnumAngularImport": "shared/enums",
+      "EnumFilePath": null,
+      "DefaultValue": null,
+      "IsNullable": false,
+      "IsRequired": false,
+      "IsTextArea": false,
+      "MinLength": null,
+      "MaxLength": null,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -590,8 +616,8 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "7de92705-df2f-4171-9321-dedecb6cad23",
-      "Name": "WorkIdentityCode",
+      "Id": "d6e9a051-8c71-4539-af5b-acd15b6c0ef3",
+      "Name": "WorkIdentity",
       "Type": "string",
       "EnumType": "",
       "EnumNamespace": "",
@@ -602,7 +628,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 500,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -616,7 +642,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "b325daf3-751a-45d5-b59f-4135360c46b7",
+      "Id": "9b0365e7-794d-4f72-8e67-f3f6fa59a01e",
       "Name": "DisabilityCategory",
       "Type": "string",
       "EnumType": "",
@@ -628,7 +654,7 @@
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": 200,
+      "MaxLength": 4000,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": "",
@@ -650,7 +676,7 @@
       "EnumAngularImport": "shared/enums",
       "EnumFilePath": null,
       "DefaultValue": null,
-      "IsNullable": false,
+      "IsNullable": true,
       "IsRequired": false,
       "IsTextArea": false,
       "MinLength": null,

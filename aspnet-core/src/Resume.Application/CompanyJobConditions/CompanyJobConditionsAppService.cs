@@ -37,8 +37,8 @@ namespace Resume.CompanyJobConditions
 
         public virtual async Task<PagedResultDto<CompanyJobConditionDto>> GetListAsync(GetCompanyJobConditionsInput input)
         {
-            var totalCount = await _companyJobConditionRepository.GetCountAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
-            var items = await _companyJobConditionRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
+            var totalCount = await _companyJobConditionRepository.GetCountAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCondition, input.ComputerExpertiseEtc, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _companyJobConditionRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCondition, input.ComputerExpertiseEtc, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
 
             return new PagedResultDto<CompanyJobConditionDto>
             {
@@ -63,7 +63,7 @@ namespace Resume.CompanyJobConditions
         {
 
             var companyJobCondition = await _companyJobConditionManager.CreateAsync(
-            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCondition, input.ComputerExpertiseEtc, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobCondition, CompanyJobConditionDto>(companyJobCondition);
@@ -75,7 +75,7 @@ namespace Resume.CompanyJobConditions
 
             var companyJobCondition = await _companyJobConditionManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCondition, input.ComputerExpertiseEtc, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobCondition, CompanyJobConditionDto>(companyJobCondition);
@@ -90,7 +90,7 @@ namespace Resume.CompanyJobConditions
                 throw new AbpAuthorizationException("Invalid download token: " + input.DownloadToken);
             }
 
-            var items = await _companyJobConditionRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCategory, input.ComputerExpertise, input.ProfessionalLicense, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _companyJobConditionRepository.GetListAsync(input.FilterText, input.CompanyMainId, input.CompanyJobId, input.WorkExperienceYearCode, input.EducationLevel, input.MajorDepartmentCategory, input.LanguageCondition, input.ComputerExpertiseEtc, input.ProfessionalLicense, input.ProfessionalLicenseEtc, input.WorkSkills, input.WorkSkillsEtc, input.DrvingLicense, input.EtcCondition, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
 
             var memoryStream = new MemoryStream();
             await memoryStream.SaveAsAsync(ObjectMapper.Map<List<CompanyJobCondition>, List<CompanyJobConditionExcelDto>>(items));

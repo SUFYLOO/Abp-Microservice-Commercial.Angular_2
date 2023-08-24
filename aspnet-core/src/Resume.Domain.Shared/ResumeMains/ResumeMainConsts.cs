@@ -14,6 +14,8 @@ namespace Resume.ResumeMains
         public const int MilitaryCodeMaxLength = 50;
         public const int DisabilityCategoryCodeMaxLength = 50;
         public const int SpecialIdentityCodeMaxLength = 50;
+        public const int Autobiography1MaxLength = 4000;
+        public const int Autobiography2MaxLength = 4000;
         public const int ExtendedInformationMaxLength = 500;
         public const int NoteMaxLength = 500;
         public const int StatusMaxLength = 50;

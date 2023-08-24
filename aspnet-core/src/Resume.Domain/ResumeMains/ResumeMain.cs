@@ -70,6 +70,8 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength, 0);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength, 0);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength, 0);
+            Check.Length(autobiography1, nameof(autobiography1), ResumeMainConsts.Autobiography1MaxLength, 0);
+            Check.Length(autobiography2, nameof(autobiography2), ResumeMainConsts.Autobiography2MaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength, 0);
             Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength, 0);

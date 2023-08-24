@@ -24,14 +24,14 @@ namespace Resume.ResumeEducationss
         [StringLength(ResumeEducationsConsts.MajorDepartmentNameMaxLength)]
         public string MajorDepartmentName { get; set; }
         [Required]
-        [StringLength(ResumeEducationsConsts.MajorDepartmentCategoryCodeMaxLength)]
-        public string MajorDepartmentCategoryCode { get; set; }
+        [StringLength(ResumeEducationsConsts.MajorDepartmentCategoryMaxLength)]
+        public string MajorDepartmentCategory { get; set; }
         [Required]
         [StringLength(ResumeEducationsConsts.MinorDepartmentNameMaxLength)]
         public string MinorDepartmentName { get; set; }
         [Required]
-        [StringLength(ResumeEducationsConsts.MinorDepartmentCategoryCodeMaxLength)]
-        public string MinorDepartmentCategoryCode { get; set; }
+        [StringLength(ResumeEducationsConsts.MinorDepartmentCategoryMaxLength)]
+        public string MinorDepartmentCategory { get; set; }
         [Required]
         [StringLength(ResumeEducationsConsts.GraduationCodeMaxLength)]
         public string GraduationCode { get; set; }

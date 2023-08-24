@@ -71,9 +71,9 @@ export class ResumeEducationsComponent implements OnInit {
       night,
       working,
       majorDepartmentName,
-      majorDepartmentCategoryCode,
+      majorDepartmentCategory,
       minorDepartmentName,
-      minorDepartmentCategoryCode,
+      minorDepartmentCategory,
       graduationCode,
       domestic,
       countryCode,
@@ -99,16 +99,16 @@ export class ResumeEducationsComponent implements OnInit {
         majorDepartmentName ?? null,
         [Validators.required, Validators.maxLength(50)],
       ],
-      majorDepartmentCategoryCode: [
-        majorDepartmentCategoryCode ?? null,
+      majorDepartmentCategory: [
+        majorDepartmentCategory ?? null,
         [Validators.required, Validators.maxLength(500)],
       ],
       minorDepartmentName: [
         minorDepartmentName ?? null,
         [Validators.required, Validators.maxLength(50)],
       ],
-      minorDepartmentCategoryCode: [
-        minorDepartmentCategoryCode ?? null,
+      minorDepartmentCategory: [
+        minorDepartmentCategory ?? null,
         [Validators.required, Validators.maxLength(500)],
       ],
       graduationCode: [graduationCode ?? null, [Validators.required, Validators.maxLength(50)]],

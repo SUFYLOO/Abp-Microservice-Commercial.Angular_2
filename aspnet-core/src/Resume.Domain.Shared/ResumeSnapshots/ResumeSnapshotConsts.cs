@@ -9,6 +9,7 @@ namespace Resume.ResumeSnapshots
             return string.Format(DefaultSorting, withEntityName ? "ResumeSnapshot." : string.Empty);
         }
 
+        public const int SnapshotMaxLength = 4000;
         public const int ExtendedInformationMaxLength = 500;
         public const int NoteMaxLength = 500;
         public const int StatusMaxLength = 50;

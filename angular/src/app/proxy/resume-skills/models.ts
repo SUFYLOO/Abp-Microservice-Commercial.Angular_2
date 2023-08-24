@@ -3,8 +3,8 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface GetResumeSkillsInput extends PagedAndSortedResultRequestDto {
   filterText?: string;
   resumeMainId?: string;
-  computerSkills?: string;
-  computerSkillsEtc?: string;
+  computerExpertise?: string;
+  computerExpertiseEtc?: string;
   chineseTypingSpeedMin?: number;
   chineseTypingSpeedMax?: number;
   chineseTypingCode?: string;
@@ -27,8 +27,8 @@ export interface GetResumeSkillsInput extends PagedAndSortedResultRequestDto {
 
 export interface ResumeSkillCreateDto {
   resumeMainId?: string;
-  computerSkills?: string;
-  computerSkillsEtc?: string;
+  computerExpertise?: string;
+  computerExpertiseEtc?: string;
   chineseTypingSpeed: number;
   chineseTypingCode: string;
   englishTypingSpeed: number;
@@ -46,8 +46,8 @@ export interface ResumeSkillCreateDto {
 
 export interface ResumeSkillDto extends FullAuditedEntityDto<string> {
   resumeMainId?: string;
-  computerSkills?: string;
-  computerSkillsEtc?: string;
+  computerExpertise?: string;
+  computerExpertiseEtc?: string;
   chineseTypingSpeed: number;
   chineseTypingCode: string;
   englishTypingSpeed: number;
@@ -71,8 +71,8 @@ export interface ResumeSkillExcelDownloadDto {
 
 export interface ResumeSkillUpdateDto {
   resumeMainId?: string;
-  computerSkills?: string;
-  computerSkillsEtc?: string;
+  computerExpertise?: string;
+  computerExpertiseEtc?: string;
   chineseTypingSpeed: number;
   chineseTypingCode: string;
   englishTypingSpeed: number;

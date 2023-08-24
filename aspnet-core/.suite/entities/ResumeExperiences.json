@@ -122,8 +122,8 @@
       "OrdinalIndex": 4
     },
     {
-      "Id": "627f9a3a-534b-4a06-bfdf-a2417051c3d3",
-      "Name": "IndustryCategoryCode",
+      "Id": "925ecc50-2f15-4940-b3ab-3681a1da485f",
+      "Name": "IndustryCategory",
       "Type": "string",
       "EnumType": null,
       "EnumNamespace": null,
@@ -226,8 +226,8 @@
       "OrdinalIndex": 8
     },
     {
-      "Id": "ee01f7be-8528-4d0a-b8f1-8a78465cc0f7",
-      "Name": "WorkPlaceCode",
+      "Id": "edbca9b3-190a-493b-adc3-1b1fd04c7c90",
+      "Name": "WorkPlace",
       "Type": "string",
       "EnumType": null,
       "EnumNamespace": null,

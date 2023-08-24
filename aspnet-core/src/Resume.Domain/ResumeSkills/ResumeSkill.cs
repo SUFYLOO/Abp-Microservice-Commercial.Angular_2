@@ -18,10 +18,10 @@ namespace Resume.ResumeSkills
         public virtual Guid ResumeMainId { get; set; }
 
         [CanBeNull]
-        public virtual string? ComputerSkills { get; set; }
+        public virtual string? ComputerExpertise { get; set; }
 
         [CanBeNull]
-        public virtual string? ComputerSkillsEtc { get; set; }
+        public virtual string? ComputerExpertiseEtc { get; set; }
 
         public virtual int ChineseTypingSpeed { get; set; }
 
@@ -62,12 +62,12 @@ namespace Resume.ResumeSkills
 
         }
 
-        public ResumeSkill(Guid id, Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public ResumeSkill(Guid id, Guid resumeMainId, string computerExpertise, string computerExpertiseEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
-            Check.Length(computerSkills, nameof(computerSkills), ResumeSkillConsts.ComputerSkillsMaxLength, 0);
-            Check.Length(computerSkillsEtc, nameof(computerSkillsEtc), ResumeSkillConsts.ComputerSkillsEtcMaxLength, 0);
+            Check.Length(computerExpertise, nameof(computerExpertise), ResumeSkillConsts.ComputerExpertiseMaxLength, 0);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), ResumeSkillConsts.ComputerExpertiseEtcMaxLength, 0);
             Check.NotNull(chineseTypingCode, nameof(chineseTypingCode));
             Check.Length(chineseTypingCode, nameof(chineseTypingCode), ResumeSkillConsts.ChineseTypingCodeMaxLength, 0);
             Check.Length(professionalLicense, nameof(professionalLicense), ResumeSkillConsts.ProfessionalLicenseMaxLength, 0);
@@ -78,8 +78,8 @@ namespace Resume.ResumeSkills
             Check.Length(note, nameof(note), ResumeSkillConsts.NoteMaxLength, 0);
             Check.Length(status, nameof(status), ResumeSkillConsts.StatusMaxLength, 0);
             ResumeMainId = resumeMainId;
-            ComputerSkills = computerSkills;
-            ComputerSkillsEtc = computerSkillsEtc;
+            ComputerExpertise = computerExpertise;
+            ComputerExpertiseEtc = computerExpertiseEtc;
             ChineseTypingSpeed = chineseTypingSpeed;
             ChineseTypingCode = chineseTypingCode;
             EnglishTypingSpeed = englishTypingSpeed;

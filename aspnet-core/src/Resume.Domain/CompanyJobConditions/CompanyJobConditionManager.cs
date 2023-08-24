@@ -19,15 +19,18 @@ namespace Resume.CompanyJobConditions
         }
 
         public async Task<CompanyJobCondition> CreateAsync(
-        Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCondition, string computerExpertiseEtc, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(workExperienceYearCode, nameof(workExperienceYearCode));
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength);
             Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), CompanyJobConditionConsts.MajorDepartmentCategoryMaxLength);
-            Check.Length(languageCategory, nameof(languageCategory), CompanyJobConditionConsts.LanguageCategoryMaxLength);
-            Check.Length(computerExpertise, nameof(computerExpertise), CompanyJobConditionConsts.ComputerExpertiseMaxLength);
+            Check.Length(languageCondition, nameof(languageCondition), CompanyJobConditionConsts.LanguageConditionMaxLength);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), CompanyJobConditionConsts.ComputerExpertiseEtcMaxLength);
             Check.Length(professionalLicense, nameof(professionalLicense), CompanyJobConditionConsts.ProfessionalLicenseMaxLength);
+            Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), CompanyJobConditionConsts.ProfessionalLicenseEtcMaxLength);
+            Check.Length(workSkills, nameof(workSkills), CompanyJobConditionConsts.WorkSkillsMaxLength);
+            Check.Length(workSkillsEtc, nameof(workSkillsEtc), CompanyJobConditionConsts.WorkSkillsEtcMaxLength);
             Check.Length(drvingLicense, nameof(drvingLicense), CompanyJobConditionConsts.DrvingLicenseMaxLength);
             Check.Length(etcCondition, nameof(etcCondition), CompanyJobConditionConsts.EtcConditionMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConditionConsts.ExtendedInformationMaxLength);
@@ -36,7 +39,7 @@ namespace Resume.CompanyJobConditions
 
             var companyJobCondition = new CompanyJobCondition(
              GuidGenerator.Create(),
-             companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCategory, computerExpertise, professionalLicense, drvingLicense, etcCondition, extendedInformation, dateA, dateD, sort, note, status
+             companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCondition, computerExpertiseEtc, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, drvingLicense, etcCondition, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyJobConditionRepository.InsertAsync(companyJobCondition);
@@ -44,16 +47,19 @@ namespace Resume.CompanyJobConditions
 
         public async Task<CompanyJobCondition> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
+            Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCondition, string computerExpertiseEtc, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(workExperienceYearCode, nameof(workExperienceYearCode));
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength);
             Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), CompanyJobConditionConsts.MajorDepartmentCategoryMaxLength);
-            Check.Length(languageCategory, nameof(languageCategory), CompanyJobConditionConsts.LanguageCategoryMaxLength);
-            Check.Length(computerExpertise, nameof(computerExpertise), CompanyJobConditionConsts.ComputerExpertiseMaxLength);
+            Check.Length(languageCondition, nameof(languageCondition), CompanyJobConditionConsts.LanguageConditionMaxLength);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), CompanyJobConditionConsts.ComputerExpertiseEtcMaxLength);
             Check.Length(professionalLicense, nameof(professionalLicense), CompanyJobConditionConsts.ProfessionalLicenseMaxLength);
+            Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), CompanyJobConditionConsts.ProfessionalLicenseEtcMaxLength);
+            Check.Length(workSkills, nameof(workSkills), CompanyJobConditionConsts.WorkSkillsMaxLength);
+            Check.Length(workSkillsEtc, nameof(workSkillsEtc), CompanyJobConditionConsts.WorkSkillsEtcMaxLength);
             Check.Length(drvingLicense, nameof(drvingLicense), CompanyJobConditionConsts.DrvingLicenseMaxLength);
             Check.Length(etcCondition, nameof(etcCondition), CompanyJobConditionConsts.EtcConditionMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConditionConsts.ExtendedInformationMaxLength);
@@ -67,9 +73,12 @@ namespace Resume.CompanyJobConditions
             companyJobCondition.WorkExperienceYearCode = workExperienceYearCode;
             companyJobCondition.EducationLevel = educationLevel;
             companyJobCondition.MajorDepartmentCategory = majorDepartmentCategory;
-            companyJobCondition.LanguageCategory = languageCategory;
-            companyJobCondition.ComputerExpertise = computerExpertise;
+            companyJobCondition.LanguageCondition = languageCondition;
+            companyJobCondition.ComputerExpertiseEtc = computerExpertiseEtc;
             companyJobCondition.ProfessionalLicense = professionalLicense;
+            companyJobCondition.ProfessionalLicenseEtc = professionalLicenseEtc;
+            companyJobCondition.WorkSkills = workSkills;
+            companyJobCondition.WorkSkillsEtc = workSkillsEtc;
             companyJobCondition.DrvingLicense = drvingLicense;
             companyJobCondition.EtcCondition = etcCondition;
             companyJobCondition.ExtendedInformation = extendedInformation;

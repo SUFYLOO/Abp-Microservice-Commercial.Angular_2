@@ -7,10 +7,10 @@ namespace Resume.ResumeSkills
     public class ResumeSkillCreateDto
     {
         public Guid ResumeMainId { get; set; }
-        [StringLength(ResumeSkillConsts.ComputerSkillsMaxLength)]
-        public string? ComputerSkills { get; set; }
-        [StringLength(ResumeSkillConsts.ComputerSkillsEtcMaxLength)]
-        public string? ComputerSkillsEtc { get; set; }
+        [StringLength(ResumeSkillConsts.ComputerExpertiseMaxLength)]
+        public string? ComputerExpertise { get; set; }
+        [StringLength(ResumeSkillConsts.ComputerExpertiseEtcMaxLength)]
+        public string? ComputerExpertiseEtc { get; set; }
         [Required]
         public int ChineseTypingSpeed { get; set; }
         [Required]

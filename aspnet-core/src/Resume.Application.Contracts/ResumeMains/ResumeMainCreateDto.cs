@@ -20,7 +20,9 @@ namespace Resume.ResumeMains
         public string? SpecialIdentityCode { get; set; }
         [Required]
         public bool Main { get; set; }
+        [StringLength(ResumeMainConsts.Autobiography1MaxLength)]
         public string? Autobiography1 { get; set; }
+        [StringLength(ResumeMainConsts.Autobiography2MaxLength)]
         public string? Autobiography2 { get; set; }
         [StringLength(ResumeMainConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }

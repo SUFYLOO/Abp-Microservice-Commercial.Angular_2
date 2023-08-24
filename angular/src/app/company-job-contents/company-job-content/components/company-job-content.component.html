@@ -287,14 +287,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="workHourFilter">
-                {{ '::WorkHour' | abpLocalization }}
+              <label class="form-label" for="workHoursCustomFilter">
+                {{ '::WorkHoursCustom' | abpLocalization }}
               </label>
 
               <input
-                id="workHourFilter"
+                id="workHoursCustomFilter"
                 class="form-control"
-                [(ngModel)]="filters.workHour"
+                [(ngModel)]="filters.workHoursCustom"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -355,30 +355,36 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="workRemoteFilter">
-                {{ '::WorkRemote' | abpLocalization }}
+              <label class="form-label" for="workRemoteDescriptFilter">
+                {{ '::WorkRemoteDescript' | abpLocalization }}
               </label>
 
               <input
-                id="workRemoteFilter"
+                id="workRemoteDescriptFilter"
                 class="form-control"
-                [(ngModel)]="filters.workRemote"
+                [(ngModel)]="filters.workRemoteDescript"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="workDifferentPlacesFilter">
-                {{ '::WorkDifferentPlaces' | abpLocalization }}
+              <label class="form-label" for="businessTripFilter">
+                {{ '::BusinessTrip' | abpLocalization }}
               </label>
 
-              <input
-                id="workDifferentPlacesFilter"
-                class="form-control"
-                [(ngModel)]="filters.workDifferentPlaces"
+              <select
+                name="businessTrip"
+                id="businessTripFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.businessTrip"
                 [ngModelOptions]="{ standalone: true }"
-              />
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
             </div>
           </div>
           <div class="col-12 col-sm-auto">
@@ -397,6 +403,26 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
+              <label class="form-label" for="dispatchedFilter">
+                {{ '::Dispatched' | abpLocalization }}
+              </label>
+
+              <select
+                name="dispatched"
+                id="dispatchedFilter"
+                class="form-select form-control"
+                [(ngModel)]="filters.dispatched"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="list.get()"
+              >
+                <option [ngValue]=""></option>
+                <option [ngValue]="true">{{ 'AbpUi::Yes' | abpLocalization }}</option>
+                <option [ngValue]="false">{{ 'AbpUi::No' | abpLocalization }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
               <label class="form-label" for="workDayCodeFilter">
                 {{ '::WorkDayCode' | abpLocalization }}
               </label>
@@ -411,14 +437,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="workIdentityCodeFilter">
-                {{ '::WorkIdentityCode' | abpLocalization }}
+              <label class="form-label" for="workIdentityFilter">
+                {{ '::WorkIdentity' | abpLocalization }}
               </label>
 
               <input
-                id="workIdentityCodeFilter"
+                id="workIdentityFilter"
                 class="form-control"
-                [(ngModel)]="filters.workIdentityCode"
+                [(ngModel)]="filters.workIdentity"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -837,9 +863,12 @@
             {{ row.workHours }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="{{ '::WorkHour' | abpLocalization }}" prop="workHour">
+        <ngx-datatable-column
+          name="{{ '::WorkHoursCustom' | abpLocalization }}"
+          prop="workHoursCustom"
+        >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.workHour }}
+            {{ row.workHoursCustom }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="{{ '::WorkShift' | abpLocalization }}" prop="workShift">
@@ -899,17 +928,33 @@
             {{ row.workRemoteTypeCode }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="{{ '::WorkRemote' | abpLocalization }}" prop="workRemote">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.workRemote }}
-          </ng-template>
-        </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::WorkDifferentPlaces' | abpLocalization }}"
-          prop="workDifferentPlaces"
+          name="{{ '::WorkRemoteDescript' | abpLocalization }}"
+          prop="workRemoteDescript"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.workDifferentPlaces }}
+            {{ row.workRemoteDescript }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::BusinessTrip' | abpLocalization }}" prop="businessTrip">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template [ngIf]="row.businessTrip" [ngIfThen]="yes" [ngIfElse]="no"></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -920,17 +965,35 @@
             {{ row.holidaySystemCode }}
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::Dispatched' | abpLocalization }}" prop="dispatched">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-template [ngIf]="row.dispatched" [ngIfThen]="yes" [ngIfElse]="no"></ng-template>
+
+            <ng-template #yes>
+              <div class="text-success">
+                <span [title]="'AbpUi::Yes' | abpLocalization">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+
+            <ng-template #no>
+              <div class="text-danger">
+                <span [title]="'AbpUi::No' | abpLocalization">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
         <ngx-datatable-column name="{{ '::WorkDayCode' | abpLocalization }}" prop="workDayCode">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.workDayCode }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column
-          name="{{ '::WorkIdentityCode' | abpLocalization }}"
-          prop="workIdentityCode"
-        >
+        <ngx-datatable-column name="{{ '::WorkIdentity' | abpLocalization }}" prop="workIdentity">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.workIdentityCode }}
+            {{ row.workIdentity }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -1072,7 +1135,7 @@
             id="company-job-content-job-type"
             formControlName="jobType"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
         <div class="mb-3">
@@ -1084,6 +1147,7 @@
             id="company-job-content-job-type-content"
             formControlName="jobTypeContent"
             class="form-control"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">
@@ -1143,7 +1207,7 @@
             id="company-job-content-work-place"
             formControlName="workPlace"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
         <div class="mb-3">
@@ -1155,17 +1219,17 @@
             id="company-job-content-work-hours"
             formControlName="workHours"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="company-job-content-work-hour">
-            {{ '::WorkHour' | abpLocalization }}
+          <label class="form-label" for="company-job-content-work-hours-custom">
+            {{ '::WorkHoursCustom' | abpLocalization }}
           </label>
 
           <input
-            id="company-job-content-work-hour"
-            formControlName="workHour"
+            id="company-job-content-work-hours-custom"
+            formControlName="workHoursCustom"
             class="form-control"
             maxlength="200"
           />
@@ -1207,28 +1271,28 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="company-job-content-work-remote">
-            {{ '::WorkRemote' | abpLocalization }}
+          <label class="form-label" for="company-job-content-work-remote-descript">
+            {{ '::WorkRemoteDescript' | abpLocalization }}
           </label>
 
           <input
-            id="company-job-content-work-remote"
-            formControlName="workRemote"
+            id="company-job-content-work-remote-descript"
+            formControlName="workRemoteDescript"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="company-job-content-work-different-places">
-            {{ '::WorkDifferentPlaces' | abpLocalization }}
-          </label>
-
+        <div class="form-check mb-3">
           <input
-            id="company-job-content-work-different-places"
-            formControlName="workDifferentPlaces"
-            class="form-control"
-            maxlength="200"
+            type="checkbox"
+            id="company-job-content-business-trip"
+            formControlName="businessTrip"
+            class="form-check-input"
           />
+
+          <label for="company-job-content-business-trip" class="form-check-label">
+            {{ '::BusinessTrip' | abpLocalization }}
+          </label>
         </div>
         <div class="mb-3">
           <label class="form-label" for="company-job-content-holiday-system-code">
@@ -1241,6 +1305,18 @@
             class="form-control"
             maxlength="50"
           />
+        </div>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="company-job-content-dispatched"
+            formControlName="dispatched"
+            class="form-check-input"
+          />
+
+          <label for="company-job-content-dispatched" class="form-check-label">
+            {{ '::Dispatched' | abpLocalization }}
+          </label>
         </div>
         <div class="mb-3">
           <label class="form-label" for="company-job-content-work-day-code">
@@ -1255,15 +1331,15 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="company-job-content-work-identity-code">
-            {{ '::WorkIdentityCode' | abpLocalization }}
+          <label class="form-label" for="company-job-content-work-identity">
+            {{ '::WorkIdentity' | abpLocalization }}
           </label>
 
           <input
-            id="company-job-content-work-identity-code"
-            formControlName="workIdentityCode"
+            id="company-job-content-work-identity"
+            formControlName="workIdentity"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
         <div class="mb-3">
@@ -1275,7 +1351,7 @@
             id="company-job-content-disability-category"
             formControlName="disabilityCategory"
             class="form-control"
-            maxlength="200"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">

@@ -19,9 +19,8 @@ namespace Resume.CompanyJobApplicationMethods
         }
 
         public async Task<CompanyJobApplicationMethod> CreateAsync(
-        Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        Guid companyMainId, Guid companyJobId, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
-            Check.Length(orgDept, nameof(orgDept), CompanyJobApplicationMethodConsts.OrgDeptMaxLength);
             Check.Length(orgContactPerson, nameof(orgContactPerson), CompanyJobApplicationMethodConsts.OrgContactPersonMaxLength);
             Check.Length(orgContactMail, nameof(orgContactMail), CompanyJobApplicationMethodConsts.OrgContactMailMaxLength);
             Check.Length(telephone, nameof(telephone), CompanyJobApplicationMethodConsts.TelephoneMaxLength);
@@ -33,7 +32,7 @@ namespace Resume.CompanyJobApplicationMethods
 
             var companyJobApplicationMethod = new CompanyJobApplicationMethod(
              GuidGenerator.Create(),
-             companyMainId, companyJobId, orgDept, orgContactPerson, orgContactMail, toRespondDay, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateA, dateD, sort, note, status
+             companyMainId, companyJobId, orgContactPerson, orgContactMail, toRespondDay, toRespond, systemSendResume, displayMail, telephone, personally, personallyAddress, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyJobApplicationMethodRepository.InsertAsync(companyJobApplicationMethod);
@@ -41,10 +40,9 @@ namespace Resume.CompanyJobApplicationMethods
 
         public async Task<CompanyJobApplicationMethod> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
+            Guid companyMainId, Guid companyJobId, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
-            Check.Length(orgDept, nameof(orgDept), CompanyJobApplicationMethodConsts.OrgDeptMaxLength);
             Check.Length(orgContactPerson, nameof(orgContactPerson), CompanyJobApplicationMethodConsts.OrgContactPersonMaxLength);
             Check.Length(orgContactMail, nameof(orgContactMail), CompanyJobApplicationMethodConsts.OrgContactMailMaxLength);
             Check.Length(telephone, nameof(telephone), CompanyJobApplicationMethodConsts.TelephoneMaxLength);
@@ -58,7 +56,6 @@ namespace Resume.CompanyJobApplicationMethods
 
             companyJobApplicationMethod.CompanyMainId = companyMainId;
             companyJobApplicationMethod.CompanyJobId = companyJobId;
-            companyJobApplicationMethod.OrgDept = orgDept;
             companyJobApplicationMethod.OrgContactPerson = orgContactPerson;
             companyJobApplicationMethod.OrgContactMail = orgContactMail;
             companyJobApplicationMethod.ToRespondDay = toRespondDay;

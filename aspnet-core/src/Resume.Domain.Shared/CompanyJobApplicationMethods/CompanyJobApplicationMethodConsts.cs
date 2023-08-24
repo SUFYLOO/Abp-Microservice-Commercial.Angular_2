@@ -9,7 +9,6 @@ namespace Resume.CompanyJobApplicationMethods
             return string.Format(DefaultSorting, withEntityName ? "CompanyJobApplicationMethod." : string.Empty);
         }
 
-        public const int OrgDeptMaxLength = 500;
         public const int OrgContactPersonMaxLength = 50;
         public const int OrgContactMailMaxLength = 500;
         public const int TelephoneMaxLength = 50;

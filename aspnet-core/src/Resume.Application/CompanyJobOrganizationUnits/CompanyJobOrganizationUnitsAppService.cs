@@ -63,7 +63,7 @@ namespace Resume.CompanyJobOrganizationUnits
         {
 
             var companyJobOrganizationUnit = await _companyJobOrganizationUnitManager.CreateAsync(
-            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort
+            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitDto>(companyJobOrganizationUnit);
@@ -75,7 +75,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
             var companyJobOrganizationUnit = await _companyJobOrganizationUnitManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort
+            input.CompanyMainId, input.CompanyJobId, input.OrganizationUnitId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitDto>(companyJobOrganizationUnit);

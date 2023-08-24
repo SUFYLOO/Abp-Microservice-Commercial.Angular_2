@@ -11,9 +11,9 @@ namespace Resume.ResumeEducationss
         public bool Night { get; set; }
         public bool Working { get; set; }
         public string MajorDepartmentName { get; set; }
-        public string MajorDepartmentCategoryCode { get; set; }
+        public string MajorDepartmentCategory { get; set; }
         public string MinorDepartmentName { get; set; }
-        public string MinorDepartmentCategoryCode { get; set; }
+        public string MinorDepartmentCategory { get; set; }
         public string GraduationCode { get; set; }
         public bool Domestic { get; set; }
         public string CountryCode { get; set; }

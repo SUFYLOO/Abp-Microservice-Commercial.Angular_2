@@ -56,20 +56,6 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="orgDeptFilter">
-                {{ '::OrgDept' | abpLocalization }}
-              </label>
-
-              <input
-                id="orgDeptFilter"
-                class="form-control"
-                [(ngModel)]="filters.orgDept"
-                [ngModelOptions]="{ standalone: true }"
-              />
-            </div>
-          </div>
-          <div class="col-12 col-sm-auto">
-            <div class="mb-3">
               <label class="form-label" for="orgContactPersonFilter">
                 {{ '::OrgContactPerson' | abpLocalization }}
               </label>
@@ -521,11 +507,6 @@
             {{ row.companyJobId }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="{{ '::OrgDept' | abpLocalization }}" prop="orgDept">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.orgDept }}
-          </ng-template>
-        </ngx-datatable-column>
         <ngx-datatable-column
           name="{{ '::OrgContactPerson' | abpLocalization }}"
           prop="orgContactPerson"
@@ -709,18 +690,6 @@
             id="company-job-application-method-company-job-id"
             formControlName="companyJobId"
             class="form-control"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="company-job-application-method-org-dept">
-            {{ '::OrgDept' | abpLocalization }}
-          </label>
-
-          <input
-            id="company-job-application-method-org-dept"
-            formControlName="orgDept"
-            class="form-control"
-            maxlength="500"
           />
         </div>
         <div class="mb-3">

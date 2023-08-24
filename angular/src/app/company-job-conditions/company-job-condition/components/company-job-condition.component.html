@@ -98,28 +98,28 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="languageCategoryFilter">
-                {{ '::LanguageCategory' | abpLocalization }}
+              <label class="form-label" for="languageConditionFilter">
+                {{ '::LanguageCondition' | abpLocalization }}
               </label>
 
               <input
-                id="languageCategoryFilter"
+                id="languageConditionFilter"
                 class="form-control"
-                [(ngModel)]="filters.languageCategory"
+                [(ngModel)]="filters.languageCondition"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="computerExpertiseFilter">
-                {{ '::ComputerExpertise' | abpLocalization }}
+              <label class="form-label" for="computerExpertiseEtcFilter">
+                {{ '::ComputerExpertiseEtc' | abpLocalization }}
               </label>
 
               <input
-                id="computerExpertiseFilter"
+                id="computerExpertiseEtcFilter"
                 class="form-control"
-                [(ngModel)]="filters.computerExpertise"
+                [(ngModel)]="filters.computerExpertiseEtc"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -134,6 +134,48 @@
                 id="professionalLicenseFilter"
                 class="form-control"
                 [(ngModel)]="filters.professionalLicense"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="professionalLicenseEtcFilter">
+                {{ '::ProfessionalLicenseEtc' | abpLocalization }}
+              </label>
+
+              <input
+                id="professionalLicenseEtcFilter"
+                class="form-control"
+                [(ngModel)]="filters.professionalLicenseEtc"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workSkillsFilter">
+                {{ '::WorkSkills' | abpLocalization }}
+              </label>
+
+              <input
+                id="workSkillsFilter"
+                class="form-control"
+                [(ngModel)]="filters.workSkills"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <div class="mb-3">
+              <label class="form-label" for="workSkillsEtcFilter">
+                {{ '::WorkSkillsEtc' | abpLocalization }}
+              </label>
+
+              <input
+                id="workSkillsEtcFilter"
+                class="form-control"
+                [(ngModel)]="filters.workSkillsEtc"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -483,19 +525,19 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::LanguageCategory' | abpLocalization }}"
-          prop="languageCategory"
+          name="{{ '::LanguageCondition' | abpLocalization }}"
+          prop="languageCondition"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.languageCategory }}
+            {{ row.languageCondition }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::ComputerExpertise' | abpLocalization }}"
-          prop="computerExpertise"
+          name="{{ '::ComputerExpertiseEtc' | abpLocalization }}"
+          prop="computerExpertiseEtc"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.computerExpertise }}
+            {{ row.computerExpertiseEtc }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -504,6 +546,24 @@
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.professionalLicense }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ '::ProfessionalLicenseEtc' | abpLocalization }}"
+          prop="professionalLicenseEtc"
+        >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.professionalLicenseEtc }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkSkills' | abpLocalization }}" prop="workSkills">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workSkills }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ '::WorkSkillsEtc' | abpLocalization }}" prop="workSkillsEtc">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.workSkillsEtc }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="{{ '::DrvingLicense' | abpLocalization }}" prop="drvingLicense">
@@ -608,7 +668,7 @@
             id="company-job-condition-education-level"
             formControlName="educationLevel"
             class="form-control"
-            maxlength="200"
+            maxlength="500"
           />
         </div>
         <div class="mb-3">
@@ -620,31 +680,31 @@
             id="company-job-condition-major-department-category"
             formControlName="majorDepartmentCategory"
             class="form-control"
-            maxlength="200"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="company-job-condition-language-category">
-            {{ '::LanguageCategory' | abpLocalization }}
-          </label>
-
-          <input
-            id="company-job-condition-language-category"
-            formControlName="languageCategory"
-            class="form-control"
-            maxlength="200"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="company-job-condition-computer-expertise">
-            {{ '::ComputerExpertise' | abpLocalization }}
-          </label>
-
-          <input
-            id="company-job-condition-computer-expertise"
-            formControlName="computerExpertise"
-            class="form-control"
             maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-condition-language-condition">
+            {{ '::LanguageCondition' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-condition-language-condition"
+            formControlName="languageCondition"
+            class="form-control"
+            maxlength="4000"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-condition-computer-expertise-etc">
+            {{ '::ComputerExpertiseEtc' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-condition-computer-expertise-etc"
+            formControlName="computerExpertiseEtc"
+            class="form-control"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">
@@ -660,6 +720,42 @@
           />
         </div>
         <div class="mb-3">
+          <label class="form-label" for="company-job-condition-professional-license-etc">
+            {{ '::ProfessionalLicenseEtc' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-condition-professional-license-etc"
+            formControlName="professionalLicenseEtc"
+            class="form-control"
+            maxlength="5000"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-condition-work-skills">
+            {{ '::WorkSkills' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-condition-work-skills"
+            formControlName="workSkills"
+            class="form-control"
+            maxlength="500"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="company-job-condition-work-skills-etc">
+            {{ '::WorkSkillsEtc' | abpLocalization }}
+          </label>
+
+          <input
+            id="company-job-condition-work-skills-etc"
+            formControlName="workSkillsEtc"
+            class="form-control"
+            maxlength="5000"
+          />
+        </div>
+        <div class="mb-3">
           <label class="form-label" for="company-job-condition-drving-license">
             {{ '::DrvingLicense' | abpLocalization }}
           </label>
@@ -668,7 +764,7 @@
             id="company-job-condition-drving-license"
             formControlName="drvingLicense"
             class="form-control"
-            maxlength="200"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">
@@ -680,7 +776,7 @@
             id="company-job-condition-etc-condition"
             formControlName="etcCondition"
             class="form-control"
-            maxlength="500"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">

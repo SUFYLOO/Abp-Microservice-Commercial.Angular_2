@@ -42,28 +42,28 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="computerSkillsFilter">
-                {{ '::ComputerSkills' | abpLocalization }}
+              <label class="form-label" for="computerExpertiseFilter">
+                {{ '::ComputerExpertise' | abpLocalization }}
               </label>
 
               <input
-                id="computerSkillsFilter"
+                id="computerExpertiseFilter"
                 class="form-control"
-                [(ngModel)]="filters.computerSkills"
+                [(ngModel)]="filters.computerExpertise"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="computerSkillsEtcFilter">
-                {{ '::ComputerSkillsEtc' | abpLocalization }}
+              <label class="form-label" for="computerExpertiseEtcFilter">
+                {{ '::ComputerExpertiseEtc' | abpLocalization }}
               </label>
 
               <input
-                id="computerSkillsEtcFilter"
+                id="computerExpertiseEtcFilter"
                 class="form-control"
-                [(ngModel)]="filters.computerSkillsEtc"
+                [(ngModel)]="filters.computerExpertiseEtc"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -488,19 +488,19 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::ComputerSkills' | abpLocalization }}"
-          prop="computerSkills"
+          name="{{ '::ComputerExpertise' | abpLocalization }}"
+          prop="computerExpertise"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.computerSkills }}
+            {{ row.computerExpertise }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::ComputerSkillsEtc' | abpLocalization }}"
-          prop="computerSkillsEtc"
+          name="{{ '::ComputerExpertiseEtc' | abpLocalization }}"
+          prop="computerExpertiseEtc"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.computerSkillsEtc }}
+            {{ row.computerExpertiseEtc }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -614,27 +614,27 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-skill-computer-skills">
-            {{ '::ComputerSkills' | abpLocalization }}
+          <label class="form-label" for="resume-skill-computer-expertise">
+            {{ '::ComputerExpertise' | abpLocalization }}
           </label>
 
           <input
-            id="resume-skill-computer-skills"
-            formControlName="computerSkills"
+            id="resume-skill-computer-expertise"
+            formControlName="computerExpertise"
             class="form-control"
             maxlength="500"
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-skill-computer-skills-etc">
-            {{ '::ComputerSkillsEtc' | abpLocalization }}
+          <label class="form-label" for="resume-skill-computer-expertise-etc">
+            {{ '::ComputerExpertiseEtc' | abpLocalization }}
           </label>
 
           <input
-            id="resume-skill-computer-skills-etc"
-            formControlName="computerSkillsEtc"
+            id="resume-skill-computer-expertise-etc"
+            formControlName="computerExpertiseEtc"
             class="form-control"
-            maxlength="500"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">
@@ -694,7 +694,7 @@
             id="resume-skill-professional-license-etc"
             formControlName="professionalLicenseEtc"
             class="form-control"
-            maxlength="500"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">
@@ -718,7 +718,7 @@
             id="resume-skill-work-skills-etc"
             formControlName="workSkillsEtc"
             class="form-control"
-            maxlength="500"
+            maxlength="4000"
           />
         </div>
         <div class="mb-3">

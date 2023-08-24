@@ -22,6 +22,7 @@ namespace Resume.ResumeSnapshots
         Guid userMainId, Guid resumeMainId, Guid companyMainId, string snapshot, Guid? companyJobId = null, Guid? userCompanyBindId = null, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.NotNullOrWhiteSpace(snapshot, nameof(snapshot));
+            Check.Length(snapshot, nameof(snapshot), ResumeSnapshotConsts.SnapshotMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength);
             Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);
@@ -40,6 +41,7 @@ namespace Resume.ResumeSnapshots
         )
         {
             Check.NotNullOrWhiteSpace(snapshot, nameof(snapshot));
+            Check.Length(snapshot, nameof(snapshot), ResumeSnapshotConsts.SnapshotMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength);
             Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength);

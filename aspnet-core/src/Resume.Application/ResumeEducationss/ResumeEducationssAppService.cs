@@ -37,8 +37,8 @@ namespace Resume.ResumeEducationss
 
         public virtual async Task<PagedResultDto<ResumeEducationsDto>> GetListAsync(GetResumeEducationssInput input)
         {
-            var totalCount = await _resumeEducationsRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
-            var items = await _resumeEducationsRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
+            var totalCount = await _resumeEducationsRepository.GetCountAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategory, input.MinorDepartmentName, input.MinorDepartmentCategory, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeEducationsRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategory, input.MinorDepartmentName, input.MinorDepartmentCategory, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status, input.Sorting, input.MaxResultCount, input.SkipCount);
 
             return new PagedResultDto<ResumeEducationsDto>
             {
@@ -63,7 +63,7 @@ namespace Resume.ResumeEducationss
         {
 
             var resumeEducations = await _resumeEducationsManager.CreateAsync(
-            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategory, input.MinorDepartmentName, input.MinorDepartmentCategory, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeEducations, ResumeEducationsDto>(resumeEducations);
@@ -75,7 +75,7 @@ namespace Resume.ResumeEducationss
 
             var resumeEducations = await _resumeEducationsManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
+            input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategory, input.MinorDepartmentName, input.MinorDepartmentCategory, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeEducations, ResumeEducationsDto>(resumeEducations);
@@ -90,7 +90,7 @@ namespace Resume.ResumeEducationss
                 throw new AbpAuthorizationException("Invalid download token: " + input.DownloadToken);
             }
 
-            var items = await _resumeEducationsRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategoryCode, input.MinorDepartmentName, input.MinorDepartmentCategoryCode, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
+            var items = await _resumeEducationsRepository.GetListAsync(input.FilterText, input.ResumeMainId, input.EducationLevelCode, input.SchoolCode, input.SchoolName, input.Night, input.Working, input.MajorDepartmentName, input.MajorDepartmentCategory, input.MinorDepartmentName, input.MinorDepartmentCategory, input.GraduationCode, input.Domestic, input.CountryCode, input.ExtendedInformation, input.DateAMin, input.DateAMax, input.DateDMin, input.DateDMax, input.SortMin, input.SortMax, input.Note, input.Status);
 
             var memoryStream = new MemoryStream();
             await memoryStream.SaveAsAsync(ObjectMapper.Map<List<ResumeEducations>, List<ResumeEducationsExcelDto>>(items));

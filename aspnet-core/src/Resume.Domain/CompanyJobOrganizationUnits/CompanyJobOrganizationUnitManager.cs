@@ -19,7 +19,7 @@ namespace Resume.CompanyJobOrganizationUnits
         }
 
         public async Task<CompanyJobOrganizationUnit> CreateAsync(
-        Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null)
+        Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobOrganizationUnitConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobOrganizationUnitConsts.NoteMaxLength);
@@ -27,7 +27,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
             var companyJobOrganizationUnit = new CompanyJobOrganizationUnit(
              GuidGenerator.Create(),
-             companyMainId, companyJobId, organizationUnitId, extendedInformation, note, status, dateA, dateD, sort
+             companyMainId, companyJobId, organizationUnitId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyJobOrganizationUnitRepository.InsertAsync(companyJobOrganizationUnit);
@@ -35,7 +35,7 @@ namespace Resume.CompanyJobOrganizationUnits
 
         public async Task<CompanyJobOrganizationUnit> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null
+            Guid companyMainId, Guid companyJobId, Guid organizationUnitId, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobOrganizationUnitConsts.ExtendedInformationMaxLength);
@@ -48,11 +48,11 @@ namespace Resume.CompanyJobOrganizationUnits
             companyJobOrganizationUnit.CompanyJobId = companyJobId;
             companyJobOrganizationUnit.OrganizationUnitId = organizationUnitId;
             companyJobOrganizationUnit.ExtendedInformation = extendedInformation;
-            companyJobOrganizationUnit.Note = note;
-            companyJobOrganizationUnit.Status = status;
             companyJobOrganizationUnit.DateA = dateA;
             companyJobOrganizationUnit.DateD = dateD;
             companyJobOrganizationUnit.Sort = sort;
+            companyJobOrganizationUnit.Note = note;
+            companyJobOrganizationUnit.Status = status;
 
             return await _companyJobOrganizationUnitRepository.UpdateAsync(companyJobOrganizationUnit);
         }

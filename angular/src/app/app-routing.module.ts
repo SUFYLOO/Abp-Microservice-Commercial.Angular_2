@@ -383,6 +383,55 @@ const routes: Routes = [
         './company-job-organization-units/company-job-organization-unit/company-job-organization-unit.module'
       ).then(m => m.CompanyJobOrganizationUnitModule),
   },
+  {
+    path: 'share-extendeds',
+    loadChildren: () =>
+      import('./share-extendeds/share-extended/share-extended.module').then(
+        m => m.ShareExtendedModule
+      ),
+  },
+  {
+    path: 'resume-experiences-jobs',
+    loadChildren: () =>
+      import('./resume-experiences-jobs/resume-experiences-job/resume-experiences-job.module').then(
+        m => m.ResumeExperiencesJobModule
+      ),
+  },
+  {
+    path: 'company-user-main-favs',
+    loadChildren: () =>
+      import('./company-user-main-favs/company-user-main-fav/company-user-main-fav.module').then(
+        m => m.CompanyUserMainFavModule
+      ),
+  },
+  {
+    path: 'company-job-work-identities',
+    loadChildren: () =>
+      import(
+        './company-job-work-identities/company-job-work-identity/company-job-work-identity.module'
+      ).then(m => m.CompanyJobWorkIdentityModule),
+  },
+  {
+    path: 'company-job-disability-categories',
+    loadChildren: () =>
+      import(
+        './company-job-disability-categories/company-job-disability-category/company-job-disability-category.module'
+      ).then(m => m.CompanyJobDisabilityCategoryModule),
+  },
+  {
+    path: 'company-job-education-levels',
+    loadChildren: () =>
+      import(
+        './company-job-education-levels/company-job-education-level/company-job-education-level.module'
+      ).then(m => m.CompanyJobEducationLevelModule),
+  },
+  {
+    path: 'company-job-drving-licenses',
+    loadChildren: () =>
+      import(
+        './company-job-drving-licenses/company-job-drving-license/company-job-drving-license.module'
+      ).then(m => m.CompanyJobDrvingLicenseModule),
+  },
 ];
 
 @NgModule({

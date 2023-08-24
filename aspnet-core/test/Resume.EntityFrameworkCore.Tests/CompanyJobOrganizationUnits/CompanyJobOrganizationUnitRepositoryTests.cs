@@ -25,18 +25,18 @@ namespace Resume.CompanyJobOrganizationUnits
             {
                 // Act
                 var result = await _companyJobOrganizationUnitRepository.GetListAsync(
-                    companyMainId: Guid.Parse("dd2b9122-df6a-4997-985e-4e9c59d408a4"),
-                    companyJobId: Guid.Parse("41171708-26b4-4666-92b8-f3034f0b3fc8"),
-                    organizationUnitId: Guid.Parse("25f5dc99-7064-47f1-af54-213ba58a038a"),
-                    extendedInformation: "8c842033165449198755920a845d189eefc69435f1534aea9e10adae3c485007490771d92654477d9177b76c1d880b2933b9c2b3f4fc4c6a9d7cb51563b984369cf8f23bc3da4b06b6cb1eab8fb808b1f7b4ac5ae9a24dc0898956866c058b80b1c31b9868404b6495cba354a0c3f8706b7b550e98a6491ea52972aecd99bfcb47e6584eae1b4c20b97f952b3fbb4b7934f280820c2a402a93c5446bede92d1e24adf7cc766b4dc68b6af278527557a23062e84dd1ea43469f0ec7d3cfc91cf567b6bf922ff543a2b5ac1bae69907c0d8a996cdbbcc84f30a3df0cbbf7ecd1c39a81d6b0e8b7476eb90b8861a1451db3f0d923b850ed41cf98c4",
-                    note: "70fa83847af54a6db2b701917b7c9d833715722f79f14386b0e0b1e0d2035ebec5d8bcb648a64e6d97de02c1bdb310380269b8bf82864a1683e4809827ebd0a45aa847fbc563466a8c894c917680e313f88edd93fe524d0298e010abc5d010476af41a12f5ec4fa4b06e7c7cf3c1c1125fe60447aab34f19bc61a000b8f0e8fe2caee829964846278d8283e048827262637b01612c6b4680b4a930a8d5e6af15f5ea3b5db83f464895287c4c0677ac471d8a03e1492349b2a64457f621c6eb5a0962208ada4146d6a1e8ed9280c2edc3ca9edaafc99c49369f3a54a733ab4cf02769bc6a096048fba8100e97ce825bb32723147a3b414a9db694",
-                    status: "d2ebfa7b0f6743e8903b6f20cf51c690049cb6c84594465c8b"
+                    companyMainId: Guid.Parse("fb812725-d9f5-40d5-8315-026377c485e4"),
+                    companyJobId: Guid.Parse("a81a7d3a-138f-4333-9c86-0b5c28f079f4"),
+                    organizationUnitId: Guid.Parse("a4faacdc-5471-4db9-ad0d-53cadbac8fe3"),
+                    extendedInformation: "efeffbbd5c55405c9f2ce9ae650ed84f008af65c642a4b57b8fa26e66a166c888c6b64a5fe9044fb827faf837fb631529432a9786b1349af89bc6fd4885cccd9b8d4abe0e1dc4289bd2fb2cde5061d5c97739fd652c94d248560a9db3ba0b55cd045d27a628b4492aa9c58ff75875b7e9fc756ede52f4f698201b27d5663fa3d8f5092777602442f862fd783af0c957d50f51aac3c394477b898f5030d7b232754cfa1efc4224018a5f5911c258c4dae841b63375e5949fe8338719d2704036b8ba08887e74e48398d61bdc98cad3704a0b2c43d2950430caeae91bc7d0adf92d365a7084c2c4f8fabfddc9cfa48fc330b8bab3e65c045b1aaf1",
+                    note: "f32848843f464b0aa4d51ba9e12bc21aa42a049f71ec4e79911222e4e5ef68b3b8deef57e93c4e25a44c60d106b8bad4c87633e01b3647d498c4ef97e6e3a1b9be86b6f3f93a46b0a9a12b8f360906cbb77d6699a6fe4205a6f56b3afab771f29460378961bb4f3cace488da0342178d368ad9997f1843f1b1ae01c59f75b7927fd6d5c3d8454d7b8d2240e29ff498f707e306e3fb684b6dbaa52cf0bfa4469375edcee427734c3e9600b59a3a34920f7da4db331d0a44c3847f796faf7dde6fe5c4968b548d40c4867b6eaa19706a33fed37f487d1144a29271c141ae3e8e5f15afe594f96f44c7824532fccd6f4bebdfcd51b446754dd4abee",
+                    status: "41db48a6b15a40a7927c79d5fa18856e1ea638d885c044adad"
                 );
 
                 // Assert
                 result.Count.ShouldBe(1);
                 result.FirstOrDefault().ShouldNotBe(null);
-                result.First().Id.ShouldBe(Guid.Parse("b195e285-50e1-4ed9-a91e-17cf53383e50"));
+                result.First().Id.ShouldBe(Guid.Parse("80d7f9b6-95b9-49c9-9fae-2186b4457224"));
             });
         }
 
@@ -48,12 +48,12 @@ namespace Resume.CompanyJobOrganizationUnits
             {
                 // Act
                 var result = await _companyJobOrganizationUnitRepository.GetCountAsync(
-                    companyMainId: Guid.Parse("a055a33f-6a8c-4934-9d8b-e8da609e1c82"),
-                    companyJobId: Guid.Parse("d93de078-8cd4-4c1d-b4c4-b34dcd3fdbdf"),
-                    organizationUnitId: Guid.Parse("172091d9-3f4a-4816-b2f6-06f2f04af041"),
-                    extendedInformation: "737aed7c773a4fc7b0fbad9f228440768bee757c8905436781d9292a1243246a2fd2fbdcaded47d1bb4743b15985f1423b2a4a42c13a450882cbdff5daf374da7d6c4b5a481940c0a1dd10ad366f4c53505d7a9840544abe8f79acddf354f50e661d879f788d477c91200c7dfaf945eb4fe2b71a0b4d4731a5c23cfd2f5ae7d31fa2a3db6bed46e28f80463600d46b5bc62c24cbe1404ffaa141fd6491de4a115504db1d825440a7a936300faa7eff7dcfa0136a54b548a2a922ac78d686c936218a6c41311f455697cb98d132d405232fb20fabc92d45318fea81a1a1808e767a652df8459741cc8b71b83677c72dd27e037cfcda4148a5b5ca",
-                    note: "452556011283411c8e81bf8daa549265013c9eb3650946c1a6dff3b650bfc9b2aa99accb42684b5d8da75cddfc3ddcb4a5cd1a8da249406ba0f36b0366e19fb74f122f016e8d410ba25f3381f32cd8e5163ba6142c0f4900ae2bfe5b97cb3301cf144218b530458a94eb5be458ed117769f8508200234e519ec9b9a43c07daace900e0fb72ae4b66ac8de98da1275e03f0691daa927b4756a2f2998f9ffc7edd32e12a9ded09449c9bdf47eda98b05de4642b6332ae44466b636fedf3ac7af3950b4ef47f03746fcb5345b9ae4761c44d630314169504aaf9991ff31ad0dbc648608f6da096a4bbb9ddfaf986488afa4124d51d3426447d38c59",
-                    status: "b51557bffac84780ab52290b6428c748ecaae43b29df44dd9b"
+                    companyMainId: Guid.Parse("26c9ab9f-44fd-41e3-ba62-2b1a604d9842"),
+                    companyJobId: Guid.Parse("61897583-44fa-4230-b927-126f3fd0711a"),
+                    organizationUnitId: Guid.Parse("92b8596c-e0a8-4514-9edd-c5d4431ea4bc"),
+                    extendedInformation: "612f6a8ad5934224845870c9ae860c522c48b18f60094c288f9b08271050f46b41caee01de994b578ad35dd1b8a5d6bbae16cde5fa504747adea37953d78d4d8dcdc3bd4fb424a85bbe12f0869323b2b5bf3dc2bebed4c0b8fb4bac4f78b8df678e1a425dbf046d9b74a48ab1dec8506a17f85fb43f24ca4a09a2dbc3a488807744d8cbcf3b2496494c83bae63ebe17e610fda5fa2334bdd8ef4634f24cdbd84f1e09f88811f4c6eb93cb71d8f4a05c93708ae6bf92a4fb296ae476b28686e9119cf0f36da204d2389eb12f6b61136140948fd16fc3145ff9b16254a6f9b244a269527e68fbc4acaa015d3aa408bb9a671956925feaa4feda428",
+                    note: "90572f6173b0495f86798533d645052e6f5ca46ed69247fd9ae825588afa3bc8178b0c53121b43d89877c3eb8cb5b572ce10aa2a7e71427d84e82bc9631d2a43e1cf2d8eca1a48a0ace94e8a0635d8c13ddda0d32c7549ab80ce516ac93711bef726655dde5046ebb01b8cd53b3495ca6ba05c22c4d74cd49163d0811c8b10138cc3b5986cb541deaf8bf60c36d09300dd484281d02b4b2cbf26dfa1307e2679de4214939fc84c1494dd24f72e85011a3004c98af41a48989decc4255cfc903f7a278bbb994c49b49e49ece3b9765679be0c520fd819486e81e12c405e08a2d80560f40c5d4b4bb5b47f1a43dac3d60382c2e5c6ae4740ae86e2",
+                    status: "226622758db342c982bb14f3bc291b9e8e2e0db7d1344e5fa0"
                 );
 
                 // Assert

@@ -18,6 +18,7 @@ namespace Resume.CompanyJobContents
         public bool PeopleRequiredNumberUnlimited { get; set; }
         [StringLength(CompanyJobContentConsts.JobTypeMaxLength)]
         public string? JobType { get; set; }
+        [StringLength(CompanyJobContentConsts.JobTypeContentMaxLength)]
         public string? JobTypeContent { get; set; }
         [Required]
         [StringLength(CompanyJobContentConsts.SalaryPayTypeCodeMaxLength)]
@@ -29,25 +30,25 @@ namespace Resume.CompanyJobContents
         public string? WorkPlace { get; set; }
         [StringLength(CompanyJobContentConsts.WorkHoursMaxLength)]
         public string? WorkHours { get; set; }
-        [StringLength(CompanyJobContentConsts.WorkHourMaxLength)]
-        public string? WorkHour { get; set; }
+        [StringLength(CompanyJobContentConsts.WorkHoursCustomMaxLength)]
+        public string? WorkHoursCustom { get; set; }
         public bool WorkShift { get; set; }
         public bool WorkRemoteAllow { get; set; }
         [Required]
         [StringLength(CompanyJobContentConsts.WorkRemoteTypeCodeMaxLength)]
         public string WorkRemoteTypeCode { get; set; }
-        [StringLength(CompanyJobContentConsts.WorkRemoteMaxLength)]
-        public string? WorkRemote { get; set; }
-        [StringLength(CompanyJobContentConsts.WorkDifferentPlacesMaxLength)]
-        public string? WorkDifferentPlaces { get; set; }
+        [StringLength(CompanyJobContentConsts.WorkRemoteDescriptMaxLength)]
+        public string? WorkRemoteDescript { get; set; }
+        public bool BusinessTrip { get; set; }
         [Required]
         [StringLength(CompanyJobContentConsts.HolidaySystemCodeMaxLength)]
         public string HolidaySystemCode { get; set; }
+        public bool Dispatched { get; set; }
         [Required]
         [StringLength(CompanyJobContentConsts.WorkDayCodeMaxLength)]
         public string WorkDayCode { get; set; }
-        [StringLength(CompanyJobContentConsts.WorkIdentityCodeMaxLength)]
-        public string? WorkIdentityCode { get; set; }
+        [StringLength(CompanyJobContentConsts.WorkIdentityMaxLength)]
+        public string? WorkIdentity { get; set; }
         [StringLength(CompanyJobContentConsts.DisabilityCategoryMaxLength)]
         public string? DisabilityCategory { get; set; }
         [StringLength(CompanyJobContentConsts.ExtendedInformationMaxLength)]

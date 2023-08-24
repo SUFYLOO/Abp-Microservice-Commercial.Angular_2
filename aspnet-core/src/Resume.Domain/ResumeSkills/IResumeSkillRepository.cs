@@ -11,8 +11,8 @@ namespace Resume.ResumeSkills
         Task<List<ResumeSkill>> GetListAsync(
             string filterText = null,
             Guid? resumeMainId = null,
-            string computerSkills = null,
-            string computerSkillsEtc = null,
+            string computerExpertise = null,
+            string computerExpertiseEtc = null,
             int? chineseTypingSpeedMin = null,
             int? chineseTypingSpeedMax = null,
             string chineseTypingCode = null,
@@ -40,8 +40,8 @@ namespace Resume.ResumeSkills
         Task<long> GetCountAsync(
             string filterText = null,
             Guid? resumeMainId = null,
-            string computerSkills = null,
-            string computerSkillsEtc = null,
+            string computerExpertise = null,
+            string computerExpertiseEtc = null,
             int? chineseTypingSpeedMin = null,
             int? chineseTypingSpeedMax = null,
             string chineseTypingCode = null,

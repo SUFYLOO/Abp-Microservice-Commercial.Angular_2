@@ -6,8 +6,8 @@ namespace Resume.ResumeSkills
     public class ResumeSkillDto : FullAuditedEntityDto<Guid>
     {
         public Guid ResumeMainId { get; set; }
-        public string? ComputerSkills { get; set; }
-        public string? ComputerSkillsEtc { get; set; }
+        public string? ComputerExpertise { get; set; }
+        public string? ComputerExpertiseEtc { get; set; }
         public int ChineseTypingSpeed { get; set; }
         public string ChineseTypingCode { get; set; }
         public int EnglishTypingSpeed { get; set; }

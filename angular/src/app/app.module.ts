@@ -75,6 +75,13 @@ import { USER_MAINS_USER_MAIN_ROUTE_PROVIDER } from './user-mains/user-main/prov
 import { USER_TOKENS_USER_TOKEN_ROUTE_PROVIDER } from './user-tokens/user-token/providers/user-token-route.provider';
 import { USER_VERIFYS_USER_VERIFY_ROUTE_PROVIDER } from './user-verifys/user-verify/providers/user-verify-route.provider';
 import { COMPANY_JOB_ORGANIZATION_UNITS_COMPANY_JOB_ORGANIZATION_UNIT_ROUTE_PROVIDER } from './company-job-organization-units/company-job-organization-unit/providers/company-job-organization-unit-route.provider';
+import { SHARE_EXTENDEDS_SHARE_EXTENDED_ROUTE_PROVIDER } from './share-extendeds/share-extended/providers/share-extended-route.provider';
+import { RESUME_EXPERIENCES_JOBS_RESUME_EXPERIENCES_JOB_ROUTE_PROVIDER } from './resume-experiences-jobs/resume-experiences-job/providers/resume-experiences-job-route.provider';
+import { COMPANY_USER_MAIN_FAVS_COMPANY_USER_MAIN_FAV_ROUTE_PROVIDER } from './company-user-main-favs/company-user-main-fav/providers/company-user-main-fav-route.provider';
+import { COMPANY_JOB_WORK_IDENTITIES_COMPANY_JOB_WORK_IDENTITY_ROUTE_PROVIDER } from './company-job-work-identities/company-job-work-identity/providers/company-job-work-identity-route.provider';
+import { COMPANY_JOB_DISABILITY_CATEGORIES_COMPANY_JOB_DISABILITY_CATEGORY_ROUTE_PROVIDER } from './company-job-disability-categories/company-job-disability-category/providers/company-job-disability-category-route.provider';
+import { COMPANY_JOB_EDUCATION_LEVELS_COMPANY_JOB_EDUCATION_LEVEL_ROUTE_PROVIDER } from './company-job-education-levels/company-job-education-level/providers/company-job-education-level-route.provider';
+import { COMPANY_JOB_DRVING_LICENSES_COMPANY_JOB_DRVING_LICENSE_ROUTE_PROVIDER } from './company-job-drving-licenses/company-job-drving-license/providers/company-job-drving-license-route.provider';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -169,6 +176,13 @@ import { COMPANY_JOB_ORGANIZATION_UNITS_COMPANY_JOB_ORGANIZATION_UNIT_ROUTE_PROV
     USER_TOKENS_USER_TOKEN_ROUTE_PROVIDER,
     USER_VERIFYS_USER_VERIFY_ROUTE_PROVIDER,
     COMPANY_JOB_ORGANIZATION_UNITS_COMPANY_JOB_ORGANIZATION_UNIT_ROUTE_PROVIDER,
+    SHARE_EXTENDEDS_SHARE_EXTENDED_ROUTE_PROVIDER,
+    RESUME_EXPERIENCES_JOBS_RESUME_EXPERIENCES_JOB_ROUTE_PROVIDER,
+    COMPANY_USER_MAIN_FAVS_COMPANY_USER_MAIN_FAV_ROUTE_PROVIDER,
+    COMPANY_JOB_WORK_IDENTITIES_COMPANY_JOB_WORK_IDENTITY_ROUTE_PROVIDER,
+    COMPANY_JOB_DISABILITY_CATEGORIES_COMPANY_JOB_DISABILITY_CATEGORY_ROUTE_PROVIDER,
+    COMPANY_JOB_EDUCATION_LEVELS_COMPANY_JOB_EDUCATION_LEVEL_ROUTE_PROVIDER,
+    COMPANY_JOB_DRVING_LICENSES_COMPANY_JOB_DRVING_LICENSE_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

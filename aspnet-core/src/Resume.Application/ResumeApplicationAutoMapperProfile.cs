@@ -1,3 +1,10 @@
+using Resume.CompanyJobDrvingLicenses;
+using Resume.CompanyJobEducationLevels;
+using Resume.CompanyJobDisabilityCategories;
+using Resume.CompanyJobWorkIdentities;
+using Resume.CompanyUserMainFavs;
+using Resume.ResumeExperiencesJobs;
+using Resume.ShareExtendeds;
 using Resume.CompanyJobOrganizationUnits;
 using Resume.UserVerifys;
 using Resume.UserTokens;
@@ -216,5 +223,26 @@ public class ResumeApplicationAutoMapperProfile : Profile
 
         CreateMap<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitDto>();
         CreateMap<CompanyJobOrganizationUnit, CompanyJobOrganizationUnitExcelDto>();
+
+        CreateMap<ShareExtended, ShareExtendedDto>();
+        CreateMap<ShareExtended, ShareExtendedExcelDto>();
+
+        CreateMap<ResumeExperiencesJob, ResumeExperiencesJobDto>();
+        CreateMap<ResumeExperiencesJob, ResumeExperiencesJobExcelDto>();
+
+        CreateMap<CompanyUserMainFav, CompanyUserMainFavDto>();
+        CreateMap<CompanyUserMainFav, CompanyUserMainFavExcelDto>();
+
+        CreateMap<CompanyJobWorkIdentity, CompanyJobWorkIdentityDto>();
+        CreateMap<CompanyJobWorkIdentity, CompanyJobWorkIdentityExcelDto>();
+
+        CreateMap<CompanyJobDisabilityCategory, CompanyJobDisabilityCategoryDto>();
+        CreateMap<CompanyJobDisabilityCategory, CompanyJobDisabilityCategoryExcelDto>();
+
+        CreateMap<CompanyJobEducationLevel, CompanyJobEducationLevelDto>();
+        CreateMap<CompanyJobEducationLevel, CompanyJobEducationLevelExcelDto>();
+
+        CreateMap<CompanyJobDrvingLicense, CompanyJobDrvingLicenseDto>();
+        CreateMap<CompanyJobDrvingLicense, CompanyJobDrvingLicenseExcelDto>();
     }
 }

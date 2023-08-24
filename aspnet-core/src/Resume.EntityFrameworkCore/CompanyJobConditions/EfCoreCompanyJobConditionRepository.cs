@@ -26,9 +26,12 @@ namespace Resume.CompanyJobConditions
             string workExperienceYearCode = null,
             string educationLevel = null,
             string majorDepartmentCategory = null,
-            string languageCategory = null,
-            string computerExpertise = null,
+            string languageCondition = null,
+            string computerExpertiseEtc = null,
             string professionalLicense = null,
+            string professionalLicenseEtc = null,
+            string workSkills = null,
+            string workSkillsEtc = null,
             string drvingLicense = null,
             string etcCondition = null,
             string extendedInformation = null,
@@ -45,7 +48,7 @@ namespace Resume.CompanyJobConditions
             int skipCount = 0,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetQueryableAsync()), filterText, companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCategory, computerExpertise, professionalLicense, drvingLicense, etcCondition, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetQueryableAsync()), filterText, companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCondition, computerExpertiseEtc, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, drvingLicense, etcCondition, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? CompanyJobConditionConsts.GetDefaultSorting(false) : sorting);
             return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
         }
@@ -57,9 +60,12 @@ namespace Resume.CompanyJobConditions
             string workExperienceYearCode = null,
             string educationLevel = null,
             string majorDepartmentCategory = null,
-            string languageCategory = null,
-            string computerExpertise = null,
+            string languageCondition = null,
+            string computerExpertiseEtc = null,
             string professionalLicense = null,
+            string professionalLicenseEtc = null,
+            string workSkills = null,
+            string workSkillsEtc = null,
             string drvingLicense = null,
             string etcCondition = null,
             string extendedInformation = null,
@@ -73,7 +79,7 @@ namespace Resume.CompanyJobConditions
             string status = null,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetDbSetAsync()), filterText, companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCategory, computerExpertise, professionalLicense, drvingLicense, etcCondition, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetDbSetAsync()), filterText, companyMainId, companyJobId, workExperienceYearCode, educationLevel, majorDepartmentCategory, languageCondition, computerExpertiseEtc, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, drvingLicense, etcCondition, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             return await query.LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
@@ -85,9 +91,12 @@ namespace Resume.CompanyJobConditions
             string workExperienceYearCode = null,
             string educationLevel = null,
             string majorDepartmentCategory = null,
-            string languageCategory = null,
-            string computerExpertise = null,
+            string languageCondition = null,
+            string computerExpertiseEtc = null,
             string professionalLicense = null,
+            string professionalLicenseEtc = null,
+            string workSkills = null,
+            string workSkillsEtc = null,
             string drvingLicense = null,
             string etcCondition = null,
             string extendedInformation = null,
@@ -101,15 +110,18 @@ namespace Resume.CompanyJobConditions
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.WorkExperienceYearCode.Contains(filterText) || e.EducationLevel.Contains(filterText) || e.MajorDepartmentCategory.Contains(filterText) || e.LanguageCategory.Contains(filterText) || e.ComputerExpertise.Contains(filterText) || e.ProfessionalLicense.Contains(filterText) || e.DrvingLicense.Contains(filterText) || e.EtcCondition.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.WorkExperienceYearCode.Contains(filterText) || e.EducationLevel.Contains(filterText) || e.MajorDepartmentCategory.Contains(filterText) || e.LanguageCondition.Contains(filterText) || e.ComputerExpertiseEtc.Contains(filterText) || e.ProfessionalLicense.Contains(filterText) || e.ProfessionalLicenseEtc.Contains(filterText) || e.WorkSkills.Contains(filterText) || e.WorkSkillsEtc.Contains(filterText) || e.DrvingLicense.Contains(filterText) || e.EtcCondition.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(companyMainId.HasValue, e => e.CompanyMainId == companyMainId)
                     .WhereIf(companyJobId.HasValue, e => e.CompanyJobId == companyJobId)
                     .WhereIf(!string.IsNullOrWhiteSpace(workExperienceYearCode), e => e.WorkExperienceYearCode.Contains(workExperienceYearCode))
                     .WhereIf(!string.IsNullOrWhiteSpace(educationLevel), e => e.EducationLevel.Contains(educationLevel))
                     .WhereIf(!string.IsNullOrWhiteSpace(majorDepartmentCategory), e => e.MajorDepartmentCategory.Contains(majorDepartmentCategory))
-                    .WhereIf(!string.IsNullOrWhiteSpace(languageCategory), e => e.LanguageCategory.Contains(languageCategory))
-                    .WhereIf(!string.IsNullOrWhiteSpace(computerExpertise), e => e.ComputerExpertise.Contains(computerExpertise))
+                    .WhereIf(!string.IsNullOrWhiteSpace(languageCondition), e => e.LanguageCondition.Contains(languageCondition))
+                    .WhereIf(!string.IsNullOrWhiteSpace(computerExpertiseEtc), e => e.ComputerExpertiseEtc.Contains(computerExpertiseEtc))
                     .WhereIf(!string.IsNullOrWhiteSpace(professionalLicense), e => e.ProfessionalLicense.Contains(professionalLicense))
+                    .WhereIf(!string.IsNullOrWhiteSpace(professionalLicenseEtc), e => e.ProfessionalLicenseEtc.Contains(professionalLicenseEtc))
+                    .WhereIf(!string.IsNullOrWhiteSpace(workSkills), e => e.WorkSkills.Contains(workSkills))
+                    .WhereIf(!string.IsNullOrWhiteSpace(workSkillsEtc), e => e.WorkSkillsEtc.Contains(workSkillsEtc))
                     .WhereIf(!string.IsNullOrWhiteSpace(drvingLicense), e => e.DrvingLicense.Contains(drvingLicense))
                     .WhereIf(!string.IsNullOrWhiteSpace(etcCondition), e => e.EtcCondition.Contains(etcCondition))
                     .WhereIf(!string.IsNullOrWhiteSpace(extendedInformation), e => e.ExtendedInformation.Contains(extendedInformation))

@@ -13,11 +13,11 @@ namespace Resume.ResumeExperiencess
         public string? Name { get; set; }
         public string? WorkNatureCode { get; set; }
         public bool? HideCompanyName { get; set; }
-        public string? IndustryCategoryCode { get; set; }
+        public string? IndustryCategory { get; set; }
         public string? JobName { get; set; }
         public string? JobType { get; set; }
         public bool? Working { get; set; }
-        public string? WorkPlaceCode { get; set; }
+        public string? WorkPlace { get; set; }
         public bool? HideWorkSalary { get; set; }
         public string? SalaryPayTypeCode { get; set; }
         public string? CurrencyTypeCode { get; set; }

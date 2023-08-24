@@ -138,14 +138,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="majorDepartmentCategoryCodeFilter">
-                {{ '::MajorDepartmentCategoryCode' | abpLocalization }}
+              <label class="form-label" for="majorDepartmentCategoryFilter">
+                {{ '::MajorDepartmentCategory' | abpLocalization }}
               </label>
 
               <input
-                id="majorDepartmentCategoryCodeFilter"
+                id="majorDepartmentCategoryFilter"
                 class="form-control"
-                [(ngModel)]="filters.majorDepartmentCategoryCode"
+                [(ngModel)]="filters.majorDepartmentCategory"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -166,14 +166,14 @@
           </div>
           <div class="col-12 col-sm-auto">
             <div class="mb-3">
-              <label class="form-label" for="minorDepartmentCategoryCodeFilter">
-                {{ '::MinorDepartmentCategoryCode' | abpLocalization }}
+              <label class="form-label" for="minorDepartmentCategoryFilter">
+                {{ '::MinorDepartmentCategory' | abpLocalization }}
               </label>
 
               <input
-                id="minorDepartmentCategoryCodeFilter"
+                id="minorDepartmentCategoryFilter"
                 class="form-control"
-                [(ngModel)]="filters.minorDepartmentCategoryCode"
+                [(ngModel)]="filters.minorDepartmentCategory"
                 [ngModelOptions]="{ standalone: true }"
               />
             </div>
@@ -582,11 +582,11 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::MajorDepartmentCategoryCode' | abpLocalization }}"
-          prop="majorDepartmentCategoryCode"
+          name="{{ '::MajorDepartmentCategory' | abpLocalization }}"
+          prop="majorDepartmentCategory"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.majorDepartmentCategoryCode }}
+            {{ row.majorDepartmentCategory }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -598,11 +598,11 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
-          name="{{ '::MinorDepartmentCategoryCode' | abpLocalization }}"
-          prop="minorDepartmentCategoryCode"
+          name="{{ '::MinorDepartmentCategory' | abpLocalization }}"
+          prop="minorDepartmentCategory"
         >
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ row.minorDepartmentCategoryCode }}
+            {{ row.minorDepartmentCategory }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column
@@ -772,13 +772,13 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-educations-major-department-category-code">
-            {{ '::MajorDepartmentCategoryCode' | abpLocalization }} *
+          <label class="form-label" for="resume-educations-major-department-category">
+            {{ '::MajorDepartmentCategory' | abpLocalization }} *
           </label>
 
           <input
-            id="resume-educations-major-department-category-code"
-            formControlName="majorDepartmentCategoryCode"
+            id="resume-educations-major-department-category"
+            formControlName="majorDepartmentCategory"
             class="form-control"
             maxlength="500"
           />
@@ -796,13 +796,13 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="resume-educations-minor-department-category-code">
-            {{ '::MinorDepartmentCategoryCode' | abpLocalization }} *
+          <label class="form-label" for="resume-educations-minor-department-category">
+            {{ '::MinorDepartmentCategory' | abpLocalization }} *
           </label>
 
           <input
-            id="resume-educations-minor-department-category-code"
-            formControlName="minorDepartmentCategoryCode"
+            id="resume-educations-minor-department-category"
+            formControlName="minorDepartmentCategory"
             class="form-control"
             maxlength="500"
           />

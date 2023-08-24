@@ -8,8 +8,6 @@ namespace Resume.CompanyJobApplicationMethods
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
-        [StringLength(CompanyJobApplicationMethodConsts.OrgDeptMaxLength)]
-        public string? OrgDept { get; set; }
         [StringLength(CompanyJobApplicationMethodConsts.OrgContactPersonMaxLength)]
         public string? OrgContactPerson { get; set; }
         [StringLength(CompanyJobApplicationMethodConsts.OrgContactMailMaxLength)]

@@ -13,9 +13,9 @@ namespace Resume.ResumeEducationss
         public const int SchoolCodeMaxLength = 50;
         public const int SchoolNameMaxLength = 200;
         public const int MajorDepartmentNameMaxLength = 50;
-        public const int MajorDepartmentCategoryCodeMaxLength = 500;
+        public const int MajorDepartmentCategoryMaxLength = 500;
         public const int MinorDepartmentNameMaxLength = 50;
-        public const int MinorDepartmentCategoryCodeMaxLength = 500;
+        public const int MinorDepartmentCategoryMaxLength = 500;
         public const int GraduationCodeMaxLength = 50;
         public const int CountryCodeMaxLength = 50;
         public const int ExtendedInformationMaxLength = 500;

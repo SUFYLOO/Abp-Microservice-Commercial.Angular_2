@@ -83,7 +83,7 @@ export class ResumeSnapshotComponent implements OnInit {
       resumeMainId: [resumeMainId ?? null, []],
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      snapshot: [snapshot ?? null, [Validators.required]],
+      snapshot: [snapshot ?? null, [Validators.required, Validators.maxLength(4000)]],
       userCompanyBindId: [userCompanyBindId ?? null, []],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
       dateA: [dateA ? new Date(dateA) : null, []],

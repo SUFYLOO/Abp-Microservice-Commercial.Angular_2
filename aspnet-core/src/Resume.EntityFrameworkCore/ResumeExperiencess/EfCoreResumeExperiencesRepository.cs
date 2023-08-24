@@ -25,11 +25,11 @@ namespace Resume.ResumeExperiencess
             string name = null,
             string workNatureCode = null,
             bool? hideCompanyName = null,
-            string industryCategoryCode = null,
+            string industryCategory = null,
             string jobName = null,
             string jobType = null,
             bool? working = null,
-            string workPlaceCode = null,
+            string workPlace = null,
             bool? hideWorkSalary = null,
             string salaryPayTypeCode = null,
             string currencyTypeCode = null,
@@ -53,7 +53,7 @@ namespace Resume.ResumeExperiencess
             int skipCount = 0,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, name, workNatureCode, hideCompanyName, industryCategoryCode, jobName, jobType, working, workPlaceCode, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1Min, salary1Max, salary2Min, salary2Max, companyScaleCode, companyManagementNumberCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, name, workNatureCode, hideCompanyName, industryCategory, jobName, jobType, working, workPlace, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1Min, salary1Max, salary2Min, salary2Max, companyScaleCode, companyManagementNumberCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? ResumeExperiencesConsts.GetDefaultSorting(false) : sorting);
             return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
         }
@@ -64,11 +64,11 @@ namespace Resume.ResumeExperiencess
             string name = null,
             string workNatureCode = null,
             bool? hideCompanyName = null,
-            string industryCategoryCode = null,
+            string industryCategory = null,
             string jobName = null,
             string jobType = null,
             bool? working = null,
-            string workPlaceCode = null,
+            string workPlace = null,
             bool? hideWorkSalary = null,
             string salaryPayTypeCode = null,
             string currencyTypeCode = null,
@@ -89,7 +89,7 @@ namespace Resume.ResumeExperiencess
             string status = null,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, name, workNatureCode, hideCompanyName, industryCategoryCode, jobName, jobType, working, workPlaceCode, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1Min, salary1Max, salary2Min, salary2Max, companyScaleCode, companyManagementNumberCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, name, workNatureCode, hideCompanyName, industryCategory, jobName, jobType, working, workPlace, hideWorkSalary, salaryPayTypeCode, currencyTypeCode, salary1Min, salary1Max, salary2Min, salary2Max, companyScaleCode, companyManagementNumberCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             return await query.LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
@@ -100,11 +100,11 @@ namespace Resume.ResumeExperiencess
             string name = null,
             string workNatureCode = null,
             bool? hideCompanyName = null,
-            string industryCategoryCode = null,
+            string industryCategory = null,
             string jobName = null,
             string jobType = null,
             bool? working = null,
-            string workPlaceCode = null,
+            string workPlace = null,
             bool? hideWorkSalary = null,
             string salaryPayTypeCode = null,
             string currencyTypeCode = null,
@@ -125,16 +125,16 @@ namespace Resume.ResumeExperiencess
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.Name.Contains(filterText) || e.WorkNatureCode.Contains(filterText) || e.IndustryCategoryCode.Contains(filterText) || e.JobName.Contains(filterText) || e.JobType.Contains(filterText) || e.WorkPlaceCode.Contains(filterText) || e.SalaryPayTypeCode.Contains(filterText) || e.CurrencyTypeCode.Contains(filterText) || e.CompanyScaleCode.Contains(filterText) || e.CompanyManagementNumberCode.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.Name.Contains(filterText) || e.WorkNatureCode.Contains(filterText) || e.IndustryCategory.Contains(filterText) || e.JobName.Contains(filterText) || e.JobType.Contains(filterText) || e.WorkPlace.Contains(filterText) || e.SalaryPayTypeCode.Contains(filterText) || e.CurrencyTypeCode.Contains(filterText) || e.CompanyScaleCode.Contains(filterText) || e.CompanyManagementNumberCode.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(resumeMainId.HasValue, e => e.ResumeMainId == resumeMainId)
                     .WhereIf(!string.IsNullOrWhiteSpace(name), e => e.Name.Contains(name))
                     .WhereIf(!string.IsNullOrWhiteSpace(workNatureCode), e => e.WorkNatureCode.Contains(workNatureCode))
                     .WhereIf(hideCompanyName.HasValue, e => e.HideCompanyName == hideCompanyName)
-                    .WhereIf(!string.IsNullOrWhiteSpace(industryCategoryCode), e => e.IndustryCategoryCode.Contains(industryCategoryCode))
+                    .WhereIf(!string.IsNullOrWhiteSpace(industryCategory), e => e.IndustryCategory.Contains(industryCategory))
                     .WhereIf(!string.IsNullOrWhiteSpace(jobName), e => e.JobName.Contains(jobName))
                     .WhereIf(!string.IsNullOrWhiteSpace(jobType), e => e.JobType.Contains(jobType))
                     .WhereIf(working.HasValue, e => e.Working == working)
-                    .WhereIf(!string.IsNullOrWhiteSpace(workPlaceCode), e => e.WorkPlaceCode.Contains(workPlaceCode))
+                    .WhereIf(!string.IsNullOrWhiteSpace(workPlace), e => e.WorkPlace.Contains(workPlace))
                     .WhereIf(hideWorkSalary.HasValue, e => e.HideWorkSalary == hideWorkSalary)
                     .WhereIf(!string.IsNullOrWhiteSpace(salaryPayTypeCode), e => e.SalaryPayTypeCode.Contains(salaryPayTypeCode))
                     .WhereIf(!string.IsNullOrWhiteSpace(currencyTypeCode), e => e.CurrencyTypeCode.Contains(currencyTypeCode))

@@ -9,9 +9,9 @@ export interface GetResumeEducationssInput extends PagedAndSortedResultRequestDt
   night?: boolean;
   working?: boolean;
   majorDepartmentName?: string;
-  majorDepartmentCategoryCode?: string;
+  majorDepartmentCategory?: string;
   minorDepartmentName?: string;
-  minorDepartmentCategoryCode?: string;
+  minorDepartmentCategory?: string;
   graduationCode?: string;
   domestic?: boolean;
   countryCode?: string;
@@ -34,9 +34,9 @@ export interface ResumeEducationsCreateDto {
   night: boolean;
   working: boolean;
   majorDepartmentName: string;
-  majorDepartmentCategoryCode: string;
+  majorDepartmentCategory: string;
   minorDepartmentName: string;
-  minorDepartmentCategoryCode: string;
+  minorDepartmentCategory: string;
   graduationCode: string;
   domestic: boolean;
   countryCode: string;
@@ -56,9 +56,9 @@ export interface ResumeEducationsDto extends FullAuditedEntityDto<string> {
   night: boolean;
   working: boolean;
   majorDepartmentName: string;
-  majorDepartmentCategoryCode: string;
+  majorDepartmentCategory: string;
   minorDepartmentName: string;
-  minorDepartmentCategoryCode: string;
+  minorDepartmentCategory: string;
   graduationCode: string;
   domestic: boolean;
   countryCode: string;
@@ -84,9 +84,9 @@ export interface ResumeEducationsUpdateDto {
   night: boolean;
   working: boolean;
   majorDepartmentName: string;
-  majorDepartmentCategoryCode: string;
+  majorDepartmentCategory: string;
   minorDepartmentName: string;
-  minorDepartmentCategoryCode: string;
+  minorDepartmentCategory: string;
   graduationCode: string;
   domestic: boolean;
   countryCode: string;

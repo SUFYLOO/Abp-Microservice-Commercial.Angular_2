@@ -22,8 +22,8 @@ namespace Resume.ResumeSkills
         public async Task<List<ResumeSkill>> GetListAsync(
             string filterText = null,
             Guid? resumeMainId = null,
-            string computerSkills = null,
-            string computerSkillsEtc = null,
+            string computerExpertise = null,
+            string computerExpertiseEtc = null,
             int? chineseTypingSpeedMin = null,
             int? chineseTypingSpeedMax = null,
             string chineseTypingCode = null,
@@ -47,7 +47,7 @@ namespace Resume.ResumeSkills
             int skipCount = 0,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, computerSkills, computerSkillsEtc, chineseTypingSpeedMin, chineseTypingSpeedMax, chineseTypingCode, englishTypingSpeedMin, englishTypingSpeedMax, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, computerExpertise, computerExpertiseEtc, chineseTypingSpeedMin, chineseTypingSpeedMax, chineseTypingCode, englishTypingSpeedMin, englishTypingSpeedMax, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? ResumeSkillConsts.GetDefaultSorting(false) : sorting);
             return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
         }
@@ -55,8 +55,8 @@ namespace Resume.ResumeSkills
         public async Task<long> GetCountAsync(
             string filterText = null,
             Guid? resumeMainId = null,
-            string computerSkills = null,
-            string computerSkillsEtc = null,
+            string computerExpertise = null,
+            string computerExpertiseEtc = null,
             int? chineseTypingSpeedMin = null,
             int? chineseTypingSpeedMax = null,
             string chineseTypingCode = null,
@@ -77,7 +77,7 @@ namespace Resume.ResumeSkills
             string status = null,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, computerSkills, computerSkillsEtc, chineseTypingSpeedMin, chineseTypingSpeedMax, chineseTypingCode, englishTypingSpeedMin, englishTypingSpeedMax, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, computerExpertise, computerExpertiseEtc, chineseTypingSpeedMin, chineseTypingSpeedMax, chineseTypingCode, englishTypingSpeedMin, englishTypingSpeedMax, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             return await query.LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
@@ -85,8 +85,8 @@ namespace Resume.ResumeSkills
             IQueryable<ResumeSkill> query,
             string filterText,
             Guid? resumeMainId = null,
-            string computerSkills = null,
-            string computerSkillsEtc = null,
+            string computerExpertise = null,
+            string computerExpertiseEtc = null,
             int? chineseTypingSpeedMin = null,
             int? chineseTypingSpeedMax = null,
             string chineseTypingCode = null,
@@ -107,10 +107,10 @@ namespace Resume.ResumeSkills
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.ComputerSkills.Contains(filterText) || e.ComputerSkillsEtc.Contains(filterText) || e.ChineseTypingCode.Contains(filterText) || e.ProfessionalLicense.Contains(filterText) || e.ProfessionalLicenseEtc.Contains(filterText) || e.WorkSkills.Contains(filterText) || e.WorkSkillsEtc.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.ComputerExpertise.Contains(filterText) || e.ComputerExpertiseEtc.Contains(filterText) || e.ChineseTypingCode.Contains(filterText) || e.ProfessionalLicense.Contains(filterText) || e.ProfessionalLicenseEtc.Contains(filterText) || e.WorkSkills.Contains(filterText) || e.WorkSkillsEtc.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(resumeMainId.HasValue, e => e.ResumeMainId == resumeMainId)
-                    .WhereIf(!string.IsNullOrWhiteSpace(computerSkills), e => e.ComputerSkills.Contains(computerSkills))
-                    .WhereIf(!string.IsNullOrWhiteSpace(computerSkillsEtc), e => e.ComputerSkillsEtc.Contains(computerSkillsEtc))
+                    .WhereIf(!string.IsNullOrWhiteSpace(computerExpertise), e => e.ComputerExpertise.Contains(computerExpertise))
+                    .WhereIf(!string.IsNullOrWhiteSpace(computerExpertiseEtc), e => e.ComputerExpertiseEtc.Contains(computerExpertiseEtc))
                     .WhereIf(chineseTypingSpeedMin.HasValue, e => e.ChineseTypingSpeed >= chineseTypingSpeedMin.Value)
                     .WhereIf(chineseTypingSpeedMax.HasValue, e => e.ChineseTypingSpeed <= chineseTypingSpeedMax.Value)
                     .WhereIf(!string.IsNullOrWhiteSpace(chineseTypingCode), e => e.ChineseTypingCode.Contains(chineseTypingCode))

@@ -66,7 +66,6 @@ export class CompanyJobApplicationMethodComponent implements OnInit {
     const {
       companyMainId,
       companyJobId,
-      orgDept,
       orgContactPerson,
       orgContactMail,
       toRespondDay,
@@ -87,7 +86,6 @@ export class CompanyJobApplicationMethodComponent implements OnInit {
     this.form = this.fb.group({
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      orgDept: [orgDept ?? null, [Validators.maxLength(500)]],
       orgContactPerson: [orgContactPerson ?? null, [Validators.maxLength(50)]],
       orgContactMail: [orgContactMail ?? null, [Validators.maxLength(500)]],
       toRespondDay: [toRespondDay ?? null, []],

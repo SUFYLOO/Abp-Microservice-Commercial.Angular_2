@@ -16,12 +16,18 @@ namespace Resume.CompanyJobConditions
         public string? EducationLevel { get; set; }
         [StringLength(CompanyJobConditionConsts.MajorDepartmentCategoryMaxLength)]
         public string? MajorDepartmentCategory { get; set; }
-        [StringLength(CompanyJobConditionConsts.LanguageCategoryMaxLength)]
-        public string? LanguageCategory { get; set; }
-        [StringLength(CompanyJobConditionConsts.ComputerExpertiseMaxLength)]
-        public string? ComputerExpertise { get; set; }
+        [StringLength(CompanyJobConditionConsts.LanguageConditionMaxLength)]
+        public string? LanguageCondition { get; set; }
+        [StringLength(CompanyJobConditionConsts.ComputerExpertiseEtcMaxLength)]
+        public string? ComputerExpertiseEtc { get; set; }
         [StringLength(CompanyJobConditionConsts.ProfessionalLicenseMaxLength)]
         public string? ProfessionalLicense { get; set; }
+        [StringLength(CompanyJobConditionConsts.ProfessionalLicenseEtcMaxLength)]
+        public string? ProfessionalLicenseEtc { get; set; }
+        [StringLength(CompanyJobConditionConsts.WorkSkillsMaxLength)]
+        public string? WorkSkills { get; set; }
+        [StringLength(CompanyJobConditionConsts.WorkSkillsEtcMaxLength)]
+        public string? WorkSkillsEtc { get; set; }
         [StringLength(CompanyJobConditionConsts.DrvingLicenseMaxLength)]
         public string? DrvingLicense { get; set; }
         [StringLength(CompanyJobConditionConsts.EtcConditionMaxLength)]

@@ -28,9 +28,9 @@ namespace Resume.ResumeEducationss
             bool? night = null,
             bool? working = null,
             string majorDepartmentName = null,
-            string majorDepartmentCategoryCode = null,
+            string majorDepartmentCategory = null,
             string minorDepartmentName = null,
-            string minorDepartmentCategoryCode = null,
+            string minorDepartmentCategory = null,
             string graduationCode = null,
             bool? domestic = null,
             string countryCode = null,
@@ -48,7 +48,7 @@ namespace Resume.ResumeEducationss
             int skipCount = 0,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategoryCode, minorDepartmentName, minorDepartmentCategoryCode, graduationCode, domestic, countryCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetQueryableAsync()), filterText, resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategory, minorDepartmentName, minorDepartmentCategory, graduationCode, domestic, countryCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? ResumeEducationsConsts.GetDefaultSorting(false) : sorting);
             return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
         }
@@ -62,9 +62,9 @@ namespace Resume.ResumeEducationss
             bool? night = null,
             bool? working = null,
             string majorDepartmentName = null,
-            string majorDepartmentCategoryCode = null,
+            string majorDepartmentCategory = null,
             string minorDepartmentName = null,
-            string minorDepartmentCategoryCode = null,
+            string minorDepartmentCategory = null,
             string graduationCode = null,
             bool? domestic = null,
             string countryCode = null,
@@ -79,7 +79,7 @@ namespace Resume.ResumeEducationss
             string status = null,
             CancellationToken cancellationToken = default)
         {
-            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategoryCode, minorDepartmentName, minorDepartmentCategoryCode, graduationCode, domestic, countryCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
+            var query = ApplyFilter((await GetDbSetAsync()), filterText, resumeMainId, educationLevelCode, schoolCode, schoolName, night, working, majorDepartmentName, majorDepartmentCategory, minorDepartmentName, minorDepartmentCategory, graduationCode, domestic, countryCode, extendedInformation, dateAMin, dateAMax, dateDMin, dateDMax, sortMin, sortMax, note, status);
             return await query.LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
@@ -93,9 +93,9 @@ namespace Resume.ResumeEducationss
             bool? night = null,
             bool? working = null,
             string majorDepartmentName = null,
-            string majorDepartmentCategoryCode = null,
+            string majorDepartmentCategory = null,
             string minorDepartmentName = null,
-            string minorDepartmentCategoryCode = null,
+            string minorDepartmentCategory = null,
             string graduationCode = null,
             bool? domestic = null,
             string countryCode = null,
@@ -110,7 +110,7 @@ namespace Resume.ResumeEducationss
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.EducationLevelCode.Contains(filterText) || e.SchoolCode.Contains(filterText) || e.SchoolName.Contains(filterText) || e.MajorDepartmentName.Contains(filterText) || e.MajorDepartmentCategoryCode.Contains(filterText) || e.MinorDepartmentName.Contains(filterText) || e.MinorDepartmentCategoryCode.Contains(filterText) || e.GraduationCode.Contains(filterText) || e.CountryCode.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.EducationLevelCode.Contains(filterText) || e.SchoolCode.Contains(filterText) || e.SchoolName.Contains(filterText) || e.MajorDepartmentName.Contains(filterText) || e.MajorDepartmentCategory.Contains(filterText) || e.MinorDepartmentName.Contains(filterText) || e.MinorDepartmentCategory.Contains(filterText) || e.GraduationCode.Contains(filterText) || e.CountryCode.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(resumeMainId.HasValue, e => e.ResumeMainId == resumeMainId)
                     .WhereIf(!string.IsNullOrWhiteSpace(educationLevelCode), e => e.EducationLevelCode.Contains(educationLevelCode))
                     .WhereIf(!string.IsNullOrWhiteSpace(schoolCode), e => e.SchoolCode.Contains(schoolCode))
@@ -118,9 +118,9 @@ namespace Resume.ResumeEducationss
                     .WhereIf(night.HasValue, e => e.Night == night)
                     .WhereIf(working.HasValue, e => e.Working == working)
                     .WhereIf(!string.IsNullOrWhiteSpace(majorDepartmentName), e => e.MajorDepartmentName.Contains(majorDepartmentName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(majorDepartmentCategoryCode), e => e.MajorDepartmentCategoryCode.Contains(majorDepartmentCategoryCode))
+                    .WhereIf(!string.IsNullOrWhiteSpace(majorDepartmentCategory), e => e.MajorDepartmentCategory.Contains(majorDepartmentCategory))
                     .WhereIf(!string.IsNullOrWhiteSpace(minorDepartmentName), e => e.MinorDepartmentName.Contains(minorDepartmentName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(minorDepartmentCategoryCode), e => e.MinorDepartmentCategoryCode.Contains(minorDepartmentCategoryCode))
+                    .WhereIf(!string.IsNullOrWhiteSpace(minorDepartmentCategory), e => e.MinorDepartmentCategory.Contains(minorDepartmentCategory))
                     .WhereIf(!string.IsNullOrWhiteSpace(graduationCode), e => e.GraduationCode.Contains(graduationCode))
                     .WhereIf(domestic.HasValue, e => e.Domestic == domestic)
                     .WhereIf(!string.IsNullOrWhiteSpace(countryCode), e => e.CountryCode.Contains(countryCode))

@@ -53,6 +53,7 @@ namespace Resume.ResumeSnapshots
 
             Id = id;
             Check.NotNull(snapshot, nameof(snapshot));
+            Check.Length(snapshot, nameof(snapshot), ResumeSnapshotConsts.SnapshotMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeSnapshotConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), ResumeSnapshotConsts.NoteMaxLength, 0);
             Check.Length(status, nameof(status), ResumeSnapshotConsts.StatusMaxLength, 0);

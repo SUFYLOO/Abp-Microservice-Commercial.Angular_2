@@ -51,7 +51,7 @@ namespace Resume.CompanyJobContents
         public virtual string? WorkHours { get; set; }
 
         [CanBeNull]
-        public virtual string? WorkHour { get; set; }
+        public virtual string? WorkHoursCustom { get; set; }
 
         public virtual bool WorkShift { get; set; }
 
@@ -61,19 +61,20 @@ namespace Resume.CompanyJobContents
         public virtual string WorkRemoteTypeCode { get; set; }
 
         [CanBeNull]
-        public virtual string? WorkRemote { get; set; }
+        public virtual string? WorkRemoteDescript { get; set; }
 
-        [CanBeNull]
-        public virtual string? WorkDifferentPlaces { get; set; }
+        public virtual bool BusinessTrip { get; set; }
 
         [NotNull]
         public virtual string HolidaySystemCode { get; set; }
+
+        public virtual bool Dispatched { get; set; }
 
         [NotNull]
         public virtual string WorkDayCode { get; set; }
 
         [CanBeNull]
-        public virtual string? WorkIdentityCode { get; set; }
+        public virtual string? WorkIdentity { get; set; }
 
         [CanBeNull]
         public virtual string? DisabilityCategory { get; set; }
@@ -98,7 +99,7 @@ namespace Resume.CompanyJobContents
 
         }
 
-        public CompanyJobContent(Guid id, Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHour, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemote, string workDifferentPlaces, string holidaySystemCode, string workDayCode, string workIdentityCode, string disabilityCategory, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public CompanyJobContent(Guid id, Guid companyMainId, Guid companyJobId, string name, string jobTypeCode, int peopleRequiredNumber, bool peopleRequiredNumberUnlimited, string jobType, string jobTypeContent, string salaryPayTypeCode, int salaryMin, int salaryMax, bool salaryUp, string workPlace, string workHours, string workHoursCustom, bool workShift, bool workRemoteAllow, string workRemoteTypeCode, string workRemoteDescript, bool businessTrip, string holidaySystemCode, bool dispatched, string workDayCode, string workIdentity, string disabilityCategory, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -107,20 +108,20 @@ namespace Resume.CompanyJobContents
             Check.NotNull(jobTypeCode, nameof(jobTypeCode));
             Check.Length(jobTypeCode, nameof(jobTypeCode), CompanyJobContentConsts.JobTypeCodeMaxLength, 0);
             Check.Length(jobType, nameof(jobType), CompanyJobContentConsts.JobTypeMaxLength, 0);
+            Check.Length(jobTypeContent, nameof(jobTypeContent), CompanyJobContentConsts.JobTypeContentMaxLength, 0);
             Check.NotNull(salaryPayTypeCode, nameof(salaryPayTypeCode));
             Check.Length(salaryPayTypeCode, nameof(salaryPayTypeCode), CompanyJobContentConsts.SalaryPayTypeCodeMaxLength, 0);
             Check.Length(workPlace, nameof(workPlace), CompanyJobContentConsts.WorkPlaceMaxLength, 0);
             Check.Length(workHours, nameof(workHours), CompanyJobContentConsts.WorkHoursMaxLength, 0);
-            Check.Length(workHour, nameof(workHour), CompanyJobContentConsts.WorkHourMaxLength, 0);
+            Check.Length(workHoursCustom, nameof(workHoursCustom), CompanyJobContentConsts.WorkHoursCustomMaxLength, 0);
             Check.NotNull(workRemoteTypeCode, nameof(workRemoteTypeCode));
             Check.Length(workRemoteTypeCode, nameof(workRemoteTypeCode), CompanyJobContentConsts.WorkRemoteTypeCodeMaxLength, 0);
-            Check.Length(workRemote, nameof(workRemote), CompanyJobContentConsts.WorkRemoteMaxLength, 0);
-            Check.Length(workDifferentPlaces, nameof(workDifferentPlaces), CompanyJobContentConsts.WorkDifferentPlacesMaxLength, 0);
+            Check.Length(workRemoteDescript, nameof(workRemoteDescript), CompanyJobContentConsts.WorkRemoteDescriptMaxLength, 0);
             Check.NotNull(holidaySystemCode, nameof(holidaySystemCode));
             Check.Length(holidaySystemCode, nameof(holidaySystemCode), CompanyJobContentConsts.HolidaySystemCodeMaxLength, 0);
             Check.NotNull(workDayCode, nameof(workDayCode));
             Check.Length(workDayCode, nameof(workDayCode), CompanyJobContentConsts.WorkDayCodeMaxLength, 0);
-            Check.Length(workIdentityCode, nameof(workIdentityCode), CompanyJobContentConsts.WorkIdentityCodeMaxLength, 0);
+            Check.Length(workIdentity, nameof(workIdentity), CompanyJobContentConsts.WorkIdentityMaxLength, 0);
             Check.Length(disabilityCategory, nameof(disabilityCategory), CompanyJobContentConsts.DisabilityCategoryMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobContentConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobContentConsts.NoteMaxLength, 0);
@@ -139,15 +140,16 @@ namespace Resume.CompanyJobContents
             SalaryUp = salaryUp;
             WorkPlace = workPlace;
             WorkHours = workHours;
-            WorkHour = workHour;
+            WorkHoursCustom = workHoursCustom;
             WorkShift = workShift;
             WorkRemoteAllow = workRemoteAllow;
             WorkRemoteTypeCode = workRemoteTypeCode;
-            WorkRemote = workRemote;
-            WorkDifferentPlaces = workDifferentPlaces;
+            WorkRemoteDescript = workRemoteDescript;
+            BusinessTrip = businessTrip;
             HolidaySystemCode = holidaySystemCode;
+            Dispatched = dispatched;
             WorkDayCode = workDayCode;
-            WorkIdentityCode = workIdentityCode;
+            WorkIdentity = workIdentity;
             DisabilityCategory = disabilityCategory;
             ExtendedInformation = extendedInformation;
             DateA = dateA;

@@ -20,9 +20,6 @@ namespace Resume.CompanyJobApplicationMethods
         public virtual Guid CompanyJobId { get; set; }
 
         [CanBeNull]
-        public virtual string? OrgDept { get; set; }
-
-        [CanBeNull]
         public virtual string? OrgContactPerson { get; set; }
 
         [CanBeNull]
@@ -65,11 +62,10 @@ namespace Resume.CompanyJobApplicationMethods
 
         }
 
-        public CompanyJobApplicationMethod(Guid id, Guid companyMainId, Guid companyJobId, string orgDept, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public CompanyJobApplicationMethod(Guid id, Guid companyMainId, Guid companyJobId, string orgContactPerson, string orgContactMail, int toRespondDay, bool toRespond, bool systemSendResume, bool displayMail, string telephone, string personally, string personallyAddress, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
-            Check.Length(orgDept, nameof(orgDept), CompanyJobApplicationMethodConsts.OrgDeptMaxLength, 0);
             Check.Length(orgContactPerson, nameof(orgContactPerson), CompanyJobApplicationMethodConsts.OrgContactPersonMaxLength, 0);
             Check.Length(orgContactMail, nameof(orgContactMail), CompanyJobApplicationMethodConsts.OrgContactMailMaxLength, 0);
             Check.Length(telephone, nameof(telephone), CompanyJobApplicationMethodConsts.TelephoneMaxLength, 0);
@@ -80,7 +76,6 @@ namespace Resume.CompanyJobApplicationMethods
             Check.Length(status, nameof(status), CompanyJobApplicationMethodConsts.StatusMaxLength, 0);
             CompanyMainId = companyMainId;
             CompanyJobId = companyJobId;
-            OrgDept = orgDept;
             OrgContactPerson = orgContactPerson;
             OrgContactMail = orgContactMail;
             ToRespondDay = toRespondDay;

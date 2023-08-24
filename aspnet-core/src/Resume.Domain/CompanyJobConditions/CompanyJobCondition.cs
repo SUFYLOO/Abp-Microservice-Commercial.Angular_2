@@ -29,13 +29,22 @@ namespace Resume.CompanyJobConditions
         public virtual string? MajorDepartmentCategory { get; set; }
 
         [CanBeNull]
-        public virtual string? LanguageCategory { get; set; }
+        public virtual string? LanguageCondition { get; set; }
 
         [CanBeNull]
-        public virtual string? ComputerExpertise { get; set; }
+        public virtual string? ComputerExpertiseEtc { get; set; }
 
         [CanBeNull]
         public virtual string? ProfessionalLicense { get; set; }
+
+        [CanBeNull]
+        public virtual string? ProfessionalLicenseEtc { get; set; }
+
+        [CanBeNull]
+        public virtual string? WorkSkills { get; set; }
+
+        [CanBeNull]
+        public virtual string? WorkSkillsEtc { get; set; }
 
         [CanBeNull]
         public virtual string? DrvingLicense { get; set; }
@@ -63,7 +72,7 @@ namespace Resume.CompanyJobConditions
 
         }
 
-        public CompanyJobCondition(Guid id, Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCategory, string computerExpertise, string professionalLicense, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public CompanyJobCondition(Guid id, Guid companyMainId, Guid companyJobId, string workExperienceYearCode, string educationLevel, string majorDepartmentCategory, string languageCondition, string computerExpertiseEtc, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string drvingLicense, string etcCondition, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -71,9 +80,12 @@ namespace Resume.CompanyJobConditions
             Check.Length(workExperienceYearCode, nameof(workExperienceYearCode), CompanyJobConditionConsts.WorkExperienceYearCodeMaxLength, 0);
             Check.Length(educationLevel, nameof(educationLevel), CompanyJobConditionConsts.EducationLevelMaxLength, 0);
             Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), CompanyJobConditionConsts.MajorDepartmentCategoryMaxLength, 0);
-            Check.Length(languageCategory, nameof(languageCategory), CompanyJobConditionConsts.LanguageCategoryMaxLength, 0);
-            Check.Length(computerExpertise, nameof(computerExpertise), CompanyJobConditionConsts.ComputerExpertiseMaxLength, 0);
+            Check.Length(languageCondition, nameof(languageCondition), CompanyJobConditionConsts.LanguageConditionMaxLength, 0);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), CompanyJobConditionConsts.ComputerExpertiseEtcMaxLength, 0);
             Check.Length(professionalLicense, nameof(professionalLicense), CompanyJobConditionConsts.ProfessionalLicenseMaxLength, 0);
+            Check.Length(professionalLicenseEtc, nameof(professionalLicenseEtc), CompanyJobConditionConsts.ProfessionalLicenseEtcMaxLength, 0);
+            Check.Length(workSkills, nameof(workSkills), CompanyJobConditionConsts.WorkSkillsMaxLength, 0);
+            Check.Length(workSkillsEtc, nameof(workSkillsEtc), CompanyJobConditionConsts.WorkSkillsEtcMaxLength, 0);
             Check.Length(drvingLicense, nameof(drvingLicense), CompanyJobConditionConsts.DrvingLicenseMaxLength, 0);
             Check.Length(etcCondition, nameof(etcCondition), CompanyJobConditionConsts.EtcConditionMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobConditionConsts.ExtendedInformationMaxLength, 0);
@@ -84,9 +96,12 @@ namespace Resume.CompanyJobConditions
             WorkExperienceYearCode = workExperienceYearCode;
             EducationLevel = educationLevel;
             MajorDepartmentCategory = majorDepartmentCategory;
-            LanguageCategory = languageCategory;
-            ComputerExpertise = computerExpertise;
+            LanguageCondition = languageCondition;
+            ComputerExpertiseEtc = computerExpertiseEtc;
             ProfessionalLicense = professionalLicense;
+            ProfessionalLicenseEtc = professionalLicenseEtc;
+            WorkSkills = workSkills;
+            WorkSkillsEtc = workSkillsEtc;
             DrvingLicense = drvingLicense;
             EtcCondition = etcCondition;
             ExtendedInformation = extendedInformation;

@@ -19,10 +19,10 @@ namespace Resume.ResumeSkills
         }
 
         public async Task<ResumeSkill> CreateAsync(
-        Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        Guid resumeMainId, string computerExpertise, string computerExpertiseEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
-            Check.Length(computerSkills, nameof(computerSkills), ResumeSkillConsts.ComputerSkillsMaxLength);
-            Check.Length(computerSkillsEtc, nameof(computerSkillsEtc), ResumeSkillConsts.ComputerSkillsEtcMaxLength);
+            Check.Length(computerExpertise, nameof(computerExpertise), ResumeSkillConsts.ComputerExpertiseMaxLength);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), ResumeSkillConsts.ComputerExpertiseEtcMaxLength);
             Check.NotNullOrWhiteSpace(chineseTypingCode, nameof(chineseTypingCode));
             Check.Length(chineseTypingCode, nameof(chineseTypingCode), ResumeSkillConsts.ChineseTypingCodeMaxLength);
             Check.Length(professionalLicense, nameof(professionalLicense), ResumeSkillConsts.ProfessionalLicenseMaxLength);
@@ -35,7 +35,7 @@ namespace Resume.ResumeSkills
 
             var resumeSkill = new ResumeSkill(
              GuidGenerator.Create(),
-             resumeMainId, computerSkills, computerSkillsEtc, chineseTypingSpeed, chineseTypingCode, englishTypingSpeed, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateA, dateD, sort, note, status
+             resumeMainId, computerExpertise, computerExpertiseEtc, chineseTypingSpeed, chineseTypingCode, englishTypingSpeed, professionalLicense, professionalLicenseEtc, workSkills, workSkillsEtc, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _resumeSkillRepository.InsertAsync(resumeSkill);
@@ -43,11 +43,11 @@ namespace Resume.ResumeSkills
 
         public async Task<ResumeSkill> UpdateAsync(
             Guid id,
-            Guid resumeMainId, string computerSkills, string computerSkillsEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
+            Guid resumeMainId, string computerExpertise, string computerExpertiseEtc, int chineseTypingSpeed, string chineseTypingCode, int englishTypingSpeed, string professionalLicense, string professionalLicenseEtc, string workSkills, string workSkillsEtc, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
-            Check.Length(computerSkills, nameof(computerSkills), ResumeSkillConsts.ComputerSkillsMaxLength);
-            Check.Length(computerSkillsEtc, nameof(computerSkillsEtc), ResumeSkillConsts.ComputerSkillsEtcMaxLength);
+            Check.Length(computerExpertise, nameof(computerExpertise), ResumeSkillConsts.ComputerExpertiseMaxLength);
+            Check.Length(computerExpertiseEtc, nameof(computerExpertiseEtc), ResumeSkillConsts.ComputerExpertiseEtcMaxLength);
             Check.NotNullOrWhiteSpace(chineseTypingCode, nameof(chineseTypingCode));
             Check.Length(chineseTypingCode, nameof(chineseTypingCode), ResumeSkillConsts.ChineseTypingCodeMaxLength);
             Check.Length(professionalLicense, nameof(professionalLicense), ResumeSkillConsts.ProfessionalLicenseMaxLength);
@@ -61,8 +61,8 @@ namespace Resume.ResumeSkills
             var resumeSkill = await _resumeSkillRepository.GetAsync(id);
 
             resumeSkill.ResumeMainId = resumeMainId;
-            resumeSkill.ComputerSkills = computerSkills;
-            resumeSkill.ComputerSkillsEtc = computerSkillsEtc;
+            resumeSkill.ComputerExpertise = computerExpertise;
+            resumeSkill.ComputerExpertiseEtc = computerExpertiseEtc;
             resumeSkill.ChineseTypingSpeed = chineseTypingSpeed;
             resumeSkill.ChineseTypingCode = chineseTypingCode;
             resumeSkill.EnglishTypingSpeed = englishTypingSpeed;

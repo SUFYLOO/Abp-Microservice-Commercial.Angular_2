@@ -122,7 +122,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "b94fcb25-b91b-4dc7-910f-45669ed99c53",
+      "Id": "f2bbea92-7d61-4349-b70f-3fbc8abbeda9",
       "Name": "Snapshot",
       "Type": "string",
       "EnumType": null,
@@ -134,7 +134,7 @@
       "IsRequired": true,
       "IsTextArea": false,
       "MinLength": null,
-      "MaxLength": null,
+      "MaxLength": 4000,
       "SortOrder": 0,
       "SortType": 0,
       "Regex": null,
@@ -145,7 +145,7 @@
       "ReadonlyOnEditModal": false,
       "EnumValues": null,
       "IsSelected": true,
-      "OrdinalIndex": 4
+      "OrdinalIndex": 0
     },
     {
       "Id": "af182c51-f7b3-4f1d-a7cb-7ebacb4dcd92",
@@ -174,7 +174,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "88172dfa-e493-43c3-a3b6-a0f448ee04ac",
+      "Id": "fcfb3ffb-2fe5-46cc-a86f-744a4972d736",
       "Name": "ExtendedInformation",
       "Type": "string",
       "EnumType": null,

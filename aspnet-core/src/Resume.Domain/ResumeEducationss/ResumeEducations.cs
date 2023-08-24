@@ -34,13 +34,13 @@ namespace Resume.ResumeEducationss
         public virtual string MajorDepartmentName { get; set; }
 
         [NotNull]
-        public virtual string MajorDepartmentCategoryCode { get; set; }
+        public virtual string MajorDepartmentCategory { get; set; }
 
         [NotNull]
         public virtual string MinorDepartmentName { get; set; }
 
         [NotNull]
-        public virtual string MinorDepartmentCategoryCode { get; set; }
+        public virtual string MinorDepartmentCategory { get; set; }
 
         [NotNull]
         public virtual string GraduationCode { get; set; }
@@ -70,7 +70,7 @@ namespace Resume.ResumeEducationss
 
         }
 
-        public ResumeEducations(Guid id, Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategoryCode, string minorDepartmentName, string minorDepartmentCategoryCode, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public ResumeEducations(Guid id, Guid resumeMainId, string educationLevelCode, string schoolCode, string schoolName, bool night, bool working, string majorDepartmentName, string majorDepartmentCategory, string minorDepartmentName, string minorDepartmentCategory, string graduationCode, bool domestic, string countryCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -82,12 +82,12 @@ namespace Resume.ResumeEducationss
             Check.Length(schoolName, nameof(schoolName), ResumeEducationsConsts.SchoolNameMaxLength, 0);
             Check.NotNull(majorDepartmentName, nameof(majorDepartmentName));
             Check.Length(majorDepartmentName, nameof(majorDepartmentName), ResumeEducationsConsts.MajorDepartmentNameMaxLength, 0);
-            Check.NotNull(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode));
-            Check.Length(majorDepartmentCategoryCode, nameof(majorDepartmentCategoryCode), ResumeEducationsConsts.MajorDepartmentCategoryCodeMaxLength, 0);
+            Check.NotNull(majorDepartmentCategory, nameof(majorDepartmentCategory));
+            Check.Length(majorDepartmentCategory, nameof(majorDepartmentCategory), ResumeEducationsConsts.MajorDepartmentCategoryMaxLength, 0);
             Check.NotNull(minorDepartmentName, nameof(minorDepartmentName));
             Check.Length(minorDepartmentName, nameof(minorDepartmentName), ResumeEducationsConsts.MinorDepartmentNameMaxLength, 0);
-            Check.NotNull(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode));
-            Check.Length(minorDepartmentCategoryCode, nameof(minorDepartmentCategoryCode), ResumeEducationsConsts.MinorDepartmentCategoryCodeMaxLength, 0);
+            Check.NotNull(minorDepartmentCategory, nameof(minorDepartmentCategory));
+            Check.Length(minorDepartmentCategory, nameof(minorDepartmentCategory), ResumeEducationsConsts.MinorDepartmentCategoryMaxLength, 0);
             Check.NotNull(graduationCode, nameof(graduationCode));
             Check.Length(graduationCode, nameof(graduationCode), ResumeEducationsConsts.GraduationCodeMaxLength, 0);
             Check.NotNull(countryCode, nameof(countryCode));
@@ -102,9 +102,9 @@ namespace Resume.ResumeEducationss
             Night = night;
             Working = working;
             MajorDepartmentName = majorDepartmentName;
-            MajorDepartmentCategoryCode = majorDepartmentCategoryCode;
+            MajorDepartmentCategory = majorDepartmentCategory;
             MinorDepartmentName = minorDepartmentName;
-            MinorDepartmentCategoryCode = minorDepartmentCategoryCode;
+            MinorDepartmentCategory = minorDepartmentCategory;
             GraduationCode = graduationCode;
             Domestic = domestic;
             CountryCode = countryCode;

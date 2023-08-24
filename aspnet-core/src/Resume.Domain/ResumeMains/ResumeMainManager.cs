@@ -27,6 +27,8 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength);
+            Check.Length(autobiography1, nameof(autobiography1), ResumeMainConsts.Autobiography1MaxLength);
+            Check.Length(autobiography2, nameof(autobiography2), ResumeMainConsts.Autobiography2MaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength);
             Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);
@@ -50,6 +52,8 @@ namespace Resume.ResumeMains
             Check.Length(militaryCode, nameof(militaryCode), ResumeMainConsts.MilitaryCodeMaxLength);
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), ResumeMainConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(specialIdentityCode, nameof(specialIdentityCode), ResumeMainConsts.SpecialIdentityCodeMaxLength);
+            Check.Length(autobiography1, nameof(autobiography1), ResumeMainConsts.Autobiography1MaxLength);
+            Check.Length(autobiography2, nameof(autobiography2), ResumeMainConsts.Autobiography2MaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), ResumeMainConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), ResumeMainConsts.NoteMaxLength);
             Check.Length(status, nameof(status), ResumeMainConsts.StatusMaxLength);

@@ -62,8 +62,8 @@ export class ResumeSkillComponent implements OnInit {
   buildForm() {
     const {
       resumeMainId,
-      computerSkills,
-      computerSkillsEtc,
+      computerExpertise,
+      computerExpertiseEtc,
       chineseTypingSpeed,
       chineseTypingCode,
       englishTypingSpeed,
@@ -81,8 +81,8 @@ export class ResumeSkillComponent implements OnInit {
 
     this.form = this.fb.group({
       resumeMainId: [resumeMainId ?? null, []],
-      computerSkills: [computerSkills ?? null, [Validators.maxLength(500)]],
-      computerSkillsEtc: [computerSkillsEtc ?? null, [Validators.maxLength(500)]],
+      computerExpertise: [computerExpertise ?? null, [Validators.maxLength(500)]],
+      computerExpertiseEtc: [computerExpertiseEtc ?? null, [Validators.maxLength(4000)]],
       chineseTypingSpeed: [chineseTypingSpeed ?? null, [Validators.required]],
       chineseTypingCode: [
         chineseTypingCode ?? null,
@@ -90,9 +90,9 @@ export class ResumeSkillComponent implements OnInit {
       ],
       englishTypingSpeed: [englishTypingSpeed ?? null, [Validators.required]],
       professionalLicense: [professionalLicense ?? null, [Validators.maxLength(500)]],
-      professionalLicenseEtc: [professionalLicenseEtc ?? null, [Validators.maxLength(500)]],
+      professionalLicenseEtc: [professionalLicenseEtc ?? null, [Validators.maxLength(4000)]],
       workSkills: [workSkills ?? null, [Validators.maxLength(500)]],
-      workSkillsEtc: [workSkillsEtc ?? null, [Validators.maxLength(500)]],
+      workSkillsEtc: [workSkillsEtc ?? null, [Validators.maxLength(4000)]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
       dateA: [dateA ? new Date(dateA) : null, []],
       dateD: [dateD ? new Date(dateD) : null, []],
