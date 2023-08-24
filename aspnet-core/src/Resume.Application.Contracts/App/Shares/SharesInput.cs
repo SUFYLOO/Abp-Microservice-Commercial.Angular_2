@@ -76,10 +76,28 @@ namespace Resume.App.Shares
         public string GroupCode { get; set; }
     }
 
-    public class CheckShareCodeInput : ShareInput
+    //public class CheckShareCodeInput : ShareInput
+    //{
+    //    public string GroupCode { get; set; }
+    //    public List<string> ListKey3 { get; set; } = new List<string>();
+    //}
+
+    public class CheckShareCode
     {
-        public string GroupCode { get; set; }
-        public List<string> ListKey3 { get; set; } = new List<string>();
+        public bool AllowNull { get; set; } = true;
+        public string GroupCode { get; set; } = "";
+        public string? Code { get; set; } 
+        public string MessageCode { get; set; } = "400";
+        public string MessageContents { get; set; } = "";
+        public bool Pass { get; set; } = false;
+    }
+
+    public class CheckShareCodeInput
+    {
+        public ResultDto Result { get; set; } = new ResultDto();
+        public object? Data { get; set; }
+        public List<CheckShareCode>? ListCheckShareCode { get; set; } 
+        public bool? DynamicSearch { get; set; }
     }
 
     public class SendShareSendQueueInput : ShareInput
@@ -99,6 +117,20 @@ namespace Resume.App.Shares
         public List<NameCodeStandardDto> ListShareCode { get; set; }
         public List<NameCodeStandardDto> ListColumns { get; set; }
         public object Data { get; set; }
+    }
+
+    public class SetShareCodeName
+    {
+        public string GroupCode { get; set; } = "";
+        public string Code { get; set; } = "";
+        public string Name { get; set; } = "";
+    }
+
+    public class SetShareCodeNameInput 
+    {
+        public object Result { get; set; }
+        public List<SetShareCodeName>? ListSetShareCodeName { get; set; }
+        public bool? DynamicSearch { get; set; }
     }
 
     public class ShareUploadInput : ShareInput
