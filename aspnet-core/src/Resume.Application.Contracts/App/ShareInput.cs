@@ -61,6 +61,7 @@ namespace Resume.App
 
     public class RegisterBaseInput : RegisterInput
     {
+        public int SystemUserRoleKeys { get; set; }
         public string ThirdPartyTypeCode { get; set; } = "";
         public ThirdPartyUserDataDto? UserData { get; set; }
         public bool NeedCheckUserVerify { get; set; }  = true;

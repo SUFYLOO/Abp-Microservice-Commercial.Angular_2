@@ -86,7 +86,7 @@ namespace Resume.App.Companys
                             var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                             var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                            item.ListOrgId = itemsRole.Cast<Guid>().ToList();
+                            item.ListRoleId = itemUser.Roles.Select(p => p.RoleId).ToList();
                             item.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                         }
                     }
@@ -161,7 +161,8 @@ namespace Resume.App.Companys
                         var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                         var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                        Result.ListOrgId = itemsRole.Cast<Guid>().ToList();
+
+                        Result.ListRoleId = itemUser.Roles.Select(p => p.RoleId).ToList();
                         Result.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                     }
                 }
@@ -300,6 +301,7 @@ namespace Resume.App.Companys
             {
                 var inputRegister = ObjectMapper.Map<SaveCompanyUserInput, RegisterBaseInput>(input);
                 inputRegister.NeedCheckUserVerify = false;
+                inputRegister.SystemUserRoleKeys = 4;
                 var ResultRegister = await _appService._serviceProvider.GetService<UsersAppService>().RegisterAsync(inputRegister);
 
                 var itemCompanyUser = ObjectMapper.Map<SaveCompanyUserInput, CompanyUser>(input);
@@ -481,7 +483,7 @@ namespace Resume.App.Companys
                             var itemsRole = await _appService._identityUserManager.GetRolesAsync(itemUser);
                             var itemsOrg = await _appService._identityUserManager.GetOrganizationUnitsAsync(itemUser);
 
-                            Result.ListOrgId = itemsRole.Cast<Guid>().ToList();
+                            Result.ListRoleId = itemUser.Roles.Select(p => p.RoleId).ToList();
                             Result.ListOrgId = itemsOrg.Select(p => p.Id).ToList();
                         }
                     }
