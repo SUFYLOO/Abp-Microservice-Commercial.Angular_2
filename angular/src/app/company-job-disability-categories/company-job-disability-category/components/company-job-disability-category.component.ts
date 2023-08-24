@@ -80,7 +80,10 @@ export class CompanyJobDisabilityCategoryComponent implements OnInit {
     this.form = this.fb.group({
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      disabilityCategoryCode: [disabilityCategoryCode ?? null, [Validators.maxLength(50)]],
+      disabilityCategoryCode: [
+        disabilityCategoryCode ?? null,
+        [Validators.required, Validators.maxLength(50)],
+      ],
       disabilityLevelCode: [disabilityLevelCode ?? null, [Validators.maxLength(50)]],
       disabilityCertifiedDocumentsNeed: [disabilityCertifiedDocumentsNeed ?? false, []],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],

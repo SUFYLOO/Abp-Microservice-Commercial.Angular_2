@@ -20,8 +20,10 @@ namespace Resume.CompanyJobWorkIdentities
         }
 
         public async Task<CompanyJobWorkIdentity> CreateAsync(
-        Guid companyMainId, Guid companyJobId, Guid workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        Guid companyMainId, Guid companyJobId, string workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
+            Check.NotNullOrWhiteSpace(workIdentityCode, nameof(workIdentityCode));
+            Check.Length(workIdentityCode, nameof(workIdentityCode), CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobWorkIdentityConsts.NoteMaxLength);
             Check.Length(status, nameof(status), CompanyJobWorkIdentityConsts.StatusMaxLength);
@@ -36,9 +38,11 @@ namespace Resume.CompanyJobWorkIdentities
 
         public async Task<CompanyJobWorkIdentity> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, Guid workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
+            Check.NotNullOrWhiteSpace(workIdentityCode, nameof(workIdentityCode));
+            Check.Length(workIdentityCode, nameof(workIdentityCode), CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobWorkIdentityConsts.NoteMaxLength);
             Check.Length(status, nameof(status), CompanyJobWorkIdentityConsts.StatusMaxLength);

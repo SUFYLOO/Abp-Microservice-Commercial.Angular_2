@@ -3,7 +3,7 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface CompanyJobDrvingLicenseCreateDto {
   companyMainId?: string;
   companyJobId?: string;
-  drvingLicenseCode?: string;
+  drvingLicenseCode: string;
   haveDrvingLicense?: boolean;
   haveCar?: boolean;
   extendedInformation?: string;
@@ -17,7 +17,7 @@ export interface CompanyJobDrvingLicenseCreateDto {
 export interface CompanyJobDrvingLicenseDto extends FullAuditedEntityDto<string> {
   companyMainId?: string;
   companyJobId?: string;
-  drvingLicenseCode?: string;
+  drvingLicenseCode: string;
   haveDrvingLicense?: boolean;
   haveCar?: boolean;
   extendedInformation?: string;
@@ -38,7 +38,7 @@ export interface CompanyJobDrvingLicenseExcelDownloadDto {
 export interface CompanyJobDrvingLicenseUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
-  drvingLicenseCode?: string;
+  drvingLicenseCode: string;
   haveDrvingLicense?: boolean;
   haveCar?: boolean;
   extendedInformation?: string;

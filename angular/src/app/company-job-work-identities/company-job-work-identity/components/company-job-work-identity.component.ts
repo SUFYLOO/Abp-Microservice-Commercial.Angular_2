@@ -78,7 +78,7 @@ export class CompanyJobWorkIdentityComponent implements OnInit {
     this.form = this.fb.group({
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      workIdentityCode: [workIdentityCode ?? null, []],
+      workIdentityCode: [workIdentityCode ?? null, [Validators.required, Validators.maxLength(50)]],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
       dateA: [dateA ? new Date(dateA) : null, []],
       dateD: [dateD ? new Date(dateD) : null, []],

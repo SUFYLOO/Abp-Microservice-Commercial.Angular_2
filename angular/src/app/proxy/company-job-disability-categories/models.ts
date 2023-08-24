@@ -3,7 +3,7 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface CompanyJobDisabilityCategoryCreateDto {
   companyMainId?: string;
   companyJobId?: string;
-  disabilityCategoryCode?: string;
+  disabilityCategoryCode: string;
   disabilityLevelCode?: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;
@@ -17,7 +17,7 @@ export interface CompanyJobDisabilityCategoryCreateDto {
 export interface CompanyJobDisabilityCategoryDto extends FullAuditedEntityDto<string> {
   companyMainId?: string;
   companyJobId?: string;
-  disabilityCategoryCode?: string;
+  disabilityCategoryCode: string;
   disabilityLevelCode?: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;
@@ -38,7 +38,7 @@ export interface CompanyJobDisabilityCategoryExcelDownloadDto {
 export interface CompanyJobDisabilityCategoryUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
-  disabilityCategoryCode?: string;
+  disabilityCategoryCode: string;
   disabilityLevelCode?: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;

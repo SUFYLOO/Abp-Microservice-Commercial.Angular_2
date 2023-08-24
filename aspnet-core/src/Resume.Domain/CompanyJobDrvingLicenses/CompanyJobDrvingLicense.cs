@@ -19,8 +19,8 @@ namespace Resume.CompanyJobDrvingLicenses
 
         public virtual Guid CompanyJobId { get; set; }
 
-        [CanBeNull]
-        public virtual string? DrvingLicenseCode { get; set; }
+        [NotNull]
+        public virtual string DrvingLicenseCode { get; set; }
 
         public virtual bool HaveDrvingLicense { get; set; }
 
@@ -50,6 +50,7 @@ namespace Resume.CompanyJobDrvingLicenses
         {
 
             Id = id;
+            Check.NotNull(drvingLicenseCode, nameof(drvingLicenseCode));
             Check.Length(drvingLicenseCode, nameof(drvingLicenseCode), CompanyJobDrvingLicenseConsts.DrvingLicenseCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDrvingLicenseConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobDrvingLicenseConsts.NoteMaxLength, 0);

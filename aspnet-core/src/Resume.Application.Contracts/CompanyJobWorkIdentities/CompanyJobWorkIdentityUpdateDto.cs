@@ -9,7 +9,9 @@ namespace Resume.CompanyJobWorkIdentities
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
-        public Guid WorkIdentityCode { get; set; }
+        [Required]
+        [StringLength(CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength)]
+        public string WorkIdentityCode { get; set; }
         [StringLength(CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
         public DateTime? DateA { get; set; }

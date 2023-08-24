@@ -1,3 +1,4 @@
+using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobDrvingLicenses;
 using Resume.CompanyJobEducationLevels;
 using Resume.CompanyJobDisabilityCategories;
@@ -229,6 +230,8 @@ public class ResumeEntityFrameworkCoreModule : AbpModule
             options.AddRepository<CompanyJobEducationLevel, CompanyJobEducationLevels.EfCoreCompanyJobEducationLevelRepository>();
 
             options.AddRepository<CompanyJobDrvingLicense, CompanyJobDrvingLicenses.EfCoreCompanyJobDrvingLicenseRepository>();
+
+            options.AddRepository<CompanyJobWorkHours, CompanyJobWorkHourss.EfCoreCompanyJobWorkHoursRepository>();
 
         });
 

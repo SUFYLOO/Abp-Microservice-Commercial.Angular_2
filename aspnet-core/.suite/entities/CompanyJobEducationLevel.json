@@ -70,7 +70,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "3f990836-4591-4761-a589-b843f6b50541",
+      "Id": "2074a6f6-09cb-4b2f-85f5-bf33177555ff",
       "Name": "EducationLevelCode",
       "Type": "string",
       "EnumType": "",
@@ -79,7 +79,7 @@
       "EnumFilePath": null,
       "DefaultValue": null,
       "IsNullable": false,
-      "IsRequired": false,
+      "IsRequired": true,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,

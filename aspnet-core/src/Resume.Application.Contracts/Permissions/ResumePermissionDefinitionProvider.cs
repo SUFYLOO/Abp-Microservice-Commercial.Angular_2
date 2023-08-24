@@ -306,6 +306,11 @@ public class ResumePermissionDefinitionProvider : PermissionDefinitionProvider
         companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Create, L("Permission:Create"));
         companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Edit, L("Permission:Edit"));
         companyJobDrvingLicensePermission.AddChild(ResumePermissions.CompanyJobDrvingLicenses.Delete, L("Permission:Delete"));
+
+        var companyJobWorkHoursPermission = myGroup.AddPermission(ResumePermissions.CompanyJobWorkHourss.Default, L("Permission:CompanyJobWorkHourss"));
+        companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Create, L("Permission:Create"));
+        companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Edit, L("Permission:Edit"));
+        companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

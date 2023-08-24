@@ -432,6 +432,13 @@ const routes: Routes = [
         './company-job-drving-licenses/company-job-drving-license/company-job-drving-license.module'
       ).then(m => m.CompanyJobDrvingLicenseModule),
   },
+  {
+    path: 'company-job-work-hourss',
+    loadChildren: () =>
+      import('./company-job-work-hourss/company-job-work-hours/company-job-work-hours.module').then(
+        m => m.CompanyJobWorkHoursModule
+      ),
+  },
 ];
 
 @NgModule({

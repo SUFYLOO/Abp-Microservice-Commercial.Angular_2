@@ -477,4 +477,12 @@ public static class ResumePermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class CompanyJobWorkHourss
+    {
+        public const string Default = GroupName + ".CompanyJobWorkHourss";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

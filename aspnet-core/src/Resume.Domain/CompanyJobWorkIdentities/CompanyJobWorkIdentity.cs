@@ -19,7 +19,8 @@ namespace Resume.CompanyJobWorkIdentities
 
         public virtual Guid CompanyJobId { get; set; }
 
-        public virtual Guid WorkIdentityCode { get; set; }
+        [NotNull]
+        public virtual string WorkIdentityCode { get; set; }
 
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
@@ -41,10 +42,12 @@ namespace Resume.CompanyJobWorkIdentities
 
         }
 
-        public CompanyJobWorkIdentity(Guid id, Guid companyMainId, Guid companyJobId, Guid workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
+        public CompanyJobWorkIdentity(Guid id, Guid companyMainId, Guid companyJobId, string workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
+            Check.NotNull(workIdentityCode, nameof(workIdentityCode));
+            Check.Length(workIdentityCode, nameof(workIdentityCode), CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobWorkIdentityConsts.NoteMaxLength, 0);
             Check.Length(status, nameof(status), CompanyJobWorkIdentityConsts.StatusMaxLength, 0);

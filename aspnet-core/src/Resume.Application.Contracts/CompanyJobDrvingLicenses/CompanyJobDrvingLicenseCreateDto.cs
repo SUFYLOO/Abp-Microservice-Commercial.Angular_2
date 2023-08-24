@@ -8,8 +8,9 @@ namespace Resume.CompanyJobDrvingLicenses
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
+        [Required]
         [StringLength(CompanyJobDrvingLicenseConsts.DrvingLicenseCodeMaxLength)]
-        public string? DrvingLicenseCode { get; set; }
+        public string DrvingLicenseCode { get; set; }
         public bool HaveDrvingLicense { get; set; }
         public bool HaveCar { get; set; }
         [StringLength(CompanyJobDrvingLicenseConsts.ExtendedInformationMaxLength)]

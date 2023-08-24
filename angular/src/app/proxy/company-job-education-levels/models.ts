@@ -3,7 +3,7 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface CompanyJobEducationLevelCreateDto {
   companyMainId?: string;
   companyJobId?: string;
-  educationLevelCode?: string;
+  educationLevelCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;
@@ -15,7 +15,7 @@ export interface CompanyJobEducationLevelCreateDto {
 export interface CompanyJobEducationLevelDto extends FullAuditedEntityDto<string> {
   companyMainId?: string;
   companyJobId?: string;
-  educationLevelCode?: string;
+  educationLevelCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;
@@ -34,7 +34,7 @@ export interface CompanyJobEducationLevelExcelDownloadDto {
 export interface CompanyJobEducationLevelUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
-  educationLevelCode?: string;
+  educationLevelCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;

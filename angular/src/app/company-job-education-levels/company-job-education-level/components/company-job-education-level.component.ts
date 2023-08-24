@@ -78,7 +78,10 @@ export class CompanyJobEducationLevelComponent implements OnInit {
     this.form = this.fb.group({
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      educationLevelCode: [educationLevelCode ?? null, [Validators.maxLength(50)]],
+      educationLevelCode: [
+        educationLevelCode ?? null,
+        [Validators.required, Validators.maxLength(50)],
+      ],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
       dateA: [dateA ? new Date(dateA) : null, []],
       dateD: [dateD ? new Date(dateD) : null, []],

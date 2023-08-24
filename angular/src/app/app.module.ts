@@ -82,6 +82,7 @@ import { COMPANY_JOB_WORK_IDENTITIES_COMPANY_JOB_WORK_IDENTITY_ROUTE_PROVIDER } 
 import { COMPANY_JOB_DISABILITY_CATEGORIES_COMPANY_JOB_DISABILITY_CATEGORY_ROUTE_PROVIDER } from './company-job-disability-categories/company-job-disability-category/providers/company-job-disability-category-route.provider';
 import { COMPANY_JOB_EDUCATION_LEVELS_COMPANY_JOB_EDUCATION_LEVEL_ROUTE_PROVIDER } from './company-job-education-levels/company-job-education-level/providers/company-job-education-level-route.provider';
 import { COMPANY_JOB_DRVING_LICENSES_COMPANY_JOB_DRVING_LICENSE_ROUTE_PROVIDER } from './company-job-drving-licenses/company-job-drving-license/providers/company-job-drving-license-route.provider';
+import { COMPANY_JOB_WORK_HOURSS_COMPANY_JOB_WORK_HOURS_ROUTE_PROVIDER } from './company-job-work-hourss/company-job-work-hours/providers/company-job-work-hours-route.provider';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -183,6 +184,7 @@ import { COMPANY_JOB_DRVING_LICENSES_COMPANY_JOB_DRVING_LICENSE_ROUTE_PROVIDER }
     COMPANY_JOB_DISABILITY_CATEGORIES_COMPANY_JOB_DISABILITY_CATEGORY_ROUTE_PROVIDER,
     COMPANY_JOB_EDUCATION_LEVELS_COMPANY_JOB_EDUCATION_LEVEL_ROUTE_PROVIDER,
     COMPANY_JOB_DRVING_LICENSES_COMPANY_JOB_DRVING_LICENSE_ROUTE_PROVIDER,
+    COMPANY_JOB_WORK_HOURSS_COMPANY_JOB_WORK_HOURS_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

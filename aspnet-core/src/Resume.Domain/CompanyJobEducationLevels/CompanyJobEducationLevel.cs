@@ -19,8 +19,8 @@ namespace Resume.CompanyJobEducationLevels
 
         public virtual Guid CompanyJobId { get; set; }
 
-        [CanBeNull]
-        public virtual string? EducationLevelCode { get; set; }
+        [NotNull]
+        public virtual string EducationLevelCode { get; set; }
 
         [CanBeNull]
         public virtual string? ExtendedInformation { get; set; }
@@ -46,6 +46,7 @@ namespace Resume.CompanyJobEducationLevels
         {
 
             Id = id;
+            Check.NotNull(educationLevelCode, nameof(educationLevelCode));
             Check.Length(educationLevelCode, nameof(educationLevelCode), CompanyJobEducationLevelConsts.EducationLevelCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobEducationLevelConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobEducationLevelConsts.NoteMaxLength, 0);

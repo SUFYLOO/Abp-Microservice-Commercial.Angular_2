@@ -70,7 +70,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "da354fd5-2d34-48f2-bad9-6fb67e6c6c9a",
+      "Id": "9e23124a-73ad-4043-b1f2-a4a89d1a9939",
       "Name": "DrvingLicenseCode",
       "Type": "string",
       "EnumType": "",
@@ -79,7 +79,7 @@
       "EnumFilePath": null,
       "DefaultValue": null,
       "IsNullable": false,
-      "IsRequired": false,
+      "IsRequired": true,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,

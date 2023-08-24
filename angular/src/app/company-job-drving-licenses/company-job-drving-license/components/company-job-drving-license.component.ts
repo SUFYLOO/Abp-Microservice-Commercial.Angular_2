@@ -80,7 +80,10 @@ export class CompanyJobDrvingLicenseComponent implements OnInit {
     this.form = this.fb.group({
       companyMainId: [companyMainId ?? null, []],
       companyJobId: [companyJobId ?? null, []],
-      drvingLicenseCode: [drvingLicenseCode ?? null, [Validators.maxLength(50)]],
+      drvingLicenseCode: [
+        drvingLicenseCode ?? null,
+        [Validators.required, Validators.maxLength(50)],
+      ],
       haveDrvingLicense: [haveDrvingLicense ?? false, []],
       haveCar: [haveCar ?? false, []],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],

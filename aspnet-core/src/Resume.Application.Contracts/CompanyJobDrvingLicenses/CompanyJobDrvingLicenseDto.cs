@@ -8,7 +8,7 @@ namespace Resume.CompanyJobDrvingLicenses
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
-        public string? DrvingLicenseCode { get; set; }
+        public string DrvingLicenseCode { get; set; }
         public bool HaveDrvingLicense { get; set; }
         public bool HaveCar { get; set; }
         public string? ExtendedInformation { get; set; }

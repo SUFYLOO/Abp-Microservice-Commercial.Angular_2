@@ -22,6 +22,7 @@ namespace Resume.CompanyJobEducationLevels
         public async Task<CompanyJobEducationLevel> CreateAsync(
         Guid companyMainId, Guid companyJobId, string educationLevelCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
+            Check.NotNullOrWhiteSpace(educationLevelCode, nameof(educationLevelCode));
             Check.Length(educationLevelCode, nameof(educationLevelCode), CompanyJobEducationLevelConsts.EducationLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobEducationLevelConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobEducationLevelConsts.NoteMaxLength);
@@ -40,6 +41,7 @@ namespace Resume.CompanyJobEducationLevels
             Guid companyMainId, Guid companyJobId, string educationLevelCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
+            Check.NotNullOrWhiteSpace(educationLevelCode, nameof(educationLevelCode));
             Check.Length(educationLevelCode, nameof(educationLevelCode), CompanyJobEducationLevelConsts.EducationLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobEducationLevelConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobEducationLevelConsts.NoteMaxLength);

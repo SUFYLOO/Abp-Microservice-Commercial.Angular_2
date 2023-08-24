@@ -70,7 +70,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "dc4b5026-64e5-4996-a575-529353fe1ed0",
+      "Id": "c067f2ac-4538-4402-97f7-8f8fda242d2e",
       "Name": "DisabilityCategoryCode",
       "Type": "string",
       "EnumType": "",
@@ -79,7 +79,7 @@
       "EnumFilePath": null,
       "DefaultValue": null,
       "IsNullable": false,
-      "IsRequired": false,
+      "IsRequired": true,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,

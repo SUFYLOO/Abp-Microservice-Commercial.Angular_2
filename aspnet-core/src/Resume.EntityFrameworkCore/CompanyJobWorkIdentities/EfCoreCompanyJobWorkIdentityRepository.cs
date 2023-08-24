@@ -23,7 +23,7 @@ namespace Resume.CompanyJobWorkIdentities
             string filterText = null,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            Guid? workIdentityCode = null,
+            string workIdentityCode = null,
             string extendedInformation = null,
             DateTime? dateAMin = null,
             DateTime? dateAMax = null,
@@ -47,7 +47,7 @@ namespace Resume.CompanyJobWorkIdentities
             string filterText = null,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            Guid? workIdentityCode = null,
+            string workIdentityCode = null,
             string extendedInformation = null,
             DateTime? dateAMin = null,
             DateTime? dateAMax = null,
@@ -68,7 +68,7 @@ namespace Resume.CompanyJobWorkIdentities
             string filterText,
             Guid? companyMainId = null,
             Guid? companyJobId = null,
-            Guid? workIdentityCode = null,
+            string workIdentityCode = null,
             string extendedInformation = null,
             DateTime? dateAMin = null,
             DateTime? dateAMax = null,
@@ -80,10 +80,10 @@ namespace Resume.CompanyJobWorkIdentities
             string status = null)
         {
             return query
-                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
+                    .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.WorkIdentityCode.Contains(filterText) || e.ExtendedInformation.Contains(filterText) || e.Note.Contains(filterText) || e.Status.Contains(filterText))
                     .WhereIf(companyMainId.HasValue, e => e.CompanyMainId == companyMainId)
                     .WhereIf(companyJobId.HasValue, e => e.CompanyJobId == companyJobId)
-                    .WhereIf(workIdentityCode.HasValue, e => e.WorkIdentityCode == workIdentityCode)
+                    .WhereIf(!string.IsNullOrWhiteSpace(workIdentityCode), e => e.WorkIdentityCode.Contains(workIdentityCode))
                     .WhereIf(!string.IsNullOrWhiteSpace(extendedInformation), e => e.ExtendedInformation.Contains(extendedInformation))
                     .WhereIf(dateAMin.HasValue, e => e.DateA >= dateAMin.Value)
                     .WhereIf(dateAMax.HasValue, e => e.DateA <= dateAMax.Value)

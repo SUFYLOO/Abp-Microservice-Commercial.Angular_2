@@ -3,7 +3,7 @@ import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/
 export interface CompanyJobWorkIdentityCreateDto {
   companyMainId?: string;
   companyJobId?: string;
-  workIdentityCode?: string;
+  workIdentityCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;
@@ -15,7 +15,7 @@ export interface CompanyJobWorkIdentityCreateDto {
 export interface CompanyJobWorkIdentityDto extends FullAuditedEntityDto<string> {
   companyMainId?: string;
   companyJobId?: string;
-  workIdentityCode?: string;
+  workIdentityCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;
@@ -34,7 +34,7 @@ export interface CompanyJobWorkIdentityExcelDownloadDto {
 export interface CompanyJobWorkIdentityUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
-  workIdentityCode?: string;
+  workIdentityCode: string;
   extendedInformation?: string;
   dateA?: string;
   dateD?: string;

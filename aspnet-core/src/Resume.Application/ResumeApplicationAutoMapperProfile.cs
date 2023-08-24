@@ -1,3 +1,4 @@
+using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobDrvingLicenses;
 using Resume.CompanyJobEducationLevels;
 using Resume.CompanyJobDisabilityCategories;
@@ -244,5 +245,8 @@ public class ResumeApplicationAutoMapperProfile : Profile
 
         CreateMap<CompanyJobDrvingLicense, CompanyJobDrvingLicenseDto>();
         CreateMap<CompanyJobDrvingLicense, CompanyJobDrvingLicenseExcelDto>();
+
+        CreateMap<CompanyJobWorkHours, CompanyJobWorkHoursDto>();
+        CreateMap<CompanyJobWorkHours, CompanyJobWorkHoursExcelDto>();
     }
 }

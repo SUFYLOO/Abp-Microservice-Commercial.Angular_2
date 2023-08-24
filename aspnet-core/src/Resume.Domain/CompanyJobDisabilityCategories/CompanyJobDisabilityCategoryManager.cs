@@ -22,6 +22,7 @@ namespace Resume.CompanyJobDisabilityCategories
         public async Task<CompanyJobDisabilityCategory> CreateAsync(
         Guid companyMainId, Guid companyJobId, string disabilityCategoryCode, string disabilityLevelCode, bool disabilityCertifiedDocumentsNeed, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
+            Check.NotNullOrWhiteSpace(disabilityCategoryCode, nameof(disabilityCategoryCode));
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(disabilityLevelCode, nameof(disabilityLevelCode), CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength);
@@ -41,6 +42,7 @@ namespace Resume.CompanyJobDisabilityCategories
             Guid companyMainId, Guid companyJobId, string disabilityCategoryCode, string disabilityLevelCode, bool disabilityCertifiedDocumentsNeed, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
+            Check.NotNullOrWhiteSpace(disabilityCategoryCode, nameof(disabilityCategoryCode));
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength);
             Check.Length(disabilityLevelCode, nameof(disabilityLevelCode), CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength);

@@ -8,7 +8,7 @@ namespace Resume.CompanyJobDisabilityCategories
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
-        public string? DisabilityCategoryCode { get; set; }
+        public string DisabilityCategoryCode { get; set; }
         public string? DisabilityLevelCode { get; set; }
         public bool DisabilityCertifiedDocumentsNeed { get; set; }
         public string? ExtendedInformation { get; set; }

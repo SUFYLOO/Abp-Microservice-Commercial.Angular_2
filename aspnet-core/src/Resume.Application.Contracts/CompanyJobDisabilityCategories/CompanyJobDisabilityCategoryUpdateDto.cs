@@ -9,8 +9,9 @@ namespace Resume.CompanyJobDisabilityCategories
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
+        [Required]
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength)]
-        public string? DisabilityCategoryCode { get; set; }
+        public string DisabilityCategoryCode { get; set; }
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength)]
         public string? DisabilityLevelCode { get; set; }
         public bool DisabilityCertifiedDocumentsNeed { get; set; }

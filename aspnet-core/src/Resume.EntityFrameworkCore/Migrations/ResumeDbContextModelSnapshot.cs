@@ -901,6 +901,7 @@ namespace Resume.Migrations
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("DisabilityCategoryCode")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("DisabilityCategoryCode");
@@ -1004,6 +1005,7 @@ namespace Resume.Migrations
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("DrvingLicenseCode")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("DrvingLicenseCode");
@@ -1106,6 +1108,7 @@ namespace Resume.Migrations
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("EducationLevelCode")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("EducationLevelCode");
@@ -1404,6 +1407,100 @@ namespace Resume.Migrations
                     b.ToTable("AppCompanyJobPays", (string)null);
                 });
 
+            modelBuilder.Entity("Resume.CompanyJobWorkHourss.CompanyJobWorkHours", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyJobId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyJobId");
+
+                    b.Property<Guid>("CompanyMainId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyMainId");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<DateTime?>("DateA")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DateA");
+
+                    b.Property<DateTime?>("DateD")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DateD");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtendedInformation")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtendedInformation");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("Note");
+
+                    b.Property<int?>("Sort")
+                        .HasColumnType("int")
+                        .HasColumnName("Sort");
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("Status");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TenantId");
+
+                    b.Property<string>("WorkHoursCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("WorkHoursCode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppCompanyJobWorkHourss", (string)null);
+                });
+
             modelBuilder.Entity("Resume.CompanyJobWorkIdentities.CompanyJobWorkIdentity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1488,8 +1585,10 @@ namespace Resume.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("TenantId");
 
-                    b.Property<Guid>("WorkIdentityCode")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<string>("WorkIdentityCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("WorkIdentityCode");
 
                     b.HasKey("Id");

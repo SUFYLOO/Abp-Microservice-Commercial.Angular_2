@@ -8,8 +8,9 @@ namespace Resume.CompanyJobEducationLevels
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
+        [Required]
         [StringLength(CompanyJobEducationLevelConsts.EducationLevelCodeMaxLength)]
-        public string? EducationLevelCode { get; set; }
+        public string EducationLevelCode { get; set; }
         [StringLength(CompanyJobEducationLevelConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
         public DateTime? DateA { get; set; }

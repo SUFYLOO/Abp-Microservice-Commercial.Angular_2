@@ -1175,6 +1175,14 @@
     "CompanyJobDrvingLicenses": "Company Job Drving Licenses",
     "NewCompanyJobDrvingLicense": "New Company Job Drving License",
     "CompanyJobDrvingLicense": "Company Job Drving License",
-    "Menu:CompanyJobDrvingLicenses": "Company Job Drving Licenses"
+    "Menu:CompanyJobDrvingLicenses": "Company Job Drving Licenses",
+    "Permission:CompanyJobWorkHourss": "Company Job Work Hourss",
+    "CompanyJobWorkHourss": "Company Job Work Hourss",
+    "NewCompanyJobWorkHours": "New Company Job Work Hours",
+    "CompanyJobWorkHours": "Company Job Work Hours",
+    "Menu:CompanyJobWorkHourss": "Company Job Work Hourss",
+    "WorkHoursCode": "Work Hours Code",
+    "MinWorkHoursCode": "Min Work Hours Code",
+    "MaxWorkHoursCode": "Max Work Hours Code"
   }
 }

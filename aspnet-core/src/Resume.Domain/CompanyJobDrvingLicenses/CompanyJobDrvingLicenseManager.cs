@@ -22,6 +22,7 @@ namespace Resume.CompanyJobDrvingLicenses
         public async Task<CompanyJobDrvingLicense> CreateAsync(
         Guid companyMainId, Guid companyJobId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
+            Check.NotNullOrWhiteSpace(drvingLicenseCode, nameof(drvingLicenseCode));
             Check.Length(drvingLicenseCode, nameof(drvingLicenseCode), CompanyJobDrvingLicenseConsts.DrvingLicenseCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDrvingLicenseConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobDrvingLicenseConsts.NoteMaxLength);
@@ -40,6 +41,7 @@ namespace Resume.CompanyJobDrvingLicenses
             Guid companyMainId, Guid companyJobId, string drvingLicenseCode, bool haveDrvingLicense, bool haveCar, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
         )
         {
+            Check.NotNullOrWhiteSpace(drvingLicenseCode, nameof(drvingLicenseCode));
             Check.Length(drvingLicenseCode, nameof(drvingLicenseCode), CompanyJobDrvingLicenseConsts.DrvingLicenseCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDrvingLicenseConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobDrvingLicenseConsts.NoteMaxLength);

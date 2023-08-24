@@ -11,7 +11,7 @@ namespace Resume.CompanyJobWorkIdentities
 
         public Guid? CompanyMainId { get; set; }
         public Guid? CompanyJobId { get; set; }
-        public Guid? WorkIdentityCode { get; set; }
+        public string? WorkIdentityCode { get; set; }
         public string? ExtendedInformation { get; set; }
         public DateTime? DateAMin { get; set; }
         public DateTime? DateAMax { get; set; }

@@ -29,34 +29,34 @@ namespace Resume.CompanyJobDrvingLicenses
 
             await _companyJobDrvingLicenseRepository.InsertAsync(new CompanyJobDrvingLicense
             (
-                id: Guid.Parse("a577e99d-6a24-4db7-94f7-4af6bdffe892"),
-                companyMainId: Guid.Parse("939c9ffb-6bae-4277-855c-4cd270c3f02c"),
-                companyJobId: Guid.Parse("8bb5e7c6-8061-4504-b8ec-f07410c8d71f"),
-                drvingLicenseCode: "3ee8b15956d143c98631e6772c2e449efd459816a85649129f",
+                id: Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"),
+                companyMainId: Guid.Parse("5cf001fe-8f18-4be5-a231-61cab19a84fc"),
+                companyJobId: Guid.Parse("0a8774c3-8482-4c6c-b027-b475c2d65497"),
+                drvingLicenseCode: "22552e9b65c44c65a2e0adc7abf69393f8c1bcea267d45afb0",
                 haveDrvingLicense: true,
                 haveCar: true,
-                extendedInformation: "d429226a15f54e958579491a2a7854e29d6f8edb690d4baea3517ba98083a0e64812965fcb3d4da7b9fff42392cabe00f137da5a494244bd86eada58a29551b8d6991962d74747b4ac9c35a839150cc241046837fa4f4bfebf77fa651daaa1e7f466321f11d24333b0903b264052fb658aeefff4b61b43738666b90c08713c382bd38db2fef44864a9db0dab8fea37864afdd7bf4fcf4e7a9822551a02a044aa0be0bd28e4e7424b974175ec0fed949cd79f1cc149ea4db799966b28fe222f10aaa2ffef54c3498380405c174df338979b78d0f19ade4129893413d908e5f639c7a2801bb8514b80b74b7a27bccb9d3b88421557eaca4bc39d0b",
-                dateA: new DateTime(2009, 11, 22),
-                dateD: new DateTime(2018, 5, 13),
-                sort: 73687336,
-                note: "8540665cc2c5421294fc37e24d6bbd23314cfc06aaa941a7b4573de61a938de92e3e938c241749b5883cd6cb826fd4e3ecf3e479b63a49f4b4667add185b63c823e7c0fc65ba4c74834d7061920f640f4e35d56445a3454390d1f826c08ddce7b6c3141774934e75a5d8c818b7bf4e214fedca67bab44f238e19f69df14b103259c29e495e2c44acadfc9a403fcc4ef242312195d7e14016a9f0d35181c0103c3c392435148d4b12896fad3d59ec86f43e9bb20ab1a14732b7ce9d78924b1cc3661ec1e306034df78b08fe4e5fb8da748fefbf2f7fdd4e7ea9da63b3967a976affd9102d5c28468792c445b4bc0fcfc3839abc0812ff4577b19c",
-                status: "267aaa1cd00847098e6fc985b11650a78b55f55fd3374b5c99"
+                extendedInformation: "62035ec6314d4a71b77ce00f2820603aa242df291299401583d83acd0c74970697383d7bdc0341dfa3eb60aba8593ad6a0f0ac1828e64476b6614aba298253f735225b946c374928845d97e3bc09ee186bab9f45892d4a4ca2bd27ebf35b74aff6235bfa7fc94c7eaad421bd4651b6caf70733cc22e04a6990df6ef4bf528cf0d3ba012e65e642d58a4cdb486096d4c860a1fde6999647d4bc909a7186a0c73efdae58482c444b4695ada2d6344b5f1ceaa49e125b7c49729024986005ff9f45bccd4b88978c48e3b20e8b762acd51e4c559e4e58424476e9e2448c46ff11561b366cd8a62b84bbaafe0e29d79ef036b12245dd578344725a4b5",
+                dateA: new DateTime(2006, 4, 14),
+                dateD: new DateTime(2021, 10, 18),
+                sort: 257088960,
+                note: "ec6fa8900940421fa16ba2bef5b7de9e41e97266b3724231b8fa811076a1aa4d1a97e4b5e72140dab717276a3ca1414978f48cdde8a44c978a3b9edc8d831a78140632386c764b0b8b16d536d3a4f5c1c09194864c464b4ebb3461e4024d272484fa056dcc8f4bbea5907a23e9360ef1be4ba69170b54cdcbce3c7e660d903e4f3ee26788e334ba497167052d5faf234f13abf7ea2a746f3b5fd0e60d7cc7fe439203807a05944988211cf612473b4c5a439dc26f2e64ebeb8bc313af4d1d0211c3dae1a584c4e4ea40ff713cc307eeee27fc8dfdcae4e8d9eee0441ed3437d8f2eb75363605425cba12bd7b755aa65e6b0e2a24c9394a9e8034",
+                status: "f6a192aa9e2c473f9476201b6a556f4450b556852e1e423396"
             ));
 
             await _companyJobDrvingLicenseRepository.InsertAsync(new CompanyJobDrvingLicense
             (
-                id: Guid.Parse("f553a2a7-bd1c-4f9f-bc44-04308ccd4c89"),
-                companyMainId: Guid.Parse("bbfd25de-afed-457c-98c2-85a5625cb3c7"),
-                companyJobId: Guid.Parse("c0639c8e-4e66-4d66-8ee9-0a41dbe72999"),
-                drvingLicenseCode: "27bfeea704da4a4698f7695018d4afb18792386ac3e543a9ba",
+                id: Guid.Parse("2cb6d9f5-0313-4f65-91a1-8f0e30f06a70"),
+                companyMainId: Guid.Parse("4d1c50fe-d764-4e61-b595-225f4b88bc0b"),
+                companyJobId: Guid.Parse("a68adedc-5978-495e-9c26-8742d8042b67"),
+                drvingLicenseCode: "c664fa15af394989aaec3be11e4e0a6333ee01c77c8d46c885",
                 haveDrvingLicense: true,
                 haveCar: true,
-                extendedInformation: "013faa198f4143b7ac46605149a06b31cda323a03f624ee9b1c0fd4338ac2147c9e7bf8094f44e78b8c6302016c8a8945a2169cabafc4a1dabf31b39150be52210de9ba223d149c8a7f18981374b376eb77259489c034ea39c3535eda5809ae6d628714f92384c249fde0a03bcd745422f0511b27f5642cbb0c5df1e6812a64e5e1ad914e3114dfcb8191edf4836114cb8d9cd726e424efd9d3af9978b6573bade603dec06394e189341da9e6ebfbd547a4062e5f76741908942c49e77c572d897e876bf6ae842c6bfb9fdcd422d08ef678627b8a7ea4f28baa6247d1e44d0e4de4785a20baa4c95a27096182299641d8bbfe62022494dbe9f2e",
-                dateA: new DateTime(2007, 11, 13),
-                dateD: new DateTime(2011, 5, 10),
-                sort: 585119201,
-                note: "5d4211af54d04069b668eb58139af90aaf38e62283b54321bd4a8b9f0d33030494ac749f1db442da8a317f303913825cbe2b36a4fb03422a98a7d11d9cf6d817c6eaf5f853c84b5480fb41fb0ea8e010bfd268e07a4646f2ae50347fd7f0cda40a77a583977b4dbe9094ef3b2404604a705508e988264ac1a3f752ebca9bb54b41d13715597f4f71a8b9e887f4bd2d7f85ed29816f714f359e215965e1b7abfaa8f638105a004a5b82008f8be437b8302abfcb9057594c5b9e83039c328dc1f5cb48c0125e8e403db99592f67cfbe00eff839abcf2f545d9aeb37e19e757f574ee7eafc8cf544ed1b79a4512a23d81ef5b511a5492694cff956f",
-                status: "f02d82456085451eb6e0019fb1681b0144f245381cb74b98bc"
+                extendedInformation: "73b9682333f040c790925a4cc5333618c2f3950771524a5dbf8e7a7ed2654328c1ac6c334c544555be7a093f0a175d03cb58c7ebc67c466ea467f61b1f1ef0ff6fd2735c03f641e0a46ebcc7c628645c68fb2c5ae84048f386873c4b4c622dc652e568a872704160b87f662d0fe42529b87c4d1748f84ffabd9a0d49a78c0851648ca36c7a2c46ccb59eb74774a500170de96352a3554cb2977386b737e992d859af303ce89d407f806927bab504ea2d46a88d822fae4f4691f11c97976b6fefeb7b38446a8345868948c2c82242c1f612e67dcae53c4bfe8d74afabee1b5b2ff8d9f0ccb2c1416b9e335c5cbbdc50790093b5275b154a3baf72",
+                dateA: new DateTime(2018, 8, 8),
+                dateD: new DateTime(2011, 5, 11),
+                sort: 1623106527,
+                note: "7ce9e836edb841c486db8b32ba547b6eb17b6e4d48d4459f88766d5db8553e3b7db4dd3093b548dd80e5604811a790e3a2d998a184b34d3d8d06af66ce60b2c669f126ea37224b9ea97c7e5580a9def1f3f7e43708f6460ab0620e14390f58016dcd94d9851e492e8e9e6179248e06014f3507af0efb4813b432528f33983b242ac411e03d574291a7ca7833bd2dc55ed7b5a5c69fa2452382f98f156eba0c9ffd584a37ba8049eeb12a710819127b03b6eb18fbe85a475f98fc82ea798e8bf633b56fd77e7c4caa994303f9b69969f1046a05baf4364ff8ac5002f1648fa98bebb67fbe39864335bfb0ec4135b0ce74eecc7883a79542e3b91c",
+                status: "5339d5febc6948159fc95bdf61eb4325079ddb077b9446b689"
             ));
 
             await _unitOfWorkManager.Current.SaveChangesAsync();
