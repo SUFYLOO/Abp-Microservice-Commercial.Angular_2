@@ -19,7 +19,7 @@ namespace Resume.App.Users
         public async Task<int> CountUserMainIdAsync()
         {
             var qrbUserCompanyJobApply = await _appService._userCompanyJobApplyRepository.GetQueryableAsync();
- 
+
             var UserMainIds = qrbUserCompanyJobApply.Select(p => p.UserMainId).Distinct().Count();
 
             return UserMainIds;
@@ -43,9 +43,9 @@ namespace Resume.App.Users
             {
                 var qrbUserCompanyJobApply = await _appService._userCompanyJobApplyRepository.GetQueryableAsync();
                 qrbUserCompanyJobApply = from c in qrbUserCompanyJobApply
-                                        where c.UserMainId == UserMainId
-                                        //  orderby c.Main descending, c.Sort
-                                        select c;       
+                                         where c.UserMainId == UserMainId
+                                         //  orderby c.Main descending, c.Sort
+                                         select c;
                 var itemsUserCompanyJobApply = qrbUserCompanyJobApply.ToList();
                 // var itemsResumMain = await AsyncExecuter.ToListAsync(qrbsUserCompanyJobApply);
                 ObjectMapper.Map<List<UserCompanyJobApply>, List<UserCompanyJobApplysDto>>(itemsUserCompanyJobApply, Result);
@@ -98,7 +98,28 @@ namespace Resume.App.Users
             return Result;
         }
 
-     
+        public async Task<ApplyRecordDto> GetApplyRecordAsync (ApplyRecordInput input)
+        {
+            var Result = new ApplyRecordDto();
+            var ex =  new UserFriendlyException("¿ù»~°T®§");
+
+            var CompanyJobId = input.CompanyJobId;
+            var Date = DateTime.Today;
+            var TwoMonth = Date.AddDays(-60);
+
+            var qrbUserCompanyJob = await _appService._companyJobRepository.GetQueryableAsync();
+            var itemCompanyJob = qrbUserCompanyJob.FirstOrDefault(p => p.Id == CompanyJobId);
+            var JobName = itemCompanyJob.Name;
+
+            var qrbUserCompanyJobApply = await _appService._userCompanyJobApplyRepository.GetQueryableAsync();
+            var itemUserCompanyJobApply = qrbUserCompanyJobApply.Where(p => p.UserMainId == UserMainId && p.DateA == Date).Count();
+            var apply = itemUserCompanyJobApply;
+
+            var itemUserCompanyJobApplyTwoMonth = qrbUserCompanyJobApply.Where(p => p.UserMainId == UserMainId && p.DateA == TwoMonth).Count();
+            var applysixty = itemUserCompanyJobApplyTwoMonth;
+
+            return Result;
+        }
 
         public async Task<UserCompanyJobApplysDto> SaveUserCompanyJobApplyAsync(SaveUserCompanyJobApplyInput input)
         {

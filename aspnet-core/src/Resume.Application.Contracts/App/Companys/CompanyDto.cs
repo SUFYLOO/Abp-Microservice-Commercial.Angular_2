@@ -161,7 +161,7 @@ namespace Resume.App.Companys
 
     public class CompanyJobWorkHourssDto : CompanyJobWorkHoursDto
     {
-
+        public SaveIntentType SaveIntent { get; set; }
     }
 
     public class CompanyJobWorkIdentitysDto : CompanyJobWorkIdentityDto

@@ -63,7 +63,8 @@ namespace Resume.App.Users
         Task<UserCompanyJobApplysDto> GetUserCompanyJobApplyAsync(UserCompanyJobApplyInput input);
         Task<UserCompanyJobApplysDto> SaveUserCompanyJobApplyAsync(SaveUserCompanyJobApplyInput input);
         Task<ResultDto> SaveUserCompanyJobApplyCheckAsync(SaveUserCompanyJobApplyInput input);
-         Task<UserCompanyJobApplysDto> DeleteUserCompanyJobApplyAsync(UserCompanyJobApplyInput input);
+        Task<UserCompanyJobApplysDto> DeleteUserCompanyJobApplyAsync(UserCompanyJobApplyInput input);
 
+        Task<ApplyRecordDto> GetApplyRecordAsync(ApplyRecordInput input);
     }
 }

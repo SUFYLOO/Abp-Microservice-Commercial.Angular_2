@@ -364,5 +364,13 @@ namespace Resume.App.Controllers.App.Users
         {
             return _usersAppService.DeleteUserCompanyJobApplyAsync(input);
         }
+
+        [HttpPost]
+        [Route("GetApplyRecord")]
+        [ProducesResponseType(typeof(ApplyRecordDto), StatusCodes.Status200OK)]
+        public virtual Task<ApplyRecordDto> GetApplyRecordAsync(ApplyRecordInput input)
+        {
+            return _usersAppService.GetApplyRecordAsync(input);
+        }
     }
 }

@@ -39,6 +39,7 @@ using static Resume.Permissions.ResumePermissions;
 using Volo.Abp.Guids;
 using Resume.UserCompanyJobFavs;
 using Resume.UserCompanyJobApplies;
+using Resume.CompanyJobWorkHourss;
 
 namespace Resume.App
 {
@@ -126,6 +127,10 @@ namespace Resume.App
             CreateMap<SaveCompanyJobContentInput, SaveCompanyJobInput>();
             CreateMap<SaveCompanyJobContentInput, CompanyJobContent>();
             CreateMap<CompanyJobContent, CompanyJobContentsDto>();
+
+            CreateMap<SaveCompanyJobContentInput,CompanyJobWorkHours>();
+            CreateMap<SaveCompanyJobWorkHoursInput, CompanyJobWorkHours>();
+            CreateMap<CompanyJobWorkHours, CompanyJobWorkHoursDto>();
 
             CreateMap<SaveCompanyJobConditionInput, CompanyJobCondition>();
             CreateMap<SaveCompanyJobApplicationMethodInput, CompanyJobApplicationMethod>();

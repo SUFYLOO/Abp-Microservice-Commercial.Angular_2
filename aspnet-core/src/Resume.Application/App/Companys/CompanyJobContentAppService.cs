@@ -8,6 +8,7 @@ using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
 using Resume.CompanyJobDisabilityCategories;
 using Resume.CompanyJobs;
+using Resume.CompanyJobWorkHourss;
 using Resume.CompanyMains;
 using System;
 using System.Collections.Generic;
@@ -50,16 +51,18 @@ namespace Resume.App.Companys
             input.CompanyMainId = CompanyMainId;
 
             //var jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
-            input.DisabilityCategory = JsonSerializer.Serialize(input.ListDisabilityCategory, new JsonSerializerOptions
-            {
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 中文字不編碼
-                WriteIndented = true  // 換行與縮排
-            });
+            //input.DisabilityCategory = JsonSerializer.Serialize(input.ListDisabilityCategory, new JsonSerializerOptions
+            //{
+            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 中文字不編碼
+            //    WriteIndented = true  // 換行與縮排
+            //});
 
             //外部傳入
             var CompanyJobContentId = input.Id;
             var CompanyJobId = input.CompanyJobId;
             var RefreshItem = input.RefreshItem;
+            var WorkHoursCodes = input.WorkHours;
+            var ListWorkHoursCode = input.ListWorkHoursCode;
 
             //預設值
             input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
@@ -75,14 +78,22 @@ namespace Resume.App.Companys
             var itemCompanyJobDto = await SaveCompanyJobAsync(itemCompanyJob);
             CompanyJobId = itemCompanyJobDto.Id;
 
-            //呼叫CompanyJob
-           // var itemCompanyJobWorkHours = ObjectMapper.Map<SaveCompanyJobWorkHoursInput, SaveCompanyJobInput>(input);
-            itemCompanyJob.Id = CompanyJobId;
-           // var itemCompanyJobDto = await SaveCompanyJobAsync(itemCompanyJob);
-            CompanyJobId = itemCompanyJobDto.Id;
+            //呼叫CompanyJobworkhours
+            var ListSaveCompanyJobWorkHoursInput = new List<SaveCompanyJobWorkHoursInput>();
+            foreach (var WorkHoursCode in ListWorkHoursCode)
+            {
+              var itemSaveCompanyJobWorkHoursInput =   ObjectMapper.Map<SaveCompanyJobContentInput, SaveCompanyJobWorkHoursInput>(input);
+                itemSaveCompanyJobWorkHoursInput.CompanyJobId = CompanyJobId;
+                itemSaveCompanyJobWorkHoursInput.WorkHoursCode = WorkHoursCode;
+                ListSaveCompanyJobWorkHoursInput.Add(itemSaveCompanyJobWorkHoursInput);
+            }
+
+            var inputSaveCompanyJobWorkHoursList = new SaveCompanyJobWorkHoursListInput();
+            var ListCompanyJobWorkHours = CompanyJobId;
+            await SaveJobWorkHoursListAsync(inputSaveCompanyJobWorkHoursList);
 
             //檢查
-            await SaveCompanyJobContentCheckAsync(input);
+            //await SaveCompanyJobContentCheckAsync(input);
 
             //主體資料
             var qrbCompanyJobContent = await _appService._companyJobContentRepository.GetQueryableAsync();
@@ -139,8 +150,8 @@ namespace Resume.App.Companys
             var WorkDayCode = input.WorkDayCode;
             var WorkIdentity = input.WorkIdentity;
             var ListDisabilityCategory = input.ListDisabilityCategory;
-            var ListCompanyJobWorkIdentity = input.ListCompanyJobWorkIdentity;
-            var ListWorkHours = input.ListWorkHours;
+            var ListCompanyJobWorkIdentityCode = input.ListCompanyJobWorkIdentityCode;
+            var ListWorkHoursCode = input.ListWorkHoursCode;
 
 
             //預設值
@@ -172,12 +183,12 @@ namespace Resume.App.Companys
 
             inputCheckShareCode = new CheckShareCodeInput();
             inputCheckShareCode.Result = Result;
-            inputCheckShareCode.Data = ListWorkHours;
+            inputCheckShareCode.Data = ListWorkHoursCode;
             _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobWorkHoursInput>(inputCheckShareCode);
 
             inputCheckShareCode = new CheckShareCodeInput();
             inputCheckShareCode.Result = Result;
-            inputCheckShareCode.Data = ListCompanyJobWorkIdentity;
+            inputCheckShareCode.Data = ListCompanyJobWorkIdentityCode;
             _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobWorkIdentityInput>(inputCheckShareCode);
 
             inputCheckShareCode = new CheckShareCodeInput();
@@ -303,7 +314,7 @@ namespace Resume.App.Companys
             if (ex.Data.Count == 0)
             {
                 var itemsCompanyJobContent = await AsyncExecuter.ToListAsync(qrbCompanyJobContent);
-                ObjectMapper.Map<List<CompanyJobContent>, List<CompanyJobContentsDto>>(itemsCompanyJobContent, Result);
+                ObjectMapper.Map(itemsCompanyJobContent, Result);
             }
 
             if (ex.Data.Count > 0)

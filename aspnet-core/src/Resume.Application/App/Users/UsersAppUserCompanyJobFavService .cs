@@ -118,7 +118,6 @@ namespace Resume.App.Users
             //主體取資料
             if (ex.Data.Count == 0)
             {
-
                 //如果是一般公司
                 var qrbUserCompanyJobFav = await _appService._userCompanyJobFavRepository.GetQueryableAsync();
                 var itemUserCompanyJobFav = qrbUserCompanyJobFav.FirstOrDefault(p => p.Id == UserCompanyJobFavsId);

@@ -94,13 +94,13 @@ namespace Resume.App.Controllers.AppStd.Users
         public virtual async Task<IActionResult> RefreshTokenAsync(RefreshTokenInput input)
         {
             var Result = await _usersAppService.RefreshTokenAsync(input);
-            var ResultCheck= Result.Check;
+            var ResultCheck = Result.Check;
             var RseultMessage = Result.Messages;
 
             return ResultCheck ? Ok(Result.Data) : BadRequest(RseultMessage);
         }
 
-        
+
 
         [HttpPost]
         [Route("LoginCookie")]
@@ -149,7 +149,7 @@ namespace Resume.App.Controllers.AppStd.Users
             var ResultCheck = Result.Check;
             var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) :¡@BadRequest(ResultMessage);
+            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
         }
 
         [HttpPost]
@@ -185,7 +185,7 @@ namespace Resume.App.Controllers.AppStd.Users
             var ResultCheck = Result.Check;
             var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage); 
+            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
         }
 
         [HttpPost]
@@ -193,11 +193,11 @@ namespace Resume.App.Controllers.AppStd.Users
         [ProducesResponseType(typeof(UserInfosDto), StatusCodes.Status200OK)]
         public virtual async Task<IActionResult> GetUserInfosAsync(UserInfosInput input)
         {
-           var Result = await _usersAppService.GetUserInfosAsync(input);
-           var ResultCheck = Result.Check;
-           var ResultMessage = Result.Messages;
+            var Result = await _usersAppService.GetUserInfosAsync(input);
+            var ResultCheck = Result.Check;
+            var ResultMessage = Result.Messages;
 
-           return ResultCheck ? Ok (Result.Data) : BadRequest(ResultMessage);
+            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
 
         }
 
@@ -285,7 +285,7 @@ namespace Resume.App.Controllers.AppStd.Users
             var ResultCheck = Result.Check;
             var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage); 
+            return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
         }
 
         [HttpPost]
@@ -312,7 +312,7 @@ namespace Resume.App.Controllers.AppStd.Users
             return ResultCheck ? Ok(Result.Data) : BadRequest(ResultMessage);
         }
 
-            [HttpPost]
+        [HttpPost]
         [Route("SaveUserMainPassword")]
         [ProducesResponseType(typeof(SaveUserMainSingleValueDto), StatusCodes.Status200OK)]
         public virtual async Task<IActionResult> SaveUserMainPasswordAsync(SaveUserMainPasswordInput input)
@@ -382,7 +382,7 @@ namespace Resume.App.Controllers.AppStd.Users
             var ResultCheck = Result.Check;
             var ResultMessage = Result.Messages;
 
-            return ResultCheck ? Ok(ResultCheck): BadRequest(ResultMessage);
+            return ResultCheck ? Ok(ResultCheck) : BadRequest(ResultMessage);
         }
 
         [HttpPost]
@@ -488,5 +488,14 @@ namespace Resume.App.Controllers.AppStd.Users
         {
             return _usersAppService.DeleteUserCompanyJobApplyAsync(input);
         }
-    }
+
+        [HttpPost]
+        [Route("GetApplyRecord")]
+        [ProducesResponseType(typeof(ApplyRecordDto), StatusCodes.Status200OK)]
+        public virtual Task<ApplyRecordDto> GetApplyRecordAsync(ApplyRecordInput input)
+        {
+            return _usersAppService.GetApplyRecordAsync(input);
+        }
+
+     }
 }

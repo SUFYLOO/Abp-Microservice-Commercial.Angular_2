@@ -145,21 +145,27 @@ namespace Resume.App.Companys
         [Required]
         public string  JobType { get; set; }
         [Required]
-        public string  WorkHours{ get; set; }
+        public string WorkHours { get; set; }
         [Required]
         public int SalaryMin { get; set; }
         [Required]
         public int SalaryMax { get; set; }
-        public List<SaveCompanyJobWorkHoursInput> ListWorkHours { get; set; }
+        public List<string> ListWorkHoursCode { get; set; }
         public List<SaveDisabilityCategoryInput> ListDisabilityCategory { get; set; }
-        public List<SaveCompanyJobWorkIdentityInput> ListCompanyJobWorkIdentity { get; set; }
+        public List<string> ListCompanyJobWorkIdentityCode { get; set; }
 
+    }
+
+    public class SaveCompanyJobWorkHoursListInput 
+    {
+        public Guid CompanyJobId { get; set; }
+        public List<SaveCompanyJobWorkHoursInput> ListSaveCompanyJobWorkHoursInput { get; set; }
+        public bool RefreshItem { get; set; } = false;
     }
 
     public class SaveCompanyJobWorkHoursInput : CompanyJobWorkHoursDto
     {
         public bool RefreshItem { get; set; } = false;
-        public string WorkHours { get; set; }
     }
 
     public class SaveCompanyJobWorkIdentityInput : CompanyJobWorkIdentityDto

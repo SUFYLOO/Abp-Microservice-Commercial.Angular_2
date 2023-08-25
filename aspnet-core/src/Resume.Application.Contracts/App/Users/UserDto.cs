@@ -18,7 +18,7 @@ namespace Resume.App.Users
         public DateTime DateD { get; set; } = DateTime.Now.AddSeconds(60);
     }
 
-    public class CheckUserVerifyDto 
+    public class CheckUserVerifyDto
     {
         public bool Pass { get; set; } = false;
     }
@@ -30,7 +30,7 @@ namespace Resume.App.Users
 
     }
 
-    public class InsertUserMainsDto 
+    public class InsertUserMainsDto
     {
         public UserMainsDto UserMains { get; set; } = new UserMainsDto();
         public UserInfosDto UserInfos { get; set; } = new UserInfosDto();
@@ -98,19 +98,19 @@ namespace Resume.App.Users
         }
     }
 
- 
+
 
     public class SaveUserMainSingleValueDto
     {
-        public bool Pass { get; set; } = false;      
+        public bool Pass { get; set; } = false;
 
     }
 
     public class SaveUserCompanyBindDto
     {
         public bool Pass { get; set; } = false;
-        public Guid UserMainId { get; set; } 
-        public Guid UserCompanyBindId { get; set; } 
+        public Guid UserMainId { get; set; }
+        public Guid UserCompanyBindId { get; set; }
 
     }
 
@@ -137,8 +137,15 @@ namespace Resume.App.Users
 
     }
 
-   public class  UserCompanyJobApplysDto : UserCompanyJobApplyDto
+    public class UserCompanyJobApplysDto : UserCompanyJobApplyDto
     {
         public int UserMainIdname { get; set; }
+    }
+
+    public class ApplyRecordDto
+    {
+        public string apply { get; set; }
+        public string applysixty { get; set; }
+        public string JobName { get; set; }
     }
 }

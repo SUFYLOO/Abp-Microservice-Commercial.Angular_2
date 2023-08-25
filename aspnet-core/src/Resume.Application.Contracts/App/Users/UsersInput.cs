@@ -150,4 +150,11 @@ namespace Resume.App.Users
     {
        
     }
+
+    public class ApplyRecordInput
+    {
+        public int? apply { get; set; }
+        public int? applysixty { get; set; }
+        public Guid CompanyJobId { get; set; }
+    }
 }

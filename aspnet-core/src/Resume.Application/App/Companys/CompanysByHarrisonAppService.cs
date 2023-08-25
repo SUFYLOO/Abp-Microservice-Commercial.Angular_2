@@ -15,12 +15,13 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.ObjectMapping;
 
 namespace Resume.App.Companys
 {
     public partial class CompanysAppService : ApplicationService, ICompanysAppService
     {
-        public virtual async Task <List<CompanyJobWorkHourssDto>> SaveJobWorkHoursAsync(SaveCompanyJobWorkHoursInput input)
+        public virtual async Task<List<CompanyJobWorkHourssDto>> SaveJobWorkHoursListAsync(SaveCompanyJobWorkHoursListInput input)
         {
             //結果
             var Result = new List<CompanyJobWorkHourssDto>();
@@ -31,54 +32,45 @@ namespace Resume.App.Companys
             var CompanyMainId = _appService._serviceProvider.GetService<CompanysAppService>().CompanyMainId;
             var UserMainId = _appService._serviceProvider.GetService<UsersAppService>()?.UserMainId;
             var SystemUserRoleKeys = _appService._serviceProvider.GetService<UsersAppService>()?.SystemUserRoleKeys;
-            
- 
+
             //強制把input帶入系統值
-            input.Status = "1";
-            input.ExtendedInformation = "";
-            input.CompanyMainId = CompanyMainId;
 
             //外部傳入
-            var WorkHoursId = input.Id;
             var CompanyJobId = input.CompanyJobId;
-            var RefreshItem = input.RefreshItem;
+            var ListSaveCompanyJobWorkHoursInput = input.ListSaveCompanyJobWorkHoursInput;
 
             //預設值
-            input.Sort = input.Sort != null ? input.Sort : ShareDefine.Sort;
-            input.DateA = input.DateA != null ? input.DateA : ShareDefine.DateA;
-            input.DateD = input.DateD != null ? input.DateD : ShareDefine.DateD;
-            input.Status = input.Status.IsNullOrEmpty() ? "1" : input.Status;
-            input.ExtendedInformation = input.ExtendedInformation.IsNullOrEmpty() ? "" : input.ExtendedInformation;
 
             //檢查
             //await SaveCompanyJobContentCheckAsync(input);
 
             //主體資料
             var qrbCompanyJobWorkHours = await _appService._companyJobWorkHoursRepository.GetQueryableAsync();
-            var itemCompanyJobWorkHours = qrbCompanyJobWorkHours.FirstOrDefault(p => p.Id == WorkHoursId);
-
+            var itemsCompanyJobWorkHours = qrbCompanyJobWorkHours.Where(p => p.CompanyJobId == CompanyJobId);
+            var ListCompanyJobWorkId = itemsCompanyJobWorkHours.Select(p => p.Id);
             //Result.SaveIntent = itemCompanyJobContent == null ? SaveIntentType.Insert : SaveIntentType.Update;
 
-            if (itemCompanyJobWorkHours == null)
-            {
-                itemCompanyJobWorkHours = ObjectMapper.Map<SaveCompanyJobWorkHoursInput, CompanyJobWorkHours>(input);
-                itemCompanyJobWorkHours = await _appService._companyJobWorkHoursRepository.InsertAsync(itemCompanyJobWorkHours);
-            }
-            else
-            {
-                //不要變更的值
+            //更新前先刪除之前紀錄
+            await _appService._companyJobWorkHoursRepository.DeleteManyAsync(ListCompanyJobWorkId);
 
-                ObjectMapper.Map(input, itemCompanyJobWorkHours);
-                itemCompanyJobWorkHours = await _appService._companyJobWorkHoursRepository.UpdateAsync(itemCompanyJobWorkHours);
-                //如果要更新為最新資料 就需要認可交易
-                if (RefreshItem)
-                    await _appService._unitOfWorkManager.Current.SaveChangesAsync();
-            }
-            ObjectMapper.Map(itemCompanyJobWorkHours, Result);
+            //var ListCompanyJobWorkHours = new List<CompanyJobWorkHours>();
+            //foreach (var itemSaveCompanyJobWorkHoursInput in ListSaveCompanyJobWorkHoursInput)
+            //{
+            //    var itemCompanyJobWorkHours = ObjectMapper.Map<SaveCompanyJobWorkHoursInput, CompanyJobWorkHours>(itemSaveCompanyJobWorkHoursInput);
+            //    ListCompanyJobWorkHours.Add(itemCompanyJobWorkHours);
+            //}
+
+           var ListCompanyJobWorkHours = ObjectMapper.Map<List<SaveCompanyJobWorkHoursInput>, List<CompanyJobWorkHours>>(ListSaveCompanyJobWorkHoursInput);
+            await _appService._companyJobWorkHoursRepository.InsertManyAsync(ListCompanyJobWorkHours);
+
+            //不要變更的值
+
+            //如果要更新為最新資料 就需要認可交易
+            //if (RefreshItem)
+            //    await _appService._unitOfWorkManager.Current.SaveChangesAsync();
+
+            ObjectMapper.Map(ListCompanyJobWorkHours, Result);
             return Result;
         }
     }
 }
-
-
-
