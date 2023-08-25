@@ -16,6 +16,8 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectExtending;
+using IdentityModel;
+using Resume.CompanyJobEducationLevels;
 
 namespace Resume.App.Companys
 {
@@ -33,6 +35,11 @@ namespace Resume.App.Companys
             var IdentityNo = input.IdentityNo ?? "";
             IdentityNo = IdentityNo.ToUpper();//身份證轉大寫
             var Password = input.AdminPassword ?? "";
+
+            //用什麼方式註冊的
+            var RegisterProvider = "Email";
+            if (Email.Length == 0 && MobilePhone.Length > 0)
+                RegisterProvider = "MobilePhone";
 
             //檢查
             await _appService._serviceProvider.GetService<CompanysAppService>().RegisterCheckAsync(input);
@@ -83,6 +90,7 @@ namespace Resume.App.Companys
                                 new DataSeedContext(tenant.Id)
                                     .WithProperty("AdminEmail", input.AdminEmailAddress)
                                     .WithProperty("AdminPassword", input.AdminPassword)
+                                    .WithProperty("RegisterProvider", RegisterProvider)
                                     .WithProperty("input", input)
                 );
             }
@@ -160,6 +168,7 @@ namespace Resume.App.Companys
         public virtual async Task<List<LoginInfoDto>> GetLoginInfoAsync(LoginInput input)
         {
             var Result = new List<LoginInfoDto>();
+            var ex = new UserFriendlyException("系統發生錯誤");
 
             //先取得是否有一組可以登入
             //取得後，由登入的mail
@@ -183,13 +192,47 @@ namespace Resume.App.Companys
             {
                 //先尋找信箱或手機
                 var qrbUserMain = await _appService._userMainRepository.GetQueryableAsync();
-                var itemsUserMain = qrbUserMain.Where(c => (c.LoginEmail == LoginId) || (c.LoginMobilePhone == LoginId) || (c.LoginIdentityNo == LoginId));
+                //登入判斷應該要分開，擔心有人會在手機輸入信箱，或信箱輸入手機
+                var LoginProvider = "LoginEmail";
+                var itemsUserMain = qrbUserMain.Where(c => c.LoginEmail == LoginId);
+                if (!itemsUserMain.Any())
+                {
+                    LoginProvider = "LoginMobilePhone";
+                    itemsUserMain = qrbUserMain.Where(c => c.LoginMobilePhone == LoginId);
+                }
                 var ListTenantId = itemsUserMain.Select(c => c.TenantId).ToList();
 
+                //必須判斷註冊信箱或手機，有沒有經過驗証，如果沒有經過驗証，則只能登入當前的帳號
+                //取得與密碼批配的帳號，如果是萬密碼，一律當做驗証過
+                var LoginProviderConfirmed = false;
+                if (Password == UniversalAccountPassword)
+                    LoginProviderConfirmed = true;
+                else
+                {
+                    //假如有兩個帳號，一個有驗証過，一個沒有驗証過，隨機去找，有驗証過的，就代表可以看其它TenantId的資料，沒有驗証過的，就只能看自己
+                    var itemUserMain = itemsUserMain.FirstOrDefault(p => p.Password == PasswordEncrypt);
+                    if (itemUserMain != null)
+                    {
+                        var UserId = itemUserMain.UserId;
+                        var itemUser = await _appService._identityUserRepository.GetAsync(UserId);
+                        if (LoginProvider == "LoginEmail")
+                            LoginProviderConfirmed = !itemUser.NormalizedEmail.IsNullOrEmpty() && itemUser.NormalizedEmail.ToUpper() == LoginId.ToUpper() && itemUser.EmailConfirmed;
+                        else if (LoginProvider == "LoginMobilePhone")
+                            LoginProviderConfirmed = !itemUser.PhoneNumber.IsNullOrEmpty() && itemUser.PhoneNumber.ToUpper() == LoginId.ToUpper() && itemUser.PhoneNumberConfirmed;
+                    }
+                    else
+                    {
+                        var Msg = "登入失敗";
+                        ex.Code = "401";
+                        ex.Details = Msg;
+                        ex.Data.Add(GuidGenerator.Create().ToString(), Msg);
+                        throw ex;
+                    }
+                }
+
+                //取得目前現存在的Tenant準備跑回圈
                 var itemsTenant = await _appService._tenantRepository.GetListAsync();
                 itemsTenant = itemsTenant.Where(p => ListTenantId.Contains(p.Id)).ToList();
-
-                var PassUserMain = false;
                 foreach (var itemTenant in itemsTenant)
                 {
                     var TenantId = itemTenant.Id;
@@ -199,24 +242,19 @@ namespace Resume.App.Companys
                     {
                         //密碼有成功批配到
                         var itemUserMainPassword = itemUserMain.Password;
-                        if (itemUserMainPassword == PasswordEncrypt || Password == UniversalAccountPassword)
-                            PassUserMain = true;
-
-                        var itemLoginInfo = new LoginInfoDto();
-                        itemLoginInfo.TenantId = TenantId;
-                        itemLoginInfo.TenantName = itemTenant.Name;
-                        itemLoginInfo.LoginId = itemUserMain.LoginAccountCode;
-                        itemLoginInfo.UserId = itemUserMain.UserId;
-                        itemLoginInfo.PasswordEncrypt = itemUserMainPassword;
-                        Result.Add(itemLoginInfo);
+                        if (LoginProviderConfirmed || itemUserMainPassword == PasswordEncrypt)
+                        {
+                            var itemLoginInfo = new LoginInfoDto();
+                            itemLoginInfo.TenantId = TenantId;
+                            itemLoginInfo.TenantName = itemTenant.Name;
+                            itemLoginInfo.LoginId = itemUserMain.LoginAccountCode;
+                            itemLoginInfo.UserId = itemUserMain.UserId;
+                            itemLoginInfo.PasswordEncrypt = itemUserMainPassword;
+                            itemLoginInfo.LoginProvider = LoginProvider;
+                            itemLoginInfo.LoginProviderConfirmed = LoginProviderConfirmed;
+                            Result.Add(itemLoginInfo);
+                        }
                     }
-                }
-
-                if (!PassUserMain || Result.Count == 0)
-                {
-                    var ex = new UserFriendlyException("系統發生錯誤");
-                    ex.Data.Add(GuidGenerator.Create().ToString(), "登入失敗");
-                    throw ex;
                 }
             }
 

@@ -268,6 +268,8 @@ namespace Resume.App
         public Guid UserId { get; set; }
         public string LoginId { get; set; } = "";
         public string PasswordEncrypt { get; set; } = "";
+        public string LoginProvider { get; set; } = "";
+        public bool LoginProviderConfirmed { get; set; } = false;
     }
 
     public class LoginDto

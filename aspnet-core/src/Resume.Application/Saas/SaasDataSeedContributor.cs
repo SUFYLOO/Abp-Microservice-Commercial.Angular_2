@@ -40,6 +40,7 @@ namespace Resume.Saas
                 var input = context.Properties.ContainsKey("input") ? (RegisterTenantInput)context.Properties["input"] : new RegisterTenantInput();
                 var AdminEmail = context.Properties.ContainsKey("AdminEmail") ? Convert.ToString(context.Properties["AdminEmail"]) : "";
                 var AdminPassword = context.Properties.ContainsKey("AdminPassword") ? Convert.ToString(context.Properties["AdminPassword"]) : "";
+                var RegisterProvider = context.Properties.ContainsKey("RegisterProvider") ? Convert.ToString(context.Properties["RegisterProvider"]) : "";
 
                 //新增租戶角色(admin 這個角色 abp會創出來 ，並將admin的帳號加入到這個角色)
                 var itemIdentityRole = await _appService._identityRoleManager.FindByNameAsync("Manage");
@@ -111,7 +112,8 @@ namespace Resume.Saas
                 if (itemOrgAllGuid != null)
                     itemUser.AddOrganizationUnit(itemOrgAllGuid.Value);  //加入組織
                 input.MobilePhone = input.MobilePhone ?? "";
-                itemUser.SetPhoneNumber(input.MobilePhone, input.MobilePhone.Length > 0);    //設定電話
+                itemUser.SetPhoneNumber(input.MobilePhone, input.MobilePhone.Length > 0 && RegisterProvider == "MobilePhone");    //設定電話
+                itemUser.SetEmailConfirmed(RegisterProvider == "Email");    //信箱註冊，要把確認打勾
                 itemUser.Surname = input.IdentityNo ?? "";  //暫存身份證
                 await _appService._identityUserRepository.UpdateAsync(itemUser);
 
