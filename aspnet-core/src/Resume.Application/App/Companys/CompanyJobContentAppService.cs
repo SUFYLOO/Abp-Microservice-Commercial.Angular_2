@@ -131,7 +131,7 @@ namespace Resume.App.Companys
             var HolidaySystemCode = input.HolidaySystemCode;
             var WorkDayCode = input.WorkDayCode;
             var WorkIdentity = input.WorkIdentity;
-            var ListDisabilityCategory = input.ListDisabilityCategory;
+            var ListDisabilityCategory = input.ListSaveCompanyJobWorkIdentityInput;
 
             //預設值
 
