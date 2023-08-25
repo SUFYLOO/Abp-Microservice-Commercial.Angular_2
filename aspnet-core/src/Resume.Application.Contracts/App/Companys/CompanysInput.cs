@@ -1,8 +1,10 @@
 using Resume.CompanyJobApplicationMethods;
 using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
+using Resume.CompanyJobDisabilityCategories;
 using Resume.CompanyJobPays;
 using Resume.CompanyJobs;
+using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobWorkIdentities;
 using Resume.CompanyMains;
 using Resume.CompanyUsers;
@@ -148,8 +150,16 @@ namespace Resume.App.Companys
         public int SalaryMin { get; set; }
         [Required]
         public int SalaryMax { get; set; }
-        public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
-        public List<SaveCompanyJobWorkIdentityInput> ListSaveCompanyJobWorkIdentityInput { get; set; }
+        public List<SaveCompanyJobWorkHoursInput> ListWorkHours { get; set; }
+        public List<SaveDisabilityCategoryInput> ListDisabilityCategory { get; set; }
+        public List<SaveCompanyJobWorkIdentityInput> ListCompanyJobWorkIdentity { get; set; }
+
+    }
+
+    public class SaveCompanyJobWorkHoursInput : CompanyJobWorkHoursDto
+    {
+        public bool RefreshItem { get; set; } = false;
+        public string WorkHours { get; set; }
     }
 
     public class SaveCompanyJobWorkIdentityInput : CompanyJobWorkIdentityDto
@@ -158,12 +168,10 @@ namespace Resume.App.Companys
         public string WorkIdentityName { get; set; }
     }
 
-    public class DisabilityCategoryDto
+    public class SaveDisabilityCategoryInput : CompanyJobDisabilityCategoryDto
     {
-        public string DisabilityCategoryCode { get; set; }
-        public string DisabilityLevelCode { get; set; }
-        public bool DisabilityCertifiedDocumentsNeed { get; set; }
-
+        public bool RefreshItem { get; set; } = false;
+        public string DisabilityCategoryName { get; set; }
     }
 
     public class SaveCompanyJobConditionInput : CompanyJobConditionDto
@@ -180,7 +188,7 @@ namespace Resume.App.Companys
 
     public class CompanyJobContentInput : StdInput
     {
-        public List<DisabilityCategoryDto> ListDisabilityCategory { get; set; }
+        public List<CompanyJobDisabilityCategoryDto> ListDisabilityCategory { get; set; }
     }
 
     public class CompanyJobConditionInput : StdInput

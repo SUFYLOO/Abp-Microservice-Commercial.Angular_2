@@ -1,19 +1,19 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobDisabilityCategories
 {
-    public class CompanyJobDisabilityCategoryUpdateDto : IHasConcurrencyStamp
+    public class CompanyJobDisabilityCategoryUpdateDto
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
         [Required]
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength)]
         public string DisabilityCategoryCode { get; set; }
+        [Required]
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength)]
-        public string? DisabilityLevelCode { get; set; }
+        public string DisabilityLevelCode { get; set; }
         public bool DisabilityCertifiedDocumentsNeed { get; set; }
         [StringLength(CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }
@@ -25,6 +25,5 @@ namespace Resume.CompanyJobDisabilityCategories
         [StringLength(CompanyJobDisabilityCategoryConsts.StatusMaxLength)]
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

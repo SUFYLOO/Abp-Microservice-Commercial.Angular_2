@@ -29,34 +29,34 @@ namespace Resume.CompanyJobDisabilityCategories
 
             await _companyJobDisabilityCategoryRepository.InsertAsync(new CompanyJobDisabilityCategory
             (
-                id: Guid.Parse("a8e76ab4-1ee8-48db-9a3a-bf16e6692a31"),
-                companyMainId: Guid.Parse("8730524e-dcc6-4958-87c4-5dd90fb393e8"),
-                companyJobId: Guid.Parse("3f686d5f-0731-48f5-bd1d-d51db25fd6c0"),
-                disabilityCategoryCode: "2bf545f06cb843f1b04856e063bd3abfada4f3d16b94457b97",
-                disabilityLevelCode: "7ba5edc920174015b4db34e3091031b1a9dbb6d14d6043eca5",
+                id: Guid.Parse("53e66dda-7799-406e-b139-021069e0b337"),
+                companyMainId: Guid.Parse("2511c2e4-31d8-49e0-be46-204f36f389b3"),
+                companyJobId: Guid.Parse("dbcc1e21-812f-437b-887c-53f3dac57c49"),
+                disabilityCategoryCode: "c3bc3e93ccd24fd18383a91b0bb37192e5dc1749654f418da1",
+                disabilityLevelCode: "c8abf1d59398497cb51981d0429beee32ebae678899d49f9af",
                 disabilityCertifiedDocumentsNeed: true,
-                extendedInformation: "7121d8502aa54393ac3e37675d40371544724f2d66c447b6b759025225c12033a09f4f319b5b409386c79bbaf8675c0854c9b7be624c4272aa2b4c755c1d599647b25a606449463b832283867dc63146c3deb16cad1647a1a447531ed1ded5c9d537c1b28fcb442c8a605d9cbdf2ac0659a7f92d991f4afeac7947528348136cf2c4ada2b32041f3b6dfb58ce7bc259db4c27124ec0743e486a8d7569c04350396d312122a074b9093690e78e23554586f982359a3a944c0931c6e4cbd851bb5a59a3a39bc29461f9b49001546fb3104d2b23a44745a42358b77f06e025f9c9910ba227e7f8f4b128f48b84d62e6b6d1be975ed89b1c4b37b3cc",
-                dateA: new DateTime(2022, 5, 4),
-                dateD: new DateTime(2020, 6, 8),
-                sort: 147502255,
-                note: "f6f91bd3baf04cdf8a4e4321f017689c0952489689304ec4b568357629eb9c5af80b4138139d4b828e237c82269c0011c48db7d5a4f04fed823e215a41ad6a58aa2cee1a9873488bb6d591008fe348cca95052e819e741d0abe606fa7096c484e86ccac0daf04f4a82e0b16787abaf098a17572b3dbc4115b6ea1b2ed1ba6e383d9d66c23ad14231baba8bc1e19cf536db6912f80a0c4d7e980f83476c1a2beffab1827af1d34e87a6c9154b5c43f2cdc5bedef63123411e8c3cac08160b32d9fde101a786234d4b926cab23f4582539e4504a5557c84cbb987be4156470a1a0f94d7d09c3e64aa59bcd32c4c667e1e8739ab7c447ba47009b6c",
-                status: "a00333fc94434a4ca2e1a19083120639cd2b373f9561490db2"
+                extendedInformation: "20377d16fe4f46329d0fc4e777d23ef561d506a12ab142679f34b8f7e266fd9b412d7d3ac83340198aaf4db1fadf727f72f28032f1d747628c21b82d14f06c164043aa2d2f0047efbb646fa9002f33f57fe2929082e4430396fb9e1c0afb17f5ef19e20b0db5487991f2fccf4f885cd2ce85acaf255b4823baa773541b86b931bdabab76d5ba4ecaa917c05a7bfa5f4a112c63ef12944885830609223b115d2d3dd76cb0dc9b4272be771b78fbcdb6d477e812ee6ff546c0bffbd2fca8b2926237f4f8c37eca4abf8063a31167cd18ce9bc83c1b1f6544e2a09bc6c692f4bca62ea01098fbfa40d7b150e074bbe6323e357b818f2ea649bdb63f",
+                dateA: new DateTime(2011, 10, 10),
+                dateD: new DateTime(2017, 8, 5),
+                sort: 689881961,
+                note: "5ae54eb4e8be47338c16a0b5a9f215c7969bb36bf7004c3eb88d0d9344cd48c35c912a05889e41b8a09d8bdc9eebdd6a5e33cde2e5c0432cb73646508e34e58e62c2c03a108e48bf8d6b0b6df34fd43f5d26e74bbbd34561a1830650265dd62855cccde183ba4117aa5969a1fdd000ec65e1340dd13043beb7c5ee7d3628c47ef1388b5c4eea4a7b880c5dfb4c694aa1b832ac5e492a4cf1bcd03b0b04409e487625a0c5d30143ed9e94aa43540e302dc7f9a949491a472b8c8a0f0d3283bb0109a219959cbe400095dc379cafc0fcc0bc1f556c0d084c7ca6ae79187caa68ac8eff2b36def0457dacb57d848fb09361a41e852880c04d10ba55",
+                status: "6a77a2da53154f9e9d8ec9550fa7b901ec9f94685ae8485a9d"
             ));
 
             await _companyJobDisabilityCategoryRepository.InsertAsync(new CompanyJobDisabilityCategory
             (
-                id: Guid.Parse("33e681ae-f6b9-4d15-92b3-10ff6b538f2a"),
-                companyMainId: Guid.Parse("d9f72f96-36d2-4c54-93f5-386fd7842d43"),
-                companyJobId: Guid.Parse("87121958-73e9-4b86-859b-b7271d170b14"),
-                disabilityCategoryCode: "7654e9ea7b204bdba8059bf551cd4ec487561c6570e047f1af",
-                disabilityLevelCode: "be2ca8f40282464f8c8fe694f4ec726449f7efd609c043c0aa",
+                id: Guid.Parse("2bd583e5-fbab-4a33-a8ee-be0102fd8b57"),
+                companyMainId: Guid.Parse("74d9eb44-cd6e-4d43-b493-e9540dd83d80"),
+                companyJobId: Guid.Parse("949256c8-009c-47ea-b2dd-fb743a68b414"),
+                disabilityCategoryCode: "f40f7227a3c948f189de1f80aa69fb52c3a96dd859e14f169c",
+                disabilityLevelCode: "a6ff37a3b0144daa80dca3e3657077fea90b434c6d1d485bae",
                 disabilityCertifiedDocumentsNeed: true,
-                extendedInformation: "cf2d6574e3194382b20921d3c8e43ef9252603059dec48b48c604519f08379b4a1f632fa19c843a4916d026b342b3a1a08e5e48db0644d0dacad8991f9631fd14dbc18111ce84f19b3d24454c369c39ef5c914580dec46f4aa60d86466a8b9788750c949c6fb40f4b2519b4f3d0498bea164c7e7d49e42488ae997aaf12227aad7fc2779bacc47b9bd31d854c0078301532cbb9f02ad46fcb91fa93d148d1117e3cab68a30cd488785329b2b771b02c19bec1c8acd334db6b7253f4b8c42673356a8fd6a4d50428baa0f2cd5301e81e947e03526416b4415b441386778b5ff154b61e93fd78e40bd95a0f258e6d126ed8dabf769a20741928563",
-                dateA: new DateTime(2009, 2, 9),
-                dateD: new DateTime(2005, 3, 24),
-                sort: 23177442,
-                note: "61d0261682c04855b308afdcbe8f3a35223a584fd9574839a8025f93fd6c236bea49ec254b5a4771bd13f6b72ecda7408593f49e85cc46a786c3126cd4ed70d8cc5b6549738d477cbc9712e518ee1c50161e05f68bb0464bb2c23f4f8bb73a52bf906b11b3d04a31abd666ce7c35969b001a6c3cd97e4237aac41ad9e24107f554449c9bc82e41ca812a6cc4f19093754df3bd0f2a904bd5bea7f0b476abba9a82bd5c3fe20045a48428d6ce83d74ad92c1de588f7a64f0d94e92db0bad3e158a8d1163655f048e9bedc387086ca618066c27d31295a4b94a74b8fd2ae9e39b3c774dedb0beb47e59168536d6d775cd5c1e669b8f2ea486297e3",
-                status: "b9d8f3e5373f4517a723f765524f5a55072cf59b013b4240b2"
+                extendedInformation: "c857896c617241d5b45e4ec55937a39454d67513ba70441aa6e2675131e7d380b9742b1758964677881e462c6d6952e52815f328854b46709364d1cbf3655d96298d7f4957b54d729cf7625ad53a831fb38948658bcf4f1bb1b9e086d008ce21cd6168227bed4aa7ac374cf1b6298a9dd946ee3a568e4d16926fd1b4f300698a546d7c0812e1488587d40f4e9e5c776b56eed0572c3140dd9b1444e270a6ac073224e7501f2641b3a45baf63690974c7e3fc4232ad864d4d84a9b594ed73541bd73247aaa54e40df8d379327f7b6d04f499144fedd3a4b16948e6ad5d4bd5b482025cc0497cd4ecdb5c97dcb3556ee2b299e308b5124459bb5af",
+                dateA: new DateTime(2007, 7, 14),
+                dateD: new DateTime(2012, 5, 9),
+                sort: 1935843272,
+                note: "7ebc631b6db54224b0bf3280387a528577293ed496334e028e3ca01461e0ce689d78fbfaabf741d89f42157488dd36aa6ee75bb461f14fa4a2b71b6b1b5f0daa7c4260a8c35a484c96c618514294b9c621ea62cbc58c498e8e00084ff6493c396426ee80764a41099e700daa2a4db1c54303fa42bf8a4093b87fe46525ea4a390cd7b7f801e24f99a9254642992fd0b22806b8711d0f4e92a2e8f23a084f6203938598c0bf994a6caaa37fc0e0dbe040c477c3b5cc154c42b0f804dea35a7c7bc531e54c830041bfa5d61cdc2e7a889c7101d1cdb6594d52b2ef258ed290f037213203e893ad42ba8f1fffbf6e3dd58d69bce23fda1a416eb16d",
+                status: "c9089af6a64f4021970c4230e20c412b9ea70028f0da4bf5b7"
             ));
 
             await _unitOfWorkManager.Current.SaveChangesAsync();

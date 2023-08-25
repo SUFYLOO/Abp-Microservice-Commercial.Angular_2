@@ -63,7 +63,7 @@ namespace Resume.CompanyUserMainFavs
         {
 
             var companyUserMainFav = await _companyUserMainFavManager.CreateAsync(
-            input.CompanyMainId, input.CompanyJobId, input.UserMainId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort
+            input.CompanyMainId, input.CompanyJobId, input.UserMainId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyUserMainFav, CompanyUserMainFavDto>(companyUserMainFav);
@@ -75,7 +75,7 @@ namespace Resume.CompanyUserMainFavs
 
             var companyUserMainFav = await _companyUserMainFavManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.UserMainId, input.ExtendedInformation, input.Note, input.Status, input.DateA, input.DateD, input.Sort, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.UserMainId, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyUserMainFav, CompanyUserMainFavDto>(companyUserMainFav);

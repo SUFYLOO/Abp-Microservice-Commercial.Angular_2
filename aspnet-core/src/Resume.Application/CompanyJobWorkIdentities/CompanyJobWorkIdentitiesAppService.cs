@@ -75,7 +75,7 @@ namespace Resume.CompanyJobWorkIdentities
 
             var companyJobWorkIdentity = await _companyJobWorkIdentityManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.WorkIdentityCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.WorkIdentityCode, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobWorkIdentity, CompanyJobWorkIdentityDto>(companyJobWorkIdentity);

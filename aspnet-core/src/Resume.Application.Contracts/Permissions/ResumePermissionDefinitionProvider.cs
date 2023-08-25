@@ -311,6 +311,11 @@ public class ResumePermissionDefinitionProvider : PermissionDefinitionProvider
         companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Create, L("Permission:Create"));
         companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Edit, L("Permission:Edit"));
         companyJobWorkHoursPermission.AddChild(ResumePermissions.CompanyJobWorkHourss.Delete, L("Permission:Delete"));
+
+        var companyJobLanguageConditionPermission = myGroup.AddPermission(ResumePermissions.CompanyJobLanguageConditions.Default, L("Permission:CompanyJobLanguageConditions"));
+        companyJobLanguageConditionPermission.AddChild(ResumePermissions.CompanyJobLanguageConditions.Create, L("Permission:Create"));
+        companyJobLanguageConditionPermission.AddChild(ResumePermissions.CompanyJobLanguageConditions.Edit, L("Permission:Edit"));
+        companyJobLanguageConditionPermission.AddChild(ResumePermissions.CompanyJobLanguageConditions.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

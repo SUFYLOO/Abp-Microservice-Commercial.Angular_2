@@ -11,8 +11,9 @@ namespace Resume.CompanyJobDisabilityCategories
         [Required]
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength)]
         public string DisabilityCategoryCode { get; set; }
+        [Required]
         [StringLength(CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength)]
-        public string? DisabilityLevelCode { get; set; }
+        public string DisabilityLevelCode { get; set; }
         public bool DisabilityCertifiedDocumentsNeed { get; set; }
         [StringLength(CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength)]
         public string? ExtendedInformation { get; set; }

@@ -46,7 +46,6 @@ export interface ResumeExperiencesJobDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface ResumeExperiencesJobExcelDownloadDto {
@@ -67,5 +66,4 @@ export interface ResumeExperiencesJobUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }

@@ -26,7 +26,6 @@ export interface CompanyJobDrvingLicenseDto extends FullAuditedEntityDto<string>
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobDrvingLicenseExcelDownloadDto {
@@ -47,7 +46,6 @@ export interface CompanyJobDrvingLicenseUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobDrvingLicensesInput extends PagedAndSortedResultRequestDto {

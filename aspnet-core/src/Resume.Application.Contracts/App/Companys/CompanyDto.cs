@@ -3,8 +3,11 @@ using Resume.CompanyInvitationss;
 using Resume.CompanyJobApplicationMethods;
 using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
+using Resume.CompanyJobDisabilityCategories;
 using Resume.CompanyJobPays;
 using Resume.CompanyJobs;
+using Resume.CompanyJobWorkHourss;
+using Resume.CompanyJobWorkIdentities;
 using Resume.CompanyMains;
 using Resume.CompanyUsers;
 using Resume.ResumeSnapshots;
@@ -156,8 +159,20 @@ namespace Resume.App.Companys
     }
 
 
+    public class CompanyJobWorkHourssDto : CompanyJobWorkHoursDto
+    {
 
+    }
 
+    public class CompanyJobWorkIdentitysDto : CompanyJobWorkIdentityDto
+    {
+
+    }
+
+    public class CompanyJobDisabilityCategorysDto : CompanyJobDisabilityCategoryDto
+    {
+
+    }
 
 }
 

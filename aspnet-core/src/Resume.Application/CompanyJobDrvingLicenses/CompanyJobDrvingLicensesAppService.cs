@@ -75,7 +75,7 @@ namespace Resume.CompanyJobDrvingLicenses
 
             var companyJobDrvingLicense = await _companyJobDrvingLicenseManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.DrvingLicenseCode, input.HaveDrvingLicense, input.HaveCar, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobDrvingLicense, CompanyJobDrvingLicenseDto>(companyJobDrvingLicense);

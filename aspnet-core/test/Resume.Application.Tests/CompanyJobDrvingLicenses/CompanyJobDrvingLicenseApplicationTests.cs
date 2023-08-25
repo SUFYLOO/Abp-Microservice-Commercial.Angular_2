@@ -27,19 +27,19 @@ namespace Resume.CompanyJobDrvingLicenses
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("2cb6d9f5-0313-4f65-91a1-8f0e30f06a70")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603")).ShouldBe(true);
+            result.Items.Any(x => x.Id == Guid.Parse("dd8b2fc5-e4db-4547-9094-3ff52e22b165")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _companyJobDrvingLicensesAppService.GetAsync(Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"));
+            var result = await _companyJobDrvingLicensesAppService.GetAsync(Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"));
+            result.Id.ShouldBe(Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603"));
         }
 
         [Fact]
@@ -48,17 +48,17 @@ namespace Resume.CompanyJobDrvingLicenses
             // Arrange
             var input = new CompanyJobDrvingLicenseCreateDto
             {
-                CompanyMainId = Guid.Parse("0fd79405-bdc9-4dd9-949a-92fb11171c05"),
-                CompanyJobId = Guid.Parse("134b2829-a7ec-4785-b249-e2d332feb909"),
-                DrvingLicenseCode = "a531305c61fb4000a2bb2dd581e1d95e1a6655170dc0410a84",
+                CompanyMainId = Guid.Parse("77096547-142e-4476-b877-53984d16ef5d"),
+                CompanyJobId = Guid.Parse("d7965288-29f1-4e9d-9b20-0aa2a7939faf"),
+                DrvingLicenseCode = "51480eb36b7b46f5bae8e0cdeca5dc735b96dc0c0bde44139d",
                 HaveDrvingLicense = true,
                 HaveCar = true,
-                ExtendedInformation = "b4ef779e8275430d8aae383de42742be151dd2e72fcc4ec3900387a197a65aa0c9f9f600506a42ddac2dc2c6fd92419c3f47153b530e4d738d4fc9f66b5ead934752ca5644ef47be88d501b7fb05117e043d6185e2e44750b3a12845dbd513f10ba92df7c1344777af34302a0cb4819824669e6f12a448c0b647a7eeacb5ccbac34fe0951d6949b9affc507ffbe0d38d6e5837b2a81049ffa917604064a92d330fcb067eb0dc4addb409eef175bf2f086bac003e257f4ef2ac79fbda23e055196cab4b35bc7b4f009e5131a53cb14eec563ccb762378451597fd16923597606d78f2afb107f343e4badedc2782a7b110846e8821612347ae813d",
-                DateA = new DateTime(2015, 10, 3),
-                DateD = new DateTime(2011, 2, 1),
-                Sort = 715006373,
-                Note = "328a63e2e5794e7c8dd3f6492a421b49e4a5c1999aa64f168f8f600530fb89306e07f1b584e94e67878f9b8b290b5b4baededb00002c4781a98031ed7658e1daceb9f1b298224e979c2eacd4dbd08a7e80b843cc50264ac48ebffefb571fed031c9ae18d8a5842248af1a22e4c83727b2481c41766774d95af77575f3cfba34fcf18b55e0c3f40adbb2ed9f93f6fc9af7160bf9b92b94b5d876e782d801575e40a664ec15fab44bea28e1cfccabebd73b26695863857423f8d13b0b4e51d5c9c2192c124035547c2815fbc2f4733b6959243643671ae422fadae6932ddf3e4c81f3b371307ee42fcbad8ca3f2e33218bc6895c5013c045f0ac9e",
-                Status = "c00ff70f9af34b6785a884fb923520e12bbea1a5f2984fffa4"
+                ExtendedInformation = "83201db2e12a44f5afd4c4acc2fe48f98c843b10e0cd4d8cba709c1c22f4721cbbe11fd643534b09be4031b3d59d4bad3b33d7eb60c14104b402c3dfc0d7abbf975a0b075b8d47f98f29319c6c0bfe2d9a8a304d30cb49c9967d34e603419e53eabec59967bf41049748fdbe2982ded91fc6b21c60b2481686565104c92a5babeafab3fdbbaf42cdaaac841b20ead642e2078a5266314e41a650b969206c7378af4b56ecdf3147d09176b4e62eb16bb6c06912c85ce74a70b1bf8829a788d324b8583a1c552b4d569583d93fc3dd86d18b1adc7750d343d38c8eb8138e1a915a3c2aa2c1eb194efcbfbe0b1548f9d3fb576a9688ed1c45a287f2",
+                DateA = new DateTime(2002, 5, 9),
+                DateD = new DateTime(2011, 6, 18),
+                Sort = 1921457512,
+                Note = "31f7e22a77394ca58dd4ecfaf6667490a5e5bbf2e2414022b25f4c0ebde769b1975e77eb71d1474bb67de7a17d499876d696d73187614d52a23c10a3fad957569e58c95a755541d48d61d6131735bb6157750cf1b15749058fb1087ead3095c338e3f3353b15466faf83978741eb3d88f58517dd4e5840bd9c843b0d303b26e11737884243304b76bf1c5b6edbe3903a2067095d383b4fa58ff2f716219b9e1f6fa8e0b8b90947c08770f08e2a1facce655a80793256402dacd014132ad7697f5c658e3fabad4ccda7cd71f8e5af4187a358f2f3815b4d2f82a92243106a07c871101f0669134211bba4665778d2fe3645365dbc2ab5472787e3",
+                Status = "5b209368314343bb875d3e197a9b97913cd99bf76a394b35b0"
             };
 
             // Act
@@ -68,17 +68,17 @@ namespace Resume.CompanyJobDrvingLicenses
             var result = await _companyJobDrvingLicenseRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("0fd79405-bdc9-4dd9-949a-92fb11171c05"));
-            result.CompanyJobId.ShouldBe(Guid.Parse("134b2829-a7ec-4785-b249-e2d332feb909"));
-            result.DrvingLicenseCode.ShouldBe("a531305c61fb4000a2bb2dd581e1d95e1a6655170dc0410a84");
+            result.CompanyMainId.ShouldBe(Guid.Parse("77096547-142e-4476-b877-53984d16ef5d"));
+            result.CompanyJobId.ShouldBe(Guid.Parse("d7965288-29f1-4e9d-9b20-0aa2a7939faf"));
+            result.DrvingLicenseCode.ShouldBe("51480eb36b7b46f5bae8e0cdeca5dc735b96dc0c0bde44139d");
             result.HaveDrvingLicense.ShouldBe(true);
             result.HaveCar.ShouldBe(true);
-            result.ExtendedInformation.ShouldBe("b4ef779e8275430d8aae383de42742be151dd2e72fcc4ec3900387a197a65aa0c9f9f600506a42ddac2dc2c6fd92419c3f47153b530e4d738d4fc9f66b5ead934752ca5644ef47be88d501b7fb05117e043d6185e2e44750b3a12845dbd513f10ba92df7c1344777af34302a0cb4819824669e6f12a448c0b647a7eeacb5ccbac34fe0951d6949b9affc507ffbe0d38d6e5837b2a81049ffa917604064a92d330fcb067eb0dc4addb409eef175bf2f086bac003e257f4ef2ac79fbda23e055196cab4b35bc7b4f009e5131a53cb14eec563ccb762378451597fd16923597606d78f2afb107f343e4badedc2782a7b110846e8821612347ae813d");
-            result.DateA.ShouldBe(new DateTime(2015, 10, 3));
-            result.DateD.ShouldBe(new DateTime(2011, 2, 1));
-            result.Sort.ShouldBe(715006373);
-            result.Note.ShouldBe("328a63e2e5794e7c8dd3f6492a421b49e4a5c1999aa64f168f8f600530fb89306e07f1b584e94e67878f9b8b290b5b4baededb00002c4781a98031ed7658e1daceb9f1b298224e979c2eacd4dbd08a7e80b843cc50264ac48ebffefb571fed031c9ae18d8a5842248af1a22e4c83727b2481c41766774d95af77575f3cfba34fcf18b55e0c3f40adbb2ed9f93f6fc9af7160bf9b92b94b5d876e782d801575e40a664ec15fab44bea28e1cfccabebd73b26695863857423f8d13b0b4e51d5c9c2192c124035547c2815fbc2f4733b6959243643671ae422fadae6932ddf3e4c81f3b371307ee42fcbad8ca3f2e33218bc6895c5013c045f0ac9e");
-            result.Status.ShouldBe("c00ff70f9af34b6785a884fb923520e12bbea1a5f2984fffa4");
+            result.ExtendedInformation.ShouldBe("83201db2e12a44f5afd4c4acc2fe48f98c843b10e0cd4d8cba709c1c22f4721cbbe11fd643534b09be4031b3d59d4bad3b33d7eb60c14104b402c3dfc0d7abbf975a0b075b8d47f98f29319c6c0bfe2d9a8a304d30cb49c9967d34e603419e53eabec59967bf41049748fdbe2982ded91fc6b21c60b2481686565104c92a5babeafab3fdbbaf42cdaaac841b20ead642e2078a5266314e41a650b969206c7378af4b56ecdf3147d09176b4e62eb16bb6c06912c85ce74a70b1bf8829a788d324b8583a1c552b4d569583d93fc3dd86d18b1adc7750d343d38c8eb8138e1a915a3c2aa2c1eb194efcbfbe0b1548f9d3fb576a9688ed1c45a287f2");
+            result.DateA.ShouldBe(new DateTime(2002, 5, 9));
+            result.DateD.ShouldBe(new DateTime(2011, 6, 18));
+            result.Sort.ShouldBe(1921457512);
+            result.Note.ShouldBe("31f7e22a77394ca58dd4ecfaf6667490a5e5bbf2e2414022b25f4c0ebde769b1975e77eb71d1474bb67de7a17d499876d696d73187614d52a23c10a3fad957569e58c95a755541d48d61d6131735bb6157750cf1b15749058fb1087ead3095c338e3f3353b15466faf83978741eb3d88f58517dd4e5840bd9c843b0d303b26e11737884243304b76bf1c5b6edbe3903a2067095d383b4fa58ff2f716219b9e1f6fa8e0b8b90947c08770f08e2a1facce655a80793256402dacd014132ad7697f5c658e3fabad4ccda7cd71f8e5af4187a358f2f3815b4d2f82a92243106a07c871101f0669134211bba4665778d2fe3645365dbc2ab5472787e3");
+            result.Status.ShouldBe("5b209368314343bb875d3e197a9b97913cd99bf76a394b35b0");
         }
 
         [Fact]
@@ -87,47 +87,47 @@ namespace Resume.CompanyJobDrvingLicenses
             // Arrange
             var input = new CompanyJobDrvingLicenseUpdateDto()
             {
-                CompanyMainId = Guid.Parse("7767810b-ee33-49a7-8db9-fae70af1264f"),
-                CompanyJobId = Guid.Parse("8bf56317-a77d-48dd-b1b8-a9fbb410a38e"),
-                DrvingLicenseCode = "487a087b7f8f47f3b2566cfc995a2fb65ddeb863261e4a4786",
+                CompanyMainId = Guid.Parse("6cb9a1e9-3a2e-4266-a1f7-a74fa9cb5c3b"),
+                CompanyJobId = Guid.Parse("3cd4d596-f894-4efe-9d19-c9a94e77ed6b"),
+                DrvingLicenseCode = "50266eb6eb0446b9b08108df89787ab19fdb0674d4a748f68c",
                 HaveDrvingLicense = true,
                 HaveCar = true,
-                ExtendedInformation = "21d71c6dad244e0f9fe467c2c61aad2355dab48e463c4ba18c99e93f84ee5543ec80fd2fa2bc464d975df254a0c2b1508decfdac7f7147afae4895f3125a2e4abe73069477554b0783c6d7a5af8c4d8b2db6964a70374e77a5ebf56dcd50fdd2b49a5cf5890f470e9b9f3a537a4eaa36c32a482215514f0b9f0b643c73fd9b9d75e18feccc6c4e568cee8c9ec51b245414bb7b76d1084fb5b2fc9eb753590173c48d2ee310884d49ac427bc8a30ca1e3fc8203e137854385a6029699b8a028e9619d14be530a48d1ad08476114b55fed903c4141c2c745e1a5526e9d73cff87627c441f87eca415aa0a305d9af3f0be41d30d8c3806640698c08",
-                DateA = new DateTime(2010, 5, 19),
-                DateD = new DateTime(2014, 9, 11),
-                Sort = 1559854015,
-                Note = "2a56f3a30e414fd7ab2ba22acc438d1f6a079e3e76cf43aa9f4572debd961143b53387320c3e421aa083a0186f71e61fd001cb9fa7bf41c8add5036ebc6ac9347137aee0aa8649318619aecfd99ef1f0ac7c218378c9447592b29c6112d630a8adbe345998ba4f479bb875ce2e497466dc7d80c615524f928353d9fb7c12324f1cebe3239c4b481c9fecae03f40a15da25d31a4e8c6c43e6b8fecd7239c22ea30d6934314ee148b0a5b9e78420ae49138c694eba6aae4330b73ff9e9eb71275dfa854c102edd4eaa86fc3cef83d18de1ea68bea1900c410cb8a177f8e8a421829a72a9de6a4146efb29bd8869bfbd3ca7bcf3fc127134116bb4d",
-                Status = "b3b747f434664228af0eaf58c4b8aaec3bce22c9d12e48eb99"
+                ExtendedInformation = "6af446329623485a97040fe5aa9193774ee9a05f2a6d46e29a65bb13a1507ed989dcd86495084b28b3c9095f770bdcceeeafee0bf2e0496693c2859aa75203635b73b467eeff4507863d8a3089cb774a24836ac04bce47b895c32ef234aeacba5fb8d280e848472fb3e3d4bbb2938393099ac470f9fa46ccb63fa6f2cacc2e100e3fd4c2b416412b87938eccdacc0c57f7d994276d20434d9da61c7ea68908e2b401b494f1ad4c4989602586cc114c7b97322dde24fb43b09ecef4b0db76debf7809957b7f034bb9bcd78aa579c6d22cfaa4d19e4bd0453e905c6580c9fc9a05572d01bdef7c42588cfce23e0773fdeca9cfd0759b4644779758",
+                DateA = new DateTime(2008, 2, 24),
+                DateD = new DateTime(2010, 1, 24),
+                Sort = 1993083492,
+                Note = "7b57a0ad46004db4bc85b51d80760397b3ab7348a497431d940d73dea8f6bfd8c0c398512bdd4c6d8b3866e362e5adbb0b5d3552e5a84fa698030c580de4c880e25cbeab9cf946f6bb3d31d2d21f0a8088cc1205b1ce4d52ab2dd987fa91746926141826ad8a41289bfe6f00e0e50dbe59f805a1ad1747dc8ee7e7d5217350d75af1422ff66b4c60b5346a6da1cad0efaa85225f959c40efa45acd2d12c77b1635f87b0a1e1b44c794af02f14cea16761ab9662437b64a729117fbe1554534623820df9170f847bab63638a6ee62655d3c7b10ce7ecd4af285cc5d9004e9dcd55917093ed57e49a48b3f83b6089a489825851c20b0ea4787b18d",
+                Status = "dd103b65f6ce4ebb91912511352f1b5772e3c5b455fb4ff0b0"
             };
 
             // Act
-            var serviceResult = await _companyJobDrvingLicensesAppService.UpdateAsync(Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"), input);
+            var serviceResult = await _companyJobDrvingLicensesAppService.UpdateAsync(Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603"), input);
 
             // Assert
             var result = await _companyJobDrvingLicenseRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyMainId.ShouldBe(Guid.Parse("7767810b-ee33-49a7-8db9-fae70af1264f"));
-            result.CompanyJobId.ShouldBe(Guid.Parse("8bf56317-a77d-48dd-b1b8-a9fbb410a38e"));
-            result.DrvingLicenseCode.ShouldBe("487a087b7f8f47f3b2566cfc995a2fb65ddeb863261e4a4786");
+            result.CompanyMainId.ShouldBe(Guid.Parse("6cb9a1e9-3a2e-4266-a1f7-a74fa9cb5c3b"));
+            result.CompanyJobId.ShouldBe(Guid.Parse("3cd4d596-f894-4efe-9d19-c9a94e77ed6b"));
+            result.DrvingLicenseCode.ShouldBe("50266eb6eb0446b9b08108df89787ab19fdb0674d4a748f68c");
             result.HaveDrvingLicense.ShouldBe(true);
             result.HaveCar.ShouldBe(true);
-            result.ExtendedInformation.ShouldBe("21d71c6dad244e0f9fe467c2c61aad2355dab48e463c4ba18c99e93f84ee5543ec80fd2fa2bc464d975df254a0c2b1508decfdac7f7147afae4895f3125a2e4abe73069477554b0783c6d7a5af8c4d8b2db6964a70374e77a5ebf56dcd50fdd2b49a5cf5890f470e9b9f3a537a4eaa36c32a482215514f0b9f0b643c73fd9b9d75e18feccc6c4e568cee8c9ec51b245414bb7b76d1084fb5b2fc9eb753590173c48d2ee310884d49ac427bc8a30ca1e3fc8203e137854385a6029699b8a028e9619d14be530a48d1ad08476114b55fed903c4141c2c745e1a5526e9d73cff87627c441f87eca415aa0a305d9af3f0be41d30d8c3806640698c08");
-            result.DateA.ShouldBe(new DateTime(2010, 5, 19));
-            result.DateD.ShouldBe(new DateTime(2014, 9, 11));
-            result.Sort.ShouldBe(1559854015);
-            result.Note.ShouldBe("2a56f3a30e414fd7ab2ba22acc438d1f6a079e3e76cf43aa9f4572debd961143b53387320c3e421aa083a0186f71e61fd001cb9fa7bf41c8add5036ebc6ac9347137aee0aa8649318619aecfd99ef1f0ac7c218378c9447592b29c6112d630a8adbe345998ba4f479bb875ce2e497466dc7d80c615524f928353d9fb7c12324f1cebe3239c4b481c9fecae03f40a15da25d31a4e8c6c43e6b8fecd7239c22ea30d6934314ee148b0a5b9e78420ae49138c694eba6aae4330b73ff9e9eb71275dfa854c102edd4eaa86fc3cef83d18de1ea68bea1900c410cb8a177f8e8a421829a72a9de6a4146efb29bd8869bfbd3ca7bcf3fc127134116bb4d");
-            result.Status.ShouldBe("b3b747f434664228af0eaf58c4b8aaec3bce22c9d12e48eb99");
+            result.ExtendedInformation.ShouldBe("6af446329623485a97040fe5aa9193774ee9a05f2a6d46e29a65bb13a1507ed989dcd86495084b28b3c9095f770bdcceeeafee0bf2e0496693c2859aa75203635b73b467eeff4507863d8a3089cb774a24836ac04bce47b895c32ef234aeacba5fb8d280e848472fb3e3d4bbb2938393099ac470f9fa46ccb63fa6f2cacc2e100e3fd4c2b416412b87938eccdacc0c57f7d994276d20434d9da61c7ea68908e2b401b494f1ad4c4989602586cc114c7b97322dde24fb43b09ecef4b0db76debf7809957b7f034bb9bcd78aa579c6d22cfaa4d19e4bd0453e905c6580c9fc9a05572d01bdef7c42588cfce23e0773fdeca9cfd0759b4644779758");
+            result.DateA.ShouldBe(new DateTime(2008, 2, 24));
+            result.DateD.ShouldBe(new DateTime(2010, 1, 24));
+            result.Sort.ShouldBe(1993083492);
+            result.Note.ShouldBe("7b57a0ad46004db4bc85b51d80760397b3ab7348a497431d940d73dea8f6bfd8c0c398512bdd4c6d8b3866e362e5adbb0b5d3552e5a84fa698030c580de4c880e25cbeab9cf946f6bb3d31d2d21f0a8088cc1205b1ce4d52ab2dd987fa91746926141826ad8a41289bfe6f00e0e50dbe59f805a1ad1747dc8ee7e7d5217350d75af1422ff66b4c60b5346a6da1cad0efaa85225f959c40efa45acd2d12c77b1635f87b0a1e1b44c794af02f14cea16761ab9662437b64a729117fbe1554534623820df9170f847bab63638a6ee62655d3c7b10ce7ecd4af285cc5d9004e9dcd55917093ed57e49a48b3f83b6089a489825851c20b0ea4787b18d");
+            result.Status.ShouldBe("dd103b65f6ce4ebb91912511352f1b5772e3c5b455fb4ff0b0");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _companyJobDrvingLicensesAppService.DeleteAsync(Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"));
+            await _companyJobDrvingLicensesAppService.DeleteAsync(Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603"));
 
             // Assert
-            var result = await _companyJobDrvingLicenseRepository.FindAsync(c => c.Id == Guid.Parse("88d83280-0070-4602-aefa-9a6ebbbb6a6a"));
+            var result = await _companyJobDrvingLicenseRepository.FindAsync(c => c.Id == Guid.Parse("791e00c7-efa9-4636-adb4-eaca2b567603"));
 
             result.ShouldBeNull();
         }

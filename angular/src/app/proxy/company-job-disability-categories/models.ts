@@ -4,7 +4,7 @@ export interface CompanyJobDisabilityCategoryCreateDto {
   companyMainId?: string;
   companyJobId?: string;
   disabilityCategoryCode: string;
-  disabilityLevelCode?: string;
+  disabilityLevelCode: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;
   dateA?: string;
@@ -18,7 +18,7 @@ export interface CompanyJobDisabilityCategoryDto extends FullAuditedEntityDto<st
   companyMainId?: string;
   companyJobId?: string;
   disabilityCategoryCode: string;
-  disabilityLevelCode?: string;
+  disabilityLevelCode: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;
   dateA?: string;
@@ -26,7 +26,6 @@ export interface CompanyJobDisabilityCategoryDto extends FullAuditedEntityDto<st
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobDisabilityCategoryExcelDownloadDto {
@@ -39,7 +38,7 @@ export interface CompanyJobDisabilityCategoryUpdateDto {
   companyMainId?: string;
   companyJobId?: string;
   disabilityCategoryCode: string;
-  disabilityLevelCode?: string;
+  disabilityLevelCode: string;
   disabilityCertifiedDocumentsNeed?: boolean;
   extendedInformation?: string;
   dateA?: string;
@@ -47,7 +46,6 @@ export interface CompanyJobDisabilityCategoryUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobDisabilityCategoriesInput extends PagedAndSortedResultRequestDto {

@@ -9,7 +9,7 @@
   "MenuIcon": "file-alt",
   "PrimaryKeyType": "Guid",
   "IsMultiTenant": true,
-  "CheckConcurrency": true,
+  "CheckConcurrency": false,
   "ShouldCreateUserInterface": true,
   "ShouldCreateBackend": true,
   "ShouldExportExcel": true,
@@ -96,7 +96,7 @@
       "OrdinalIndex": 0
     },
     {
-      "Id": "1bbdcb52-6d49-4c1d-9076-d1a198ca03fe",
+      "Id": "98f16fc1-ecf8-4e45-80cf-e250680ee155",
       "Name": "DisabilityLevelCode",
       "Type": "string",
       "EnumType": "",
@@ -105,7 +105,7 @@
       "EnumFilePath": null,
       "DefaultValue": null,
       "IsNullable": false,
-      "IsRequired": false,
+      "IsRequired": true,
       "IsTextArea": false,
       "MinLength": null,
       "MaxLength": 50,

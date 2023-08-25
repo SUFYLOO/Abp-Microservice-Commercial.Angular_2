@@ -1,3 +1,4 @@
+using Resume.CompanyJobLanguageConditions;
 using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobDrvingLicenses;
 using Resume.CompanyJobEducationLevels;
@@ -248,5 +249,8 @@ public class ResumeApplicationAutoMapperProfile : Profile
 
         CreateMap<CompanyJobWorkHours, CompanyJobWorkHoursDto>();
         CreateMap<CompanyJobWorkHours, CompanyJobWorkHoursExcelDto>();
+
+        CreateMap<CompanyJobLanguageCondition, CompanyJobLanguageConditionDto>();
+        CreateMap<CompanyJobLanguageCondition, CompanyJobLanguageConditionExcelDto>();
     }
 }

@@ -41,7 +41,7 @@ namespace Resume.CompanyUserMainFavs
 
         }
 
-        public CompanyUserMainFav(Guid id, Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null)
+        public CompanyUserMainFav(Guid id, Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
 
             Id = id;
@@ -52,11 +52,11 @@ namespace Resume.CompanyUserMainFavs
             CompanyJobId = companyJobId;
             UserMainId = userMainId;
             ExtendedInformation = extendedInformation;
-            Note = note;
-            Status = status;
             DateA = dateA;
             DateD = dateD;
             Sort = sort;
+            Note = note;
+            Status = status;
         }
 
     }

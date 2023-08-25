@@ -1183,6 +1183,11 @@
     "Menu:CompanyJobWorkHourss": "Company Job Work Hourss",
     "WorkHoursCode": "Work Hours Code",
     "MinWorkHoursCode": "Min Work Hours Code",
-    "MaxWorkHoursCode": "Max Work Hours Code"
+    "MaxWorkHoursCode": "Max Work Hours Code",
+    "Permission:CompanyJobLanguageConditions": "Company Job Language Conditions",
+    "CompanyJobLanguageConditions": "Company Job Language Conditions",
+    "NewCompanyJobLanguageCondition": "New Company Job Language Condition",
+    "CompanyJobLanguageCondition": "Company Job Language Condition",
+    "Menu:CompanyJobLanguageConditions": "Company Job Language Conditions"
   }
 }

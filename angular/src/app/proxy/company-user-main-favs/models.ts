@@ -22,7 +22,6 @@ export interface CompanyUserMainFavDto extends FullAuditedEntityDto<string> {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyUserMainFavExcelDownloadDto {
@@ -41,7 +40,6 @@ export interface CompanyUserMainFavUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyUserMainFavsInput extends PagedAndSortedResultRequestDto {

@@ -84,7 +84,10 @@ export class CompanyJobDisabilityCategoryComponent implements OnInit {
         disabilityCategoryCode ?? null,
         [Validators.required, Validators.maxLength(50)],
       ],
-      disabilityLevelCode: [disabilityLevelCode ?? null, [Validators.maxLength(50)]],
+      disabilityLevelCode: [
+        disabilityLevelCode ?? null,
+        [Validators.required, Validators.maxLength(50)],
+      ],
       disabilityCertifiedDocumentsNeed: [disabilityCertifiedDocumentsNeed ?? false, []],
       extendedInformation: [extendedInformation ?? null, [Validators.maxLength(500)]],
       dateA: [dateA ? new Date(dateA) : null, []],
@@ -109,10 +112,7 @@ export class CompanyJobDisabilityCategoryComponent implements OnInit {
     if (this.form.invalid) return;
 
     const request = this.selected
-      ? this.service.update(this.selected.id, {
-          ...this.form.value,
-          concurrencyStamp: this.selected.concurrencyStamp,
-        })
+      ? this.service.update(this.selected.id, this.form.value)
       : this.service.create(this.form.value);
 
     this.isModalBusy = true;

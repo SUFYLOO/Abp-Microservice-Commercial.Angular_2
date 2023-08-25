@@ -911,6 +911,7 @@ namespace Resume.Migrations
                         .HasColumnName("DisabilityCertifiedDocumentsNeed");
 
                     b.Property<string>("DisabilityLevelCode")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("DisabilityLevelCode");
@@ -1157,6 +1158,125 @@ namespace Resume.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppCompanyJobEducationLevels", (string)null);
+                });
+
+            modelBuilder.Entity("Resume.CompanyJobLanguageConditions.CompanyJobLanguageCondition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyJobId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyJobId");
+
+                    b.Property<Guid>("CompanyMainId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyMainId");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<DateTime?>("DateA")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DateA");
+
+                    b.Property<DateTime?>("DateD")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DateD");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtendedInformation")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("ExtendedInformation");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<string>("LanguageCategoryCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LanguageCategoryCode");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("LevelListenCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LevelListenCode");
+
+                    b.Property<string>("LevelReadCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LevelReadCode");
+
+                    b.Property<string>("LevelSayCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LevelSayCode");
+
+                    b.Property<string>("LevelWriteCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LevelWriteCode");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("Note");
+
+                    b.Property<int?>("Sort")
+                        .HasColumnType("int")
+                        .HasColumnName("Sort");
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("Status");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TenantId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppCompanyJobLanguageConditions", (string)null);
                 });
 
             modelBuilder.Entity("Resume.CompanyJobOrganizationUnits.CompanyJobOrganizationUnit", b =>

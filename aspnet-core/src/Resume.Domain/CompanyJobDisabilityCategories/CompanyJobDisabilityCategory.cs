@@ -22,8 +22,8 @@ namespace Resume.CompanyJobDisabilityCategories
         [NotNull]
         public virtual string DisabilityCategoryCode { get; set; }
 
-        [CanBeNull]
-        public virtual string? DisabilityLevelCode { get; set; }
+        [NotNull]
+        public virtual string DisabilityLevelCode { get; set; }
 
         public virtual bool DisabilityCertifiedDocumentsNeed { get; set; }
 
@@ -53,6 +53,7 @@ namespace Resume.CompanyJobDisabilityCategories
             Id = id;
             Check.NotNull(disabilityCategoryCode, nameof(disabilityCategoryCode));
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength, 0);
+            Check.NotNull(disabilityLevelCode, nameof(disabilityLevelCode));
             Check.Length(disabilityLevelCode, nameof(disabilityLevelCode), CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength, 0);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength, 0);
             Check.Length(note, nameof(note), CompanyJobDisabilityCategoryConsts.NoteMaxLength, 0);

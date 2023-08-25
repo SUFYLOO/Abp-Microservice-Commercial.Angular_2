@@ -75,7 +75,7 @@ namespace Resume.CompanyJobDisabilityCategories
 
             var companyJobDisabilityCategory = await _companyJobDisabilityCategoryManager.UpdateAsync(
             id,
-            input.CompanyMainId, input.CompanyJobId, input.DisabilityCategoryCode, input.DisabilityLevelCode, input.DisabilityCertifiedDocumentsNeed, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.CompanyMainId, input.CompanyJobId, input.DisabilityCategoryCode, input.DisabilityLevelCode, input.DisabilityCertifiedDocumentsNeed, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<CompanyJobDisabilityCategory, CompanyJobDisabilityCategoryDto>(companyJobDisabilityCategory);

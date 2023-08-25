@@ -75,7 +75,7 @@ namespace Resume.ResumeExperiencesJobs
 
             var resumeExperiencesJob = await _resumeExperiencesJobManager.UpdateAsync(
             id,
-            input.ResumeMainId, input.ResumeExperiencesId, input.JobType, input.Year, input.Month, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status, input.ConcurrencyStamp
+            input.ResumeMainId, input.ResumeExperiencesId, input.JobType, input.Year, input.Month, input.ExtendedInformation, input.DateA, input.DateD, input.Sort, input.Note, input.Status
             );
 
             return ObjectMapper.Map<ResumeExperiencesJob, ResumeExperiencesJobDto>(resumeExperiencesJob);

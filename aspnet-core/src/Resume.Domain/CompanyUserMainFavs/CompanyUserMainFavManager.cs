@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.CompanyUserMainFavs
 {
@@ -20,7 +19,7 @@ namespace Resume.CompanyUserMainFavs
         }
 
         public async Task<CompanyUserMainFav> CreateAsync(
-        Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null)
+        Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null)
         {
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyUserMainFavConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyUserMainFavConsts.NoteMaxLength);
@@ -28,7 +27,7 @@ namespace Resume.CompanyUserMainFavs
 
             var companyUserMainFav = new CompanyUserMainFav(
              GuidGenerator.Create(),
-             companyMainId, companyJobId, userMainId, extendedInformation, note, status, dateA, dateD, sort
+             companyMainId, companyJobId, userMainId, extendedInformation, dateA, dateD, sort, note, status
              );
 
             return await _companyUserMainFavRepository.InsertAsync(companyUserMainFav);
@@ -36,7 +35,7 @@ namespace Resume.CompanyUserMainFavs
 
         public async Task<CompanyUserMainFav> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, string note, string status, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, Guid userMainId, string extendedInformation, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyUserMainFavConsts.ExtendedInformationMaxLength);
@@ -49,13 +48,12 @@ namespace Resume.CompanyUserMainFavs
             companyUserMainFav.CompanyJobId = companyJobId;
             companyUserMainFav.UserMainId = userMainId;
             companyUserMainFav.ExtendedInformation = extendedInformation;
-            companyUserMainFav.Note = note;
-            companyUserMainFav.Status = status;
             companyUserMainFav.DateA = dateA;
             companyUserMainFav.DateD = dateD;
             companyUserMainFav.Sort = sort;
+            companyUserMainFav.Note = note;
+            companyUserMainFav.Status = status;
 
-            companyUserMainFav.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _companyUserMainFavRepository.UpdateAsync(companyUserMainFav);
         }
 

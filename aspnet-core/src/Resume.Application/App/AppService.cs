@@ -65,6 +65,15 @@ using Volo.FileManagement.Directories;
 using Volo.FileManagement.Files;
 using Volo.Saas.Editions;
 using Volo.Saas.Tenants;
+using Resume.ShareExtendeds;
+using Resume.ResumeExperiencesJobs;
+using Resume.CompanyUserMainFavs;
+using Resume.CompanyJobWorkHourss;
+using Resume.CompanyJobWorkIdentities;
+using Resume.CompanyJobDisabilityCategories;
+using Resume.CompanyJobEducationLevels;
+using Resume.CompanyJobDrvingLicenses;
+using Resume.CompanyJobLanguageConditions;
 
 namespace Resume.App
 {
@@ -114,6 +123,7 @@ namespace Resume.App
         public readonly IResumeEducationsRepository _resumeEducationsRepository;
         public readonly IResumeExperiencesRepository _resumeExperiencesRepository;
         public readonly IResumeWorksRepository _resumeWorksRepository;
+        public readonly IResumeExperiencesJobRepository _resumeExperiencesJobRepository;
 
         public readonly ICompanyMainRepository _companyMainRepository;
         public readonly ICompanyJobRepository _companyJobRepository;
@@ -127,6 +137,14 @@ namespace Resume.App
         public readonly ICompanyJobConditionRepository _companyJobConditionRepository;
         public readonly ICompanyJobApplicationMethodRepository _companyJobApplicationMethodRepository;
         public readonly ICompanyJobPairRepository _companyJobPairRepository;
+        public readonly ICompanyUserMainFavRepository _companyUserMainFavRepository;
+        public readonly ICompanyJobWorkHoursRepository _companyJobWorkHoursRepository;
+        public readonly ICompanyJobWorkIdentityRepository _companyJobWorkIdentityRepository;
+        public readonly ICompanyJobDisabilityCategoryRepository _companyJobDisabilityCategoryRepository;
+        public readonly ICompanyJobEducationLevelRepository _companyJobEducationLevelRepository;
+        public readonly ICompanyJobDrvingLicenseRepository _companyJobDrvingLicenseRepository;
+        public readonly ICompanyJobLanguageConditionRepository _companyJobLanguageConditionRepository; 
+
 
         public readonly ITradeProductRepository _tradeProductRepository;
         public readonly ITradeOderDetailRepository _tradeOderDetailRepository;
@@ -140,6 +158,7 @@ namespace Resume.App
         public readonly IShareMessageTplRepository _shareMessageTplRepository;
         public readonly IShareSendQueueRepository _shareSendQueueRepository;
         public readonly IShareUploadRepository _shareUploadRepository;
+        public readonly IShareExtendedRepository _shareExtendedRepository;
 
         //abp原生service
         public readonly CompanyContractsAppService _companyContractsAppService;
@@ -247,6 +266,7 @@ namespace Resume.App
           IResumeEducationsRepository resumeEducationsRepository,
           IResumeExperiencesRepository resumeExperiencesRepository,
           IResumeWorksRepository resumeWorksRepository,
+          IResumeExperiencesJobRepository resumeExperiencesJobRepository,
 
           ICompanyMainRepository companyMainRepository,
           ICompanyJobRepository companyJobRepository,
@@ -260,8 +280,13 @@ namespace Resume.App
           ICompanyJobConditionRepository companyJobConditionRepository,
           ICompanyJobApplicationMethodRepository companyJobApplicationMethodRepository,
           ICompanyJobPairRepository companyJobPairRepository,
-
-
+          ICompanyUserMainFavRepository companyUserMainFavRepository,
+          ICompanyJobWorkHoursRepository companyJobWorkHoursRepository,
+          ICompanyJobWorkIdentityRepository companyJobWorkIdentityRepository,
+          ICompanyJobDisabilityCategoryRepository companyJobDisabilityCategoryRepository,
+          ICompanyJobEducationLevelRepository companyJobEducationLevelRepository,
+          ICompanyJobDrvingLicenseRepository companyJobDrvingLicenseRepository,
+          ICompanyJobLanguageConditionRepository companyJobLanguageConditionRepository,
 
           ITradeProductRepository tradeProductRepository,
           ITradeOderDetailRepository tradeOderDetailRepository,
@@ -275,8 +300,9 @@ namespace Resume.App
           IShareMessageTplRepository shareMessageTplRepository,
           IShareSendQueueRepository shareSendQueueRepository,
           IShareUploadRepository shareUploadRepository,
+          IShareExtendedRepository shareExtendedRepository,
 
-         //abp原生service
+        //abp原生service
          CompanyContractsAppService companyContractsAppService,
          CompanyInvitationsCodesAppService companyInvitationsCodesAppService,
          CompanyJobContentsAppService companyJobContentsAppService,
@@ -380,6 +406,7 @@ namespace Resume.App
             _resumeEducationsRepository = resumeEducationsRepository;
             _resumeExperiencesRepository = resumeExperiencesRepository;
             _resumeWorksRepository = resumeWorksRepository;
+            _resumeExperiencesJobRepository = resumeExperiencesJobRepository;
 
             _companyMainRepository = companyMainRepository;
             _companyJobRepository = companyJobRepository;
@@ -393,7 +420,13 @@ namespace Resume.App
             _companyJobConditionRepository = companyJobConditionRepository;
             _companyJobApplicationMethodRepository = companyJobApplicationMethodRepository;
             _companyJobPairRepository = companyJobPairRepository;
-
+            _companyUserMainFavRepository = companyUserMainFavRepository;
+            _companyJobWorkHoursRepository = companyJobWorkHoursRepository;
+            _companyJobWorkIdentityRepository = companyJobWorkIdentityRepository;
+            _companyJobDisabilityCategoryRepository = companyJobDisabilityCategoryRepository;
+            _companyJobEducationLevelRepository = companyJobEducationLevelRepository;
+            _companyJobDrvingLicenseRepository = companyJobDrvingLicenseRepository;
+            _companyJobLanguageConditionRepository = companyJobLanguageConditionRepository;
 
             _tradeProductRepository = tradeProductRepository;
             _tradeOderDetailRepository = tradeOderDetailRepository;
@@ -407,6 +440,7 @@ namespace Resume.App
             _shareMessageTplRepository = shareMessageTplRepository;
             _shareSendQueueRepository = shareSendQueueRepository;
             _shareUploadRepository = shareUploadRepository;
+            _shareExtendedRepository = shareExtendedRepository;
 
             //abp原生service
             _companyContractsAppService = companyContractsAppService;

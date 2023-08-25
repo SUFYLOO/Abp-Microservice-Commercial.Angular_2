@@ -6,6 +6,7 @@ using Resume.App.Users;
 using Resume.CompanyJobApplicationMethods;
 using Resume.CompanyJobConditions;
 using Resume.CompanyJobContents;
+using Resume.CompanyJobDisabilityCategories;
 using Resume.CompanyJobs;
 using Resume.CompanyMains;
 using System;
@@ -74,6 +75,12 @@ namespace Resume.App.Companys
             var itemCompanyJobDto = await SaveCompanyJobAsync(itemCompanyJob);
             CompanyJobId = itemCompanyJobDto.Id;
 
+            //呼叫CompanyJob
+           // var itemCompanyJobWorkHours = ObjectMapper.Map<SaveCompanyJobWorkHoursInput, SaveCompanyJobInput>(input);
+            itemCompanyJob.Id = CompanyJobId;
+           // var itemCompanyJobDto = await SaveCompanyJobAsync(itemCompanyJob);
+            CompanyJobId = itemCompanyJobDto.Id;
+
             //檢查
             await SaveCompanyJobContentCheckAsync(input);
 
@@ -131,7 +138,10 @@ namespace Resume.App.Companys
             var HolidaySystemCode = input.HolidaySystemCode;
             var WorkDayCode = input.WorkDayCode;
             var WorkIdentity = input.WorkIdentity;
-            var ListDisabilityCategory = input.ListSaveCompanyJobWorkIdentityInput;
+            var ListDisabilityCategory = input.ListDisabilityCategory;
+            var ListCompanyJobWorkIdentity = input.ListCompanyJobWorkIdentity;
+            var ListWorkHours = input.ListWorkHours;
+
 
             //預設值
 
@@ -157,8 +167,23 @@ namespace Resume.App.Companys
 
             var inputCheckShareCode = new CheckShareCodeInput();
             inputCheckShareCode.Result = Result;
-            inputCheckShareCode.Data = input;
+            inputCheckShareCode.Data =new List<SaveCompanyJobContentInput>() { input };
             _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobContentInput>(inputCheckShareCode);
+
+            inputCheckShareCode = new CheckShareCodeInput();
+            inputCheckShareCode.Result = Result;
+            inputCheckShareCode.Data = ListWorkHours;
+            _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobWorkHoursInput>(inputCheckShareCode);
+
+            inputCheckShareCode = new CheckShareCodeInput();
+            inputCheckShareCode.Result = Result;
+            inputCheckShareCode.Data = ListCompanyJobWorkIdentity;
+            _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveCompanyJobWorkIdentityInput>(inputCheckShareCode);
+
+            inputCheckShareCode = new CheckShareCodeInput();
+            inputCheckShareCode.Result = Result;
+            inputCheckShareCode.Data = ListDisabilityCategory;
+            _appService._serviceProvider.GetService<SharesAppService>().CheckShareCodeAsync<SaveDisabilityCategoryInput>(inputCheckShareCode);
 
             foreach (var msg in Result.Messages)
                 ex.Data.Add(GuidGenerator.Create().ToString(), msg.MessageContents);
@@ -220,7 +245,7 @@ namespace Resume.App.Companys
                     var inputSetShareCode = new SetShareCodeInput();
                     inputSetShareCode.ListShareCode = itemsShareCode;
                     inputSetShareCode.Data = new List<CompanyJobContentsDto>() { Result };
-                    var ListDisabilityCategory = new List<DisabilityCategoryDto>();
+                    var ListDisabilityCategory = new List<CompanyJobDisabilityCategoryDto>();
 
                     var ListColumns = new List<NameCodeStandardDto>
                     {

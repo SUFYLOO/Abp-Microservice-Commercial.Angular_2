@@ -1,3 +1,4 @@
+using Resume.CompanyJobLanguageConditions;
 using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobDrvingLicenses;
 using Resume.CompanyJobEducationLevels;
@@ -232,6 +233,8 @@ public class ResumeEntityFrameworkCoreModule : AbpModule
             options.AddRepository<CompanyJobDrvingLicense, CompanyJobDrvingLicenses.EfCoreCompanyJobDrvingLicenseRepository>();
 
             options.AddRepository<CompanyJobWorkHours, CompanyJobWorkHourss.EfCoreCompanyJobWorkHoursRepository>();
+
+            options.AddRepository<CompanyJobLanguageCondition, CompanyJobLanguageConditions.EfCoreCompanyJobLanguageConditionRepository>();
 
         });
 

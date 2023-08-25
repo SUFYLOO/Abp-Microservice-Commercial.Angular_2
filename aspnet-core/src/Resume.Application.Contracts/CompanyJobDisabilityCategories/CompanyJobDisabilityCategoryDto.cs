@@ -1,15 +1,14 @@
 using System;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Resume.CompanyJobDisabilityCategories
 {
-    public class CompanyJobDisabilityCategoryDto : FullAuditedEntityDto<Guid>, IHasConcurrencyStamp
+    public class CompanyJobDisabilityCategoryDto : FullAuditedEntityDto<Guid>
     {
         public Guid CompanyMainId { get; set; }
         public Guid CompanyJobId { get; set; }
         public string DisabilityCategoryCode { get; set; }
-        public string? DisabilityLevelCode { get; set; }
+        public string DisabilityLevelCode { get; set; }
         public bool DisabilityCertifiedDocumentsNeed { get; set; }
         public string? ExtendedInformation { get; set; }
         public DateTime? DateA { get; set; }
@@ -18,6 +17,5 @@ namespace Resume.CompanyJobDisabilityCategories
         public string? Note { get; set; }
         public string? Status { get; set; }
 
-        public string ConcurrencyStamp { get; set; }
     }
 }

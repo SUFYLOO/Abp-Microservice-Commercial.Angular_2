@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.CompanyJobDisabilityCategories
 {
@@ -24,6 +23,7 @@ namespace Resume.CompanyJobDisabilityCategories
         {
             Check.NotNullOrWhiteSpace(disabilityCategoryCode, nameof(disabilityCategoryCode));
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(disabilityLevelCode, nameof(disabilityLevelCode));
             Check.Length(disabilityLevelCode, nameof(disabilityLevelCode), CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobDisabilityCategoryConsts.NoteMaxLength);
@@ -39,11 +39,12 @@ namespace Resume.CompanyJobDisabilityCategories
 
         public async Task<CompanyJobDisabilityCategory> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string disabilityCategoryCode, string disabilityLevelCode, bool disabilityCertifiedDocumentsNeed, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string disabilityCategoryCode, string disabilityLevelCode, bool disabilityCertifiedDocumentsNeed, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(disabilityCategoryCode, nameof(disabilityCategoryCode));
             Check.Length(disabilityCategoryCode, nameof(disabilityCategoryCode), CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength);
+            Check.NotNullOrWhiteSpace(disabilityLevelCode, nameof(disabilityLevelCode));
             Check.Length(disabilityLevelCode, nameof(disabilityLevelCode), CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
             Check.Length(extendedInformation, nameof(extendedInformation), CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength);
             Check.Length(note, nameof(note), CompanyJobDisabilityCategoryConsts.NoteMaxLength);
@@ -63,7 +64,6 @@ namespace Resume.CompanyJobDisabilityCategories
             companyJobDisabilityCategory.Note = note;
             companyJobDisabilityCategory.Status = status;
 
-            companyJobDisabilityCategory.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _companyJobDisabilityCategoryRepository.UpdateAsync(companyJobDisabilityCategory);
         }
 

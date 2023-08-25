@@ -22,7 +22,6 @@ export interface CompanyJobWorkIdentityDto extends FullAuditedEntityDto<string> 
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface CompanyJobWorkIdentityExcelDownloadDto {
@@ -41,7 +40,6 @@ export interface CompanyJobWorkIdentityUpdateDto {
   sort?: number;
   note?: string;
   status?: string;
-  concurrencyStamp?: string;
 }
 
 export interface GetCompanyJobWorkIdentitiesInput extends PagedAndSortedResultRequestDto {

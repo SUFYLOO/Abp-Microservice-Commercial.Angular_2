@@ -439,6 +439,13 @@ const routes: Routes = [
         m => m.CompanyJobWorkHoursModule
       ),
   },
+  {
+    path: 'company-job-language-conditions',
+    loadChildren: () =>
+      import(
+        './company-job-language-conditions/company-job-language-condition/company-job-language-condition.module'
+      ).then(m => m.CompanyJobLanguageConditionModule),
+  },
 ];
 
 @NgModule({

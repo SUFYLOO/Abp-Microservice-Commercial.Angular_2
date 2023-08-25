@@ -1,3 +1,4 @@
+using Resume.CompanyJobLanguageConditions;
 using Resume.CompanyJobWorkHourss;
 using Resume.CompanyJobDrvingLicenses;
 using Resume.CompanyJobEducationLevels;
@@ -91,6 +92,7 @@ public class ResumeDbContext :
     IIdentityProDbContext,
     ISaasDbContext
 {
+    public DbSet<CompanyJobLanguageCondition> CompanyJobLanguageConditions { get; set; }
     public DbSet<CompanyJobWorkHours> CompanyJobWorkHourss { get; set; }
     public DbSet<CompanyJobDrvingLicense> CompanyJobDrvingLicenses { get; set; }
     public DbSet<CompanyJobEducationLevel> CompanyJobEducationLevels { get; set; }
@@ -1136,22 +1138,6 @@ public class ResumeDbContext :
         b.Property(x => x.Status).HasColumnName(nameof(ResumeSkill.Status)).HasMaxLength(ResumeSkillConsts.StatusMaxLength);
     });
 
-        builder.Entity<CompanyUserMainFav>(b =>
-    {
-        b.ToTable(ResumeConsts.DbTablePrefix + "CompanyUserMainFavs", ResumeConsts.DbSchema);
-        b.ConfigureByConvention();
-        b.Property(x => x.TenantId).HasColumnName(nameof(CompanyUserMainFav.TenantId));
-        b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyUserMainFav.CompanyMainId));
-        b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyUserMainFav.CompanyJobId));
-        b.Property(x => x.UserMainId).HasColumnName(nameof(CompanyUserMainFav.UserMainId));
-        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyUserMainFav.ExtendedInformation)).HasMaxLength(CompanyUserMainFavConsts.ExtendedInformationMaxLength);
-        b.Property(x => x.DateA).HasColumnName(nameof(CompanyUserMainFav.DateA));
-        b.Property(x => x.DateD).HasColumnName(nameof(CompanyUserMainFav.DateD));
-        b.Property(x => x.Sort).HasColumnName(nameof(CompanyUserMainFav.Sort));
-        b.Property(x => x.Note).HasColumnName(nameof(CompanyUserMainFav.Note)).HasMaxLength(CompanyUserMainFavConsts.NoteMaxLength);
-        b.Property(x => x.Status).HasColumnName(nameof(CompanyUserMainFav.Status)).HasMaxLength(CompanyUserMainFavConsts.StatusMaxLength);
-    });
-
         builder.Entity<CompanyJobCondition>(b =>
     {
         b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobConditions", ResumeConsts.DbSchema);
@@ -1258,23 +1244,6 @@ public class ResumeDbContext :
 
         }
 
-        builder.Entity<ResumeExperiencesJob>(b =>
-    {
-        b.ToTable(ResumeConsts.DbTablePrefix + "ResumeExperiencesJobs", ResumeConsts.DbSchema);
-        b.ConfigureByConvention();
-        b.Property(x => x.TenantId).HasColumnName(nameof(ResumeExperiencesJob.TenantId));
-        b.Property(x => x.ResumeMainId).HasColumnName(nameof(ResumeExperiencesJob.ResumeMainId));
-        b.Property(x => x.ResumeExperiencesId).HasColumnName(nameof(ResumeExperiencesJob.ResumeExperiencesId));
-        b.Property(x => x.JobType).HasColumnName(nameof(ResumeExperiencesJob.JobType)).IsRequired().HasMaxLength(ResumeExperiencesJobConsts.JobTypeMaxLength);
-        b.Property(x => x.Year).HasColumnName(nameof(ResumeExperiencesJob.Year));
-        b.Property(x => x.Month).HasColumnName(nameof(ResumeExperiencesJob.Month));
-        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(ResumeExperiencesJob.ExtendedInformation)).HasMaxLength(ResumeExperiencesJobConsts.ExtendedInformationMaxLength);
-        b.Property(x => x.DateA).HasColumnName(nameof(ResumeExperiencesJob.DateA));
-        b.Property(x => x.DateD).HasColumnName(nameof(ResumeExperiencesJob.DateD));
-        b.Property(x => x.Sort).HasColumnName(nameof(ResumeExperiencesJob.Sort));
-        b.Property(x => x.Note).HasColumnName(nameof(ResumeExperiencesJob.Note)).HasMaxLength(ResumeExperiencesJobConsts.NoteMaxLength);
-        b.Property(x => x.Status).HasColumnName(nameof(ResumeExperiencesJob.Status)).HasMaxLength(ResumeExperiencesJobConsts.StatusMaxLength);
-    });
         builder.Entity<ShareExtended>(b =>
     {
         b.ToTable(ResumeConsts.DbTablePrefix + "ShareExtendeds", ResumeConsts.DbSchema);
@@ -1309,21 +1278,7 @@ public class ResumeDbContext :
         b.Property(x => x.Note).HasColumnName(nameof(CompanyJobWorkHours.Note)).HasMaxLength(CompanyJobWorkHoursConsts.NoteMaxLength);
         b.Property(x => x.Status).HasColumnName(nameof(CompanyJobWorkHours.Status)).HasMaxLength(CompanyJobWorkHoursConsts.StatusMaxLength);
     });
-        builder.Entity<CompanyJobWorkIdentity>(b =>
-    {
-        b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobWorkIdentities", ResumeConsts.DbSchema);
-        b.ConfigureByConvention();
-        b.Property(x => x.TenantId).HasColumnName(nameof(CompanyJobWorkIdentity.TenantId));
-        b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyJobWorkIdentity.CompanyMainId));
-        b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyJobWorkIdentity.CompanyJobId));
-        b.Property(x => x.WorkIdentityCode).HasColumnName(nameof(CompanyJobWorkIdentity.WorkIdentityCode)).IsRequired().HasMaxLength(CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength);
-        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyJobWorkIdentity.ExtendedInformation)).HasMaxLength(CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength);
-        b.Property(x => x.DateA).HasColumnName(nameof(CompanyJobWorkIdentity.DateA));
-        b.Property(x => x.DateD).HasColumnName(nameof(CompanyJobWorkIdentity.DateD));
-        b.Property(x => x.Sort).HasColumnName(nameof(CompanyJobWorkIdentity.Sort));
-        b.Property(x => x.Note).HasColumnName(nameof(CompanyJobWorkIdentity.Note)).HasMaxLength(CompanyJobWorkIdentityConsts.NoteMaxLength);
-        b.Property(x => x.Status).HasColumnName(nameof(CompanyJobWorkIdentity.Status)).HasMaxLength(CompanyJobWorkIdentityConsts.StatusMaxLength);
-    });
+
         builder.Entity<CompanyJobEducationLevel>(b =>
     {
         b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobEducationLevels", ResumeConsts.DbSchema);
@@ -1339,6 +1294,7 @@ public class ResumeDbContext :
         b.Property(x => x.Note).HasColumnName(nameof(CompanyJobEducationLevel.Note)).HasMaxLength(CompanyJobEducationLevelConsts.NoteMaxLength);
         b.Property(x => x.Status).HasColumnName(nameof(CompanyJobEducationLevel.Status)).HasMaxLength(CompanyJobEducationLevelConsts.StatusMaxLength);
     });
+
         builder.Entity<CompanyJobDrvingLicense>(b =>
     {
         b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobDrvingLicenses", ResumeConsts.DbSchema);
@@ -1364,7 +1320,7 @@ public class ResumeDbContext :
         b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyJobDisabilityCategory.CompanyMainId));
         b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyJobDisabilityCategory.CompanyJobId));
         b.Property(x => x.DisabilityCategoryCode).HasColumnName(nameof(CompanyJobDisabilityCategory.DisabilityCategoryCode)).IsRequired().HasMaxLength(CompanyJobDisabilityCategoryConsts.DisabilityCategoryCodeMaxLength);
-        b.Property(x => x.DisabilityLevelCode).HasColumnName(nameof(CompanyJobDisabilityCategory.DisabilityLevelCode)).HasMaxLength(CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
+        b.Property(x => x.DisabilityLevelCode).HasColumnName(nameof(CompanyJobDisabilityCategory.DisabilityLevelCode)).IsRequired().HasMaxLength(CompanyJobDisabilityCategoryConsts.DisabilityLevelCodeMaxLength);
         b.Property(x => x.DisabilityCertifiedDocumentsNeed).HasColumnName(nameof(CompanyJobDisabilityCategory.DisabilityCertifiedDocumentsNeed));
         b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyJobDisabilityCategory.ExtendedInformation)).HasMaxLength(CompanyJobDisabilityCategoryConsts.ExtendedInformationMaxLength);
         b.Property(x => x.DateA).HasColumnName(nameof(CompanyJobDisabilityCategory.DateA));
@@ -1372,6 +1328,73 @@ public class ResumeDbContext :
         b.Property(x => x.Sort).HasColumnName(nameof(CompanyJobDisabilityCategory.Sort));
         b.Property(x => x.Note).HasColumnName(nameof(CompanyJobDisabilityCategory.Note)).HasMaxLength(CompanyJobDisabilityCategoryConsts.NoteMaxLength);
         b.Property(x => x.Status).HasColumnName(nameof(CompanyJobDisabilityCategory.Status)).HasMaxLength(CompanyJobDisabilityCategoryConsts.StatusMaxLength);
+    });
+        builder.Entity<CompanyJobWorkIdentity>(b =>
+    {
+        b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobWorkIdentities", ResumeConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(CompanyJobWorkIdentity.TenantId));
+        b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyJobWorkIdentity.CompanyMainId));
+        b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyJobWorkIdentity.CompanyJobId));
+        b.Property(x => x.WorkIdentityCode).HasColumnName(nameof(CompanyJobWorkIdentity.WorkIdentityCode)).IsRequired().HasMaxLength(CompanyJobWorkIdentityConsts.WorkIdentityCodeMaxLength);
+        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyJobWorkIdentity.ExtendedInformation)).HasMaxLength(CompanyJobWorkIdentityConsts.ExtendedInformationMaxLength);
+        b.Property(x => x.DateA).HasColumnName(nameof(CompanyJobWorkIdentity.DateA));
+        b.Property(x => x.DateD).HasColumnName(nameof(CompanyJobWorkIdentity.DateD));
+        b.Property(x => x.Sort).HasColumnName(nameof(CompanyJobWorkIdentity.Sort));
+        b.Property(x => x.Note).HasColumnName(nameof(CompanyJobWorkIdentity.Note)).HasMaxLength(CompanyJobWorkIdentityConsts.NoteMaxLength);
+        b.Property(x => x.Status).HasColumnName(nameof(CompanyJobWorkIdentity.Status)).HasMaxLength(CompanyJobWorkIdentityConsts.StatusMaxLength);
+    });
+
+        builder.Entity<CompanyJobLanguageCondition>(b =>
+    {
+        b.ToTable(ResumeConsts.DbTablePrefix + "CompanyJobLanguageConditions", ResumeConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(CompanyJobLanguageCondition.TenantId));
+        b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyJobLanguageCondition.CompanyMainId));
+        b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyJobLanguageCondition.CompanyJobId));
+        b.Property(x => x.LanguageCategoryCode).HasColumnName(nameof(CompanyJobLanguageCondition.LanguageCategoryCode)).IsRequired().HasMaxLength(CompanyJobLanguageConditionConsts.LanguageCategoryCodeMaxLength);
+        b.Property(x => x.LevelSayCode).HasColumnName(nameof(CompanyJobLanguageCondition.LevelSayCode)).IsRequired().HasMaxLength(CompanyJobLanguageConditionConsts.LevelSayCodeMaxLength);
+        b.Property(x => x.LevelListenCode).HasColumnName(nameof(CompanyJobLanguageCondition.LevelListenCode)).IsRequired().HasMaxLength(CompanyJobLanguageConditionConsts.LevelListenCodeMaxLength);
+        b.Property(x => x.LevelReadCode).HasColumnName(nameof(CompanyJobLanguageCondition.LevelReadCode)).IsRequired().HasMaxLength(CompanyJobLanguageConditionConsts.LevelReadCodeMaxLength);
+        b.Property(x => x.LevelWriteCode).HasColumnName(nameof(CompanyJobLanguageCondition.LevelWriteCode)).IsRequired().HasMaxLength(CompanyJobLanguageConditionConsts.LevelWriteCodeMaxLength);
+        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyJobLanguageCondition.ExtendedInformation)).HasMaxLength(CompanyJobLanguageConditionConsts.ExtendedInformationMaxLength);
+        b.Property(x => x.DateA).HasColumnName(nameof(CompanyJobLanguageCondition.DateA));
+        b.Property(x => x.DateD).HasColumnName(nameof(CompanyJobLanguageCondition.DateD));
+        b.Property(x => x.Sort).HasColumnName(nameof(CompanyJobLanguageCondition.Sort));
+        b.Property(x => x.Note).HasColumnName(nameof(CompanyJobLanguageCondition.Note)).HasMaxLength(CompanyJobLanguageConditionConsts.NoteMaxLength);
+        b.Property(x => x.Status).HasColumnName(nameof(CompanyJobLanguageCondition.Status)).HasMaxLength(CompanyJobLanguageConditionConsts.StatusMaxLength);
+    });
+        builder.Entity<ResumeExperiencesJob>(b =>
+    {
+        b.ToTable(ResumeConsts.DbTablePrefix + "ResumeExperiencesJobs", ResumeConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(ResumeExperiencesJob.TenantId));
+        b.Property(x => x.ResumeMainId).HasColumnName(nameof(ResumeExperiencesJob.ResumeMainId));
+        b.Property(x => x.ResumeExperiencesId).HasColumnName(nameof(ResumeExperiencesJob.ResumeExperiencesId));
+        b.Property(x => x.JobType).HasColumnName(nameof(ResumeExperiencesJob.JobType)).IsRequired().HasMaxLength(ResumeExperiencesJobConsts.JobTypeMaxLength);
+        b.Property(x => x.Year).HasColumnName(nameof(ResumeExperiencesJob.Year));
+        b.Property(x => x.Month).HasColumnName(nameof(ResumeExperiencesJob.Month));
+        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(ResumeExperiencesJob.ExtendedInformation)).HasMaxLength(ResumeExperiencesJobConsts.ExtendedInformationMaxLength);
+        b.Property(x => x.DateA).HasColumnName(nameof(ResumeExperiencesJob.DateA));
+        b.Property(x => x.DateD).HasColumnName(nameof(ResumeExperiencesJob.DateD));
+        b.Property(x => x.Sort).HasColumnName(nameof(ResumeExperiencesJob.Sort));
+        b.Property(x => x.Note).HasColumnName(nameof(ResumeExperiencesJob.Note)).HasMaxLength(ResumeExperiencesJobConsts.NoteMaxLength);
+        b.Property(x => x.Status).HasColumnName(nameof(ResumeExperiencesJob.Status)).HasMaxLength(ResumeExperiencesJobConsts.StatusMaxLength);
+    });
+        builder.Entity<CompanyUserMainFav>(b =>
+    {
+        b.ToTable(ResumeConsts.DbTablePrefix + "CompanyUserMainFavs", ResumeConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(CompanyUserMainFav.TenantId));
+        b.Property(x => x.CompanyMainId).HasColumnName(nameof(CompanyUserMainFav.CompanyMainId));
+        b.Property(x => x.CompanyJobId).HasColumnName(nameof(CompanyUserMainFav.CompanyJobId));
+        b.Property(x => x.UserMainId).HasColumnName(nameof(CompanyUserMainFav.UserMainId));
+        b.Property(x => x.ExtendedInformation).HasColumnName(nameof(CompanyUserMainFav.ExtendedInformation)).HasMaxLength(CompanyUserMainFavConsts.ExtendedInformationMaxLength);
+        b.Property(x => x.DateA).HasColumnName(nameof(CompanyUserMainFav.DateA));
+        b.Property(x => x.DateD).HasColumnName(nameof(CompanyUserMainFav.DateD));
+        b.Property(x => x.Sort).HasColumnName(nameof(CompanyUserMainFav.Sort));
+        b.Property(x => x.Note).HasColumnName(nameof(CompanyUserMainFav.Note)).HasMaxLength(CompanyUserMainFavConsts.NoteMaxLength);
+        b.Property(x => x.Status).HasColumnName(nameof(CompanyUserMainFav.Status)).HasMaxLength(CompanyUserMainFavConsts.StatusMaxLength);
     });
     }
 }

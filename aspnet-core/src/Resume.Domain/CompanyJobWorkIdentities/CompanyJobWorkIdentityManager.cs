@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Data;
 
 namespace Resume.CompanyJobWorkIdentities
 {
@@ -38,7 +37,7 @@ namespace Resume.CompanyJobWorkIdentities
 
         public async Task<CompanyJobWorkIdentity> UpdateAsync(
             Guid id,
-            Guid companyMainId, Guid companyJobId, string workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null, [CanBeNull] string concurrencyStamp = null
+            Guid companyMainId, Guid companyJobId, string workIdentityCode, string extendedInformation = null, DateTime? dateA = null, DateTime? dateD = null, int? sort = null, string note = null, string status = null
         )
         {
             Check.NotNullOrWhiteSpace(workIdentityCode, nameof(workIdentityCode));
@@ -59,7 +58,6 @@ namespace Resume.CompanyJobWorkIdentities
             companyJobWorkIdentity.Note = note;
             companyJobWorkIdentity.Status = status;
 
-            companyJobWorkIdentity.SetConcurrencyStampIfNotNull(concurrencyStamp);
             return await _companyJobWorkIdentityRepository.UpdateAsync(companyJobWorkIdentity);
         }
 
